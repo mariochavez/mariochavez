@@ -1,0 +1,65 @@
+<!doctype html>
+
+<html class="no-js" lang="{{ page.lang | default: site.lang | default: "es" }}">
+
+  {%- include head.html -%}
+
+  <body class="loader-dot">
+    <div id="page-loader">
+      <span class="loader-icon"></span>
+    </div>
+
+    <div id="page-content">
+      {%- include header.html -%}
+
+      <div id="hero-and-body">
+
+        <section id="hero" class="hero-auto no-bg">
+
+          <div id="page-title" class="wrapper-small">
+            <span class="post-cat"><a class="cat-link" href="#">{{ page.categories[0] }}</a></span>
+                       <h1 class="post-name"><strong>{{ page.title }}</strong></h1>
+            <div class="post-meta">
+              <span class="post-date">{{ page.published }}</span>
+              <div class="meta-author"><span>por</span> <a href="/">{{ page.author }}</a></div>
+            </div>
+          </div>
+
+        </section>
+
+        <section id="page-body">
+          <div id="blog-single">
+
+            <div class="blog-media">
+              <img width="1200" height="800" src="{{ "/assets/img/" | relative_url }}{{page.image}}"
+                class="attachment-orio-thumb-big size-orio-thumb-big wp-post-image" alt="Main image"
+                srcset="{{ page.image | srcset }}" sizes="(max-width: 1200px) 100vw, 1200px" />
+            </div>
+
+            <div class="blog-content wrapper-small">
+              {{ content }}
+
+              <!--
+              <div id="single-share" class="fixed">
+                <h6 class="widget-title title-alt">Share</h6>
+                <ul class="socialmedia-widget">
+                  <li class="facebook"><a href="#"></a></li>
+                  <li class="twitter"><a href="#"></a></li>
+                  <li class="googleplus"><a href="#"></a></li>
+                  <li class="pinterest"><a href="#"></a></li>
+                </ul>
+              </div>
+              -->
+
+            </div>
+          </div>
+        </section>
+
+        {%- include footer.html -%}
+
+      </div>
+
+      {%- include javascript.html -%}
+
+  </body>
+</html>

@@ -1,0 +1,28 @@
+<!doctype html>
+
+<html class="no-js" lang="{{ page.lang | default: site.lang | default: "es" }}">
+
+  {%- include head.html -%}
+
+  <body class="loader-dot">
+    <div id="page-loader">
+      <span class="loader-icon"></span>
+    </div>
+
+    <div id="page-content">
+      {%- include header.html -%}
+
+      <div id="hero-and-body">
+        <section id="page-body">
+          {{ content }}
+        </section>
+      </div>
+
+      {%- include footer.html -%}
+
+    </div>
+
+    {%- include javascript.html -%}
+
+  </body>
+</html>

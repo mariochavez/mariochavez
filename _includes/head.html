@@ -1,0 +1,28 @@
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
+  <title>{{ page.title }}</title>
+  <meta name="description" content="{{ page.description }}"></meta>
+  <meta name="keywords" content="{{ page.keywords }}"></meta>
+  <link rel="image_src" href="{{ "/assets/img/" | absolute_url }}640-{{ page.image }}"></link>
+
+  <meta property="og:title" content="{{ page.title }}" />
+  <meta property="og:description" content="{{ page.description }}" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="{{ page.url | absolute_url }}" />
+  <meta property="og:image" content="{{ "/assets/img/" | absolute_url }}640-{{ page.image }}" />
+  <meta property="og:site_name" content="Mario Alberto Chávez : Blog" />
+
+  <meta name="twitter:site" content="@mario_chavez" />
+  <meta name="twitter:domain" content="mariochavez.io" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{{ page.title }}" />
+  <meta name="twitter:description" content="{{ page.description }}" />
+  <meta name="twitter:image:src" content="{{ "/assets/img/" | absolute_url }}640-{{ page.image }}" />
+
+  <link href="http://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet" type="text/css">
+
+  {% asset style.css %}
+  {% asset isotope.css %}
+  {% asset mqueries.css %}
+</head>
