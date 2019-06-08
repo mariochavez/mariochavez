@@ -5,7 +5,7 @@
 layout: orio-hero
 title: "Mario Alberto Chávez : Blog"
 description: Blog personal de Mario Alberto Chávez. Temas de desarrollo de software y fotografia.
-image: mariochavez.jpg
+image: mariochavez2.jpg
 keywords: development, photography, desarrollo, software, fotografia
 ---
 
