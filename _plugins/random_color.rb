@@ -1,7 +1,8 @@
 module Jekyll
   module RandomColor
-    def color
-      ["#000000", "#673c34", "#d59682", "#e5e5e5", "#2228bb"].sample
+    def color(input)
+      random = ["#000000", "#673c34", "#d59682", "#bababa", "#e8c0ce", "#2228bb"].sample
+      "#{input} #{random}"
     end
   end
 end

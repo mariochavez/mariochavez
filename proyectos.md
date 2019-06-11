@@ -13,7 +13,7 @@ keywords: development, photography, desarrollo, software, fotografia
         <div class="portfolio-item-inner item-inner">
           <div class="portfolio-media do-anim-modern">
             <a href="{{ post.url }}" class="thumb-hover overlay-color-custom text-light no-scale">
-              <span class="overlay" style="background: {{ color }};"></span>
+              <span class="overlay" style="{{ 'background:' | color }};"></span>
                <img class="lazy" src="#"
                 data-src="{{ "/assets/img/" | relative_url }}640-{{ post.image }}"
                 data-srcset="{{ post.image | srcset_small }}" sizes="(max-width: 1200px) 100vw, 1200px" width="1100" height="950" alt="orio-project-custom-12" />
