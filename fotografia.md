@@ -3,7 +3,7 @@
 # To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 
 layout: orio
-title: "Mario Alberto Chávez : Blog"
+title: "Mario Alberto Chávez : Fotografía"
 description: Blog personal de Mario Alberto Chávez. Temas de desarrollo de software y fotografía.
 image: mariochavez.jpg
 keywords: development, photography, desarrollo, software, fotografia
