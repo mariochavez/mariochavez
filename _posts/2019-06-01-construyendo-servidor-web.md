@@ -21,3 +21,4 @@ Los videos salen cada semana en viernes. La lista de las sesiones es la siguient
 - <a href='http://bit.ly/rubywebserver2' target='_blank'>Sesión 2</a>: El servidor Web más sencillo en Ruby.
 - <a href='http://bit.ly/rubywebserver3' target='_blank'>Sesión 3</a>: Refactorización de la clase Request.
 - <a href='http://bit.ly/rubywebserver4' target='_blank'>Sesión 4</a>: Refactorización de la clase Response.
+- <a href='http://bit.ly/rubywebserver5' target='_blank'>Sesión 5</a>: Agregando funcionalidad para servir assets estáticos.
