@@ -17,3 +17,4 @@ La lista de los videos disponibles es la siguiente y la estaré actualizando cad
 - <a href='http://bit.ly/RPE-logging' target='_blank'>Logging en Rails</a>: Por qué es el importate el logging?, Cómo lo podemos utilizar?
 - <a href='http://bit.ly/RPE-validaciones' target='_blank'>Validaciones</a>: Cómo usar las validaciones de lado de cliente?, Es posible configurar cómo se muestran desde Rails?
 - <a href='http://bit.ly/RPE-validaciones-stimulus' target='_blank'>Validaciones con Stimulus</a>: Aprovechando Stimulus para realizar validaciones en línea de formularios
+- <a href='http://bit.ly/RPE-internacionalizacion' target='_blank'>Internacionalización i18n</a>: Internacionalización de aplicaciones con i18n y Rails.
