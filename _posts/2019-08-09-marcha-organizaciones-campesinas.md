@@ -37,7 +37,7 @@ Todos los manifestantes llegaron ese mismo día, unas horas antes, a la capital 
   srcset="{{ 'marcha-campesina-12.jpg' | srcset }}" sizes="(max-width: 1200px) 100vw, 1200px" />
 </div>
 
-Cuando finalmente los contingentes se lograron organizar inició la marcha en dirección a la glorieta del "Caballito" para después entrar a la plaza del monumento a la revolución, dónde un templete esperaba a los "líderes".
+Cuando finalmente los contingentes se lograron organizar inició la marcha en dirección a la glorieta del "Caballito" para después entrar a la plaza del monumento a la revolución, donde un templete esperaba a los "líderes".
 <div class="blog-media">
   <img width="1200" height="800" src="{{ '/assets/img/marcha-campesina-13.jpg' | relative_url }}"
   class="attachment-orio-thumb-big size-orio-thumb-big wp-post-image" alt="Main image"
