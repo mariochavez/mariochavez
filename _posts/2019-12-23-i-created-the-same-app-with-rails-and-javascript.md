@@ -4,7 +4,7 @@ title: "I created the same app with Rails and Javascript"
 date: 2019-12-23 12:00:00 -0600
 published: December 23, 2019
 categories: desarrollo
-description:
+description: A few days ago, I came into a post on Medium “I created the exact same app in React and Svelte. Here are the differences”, this post talks about side by side code comparison on writing a simple To Do application with both Javascript Framework. So I decided to use his same approach and wrote this post about using HTML, SASS, and StimulusJs with a Rails backend.
 image: vim.png
 keywords: english, development, rails, javascript, webpack
 author: Mario Alberto Chávez
