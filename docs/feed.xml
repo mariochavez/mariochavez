@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" /><updated>2019-12-23T18:53:07-06:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez : Blog</title><subtitle>Blog personal de Mario Alberto Chávez. Temas de desarrollo de software y fotografia.</subtitle><entry><title type="html">I created the same app with Rails and Javascript</title><link href="https://mariochavez.io/desarrollo/2019/12/23/i-created-the-same-app-with-rails-and-javascript.html" rel="alternate" type="text/html" title="I created the same app with Rails and Javascript" /><published>2019-12-23T12:00:00-06:00</published><updated>2019-12-23T12:00:00-06:00</updated><id>https://mariochavez.io/desarrollo/2019/12/23/i-created-the-same-app-with-rails-and-javascript</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2019/12/23/i-created-the-same-app-with-rails-and-javascript.html">&lt;h1 id=&quot;i-created-the-same-app-with-rails-and-javascript&quot;&gt;I created the same app with Rails and Javascript&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" /><updated>2019-12-29T11:56:09-06:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez : Blog</title><subtitle>Blog personal de Mario Alberto Chávez. Temas de desarrollo de software y fotografia.</subtitle><entry><title type="html">I created the same app with Rails and Javascript</title><link href="https://mariochavez.io/desarrollo/2019/12/23/i-created-the-same-app-with-rails-and-javascript.html" rel="alternate" type="text/html" title="I created the same app with Rails and Javascript" /><published>2019-12-23T12:00:00-06:00</published><updated>2019-12-23T12:00:00-06:00</updated><id>https://mariochavez.io/desarrollo/2019/12/23/i-created-the-same-app-with-rails-and-javascript</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2019/12/23/i-created-the-same-app-with-rails-and-javascript.html">&lt;h1 id=&quot;i-created-the-same-app-with-rails-and-javascript&quot;&gt;I created the same app with Rails and Javascript&lt;/h1&gt;
 
 &lt;p&gt;A few days ago, I came into a post on Medium “&lt;a href=&quot;https://medium.com/javascript-in-plain-english/i-created-the-exact-same-app-in-react-and-svelte-here-are-the-differences-c0bd2cc9b3f8&quot; target=&quot;_blank&quot;&gt;I created the exact same app in React and Svelte. Here are the differences&lt;/a&gt;”, this post talks about side by side code comparison on writing a simple To Do application with both Javascript Framework.&lt;/p&gt;
 
@@ -943,180 +943,258 @@ el código para la siguiente iteración.&lt;/p&gt;
   &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/2018-12-10-f-64.md-9.jpeg&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;Main image&quot; srcset=&quot;/assets/img/2018-12-10-f-64.md-9.jpeg 1200w, /assets/img/300-2018-12-10-f-64.md-9.jpeg 300w, /assets/img/768-2018-12-10-f-64.md-9.jpeg 768w, /assets/img/1024-2018-12-10-f-64.md-9.jpeg 1024w, /assets/img/180-2018-12-10-f-64.md-9.jpeg 180w, /assets/img/940-2018-12-10-f-64.md-9.jpeg 940w, /assets/img/320-2018-12-10-f-64.md-9.jpeg 320w, /assets/img/640-2018-12-10-f-64.md-9.jpeg 640w, /assets/img/960-2018-12-10-f-64.md-9.jpeg 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
 &lt;/div&gt;
 
-&lt;p&gt;Finalmente quiero cerrar con un agradecimiento a las personas que han sido parte del inicio de f/64, a quienes me ayudan con la parte de la logística y la organización, a quienes han aceptado estar presentes y presentar su trabajo, así como a todas las personas que nos han acompañado hasta este momento en las 2 sesiones.&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><summary type="html">El 2018 en especial ha sido un año un poco diferente en términos de fotografía para mi.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/2018-12-10-f-64.md-1.png" /></entry><entry><title type="html">2016 en fotos, de Julio a Diciembre (parte 2)</title><link href="https://mariochavez.io/fotograf%C3%ADa/2017/01/20/2016-en-fotos-de-julio-a-diciembre.html" rel="alternate" type="text/html" title="2016 en fotos, de Julio a Diciembre (parte 2)" /><published>2017-01-20T12:00:00-06:00</published><updated>2017-01-20T12:00:00-06:00</updated><id>https://mariochavez.io/fotograf%C3%ADa/2017/01/20/2016-en-fotos-de-julio-a-diciembre</id><content type="html" xml:base="https://mariochavez.io/fotograf%C3%ADa/2017/01/20/2016-en-fotos-de-julio-a-diciembre.html">&lt;p&gt;Hace algunas semanas realicé un post titulado 2016 en fotos, de Enero a Junio. La intención del post fue buscar dentro de mi bilbioteca de imágenes fotos que tomé en los meses indicados para seleccionar una de cada evento donde tomé fotos, siendo un evento, una salida a tomar fotos, un viaje, etc.&lt;/p&gt;
+&lt;p&gt;Finalmente quiero cerrar con un agradecimiento a las personas que han sido parte del inicio de f/64, a quienes me ayudan con la parte de la logística y la organización, a quienes han aceptado estar presentes y presentar su trabajo, así como a todas las personas que nos han acompañado hasta este momento en las 2 sesiones.&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><summary type="html">El 2018 en especial ha sido un año un poco diferente en términos de fotografía para mi.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/2018-12-10-f-64.md-1.png" /></entry><entry><title type="html">Keep your API in shape with API Blueprint</title><link href="https://mariochavez.io/desarrollo/2018/08/02/keep-your-api-in-shape-with-api-blueprint.html" rel="alternate" type="text/html" title="Keep your API in shape with API Blueprint" /><published>2018-08-02T13:00:00-05:00</published><updated>2018-08-02T13:00:00-05:00</updated><id>https://mariochavez.io/desarrollo/2018/08/02/keep-your-api-in-shape-with-api-blueprint</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2018/08/02/keep-your-api-in-shape-with-api-blueprint.html">&lt;h1 id=&quot;keep-your-api-in-shape-with-api-blueprint&quot;&gt;Keep your API in shape with API Blueprint&lt;/h1&gt;
 
-&lt;p&gt;Para el primer semestre publiqué un total de 16 fotos, afortunadamente — para mí — las fotos de ese periodo ya habían sido revisadas y procesadas, entonces tenía una idea clara de cuales fotos elegir en cada evento.&lt;/p&gt;
+&lt;p&gt;When you start a new API project with Rails, your first question might be, &lt;em&gt;“should I do it using GraphQL or go with good old REST API?”&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;Para la segunda mitad del 2016, y que es el tema de este post, no fue así. Salvo un par de eventos la mayoría de las fotos no las había revisado aún, así que me metí en la biblioteca y procedí a seleccionar una foto para procesarla y finalmente postearla aquí.
-&lt;a href=&quot;/fotograf%C3%ADa/2016/12/26/2016-en-fotos-de-enero-a-junio.html&quot; target=&quot;_blank&quot;&gt;aquí&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;After much consideration, if you decide to go with a REST API, continue reading this post.&lt;/p&gt;
 
-&lt;p&gt;Si llegaste a este post y aún no has visto el anterior el link está aquí. Si estás listo para ver las fotos de mi último semestre sigue adelante.&lt;/p&gt;
-&lt;hr /&gt;
+&lt;p&gt;Now, before you begin to consider how to implement your API, your primary concern should be how to keep your API documentation up to date.&lt;/p&gt;
+
+&lt;p&gt;It is not an easy task for the development team to keep code in sync with documentation without going thru many hoops.&lt;/p&gt;
+
+&lt;p&gt;At a recent project, I was looking for a solution that could easily integrate with Rails and, at the same time, allows the team to document the API definition without considerations about the implementation details.&lt;/p&gt;
+
+&lt;p&gt;The first tool that I found was the &lt;a href=&quot;https://github.com/zipmark/rspec_api_documentation&quot; target=&quot;_blank&quot;&gt;rspec_api_documentation&lt;/a&gt; gem, but it was incompatible with our project for two reasons: We use Minitest, and it requires you to write Specs with Ruby code to describe the API.&lt;/p&gt;
+
+&lt;p&gt;Then I remember that in a project for one of our clients at &lt;a href=&quot;http://michelada.io/&quot; target=&quot;_blank&quot;&gt;michelada&lt;/a&gt;, Apiary was used as a communication tool to describe the API with the team.&lt;/p&gt;
+
+&lt;h1 id=&quot;api-blueprint&quot;&gt;API Blueprint&lt;/h1&gt;
 
 &lt;div class=&quot;blog-media&quot;&gt;
-  &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/2017-01-20-2016-en-2.jpeg&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;Main image&quot; srcset=&quot;/assets/img/2017-01-20-2016-en-2.jpeg 1200w, /assets/img/300-2017-01-20-2016-en-2.jpeg 300w, /assets/img/768-2017-01-20-2016-en-2.jpeg 768w, /assets/img/1024-2017-01-20-2016-en-2.jpeg 1024w, /assets/img/180-2017-01-20-2016-en-2.jpeg 180w, /assets/img/940-2017-01-20-2016-en-2.jpeg 940w, /assets/img/320-2017-01-20-2016-en-2.jpeg 320w, /assets/img/640-2017-01-20-2016-en-2.jpeg 640w, /assets/img/960-2017-01-20-2016-en-2.jpeg 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
-  &lt;figcaption&gt;Surfers en Boca de Pascuales&lt;/figcaption&gt;
+  &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/api-documentation-2.png&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;API Blueprint&quot; srcset=&quot;/assets/img/api-documentation-2.png 1200w, /assets/img/300-api-documentation-2.png 300w, /assets/img/768-api-documentation-2.png 768w, /assets/img/1024-api-documentation-2.png 1024w, /assets/img/180-api-documentation-2.png 180w, /assets/img/940-api-documentation-2.png 940w, /assets/img/320-api-documentation-2.png 320w, /assets/img/640-api-documentation-2.png 640w, /assets/img/960-api-documentation-2.png 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
 &lt;/div&gt;
 
-&lt;p&gt;Recuerdo que ese día me levanté temprano y salí rumbo a Boca de Pascuales en Tecomán, unos 40 mins de distancia de la ciudad de Colima. Aún no se asomaba el sol cuando llegué a la playa. Estaba vacía, no había nadie. Lo primero que pensé fue que a la mejor esa época del año no era atractiva para los surfistas, pero de aún así decidí esperar un poco.&lt;/p&gt;
+&lt;p&gt;Apiary has an Open Source format called &lt;a href=&quot;https://apiblueprint.org/&quot; target=&quot;_blank&quot;&gt;API Blueprint&lt;/a&gt;. It is a specification on top of Markdown that helps to describe a web API. This format focuses on creating documentation.&lt;/p&gt;
 
-&lt;p&gt;Alrededor de las 8am empezaron a salir poco y lanzarse al mar, el mar estaba agitado pero las olas no se veian muy grandes. Casi a media mañana ya tenía alrededor de 40 surfistas tratando de “agarrar olas” en los diferentes lugares de la playa.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;FORMAT: 1A
+HOST: http://polls.apiblueprint.org/
+# Sample API
+Polls is a simple API allowing consumers to view polls and vote in them.
+## Questions Collection [/questions]
+### List All Questions [GET]
++ Response 200 (application/json)
+        [
+            {
+                &quot;question&quot;: &quot;Favourite programming language?&quot;,
+                &quot;published_at&quot;: &quot;2015-08-05T08:40:51.620Z&quot;,
+                &quot;choices&quot;: [
+                    {
+                        &quot;choice&quot;: &quot;Swift&quot;,
+                        &quot;votes&quot;: 2048
+                    }, {
+                        &quot;choice&quot;: &quot;Python&quot;,
+                        &quot;votes&quot;: 1024
+                    }, {
+                        &quot;choice&quot;: &quot;Objective-C&quot;,
+                        &quot;votes&quot;: 512
+                    }, {
+                        &quot;choice&quot;: &quot;Ruby&quot;,
+                        &quot;votes&quot;: 256
+                    }
+                ]
+            }
+        ]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;With this &lt;a href=&quot;https://github.com/apiaryio/api-blueprint/blob/master/API%20Blueprint%20Specification.md&quot; target=&quot;_blank&quot;&gt;specification&lt;/a&gt;, you can define how the API receives a request and what to expect as a response. The following example shows how Markdown and a special syntax &lt;a href=&quot;https://github.com/apiaryio/mson&quot; target=&quot;_blank&quot;&gt;MSON&lt;/a&gt; works together to document an API endpoint. No implementation details are present.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;MSON&lt;/strong&gt; syntax allows you to describe &lt;strong&gt;JSON&lt;/strong&gt; objects easily no matter how complicated your &lt;strong&gt;JSON&lt;/strong&gt; object is. An object structure with &lt;strong&gt;MSON&lt;/strong&gt; like the following:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;- address
+    - street
+    - city
+    - state
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Produces a &lt;strong&gt;JSON&lt;/strong&gt; object like:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{
+    &quot;address&quot; : {
+        &quot;street&quot;: &quot;&quot;,
+        &quot;city&quot;: &quot;&quot;,
+        &quot;state&quot;: &quot;&quot;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The format is relatively simple to get up to speed quickly and write a complete set of API documentation. With the API Blueprint format is also possible to generate &lt;strong&gt;JSON&lt;/strong&gt; Schema draft 4 from it. The schemas are useful to validate your API using Minitest.&lt;/p&gt;
+
+&lt;h1 id=&quot;generate-good-looking-documentation&quot;&gt;Generate good-looking documentation.&lt;/h1&gt;
+
+&lt;p&gt;Let’s start with the low hang fruit of using API Blueprint to document our API. Here is the documentation for two API endpoints; they are our example for the rest of this post.&lt;/p&gt;
+
+&lt;p&gt;The API is simple, but it shows some benefits of &lt;strong&gt;MSON&lt;/strong&gt; syntax, like the ability to reuse data structures. It also shows how to document a response that can have many different statuses.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/danielgtaylor/aglio&quot; target=&quot;_blank&quot;&gt;Aglio&lt;/a&gt; is a tool that uses the API Blueprint format to render good-looking documentation from it. It has a few available themes that you can choose from, or even better; you can write your own.&lt;/p&gt;
+
+&lt;p&gt;In a Rails application, to install aglio use &lt;strong&gt;Yarn&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ bin/yarn add aglio
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Aglio command needs at least two parameters, the input, where is the documentation file written with API Blueprint, and the output file for the HTML documentation.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ bin/yarn run aglio -i docs/api/documentation.md -o public/documentation.html
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;It produces the HTML documentation with aglio’s default theme. You can pass a set of –theme flags to choose a theme, color scheme, layout, and a few things more, check aglio’s documentation for details.&lt;/p&gt;
+
+&lt;p&gt;Start your Rails server and point your browser to &lt;strong&gt;http://localhost:3000/documentation.html&lt;/strong&gt;. There you have a nicely documented API.&lt;/p&gt;
+
 &lt;div class=&quot;blog-media&quot;&gt;
-  &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/2017-01-20-2016-en-3.jpeg&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;Main image&quot; srcset=&quot;/assets/img/2017-01-20-2016-en-3.jpeg 1200w, /assets/img/300-2017-01-20-2016-en-3.jpeg 300w, /assets/img/768-2017-01-20-2016-en-3.jpeg 768w, /assets/img/1024-2017-01-20-2016-en-3.jpeg 1024w, /assets/img/180-2017-01-20-2016-en-3.jpeg 180w, /assets/img/940-2017-01-20-2016-en-3.jpeg 940w, /assets/img/320-2017-01-20-2016-en-3.jpeg 320w, /assets/img/640-2017-01-20-2016-en-3.jpeg 640w, /assets/img/960-2017-01-20-2016-en-3.jpeg 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
-  &lt;figcaption&gt;Comala, el pueblo blanco.&lt;/figcaption&gt;
+  &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/api-documentation-1.png&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;API Documentation&quot; srcset=&quot;/assets/img/api-documentation-1.png 1200w, /assets/img/300-api-documentation-1.png 300w, /assets/img/768-api-documentation-1.png 768w, /assets/img/1024-api-documentation-1.png 1024w, /assets/img/180-api-documentation-1.png 180w, /assets/img/940-api-documentation-1.png 940w, /assets/img/320-api-documentation-1.png 320w, /assets/img/640-api-documentation-1.png 640w, /assets/img/960-api-documentation-1.png 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
 &lt;/div&gt;
 
-&lt;p&gt;Comala, el pueblo mágico famoso por la novela “Pedro Páramo” de Juan Rulfo. Con sus fachadas blancas y calles empedradas, es la entrada hacia la ruta del volcán de Colima, hacía la ruta del cafe y las zarzamoras.&lt;/p&gt;
+&lt;p&gt;It is handy to have a rake task to refresh the HTML documentation anytime with the command &lt;strong&gt;bin/rails api:documentation&lt;/strong&gt;. Create a file &lt;strong&gt;lib/tasks/api.rake&lt;/strong&gt; and add the following lines:&lt;/p&gt;
 
-&lt;p&gt;Me gusta ir a tomarme un café en los portales y ver el jardín principal, mientras la gente corre porque ya sonó la última campanada de la llamada a misa en la iglesia.&lt;/p&gt;
-&lt;div class=&quot;blog-media&quot;&gt;
-  &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/2017-01-20-2016-en-4.jpeg&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;Main image&quot; srcset=&quot;/assets/img/2017-01-20-2016-en-4.jpeg 1200w, /assets/img/300-2017-01-20-2016-en-4.jpeg 300w, /assets/img/768-2017-01-20-2016-en-4.jpeg 768w, /assets/img/1024-2017-01-20-2016-en-4.jpeg 1024w, /assets/img/180-2017-01-20-2016-en-4.jpeg 180w, /assets/img/940-2017-01-20-2016-en-4.jpeg 940w, /assets/img/320-2017-01-20-2016-en-4.jpeg 320w, /assets/img/640-2017-01-20-2016-en-4.jpeg 640w, /assets/img/960-2017-01-20-2016-en-4.jpeg 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
-  &lt;figcaption&gt;Aplacando en calor con un chapusón en la laguna.&lt;/figcaption&gt;
-&lt;/div&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;namespace :api do
+  desc 'Build API documentation'
+  task :documentation do
+    input_file = 'docs/api/documentation.md'
+    output_file = 'public/documentation.html'
+    system(&quot; bin/yarn run aglio -i #{input_file}  -o #{output_file}&quot;)
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Siempre he había ido a Manzanillo, iba a algo particular, creo que más allá del pendiente que me llevaba al puerto nunca lo recorría. Pero está ocasión mi visita era diferente.&lt;/p&gt;
+&lt;h1 id=&quot;generating-json-schemas&quot;&gt;Generating JSON Schemas&lt;/h1&gt;
 
-&lt;p&gt;Quería ir y entrar a lugares de los que había escuchado pero nunca había ido. Entre y recorrí lugares que desconocía, estacionaba el auto donde podía y luego regresaba caminando a tomar fotos.&lt;/p&gt;
-&lt;div class=&quot;blog-media&quot;&gt;
-  &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/2017-01-20-2016-en-5.jpeg&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;Main image&quot; srcset=&quot;/assets/img/2017-01-20-2016-en-5.jpeg 1200w, /assets/img/300-2017-01-20-2016-en-5.jpeg 300w, /assets/img/768-2017-01-20-2016-en-5.jpeg 768w, /assets/img/1024-2017-01-20-2016-en-5.jpeg 1024w, /assets/img/180-2017-01-20-2016-en-5.jpeg 180w, /assets/img/940-2017-01-20-2016-en-5.jpeg 940w, /assets/img/320-2017-01-20-2016-en-5.jpeg 320w, /assets/img/640-2017-01-20-2016-en-5.jpeg 640w, /assets/img/960-2017-01-20-2016-en-5.jpeg 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
-  &lt;figcaption&gt;Vuelo llegando al atardecer en la Ciudad de México.&lt;/figcaption&gt;
-&lt;/div&gt;
+&lt;p&gt;Now that you have nice looking documentation, it is time to generate &lt;a href=&quot;https://spacetelescope.github.io/understanding-json-schema/&quot; target=&quot;_blank&quot;&gt;JSON Schemas&lt;/a&gt; from the same documentation file. The generated files, along with Minitest, help us to automate the verification that the server requests/response work as expected.&lt;/p&gt;
 
-&lt;p&gt;Creo que ya es de todos conocido lo complicado que es volar en la Ciudad de México, ya sea de salida o llegada, siempre hay retrasos por el congestionamiento de tráfico aereo.&lt;/p&gt;
+&lt;p&gt;To generate the schema files from the API Blueprint file, we need a tool called &lt;a href=&quot;https://github.com/o5/apib2json&quot; target=&quot;_blank&quot;&gt;apib2json&lt;/a&gt;. It produces a single &lt;strong&gt;JSON&lt;/strong&gt; file for all schemas present in the documentation, this is fine. Still, for our needs, a single file does not work, so we need an additional step to split this file into multiple files, each one with a single schema representation.&lt;/p&gt;
 
-&lt;p&gt;Esa tarde estaba esperando partir hacia La Habana, ya tenía quizás unos 20 minutos en el avión parado en algún punto de la pista esperando turno para salir, tenía la cámara en la mano y simplemente me dediqué a tomar algunas fotos de los aviones que llegaban en ese anaranjado atardecer.&lt;/p&gt;
-&lt;div class=&quot;blog-media&quot;&gt;
-  &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/2017-01-20-2016-en-6.jpeg&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;Main image&quot; srcset=&quot;/assets/img/2017-01-20-2016-en-6.jpeg 1200w, /assets/img/300-2017-01-20-2016-en-6.jpeg 300w, /assets/img/768-2017-01-20-2016-en-6.jpeg 768w, /assets/img/1024-2017-01-20-2016-en-6.jpeg 1024w, /assets/img/180-2017-01-20-2016-en-6.jpeg 180w, /assets/img/940-2017-01-20-2016-en-6.jpeg 940w, /assets/img/320-2017-01-20-2016-en-6.jpeg 320w, /assets/img/640-2017-01-20-2016-en-6.jpeg 640w, /assets/img/960-2017-01-20-2016-en-6.jpeg 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
-  &lt;figcaption&gt;Cubanos en la playa de Santa María del Mar.&lt;/figcaption&gt;
-&lt;/div&gt;
+&lt;p&gt;Unfortunately, the way that apib2json works, it does not provide enough metadata to help us identify each generated schema to put it into a file. So you need a custom version of apib2json, which you can find at &lt;a href=&quot;https://github.com/mariochavez/apib2json/tree/additional-metadata&quot; target=&quot;_blank&quot;&gt;https://github.com/mariochavez/apib2json/tree/additional-metadata&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;Durante mi visita a Cuba, en particular a La Habana, visité la playa de Santa María del Mar al este de la ciudad. Me decían “No vayas en fin de semana, los cubanos somos muy sucios y dejamos basura” de alguna forma pude cambiar “cubanos” por “mexicanos” y la sentencia aún tenia sentido.&lt;/p&gt;
+&lt;p&gt;To install it, use &lt;strong&gt;Yarn&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;p&gt;Hice caso a las recomendaciones y fui un lunes. La playa increíble, parecía una piscina, clara transparente, no había mucha gente. Una tormenta eléctrica muy activa se veía a lo lejos. Ya a punto de irme, una torrencial tormenta se dejo caer, con una fuerza increíble y sin ningún lugar donde tomar cobijo. El saldo, una cámara DSLR muerta, se ahogó.&lt;/p&gt;
-&lt;div class=&quot;blog-media&quot;&gt;
-  &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/2017-01-20-2016-en-7.jpeg&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;Main image&quot; srcset=&quot;/assets/img/2017-01-20-2016-en-7.jpeg 1200w, /assets/img/300-2017-01-20-2016-en-7.jpeg 300w, /assets/img/768-2017-01-20-2016-en-7.jpeg 768w, /assets/img/1024-2017-01-20-2016-en-7.jpeg 1024w, /assets/img/180-2017-01-20-2016-en-7.jpeg 180w, /assets/img/940-2017-01-20-2016-en-7.jpeg 940w, /assets/img/320-2017-01-20-2016-en-7.jpeg 320w, /assets/img/640-2017-01-20-2016-en-7.jpeg 640w, /assets/img/960-2017-01-20-2016-en-7.jpeg 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
-  &lt;figcaption&gt;Cancún vista desde el aire.&lt;/figcaption&gt;
-&lt;/div&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ bin/yarn add &quot;https://github.com/mariochavez/apib2json.git#additional-metadata&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Mi regreso a México de La Habana fue por Cancún. Al despegar hacia Guadalajara dimos una vuelta sobre este increíble paisaje, la hora dorada estaba comenzando y el sol brillaba sobre las edificaciones.&lt;/p&gt;
-&lt;div class=&quot;blog-media&quot;&gt;
-  &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/2017-01-20-2016-en-8.jpeg&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;Main image&quot; srcset=&quot;/assets/img/2017-01-20-2016-en-8.jpeg 1200w, /assets/img/300-2017-01-20-2016-en-8.jpeg 300w, /assets/img/768-2017-01-20-2016-en-8.jpeg 768w, /assets/img/1024-2017-01-20-2016-en-8.jpeg 1024w, /assets/img/180-2017-01-20-2016-en-8.jpeg 180w, /assets/img/940-2017-01-20-2016-en-8.jpeg 940w, /assets/img/320-2017-01-20-2016-en-8.jpeg 320w, /assets/img/640-2017-01-20-2016-en-8.jpeg 640w, /assets/img/960-2017-01-20-2016-en-8.jpeg 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
-  &lt;figcaption&gt;Máscara de Suchitlán, la tierra de las flores&lt;/figcaption&gt;
-&lt;/div&gt;
+&lt;p&gt;Then execute it to generate a single schema file. The command needs an input, which is the API Blueprint file, and an output file for the &lt;strong&gt;JSON&lt;/strong&gt; schemas; the &lt;code class=&quot;highlighter-rouge&quot;&gt;--pretty&lt;/code&gt; flag is for us to get a human-readable file.&lt;/p&gt;
 
-&lt;p&gt;En las tradiciones prehispánicas de origen nahuatl en el occidente de México, se tallan máscaras en madera de Tzompantle y se pintan muy coloridas. Las máscaras tienen forma de animales o personajes importantes de la zona y las portan los danzantes en las festividades, el día de hoy ya mezcladas con la religión cristiana.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ bin/yarn run apib2json --pretty -i docs/api/documentation.md  -o test/support/schemas/schemas.json
 
-&lt;p&gt;Suchitlán, la tierra de las flores, es uno de esos lugares donde se mantiene viva la tradición del tallado de máscaras.&lt;/p&gt;
-&lt;div class=&quot;blog-media&quot;&gt;
-  &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/2017-01-20-2016-en-9.jpeg&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;Main image&quot; srcset=&quot;/assets/img/2017-01-20-2016-en-9.jpeg 1200w, /assets/img/300-2017-01-20-2016-en-9.jpeg 300w, /assets/img/768-2017-01-20-2016-en-9.jpeg 768w, /assets/img/1024-2017-01-20-2016-en-9.jpeg 1024w, /assets/img/180-2017-01-20-2016-en-9.jpeg 180w, /assets/img/940-2017-01-20-2016-en-9.jpeg 940w, /assets/img/320-2017-01-20-2016-en-9.jpeg 320w, /assets/img/640-2017-01-20-2016-en-9.jpeg 640w, /assets/img/960-2017-01-20-2016-en-9.jpeg 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
-  &lt;figcaption&gt;Tortuga negra a punto de ser liberada al mar&lt;/figcaption&gt;
-&lt;/div&gt;
+{
+  &quot;[GET]/users{?cursor}&quot;: [
+    {
+      &quot;meta&quot;: {
+        &quot;type&quot;: &quot;response&quot;,
+        &quot;title&quot;: &quot;&quot;
+      },
+      &quot;schema&quot;: {
+        &quot;$schema&quot;: &quot;http://json-schema.org/draft-04/schema#&quot;,
+        &quot;type&quot;: &quot;object&quot;,
+        &quot;properties&quot;: {
+          &quot;data&quot;: {
+            &quot;type&quot;: &quot;array&quot;,
+            &quot;items&quot;: {
+              &quot;type&quot;: &quot;object&quot;,
+              &quot;properties&quot;: {
+                &quot;email&quot;: {
+                  &quot;type&quot;: &quot;string&quot;,
+                  &quot;description&quot;: &quot;User's email.&quot;
+...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;El tortugario de Cuyutlán en Colima, se encarga de proteger a la tortuga negra, desde el momento en que los huevos son depositados en la arena, hasta el momento en que las pequeñas tortugas sales y están listas para sortear el mar del pacífico.&lt;/p&gt;
+&lt;p&gt;With the help of a second rake task, the generated file is divided into multiple files; each file will contain one request with a single response. A file &lt;strong&gt;GET-Users-200.json&lt;/strong&gt; contains a request with a GET to Users endpoint with a 200 status response.&lt;/p&gt;
 
-&lt;p&gt;La protección que ofrece el personal del tortugario no es sólo de los depredadores naturales como los zorrillos, perros, cangrejos, etc., también la protege del hombre.&lt;/p&gt;
-&lt;div class=&quot;blog-media&quot;&gt;
-  &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/2017-01-20-2016-en-10.jpeg&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;Main image&quot; srcset=&quot;/assets/img/2017-01-20-2016-en-10.jpeg 1200w, /assets/img/300-2017-01-20-2016-en-10.jpeg 300w, /assets/img/768-2017-01-20-2016-en-10.jpeg 768w, /assets/img/1024-2017-01-20-2016-en-10.jpeg 1024w, /assets/img/180-2017-01-20-2016-en-10.jpeg 180w, /assets/img/940-2017-01-20-2016-en-10.jpeg 940w, /assets/img/320-2017-01-20-2016-en-10.jpeg 320w, /assets/img/640-2017-01-20-2016-en-10.jpeg 640w, /assets/img/960-2017-01-20-2016-en-10.jpeg 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
-  &lt;figcaption&gt;Templo de la Luna en Teotihuacán&lt;/figcaption&gt;
-&lt;/div&gt;
+&lt;p&gt;Create the file &lt;strong&gt;lib/tasks/api.rake&lt;/strong&gt; and add the following code.&lt;/p&gt;
 
-&lt;p&gt;Teotihuacán, “El lugar de los dioses”, es el nombre nauhtl que los Aztecas dieron a este lugar, el nombre que la cultura que fundó la ciudad le dio aún se desconoce.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;desc &quot;Generate JSON schemas&quot;
+  task :schemas do
+    schemas_path = &quot;test/support/schemas&quot;
+    input_file = &quot;docs/api/documentation.md&quot;
+    output_file = &quot;test/support/schemas/schemas.json&quot;
+    puts &quot;Generating api schemas from #{input_file}&quot;
+    system(&quot;bin/yarn run apib2json --pretty -i #{input_file} -o #{output_file}&quot;)
+    if File.exist?(output_file)
+      file_path = Pathname.new(output_file)
+      JSON.parse(file_path.read).each_pair do |group, actions|
+        actions.each do |action|
+          next if action.dig(&quot;meta&quot;, &quot;type&quot;) != &quot;response&quot;
+          verb = group.scan(/\[(.*)\]/).flatten.first
+          name = &quot;#{verb}-#{I18n.transliterate(action.dig('meta', 'group'))}(#{action.dig('meta', 'statusCode')})#{action.dig('meta', 'title')&amp;amp;.gsub(/ /, '-')}&quot;.
+            sub(/\{.*\}/, &quot;&quot;).gsub(/\(|\)/, &quot;-&quot;).gsub(/^-|-$/, &quot;&quot;)
+          puts &quot;Writing #{name}&quot;
+          File.open(&quot;#{schemas_path}/#{name}.json&quot;, &quot;w&quot;) { |file| file.write(action.dig(&quot;schema&quot;).to_json) }
+        end
+      end
+    end
+    puts &quot;Schemas are ready at #{schemas_path}&quot;
+  end
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;En su era dorada se dice que fue una ciudad que controló grandes extensiones en Mesoamérica. Su influencia en el comercio, la orfebrería, las artesanías, la religión. Aún después de que desaparecer la cultura Teotihuacana tuvo gran influencia sobre las nuevas culturas que florecieron posteriormente.&lt;/p&gt;
-&lt;div class=&quot;blog-media&quot;&gt;
-  &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/2017-01-20-2016-en-11.jpeg&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;Main image&quot; srcset=&quot;/assets/img/2017-01-20-2016-en-11.jpeg 1200w, /assets/img/300-2017-01-20-2016-en-11.jpeg 300w, /assets/img/768-2017-01-20-2016-en-11.jpeg 768w, /assets/img/1024-2017-01-20-2016-en-11.jpeg 1024w, /assets/img/180-2017-01-20-2016-en-11.jpeg 180w, /assets/img/940-2017-01-20-2016-en-11.jpeg 940w, /assets/img/320-2017-01-20-2016-en-11.jpeg 320w, /assets/img/640-2017-01-20-2016-en-11.jpeg 640w, /assets/img/960-2017-01-20-2016-en-11.jpeg 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
-  &lt;figcaption&gt;Amacener desde el puente de Brooklyn en Nueva York.&lt;/figcaption&gt;
-&lt;/div&gt;
+&lt;p&gt;To execute the rake task, run the following command.&lt;/p&gt;
 
-&lt;p&gt;Amanecer en Nueva York desde el puente Brooklyn. Durante el evento de PhotoVille se llevó a cabo un “Photowalk” a las 6am para alcanzar la salida del sol. La mañana era fresca, muy fresca, olvidé mi chamarra, llegué sólo en camiseta, no importaba mucho, había caminado alrededor de 15 cuadras para llegar ahí, así que llegué con el calor del ejercicio.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ bin/rails api:schemas
+Generating api schemas from docs/api/documentation.md
+yarn run v1.7.0
+$ node_modules/.bin/apib2json --pretty -i docs/api/documentation.md -o test/support/schemas/schemas.json
+Done in 0.31s.
+Writing GET-Users-200
+Writing POST-Users-201
+Writing POST-Users-422
+Schemas are ready at test/support/schemas
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Al llegar había alrededor de 30 personas más, todas listas para captar los primeros rayos de sol, ya sea de manera directa o reflejado sobre los edificios de Manhattan.&lt;/p&gt;
-&lt;div class=&quot;blog-media&quot;&gt;
-  &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/2017-01-20-2016-en-12.jpeg&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;Main image&quot; srcset=&quot;/assets/img/2017-01-20-2016-en-12.jpeg 1200w, /assets/img/300-2017-01-20-2016-en-12.jpeg 300w, /assets/img/768-2017-01-20-2016-en-12.jpeg 768w, /assets/img/1024-2017-01-20-2016-en-12.jpeg 1024w, /assets/img/180-2017-01-20-2016-en-12.jpeg 180w, /assets/img/940-2017-01-20-2016-en-12.jpeg 940w, /assets/img/320-2017-01-20-2016-en-12.jpeg 320w, /assets/img/640-2017-01-20-2016-en-12.jpeg 640w, /assets/img/960-2017-01-20-2016-en-12.jpeg 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
-  &lt;figcaption&gt;Sol subiendo por detrás de la capilla de Nogueras, Colima&lt;/figcaption&gt;
-&lt;/div&gt;
+&lt;p&gt;There you have it, one &lt;strong&gt;JSON&lt;/strong&gt; schema file per request/response. The rest is quite simple, add the &lt;a href=&quot;https://github.com/thoughtbot/json_matchers&quot; target=&quot;_blank&quot;&gt;json_matchers&lt;/a&gt; gem in your &lt;strong&gt;Gemfile&lt;/strong&gt; and configure the &lt;strong&gt;test_helper.rb&lt;/strong&gt; to load the gem.&lt;/p&gt;
 
-&lt;p&gt;La hacienda de Nogueras es un lugar “pintoresco” para visitar cuando se está en Colima, está a sólo unos 10 minutos en auto de la ciudad. Hay varios lugares de comida casera donde llegar a desayunar, está el museo de Alejandro Rangel Hidalgo, diseñador y arquitecto famoso por sus pinturas, muebles y herrería.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;require 'json_matchers/minitest/assertions'
+JsonMatchers.schema_root = 'test/support/schemas'
+Minitest::Test.send(:include, JsonMatchers::Minitest::Assertions)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Además está el Ecoparque, una reserva biológica para visitar y caminar.&lt;/p&gt;
-&lt;div class=&quot;blog-media&quot;&gt;
-  &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/2017-01-20-2016-en-13.jpeg&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;Main image&quot; srcset=&quot;/assets/img/2017-01-20-2016-en-13.jpeg 1200w, /assets/img/300-2017-01-20-2016-en-13.jpeg 300w, /assets/img/768-2017-01-20-2016-en-13.jpeg 768w, /assets/img/1024-2017-01-20-2016-en-13.jpeg 1024w, /assets/img/180-2017-01-20-2016-en-13.jpeg 180w, /assets/img/940-2017-01-20-2016-en-13.jpeg 940w, /assets/img/320-2017-01-20-2016-en-13.jpeg 320w, /assets/img/640-2017-01-20-2016-en-13.jpeg 640w, /assets/img/960-2017-01-20-2016-en-13.jpeg 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
-  &lt;figcaption&gt;Ciudad de México de noche.&lt;/figcaption&gt;
-&lt;/div&gt;
+&lt;p&gt;Then create an integration test for a &lt;code class=&quot;highlighter-rouge&quot;&gt;UsersController&lt;/code&gt; and add the following tests. Each test will perform a request to the API and match the response accordingly to what you documented in the API Blueprint file.&lt;/p&gt;
 
-&lt;p&gt;Vista de la Ciudad de México desde el piso 22 del hotel Fiesta Americana en Reforma. Después de llegar de una cena, casi a la 1am, tomé el tripie y la cámara y los puse frente a la ventana. La toma es en dirección a La Alameda Central, se alcanza a ver la antena de la torre Latinoamericana.&lt;/p&gt;
-&lt;div class=&quot;blog-media&quot;&gt;
-  &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/2017-01-20-2016-en-14.jpeg&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;Main image&quot; srcset=&quot;/assets/img/2017-01-20-2016-en-14.jpeg 1200w, /assets/img/300-2017-01-20-2016-en-14.jpeg 300w, /assets/img/768-2017-01-20-2016-en-14.jpeg 768w, /assets/img/1024-2017-01-20-2016-en-14.jpeg 1024w, /assets/img/180-2017-01-20-2016-en-14.jpeg 180w, /assets/img/940-2017-01-20-2016-en-14.jpeg 940w, /assets/img/320-2017-01-20-2016-en-14.jpeg 320w, /assets/img/640-2017-01-20-2016-en-14.jpeg 640w, /assets/img/960-2017-01-20-2016-en-14.jpeg 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
-  &lt;figcaption&gt;Danzante en el desfile del Día de Muertos sobre Reforma.&lt;/figcaption&gt;
-&lt;/div&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;require 'test_helper'
+class UsersApiTest &amp;lt; ActionDispatch::IntegrationTest
+  test 'Users List' do
+    get '/users', headers: { Accept: 'application/vnd.api-test.v1+json' }
+    assert_response :success
+    assert_matches_json_schema response, 'GET-Users-200'
+  end
+  test 'Create new User successfully' do
+    post '/users', headers: { Accept: 'application/vnd.api-test.v1+json' }, params: user_payload
+    assert_response :created
+    assert_matches_json_schema response, 'POST-Users-201'
+  end
+  test 'Fails to create new User' do
+    post '/users', headers: { Accept: 'application/vnd.api-test.v1+json' },
+                   params: user_payload(email: nil, first_name: nil)
+    assert_response :unprocessable_entity
+    assert_matches_json_schema response, 'POST-Users-422'
+  end
+  def user_payload(attrs = {})
+    {
+      email: 'user@mail.com',
+      first_name: 'Jane',
+      last_name: 'Doe'
+    }.merge(attrs)
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;En la última película de James Bond, Spectre, el inicio es en la Ciudad de México, en medio de un desfile del Día de Muertos, un desfile inexistente creado exclusivamente para la película.&lt;/p&gt;
+&lt;p&gt;If there is a mismatch between the request and the documented response, the test will fail with detailed information on why the response differs from the &lt;strong&gt;JSON&lt;/strong&gt; schema.&lt;/p&gt;
 
-&lt;p&gt;A alguien a el gobierno de la Ciudad de México se le ocurrió que sería buena idea hacer realidad el desfile y por primera vez se llevó a cabo en el ciudad en el 2016.&lt;/p&gt;
-&lt;div class=&quot;blog-media&quot;&gt;
-  &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/2017-01-20-2016-en-15.jpeg&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;Main image&quot; srcset=&quot;/assets/img/2017-01-20-2016-en-15.jpeg 1200w, /assets/img/300-2017-01-20-2016-en-15.jpeg 300w, /assets/img/768-2017-01-20-2016-en-15.jpeg 768w, /assets/img/1024-2017-01-20-2016-en-15.jpeg 1024w, /assets/img/180-2017-01-20-2016-en-15.jpeg 180w, /assets/img/940-2017-01-20-2016-en-15.jpeg 940w, /assets/img/320-2017-01-20-2016-en-15.jpeg 320w, /assets/img/640-2017-01-20-2016-en-15.jpeg 640w, /assets/img/960-2017-01-20-2016-en-15.jpeg 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
-  &lt;figcaption&gt;Centro Histórico de la Ciudad de México.&lt;/figcaption&gt;
-&lt;/div&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#: failed schema #: &quot;links&quot; wasn't supplied. 
+---
+expected
+{
+}
+to match schema &quot;POST-Users-201&quot;: 
+{
+  &quot;$schema&quot;: &quot;http://json-schema.org/draft-04/schema#&quot;,
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;properties&quot;: {
+    &quot;data&quot;: {
+      &quot;type&quot;: &quot;array&quot;,
+      &quot;items&quot;: {
+...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Exposición fotográfica a la entrada al Templo Mayor en el Centro Histórico de la Ciudad de México.&lt;/p&gt;
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
 
-&lt;p&gt;El señor está muy pensativo bajo la sobra del “Hombre Lobo”.&lt;/p&gt;
-&lt;div class=&quot;blog-media&quot;&gt;
-  &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/2017-01-20-2016-en-16.jpeg&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;Main image&quot; srcset=&quot;/assets/img/2017-01-20-2016-en-16.jpeg 1200w, /assets/img/300-2017-01-20-2016-en-16.jpeg 300w, /assets/img/768-2017-01-20-2016-en-16.jpeg 768w, /assets/img/1024-2017-01-20-2016-en-16.jpeg 1024w, /assets/img/180-2017-01-20-2016-en-16.jpeg 180w, /assets/img/940-2017-01-20-2016-en-16.jpeg 940w, /assets/img/320-2017-01-20-2016-en-16.jpeg 320w, /assets/img/640-2017-01-20-2016-en-16.jpeg 640w, /assets/img/960-2017-01-20-2016-en-16.jpeg 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
-  &lt;figcaption&gt;Templo Mayor, Ciudad de México.&lt;/figcaption&gt;
-&lt;/div&gt;
+&lt;p&gt;Keeping your API documentation and endpoints in sync can be a daunting task; writing schema files by hand are not fun at all, but hopefully, with the tools presented here, it will be easy for you and your team to keep everything up to date.&lt;/p&gt;
 
-&lt;p&gt;Las ruinas del Templo Mayor son una prueba fiel del grandioso pasado de México, antes de la llegada de los Españoles, quienes trataron de enterrar ese pasado tomando la piedra de la gran ciudad y construyendo nuevos edificios encima.&lt;/p&gt;
-
-&lt;p&gt;La foto es desde uno de los patios del Templo Mayor, se ve a los visitante apreciando las ruinas Aztecas, al fondo la catedral de México.&lt;/p&gt;
-&lt;div class=&quot;blog-media&quot;&gt;
-  &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/2017-01-20-2016-en-17.jpeg&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;Main image&quot; srcset=&quot;/assets/img/2017-01-20-2016-en-17.jpeg 1200w, /assets/img/300-2017-01-20-2016-en-17.jpeg 300w, /assets/img/768-2017-01-20-2016-en-17.jpeg 768w, /assets/img/1024-2017-01-20-2016-en-17.jpeg 1024w, /assets/img/180-2017-01-20-2016-en-17.jpeg 180w, /assets/img/940-2017-01-20-2016-en-17.jpeg 940w, /assets/img/320-2017-01-20-2016-en-17.jpeg 320w, /assets/img/640-2017-01-20-2016-en-17.jpeg 640w, /assets/img/960-2017-01-20-2016-en-17.jpeg 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
-  &lt;figcaption&gt;Diá de la Guadalupana&lt;/figcaption&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Mujeres, hombres y niños ataviados de “Guadalupanos”, tratando de entrar el 12 de Diciembre a la Catedral Menor de la Ciudad e Colima a presentar sus respetos a la Virgen de Guadalupe.&lt;/p&gt;
-&lt;div class=&quot;blog-media&quot;&gt;
-  &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/2017-01-20-2016-en-18.jpeg&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;Main image&quot; srcset=&quot;/assets/img/2017-01-20-2016-en-18.jpeg 1200w, /assets/img/300-2017-01-20-2016-en-18.jpeg 300w, /assets/img/768-2017-01-20-2016-en-18.jpeg 768w, /assets/img/1024-2017-01-20-2016-en-18.jpeg 1024w, /assets/img/180-2017-01-20-2016-en-18.jpeg 180w, /assets/img/940-2017-01-20-2016-en-18.jpeg 940w, /assets/img/320-2017-01-20-2016-en-18.jpeg 320w, /assets/img/640-2017-01-20-2016-en-18.jpeg 640w, /assets/img/960-2017-01-20-2016-en-18.jpeg 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
-  &lt;figcaption&gt;Atardecer de fuego en el nuevo períferico a Nogueras.&lt;/figcaption&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Es la época del año en que los atardeceres se pintan de colores rojos, naranjas y morados saturados, pareciese que el cielo se está incendiando.&lt;/p&gt;
-
-&lt;p&gt;El nuevo periférico cruza a trávez de pequeñas rancherias y campos de siembra en la zona de Nogueras, Colama.&lt;/p&gt;
-&lt;div class=&quot;blog-media&quot;&gt;
-  &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/2017-01-20-2016-en-19.jpeg&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;Main image&quot; srcset=&quot;/assets/img/2017-01-20-2016-en-19.jpeg 1200w, /assets/img/300-2017-01-20-2016-en-19.jpeg 300w, /assets/img/768-2017-01-20-2016-en-19.jpeg 768w, /assets/img/1024-2017-01-20-2016-en-19.jpeg 1024w, /assets/img/180-2017-01-20-2016-en-19.jpeg 180w, /assets/img/940-2017-01-20-2016-en-19.jpeg 940w, /assets/img/320-2017-01-20-2016-en-19.jpeg 320w, /assets/img/640-2017-01-20-2016-en-19.jpeg 640w, /assets/img/960-2017-01-20-2016-en-19.jpeg 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
-  &lt;figcaption&gt;El Salto Minatitlán, Colima&lt;/figcaption&gt;
-&lt;/div&gt;
-
-&lt;p&gt;El Salto en Minatitlán es un área recreativa sobre la sierra alta de Colima, como mayor atracción tiene una doble cascada con abundante agua en esta época del año.&lt;/p&gt;
-
-&lt;p&gt;El llegar temprano en la mañana permite bajar hasta las cascadas sin que haya gente alrededor.&lt;/p&gt;
-&lt;div class=&quot;blog-media&quot;&gt;
-  &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/2017-01-20-2016-en-20.jpeg&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;Main image&quot; srcset=&quot;/assets/img/2017-01-20-2016-en-20.jpeg 1200w, /assets/img/300-2017-01-20-2016-en-20.jpeg 300w, /assets/img/768-2017-01-20-2016-en-20.jpeg 768w, /assets/img/1024-2017-01-20-2016-en-20.jpeg 1024w, /assets/img/180-2017-01-20-2016-en-20.jpeg 180w, /assets/img/940-2017-01-20-2016-en-20.jpeg 940w, /assets/img/320-2017-01-20-2016-en-20.jpeg 320w, /assets/img/640-2017-01-20-2016-en-20.jpeg 640w, /assets/img/960-2017-01-20-2016-en-20.jpeg 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
-  &lt;figcaption&gt;Luces de Manzanillo, Colima&lt;/figcaption&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Manzanillo siempre me ha parecido muy atractivo para tomar fotos de noche, aunque la contaminación lumínica es muy grande, es especial cerca del puerto de carga.&lt;/p&gt;
-
-&lt;p&gt;La fotografía fue tomada desde la marina del hotel Las Hadas, hacia la zona hotelera de la ciudad.&lt;/p&gt;
-&lt;div class=&quot;blog-media&quot;&gt;
-  &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/2017-01-20-2016-en-21.jpeg&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;Main image&quot; srcset=&quot;/assets/img/2017-01-20-2016-en-21.jpeg 1200w, /assets/img/300-2017-01-20-2016-en-21.jpeg 300w, /assets/img/768-2017-01-20-2016-en-21.jpeg 768w, /assets/img/1024-2017-01-20-2016-en-21.jpeg 1024w, /assets/img/180-2017-01-20-2016-en-21.jpeg 180w, /assets/img/940-2017-01-20-2016-en-21.jpeg 940w, /assets/img/320-2017-01-20-2016-en-21.jpeg 320w, /assets/img/640-2017-01-20-2016-en-21.jpeg 640w, /assets/img/960-2017-01-20-2016-en-21.jpeg 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
-  &lt;figcaption&gt;Atardecer entre Palmeras&lt;/figcaption&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Existe un punto en la carretera Manzanillo-Colima en donde siempre me gusta detenerme a tomar fotos al atardecer, este lugar es sobre el puente del río Amería.&lt;/p&gt;
-&lt;div class=&quot;blog-media&quot;&gt;
-  &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/2017-01-20-2016-en-22.jpeg&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;Main image&quot; srcset=&quot;/assets/img/2017-01-20-2016-en-22.jpeg 1200w, /assets/img/300-2017-01-20-2016-en-22.jpeg 300w, /assets/img/768-2017-01-20-2016-en-22.jpeg 768w, /assets/img/1024-2017-01-20-2016-en-22.jpeg 1024w, /assets/img/180-2017-01-20-2016-en-22.jpeg 180w, /assets/img/940-2017-01-20-2016-en-22.jpeg 940w, /assets/img/320-2017-01-20-2016-en-22.jpeg 320w, /assets/img/640-2017-01-20-2016-en-22.jpeg 640w, /assets/img/960-2017-01-20-2016-en-22.jpeg 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
-  &lt;figcaption&gt;Playa La Audiencia, Manzanillo&lt;/figcaption&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Había pasado en múltiples ocasiones cerca de este lugar, pero nunca había llegado a la playa. Es una playa muy bonita, pero muy saturada. Durante el día presenta una increíble vista desde la parte alta y por las tardes, los atardeceres son increíbles desde este lugar.&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;Así cierro el 2016, con 21 fotografías de mi librería que corresponde la segunda mitad del año.&lt;/p&gt;
-
-&lt;p&gt;Ya para el día de hoy inicié con mi travesía fotográfica para el 2017, espero poder visitar más lugares de México para darme el gusto de tomar fotos.&lt;/p&gt;
-&lt;div class=&quot;blog-media&quot;&gt;
-  &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/2017-01-20-2016-en-23.jpeg&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;Main image&quot; srcset=&quot;/assets/img/2017-01-20-2016-en-23.jpeg 1200w, /assets/img/300-2017-01-20-2016-en-23.jpeg 300w, /assets/img/768-2017-01-20-2016-en-23.jpeg 768w, /assets/img/1024-2017-01-20-2016-en-23.jpeg 1024w, /assets/img/180-2017-01-20-2016-en-23.jpeg 180w, /assets/img/940-2017-01-20-2016-en-23.jpeg 940w, /assets/img/320-2017-01-20-2016-en-23.jpeg 320w, /assets/img/640-2017-01-20-2016-en-23.jpeg 640w, /assets/img/960-2017-01-20-2016-en-23.jpeg 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
-  &lt;figcaption&gt;Fin de año en Manzanillo&lt;/figcaption&gt;
-&lt;/div&gt;</content><author><name>Mario Alberto Chávez</name></author><summary type="html">Hace algunas semanas realicé un post titulado 2016 en fotos, de Enero a Junio. La intención del post fue buscar dentro de mi bilbioteca de imágenes fotos que tomé en los meses indicados para seleccionar una de cada evento donde tomé fotos, siendo un evento, una salida a tomar fotos, un viaje, etc.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/2017-01-20-2016-en-1.jpeg" /></entry></feed>
+&lt;p&gt;If you want to check a sample application with everything showed in this post to go &lt;a href=&quot;https://gitlab.com/mariochavez/testing-api-blueprint/tree/master&quot; target=&quot;_blank&quot;&gt;https://gitlab.com/mariochavez/testing-api-blueprint/tree/master&lt;/a&gt;.&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><summary type="html">Keep your API in shape with API Blueprint</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/api-documentation.jpg" /></entry></feed>
