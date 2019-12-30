@@ -1,0 +1,557 @@
+<!doctype html>
+
+<html class="no-js" lang="es"><head>
+  <meta charset="utf-8"></meta>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0"></meta>
+  <title>Lecciones construyendo un API REST</title>
+  <meta name="description" content="Durante el 2019 un equipo de ingeniería de micheda.io estuvo enfocado en el desarrollo de un producto interno que lleva por nombre Creditar.io. Desde su concepción, Creditar.io estuvo diseñado para ser una plataforma a través de la cual empresas FinTech pudieran configurar sus flujos y procesos libremente y olvidarse de desarrollar su propio motor bancario y enfocarse en la parte importante de su negocio."></meta>
+  <meta name="keywords" content="english, development, rails, javascript, webpack"></meta>
+  <link rel="image_src" href="https://mariochavez.io/assets/img/640-developing.jpg"></link>
+
+  <link rel="alternate" type="application/rss+xml" title="Lecciones construyendo un API REST" href="https://mariochavez.io/feed.xml">
+
+  <meta property="og:title" content="Lecciones construyendo un API REST"></meta>
+  <meta property="og:description" content="Durante el 2019 un equipo de ingeniería de micheda.io estuvo enfocado en el desarrollo de un producto interno que lleva por nombre Creditar.io. Desde su concepción, Creditar.io estuvo diseñado para ser una plataforma a través de la cual empresas FinTech pudieran configurar sus flujos y procesos libremente y olvidarse de desarrollar su propio motor bancario y enfocarse en la parte importante de su negocio."></meta>
+  <meta property="og:type" content="article" /></meta>
+  <meta property="og:url" content="https://mariochavez.io/desarrollo/2019/12/30/lecciones-construyendo-un-api-rest.html"></meta>
+  <meta property="og:image" content="https://mariochavez.io/assets/img/640-developing.jpg"></meta>
+  <meta property="og:site_name" content="Mario Alberto Chávez : Blog"></meta>
+
+  <meta name="twitter:site" content="@mario_chavez"></meta>
+  <meta name="twitter:domain" content="mariochavez.io"></meta>
+  <meta name="twitter:card" content="summary_large_image"></meta>
+  <meta name="twitter:title" content="Lecciones construyendo un API REST"></meta>
+  <meta name="twitter:description" content="Durante el 2019 un equipo de ingeniería de micheda.io estuvo enfocado en el desarrollo de un producto interno que lleva por nombre Creditar.io. Desde su concepción, Creditar.io estuvo diseñado para ser una plataforma a través de la cual empresas FinTech pudieran configurar sus flujos y procesos libremente y olvidarse de desarrollar su propio motor bancario y enfocarse en la parte importante de su negocio."></meta>
+  <meta name="twitter:image:src" content="https://mariochavez.io/assets/img/640-developing.jpg"></meta>
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet" type="text/css"></link>
+
+  <link rel="stylesheet" type="text/css" href="/assets/style-f53587fcc403c6b6464a7aaad7fb1970a9e72c0b3c05e52765810f28da2015e1.css" integrity="sha256-9TWH/MQDxrZGSnqq1/sZcKnnLAs8BeUnZYEPKNogFeE=" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="/assets/isotope-d185bd15a4ce846d0ae2da7dcdba501a42dd340f48e7690465610391cdee1657.css" integrity="sha256-0YW9FaTOhG0K4tp9zbpQGkLdNA9I52kEZWEDkc3uFlc=" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="/assets/mqueries-05a4d0eb5cc7105f9bba8b36a0b3738cd2d052a769570bae775e46495600e0de.css" integrity="sha256-BaTQ61zHEF+buos2oLNzjNLQUqdpVwuud15GSVYA4N4=" crossorigin="anonymous">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141668117-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-141668117-1');
+  </script>
+</head>
+<body class="loader-dot">
+    <div id="page-loader">
+      <span class="loader-icon"></span>
+    </div>
+
+    <div id="page-content"><header id="header">
+  <div class="header-inner clearfix">
+
+    <div id="logo">
+      <a href="/">
+        <img id="dark-logo" src="/assets/mariochavez.png" srcset="/assets/mariochavez.png 1x, /assets/mariochavez@2x.png 2x" alt="Mario Chávez">
+      </a>
+    </div>
+
+    <div id="menu" class="clearfix transition-enabled">
+      <div class="menu-actions">
+        <div class="menu-toggle"><span class="hamburger"></span></div>
+      </div>
+
+      <div id="menu-inner">
+        <nav id="main-nav">
+          <ul>
+            <li class="current_page_item"><a href="/">Secciones</a>
+              <ul class="sub-menu">
+                <li><a href="/desarrollo.html">Desarrollo de Software</a></li>
+                <li><a href="/fotografia.html">Fotografía</a></li>
+                <li><a href="/proyectos.html">Proyectos</a></li>
+              </ul>
+            </li>
+            <li><a href="/acerca.html">Acerca</a></li>
+            <li><a href="https://heroimage.co" target="_blank">Hero Image</a></li>
+            <li><a href="https://f64.io" target="_blank">F/64</a></li>
+            <li><a href="https://michelada.io" target="_blank">michelada.io</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <div id="header-widget" class="social">
+      <ul class="socialmedia-widget">
+        <li class="facebook"><a href="#"></a></li>
+        <li class="twitter"><a href="#"></a></li>
+        <li class="instagram"><a href="#"></a></li>
+      </ul>
+    </div> <!-- END #header-awidget -->
+
+  </div>
+</header>
+<div id="hero-and-body">
+
+        <section id="hero" class="hero-auto no-bg">
+
+          <div id="page-title" class="wrapper-small">
+            <span class="post-cat"><a class="cat-link" href="#">desarrollo</a></span>
+                       <h1 class="post-name"><strong>Lecciones construyendo un API REST</strong></h1>
+            <div class="post-meta">
+              <span class="post-date">December 30, 2019</span>
+              <div class="meta-author"><span>por</span> <a href="/">Mario Alberto Chávez</a></div>
+            </div>
+          </div>
+
+        </section>
+
+        <section id="page-body">
+          <div id="blog-single">
+
+            <div class="blog-media">
+              <img width="1200" height="800" src="/assets/img/developing.jpg"
+                class="attachment-orio-thumb-big size-orio-thumb-big wp-post-image" alt="Main image"
+                srcset="/assets/img/developing.jpg 1200w, /assets/img/300-developing.jpg 300w, /assets/img/768-developing.jpg 768w, /assets/img/1024-developing.jpg 1024w, /assets/img/180-developing.jpg 180w, /assets/img/940-developing.jpg 940w, /assets/img/320-developing.jpg 320w, /assets/img/640-developing.jpg 640w, /assets/img/960-developing.jpg 960w" sizes="(max-width: 1200px) 100vw, 1200px" />
+            </div>
+
+            <div class="blog-content wrapper-small">
+              <h1 id="lecciones-construyendo-un-api-rest">Lecciones construyendo un API REST</h1>
+
+<p>Durante el 2019 un equipo de ingeniería de <a href="http://micheda.io" target="_blank">micheda.io</a> estuvo enfocado en el desarrollo de un producto interno que lleva por nombre <a href="http://creditar.io" target="_blank">Creditar.io</a>.</p>
+
+<p><a href="http://creditar.io" target="_blank">Creditar.io</a> es un motor bancario que cuenta con la siguiente funcionalidad.</p>
+
+<ul>
+  <li>Manejo de solicitudes de crédito</li>
+  <li>Expedientes de clientes</li>
+  <li>Flujo de pre-calificación de solicitudes</li>
+  <li>Administración de créditos</li>
+  <li>Gestión de pagos</li>
+  <li>Manejo de portafolio de préstamos</li>
+  <li>Gestión de campañas de Crowdfunding</li>
+</ul>
+
+<p>Desde su concepción, <a href="http://creditar.io" target="_blank">Creditar.io</a> estuvo diseñado para ser una plataforma a través de la cual empresas FinTech pudieran configurar sus flujos y procesos libremente y olvidarse de desarrollar su propio motor bancario y enfocarse en la parte importante de su negocio.</p>
+
+<p>Debido a esto, tomamos varias decisiones técnicas que nos llevarán a que <a href="http://creditar.io" target="_blank">Creditar.io</a> fuese una plataforma sobre la cual construir otras aplicaciones o servicios. Algunas de las decisiones fueron las siguientes.</p>
+
+<ul>
+  <li>Una instancia privada de aplicación y base de datos por cada cliente; además de datos sensibles cifrados a nivel de base de datos.</li>
+  <li>Flexibilidad desde la UI de <a href="http://creditar.io" target="_blank">Creditar.io</a> para poder configurar diferentes productos crediticios en diferentes escenarios.</li>
+  <li>Notificar a través de WebHooks de diferentes acciones manuales y automáticas en la plataforma.</li>
+  <li>Flexibilidad para que la FinTech defina su flujo de recolección de información del cliente y aplique sus propias validaciones de información.</li>
+  <li>Toda la operación de <a href="http://creditar.io" target="_blank">Creditar.io</a> se expone a través de un API REST 100% documentada.</li>
+</ul>
+
+<p>Como equipo de diseño y desarrollo hemos tratado de poner nuestra experiencia junto con la asesoría - y desilusión de sus plataformas actuales - que recibimos sobre la operación de empresas FinTech amigas.</p>
+
+<div class="blog-media">
+  <img width="1200" height="800" src="/assets/img/creditario-1.png" class="attachment-orio-thumb-big size-orio-thumb-big wp-post-image" alt="Creditar.io" srcset="/assets/img/creditario-1.png 1200w, /assets/img/300-creditario-1.png 300w, /assets/img/768-creditario-1.png 768w, /assets/img/1024-creditario-1.png 1024w, /assets/img/180-creditario-1.png 180w, /assets/img/940-creditario-1.png 940w, /assets/img/320-creditario-1.png 320w, /assets/img/640-creditario-1.png 640w, /assets/img/960-creditario-1.png 960w" sizes="(max-width: 1200px) 100vw, 1200px" />
+</div>
+
+<p>El API era una parte crucial en cómo podíamos ayudar a otras empresas a no pensar en <a href="http://creditar.io" target="_blank">Creditar.io</a> y que se pudieran enfocar en la parte relevante de sus servicios. Es por eso que me voy a enfocar el resto de este post en las lecciones y decisiones que tomamos al construir el API.</p>
+
+<h2 id="api-rest">API REST</h2>
+
+<p>Cuando comenzábamos a tomar decisiones de cómo debería ser el API. Se tomó en consideración el que fuera un GraphQL API pero fue un poco complicado el darle sentido de esta forma. Si bien GraphQL ofrece una serie de mejoras en cómo comunicarse entre servicios vía Internet, para nuestro caso en particular no se observaba una ventaja real el seguir por este camino.</p>
+
+<p>Así que la decisión recayó en un API REST. Primeramente el API REST sigue los estándares de HTTP los cuales son estables y documentados desde la versión 1 en 1990, después en 1997 con la versión 1.1 y finalmente en el 2015 con la versión 2.</p>
+
+<p>HTTP/2 trae consigo mejoras que, aunque lentamente, se han ido integrando en Web Servers y herramientas de desarrollo. Estos son algunos de los beneficios.</p>
+
+<ul>
+  <li>Compresión de los <strong>Headers</strong>: Los metadatos enviados en una solicitud o respuesta pueden llegar a ser más grandes en tamaño que el contenido del mensaje en algunos casos.</li>
+  <li>Comunicación dos vía o <strong>Multiplexación</strong>: Con una sola conexión es posible mandar varias solicitudes y obtener varias respuestas, evitando el tener que cerrar y abrir una conexión por cada recurso realizando cada ocasión un <strong>Handshake</strong> que es costoso. Inclusive el servidor puede decir hacer un <strong>“Push”</strong> de recursos no solicitados pero que serán útiles más adelante.</li>
+  <li>Contenido <strong>binario</strong>: El contenido del cuerpo del mensaje va en formato binario, una vez más, reduciendo el tamaño los mensajes enviados entre el cliente y servidor.</li>
+  <li>Cifrado de conexión: Si bien HTTP/2 no requiere comunicación vía TLS, es una tendencia que va de la mano para soportar HTTP/2 en los Servidores Web y los clientes.</li>
+</ul>
+
+<p>Si bien el estándar no está totalmente implementado en todas por todas las partes involucradas, hoy en día y casi sin mayor esfuerzo es posible obtener sus beneficios, por ejemplo, utilizando servicios como Cloudflare o bien poniendo la aplicación detrás de NGNIX con el soporte para HTTP/2 activo.</p>
+
+<p>En el caso de los clientes para consumir el API, dependiendo del lenguaje desde dónde se consuma hay opciones para obtener algunos de los beneficios de HTTP/2, por ejemplo en Ruby el cliente <a href="https://gitlab.com/honeyryderchuck/httpx" target="_blank">HTTPX</a> permite hoy en día algunos de esos beneficios.</p>
+
+<p>Tomando en cuenta lo antes mencionado y la experiencia previa trabajando en la implementación de APIs para diferentes tipos de aplicaciones la realidad es que difícil construir un API REST bien diseñada y que no terminemos odiando más adelante en el camino. Es todavía más difícil cuando quien la construye o la consume no conoce del estándar HTTP.</p>
+
+<h2 id="básicos-de-http">Básicos de HTTP</h2>
+
+<p>A final de cuentas trabajar en un API REST no es otra cosa entender que un servidor puede recibir una solicitud y debe de proporcionar una respuesta; ya sea en una conexión única o multiplexada.</p>
+
+<p>Así se ve una solicitud.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /clients?page=1 HTTP/1.1
+Host: creditar.io
+Authorization: Bearer hdue373nd393mk38304k
+Accept: application/json
+</code></pre></div></div>
+
+<p>La respuesta para la solicitud anterior es algo parecido a lo siguiente.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>HTTP/1.1 200 OK
+Content-Type: application/json
+Cache-Control: no-cache, private
+Location: https://creditar.io/clients?page=1
+Connection: close
+
+{ "data": { "id":: 636264b1-dc0d-453e-8804-4ac451e1dbd5 ... }, 
+          { "id": 636264b1-dc0d-453e-8804-4ac451e1dce8 ... } ... 
+}
+</code></pre></div></div>
+
+<p>Lo que vemos en ambos casos es el protocolo de HTTP en acción.</p>
+
+<h2 id="rest">REST</h2>
+
+<p>Algo que muchos damos por sentado es que entendemos que es REST y aunque el concepto es relativamente simple lo que entendemos no es necesariamente lo correcto.</p>
+
+<p>En términos prácticos REST significa <strong>“Representational State Transfer”</strong>. La idea se basa en como representar un estado - el estado de un recurso o recursos - para su transferencia. REST es estilo de arquitectura de software. centrado en los recursos disponibles por el servidor.</p>
+
+<h3 id="recurso">Recurso</h3>
+
+<p>Un recurso es una abstracción de información, un recurso o una colección de recursos es todo lo que podemos nombrar en un sistema y a diferencia de la creencia general puede o no tener conexión directa con un modelo de datos. Por ejemplo, un cliente puede representar a un objeto que mapea a un registro a en una base de datos o bien puede representar la combinación de datos dentro de un sistema pero que hacia el exterior es mostrado como una unidad. Los recursos en un API REST están vinculados a una URL.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/clients/636264b1-dc0d-453e-8804-4ac451e1dbd5
+</code></pre></div></div>
+
+<p>A través de las URLs del recurso, es como en un API REST nos es posible llevar a cabo acciones que impliquen obtener más información o bien cambiar el estado del mismo.</p>
+
+<h3 id="representación">Representación</h3>
+
+<p>La representación de un recurso consiste en datos y quizás metadata. No hay un estándar de cómo representar el recurso. La representación puede ser en simple texto, en XML o JSON; siendo está última la representación defacto en casi toda API actual.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Accept: application/json # Enviado por el cliente
+
+Content-Type: application/json # Respuesta del servidor
+
+# Representación del recurso
+{ "data": { "id":: 636264b1-dc0d-453e-8804-4ac451e1dbd5 ... }, 
+          { "id": 636264b1-dc0d-453e-8804-4ac451e1dce8 ... } ... 
+}
+</code></pre></div></div>
+
+<p>Para el caso de representación en formato JSON en contar un esquema JSON puede ser de gran ayuda tanto para quién desarrolla el API como para quién la consume. Sobre este punto vamos a hablar un poco más adelante.</p>
+
+<h3 id="rest-aprovecha-el-http">REST aprovecha el HTTP</h3>
+
+<p>Como vemos, hay una relación intrínseca entre REST y HTTP. Los conceptos de arquitectura de REST están basados en los fundamentos del protocolo de HTTP.</p>
+
+<h2 id="cómo-tratar-de-escribir-un-buen-api-rest">Cómo tratar de escribir un buen API REST?</h2>
+
+<p>Ahora que homologamos un poco el conocimiento de qué es un API REST continuemos con algunos conceptos que nos ayudaran en el desarrollo de nuestra API.</p>
+
+<h3 id="usar-uuid-para-los-recursos">Usar UUID para los recursos</h3>
+
+<p>Es común en los frameworks de desarrollo que los registros en la base de datos utilicen números enteros como llave primaria. Estos números se calculan al crear el registro y tienen la particularidad de ser números consecutivos.</p>
+
+<p>Alguien con un poco de tiempo libre puede aprovechar esta situación tratar de adivinar los identificadores de los recursos y tratar de aprovechar posibles “hoyos” de seguridad para realizar operaciones con ellos.</p>
+
+<p>Es por eso que la recomendación en este caso es utilizar <strong>“Global Unique Identifiers”</strong> o <strong>UUID</strong>, ya que estos son una cadena de texto - en realidad son varios bloques de números aleatorios en hexadecimal - indescifrable normalmente generada a partir de un generador de números aleatorios seguro.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>636264b1-dc0d-453e-8804-4ac451e1dbd5
+</code></pre></div></div>
+
+<p>Si por ejemplo en tu actual aplicación utilizas números enteros como identificador para tus recursos, no es necesario rehacer toda esa parte de la aplicación, únicamente con agregar un campo de tipo <strong>UUID</strong> y exponer este identificador a través del API es suficiente.</p>
+
+<h3 id="acciones-rest">Acciones REST</h3>
+
+<p>Es importante identificar los recursos que vamos a exponer a través de nuestro API. Como se mencionó anteriormente, los recursos expuestos por el API no necesariamente tiene una relación directa con el modelo de datos de nuestra aplicación.</p>
+
+<p>Los recursos pueden tener 5 acciones básicas: <strong>Crear</strong>, <strong>Leer</strong>, <strong>Actualizar</strong>, <strong>Eliminar</strong> y <strong>Listar</strong>. Estas deben de estar organizadas alrededor del nombre del recursos, que normalmente se escribe en plural, y deben de hacer uso correcto de los Verbos de HTTP y los Estatus de respuesta.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Clients
+- Create   POST   /clients                                         201
+- Read     GET    /clients/636264b1-dc0d-453e-8804-4ac451e1dce8    200
+- Update   PATCH  /clients/636264b1-dc0d-453e-8804-4ac451e1dce8    204
+- Delete   DELETE /clients/636264b1-dc0d-453e-8804-4ac451e1dce8    204
+- List     GET    /clients                                         200
+</code></pre></div></div>
+
+<p>Si existe alguna acción no-estándar a las antes mencionadas quizás vale la pena considerarla como un recurso adicional. Por ejemplo, supongamos que necesitamos en el API las acciones para bloquear o desbloquear un cliente. Una de las forma en como he visto que se implementan este tipo de acciones es la siguiente.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PUT /block_client/636264b1-dc0d-453e-8804-4ac451e1dce8       204
+PUT /unblock_client/636264b1-dc0d-453e-8804-4ac451e1dce8     204
+</code></pre></div></div>
+
+<p>No es muy REST, pero funciona. El problema con este tipo de implementaciones es que es muy sencillo que se salgan de control y terminemos con nuestro API lleno de acciones no REST. Otro problema que he visto es que ambas acciones para bloquear y desbloquear terminan en el código de nuestro framework en un sólo método con condicionales para ejecutar un bloqueo o un desbloqueo.</p>
+
+<p>Si es realmente necesario implementar acciones como estas en el API entonces la mejor forma de implementarlo sería la siguiente.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>POST    /clients/636264b1-dc0d-453e-8804-4ac451e1dce8/block     201
+DELETE  /clientes/636264b1-dc0d-453e-8804-4ac451e1dce8/unblock  204
+</code></pre></div></div>
+
+<p>Sobre todo, asegurando en la implementación que cada acción quede en su propio bloque de código sin condicionales para determinar que acción realizar.</p>
+
+<p>Viendo los ejemplo anteriores podemos notar que la organización de los recursos en el API no sólo implica el cómo se define la URL del recurso ya que esta organización va acompañada de la utilización adecuada de los verbos de HTTP y de los estatus de respuesta.</p>
+
+<p>No hay nada más frustrante en un API que todas las llamadas se hagan con un <strong>GET</strong> o un <strong>POST</strong> y que todos los estatus de respuesta sean un <strong>200</strong> sin importar que acción se realizó o si ocurrió algún error.</p>
+
+<h3 id="jerarquía-de-recursos">Jerarquía de recursos</h3>
+
+<p>Otro punto importante a considerar cuando diseñamos un API es la jerarquía de recursos. Si consideramos que un cliente puede tener créditos y que un crédito puede tener referencias empezamos a ver una jerarquía de recursos.</p>
+
+<p>La forma más común en como normalmente se resuelve esta situación es la siguiente.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Lee los créditos de un cliente
+GET /clients/636264b1-dc0d-453e-8804-4ac451e1dce8/credits
+
+# Crea un nuevo crédito al cliente
+POST /clients/636264b1-dc0d-453e-8804-4ac451e1dce8/credits
+
+# Lee las referencias del crédito 2 del cliente 1
+GET /clients/636264b1-dc0d-453e-8804-4ac451e1dce8/credits/92545809-e0e7-43df-b53e-8a7bc5eeb364/references
+</code></pre></div></div>
+
+<p>Si deseamos pedir una referencia en particular la URL se vuelve todavía más grande y se empieza a complicar. Técnicamente hacer esta implementación es relativamente simple; racionarla quizás no sea tan sencillo.</p>
+
+<p>La solución más sencilla en este caso es limitar el anidar recursos a máximo un segundo nivel, en el peor de los casos. Lo ideal y lo que hicimos en <a href="http://creditar.io" target="_blank">Creditar.io</a> fue mantener una jerarquía plana para los recursos.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Lee los créditos de un cliente
+GET /credits/?cliente_id=636264b1-dc0d-453e-8804-4ac451e1dce8
+
+# { cliente_id: 636264b1-dc0d-453e-8804-4ac451e1dce8, ... } en el cuerpo de la solicitud indicamos el cliente
+POST /credits 
+
+# Lee las referencias de un crédito
+GET /references/?credit_id=172fcb04-52a5-4f5b-8bd0-2655b89d53d3
+</code></pre></div></div>
+
+<p>Es más sencillo el razonar el API con esta jerarquía plana; la intención de las acciones son más fáciles de vislumbrar.</p>
+
+<h3 id="demasiadas-vueltas-al-servidor">Demasiadas vueltas al servidor</h3>
+
+<p>Una de las quejas más comunes que he escuchado de las API REST es que hay que hacer más de una solicitud a varios recursos para traer toda la información que posiblemente requiere el cliente que la está consumiendo. Desafortunadamente cada solicitud crear su propia conexión al servidor lo que a la larga hace que la respuesta final tarde tiempo.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Solicita un cliente
+GET /clients/636264b1-dc0d-453e-8804-4ac451e1dce8
+
+# Solicita los créditos del cliente
+GET /credits/client_id=636264b1-dc0d-453e-8804-4ac451e1dce8
+
+# Solicita los pagos del de los créditos
+GET /payments/credit_id=93570b12-42dc-4850-a535-16fb7aa5d0cd
+GET /payments/credit_id=8e8c5921-2892-445f-9f40-e27159d27e4a
+</code></pre></div></div>
+
+<p>Este problema realmente se debe a un diseño irrealista de cómo se va a utilizar el API y a un mal entendimiento de REST.
+No hay nada que impida a un recurso el “traer” información de otros recursos relacionados en la misma llamada, reduciendo de esta forma la cantidad de solicitudes al API.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /clients/636264b1-dc0d-453e-8804-4ac451e1dbd5?include=credits
+</code></pre></div></div>
+
+<p>Simple. Y si además queremos los pagos?</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /clients/636264b1-dc0d-453e-8804-4ac451e1dbd5?include=credits,payments
+</code></pre></div></div>
+
+<p>O si en lugar de querer obtener más información necesitamos realizar la misma acción a más de un recurso, por ejemplo, eliminar varios pagos.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DELETE /payments/6313ac69-dc0d-45a8-8804-4ac451e1db5c,0b19e3b6-9fae-40e1-a7c2-f2db1cae8a5a
+</code></pre></div></div>
+
+<p>En el peor de los casos dónde si ocupemos varias llamadas consecutivas entonces podemos utilizar del lado del cliente una librería como <strong>HTTPX</strong> que como se mencionó anteriormente, permite realizar varias llamadas en la misma conexión por periodos cortos, evitando el costoso <strong>Handshake</strong>.</p>
+
+<p>Con la adopción de HTTP/2 va a ser natural tener conexiones dónde podamos mandar más de una solicitud a la vez al servidor.</p>
+
+<h3 id="representación-de-recursos">Representación de recursos</h3>
+
+<p>Ya mencionamos que la representación de recursos de un API consiste de datos y metadatos pero además esa respuesta tiene que ser consistente a través de todos los recursos. Esta consistencia ayuda en la creación y simplificación de clientes que consuman el API.</p>
+
+<p>En <a href="http://creditar.io" target="_blank">Creditar.io</a> la representación de un sólo elemento de tipo cliente se ve así.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /clients/636264b1-dc0d-453e-8804-4ac451e1dbd5
+
+{ "data": [
+    { "id": "636264b1-dc0d-453e-8804-4ac451e1dbd5", ... }
+  ],
+  "links": [
+    { "rel": "self", "uri": "/clients/636264b1-dc0d-453e-8804-4ac451e1dbd5" }
+  ]
+}
+</code></pre></div></div>
+
+<p>Como podemos apreciar la respuesta contiene datos y metadatos. Primeramente <code class="highlighter-rouge">data</code> contiene un arreglo con la representación de todos los recursos solicitados, en este caso un sólo elemento.</p>
+
+<p><code class="highlighter-rouge">links</code> contiene información de acciones que podemos realizar sobre los recursos que obtuvimos, además del <code class="highlighter-rouge">uri</code> de dónde se realizó la acción. En este caso las <code class="highlighter-rouge">uri</code> ayudan a los clientes a no tener que calcularlas para acciones que desee realizar el cliente y además tenemos la confianza de que el <code class="highlighter-rouge">uri</code> es correcto y válido.</p>
+
+<p>Si la solicitud fuera para más de un recurso, entonces la representación se vería así.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /clients
+
+{ "data": [
+    { "id": "636264b1-dc0d-453e-8804-4ac451e1dbd5", ... },
+    { "id": "0b19e3b6-9fae-40e1-a7c2-f2db1cae8a5a", ... }
+  ],
+  "pagination": {
+    "cursors": {
+      "after": "0b19e3b6-9fae-40e1-a7c2-f2db1cae8a5a",
+      "next_uri": "/products?cursor=0b19e3b6-9fae-40e1-a7c2-f2db1cae8a5a"
+    }
+  },
+  "links": [
+    { "rel": "self", "uri": "/clients" }
+  ]
+}
+</code></pre></div></div>
+
+<p>No cambia mucho respecto a la representación anterior. <code class="highlighter-rouge">data</code> tiene un elemento más y en los metadatos tenemos la sección de <code class="highlighter-rouge">pagination</code> que contiene información para el cliente pueda hacer solicitudes paginadas al recurso.</p>
+
+<p>Como podemos observar, ambas representaciones son bastante parecidas sin importar que estemos solicitando un elemento o varios de nuestro recurso.</p>
+
+<h3 id="representación-de-errores">Representación de errores</h3>
+
+<p>Hay ocasiones que al solicitar a través del API una acción a un recurso como respuesta obtengamos un error de aplicación. Es importante que el estatus de respuesta sea un error de la serie 4xx, por ejemplo 401 o 422 y no un status de respuesta 200.</p>
+
+<p>Además el status correcto en el cuerpo de la respuesta listar todos los posibles errores en la petición en donde puede venir un tipo de error, un código único del error, un mensaje para el usuario y un link dónde exista más información para el desarrollador que está consumiendo el API.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+  "errors": [
+    {
+      "type": "not_found",
+      "code": "ERR-404",
+      "message": "El recurso solicitado 636264b1-dc0d-453e-8804-4ac451e1dbd5 no existe",
+      "href": "staging.creditar.io/api/documentation#err-404"
+    }
+  ]
+}
+</code></pre></div></div>
+
+<p>Es importante que el usuario o el desarrollador pueda obtener toda la información necesaria para solucionar su problema durante el uso de nuestra API.</p>
+
+<h3 id="compresión-de-respuestas">Compresión de respuestas</h3>
+
+<p>El tamaño de la respuesta puede llegar a ser de algunos Kilobytes o más cuando incluye representación de recursos relativamente grandes o bien incluye varios recursos anidados, es posible reducir el tamaño en bytes comprimiendo la respuesta.</p>
+
+<p>Por ejemplo en Rails, podemos utilizar el <strong>Middleware</strong> <code class="highlighter-rouge">Rack::Deflater</code> el cuál soporta el modo de compresión <strong>Gzip</strong>.</p>
+
+<p>Desde el cliente se envía el <strong>Header</strong> de HTTP <code class="highlighter-rouge">Content-Encoding:"gzip"</code> para indicar que el cliente quiere una respuesta comprimida.</p>
+
+<p>Con el proxy <a href="https://docs.nginx.com/nginx/admin-guide/web-server/compression/" target="_blank">NGNIX</a> es posible configurarlo para que en caso de que nuestro framework no soporte compresión y así delegar esta tarea al proxy.</p>
+
+<p>Ya mencionamos anteriormente que HTTP/2 se comunica con un protocolo binario lo cuál ayudará a reducir el tamaño de las respuestas una vez que su uso sea más común.</p>
+
+<h3 id="negociación-de-contenido">Negociación de contenido</h3>
+
+<p>Es importante que un API sea explícita en los formatos en que recibe la datos y envía, para esto en HTTP contamos con dos <strong>Headers</strong> <code class="highlighter-rouge">Accept</code> y <code class="highlighter-rouge">Content-Type</code>.</p>
+
+<p><code class="highlighter-rouge">Accept</code> es enviado por el cliente para indicar cuáles son los formatos de datos en que puede recibir respuestas, por ejemplo <code class="highlighter-rouge">Accept: application/json</code>. Este encabezado le indica al API que esperamos como respuesta un <strong>json</strong>. Si el servidor no puede darnos la respuesta  en el formato solicitado entonces nos enviará un estatus <strong>406 Not Acceptable</strong>.</p>
+
+<p>Si el API puede darnos la respuesta en el formato esperado entonces en la respuesta enviará el encabezado <code class="highlighter-rouge">Content-Type: application/json</code>.</p>
+
+<p>En el caso de acciones como <strong>POST</strong> o <strong>PATCH</strong> en dónde el cliente envía información al API, es importante que el cliente además de enviar el encabezado <code class="highlighter-rouge">Accept</code> también envié el encabezado <code class="highlighter-rouge">Content-Type</code> para informarle al API cómo debe de interpretar la información que recibe.</p>
+
+<h3 id="versionado-del-api">Versionado del API</h3>
+
+<p>Este es un tema crítico en el desarrollo de API REST. Existen varias opiniones de cómo versionar el API.</p>
+
+<p>Hay quienes dicen que lo mejor es que la versión sea parte de la <strong>URI</strong> del recurso.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /v1/clients
+</code></pre></div></div>
+
+<p>El problema más grande con esto es que si hay una versión 2 entonces hay que ir a cambiar todas las posibles <strong>URIs</strong> “hardcodeadas” en el cliente. Pero aún si hay un proceso de transición entre 2 versiones del API y se desea utilizar recursos en ambas versiones.</p>
+
+<p>Otra de las opciones es indicar con un parámetro la versión del API.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /clients?version=1
+</code></pre></div></div>
+
+<p>Un poco de lo mismo con la solución anterior.</p>
+
+<p>En en caso de <a href="http://creditar.io" target="_blank">Creditar.io</a> se decidió hacer uso de la negociación de contenido, por lo tanto es posible recibir el encabezado <code class="highlighter-rouge">Accept: application/vnd.creditar.v1+json</code> para indicar que esperamos un <strong>json</strong> como respuesta pero además indicar la versión del API que deseamos que responda a nuestra solicitud.</p>
+
+<p>Con esta solución desde el framework para el API podemos hacer que automáticamente otra ruta de código se ejecute cuando se indica la versión 2 del API, sin tener que agregar condicionales o cosas complicadas en el código para mantener las dos versiones activas durante la transición. O bien, si el API versión 2 se ejecuta en otra plataforma diferente desde el proxy es posible inspeccionar el encabezado y dirigir el tráfico a otra aplicación que puede estar escrita en el mismo lenguaje de programación o una diferente.</p>
+
+<h3 id="hateoas">HATEOAS</h3>
+
+<p><strong>HATEOAS</strong> o <strong>Hypermedia as the Engine of Application State</strong>, es una evolución sobre la arquitectura de REST.</p>
+
+<p>Básicamente tiene dos principios: negociación de contenido y controles <strong>hypermedia.</strong> De ambos ya hablamos en secciones previas. Sobre los controles <strong>hypermedia</strong> y para que quede claro, no son otra cosa que las posibles acciones que se pueden ejercer sobre un recurso; es una forma de comunicarle al cliente <em>“Me pediste este recurso y aquí está, ahh y si necesitas realizar alguna acción sobre ese recurso o recursos estas son las acciones posibles”</em>. Esta parte la cubrimos con el metadata de la respuesta, específicamente con la sección de <strong>links</strong>.</p>
+
+<p>En teoría siguiendo los consejos descritos con anterioridad hacen que nuestra API sea <strong>HATEOAS</strong> sin pensar mucho en este resultado.</p>
+
+<h3 id="restful">RESTful</h3>
+
+<p>Podemos decir con certeza que un API que haga uso apropiado del protocolo de HTTP, que exponga los recursos y acciones a través de <strong>Endpoints</strong>, que utilice de forma apropiada los verbos de HTTP y que exponga los controles de <strong>hypermedia</strong> es un API <strong>RESTful</strong>.</p>
+
+<p>Nuevamente, sin pensar en este objetivo, únicamente con el deseo de que nuestra API sea mejor logramos llegar a aquí.</p>
+
+<h3 id="documentación">Documentación</h3>
+
+<p>No hay un buen API, aunque técnicamente lo sea, si no existe documentación; pero el llevarla a cabo y mantenerla actualizada puede ser tan complicado como hacer el mismo API.</p>
+
+<p>Afortunadamente hay herramientas que pueden ayudar con este trabajo. En <a href="http://creditar.io" target="_blank">Creditar.io</a> utilizamos API Blueprint que es un markdown especializado para describir APIs. El markdown después es procesado para generar la documentación y generar archivos de esquema de JSON que son utilizados para las pruebas automáticas y así asegurarnos que el API es consistente con la documentación.</p>
+
+<p>El siguiente es un ejemplo de cómo se escribe la documentación en el markdown de API Blueprint.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>### List Users [GET]
+Returns a list of users paginated by the cursor.
+
++ Parameters
+    + cursor: `10` (number, optional) - Cursor value to paginate response.
+
++ Request (application/json)
+    + Headers
+
+            Accept: application/vnd.api-test.v1+json
+
++ Response 200 (application/json)
+
+    + Attributes
+        + data (array[User], fixed-type) - Users data.
+        + pagination (object, required) - Pagination information.
+            + cursors (object, required) - Cursors.
+                + after: `10` (number, required) - Cursor for next record to fetch.
+                + next_uri: `/users?cursor=5` (string, required) - URI for next page.
+        + links (array, fixed-type, required) - Links references.
+            + (object)
+                + rel: `self` (string, required)
+                + uri: `/users` (string, required)
+</code></pre></div></div>
+
+<p>Para más detalles de cómo lo utilizamos en <a href="http://creditar.io" target="_blank">Creditar.io</a> ver el post <a href="/desarrollo/2018/08/02/keep-your-api-in-shape-with-api-blueprint.html" target="_blank">Keep your API in shape with API Blueprint</a>. La documentación de <a href="http://creditar.io" target="_blank">Creditar.io</a> se puede consultar <a href="https://staging.creditar.io/api/documentation" target="_blank">aquí</a>.</p>
+
+<div class="blog-media">
+  <img width="1200" height="800" src="/assets/img/creditario-2.png" class="attachment-orio-thumb-big size-orio-thumb-big wp-post-image" alt="Documentación de Creditar.io" srcset="/assets/img/creditario-2.png 1200w, /assets/img/300-creditario-2.png 300w, /assets/img/768-creditario-2.png 768w, /assets/img/1024-creditario-2.png 1024w, /assets/img/180-creditario-2.png 180w, /assets/img/940-creditario-2.png 940w, /assets/img/320-creditario-2.png 320w, /assets/img/640-creditario-2.png 640w, /assets/img/960-creditario-2.png 960w" sizes="(max-width: 1200px) 100vw, 1200px" />
+</div>
+
+<h2 id="conclusiones">Conclusiones</h2>
+
+<p>Para el equipo de <a href="http://creditar.io" target="_blank">Creditar.io</a> es importante que el API funcione y este documentado correctamente, ya que como se mencionó al inicio del post, la idea es que <a href="http://creditar.io" target="_blank">Creditar.io</a> sea una plataforma que se pueda integrar fácilmente en los procesos de las FinTech que lo utilizan.</p>
+
+<p>Afortunadamente los conceptos para tener un API REST saludable no son difíciles de implementar pero si requieren de cierta disciplina.</p>
+
+<p>Espero que los puntos expresados en este post les sirva de ayuda en caso que también estén decidiendo implementar un API y quizás aún no se deciden entre hacerla REST o GraphQL.</p>
+
+
+              <!--
+              <div id="single-share" class="fixed">
+                <h6 class="widget-title title-alt">Share</h6>
+                <ul class="socialmedia-widget">
+                  <li class="facebook"><a href="#"></a></li>
+                  <li class="twitter"><a href="#"></a></li>
+                  <li class="googleplus"><a href="#"></a></li>
+                  <li class="pinterest"><a href="#"></a></li>
+                </ul>
+              </div>
+              -->
+
+            </div>
+          </div>
+        </section><footer id="footer" >
+  <div class="footer-inner">
+    <div class="column-section spaced-big clearfix">
+      <div class="column one-half">
+        <p>
+         <img id="dark-logo" src="/assets/mariochavez.png" srcset="/assets/mariochavez.png 1x, /assets/mariochavez@2x.png 2x" alt="Mario Chávez">
+        </p>
+        <h6><strong>Mario Alberto Chávez Cárdenas</strong></h6>
+        <small>Copyright © 2019 Mario Alberto Chávez Cárdenas.</small>
+      </div>
+    </div>
+  </div>
+</footer>
+</div><script src="/assets/jquery-1.12.4.min-cc5122f6b3eaa643472b7ac145ab09cbc5a0ffaa7d17b3896f7cbb73ea585a98.js" type="text/javascript" integrity="sha256-zFEi9rPqpkNHK3rBRasJy8Wg/6p9F7OJb3y7c+pYWpg=" crossorigin="anonymous"></script>
+<script src="/assets/plugins-c02d73feb866b751cbe281c25990427c49e50d5468c9dfe980ad26c37b333f09.js" type="text/javascript" integrity="sha256-wC1z/rhmt1HL4oHCWZBCfEnlDVRoyd/pgK0mw3szPwk=" crossorigin="anonymous"></script>
+<script src="/assets/jquery.imagesloaded.min-11bfb46a015d49e2a3315a5c88972f79802640280b63fd66da3f2595869b5b6b.js" type="text/javascript" integrity="sha256-Eb+0agFdSeKjMVpciJcveYAmQCgLY/1m2j8llYabW2s=" crossorigin="anonymous"></script>
+<script src="/assets/jquery.isotope.min-8eda0177a2c6705c65c90e87e09611fc54fdfaf81fe761f422b021e7b59a719c.js" type="text/javascript" integrity="sha256-jtoBd6LGcFxlyQ6H4JYR/FT9+vgf52H0IrAh57WacZw=" crossorigin="anonymous"></script>
+<script src="/assets/script-08405b9a46c3e0c86086b1f95c7a21f502c57bd9167b6a615b077a8f45ac0f77.js" type="text/javascript" integrity="sha256-CEBbmkbD4MhghrH5XHoh9QLFe9kWe2phWwd6j0WsD3c=" crossorigin="anonymous"></script>
+</body>
+</html>
