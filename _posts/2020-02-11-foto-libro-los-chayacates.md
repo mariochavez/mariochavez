@@ -28,9 +28,9 @@ Todo inició con un taller en el Foto Museo Cuatro Caminos sobre maquetación de
 
 Con la ayuda de Santiago Escobar-Jaramillo, quien impartió el curso, se realizó una selección y organización de las imágenes a formar parte de la maqueta inicial, cuya intención es visualizar la historia a contar.
 <div class="blog-media">
-  <img width="1200" height="800" src="{{ '/assets/img/IMG_6271.jpg' | relative_url }}"
+  <img width="1200" height="800" src="{{ '/assets/img/IMG_6268.jpg' | relative_url }}"
   class="attachment-orio-thumb-big size-orio-thumb-big wp-post-image" alt="Maqueta de fotolibro"
-  srcset="{{ 'IMG_6271.jpg' | srcset }}" sizes="(max-width: 1200px) 100vw, 1200px" />
+  srcset="{{ 'IMG_6268.jpg' | srcset }}" sizes="(max-width: 1200px) 100vw, 1200px" />
 </div>
 
 Posteriormente se produjeron dos archivos digitales, el primero de visualización, dónde se siguió refinando la idea la foto libro y posteriormente el archivo de impresión. De alguna forma la elaboración de este libro es un trabajo con una idea muy personal y hasta cierto punto también artesanal.
