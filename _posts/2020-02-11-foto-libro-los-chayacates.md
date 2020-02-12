@@ -4,7 +4,7 @@ title: Foto libro Los Chayacates de Ixtlahuacán
 date: 2020-02-11 12:00:00 -0600
 published: Febrero 11, 2020
 categories: fotografía
-description: Realización del foto libro Los Chayacates de Ixtlahuacán 
+description: Realización del foto libro Los Chayacates de Ixtlahuacán
 keywords: fotografía, fotos, libro, chayacates
 author: Mario Alberto Chávez
 image: foto-libro-chayacates-1.png
@@ -17,7 +17,7 @@ A través de este tiempo he logrado coleccionar un "cuerpo de trabajo", es algo 
 
 No soy de los que publican material en redes sociales, sé que no hago fotos para los likes. En gran medida porque no me gustaría que mis fotos se pierdan en un mar de imágenes digital y qué pasen a través de la pantalla de un celular de forma efímera directo al olvido.
 
-Es por esta razón que parte de este material sólo toma vida en forma de impresión digital o química y un poco de él en forma digital a través de https://heroimage.co. Y es precisamente buscando formatos para poder mostrar parte de este trabajo que nace la intención de crear foto libros.
+Es por esta razón que parte de este material sólo toma vida en forma de impresión digital o química y un poco de él en forma digital a través de [https://heroimage.co](https://heroimage.co){:target="_blank"}. Y es precisamente buscando formatos para poder mostrar parte de este trabajo que nace la intención de crear foto libros.
 
 Todo inició con un taller en el Foto Museo Cuatro Caminos sobre maquetación de foto libros dónde se dio forma al foto libro "Los Chayacates de Ixtlahuacán", una fiesta popular del estado de Colima. Dado que en ese momento ya contaba con material suficiente para mostrar la fiesta en imágenes decidí que fueran el primer foto libro.
 <div class="blog-media">
