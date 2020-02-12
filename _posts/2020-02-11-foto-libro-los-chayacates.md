@@ -42,7 +42,7 @@ Cada foto libro se arma de manera totalmente manual, las hojas impresas se organ
   srcset="{{ 'IMG_6271.jpg' | srcset }}" sizes="(max-width: 1200px) 100vw, 1200px" />
 </div>
 
-Si lees este post y te interesa tener una copia de foto libro "Los Chayacates de Ixtlahuacán" mándame un correo a mario@heroimage.co, el costo por cada foto libro es de $250 pesos más gastos de envío y solamente se ensamblaran 50 copias del foto libro.
+Si lees este post y te interesa tener una copia de foto libro "Los Chayacates de Ixtlahuacán" mándame un correo a [mario@heroimage.co](mailto:mario@heroimage.co?subject=Fotolibro%20Los%20Chayacates), el costo por cada foto libro es de $250 pesos más gastos de envío y solamente se ensamblaran 50 copias del foto libro.
 <div class="blog-media">
   <img width="1200" height="800" src="{{ '/assets/img/IMG_6270.jpg' | relative_url }}"
   class="attachment-orio-thumb-big size-orio-thumb-big wp-post-image" alt="El libro"
