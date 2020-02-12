@@ -48,3 +48,5 @@ Si lees este post y te interesa tener una copia de foto libro "Los Chayacates de
   class="attachment-orio-thumb-big size-orio-thumb-big wp-post-image" alt="El libro"
   srcset="{{ 'IMG_6270.jpg' | srcset }}" sizes="(max-width: 1200px) 100vw, 1200px" />
 </div>
+
+El libro tiene como dimensiones 21cm de alto por 14.5 de ancho y un peso de 100grms. Cuenta con 27 imágenes de las fiestas de Los Chayacates de Ixtlahuacán Colima así como una introducción explicando la misma. El libro está impreso a color en papel couché de 130grms y la pasta es de opalina 200grms plastificada.
