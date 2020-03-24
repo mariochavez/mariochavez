@@ -4,7 +4,7 @@ title: Fotografía de drone
 date: 2020-03-23 12:00:00 -0600
 published: Marzo 23, 2020
 categories: fotografía
-description: 
+description: Catálogo de fotografías de drone del Estado de Colima.
 keywords: fotografía, fotos, drone, colima, mexico
 author: Mario Alberto Chávez
 image: mario-chavez-drone-0.jpg
