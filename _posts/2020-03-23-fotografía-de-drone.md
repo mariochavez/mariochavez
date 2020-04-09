@@ -8,6 +8,7 @@ description: Catálogo de fotografías de drone del Estado de Colima.
 keywords: fotografía, fotos, drone, colima, mexico
 author: Mario Alberto Chávez
 image: mario-chavez-drone-0.jpg
+published: false
 ---
 A mediados de este mes de marzo recibí una invitación para dar una plática sobre fotografía y el tema que elegí fue la fotografía de drone. Hasta el día de hoy tengo 3 años he recorrido numerosos lugares del Estado de Colima haciendo este tipo de fotografía.
 
