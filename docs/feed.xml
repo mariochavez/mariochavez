@@ -1,4 +1,133 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" /><updated>2020-04-09T13:17:18-05:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez : Blog</title><subtitle>Blog personal de Mario Alberto Chávez. Temas de desarrollo de software y fotografia.</subtitle><entry><title type="html">Actividades de fotografía en f/64</title><link href="https://mariochavez.io/fotograf%C3%ADa/2020/04/09/actividades-f64.html" rel="alternate" type="text/html" title="Actividades de fotografía en f/64" /><published>2020-04-09T13:00:00-05:00</published><updated>2020-04-09T13:00:00-05:00</updated><id>https://mariochavez.io/fotograf%C3%ADa/2020/04/09/actividades-f64</id><content type="html" xml:base="https://mariochavez.io/fotograf%C3%ADa/2020/04/09/actividades-f64.html">&lt;p&gt;El día de hoy puse en operación el sition &lt;a href=&quot;https://actividades.f64.io&quot; target=&quot;_blank&quot;&gt;https://actividades.f64.io&lt;/a&gt; como una herramienta complementaria a las pláticas presenciales que se organizan cada mes con fotógrafas y fotógrafos locales en Colima.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" /><updated>2020-05-14T11:50:37-05:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez : Blog</title><subtitle>Blog personal de Mario Alberto Chávez. Temas de desarrollo de software y fotografia.</subtitle><entry><title type="html">APIs con Ruby</title><link href="https://mariochavez.io/desarrollo/2020/05/14/apis-con-ruby.html" rel="alternate" type="text/html" title="APIs con Ruby" /><published>2020-05-14T01:00:00-05:00</published><updated>2020-05-14T01:00:00-05:00</updated><id>https://mariochavez.io/desarrollo/2020/05/14/apis-con-ruby</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2020/05/14/apis-con-ruby.html">&lt;h1 id=&quot;apis-con-ruby&quot;&gt;APIs con Ruby&lt;/h1&gt;
+
+&lt;p&gt;El pasado 13 de mayo tuve una sesión de “streaming” para platicar sobre el desarrollo de APIs REST con Ruby. La plática
+se dividió en varias secciones dónde se tocaron temas de qué herramientas hay para construir APIs con Ruby, los diferentes
+estándares para construir APIs, herramientas para documentar, recursos para entender mejor qué es un API y cómo funciona,
+entre otros temas.&lt;/p&gt;
+
+&lt;p&gt;El video ya está disponible para quienes no tuvieron la oportunidad de acompañarme.&lt;/p&gt;
+&lt;div style=&quot;text-align: center;&quot;&gt;
+  &lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/ZRvcg3MSC0Y&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Para la siguiente sesión hay que estar pendientes de mi cuenta de Twitter &lt;a href=&quot;https://twitter.com/mario_chavez&quot; target=&quot;_blank&quot;&gt;@mario_chavez&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;recursos-de-plática&quot;&gt;Recursos de plática&lt;/h2&gt;
+
+&lt;p&gt;Para construir APIs con Ruby existen diversas opciones desde Ruby muy básico hasta frameworks completos como Rails.&lt;/p&gt;
+
+&lt;h4 id=&quot;rack-api&quot;&gt;Rack API&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/fnando/rack-api&quot; target=&quot;_blank&quot;&gt;fnando/rack-api&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;grape&quot;&gt;Grape&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/ruby-grape/grape&quot; target=&quot;_blank&quot;&gt;ruby-grape/grape&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;hanami&quot;&gt;Hanami&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://hanamirb.org&quot; target=&quot;_blank&quot;&gt;Hanami&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;rails-api&quot;&gt;Rails API&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://guides.rubyonrails.org/api_app.html&quot; target=&quot;_blank&quot;&gt;Using Rails for API-only Applications - Ruby on Rails Guides&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;referencias-generales-sobre-apis&quot;&gt;Referencias generales sobre APIs&lt;/h3&gt;
+
+&lt;p&gt;Antes de aventurarnos a escribir un API realmente tenemos que entender de qué se trata un API y cuál es su relación con estándar HTTP.&lt;/p&gt;
+
+&lt;h4 id=&quot;build-apis-you-wont-hate&quot;&gt;Build APIs you won’t hate&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://apisyouwonthate.com/books/build-apis-you-wont-hate&quot; target=&quot;_blank&quot;&gt;Build APIs You Won’t Hate&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;el-estándar-de-open-api&quot;&gt;El estándar de Open API&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.openapis.org&quot; target=&quot;_blank&quot;&gt;Home - OpenAPI Initiative&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;json-api&quot;&gt;JSON API&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://jsonapi.org&quot; target=&quot;_blank&quot;&gt;JSON:API&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;the-ion-hypermedia-type&quot;&gt;The ION Hypermedia type&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://ionspec.org&quot; target=&quot;_blank&quot;&gt;The Ion Hypermedia Type&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;hal---hypertext-application-language&quot;&gt;HAL - Hypertext application language&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;http://stateless.co/hal_specification.html&quot; target=&quot;_blank&quot;&gt;The Hypertext Application Language&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;editores&quot;&gt;Editores&lt;/h3&gt;
+
+&lt;p&gt;Escribir las especificaciones de un API puede ser una tarea complicada sin ayuda para asegurarnos que la estamos 
+escribiendo de acuerdo al estándar que deseamos adoptar.&lt;/p&gt;
+
+&lt;h4 id=&quot;stoplight-studio&quot;&gt;Stoplight Studio&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://stoplight.io/studio/&quot; target=&quot;_blank&quot;&gt;Stoplight Studio | OpenAPI Design, Planning &amp;amp; Modeling Tool&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;swagger&quot;&gt;Swagger&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://swagger.io/&quot; target=&quot;_blank&quot;&gt;API Documentation &amp;amp; Design Tools for Teams | Swagger | Swagger&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;api-blueprint&quot;&gt;API Blueprint&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://apiblueprint.org/&quot; target=&quot;_blank&quot;&gt;API Blueprint | API Blueprint&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://mariochavez.io/desarrollo/2018/08/02/keep-your-api-in-shape-with-api-blueprint.html&quot; target=&quot;_blank&quot;&gt;Keep your API in shape with API Blueprint&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;lecciones-a-seguir&quot;&gt;Lecciones a seguir&lt;/h3&gt;
+
+&lt;p&gt;Todos los recursos disponibles ayudan a tener un mejor panorama al momento de crear un API pero no ayudan en lo 
+específico a decidir cómo hacer el API. El siguiente post registra algunas experiencias basadas en el desarrollo de un
+API que sea estándar y documentando.&lt;/p&gt;
+
+&lt;h4 id=&quot;lecciones-construyendo-un-api&quot;&gt;Lecciones construyendo un API&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://mariochavez.io/desarrollo/2019/12/30/lecciones-construyendo-un-api-rest.html&quot; target=&quot;_blank&quot;&gt;Lecciones construyendo un API REST&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;implementación-en-ruby&quot;&gt;Implementación en Ruby&lt;/h3&gt;
+
+&lt;p&gt;Ya conocimos algunas opciones sobre las cuales escribir nuestros APIs ahora toca el tema a herramientas específicas
+que nos ayudan a seguir un camino estable y documentado al implementar un API.&lt;/p&gt;
+
+&lt;h4 id=&quot;serializadores-modernos&quot;&gt;Serializadores modernos&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://vasilakisfil.social/blog/2020/01/20/modern-ruby-serializers/&quot; target=&quot;_blank&quot;&gt;Modern Ruby Serializers&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;jsonapi-rb&quot;&gt;JSONAPI-RB&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/jsonapi-rb/jsonapi-rb&quot; target=&quot;_blank&quot;&gt;jsonapi-rb/jsonapi-rb&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;committee&quot;&gt;Committee&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/interagent/committee&quot; target=&quot;_blank&quot;&gt;interagent/committee&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;writing-a-hypermedia-api-client-with-ruby&quot;&gt;Writing a Hypermedia API client with Ruby&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://thoughtbot.com/blog/writing-a-hypermedia-api-client-in-ruby&quot; target=&quot;_blank&quot;&gt;Writing a Hypermedia API client in Ruby&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;faster-json-generation-with-postgresql&quot;&gt;Faster JSON generation with PostgreSQL&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://hashrocket.com/blog/posts/faster-json-generation-with-postgresql&quot; target=&quot;_blank&quot;&gt;Faster JSON Generation with PostgreSQL&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;conditional-get-with-rails&quot;&gt;Conditional GET with Rails&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://api.rubyonrails.org/classes/ActionController/ConditionalGet.html&quot; target=&quot;_blank&quot;&gt;ActionController::ConditionalGet&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;autentificación&quot;&gt;Autentificación&lt;/h3&gt;
+
+&lt;p&gt;Toda API requiere de algún mecanismo de autentificación. Dependiendo del uso de API vamos a tener dos opciones diferentes.&lt;/p&gt;
+
+&lt;h4 id=&quot;token-authentication-with-rails&quot;&gt;Token Authentication with Rails&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://thoughtbot.com/blog/token-authentication-with-rails&quot; target=&quot;_blank&quot;&gt;Token Authentication with Rails&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;json-web-token&quot;&gt;JSON Web Token&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/jwt/ruby-jwt&quot; target=&quot;_blank&quot;&gt;jwt/ruby-jwt&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;el-elefante-blanco-en-el-stream&quot;&gt;El elefante blanco en el stream&lt;/h3&gt;
+
+&lt;p&gt;Todo el material mostrado hasta este punto habla específicamente desde el punto de vistas de APIs REST y de la idea de
+Phil Sturgeon de que realmente no conocemos REST aunque alguno de nostros juremos que hemos implementado APIs REST.
+Es por eso que existe GraphQL, el cuál es una serie de “hacks” para crear APIs “más flexibles” a costa de ignorar el 
+estándar HTTP.&lt;/p&gt;
+
+&lt;h3 id=&quot;graphql&quot;&gt;GraphQL&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://graphql-ruby.org/&quot; target=&quot;_blank&quot;&gt;GraphQL - Welcome&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;conclusiones&quot;&gt;Conclusiones&lt;/h3&gt;
+&lt;p&gt;Para poder lograr un API exitosa y de la cuál no nos arrepintamos más adelante es necesario conocer qué es REST a fondo,
+basarnos en elguno de los estándares disponibles y sobre todo que sea un API totalmente documentada. Todos los recursos
+aquí mostrados ayudan a tener una idea más clara pero siempre es importante buscar inspiración en lo que otros hacen.&lt;/p&gt;
+
+&lt;p&gt;Busca en los servicios que consumes en tus aplicaciones cómo está documentada el API de los mismos, qué cosas son las que
+te agradan de esa implementación y qué las que te desagradan, trata de seguir los pasos de esas APIs que te inspiran.&lt;/p&gt;
+
+&lt;h4 id=&quot;stripe-api&quot;&gt;Stripe API&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://stripe.com/docs/api&quot; target=&quot;_blank&quot;&gt;Stripe API&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;creditario-api&quot;&gt;Creditario API&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://docs.creditar.io/&quot; target=&quot;_blank&quot;&gt;Creditario API&lt;/a&gt;&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><summary type="html">APIs con Ruby</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/apis-con-ruby.jpg" /><media:content medium="image" url="https://mariochavez.io/apis-con-ruby.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Actividades de fotografía en f/64</title><link href="https://mariochavez.io/fotograf%C3%ADa/2020/04/09/actividades-f64.html" rel="alternate" type="text/html" title="Actividades de fotografía en f/64" /><published>2020-04-09T13:00:00-05:00</published><updated>2020-04-09T13:00:00-05:00</updated><id>https://mariochavez.io/fotograf%C3%ADa/2020/04/09/actividades-f64</id><content type="html" xml:base="https://mariochavez.io/fotograf%C3%ADa/2020/04/09/actividades-f64.html">&lt;p&gt;El día de hoy puse en operación el sition &lt;a href=&quot;https://actividades.f64.io&quot; target=&quot;_blank&quot;&gt;https://actividades.f64.io&lt;/a&gt; como una herramienta complementaria a las pláticas presenciales que se organizan cada mes con fotógrafas y fotógrafos locales en Colima.&lt;/p&gt;
 
 &lt;p&gt;La idea con estás actividades es continuar con la promoción y desarrollo de la creatividad fotográfica a através de actividades alrededor de temas específicos y acotados.&lt;/p&gt;
 
@@ -1161,55 +1290,4 @@ el código para la siguiente iteración.&lt;/p&gt;
   &lt;figcaption&gt;Primer video disponible.&lt;/figcaption&gt;
 &lt;/div&gt;
 
-&lt;p&gt;Para quienes lean esto y están en la ciudad de Colima no duden en acompañarnos cada primer jueves del mes, para quienes no están aquí muy recomendables los videos y la información de quienes se han presentado con nosotros.&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><summary type="html">Hace un par de meses escribí un post platicando sobre f/64, el evento mensual con fotógrafos locales de Colima en donde alguno se presenta para platicar de su trabajo y su experiencia tomando fotos.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/2019-02-07-f-64-1.png" /><media:content medium="image" url="https://mariochavez.io/2019-02-07-f-64-1.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">heroimage.co</title><link href="https://mariochavez.io/fotograf%C3%ADa/2018/12/28/heroimage-co.html" rel="alternate" type="text/html" title="heroimage.co" /><published>2018-12-28T12:00:00-06:00</published><updated>2018-12-28T12:00:00-06:00</updated><id>https://mariochavez.io/fotograf%C3%ADa/2018/12/28/heroimage-co</id><content type="html" xml:base="https://mariochavez.io/fotograf%C3%ADa/2018/12/28/heroimage-co.html">&lt;p&gt;En días pasados publiqué dos posts sobre algunas cosas que he estado haciendo últimamente relacionadas con la fotografía, la primera sobre el grupo &lt;a href=&quot;/fotograf%C3%ADa/2018/12/10/f-64.html&quot; target=&quot;_blank&quot;&gt;F/64&lt;/a&gt; con el cual he estado organizando charlas invitando a fotografos de la ciudad de Colima.&lt;/p&gt;
-
-&lt;p&gt;El segundo anuncio fue referente al porque he decido hacer &lt;a href=&quot;/fotograf%C3%ADa/2018/12/21/fotografiando-en-analogo.html&quot; target=&quot;_blank&quot;&gt;fotografía en análogo&lt;/a&gt;, algunas experiencias y retos que he encontrado. Pues bien hoy hago el anuncio del lanzamiento de &lt;a href=&quot;https://www.heroimage.co&quot; target=&quot;_blank&quot;&gt;heroimage.co&lt;/a&gt;&lt;/p&gt;
-
-&lt;div class=&quot;blog-media&quot;&gt;
-  &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/2018-12-28-heroimage-co.md-1.png&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;Main image&quot; srcset=&quot;/assets/img/2018-12-28-heroimage-co.md-1.png 1200w, /assets/img/300-2018-12-28-heroimage-co.md-1.png 300w, /assets/img/768-2018-12-28-heroimage-co.md-1.png 768w, /assets/img/1024-2018-12-28-heroimage-co.md-1.png 1024w, /assets/img/180-2018-12-28-heroimage-co.md-1.png 180w, /assets/img/940-2018-12-28-heroimage-co.md-1.png 940w, /assets/img/320-2018-12-28-heroimage-co.md-1.png 320w, /assets/img/640-2018-12-28-heroimage-co.md-1.png 640w, /assets/img/960-2018-12-28-heroimage-co.md-1.png 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
-  &lt;figcaption&gt;Página inicial de heroimage.co&lt;/figcaption&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.heroimage.co&quot; target=&quot;_blank&quot;&gt;heroimage.co&lt;/a&gt; es mi propuesta personal para publicar fotografías en Internet, si sé que existen las redes sociales y la promesa de exposición de miles de personas cada segundo pero en lo personal me parece una falacia o bien no es la forma en como me gustaría exponer lo que hago.&lt;/p&gt;
-
-&lt;p&gt;Desde ya hace un par de años me comencé a cuestionar el uso de las redes sociales para exponer fotos. Fui usuario de &lt;a href=&quot;https://500px.com/mario_chavez&quot; target=&quot;_blank&quot;&gt;500px&lt;/a&gt; y de &lt;a href=&quot;https://www.instagram.com/mario_chavez/&quot; target=&quot;_blank&quot;&gt;Instagram&lt;/a&gt; por mucho tiempo e inclusive eventualmente publica en &lt;a href=&quot;https://www.facebook.com/mario.chavez&quot; target=&quot;_blank&quot;&gt;Facebook&lt;/a&gt; o &lt;a href=&quot;https://twitter.com/mario_chavez&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;, pero algo me molestaba de los servicios y no, no era que no tenía muchos “likes”, era realmente ver que la fotografía se convertía en algo muy efímero y trivial.&lt;/p&gt;
-&lt;div class=&quot;blog-media&quot;&gt;
-  &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/2018-12-28-heroimage-co.md-2.png&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;Main image&quot; srcset=&quot;/assets/img/2018-12-28-heroimage-co.md-2.png 1200w, /assets/img/300-2018-12-28-heroimage-co.md-2.png 300w, /assets/img/768-2018-12-28-heroimage-co.md-2.png 768w, /assets/img/1024-2018-12-28-heroimage-co.md-2.png 1024w, /assets/img/180-2018-12-28-heroimage-co.md-2.png 180w, /assets/img/940-2018-12-28-heroimage-co.md-2.png 940w, /assets/img/320-2018-12-28-heroimage-co.md-2.png 320w, /assets/img/640-2018-12-28-heroimage-co.md-2.png 640w, /assets/img/960-2018-12-28-heroimage-co.md-2.png 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
-  &lt;figcaption&gt;Lo que significa para mí la imagen&lt;/figcaption&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Esto sin mencionar los problemas de seguridad y privacidad de los servicios propietarios de Facebook en los que se han visto involucrados casi de manera recurrente cada cierto tiempo.&lt;/p&gt;
-
-&lt;p&gt;Debido a esto como motivo principal dejé de publicar fotografía en esos espacios, con la excepción de alguna que otra foto tomada con el celular.&lt;/p&gt;
-
-&lt;p&gt;Pero esto creó un conflicto existencial, bueno no existencial pero sí un conflicto. Tengo ya varios años haciendo fotografía no como actividad profesional principal pero de manera constante y así me ubican algunas personas como fotógrafo.&lt;/p&gt;
-
-&lt;p&gt;Es inevitable que de vez en cuando salga la pregunta “Y dónde o cómo veo tus fotos?” o bien tomando fotos en la calle o en fiestas populares después de que alguién me permite tomarle la foto siempre viene alguna de estas preguntas “En qué medio la vas a publicar?” o “En qué página la veo?”. Hasta el día de hoy no tenía una respuesta.&lt;/p&gt;
-
-&lt;p&gt;Como respuesta a tales situaciones es que he iniciado a imprimir algunas de mis fotos para tenerlas físicamente tal y como lo comenté en &amp;lt;a href=’/fotograf%C3%ADa/2018/12/21/fotografiando-en-analogo.html’’ target=’_blank’&amp;gt;fotografía en análogo&amp;lt;/a&amp;gt;, y en la parte digital la respuesta es &lt;a href=&quot;https://www.heroimage.co&quot; target=&quot;_blank&quot;&gt;heroimage.co&lt;/a&gt;.&lt;/p&gt;
-&lt;div class=&quot;blog-media&quot;&gt;
-  &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/2018-12-28-heroimage-co.md-3.png&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;Main image&quot; srcset=&quot;/assets/img/2018-12-28-heroimage-co.md-3.png 1200w, /assets/img/300-2018-12-28-heroimage-co.md-3.png 300w, /assets/img/768-2018-12-28-heroimage-co.md-3.png 768w, /assets/img/1024-2018-12-28-heroimage-co.md-3.png 1024w, /assets/img/180-2018-12-28-heroimage-co.md-3.png 180w, /assets/img/940-2018-12-28-heroimage-co.md-3.png 940w, /assets/img/320-2018-12-28-heroimage-co.md-3.png 320w, /assets/img/640-2018-12-28-heroimage-co.md-3.png 640w, /assets/img/960-2018-12-28-heroimage-co.md-3.png 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
-  &lt;figcaption&gt;Mis historias&lt;/figcaption&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.heroimage.co&quot; target=&quot;_blank&quot;&gt;heroimage.co&lt;/a&gt; no es un “portafolio” digital como tal, no es lo que busco ni lo que quiero. Para mí es un espacio para mi es un espacio para publicar mis fotos organizadas como historias, es decir de manera congruente y con algunos textos referentes a las mismas.&lt;/p&gt;
-
-&lt;p&gt;Dicen que “una imagen dice más que mil palabras” y es cierto hasta cierto punto, una imagen por sí sola puede ser evocadora y ilustrativa, pero también puede ser sacada de contexto o limitar la narrativa de una historia.&lt;/p&gt;
-
-&lt;p&gt;Es por eso que con &lt;a href=&quot;https://www.heroimage.co&quot; target=&quot;_blank&quot;&gt;heroimage.co&lt;/a&gt; decidí que la mejor forma para mi de presentar mi fotografía es a través de historias confirmadas por imágenes y texto.&lt;/p&gt;
-
-&lt;p&gt;Ahora viene la parte pesada, empezar a organizar mis fotos en historias, recordando anécdotas y pláticas de cuando las fotos fueron tomadas y organizarlas en forma que tengan sentido.&lt;/p&gt;
-
-&lt;p&gt;De momento tengo 2 historias publicadas &lt;a href=&quot;https://www.heroimage.co/historias/colima-la-ciudad-de-los-rios-y-palmeras&quot; target=&quot;_blank&quot;&gt;“Colima, la ciudad de los ríos y palmeras”&lt;/a&gt; y &lt;a href=&quot;https://www.heroimage.co/historias/estero-palo-verde&quot; target=&quot;_blank&quot;&gt;“Estero Palo Verde”&lt;/a&gt;. La intención publicar de manera periódica nuevas historias y fotos.&lt;/p&gt;
-
-&lt;p&gt;Sé que no va a tener el mismo alcance que las redes sociales pero espero que la gente que llegue al sitio por lo menos venga con la intención de pasar algunos minutos en las historias.&lt;/p&gt;
-
-&lt;p&gt;Algo importante, por lo menos para mí, es que en el sitio no voy a poner anuncios ni ningún tipo de “tracker” que viole la privacidad de quienes visitan el sitio. No hay ni va a haber información que se comparta con otras empresas tal y como lo hacen por ejemplo las aplicaciones de Facebook.&lt;/p&gt;
-
-&lt;p&gt;De hecho he tomado medidas para asegurar que el sitio cumpla con lo mínimo necesario con la &lt;a href=&quot;https://eugdpr.org&quot; target=&quot;_blank&quot;&gt;Regulación General de Protección de Datos (GDPR)&lt;/a&gt;. No hay recolección de datos como información personal ni correos, además de las direcciones IP desde donde la gente se conecta pasan por un proceso de anonimato.&lt;/p&gt;
-
-&lt;p&gt;Finalmente si alguien leyó esta publicación hasta este punto y le interesa la idea de &lt;a href=&quot;https://www.heroimage.co&quot; target=&quot;_blank&quot;&gt;heroimage.co&lt;/a&gt; puede mandarme un &lt;a href=&quot;mailto://info@heroimage.co&quot; target=&quot;_blank&quot;&gt;correo electrónico&lt;/a&gt; para platicar de la posible colaboración de contenido.&lt;/p&gt;
-&lt;div class=&quot;blog-media&quot;&gt;
-  &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/2018-12-28-heroimage-co.md-4.png&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;Main image&quot; srcset=&quot;/assets/img/2018-12-28-heroimage-co.md-4.png 1200w, /assets/img/300-2018-12-28-heroimage-co.md-4.png 300w, /assets/img/768-2018-12-28-heroimage-co.md-4.png 768w, /assets/img/1024-2018-12-28-heroimage-co.md-4.png 1024w, /assets/img/180-2018-12-28-heroimage-co.md-4.png 180w, /assets/img/940-2018-12-28-heroimage-co.md-4.png 940w, /assets/img/320-2018-12-28-heroimage-co.md-4.png 320w, /assets/img/640-2018-12-28-heroimage-co.md-4.png 640w, /assets/img/960-2018-12-28-heroimage-co.md-4.png 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
-  &lt;figcaption&gt;Perfil&lt;/figcaption&gt;
-&lt;/div&gt;</content><author><name>Mario Alberto Chávez</name></author><summary type="html">En días pasados publiqué dos posts sobre algunas cosas que he estado haciendo últimamente relacionadas con la fotografía, la primera sobre el grupo F/64 con el cual he estado organizando charlas invitando a fotografos de la ciudad de Colima.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/2018-12-28-heroimage-co.md-1.png" /><media:content medium="image" url="https://mariochavez.io/2018-12-28-heroimage-co.md-1.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;p&gt;Para quienes lean esto y están en la ciudad de Colima no duden en acompañarnos cada primer jueves del mes, para quienes no están aquí muy recomendables los videos y la información de quienes se han presentado con nosotros.&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><summary type="html">Hace un par de meses escribí un post platicando sobre f/64, el evento mensual con fotógrafos locales de Colima en donde alguno se presenta para platicar de su trabajo y su experiencia tomando fotos.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/2019-02-07-f-64-1.png" /><media:content medium="image" url="https://mariochavez.io/2019-02-07-f-64-1.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
