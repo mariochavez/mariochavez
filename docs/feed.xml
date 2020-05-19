@@ -1,4 +1,248 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" /><updated>2020-05-14T11:50:37-05:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez : Blog</title><subtitle>Blog personal de Mario Alberto Chávez. Temas de desarrollo de software y fotografia.</subtitle><entry><title type="html">APIs con Ruby</title><link href="https://mariochavez.io/desarrollo/2020/05/14/apis-con-ruby.html" rel="alternate" type="text/html" title="APIs con Ruby" /><published>2020-05-14T01:00:00-05:00</published><updated>2020-05-14T01:00:00-05:00</updated><id>https://mariochavez.io/desarrollo/2020/05/14/apis-con-ruby</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2020/05/14/apis-con-ruby.html">&lt;h1 id=&quot;apis-con-ruby&quot;&gt;APIs con Ruby&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" /><updated>2020-05-19T17:39:49-05:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez : Blog</title><subtitle>Blog personal de Mario Alberto Chávez. Temas de desarrollo de software y fotografia.</subtitle><entry><title type="html">From the Asset Pipeline to Webpack</title><link href="https://mariochavez.io/desarrollo/2020/05/19/from-the-asset-pipeline-to-webpack.html" rel="alternate" type="text/html" title="From the Asset Pipeline to Webpack" /><published>2020-05-19T01:00:00-05:00</published><updated>2020-05-19T01:00:00-05:00</updated><id>https://mariochavez.io/desarrollo/2020/05/19/from-the-asset-pipeline-to-webpack</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2020/05/19/from-the-asset-pipeline-to-webpack.html">&lt;h1 id=&quot;from-the-asset-pipeline-to-webpack&quot;&gt;From the Asset Pipeline to Webpack&lt;/h1&gt;
+
+&lt;p&gt;In May 2011, DHH announced at Railsconf a new framework for Rails, The Asset Pipeline. It was also announced that SCSS and CoffeeScript, along with jQuery, were to become a default on every Rails application.&lt;/p&gt;
+
+&lt;p&gt;The recognition that Web Development changed since Rails was created, and that it was the time for Rails to promote to first-class citizen every aspect of building Web UIs.&lt;/p&gt;
+
+&lt;div class=&quot;blog-media&quot;&gt;
+  &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/dhh-tweet.png&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;API Blueprint&quot; srcset=&quot;/assets/img/dhh-tweet.png 1200w, /assets/img/300-dhh-tweet.png 300w, /assets/img/768-dhh-tweet.png 768w, /assets/img/1024-dhh-tweet.png 1024w, /assets/img/180-dhh-tweet.png 180w, /assets/img/940-dhh-tweet.png 940w, /assets/img/320-dhh-tweet.png 320w, /assets/img/640-dhh-tweet.png 640w, /assets/img/960-dhh-tweet.png 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;It was a step forward, but people complained about SCSS and CoffeeScript becoming the default on every project. The plan was in place, and on August 31st, 2011 &lt;a href=&quot;http://guides.rubyonrails.org/3_1_release_notes.html&quot; target=&quot;_blank&quot;&gt;version 3.1 was released&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;In the Rails world, the frontend development was done with HTML/CSS and jQuery plugins, but the UI complexity and Javascript spaghetti code needed a different solution, this how frontend libraries started to arise, being one of the first &lt;a href=&quot;http://backbonejs.org&quot; target=&quot;_blank&quot;&gt;Backbone.js&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Managing, invalidating, and serving assets was a difficult task, and &lt;a href=&quot;http://guides.rubyonrails.org/asset_pipeline.html&quot; target=&quot;_blank&quot;&gt;the Asset Pipeline&lt;/a&gt; came with the promise to make it easy. Front-end development continued moving forward; eventually, Backbone.js died, and jQuery was not enough anymore.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://nodejs.org/en/&quot; target=&quot;_blank&quot;&gt;Node.js&lt;/a&gt;, &lt;a href=&quot;https://www.npmjs.com&quot;&gt;NPM&lt;/a&gt;, and ECMA 5 stepped in and rapidly influenced how to do frontend development. Single-page applications became a thing, and this had a direct effect in the Rails world where it was no longer easy just to download a Javascript file, put it in the vendor folder, and expect it to work.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/rails/sprockets&quot; target=&quot;_blank&quot;&gt;Sprockets&lt;/a&gt;, the heart of the Asset Pipeline, tried to keep up, but somehow, it fell short. I saw different solutions that included Gulp, Grunt, and Bower as a way to keep doing modern Web frontend development, and there was no joy on any of it.&lt;/p&gt;
+
+&lt;p&gt;Finally, to address this situation, on April 27th, 2017 &lt;a href=&quot;https://sipsandbits.com/2017/03/09/whats-new-in-rails-51/&quot; target=&quot;_blank&quot;&gt;Rails 5.1&lt;/a&gt; was released, it included Yarn to manage Javascript dependencies and support for &lt;a href=&quot;https://webpack.js.org&quot;&gt;Webpack&lt;/a&gt; with sensitive defaults and integration on Rails itself via &lt;a href=&quot;https://github.com/rails/webpacker&quot;&gt;Webpacker&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Rails provide a tool that is familiar to frontend developers and eases the adoption of new Javascript libraries. Still, compatibility needs to be kept for projects that use the Asset Pipeline, so it was not removed. You can use Webpacker and the Asset Pipeline seamlessly. It may take a few more versions before the Asset Pipeline becomes deprecated.&lt;/p&gt;
+
+&lt;h2 id=&quot;starting-with-webpack&quot;&gt;Starting with Webpack.&lt;/h2&gt;
+&lt;p&gt;If you are creating a new Rails application starting with Webpack is easy.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ rails new sample_app
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;For a new Rails project on version 6.0, Webpack is set up by default. If you need a Javascript library like React, Angular, Elm, Vuejs, or Stimulusjs, you can specify it with an option.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ rails new sample_app --webpack=react
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;If you want to disable the Asset Pipeline, add the following flag to the new command.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ rails new sample_app --skip-sprockets
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Be aware that the &lt;code class=&quot;highlighter-rouge&quot;&gt;app/assets&lt;/code&gt; folder is created even when this flag is set, so you might need to remove it manually.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;app/assets
+├── config
+├── images
+└── stylesheets
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Rails configure Webpack to work seamlessly with the development, test, and production environment. The Webpacker gem is responsible for this integration. If you need to tweak or change Webpack’s configuration, configuration files can be found at the &lt;code class=&quot;highlighter-rouge&quot;&gt;/config&lt;/code&gt; folder.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;config/webpacker.yml
+config/webpack
+├── development.js
+├── environment.js
+├── production.js
+└── test.js
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;All frontend assets are organized around packs. A pack is a bundle for all required assets, like public application assets or the administration assets. A pack is an entry point that declares all the assets for each pack; a pack can share assets between them. Pack definitions live inside &lt;code class=&quot;highlighter-rouge&quot;&gt;/app/javascript/packs&lt;/code&gt; folder. The default pack is application.js.&lt;/p&gt;
+
+&lt;p&gt;Now you can create a folder for images, stylesheets, or any other asset that needs to be served with Webpack.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;app/javascript
+├── controllers
+├── images
+├── packs
+└── stylesheets
+    └── modules
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Just be sure to require the assets in their corresponding packs, or Webpack will not load them.&lt;/p&gt;
+
+&lt;p&gt;Also, you need to ensure that all your views layouts are using Webpacker helpers to load the packs.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;%= javascript_pack_tag &quot;application&quot; %&amp;gt;
+&amp;lt;%= stylesheet_pack_tag &quot;application&quot; %&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Running the Rails server, in development mode, and visiting a page start a Webpack process to compile the required packs delaying the response from the server. Compiling assets this way is simple but slow.&lt;/p&gt;
+
+&lt;p&gt;A faster approach is running a separate Webpack process; just run the Webpack development server.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ bin/webpack-dev-server
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;A benefit of having a separate process for Webpack is that it makes compilation fast, and also it auto-reload the current page if changes on assets are detected. A simple solution to start the Rails and Webpack servers on their separate process is to create a &lt;code class=&quot;highlighter-rouge&quot;&gt;Procfile&lt;/code&gt; and use a tool like &lt;a href=&quot;https://github.com/DarthSim/overmind&quot; target=&quot;_blank&quot;&gt;Overmind&lt;/a&gt; to start them.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;server: bin/rails server
+assets: bin/webpack-dev-server
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ overmind start
+server | Started with pid 9681...
+assets | Started with pid 9682...
+warning package.json: No license field
+assets | ℹ ｢wds｣: Project is running at http://localhost:3036/
+assets | ℹ ｢wds｣: webpack output is served from /packs/
+assets | ℹ ｢wds｣: Content not from webpack is served from /../public/packs
+assets | ℹ ｢wds｣: 404s will fallback to /index.html
+server | =&amp;gt; Booting Puma
+server | =&amp;gt; Rails 6.0.2.2 application starting in development
+server | =&amp;gt; Run `rails server --help` for more startup options
+server | Puma starting in single mode...
+server | * Version 4.3.3 (ruby 2.6.5-p114), codename: Mysterious Traveller
+server | * Min threads: 5, max threads: 5
+server | * Environment: development
+server | * Listening on tcp://127.0.0.1:3036
+server | * Listening on tcp://[::1]:3036
+...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;moving-from-the-asset-pipeline-to-webpack&quot;&gt;Moving from the Asset Pipeline to Webpack&lt;/h2&gt;
+&lt;p&gt;Everything described in the previous section applies to new Rails applications, but what about an existing application? If your application is not a Rails 6.0 o better, you might need to install Webpack manually.&lt;/p&gt;
+
+&lt;p&gt;Before continuing, I want to make it clear that if your Javascript does not follow the &lt;a href=&quot;https://nodejs.org/api/modules.html&quot; target=&quot;_blank&quot;&gt;Node.js Modules&lt;/a&gt; &lt;a href=&quot;https://darrenderidder.github.io/talks/ModulePatterns/#/&quot;&gt;pattern&lt;/a&gt; you need to figure out how to change your code to make it Webpack friendly.&lt;/p&gt;
+
+&lt;p&gt;Rails applications older than version 6.0 might not have Webpack integration installed; to install it first, add the Webpacker gem to your Gemfile and run Bundler. Now generate Webpack configuration files by running the following command.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ bin/rails g webpacker:install
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;If you need to add support for a frontend Javascript library like Rect or Stimulus, run the Webpacker generator.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ bin/rails g webpacker:install:react
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;OR&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ bin/rails g webpacker:install:stimulus
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;application.js&lt;/code&gt; pack is modified to include everything you need to start working with the installed Javascript library.&lt;/p&gt;
+
+&lt;p&gt;With Webpack in place, you can start moving your assets from the Asset Pipeline folders to the new &lt;code class=&quot;highlighter-rouge&quot;&gt;app/javascript&lt;/code&gt; folder. Let us start with images. Move your images to &lt;code class=&quot;highlighter-rouge&quot;&gt;app/javascript/images&lt;/code&gt; in there. You can organize the images into sub-folders, for example, images for the public frontend and images for the private backend or just leave all of them there.&lt;/p&gt;
+
+&lt;p&gt;In the &lt;code class=&quot;highlighter-rouge&quot;&gt;application.js&lt;/code&gt; file, you can import images one by one as follow.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import '../images/image1.png';
+import '../images/image2.png';
+...
+import '../images/imageN.png';
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Or you can take advantage of Webpacker’s &lt;code class=&quot;highlighter-rouge&quot;&gt;require.context&lt;/code&gt; and import all of them at once.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;require.context('../images', true);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The second param tells Webpacker to scan subdirectories inside &lt;code class=&quot;highlighter-rouge&quot;&gt;app/javascript/images&lt;/code&gt;. You can also be more selective and pass the third parameter as a regular expression to import just the matched images. To use an image in a Rails view, you need to make use of the &lt;code class=&quot;highlighter-rouge&quot;&gt;asset_pack_tag&lt;/code&gt; helper.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;%= image_pack_tag(&quot;image1.png&quot;) %&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;But if you need the image URL, then use the &lt;code class=&quot;highlighter-rouge&quot;&gt;asset_pack_url&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;%= asset_pack_tag(&quot;image1.png&quot;) %&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;If you need to reference an image from a stylesheet file, then use the &lt;code class=&quot;highlighter-rouge&quot;&gt;url&lt;/code&gt; function with the relative path to the image.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;background-image: url(&quot;../images/image1.png&quot;);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Moving the Stylesheets is not different than moving the images into Webpacker. Just move the files into &lt;code class=&quot;highlighter-rouge&quot;&gt;app/javascript/stylesheets&lt;/code&gt;. You need to require all your stylesheet files one by one or all at once using &lt;code class=&quot;highlighter-rouge&quot;&gt;require.context&lt;/code&gt; function.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;require(&quot;../stylesheets/application.css&quot;);
+require(&quot;../stylesheets/module/navbar.css&quot;);
+
+// Or all at once
+require.context('../stylesheets', true);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;If you are using SASS, it is best to require the entry file and then within SASS import your stylesheets.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;require(&quot;../stylesheets/application.scss&quot;);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Then in your &lt;code class=&quot;highlighter-rouge&quot;&gt;application.scss&lt;/code&gt; import your stylesheets as you normally do.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import 'layout.css';
+...
+import 'buttons.css';
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;From your SASS file, you can import Stylesheets from installed Javascript libraries and take advantage of SASS variables or functions they provide.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@import '~bulma/bulma';
+...
+@import &quot;~notyf/notyf.min&quot;;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Just remember to use Yarn to install any dependency that is managed by Webpack. For example, to install &lt;a href=&quot;https://bulma.io/&quot; target=&quot;_blank&quot;&gt;Bulma&lt;/a&gt; CSS library, run the following command.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ yarn add bulma
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Moving your Javascript files could be a little more complicated, it depends on their complexity, but the approach is the same. Move all files to &lt;code class=&quot;highlighter-rouge&quot;&gt;app/javascript/scripts&lt;/code&gt;, and with Yarn, add all the libraries your code depends.&lt;/p&gt;
+
+&lt;p&gt;Here is an example of adding Javascript dependencies to a project.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ bin/yarn add  jquery turbolinks @rails/ujs @rails/activestorage
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Each library has different requirements on how they need to be imported and started because of this always read their README file to ensure you are using them correctly.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import Rails from 'rails-ujs';
+import Turbolinks from 'turbolinks';
+import * as ActiveStorage from 'activestorage';
+
+Rails.start()
+Turbolinks.start()
+ActiveStorage.start()
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;In most cases, jQuery needs to be available globally and accessible with &lt;code class=&quot;highlighter-rouge&quot;&gt;$&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;jQuery&lt;/code&gt;. To accomplish this, open the &lt;code class=&quot;highlighter-rouge&quot;&gt;config/webpack/environment.js&lt;/code&gt; file and add the following lines just above &lt;code class=&quot;highlighter-rouge&quot;&gt;module.exports = environment&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;const webpack = require('webpack');
+environment.plugins.append('Provide', new webpack.ProvidePlugin({
+  $: 'jquery',
+  jQuery: 'jquery'
+}))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;If you find that your Javascript code fails to be compiled by Webpacker due to a missing variable, you may need to add additional &lt;code class=&quot;highlighter-rouge&quot;&gt;import&lt;/code&gt; on top of the file that fails to compile.&lt;/p&gt;
+
+&lt;p&gt;At this point, Webpack should compile your assets successfully; if that is the case, then you are ready to remove the Asset Pipeline if not the additional debug is required.&lt;/p&gt;
+
+&lt;p&gt;To disable the Asset Pipeline in your application, remove references to &lt;code class=&quot;highlighter-rouge&quot;&gt;config.assets&lt;/code&gt; in &lt;code class=&quot;highlighter-rouge&quot;&gt;config/environments/production.rb&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;config/environments/development.rb&lt;/code&gt;. Also, remove the &lt;code class=&quot;highlighter-rouge&quot;&gt;config/initializer/assets.rb&lt;/code&gt; file and finally remove coffee-rails, sass-rails, and uglifier gems from your Gemfile.&lt;/p&gt;
+
+&lt;p&gt;The file &lt;code class=&quot;highlighter-rouge&quot;&gt;config/application.rb&lt;/code&gt; needs a change to not require all Rails frameworks, remove this line &lt;code class=&quot;highlighter-rouge&quot;&gt;require &quot;rails/all&quot;&lt;/code&gt;, and expand the frameworks list where &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;sprockets/railtie&quot;&lt;/code&gt; is commented.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;require &quot;rails&quot;
+# Pick the frameworks you want:
+require &quot;active_model/railtie&quot;
+require &quot;active_job/railtie&quot;
+require &quot;active_record/railtie&quot;
+require &quot;active_storage/engine&quot;
+require &quot;action_controller/railtie&quot;
+require &quot;action_mailer/railtie&quot;
+require &quot;action_view/railtie&quot;
+# require &quot;action_cable/engine&quot;
+# require &quot;sprockets/railtie&quot;
+require &quot;rails/test_unit/railtie&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;As the last step, remove the &lt;code class=&quot;highlighter-rouge&quot;&gt;app/assets&lt;/code&gt; folder. Now your application uses Webpack to manage your application assets.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;If you are reading this, it means that your application is running with Webpack, congratulations! Your team now has modern tools to work on your frontend.&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><summary type="html">From the Asset Pipeline to Webpack</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/webpack-post.jpg" /><media:content medium="image" url="https://mariochavez.io/webpack-post.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">APIs con Ruby</title><link href="https://mariochavez.io/desarrollo/2020/05/14/apis-con-ruby.html" rel="alternate" type="text/html" title="APIs con Ruby" /><published>2020-05-14T01:00:00-05:00</published><updated>2020-05-14T01:00:00-05:00</updated><id>https://mariochavez.io/desarrollo/2020/05/14/apis-con-ruby</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2020/05/14/apis-con-ruby.html">&lt;h1 id=&quot;apis-con-ruby&quot;&gt;APIs con Ruby&lt;/h1&gt;
 
 &lt;p&gt;El pasado 13 de mayo tuve una sesión de “streaming” para platicar sobre el desarrollo de APIs REST con Ruby. La plática
 se dividió en varias secciones dónde se tocaron temas de qué herramientas hay para construir APIs con Ruby, los diferentes
@@ -1266,28 +1510,4 @@ el código para la siguiente iteración.&lt;/p&gt;
   &lt;li&gt;&lt;a href=&quot;http://bit.ly/rubywebserver3&quot; target=&quot;_blank&quot;&gt;Sesión 3&lt;/a&gt;: Refactorización de la clase Request.&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;http://bit.ly/rubywebserver4&quot; target=&quot;_blank&quot;&gt;Sesión 4&lt;/a&gt;: Refactorización de la clase Response.&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;http://bit.ly/rubywebserver5&quot; target=&quot;_blank&quot;&gt;Sesión 5&lt;/a&gt;: Agregando funcionalidad para servir assets estáticos.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Mario Alberto Chávez</name></author><summary type="html">La serie “Contruyendo un servidor Web con Ruby” está enfocada a explicar cómo construir un servidor Web en Ruby que se apegue lo más cercano a la especificación de HTTP/1.1 por lo que en video no únicamente se aprenderá Ruby y como construir el servidor pero también que es el HTTP y cómo ser un buen ciudadano Web.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/construyendo-servidor-web.png" /><media:content medium="image" url="https://mariochavez.io/construyendo-servidor-web.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">f/64 seguna parte</title><link href="https://mariochavez.io/fotograf%C3%ADa/2019/02/07/f-64-seguna-parte.html" rel="alternate" type="text/html" title="f/64 seguna parte" /><published>2019-02-07T12:00:00-06:00</published><updated>2019-02-07T12:00:00-06:00</updated><id>https://mariochavez.io/fotograf%C3%ADa/2019/02/07/f-64-seguna-parte</id><content type="html" xml:base="https://mariochavez.io/fotograf%C3%ADa/2019/02/07/f-64-seguna-parte.html">&lt;p&gt;Hace un par de meses escribí un post platicando sobre &lt;a href=&quot;/fotograf%C3%ADa/2018/12/10/f-64.html&quot; target=&quot;_blank&quot;&gt;f/64&lt;/a&gt;, el evento mensual con fotógrafos locales de Colima en donde alguno se presenta para platicar de su trabajo y su experiencia tomando fotos.&lt;/p&gt;
-
-&lt;p&gt;Ya el día de hoy ya se cumplen 4 meses de haber iniciado, ha sido 4 meses con la participación de interesantes e importantes fotógrafos locales y de una fabulosa asistencia de público en general. Al día de hoy puedo comentar que por los próximos 4 meses ya hay más fotógrafos confirmados para participar en esta iniciativa.&lt;/p&gt;
-
-&lt;p&gt;Durante las presentaciones aparte de tomar algunas fotos y compartirlas a través de &lt;a href=&quot;https://www.facebook.com/f64fotos/&quot; target=&quot;_blank&quot;&gt;Facebook&lt;/a&gt; también se han estado grabando en video las sesiones, pero hasta el día de hoy ningún video ha estado disponible de manera pública.&lt;/p&gt;
-
-&lt;p&gt;Eso está por cambiar ya que hoy mismo estoy lanzado el sitio &lt;a href=&quot;https://f64.io/&quot; target=&quot;_blank&quot;&gt;f64.io&lt;/a&gt; el cuál contiene información acerca de qué es la iniciativa, próximos eventos y la información de eventos pasados.&lt;/p&gt;
-&lt;div class=&quot;blog-media&quot;&gt;
-  &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/2019-02-07-f-64-2.png&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;Main image&quot; srcset=&quot;/assets/img/2019-02-07-f-64-2.png 1200w, /assets/img/300-2019-02-07-f-64-2.png 300w, /assets/img/768-2019-02-07-f-64-2.png 768w, /assets/img/1024-2019-02-07-f-64-2.png 1024w, /assets/img/180-2019-02-07-f-64-2.png 180w, /assets/img/940-2019-02-07-f-64-2.png 940w, /assets/img/320-2019-02-07-f-64-2.png 320w, /assets/img/640-2019-02-07-f-64-2.png 640w, /assets/img/960-2019-02-07-f-64-2.png 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
-  &lt;figcaption&gt;Información de próximo evento.&lt;/figcaption&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Los videos de las pláticas se iran liberando poco a poco ya que el interés principal es que fotógrafos y público en general se motiven a asistir y convivir con los presentes.&lt;/p&gt;
-&lt;div class=&quot;blog-media&quot;&gt;
-  &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/2019-02-07-f-64-3.png&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;Main image&quot; srcset=&quot;/assets/img/2019-02-07-f-64-3.png 1200w, /assets/img/300-2019-02-07-f-64-3.png 300w, /assets/img/768-2019-02-07-f-64-3.png 768w, /assets/img/1024-2019-02-07-f-64-3.png 1024w, /assets/img/180-2019-02-07-f-64-3.png 180w, /assets/img/940-2019-02-07-f-64-3.png 940w, /assets/img/320-2019-02-07-f-64-3.png 320w, /assets/img/640-2019-02-07-f-64-3.png 640w, /assets/img/960-2019-02-07-f-64-3.png 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
-  &lt;figcaption&gt;Eventos pasados.&lt;/figcaption&gt;
-&lt;/div&gt;
-
-&lt;p&gt;A partir de este momento ya se encuentra el primer video en la sección de &lt;a href=&quot;https://f64.io/#sesiones&quot; target=&quot;_blank&quot;&gt;Eventos pasados&lt;/a&gt; y corresponse al fotógrafo documentalista Gustavo Vilchis.&lt;/p&gt;
-&lt;div class=&quot;blog-media&quot;&gt;
-  &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/2019-02-07-f-64-4.png&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;Main image&quot; srcset=&quot;/assets/img/2019-02-07-f-64-4.png 1200w, /assets/img/300-2019-02-07-f-64-4.png 300w, /assets/img/768-2019-02-07-f-64-4.png 768w, /assets/img/1024-2019-02-07-f-64-4.png 1024w, /assets/img/180-2019-02-07-f-64-4.png 180w, /assets/img/940-2019-02-07-f-64-4.png 940w, /assets/img/320-2019-02-07-f-64-4.png 320w, /assets/img/640-2019-02-07-f-64-4.png 640w, /assets/img/960-2019-02-07-f-64-4.png 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
-  &lt;figcaption&gt;Primer video disponible.&lt;/figcaption&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Para quienes lean esto y están en la ciudad de Colima no duden en acompañarnos cada primer jueves del mes, para quienes no están aquí muy recomendables los videos y la información de quienes se han presentado con nosotros.&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><summary type="html">Hace un par de meses escribí un post platicando sobre f/64, el evento mensual con fotógrafos locales de Colima en donde alguno se presenta para platicar de su trabajo y su experiencia tomando fotos.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/2019-02-07-f-64-1.png" /><media:content medium="image" url="https://mariochavez.io/2019-02-07-f-64-1.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;/ul&gt;</content><author><name>Mario Alberto Chávez</name></author><summary type="html">La serie “Contruyendo un servidor Web con Ruby” está enfocada a explicar cómo construir un servidor Web en Ruby que se apegue lo más cercano a la especificación de HTTP/1.1 por lo que en video no únicamente se aprenderá Ruby y como construir el servidor pero también que es el HTTP y cómo ser un buen ciudadano Web.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/construyendo-servidor-web.png" /><media:content medium="image" url="https://mariochavez.io/construyendo-servidor-web.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
