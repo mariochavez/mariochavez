@@ -35,9 +35,7 @@ Sin embargo la geografía de las aplicaciones había cambiado desde antes de eso
 
 Esto representó otro problema técnico, asegurar que los cambios de Frontend y Backend se realizaran de forma paralela. El hacer QA se complicaba ya que ahora era necesario levantar al menos dos aplicaciones, el Frontend y el Backend. Hacer pruebas automáticas de integración ni pensarlo. La complejidad del desarrollo de las aplicaciones también se lleva su parte.
 
-Independientemente de cual sea nuestro sentir, al menos Rails no se interpone en el camino de querer remplazar el Frontend con alguna tecnología con Javascript. Y aunque algunos de los comentarios de separar el Frontend a su propio repositorio van en el sentido de dividir el desarrollo a final de cuentas depende de alguna manera del Backend. Otro de los comentarios es la distribución de los assets, la cuál se puede hacer sin ningún problema con un servicio como 
-
-[Cloudflare - The Web Performance & Security Company | Cloudflare](https://www.cloudflare.com/){:target="_blank"}
+Independientemente de cual sea nuestro sentir, al menos Rails no se interpone en el camino de querer remplazar el Frontend con alguna tecnología con Javascript. Y aunque algunos de los comentarios de separar el Frontend a su propio repositorio van en el sentido de dividir el desarrollo a final de cuentas depende de alguna manera del Backend. Otro de los comentarios es la distribución de los assets, la cuál se puede hacer sin ningún problema con un servicio como [Cloudflare](https://www.cloudflare.com/){:target="_blank"}
 
 La gente de Evil Martians tiene tres posts de cómo trabajar de forma moderna con Javascript y Rails.
 
@@ -89,9 +87,9 @@ Stimulus está en evolución. Hace unas semanas vi un video de demostración de 
 
 Fue simplemente un deleite ver como funcionaba.
 
-[Welcome](https://docs.stimulusreflex.com/){:target="_blank"}
+[Stimulux Reflex](https://docs.stimulusreflex.com/){:target="_blank"}
 
-[Welcome](https://cableready.stimulusreflex.com/){:target="_blank"}
+[Cable Ready](https://cableready.stimulusreflex.com/){:target="_blank"}
 
 Creo que hay mucho camino aún por recorrer en mundo de Rails para hacer aplicaciones que sean rápidas y fáciles de desarrollar, que de gusto trabajar en ellas en pocas palabras. Pero tenemos que ser consientes que Rails es aburrido, ya no es ese espejito brillante.
 

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" /><updated>2020-05-19T20:58:19-05:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez : Blog</title><subtitle>Blog personal de Mario Alberto Chávez. Temas de desarrollo de software y fotografia.</subtitle><entry><title type="html">Rails, Webpack y desarrollo frontend con Javascript</title><link href="https://mariochavez.io/desarrollo/2020/05/19/rails-webpack-desarrollo-frontend.html" rel="alternate" type="text/html" title="Rails, Webpack y desarrollo frontend con Javascript" /><published>2020-05-19T02:00:00-05:00</published><updated>2020-05-19T02:00:00-05:00</updated><id>https://mariochavez.io/desarrollo/2020/05/19/rails-webpack-desarrollo-frontend</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2020/05/19/rails-webpack-desarrollo-frontend.html">&lt;h1 id=&quot;rails-webpack-y-desarrollo-frontend-con-javascript&quot;&gt;Rails, Webpack y desarrollo frontend con Javascript&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" /><updated>2020-05-19T21:04:23-05:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez : Blog</title><subtitle>Blog personal de Mario Alberto Chávez. Temas de desarrollo de software y fotografia.</subtitle><entry><title type="html">Rails, Webpack y desarrollo frontend con Javascript</title><link href="https://mariochavez.io/desarrollo/2020/05/19/rails-webpack-desarrollo-frontend.html" rel="alternate" type="text/html" title="Rails, Webpack y desarrollo frontend con Javascript" /><published>2020-05-19T02:00:00-05:00</published><updated>2020-05-19T02:00:00-05:00</updated><id>https://mariochavez.io/desarrollo/2020/05/19/rails-webpack-desarrollo-frontend</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2020/05/19/rails-webpack-desarrollo-frontend.html">&lt;h1 id=&quot;rails-webpack-y-desarrollo-frontend-con-javascript&quot;&gt;Rails, Webpack y desarrollo frontend con Javascript&lt;/h1&gt;
 
 &lt;p&gt;El 19 de Mayo tuve una sesión de “streaming” para platicar sobre el desarrollo de frontend con Javascript en Rails. El video y los recurso están listados en este post.&lt;/p&gt;
 
@@ -24,16 +24,7 @@
 
 &lt;p&gt;Esto representó otro problema técnico, asegurar que los cambios de Frontend y Backend se realizaran de forma paralela. El hacer QA se complicaba ya que ahora era necesario levantar al menos dos aplicaciones, el Frontend y el Backend. Hacer pruebas automáticas de integración ni pensarlo. La complejidad del desarrollo de las aplicaciones también se lleva su parte.&lt;/p&gt;
 
-&lt;p&gt;Independientemente de cual sea nuestro sentir, al menos Rails no se interpone en el camino de querer remplazar el Frontend con alguna tecnología con Javascript. Y aunque algunos de los comentarios de separar el Frontend a su propio repositorio van en el sentido de dividir el desarrollo a final de cuentas depende de alguna manera del Backend. Otro de los comentarios es la distribución de los assets, la cuál se puede hacer sin ningún problema con un servicio como&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;[Cloudflare - The Web Performance &amp;amp; Security Company&lt;/td&gt;
-      &lt;td&gt;Cloudflare](https://www.cloudflare.com/){:target=”_blank”}&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
+&lt;p&gt;Independientemente de cual sea nuestro sentir, al menos Rails no se interpone en el camino de querer remplazar el Frontend con alguna tecnología con Javascript. Y aunque algunos de los comentarios de separar el Frontend a su propio repositorio van en el sentido de dividir el desarrollo a final de cuentas depende de alguna manera del Backend. Otro de los comentarios es la distribución de los assets, la cuál se puede hacer sin ningún problema con un servicio como &lt;a href=&quot;https://www.cloudflare.com/&quot; target=&quot;_blank&quot;&gt;Cloudflare&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;La gente de Evil Martians tiene tres posts de cómo trabajar de forma moderna con Javascript y Rails.&lt;/p&gt;
 
@@ -85,9 +76,9 @@
 
 &lt;p&gt;Fue simplemente un deleite ver como funcionaba.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://docs.stimulusreflex.com/&quot; target=&quot;_blank&quot;&gt;Welcome&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://docs.stimulusreflex.com/&quot; target=&quot;_blank&quot;&gt;Stimulux Reflex&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://cableready.stimulusreflex.com/&quot; target=&quot;_blank&quot;&gt;Welcome&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://cableready.stimulusreflex.com/&quot; target=&quot;_blank&quot;&gt;Cable Ready&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Creo que hay mucho camino aún por recorrer en mundo de Rails para hacer aplicaciones que sean rápidas y fáciles de desarrollar, que de gusto trabajar en ellas en pocas palabras. Pero tenemos que ser consientes que Rails es aburrido, ya no es ese espejito brillante.&lt;/p&gt;
 
