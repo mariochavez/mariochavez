@@ -1,0 +1,251 @@
+<!doctype html>
+
+<html class="no-js" lang="es"><head>
+  <meta charset="utf-8"></meta>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0"></meta>
+  <title>Rails, Webpack y desarrollo frontend con Javascript</title>
+  <meta name="description" content="Recursos de la plática Rails, Webpack y desarrollo frontend con Javascript"></meta>
+  <meta name="keywords" content="rails, ruby, webpack, javascript, desarrollo, stimulus, turbolink"></meta>
+  <link rel="image_src" href="https://mariochavez.io/assets/img/640-frontend.jpg"></link>
+
+  <link rel="alternate" type="application/rss+xml" title="Rails, Webpack y desarrollo frontend con Javascript" href="https://mariochavez.io/feed.xml">
+
+  <meta property="og:title" content="Rails, Webpack y desarrollo frontend con Javascript"></meta>
+  <meta property="og:description" content="Recursos de la plática Rails, Webpack y desarrollo frontend con Javascript"></meta>
+  <meta property="og:type" content="article" /></meta>
+  <meta property="og:url" content="https://mariochavez.io/desarrollo/2020/05/19/rails-webpack-desarrollo-frontend.html"></meta>
+  <meta property="og:image" content="https://mariochavez.io/assets/img/640-frontend.jpg"></meta>
+  <meta property="og:site_name" content="Mario Alberto Chávez : Blog"></meta>
+
+  <meta name="twitter:site" content="@mario_chavez"></meta>
+  <meta name="twitter:domain" content="mariochavez.io"></meta>
+  <meta name="twitter:card" content="summary_large_image"></meta>
+  <meta name="twitter:title" content="Rails, Webpack y desarrollo frontend con Javascript"></meta>
+  <meta name="twitter:description" content="Recursos de la plática Rails, Webpack y desarrollo frontend con Javascript"></meta>
+  <meta name="twitter:image:src" content="https://mariochavez.io/assets/img/640-frontend.jpg"></meta>
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet" type="text/css"></link>
+
+  <link rel="stylesheet" type="text/css" href="/assets/style-f53587fcc403c6b6464a7aaad7fb1970a9e72c0b3c05e52765810f28da2015e1.css" integrity="sha256-9TWH/MQDxrZGSnqq1/sZcKnnLAs8BeUnZYEPKNogFeE=" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="/assets/isotope-d185bd15a4ce846d0ae2da7dcdba501a42dd340f48e7690465610391cdee1657.css" integrity="sha256-0YW9FaTOhG0K4tp9zbpQGkLdNA9I52kEZWEDkc3uFlc=" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="/assets/mqueries-05a4d0eb5cc7105f9bba8b36a0b3738cd2d052a769570bae775e46495600e0de.css" integrity="sha256-BaTQ61zHEF+buos2oLNzjNLQUqdpVwuud15GSVYA4N4=" crossorigin="anonymous">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141668117-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-141668117-1');
+  </script>
+</head>
+<body class="loader-dot">
+    <div id="page-loader">
+      <span class="loader-icon"></span>
+    </div>
+
+    <div id="page-content"><header id="header">
+  <div class="header-inner clearfix">
+
+    <div id="logo">
+      <a href="/">
+        <img id="dark-logo" src="/assets/mariochavez.png" srcset="/assets/mariochavez.png 1x, /assets/mariochavez@2x.png 2x" alt="Mario Chávez">
+      </a>
+    </div>
+
+    <div id="menu" class="clearfix transition-enabled">
+      <div class="menu-actions">
+        <div class="menu-toggle"><span class="hamburger"></span></div>
+      </div>
+
+      <div id="menu-inner">
+        <nav id="main-nav">
+          <ul>
+            <li class="current_page_item"><a href="/">Secciones</a>
+              <ul class="sub-menu">
+                <li><a href="/desarrollo.html">Desarrollo de Software</a></li>
+                <li><a href="/fotografia.html">Fotografía</a></li>
+                <li><a href="/proyectos.html">Proyectos</a></li>
+              </ul>
+            </li>
+            <li><a href="/acerca.html">Acerca</a></li>
+            <li><a href="https://heroimage.co" target="_blank">Hero Image</a></li>
+            <li><a href="https://f64.io" target="_blank">F/64</a></li>
+            <li><a href="https://michelada.io" target="_blank">michelada.io</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <div id="header-widget" class="social">
+      <ul class="socialmedia-widget">
+        <li class="facebook"><a href="#"></a></li>
+        <li class="twitter"><a href="#"></a></li>
+        <li class="instagram"><a href="#"></a></li>
+      </ul>
+    </div> <!-- END #header-awidget -->
+
+  </div>
+</header>
+<div id="hero-and-body">
+
+        <section id="hero" class="hero-auto no-bg">
+
+          <div id="page-title" class="wrapper-small">
+            <span class="post-cat"><a class="cat-link" href="#">desarrollo</a></span>
+                       <h1 class="post-name"><strong>Rails, Webpack y desarrollo frontend con Javascript</strong></h1>
+            <div class="post-meta">
+              <span class="post-date">Mayo 19, 2020</span>
+              <div class="meta-author"><span>por</span> <a href="/">Mario Alberto Chávez</a></div>
+            </div>
+          </div>
+
+        </section>
+
+        <section id="page-body">
+          <div id="blog-single">
+
+            <div class="blog-media">
+              <img width="1200" height="800" src="/assets/img/frontend.jpg"
+                class="attachment-orio-thumb-big size-orio-thumb-big wp-post-image" alt="Main image"
+                srcset="/assets/img/frontend.jpg 1200w, /assets/img/300-frontend.jpg 300w, /assets/img/768-frontend.jpg 768w, /assets/img/1024-frontend.jpg 1024w, /assets/img/180-frontend.jpg 180w, /assets/img/940-frontend.jpg 940w, /assets/img/320-frontend.jpg 320w, /assets/img/640-frontend.jpg 640w, /assets/img/960-frontend.jpg 960w" sizes="(max-width: 1200px) 100vw, 1200px" />
+            </div>
+
+            <div class="blog-content wrapper-small">
+              <h1 id="rails-webpack-y-desarrollo-frontend-con-javascript">Rails, Webpack y desarrollo frontend con Javascript</h1>
+
+<p>El 19 de Mayo tuve una sesión de “streaming” para platicar sobre el desarrollo de frontend con Javascript en Rails. El video y los recurso están listados en este post.</p>
+
+<p>El video ya está disponible para quienes no tuvieron la oportunidad de acompañarme.</p>
+<div style="text-align: center;">
+  <iframe width="862" height="485" src="https://www.youtube.com/embed/maFimVOh3b4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+
+<p>Para la siguiente sesión hay que estar pendientes de mi cuenta de Twitter <a href="https://twitter.com/mario_chavez" target="_blank">@mario_chavez</a></p>
+
+<h2 id="recursos-de-plática">Recursos de plática</h2>
+<p>En el 2011 DHH anuncio que Javascript y compañía serian ciudadanos de primera clase en las aplicaciones de Rails. Oficialmente le daba la bienvenida a CoffeeScript, SCSS y JQuery. En su momento fue el paso correcto ya que el desarrollo de Frontend requería de un dinamismo que todos en el mundo de Rails estaban haciendo pero no había una guía exacta de cómo hacerle.</p>
+
+<p><a href="https://mariochavez.io/desarrollo/2020/05/19/from-the-asset-pipeline-to-webpack.html" target="_blank">From the Asset Pipeline to Webpack</a></p>
+
+<p>El Asset Pipeline vino a ser esa guía hasta que ya no lo fue más. React, Angular, Vue y otros vinieron a cambiar el panorama del desarrollo de Frontend, el Frontend ya no era HTML o por lo menos no era como lo conocíamos.</p>
+
+<p>Y aunque se hicieron ajustes al Asset Pipeline para adaptarse a los nuevos requisitos, simplemente no fue suficiente. Hacer que una aplicación de React se compilara mediante el Asset Pipeline ya no era algo trivial.</p>
+
+<p>Seis años más tarde en mismo DHH anunciaba que Webpack tendría integración con Rails y un año más tarde que Webpack era el default para toda nueva aplicación de Rails. Este cambio hacía más sencillo la integración de nuevas tecnologías en el Frontend con Rails.</p>
+
+<p>Sin embargo la geografía de las aplicaciones había cambiado desde antes de esos anuncios. El Frontend era una aplicación independiente, compilada y distribuida aparte del Backend. El Backend ya no era una sólo aplicación, posiblemente eran varias, eran microservicios.</p>
+
+<p>Esto representó otro problema técnico, asegurar que los cambios de Frontend y Backend se realizaran de forma paralela. El hacer QA se complicaba ya que ahora era necesario levantar al menos dos aplicaciones, el Frontend y el Backend. Hacer pruebas automáticas de integración ni pensarlo. La complejidad del desarrollo de las aplicaciones también se lleva su parte.</p>
+
+<p>Independientemente de cual sea nuestro sentir, al menos Rails no se interpone en el camino de querer remplazar el Frontend con alguna tecnología con Javascript. Y aunque algunos de los comentarios de separar el Frontend a su propio repositorio van en el sentido de dividir el desarrollo a final de cuentas depende de alguna manera del Backend. Otro de los comentarios es la distribución de los assets, la cuál se puede hacer sin ningún problema con un servicio como</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>[Cloudflare - The Web Performance &amp; Security Company</td>
+      <td>Cloudflare](https://www.cloudflare.com/){:target=”_blank”}</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>La gente de Evil Martians tiene tres posts de cómo trabajar de forma moderna con Javascript y Rails.</p>
+
+<p><a href="https://evilmartians.com/chronicles/evil-front-part-1" target="_blank">Evil Front Part 1: Modern Front-end in Rails - Martian Chronicles</a></p>
+
+<p>Si la intención es hacer una SPA o Single Page Application con el Backend de Rails, gracias a Webpacker, Rails no va a ser un obstáculo al respecto, inclusive cuenta con algunos generadores que nos van ayudar en la tarea de hacer el “boilerplate” de la aplicación.</p>
+
+<p>En el modelo de Omakase de Rails el empuje sigue en una dirección contraria a las SPA. Es por eso que  que StimulsJS fue liberado hace un par de años.</p>
+
+<p><a href="https://stimulusjs.org/" target="_blank">A modest JavaScript framework for the HTML you already have.</a></p>
+
+<p>StimulusJS es una librería de Javascript que puede hacer data-binding a elementos en el DOM así como reaccionar a eventos. Lo importante de StimulusJS es que no se apropia del HTML y DOM si no que trabaja con él. Esto quiere decir que Rails aún tiene que servir sus vistas en HTML. Es mi librería de defacto para proyectos dónde no sea realmente necesario React o Angular. - A final de cuentas no soy ni Facebook ni Google -.</p>
+
+<p>Funciona sin problemas con Turbolinks, el cuál ha mejorado increíblemente desde las primeras versiones y en realidad entre ambos hacen que las páginas respondan casi de forma instantánea con muy poco código.</p>
+
+<p><a href="https://github.com/turbolinks/turbolinks" target="_blank">turbolinks/turbolinks</a></p>
+
+<p>Tal es el caso que la gente de The Changelog lo utiliza aún cuando su aplicación no es Rails.</p>
+
+<p><a href="https://changelog.com/posts/why-we-chose-turbolinks" target="_blank">Why we chose Turbolinks</a></p>
+
+<p>HoneyBadger tiene unos muy buenos concejos para usar Turbolink sin dispararse en el pie.</p>
+
+<p><a href="https://www.honeybadger.io/blog/turbolinks/" target="_blank">How We Migrated To Turbolinks Without Breaking Javascript</a></p>
+
+<p>Entre Turbolinks y StimulusJS realmente vale a la pena detener un momento y preguntarnos si realmente necesitamos una SPA.</p>
+
+<p><a href="https://medium.com/@jmanrubia/escaping-the-spa-rabbit-hole-with-turbolinks-903f942bf52c" target="_blank">Escaping the SPA rabbit hole with modern Rails</a></p>
+
+<p>Para quienes quieran explorar StimulusJS les comparto una lista de ejemplo de cosas básicas para ser utilizado.</p>
+
+<p><a href="https://onrails.blog/stimulus-js-tutorials/" target="_blank">Stimulus.js Tutorials * Blogging On Rails</a></p>
+
+<p>La adopción de StimulusJS ya comienza a cuestionarnos sobre patrones y mejores formas de adopción, definitivamente el crear componentes compuestos hasta este momento es lo que mejor me ha funcionado.</p>
+
+<p><a href="https://dev.to/adrienpoly/introducing-stimulus-use-composable-behaviors-for-your-controllers-mlc" target="_blank">Introducing Stimulus-use composable behaviors for your controllers</a></p>
+
+<p>La gente de Basecamp está trabajando en su propio cliente de correo electrónico llamado Hey. Es posible que el 5 de Junio lo abran en nivel beta. Esta hecho con Rails, Turbolinks y StimulusJS.</p>
+
+<p><a href="https://hey.com/" target="_blank">HEY</a></p>
+
+<p>DHH anunció que va a revisar de forma pública los cambios, mejoras y patrones que emplearon para el desarrollo del cliente, el cuál aparentemente no tiene muchas dependencias de Javascript.</p>
+
+<p><a href="https://twitter.com/_swanson/status/1253037966710181892" target="_blank">https://twitter.com/_swanson/status/1253037966710181892</a></p>
+
+<p>Stimulus está en evolución. Hace unas semanas vi un video de demostración de Stimulus-Reflex y CableReady. Dos herramientas que aprovechan ActionCable para hacer aplicaciones reactivas mediante sockets sin escribir una sola línea de Javascript.</p>
+
+<p><a href="https://twitter.com/mario_chavez/status/1256263180722081792" target="_blank">https://twitter.com/mario_chavez/status/1256263180722081792</a></p>
+
+<p>Fue simplemente un deleite ver como funcionaba.</p>
+
+<p><a href="https://docs.stimulusreflex.com/" target="_blank">Welcome</a></p>
+
+<p><a href="https://cableready.stimulusreflex.com/" target="_blank">Welcome</a></p>
+
+<p>Creo que hay mucho camino aún por recorrer en mundo de Rails para hacer aplicaciones que sean rápidas y fáciles de desarrollar, que de gusto trabajar en ellas en pocas palabras. Pero tenemos que ser consientes que Rails es aburrido, ya no es ese espejito brillante.</p>
+
+<p>Facebook hace unos días cambió su interfase gráfica, es “diferente”. El equipo técnico de Facebook escribió un post explicando como movieron todo a React y Relay y dividieron los assets en pequeños bundles con la finalidad de que fuera más rápida. Veredicto … es más lenta.</p>
+
+<p><a href="https://engineering.fb.com/web/facebook-redesign/" target="_blank">Rebuilding our tech stack for a new Facebook.com - Facebook Engineering</a></p>
+
+<p>Finalmente sobre los comentarios que hice sobre microservicios anteriormente les dejo el siguiente tweet de un ingeniero de Uber para que ustedes mismos se creen su propio criterio.</p>
+
+<p><a href="https://twitter.com/GergelyOrosz/status/1247132806041546754" target="_blank">https://twitter.com/GergelyOrosz/status/1247132806041546754</a></p>
+
+
+              <!--
+              <div id="single-share" class="fixed">
+                <h6 class="widget-title title-alt">Share</h6>
+                <ul class="socialmedia-widget">
+                  <li class="facebook"><a href="#"></a></li>
+                  <li class="twitter"><a href="#"></a></li>
+                  <li class="googleplus"><a href="#"></a></li>
+                  <li class="pinterest"><a href="#"></a></li>
+                </ul>
+              </div>
+              -->
+
+            </div>
+          </div>
+        </section><footer id="footer" >
+  <div class="footer-inner">
+    <div class="column-section spaced-big clearfix">
+      <div class="column one-half">
+        <p>
+         <img id="dark-logo" src="/assets/mariochavez.png" srcset="/assets/mariochavez.png 1x, /assets/mariochavez@2x.png 2x" alt="Mario Chávez">
+        </p>
+        <h6><strong>Mario Alberto Chávez Cárdenas</strong></h6>
+        <small>Copyright © 2019 Mario Alberto Chávez Cárdenas.</small>
+      </div>
+    </div>
+  </div>
+</footer>
+</div><script integrity="sha256-zFEi9rPqpkNHK3rBRasJy8Wg/6p9F7OJb3y7c+pYWpg=" crossorigin="anonymous" src="/assets/jquery-1.12.4.min-cc5122f6b3eaa643472b7ac145ab09cbc5a0ffaa7d17b3896f7cbb73ea585a98.js" type="text/javascript"></script>
+<script integrity="sha256-wC1z/rhmt1HL4oHCWZBCfEnlDVRoyd/pgK0mw3szPwk=" crossorigin="anonymous" src="/assets/plugins-c02d73feb866b751cbe281c25990427c49e50d5468c9dfe980ad26c37b333f09.js" type="text/javascript"></script>
+<script integrity="sha256-Eb+0agFdSeKjMVpciJcveYAmQCgLY/1m2j8llYabW2s=" crossorigin="anonymous" src="/assets/jquery.imagesloaded.min-11bfb46a015d49e2a3315a5c88972f79802640280b63fd66da3f2595869b5b6b.js" type="text/javascript"></script>
+<script integrity="sha256-jtoBd6LGcFxlyQ6H4JYR/FT9+vgf52H0IrAh57WacZw=" crossorigin="anonymous" src="/assets/jquery.isotope.min-8eda0177a2c6705c65c90e87e09611fc54fdfaf81fe761f422b021e7b59a719c.js" type="text/javascript"></script>
+<script integrity="sha256-CEBbmkbD4MhghrH5XHoh9QLFe9kWe2phWwd6j0WsD3c=" crossorigin="anonymous" src="/assets/script-08405b9a46c3e0c86086b1f95c7a21f502c57bd9167b6a615b077a8f45ac0f77.js" type="text/javascript"></script>
+</body>
+</html>
