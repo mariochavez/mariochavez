@@ -1,4 +1,133 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" /><updated>2020-05-19T21:04:23-05:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez : Blog</title><subtitle>Blog personal de Mario Alberto Chávez. Temas de desarrollo de software y fotografia.</subtitle><entry><title type="html">Rails, Webpack y desarrollo frontend con Javascript</title><link href="https://mariochavez.io/desarrollo/2020/05/19/rails-webpack-desarrollo-frontend.html" rel="alternate" type="text/html" title="Rails, Webpack y desarrollo frontend con Javascript" /><published>2020-05-19T02:00:00-05:00</published><updated>2020-05-19T02:00:00-05:00</updated><id>https://mariochavez.io/desarrollo/2020/05/19/rails-webpack-desarrollo-frontend</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2020/05/19/rails-webpack-desarrollo-frontend.html">&lt;h1 id=&quot;rails-webpack-y-desarrollo-frontend-con-javascript&quot;&gt;Rails, Webpack y desarrollo frontend con Javascript&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" /><updated>2020-05-28T16:47:10-05:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez : Blog</title><subtitle>Blog personal de Mario Alberto Chávez. Temas de desarrollo de software y fotografia.</subtitle><entry><title type="html">Identificar, evaluar y solucionar problemas de performance con Ruby</title><link href="https://mariochavez.io/desarrollo/2020/05/27/identificar-evaluar-y-solucionar-problemas-de-performance-con-ruby.html" rel="alternate" type="text/html" title="Identificar, evaluar y solucionar problemas de performance con Ruby" /><published>2020-05-27T02:00:00-05:00</published><updated>2020-05-27T02:00:00-05:00</updated><id>https://mariochavez.io/desarrollo/2020/05/27/identificar-evaluar-y-solucionar-problemas-de-performance-con-ruby</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2020/05/27/identificar-evaluar-y-solucionar-problemas-de-performance-con-ruby.html">&lt;h1 id=&quot;identificar-evaluar-y-solucionar-problemas-de-performance-con-ruby&quot;&gt;Identificar, evaluar y solucionar problemas de performance con Ruby&lt;/h1&gt;
+
+&lt;p&gt;El 27 de Mayo tuve una sesión de “streaming” para platicar sobre como identificar, evaluar y solucionar problemas de performance en Ruby. El video y los recurso están listados en este post.&lt;/p&gt;
+
+&lt;p&gt;El video ya está disponible para quienes no tuvieron la oportunidad de acompañarme.&lt;/p&gt;
+
+&lt;div style=&quot;text-align: center;&quot;&gt;
+  &lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/Kh4k4RcUsyA&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Para la siguiente sesión hay que estar pendientes de mi cuenta de Twitter &lt;a href=&quot;https://twitter.com/mario_chavez&quot; target=&quot;_blank&quot;&gt;@mario_chavez&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;recursos-de-plática&quot;&gt;Recursos de plática&lt;/h2&gt;
+&lt;p&gt;Ruby no es el lenguaje más rápido del mundo en términos de ejecución por lo que siempre hay que considerar si la forma en como escribimos nuestros programas es la mejor en aspectos como legibilidad y rendimiento.&lt;/p&gt;
+
+&lt;p&gt;Escribiendo Ruby rápido (Erik Michaels-Ober )&lt;/p&gt;
+
+&lt;div style=&quot;text-align: center;&quot;&gt;
+  &lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/fGFM_UrSp70&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Juanito Fatas (Core Ruby ) documentó en un repositorio de Github las diferentes formas de escribir el mismo código en Ruby para determinar cuál es más rápida, todo basado en la plática de Erik Michaels-Ober.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/JuanitoFatas/fast-ruby&quot; target=&quot;_blank&quot;&gt;JuanitoFatas/fast-ruby&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;El pragma &lt;code class=&quot;highlighter-rouge&quot;&gt;frozen_string_literal&lt;/code&gt; puede ayudar a reducir el consumo de memoria en un programa de Ruby 2.3 o mejor.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.mikeperham.com/2018/02/28/ruby-optimization-with-one-magic-comment/&quot; target=&quot;_blank&quot;&gt;Ruby Optimization with One Magic Comment&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Cómo funciona la máquina virtual de Ruby (Mario Chávez)&lt;/p&gt;
+
+&lt;div style=&quot;text-align: center;&quot;&gt;
+  &lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/PT5UO23zOHc&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+&lt;p&gt;La herramienta Benchmark IPS es básica para poder medir y comparar como una propuesta de código es más rápida o más lenta que otra. La clave para medir el rendimiento son las métricas.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/evanphx/benchmark-ips&quot; target=&quot;_blank&quot;&gt;evanphx/benchmark-ips&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Rails agregó un generador para poder generar pruebas de performance.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://blog.saeloun.com/2020/02/11/rails-benchmark-generator.html&quot; target=&quot;_blank&quot;&gt;Rails has added a benchmark generator&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;En el Keynote de Aaron Patterson de Railsconf habla de cómo identifica problemas de performace con Benchmark IPS y Stackprof&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://railsconf.org/2020/video/aaron-patterson-aaron-patterson-s-variety-show&quot; target=&quot;_blank&quot;&gt;Railsconf2020&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Stackprof ayuda para conocer en que parte de nuestro código es que Ruby está tomando más tiempo.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://scoutapm.com/blog/profiling-rails-with-stackprof&quot; target=&quot;_blank&quot;&gt;StackProf: The Holy Grail of Rails Profiling&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Menos código es código más rápido. Es necesario revisar las dependencias de nuestros programas y eliminar todo lo que no es necesario.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.mikeperham.com/2016/02/09/kill-your-dependencies/&quot; target=&quot;_blank&quot;&gt;Kill Your Dependencies&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Rack Miniprofiler una una herramienta útil para entender el performace en aplicaciones Rack, como Sinatra o Rails.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.speedshop.co/2015/08/05/rack-mini-profiler-the-secret-weapon.html&quot; target=&quot;_blank&quot;&gt;rack-mini-profiler - the Secret Weapon of Ruby and Rails Speed&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Derailed es otra herramienta que ayuda a entender estáticamente problemas de consumo de memoria y performance para aplicaciones de Rails.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://blog.heroku.com/patching-rails-performance&quot; target=&quot;_blank&quot;&gt;Patching Rails Performance&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Derailed en Github&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/schneems/derailed_benchmarks&quot; target=&quot;_blank&quot;&gt;schneems/derailed_benchmarks&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Si en este punto tu código en Ruby está tan optimizado como es posible quizás el problema de performance tiene que ver con el acceso a la Base de Datos. Existen patrones que aunque parecen insignificantes pueden causar problemas de performance en ActiveRecord y posiblemente existan situaciones similares con otros ORM en Ruby.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.speedshop.co/2019/01/10/three-activerecord-mistakes.html&quot; target=&quot;_blank&quot;&gt;3 ActiveRecord Mistakes That Slow Down Rails Apps: Count, Where and Present&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;El infame problema de N+1 en los queries.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://evilmartians.com/chronicles/fighting-the-hydra-of-n-plus-one-queries&quot; target=&quot;_blank&quot;&gt;Fighting the Hydra of N+1 queries - Martian Chronicles&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;La falta de indices o actualización de los mismos con el paso del tiempo también pueden representar un problema de performance en una aplicación.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://semaphoreci.com/blog/2017/05/09/faster-rails-is-your-database-properly-indexed.html&quot; target=&quot;_blank&quot;&gt;Faster Rails: Is Your Database Properly Indexed? - Semaphore&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Si usas una base de datos como Postgresql hay tareas de mantenimiento regulares que debe de recibir para asegurar el mejor de los performance.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://statsbot.co/blog/postgresql-query-optimization/&quot; target=&quot;_blank&quot;&gt;Simple Tips for PostgreSQL Query Optimization&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;PgHero es una herramienta que puede ayudar con el monitoreo del performance de la base de datos.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/ankane/pghero&quot; target=&quot;_blank&quot;&gt;ankane/pghero&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Rails hace que el caching sea muy sencillo pero también es fácil cometer errores. Russian Doll Caching pueden ayudar para evitar renderizar las vistas cada vez que son requeridas.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://blog.appsignal.com/2018/04/03/russian-doll-caching-in-rails.html&quot; target=&quot;_blank&quot;&gt;Russian doll caching in Rails&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;En modo de producción también hay bastante que hacer para asegurar que las aplicaciones funcionan lo mejor posible. Por ejemplo compilar Ruby con JMalloc y obtener un beneficio en el consumo de memoria.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://medium.com/rubyinside/how-we-halved-our-memory-consumption-in-rails-with-jemalloc-86afa4e54aa3&quot; target=&quot;_blank&quot;&gt;How we halved our memory consumption in Rails with jemalloc&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Configurar Puma (o Unicorn) para un mejor rendimiento es importante.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.speedshop.co/2017/10/12/appserver.html&quot; target=&quot;_blank&quot;&gt;Configuring Puma, Unicorn and Passenger for Maximum Efficiency&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Otra guía para entender como llegar a la configuración perfecta con Puma.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://engineering.appfolio.com/appfolio-engineering/2019/4/11/a-simpler-rails-benchmark-puma-and-concurrency&quot; target=&quot;_blank&quot;&gt;A Simpler Rails Benchmark, Puma and Concurrency - Appfolio Engineering&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Si ponemos todos los links mencionados en acción llegaremos a un par de guías de cómo optimizar todo lo posible para mejorar el rendimiento de nuestras aplicaciones.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://engineering.shopify.com/blogs/engineering/how-fix-slow-code-ruby&quot; target=&quot;_blank&quot;&gt;How to Fix Slow Code in Ruby&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://blog.appsignal.com/2020/01/22/rails-is-fast-optimize-your-view-performance.html&quot; target=&quot;_blank&quot;&gt;Rails is Fast: Optimize Your View Performance&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;La siguiente guía nos lleva de la mano a sacar la mejor ventaja de Heroku.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://evilmartians.com/chronicles/big-on-heroku-scaling-fountain-without-losing-a-drop&quot; target=&quot;_blank&quot;&gt;Big on Heroku: Scaling Fountain without losing a drop - Martian Chronicles&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Finalmente algunas herramientas de las que podemos echar mano para ayudarnos a solucionar problemas de performance.&lt;/p&gt;
+
+&lt;p&gt;Una de ellas es TracePoint de Ruby que nos ayuda a encontrar los lugares en los que se ejecuta código como creación de objetos, ejecución de queries y otras cosas que pueden ser inesperadas.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://blog.appsignal.com/2020/04/01/changing-the-approach-to-debugging-in-ruby-with-tracepoint.html&quot; target=&quot;_blank&quot;&gt;Changing the Approach to Debugging in Ruby with TracePoint&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;SI queremos monitorear nuestra aplicación Skiylight es la herramienta más sencilla del mercado.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.skylight.io&quot; target=&quot;_blank&quot;&gt;Skylight&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;La guía completa de performance en aplicaciones Rails basada en problemas reales de consultoría.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.railsspeed.com&quot; target=&quot;_blank&quot;&gt;The Complete Guide to Rails Performance&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Finalmente les dejo este post con la pregunta si Ruby es demasiado lento para escalar.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.speedshop.co/2017/07/11/is-ruby-too-slow-for-web-scale.html&quot; target=&quot;_blank&quot;&gt;Is Ruby Too Slow For Web-Scale?&lt;/a&gt;&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><summary type="html">Identificar, evaluar y solucionar problemas de performance con Ruby</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/performance.jpg" /><media:content medium="image" url="https://mariochavez.io/performance.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Rails, Webpack y desarrollo frontend con Javascript</title><link href="https://mariochavez.io/desarrollo/2020/05/19/rails-webpack-desarrollo-frontend.html" rel="alternate" type="text/html" title="Rails, Webpack y desarrollo frontend con Javascript" /><published>2020-05-19T02:00:00-05:00</published><updated>2020-05-19T02:00:00-05:00</updated><id>https://mariochavez.io/desarrollo/2020/05/19/rails-webpack-desarrollo-frontend</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2020/05/19/rails-webpack-desarrollo-frontend.html">&lt;h1 id=&quot;rails-webpack-y-desarrollo-frontend-con-javascript&quot;&gt;Rails, Webpack y desarrollo frontend con Javascript&lt;/h1&gt;
 
 &lt;p&gt;El 19 de Mayo tuve una sesión de “streaming” para platicar sobre el desarrollo de frontend con Javascript en Rails. El video y los recurso están listados en este post.&lt;/p&gt;
 
@@ -1576,14 +1705,4 @@ sobre película Ilford HP+ 400.&lt;/p&gt;
 &lt;p&gt;El caos del tráfico era inminente en Av. Insurgentes y en las calles del centro, algunos capitalinos preguntaban de qué era la marcha, otros enojados de que esa gente de fuera llegara a complicarles el días.&lt;/p&gt;
 &lt;div class=&quot;blog-media&quot;&gt;
   &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/marcha-campesina-18.jpg&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;Main image&quot; srcset=&quot;/assets/img/marcha-campesina-18.jpg 1200w, /assets/img/300-marcha-campesina-18.jpg 300w, /assets/img/768-marcha-campesina-18.jpg 768w, /assets/img/1024-marcha-campesina-18.jpg 1024w, /assets/img/180-marcha-campesina-18.jpg 180w, /assets/img/940-marcha-campesina-18.jpg 940w, /assets/img/320-marcha-campesina-18.jpg 320w, /assets/img/640-marcha-campesina-18.jpg 640w, /assets/img/960-marcha-campesina-18.jpg 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
-&lt;/div&gt;</content><author><name>Mario Alberto Chávez</name></author><summary type="html">El día de ayer 8 de agosto se llevó a cabo una marcha de organizaciones campesinas en la Ciudad de México. Llegó gente de diferentes estados del país como Guanajuato, Estado de México, Puebla, Veracruz, Chiapas, Oaxaca, Michoacán, entre otros.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/marcha-campesina-1.jpg" /><media:content medium="image" url="https://mariochavez.io/marcha-campesina-1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Serie: Rails para desarrolladores expertos</title><link href="https://mariochavez.io/proyectos/2019/06/02/rails-para-desarrolladores-expertos.html" rel="alternate" type="text/html" title="Serie: Rails para desarrolladores expertos" /><published>2019-06-02T13:00:00-05:00</published><updated>2019-06-02T13:00:00-05:00</updated><id>https://mariochavez.io/proyectos/2019/06/02/rails-para-desarrolladores-expertos</id><content type="html" xml:base="https://mariochavez.io/proyectos/2019/06/02/rails-para-desarrolladores-expertos.html">&lt;p&gt;Esta serie de videos son acerca de Ruby on Rails y la intención es mostrar la funcionalidad que nos proporciona el framework. Algunos videos serán bastante básicos y otros no tanto pero el objetivo en todo caso es demostrar como hacer uso de ciertas características que damos por sentadas y al mismo tiempo tratar temas que los más nuevos en la herramienta quizás desconozcan.&lt;/p&gt;
-
-&lt;p&gt;Todos los videos están basados en Ruby on Rails 6.0 aunque muchos de los temas aplican de forma similar a versiónes anteriores. Los videos se publican una vez a la semana en jueves.&lt;/p&gt;
-
-&lt;p&gt;La lista de los videos disponibles es la siguiente y la estaré actualizando cada semana&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://bit.ly/RPE-logging&quot; target=&quot;_blank&quot;&gt;Logging en Rails&lt;/a&gt;: Por qué es el importate el logging?, Cómo lo podemos utilizar?&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://bit.ly/RPE-validaciones&quot; target=&quot;_blank&quot;&gt;Validaciones&lt;/a&gt;: Cómo usar las validaciones de lado de cliente?, Es posible configurar cómo se muestran desde Rails?&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://bit.ly/RPE-validaciones-stimulus&quot; target=&quot;_blank&quot;&gt;Validaciones con Stimulus&lt;/a&gt;: Aprovechando Stimulus para realizar validaciones en línea de formularios&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://bit.ly/RPE-internacionalizacion&quot; target=&quot;_blank&quot;&gt;Internacionalización i18n&lt;/a&gt;: Internacionalización de aplicaciones con i18n y Rails.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Mario Alberto Chávez</name></author><summary type="html">Esta serie de videos son acerca de Ruby on Rails y la intención es mostrar la funcionalidad que nos proporciona el framework. Algunos videos serán bastante básicos y otros no tanto pero el objetivo en todo caso es demostrar como hacer uso de ciertas características que damos por sentadas y al mismo tiempo tratar temas que los más nuevos en la herramienta quizás desconozcan.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/rails-para-desarrolladores-expertos.png" /><media:content medium="image" url="https://mariochavez.io/rails-para-desarrolladores-expertos.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;/div&gt;</content><author><name>Mario Alberto Chávez</name></author><summary type="html">El día de ayer 8 de agosto se llevó a cabo una marcha de organizaciones campesinas en la Ciudad de México. Llegó gente de diferentes estados del país como Guanajuato, Estado de México, Puebla, Veracruz, Chiapas, Oaxaca, Michoacán, entre otros.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/marcha-campesina-1.jpg" /><media:content medium="image" url="https://mariochavez.io/marcha-campesina-1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
