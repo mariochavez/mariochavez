@@ -2,7 +2,7 @@
 layout: orio-post
 title: Identificar, evaluar y solucionar problemas de performance con Ruby
 date: 2020-05-27 01:00:00 -0600
-published: Mayo 19, 2020
+published: Mayo 27, 2020
 categories: desarrollo
 description: Recursos de la plática Identificar, evaluar y solucionar problemas de performance con Ruby
 keywords: rails, ruby, performace, postgresql, desarrollo, debug, profiler, stackprof
