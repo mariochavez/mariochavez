@@ -1,6 +1,6 @@
 ---
 layout: orio-post
-title: Construyendo un API REST con cache
+title: Escribiendo un cliente Rest que haga cache de la solicitudes
 date: 2020-06-04 00:00:00 -0600
 published: Junio 04, 2020
 categories: desarrollo
@@ -9,8 +9,6 @@ keywords: rails, ruby, api, rest, cache, desarrollo, integración
 author: Mario Alberto Chávez
 image: cliente-rest.jpg
 ---
-# Escribiendo un cliente Rest que haga cache de la solicitudes
-
 Hace algunos meses escribí el post "[Lecciones construyendo un API REST](https://mariochavez.io/desarrollo/2019/12/30/lecciones-construyendo-un-api-rest.html){:target="_blank"} " donde hablo sobre lo aprendido e implementado en la construcción de un API REST para [Creditar.io](https://creditar.io){:target="_blank"} , el producto plataforma Fintech que mi equipo construyó.
 
 Todas las lecciones ahí descritas aplican para cuando estamos desarrollando la parte del servidor o Backend pero deja fuera al cliente que se encarga de consumir ese API.
