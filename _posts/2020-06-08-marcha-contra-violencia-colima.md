@@ -10,8 +10,8 @@ author: Mario Alberto Chávez
 image: marcha-colima-31.jpg
 ---
 El domingo 7 de junio organizaciones civiles convocaron a una marcha para protestar ante los hechos de violencia en el
-Estado de Colima, en especial por los homicidios de la diputada estatal Anel Bueno y los 7 policias del Estado de Colima
-asesinados en Jalisco; en ambos casos presumiblemente por el crímen organizado.
+Estado de Colima, en especial por los homicidios de la diputada estatal Anel Bueno y los 7 policías del Estado de Colima
+asesinados en Jalisco; en ambos casos presumiblemente por el crimen organizado.
 
 <div class="blog-media">
   <img width="1200" height="800" src="{{ '/assets/img/marcha-campesina-3.jpg' | relative_url }}"
@@ -19,7 +19,7 @@ asesinados en Jalisco; en ambos casos presumiblemente por el crímen organizado.
   srcset="{{ 'marcha-colima-3.jpg' | srcset }}" sizes="(max-width: 1200px) 100vw, 1200px" />
 </div>
 
-La marcha inició en el parque de La Piedra Lisa siguiendo la rura de Calzada Galván para posteriormente tomar la calle 
+La marcha inició en el parque de La Piedra Lisa siguiendo la ruta de Calzada Galván para posteriormente tomar la calle 
 Madero y así dirigirse al Palacio de Gobierno Estatal.
 
 <div class="blog-media">
