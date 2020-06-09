@@ -1,12 +1,235 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" /><updated>2020-06-08T12:23:54-05:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez : Blog</title><subtitle>Blog personal de Mario Alberto Chávez. Temas de desarrollo de software y fotografia.</subtitle><entry><title type="html">Marcha contra la violencia en Colima</title><link href="https://mariochavez.io/fotograf%C3%ADa/2020/06/07/marcha-contra-violencia-colima.html" rel="alternate" type="text/html" title="Marcha contra la violencia en Colima" /><published>2020-06-07T19:01:00-05:00</published><updated>2020-06-07T19:01:00-05:00</updated><id>https://mariochavez.io/fotograf%C3%ADa/2020/06/07/marcha-contra-violencia-colima</id><content type="html" xml:base="https://mariochavez.io/fotograf%C3%ADa/2020/06/07/marcha-contra-violencia-colima.html">&lt;p&gt;El domingo 7 de junio organizaciones civiles convocaron a una marcha para protestar ante los hechos de violencia en el
-Estado de Colima, en especial por los homicidios de la diputada estatal Anel Bueno y los 7 policias del Estado de Colima
-asesinados en Jalisco; en ambos casos presumiblemente por el crímen organizado.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" /><updated>2020-06-09T14:48:55-05:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez : Blog</title><subtitle>Blog personal de Mario Alberto Chávez. Temas de desarrollo de software y fotografia.</subtitle><entry><title type="html">I created the same app with Rails and no Javascript</title><link href="https://mariochavez.io/desarrollo/2020/06/09/i-created-the-same-application-with-rails-no-javascript.html" rel="alternate" type="text/html" title="I created the same app with Rails and no Javascript" /><published>2020-06-09T01:01:00-05:00</published><updated>2020-06-09T01:01:00-05:00</updated><id>https://mariochavez.io/desarrollo/2020/06/09/i-created-the-same-application-with-rails-no-javascript</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2020/06/09/i-created-the-same-application-with-rails-no-javascript.html">&lt;p&gt;Last year I wrote a blog post, “&lt;a href=&quot;https://mariochavez.io/desarrollo/2019/12/23/i-created-the-same-app-with-rails-and-javascript.html&quot; target=&quot;_blank&quot;&gt;I created the same application with Rails and Javascript&lt;/a&gt;”, following a trend of posts where the author &lt;a href=&quot;https://medium.com/@sunilsandhu&quot; target=&quot;_blank&quot;&gt;Sunil Sandhu&lt;/a&gt; did the same comparing a few frontend Javascript libraries.&lt;/p&gt;
+
+&lt;p&gt;My approach in that blog post was using Rails to render all HTML and then using a bit of Javascript with &lt;a href=&quot;https://stimulusjs.org&quot; target=&quot;_blank&quot;&gt;Stimulus&lt;/a&gt; to recreate the same application behavior.&lt;/p&gt;
+
+&lt;p&gt;A few weeks ago, I found a tweet from &lt;a href=&quot;https://twitter.com/chris_mccord/status/1252997316103081984&quot; target=&quot;_blank&quot;&gt;Chris McCord&lt;/a&gt;, the creator of Phoenix Framework for Elixir, where he was showcasing a new functionality coming with Phoenix 1.5, he wrote a small Twitter clone without Javascript, it was beautiful.&lt;/p&gt;
+
+&lt;div class=&quot;blog-media&quot;&gt;
+  &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/chris-mccord.png&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;Chis McCord Tweet&quot; srcset=&quot;/assets/img/chris-mccord.png 1200w, /assets/img/300-chris-mccord.png 300w, /assets/img/768-chris-mccord.png 768w, /assets/img/1024-chris-mccord.png 1024w, /assets/img/180-chris-mccord.png 180w, /assets/img/940-chris-mccord.png 940w, /assets/img/320-chris-mccord.png 320w, /assets/img/640-chris-mccord.png 640w, /assets/img/960-chris-mccord.png 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Later, I found a &lt;a href=&quot;https://twitter.com/mario_chavez/status/1256263180722081792&quot; target=&quot;_blank&quot;&gt;video&lt;/a&gt; from &lt;a href=&quot;https://twitter.com/hopsoft&quot; target=&quot;_blank&quot;&gt;Hopsoft&lt;/a&gt; where he did the same with Ruby on Rails using his libraries &lt;a href=&quot;https://cableready.stimulusreflex.com&quot; target=&quot;_blank&quot;&gt;CableReady&lt;/a&gt; and &lt;a href=&quot;https://docs.stimulusreflex.com&quot; target=&quot;_blank&quot;&gt;StimulusReflex&lt;/a&gt;, no Javascript, just Ruby using Rails’ ActionCable to broadcast DOM changes, it was fantastic.&lt;/p&gt;
+&lt;div class=&quot;blog-media&quot;&gt;
+  &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/mario-chavez.png&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;Mario Chávez Tweet&quot; srcset=&quot;/assets/img/mario-chavez.png 1200w, /assets/img/300-mario-chavez.png 300w, /assets/img/768-mario-chavez.png 768w, /assets/img/1024-mario-chavez.png 1024w, /assets/img/180-mario-chavez.png 180w, /assets/img/940-mario-chavez.png 940w, /assets/img/320-mario-chavez.png 320w, /assets/img/640-mario-chavez.png 640w, /assets/img/960-mario-chavez.png 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;So I decided to give another try to the same application by removing the Javascript that I wrote for it. The starting code for this post is at &lt;a href=&quot;https://github.com/mariochavez/rails-todo-2019&quot; target=&quot;_blank&quot;&gt;https://github.com/mariochavez/rails-todo-2019&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;setup-actioncable&quot;&gt;Setup ActionCable&lt;/h2&gt;
+
+&lt;p&gt;In the original application the Rails application was created without &lt;a href=&quot;https://guides.rubyonrails.org/action_cable_overview.html&quot; target=&quot;_blank&quot;&gt;ActionCable&lt;/a&gt; support; it is needed for CableReady to work.&lt;/p&gt;
+
+&lt;p&gt;First, make sure that &lt;code class=&quot;highlighter-rouge&quot;&gt;config/application.rb&lt;/code&gt; has the following line uncommented.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;action_cable/engine&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Create the file &lt;code class=&quot;highlighter-rouge&quot;&gt;config/cable.yml&lt;/code&gt; and add the following content.&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;development&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;adapter&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;async&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;adapter&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;async&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;production&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;adapter&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;redis&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;redis://127.0.0.1:6381&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;channel_prefix&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;todos_production&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Using &lt;code class=&quot;highlighter-rouge&quot;&gt;async&lt;/code&gt; in this case, save us from the need to have a Redis instance running on Development and Test. Still, add the Redis library to your &lt;code class=&quot;highlighter-rouge&quot;&gt;Gemfile&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;redis&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;~&amp;gt; 4.2&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;ActionCable works with a Javascript side, so we need to install the libraries with Yarn.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;yarn add @rails/actioncable
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Finally, generate an ActionCable channel with the following command and require the channels in your &lt;code class=&quot;highlighter-rouge&quot;&gt;app/javascript/pack/application.js&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bin/rails g channel todo
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-jsx highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;#&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;javascript&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;application&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;js&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;channels&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;At this point, ActionCable is ready for us to use.&lt;/p&gt;
+
+&lt;h2 id=&quot;remove-javascript-code&quot;&gt;Remove Javascript code&lt;/h2&gt;
+
+&lt;p&gt;This step is quite simple, remove the two Stimulus controllers from the previous version of this application.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;rm &lt;/span&gt;app/javascript/controllers/todo_controller.js app/javascript/controllers/todo_delete_controller.js
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The application does not work anymore after removing these files — Cleanup the Rails templates from all the data attributes required by the deleted Stimulus controllers.&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# app/views/todos/_todo.html.erb
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&amp;lt;%= dom_id(todo) %&amp;gt;&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ToDoItem&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ToDoItem-Text&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;todo&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;button_to&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&quot;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;todo_path&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;todo&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;),&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;method:&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;:delete&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;remote:&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;class:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;ToDoItem-Delete&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt;
+     &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;In this template, you need the &lt;code class=&quot;highlighter-rouge&quot;&gt;Todo#id&lt;/code&gt; attribute; the &lt;code class=&quot;highlighter-rouge&quot;&gt;dom_id&lt;/code&gt; method creates an id like &lt;code class=&quot;highlighter-rouge&quot;&gt;todo_1&lt;/code&gt; for you.&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# app/views/todos/index.html.erb
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ToDo&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;image_tag&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;asset_pack_path&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;(&quot;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;media&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;images&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;logo&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;png&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&quot;),&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Logo&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&quot;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;alt:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Rails&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;logo&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;h1&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ToDo-Header&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Rails To Do&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ToDo-Container&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;todo-list&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ToDo-Content&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;render&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;todos&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+ 
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ToDoInput&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;form_with&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;model:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;todo&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;local:&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;false&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;form&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;form&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;text_field&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;:name&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;form&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;submit&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&quot;+&quot;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;ToDo-Add&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;end&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This template needs the id for the Todos list container. Here how it looks after removing all data attributes.&lt;/p&gt;
+
+&lt;h2 id=&quot;reimplement-functionality-without-javascript&quot;&gt;Reimplement functionality without Javascript&lt;/h2&gt;
+
+&lt;p&gt;It is the time to install CableReady in your application.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bundle add cable_ready
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;yarn add cable_ready
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;With CableReady installed, we need to setup ActionCable’s channel for it. First, setup the Javascript channel to require the CableReady library and update the &lt;code class=&quot;highlighter-rouge&quot;&gt;received&lt;/code&gt; method to call CableReady if data transmitted via ActionCable is CableReady data.&lt;/p&gt;
+
+&lt;div class=&quot;language-jsx highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;#&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;javascript&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;channels&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;todo_channel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;js&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;consumer&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;./consumer&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;CableReady&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;cable_ready&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;consumer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;subscriptions&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;TodoChannel&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;connected&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// Called when the subscription is ready for use on the server&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;disconnected&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// Called when the subscription has been terminated by the server&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;received&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cableReady&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;CableReady&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;perform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;operations&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Next, open the &lt;code class=&quot;highlighter-rouge&quot;&gt;TodoChannel&lt;/code&gt; class and set the stream name to &lt;em&gt;“todos”&lt;/em&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# app/channels/todo_channel.rb&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TodoChannel&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ApplicationCable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Channel&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;subscribed&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;stream_from&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;todos&quot;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;unsubscribed&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# Any cleanup needed when channel is unsubscribed&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;First, reimplement the delete functionality for Todos. This one is quite simple; when the user clicks on the delete button, an ajax call is made via Rails UJS and received by &lt;code class=&quot;highlighter-rouge&quot;&gt;TodosController#destroy&lt;/code&gt; action. Here you tell CableReady what operations to perform back to the DOM and broadcast them via ActionCable.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# app/controllers/todos_controller.rb&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;destroy&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;todo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Todo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;find_by&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;id: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;todo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;destroy&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;cable_ready&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;TODOS_CHANNEL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;selector: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;#&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ActionView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;RecordIdentifier&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;dom_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;todo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;cable_ready&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;broadcast&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;render&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;plain: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;status: :no_content&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;em&gt;remove&lt;/em&gt; operation needs the id of the Todoto remove, and then the operation is broadcast to the browser. The Todo is removed not only in your browser but if we have other browsers or tabs open with the application, the Todo is removed across all of them. Here is what CableReady send via ActionCable.&lt;/p&gt;
+
+&lt;div class=&quot;language-jsx highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;identifier&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;channel&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;TodoChannel&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:{&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;cableReady&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;operations&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:{&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:[{&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;selector&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;#todo_14&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}]}}}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;To create a new Todo, you need more than one operation to be broadcasted, CableReady allows you to batch operations very easy.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# app/controllers/todos_controller.rb&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;create&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;todo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Todo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;todo_params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;todo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;save&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;cable_ready&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;TODOS_CHANNEL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;insert_adjacent_html&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+      &lt;span class=&quot;ss&quot;&gt;selector: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;#todo-list&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;ss&quot;&gt;position: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;afterbegin&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;ss&quot;&gt;html: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;render_to_string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;partial: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;todos/todo&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;locals: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;todo: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;todo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;formats: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:html&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;cable_ready&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;TODOS_CHANNEL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;set_value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+      &lt;span class=&quot;ss&quot;&gt;selector: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;#todo_name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;ss&quot;&gt;value: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;cable_ready&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;TODOS_CHANNEL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+      &lt;span class=&quot;ss&quot;&gt;selector: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;.error&quot;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;cable_ready&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;broadcast&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;plain: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;status: :created&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;cable_ready&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;TODOS_CHANNEL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;insert_adjacent_html&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;ss&quot;&gt;selector: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;#todo_name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;ss&quot;&gt;position: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;afterend&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;ss&quot;&gt;html: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&amp;lt;p class='error'&amp;gt;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;todo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;errors&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;first&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;lt;/p&amp;gt;&quot;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;cable_ready&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;broadcast&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;render&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;json: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;errors: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;todo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;errors&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;status: :unprocessable_entity&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The form to create a new Todo in our UI sends a remote form call via Rails UJS; this call is dispatched to &lt;code class=&quot;highlighter-rouge&quot;&gt;TodosController#create&lt;/code&gt; action, which validates and saves the received Todo. If the Todo is saved, then it performs 3 CableReady operations.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;insert_adjacent_html&lt;/code&gt; operation renders a partial HTML for the new Todo and is inserted at the top of the todos list container identified by &lt;code class=&quot;highlighter-rouge&quot;&gt;#todo-list&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Clears the value for Todo’s input in the form by using the &lt;code class=&quot;highlighter-rouge&quot;&gt;set_value&lt;/code&gt; method.&lt;/li&gt;
+  &lt;li&gt;If there is any error from previous actions, it clears the error with the &lt;code class=&quot;highlighter-rouge&quot;&gt;remove&lt;/code&gt; method.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;If validation fails and the Todo is not saved, an error is added via the &lt;code class=&quot;highlighter-rouge&quot;&gt;insert_adjacent_html&lt;/code&gt; method.&lt;/p&gt;
+
+&lt;p&gt;You are done; after these changes, the application should behave as before. You manage to remove all written Javascript for this application while keeping the same functionality.&lt;/p&gt;
+
+&lt;h2 id=&quot;final-words&quot;&gt;Final words&lt;/h2&gt;
+
+&lt;p&gt;First of all, it is clear that you are using Javascript but not Javascript code that you need to maintain. Under the hood, ActionCable and CableReady provide Javascript functionality to interact with the Browser.&lt;/p&gt;
+
+&lt;p&gt;Writing applications this way, opens the world a new kind of Rails applications that are reactive, connected, and that takes advantage of Server Side Rendering, Caching, and minimal frontend Javascript. I am eager to see the first Rails applications build this way.&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><summary type="html">Last year I wrote a blog post, “I created the same application with Rails and Javascript”, following a trend of posts where the author Sunil Sandhu did the same comparing a few frontend Javascript libraries.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/rails-todo-no-js.png" /><media:content medium="image" url="https://mariochavez.io/rails-todo-no-js.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Marcha contra la violencia en Colima</title><link href="https://mariochavez.io/fotograf%C3%ADa/2020/06/07/marcha-contra-violencia-colima.html" rel="alternate" type="text/html" title="Marcha contra la violencia en Colima" /><published>2020-06-07T19:01:00-05:00</published><updated>2020-06-07T19:01:00-05:00</updated><id>https://mariochavez.io/fotograf%C3%ADa/2020/06/07/marcha-contra-violencia-colima</id><content type="html" xml:base="https://mariochavez.io/fotograf%C3%ADa/2020/06/07/marcha-contra-violencia-colima.html">&lt;p&gt;El domingo 7 de junio organizaciones civiles convocaron a una marcha para protestar ante los hechos de violencia en el
+Estado de Colima, en especial por los homicidios de la diputada estatal Anel Bueno y los 7 policías del Estado de Colima
+asesinados en Jalisco; en ambos casos presumiblemente por el crimen organizado.&lt;/p&gt;
 
 &lt;div class=&quot;blog-media&quot;&gt;
   &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/marcha-campesina-3.jpg&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;Marcha contra violencia Colima&quot; srcset=&quot;/assets/img/marcha-colima-3.jpg 1200w, /assets/img/300-marcha-colima-3.jpg 300w, /assets/img/768-marcha-colima-3.jpg 768w, /assets/img/1024-marcha-colima-3.jpg 1024w, /assets/img/180-marcha-colima-3.jpg 180w, /assets/img/940-marcha-colima-3.jpg 940w, /assets/img/320-marcha-colima-3.jpg 320w, /assets/img/640-marcha-colima-3.jpg 640w, /assets/img/960-marcha-colima-3.jpg 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
 &lt;/div&gt;
 
-&lt;p&gt;La marcha inició en el parque de La Piedra Lisa siguiendo la rura de Calzada Galván para posteriormente tomar la calle 
+&lt;p&gt;La marcha inició en el parque de La Piedra Lisa siguiendo la ruta de Calzada Galván para posteriormente tomar la calle 
 Madero y así dirigirse al Palacio de Gobierno Estatal.&lt;/p&gt;
 
 &lt;div class=&quot;blog-media&quot;&gt;
@@ -65,7 +288,7 @@ después dar algunas palabras a los asistentes.&lt;/p&gt;
 
 &lt;div class=&quot;blog-media&quot;&gt;
   &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/marcha-campesina-37.jpg&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;Marcha contra violencia Colima&quot; srcset=&quot;/assets/img/marcha-colima-37.jpg 1200w, /assets/img/300-marcha-colima-37.jpg 300w, /assets/img/768-marcha-colima-37.jpg 768w, /assets/img/1024-marcha-colima-37.jpg 1024w, /assets/img/180-marcha-colima-37.jpg 180w, /assets/img/940-marcha-colima-37.jpg 940w, /assets/img/320-marcha-colima-37.jpg 320w, /assets/img/640-marcha-colima-37.jpg 640w, /assets/img/960-marcha-colima-37.jpg 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
-&lt;/div&gt;</content><author><name>Mario Alberto Chávez</name></author><summary type="html">El domingo 7 de junio organizaciones civiles convocaron a una marcha para protestar ante los hechos de violencia en el Estado de Colima, en especial por los homicidios de la diputada estatal Anel Bueno y los 7 policias del Estado de Colima asesinados en Jalisco; en ambos casos presumiblemente por el crímen organizado.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/marcha-colima-31.jpg" /><media:content medium="image" url="https://mariochavez.io/marcha-colima-31.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Escribiendo un cliente Rest que haga cache de la solicitudes</title><link href="https://mariochavez.io/desarrollo/2020/06/04/cliente-api-rest-cache.html" rel="alternate" type="text/html" title="Escribiendo un cliente Rest que haga cache de la solicitudes" /><published>2020-06-04T01:00:00-05:00</published><updated>2020-06-04T01:00:00-05:00</updated><id>https://mariochavez.io/desarrollo/2020/06/04/cliente-api-rest-cache</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2020/06/04/cliente-api-rest-cache.html">&lt;p&gt;Hace algunos meses escribí el post “&lt;a href=&quot;https://mariochavez.io/desarrollo/2019/12/30/lecciones-construyendo-un-api-rest.html&quot; target=&quot;_blank&quot;&gt;Lecciones construyendo un API REST&lt;/a&gt; “ donde hablo sobre lo aprendido e implementado en la construcción de un API REST para &lt;a href=&quot;https://creditar.io&quot; target=&quot;_blank&quot;&gt;Creditar.io&lt;/a&gt; , el producto plataforma Fintech que mi equipo construyó.&lt;/p&gt;
+&lt;/div&gt;</content><author><name>Mario Alberto Chávez</name></author><summary type="html">El domingo 7 de junio organizaciones civiles convocaron a una marcha para protestar ante los hechos de violencia en el Estado de Colima, en especial por los homicidios de la diputada estatal Anel Bueno y los 7 policías del Estado de Colima asesinados en Jalisco; en ambos casos presumiblemente por el crimen organizado.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/marcha-colima-31.jpg" /><media:content medium="image" url="https://mariochavez.io/marcha-colima-31.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Escribiendo un cliente Rest que haga cache de la solicitudes</title><link href="https://mariochavez.io/desarrollo/2020/06/04/cliente-api-rest-cache.html" rel="alternate" type="text/html" title="Escribiendo un cliente Rest que haga cache de la solicitudes" /><published>2020-06-04T01:00:00-05:00</published><updated>2020-06-04T01:00:00-05:00</updated><id>https://mariochavez.io/desarrollo/2020/06/04/cliente-api-rest-cache</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2020/06/04/cliente-api-rest-cache.html">&lt;p&gt;Hace algunos meses escribí el post “&lt;a href=&quot;https://mariochavez.io/desarrollo/2019/12/30/lecciones-construyendo-un-api-rest.html&quot; target=&quot;_blank&quot;&gt;Lecciones construyendo un API REST&lt;/a&gt; “ donde hablo sobre lo aprendido e implementado en la construcción de un API REST para &lt;a href=&quot;https://creditar.io&quot; target=&quot;_blank&quot;&gt;Creditar.io&lt;/a&gt; , el producto plataforma Fintech que mi equipo construyó.&lt;/p&gt;
 
 &lt;p&gt;Todas las lecciones ahí descritas aplican para cuando estamos desarrollando la parte del servidor o Backend pero deja fuera al cliente que se encarga de consumir ese API.&lt;/p&gt;
 
@@ -1390,555 +1613,4 @@ Returns a list of users paginated by the cursor.
 
 &lt;p&gt;Afortunadamente los conceptos para tener un API REST saludable no son difíciles de implementar pero si requieren de cierta disciplina.&lt;/p&gt;
 
-&lt;p&gt;Espero que los puntos expresados en este post les sirva de ayuda en caso que también estén decidiendo implementar un API y quizás aún no se deciden entre hacerla REST o GraphQL.&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><summary type="html">Lecciones construyendo un API REST</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/developing.jpg" /><media:content medium="image" url="https://mariochavez.io/developing.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">I created the same app with Rails and Javascript</title><link href="https://mariochavez.io/desarrollo/2019/12/23/i-created-the-same-app-with-rails-and-javascript.html" rel="alternate" type="text/html" title="I created the same app with Rails and Javascript" /><published>2019-12-23T12:00:00-06:00</published><updated>2019-12-23T12:00:00-06:00</updated><id>https://mariochavez.io/desarrollo/2019/12/23/i-created-the-same-app-with-rails-and-javascript</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2019/12/23/i-created-the-same-app-with-rails-and-javascript.html">&lt;h1 id=&quot;i-created-the-same-app-with-rails-and-javascript&quot;&gt;I created the same app with Rails and Javascript&lt;/h1&gt;
-
-&lt;p&gt;A few days ago, I came into a post on Medium “&lt;a href=&quot;https://medium.com/javascript-in-plain-english/i-created-the-exact-same-app-in-react-and-svelte-here-are-the-differences-c0bd2cc9b3f8&quot; target=&quot;_blank&quot;&gt;I created the exact same app in React and Svelte. Here are the differences&lt;/a&gt;”, this post talks about side by side code comparison on writing a simple To Do application with both Javascript Framework.&lt;/p&gt;
-
-&lt;p&gt;Sunil Sandhu, the author of the post, is familiar with React by using it at work, and he wrote the post based on his exploration of Svelte and his experience with React.&lt;/p&gt;
-
-&lt;p&gt;It is an excellently written post with much useful information, so he tackled the work of creating a second post comparing Svelte and Vue “&lt;a href=&quot;https://medium.com/javascript-in-plain-english/i-created-the-exact-same-app-in-vue-and-svelte-here-are-the-differences-c649f8d4ce0a&quot; target=&quot;_blank&quot;&gt;I created the exact same app in Vue and Svelte. Here are the differences&lt;/a&gt;”.&lt;/p&gt;
-
-&lt;p&gt;While both posts have great information, I have always been vocal about why not try the old good Web foundation before jumping directly into a Javascript framework that takes over the application heart.&lt;/p&gt;
-
-&lt;p&gt;So I decided to use his same approach and wrote this post about using HTML, SASS, and &lt;a href=&quot;https://stimulusjs.org&quot; target=&quot;_blank&quot;&gt;StimulusJs&lt;/a&gt; with a Rails backend.&lt;/p&gt;
-
-&lt;h2 id=&quot;the-rails-project&quot;&gt;The Rails project&lt;/h2&gt;
-
-&lt;p&gt;For this project backend needs, there is no need for all the Rails frameworks. Fortunately, a project can be customized since creating to include what is need it. The &lt;strong&gt;rails&lt;/strong&gt; command gives many options to what includes and what left out.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ rails --help
-$ Usage:
-  rails new APP_PATH [options]
-
-Options:
-      [--skip-namespace], [--no-skip-namespace]              # Skip namespace (affects only isolated applications)
-  -r, [--ruby=PATH]                                          # Path to the Ruby binary of your choice
-                                                             # Default: /Users/marioch/.rbenv/versions/2.6.3/bin/ruby
-  -m, [--template=TEMPLATE]                                  # Path to some application template (can be a filesystem path or URL)
-  -d, [--database=DATABASE]                                  # Preconfigure for selected database (options: mysql/postgresql/sqlite3/oracle/frontbase/ibm_db/sqlserver/jdbcmysql/jdbcsqlite3/jdbcpostgresql/jdbc)
-                                                             # Default: sqlite3
-      [--skip-gemfile], [--no-skip-gemfile]                  # Don't create a Gemfile
-  -G, [--skip-git], [--no-skip-git]                          # Skip .gitignore file
-      [--skip-keeps], [--no-skip-keeps]                      # Skip source control .keep files
-  -M, [--skip-action-mailer], [--no-skip-action-mailer]      # Skip Action Mailer files
-      [--skip-action-mailbox], [--no-skip-action-mailbox]    # Skip Action Mailbox gem
-      [--skip-action-text], [--no-skip-action-text]          # Skip Action Text gem
-  -O, [--skip-active-record], [--no-skip-active-record]      # Skip Active Record files
-      [--skip-active-storage], [--no-skip-active-storage]    # Skip Active Storage files
-  -P, [--skip-puma], [--no-skip-puma]                        # Skip Puma related files
-  -C, [--skip-action-cable], [--no-skip-action-cable]        # Skip Action Cable files
-  -S, [--skip-sprockets], [--no-skip-sprockets]              # Skip Sprockets files
-      [--skip-spring], [--no-skip-spring]                    # Don't install Spring application preloader
-      [--skip-listen], [--no-skip-listen]                    # Don't generate configuration that depends on the listen gem
-  -J, [--skip-javascript], [--no-skip-javascript]            # Skip JavaScript files
-      [--skip-turbolinks], [--no-skip-turbolinks]            # Skip turbolinks gem
-  -T, [--skip-test], [--no-skip-test]                        # Skip test files
-      [--skip-system-test], [--no-skip-system-test]          # Skip system test files
-      [--skip-bootsnap], [--no-skip-bootsnap]                # Skip bootsnap gem
-      [--dev], [--no-dev]                                    # Setup the application with Gemfile pointing to your Rails checkout
-      [--edge], [--no-edge]                                  # Setup the application with Gemfile pointing to Rails repository
-      [--rc=RC]                                              # Path to file containing extra configuration options for rails command
-      [--no-rc], [--no-no-rc]                                # Skip loading of extra configuration options from .railsrc file
-      [--api], [--no-api]                                    # Preconfigure smaller stack for API only apps
-  -B, [--skip-bundle], [--no-skip-bundle]                    # Don't run bundle install
-  --webpacker, [--webpack=WEBPACK]                           # Preconfigure Webpack with a particular framework (options: react, vue, angular, elm, stimulus)
-      [--skip-webpack-install], [--no-skip-webpack-install]  # Don't run Webpack install
-
-...
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;By looking at the command usage information, a decision can be made based on project needs. By running the rails command with the following flags, the bootstrap process is cutting out many dependencies.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ rails new frontend -M --skip-action-mailbox --skip-action-text --skip-active-storage --skip-action-cable --skip-sprockets --skip-javascript
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://webpack.js.org&quot; target=&quot;_blank&quot;&gt;Webpack&lt;/a&gt; will help in this project to handle assets like SASS, Javascript, and images. To install it, open the &lt;strong&gt;Gemfile&lt;/strong&gt; and add the &lt;a href=&quot;https://github.com/rails/webpacker&quot; target=&quot;_blank&quot;&gt;Webpacker&lt;/a&gt; gem. It is a wrapper for Webpack that helps with Rails integration.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Gemfile
-
-...
-gem &quot;webpacker&quot;, &quot;~&amp;gt; 4.0&quot;
-...
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Run the &lt;strong&gt;bundle&lt;/strong&gt; command and then configure Webpack and install StimulusJs in the project.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ bundle
-$ bin/rails webpacker:install
-$ bin/rails webpacker:install:stimulus
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The project bootstrap is done and ready for you to focus on the functionality of this application.&lt;/p&gt;
-
-&lt;h2 id=&quot;backend-side&quot;&gt;Backend side&lt;/h2&gt;
-
-&lt;p&gt;First, this application needs a &lt;code class=&quot;highlighter-rouge&quot;&gt;Todo&lt;/code&gt; model with a &lt;code class=&quot;highlighter-rouge&quot;&gt;Name&lt;/code&gt; attribute to stored To Dos data. The simple step to create the model is to take advantage of Rails generators for this.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ bin/rails g model todo name
-invoke  active_record
-      create    db/migrate/20191219201444_create_todos.rb
-      create    app/models/todo.rb
-      invoke    test_unit
-      create      test/models/todo_test.rb
-      create      test/fixtures/todos.yml
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;A few files were created along with our model. For now, focus on &lt;strong&gt;db/migrate/20191219201444_create_todos.rb&lt;/strong&gt; file; it is a database migration. Every time a database migration is created, you need to sure that it has database constraints required for a model; in this case, the name can not be &lt;strong&gt;null&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class CreateTodos &amp;lt; ActiveRecord::Migration[6.0]
-  def change
-    create_table :todos do |t|
-      t.string :name, null: false
-
-      t.timestamps
-    end
-  end
-end
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;With changes in place, it is time to migrate the database.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ bin/rails db:migrate
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;In the Ruby world, it is common to write automated tests, so why not write a few for the &lt;code class=&quot;highlighter-rouge&quot;&gt;Todo&lt;/code&gt; model. Open the test file &lt;strong&gt;test/models/todo_test.rb&lt;/strong&gt; and add the following tests.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;require &quot;test_helper&quot;
-
-class TodoTest &amp;lt; ActiveSupport::TestCase
-  test &quot;is valid&quot; do
-    subject = Todo.new todo_params
-
-    assert subject.valid?
-  end
-
-  test &quot;is invalid&quot; do
-    subject = Todo.new todo_params(name: &quot;&quot;)
-
-    refute subject.valid?
-    refute_empty subject.errors[:name]
-  end
-
-  def todo_params(attributes = {})
-    {name: &quot;Test todo&quot;}.merge(attributes)
-  end
-end
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The tests are simple; they make sure the mode model is valid when all attributes meet requirements and invalid when not. To run the tests execute the following command.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ bin/rails test
-# Running:
-
-F
-
-Failure:
-TodoTest#test_is_invalid [/Users/marioch/Development/personal/frontend/test/models/todo_test.rb:13]:
-Expected true to not be truthy.
-
-
-rails test test/models/todo_test.rb:10
-
-.
-
-Finished in 0.194414s, 10.2873 runs/s, 10.2873 assertions/s.
-2 runs, 2 assertions, 1 failures, 0 errors, 0 skips
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The runner reports failed tests; it is expected because the model under test is not validating any attributes requirements. The fix is straightforward, open the file &lt;strong&gt;app/models/todo.rb&lt;/strong&gt; and add the following validations.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class Todo &amp;lt; ApplicationRecord
-  validates :name, presence: true
-end
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Rerun the tests after the change, and now the runner reports that everything is ok.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ bin/rails test
-# Running:
-
-..
-
-Finished in 0.116393s, 17.1832 runs/s, 34.3663 assertions/s.
-2 runs, 4 assertions, 0 failures, 0 errors, 0 skips
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The last part of the Backend needs a controller, the &lt;code class=&quot;highlighter-rouge&quot;&gt;TodosController&lt;/code&gt;. This time the controller will be created manually and not with the help of Rails generators, it must have three actions &lt;strong&gt;Index&lt;/strong&gt;, &lt;strong&gt;Create&lt;/strong&gt;, and &lt;strong&gt;Destroy&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;Let us start with the routes of the application, open the file &lt;strong&gt;config/routes.rb&lt;/strong&gt;, and add the following rules for &lt;code class=&quot;highlighter-rouge&quot;&gt;TodosController&lt;/code&gt; actions.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Rails.application.routes.draw do
-  resources :todos, only: [:index, :create, :destroy]
-
-  root to: &quot;todos#index&quot;
-end
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Since automated tests are being written for this project, test data is required for us to write &lt;code class=&quot;highlighter-rouge&quot;&gt;TodosController&lt;/code&gt; tests. A fixture is just that, test data available in tests only. To add a To Do fixture, open the file &lt;strong&gt;test/fixtures/todos.yml&lt;/strong&gt; and add the following record, simple, right?&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;todo:
-  name: &quot;Fixture todo&quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Now create the file &lt;strong&gt;test/controllers/todos_controller_test.rb&lt;/strong&gt;, this file is used to write tests for &lt;code class=&quot;highlighter-rouge&quot;&gt;TodosController&lt;/code&gt;. It is important to notice that tests for controllers only cares about the input and the response, nothing else.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;require &quot;test_helper&quot;
-
-class TodosControllerTest &amp;lt; ActionDispatch::IntegrationTest
-  test &quot;GET /todos&quot; do
-    get todos_path
-
-    assert_response :success
-  end
-
-  test &quot;POST /todos (success)&quot; do
-    post todos_path, params: {todo: {name: &quot;Test todo&quot;}}, as: :json
-
-    assert_response :created
-
-    json_response = JSON.parse(response.body, symbolize_names: true)
-    assert json_response.dig(:id).present?
-    assert json_response.dig(:html).present?
-  end
-
-  test &quot;POST /todos (failure)&quot; do
-    post todos_path, params: {todo: {name: &quot;&quot;}}, as: :json
-
-    assert_response :unprocessable_entity
-
-    json_response = JSON.parse(response.body, symbolize_names: true)
-    assert json_response.dig(:errors, :name).present?
-  end
-
-  test &quot;DELETE /todos/:id&quot; do
-    todo = todos(:todo)
-    delete todo_path(todo), as: :json
-
-    assert_response :no_content
-  end
-end
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;A run on the tests report all controller tests with an error; it is because the &lt;code class=&quot;highlighter-rouge&quot;&gt;TodosController&lt;/code&gt; does not exist.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ bin/rails test
-# Running:
-
-E
-
-Error:
-TodosControllerTest#test_POST_/todos_(failure):
-ActionController::RoutingError: uninitialized constant TodosController
-Did you mean?  TodosControllerTest
-    test/controllers/todos_controller_test.rb:20:in `block in &amp;lt;class:TodosControllerTest&amp;gt;'
-
-
-rails test test/controllers/todos_controller_test.rb:19
-
-...
-
-E
-
-Error:
-TodosControllerTest#test_GET_/todos:
-ActionController::RoutingError: uninitialized constant TodosController
-Did you mean?  TodosControllerTest
-    test/controllers/todos_controller_test.rb:5:in `block in &amp;lt;class:TodosControllerTest&amp;gt;'
-.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;It is time to add the &lt;code class=&quot;highlighter-rouge&quot;&gt;TodosController&lt;/code&gt;. Create a file &lt;strong&gt;app/controllers/todos_controller.rb&lt;/strong&gt; and add the code for all actions. Notice that Index action responds with HTML, Create with a JSON response, and Destroy with no content.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class TodosController &amp;lt; ApplicationController
-  def index
-    @todos = Todo.order(created_at: :desc)
-    @todo = Todo.new
-  end
-
-  def create
-    todo = Todo.new(todo_params)
-
-    if todo.save
-      todo_html = render_to_string(partial: &quot;todos/todo&quot;, locals: {todo: todo}, formats: [:html])
-      return render(json: {id: todo.id, html: todo_html}, status: :created)
-    end
-
-    render json: {errors: todo.errors.to_h}, status: :unprocessable_entity
-  end
-
-  def destroy
-    todo = Todo.find_by(id: params[:id])
-    todo.destroy
-
-    render plain: &quot;&quot;, status: :no_content
-  end
-
-  private
-
-  def todo_params
-    params.require(:todo).permit(:name)
-  end
-end
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Let us try the tests again; much better, everything is green except for one test. The failing test indicates that Index action could not found an HTML template to render; it is ok for now; this template is added in the next section.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ bin/rails test
-
-# Running:
-
-E
-
-Error:
-TodosControllerTest#test_GET_/todos:
-ActionController::MissingExactTemplate: TodosController#index is missing a template for request formats: text/html
-    test/controllers/todos_controller_test.rb:5:in `block in &amp;lt;class:TodosControllerTest&amp;gt;'
-
-
-rails test test/controllers/todos_controller_test.rb:4
-
-......
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;the-frontend-side&quot;&gt;The Frontend side&lt;/h2&gt;
-
-&lt;p&gt;The project is ready for us to work on the frontend. Since it uses Webpack, it is the right time to start the Webpack server and the Rails server; each one needs to run in its terminal session.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ bin/webpack-dev-server
-----
-$ bin/rails s -p 3400
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;From the original &lt;a href=&quot;https://github.com/sunil-sandhu/react-todo-2019&quot; target=&quot;_blank&quot;&gt;React project&lt;/a&gt;, a few assets will be reused. To start, copy the contents of &lt;strong&gt;App.css&lt;/strong&gt;, &lt;strong&gt;components/ToDo.css&lt;/strong&gt;, and &lt;strong&gt;components/ToDoItem.css&lt;/strong&gt; into a single file in our project, this file is &lt;strong&gt;app/javascript/stylesheets/application.scss&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;rails-ujs&lt;/strong&gt; library is a Javascript library from Rails that helps in what Rails community calls “Unobtrusive Javascript”, it makes Ajax call made by Rails helpers transparent. To install it, use &lt;strong&gt;Yarn&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ bin/yarn add @rails-ujs
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Also, a new logo for this project must be placed at &lt;strong&gt;app/javascript/images&lt;/strong&gt; and imported along with the &lt;strong&gt;application.scss&lt;/strong&gt; file into the &lt;strong&gt;app/javascript/packs/application.js&lt;/strong&gt; for Webpack to manage those files for us. Here also &lt;strong&gt;rails-ujs&lt;/strong&gt; gets initialized.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;require(&quot;@rails/ujs&quot;).start()
-
-import &quot;../stylesheets/application.scss&quot;
-import &quot;../images/logo.png&quot;
-
-import &quot;controllers&quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;For Rails to use the bundle files from Webpack, the Rails application HTML layout needs to be updated to use Webpack’s files. Open the file &lt;strong&gt;app/views/layout/application.html.erb&lt;/strong&gt; and add the Webpack helpers to it.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;Rails To Do&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;csrf_meta_tags&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;csp_meta_tag&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;javascript_pack_tag&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;application&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;stylesheet_pack_tag&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;application&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
-
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;yield&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;From the React components, &lt;strong&gt;ToDoItem.js&lt;/strong&gt; and &lt;strong&gt;ToDo.js&lt;/strong&gt; let us copy the HTML template part into two Rails template &lt;strong&gt;app/views/todos/_todo.html.erb&lt;/strong&gt; and &lt;strong&gt;app/views/todos/index.html.erb&lt;/strong&gt; respectively but with few modifications. First, the React specific code must be replaced with Rails code.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;div class=&quot;ToDoItem&quot; data-controller=&quot;todo-delete&quot; data-target=&quot;todo-delete.item&quot;&amp;gt;
-  &amp;lt;p class=&quot;ToDoItem-Text&quot;&amp;gt;&amp;lt;%= todo.name %&amp;gt;&amp;lt;/p&amp;gt;
-  &amp;lt;%= button_to &quot;-&quot;, todo_path(todo.id),
-      method: :delete,
-      remote: true,
-      form: { data: { action: &quot;ajax:success-&amp;gt;todo-delete#successResult ajax:error-&amp;gt;todo-delete#errorResult&quot; } },
-      class: &quot;ToDoItem-Delete&quot;
-     %&amp;gt;
-&amp;lt;/div&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;StimulusJS will use those attributes to interact and connect with the HTML DOM.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;data-controller&lt;/code&gt; tells StimulusJS, which Javascript component (controller) to activate when that attribute is present in the DOM. &lt;code class=&quot;highlighter-rouge&quot;&gt;data-target&lt;/code&gt; is a way to reference DOM nodes inside the StimulusJS controller, and &lt;code class=&quot;highlighter-rouge&quot;&gt;data-action&lt;/code&gt; is the way to dispatch DOM events to the StimulusJS controller.&lt;/p&gt;
-
-&lt;p&gt;Right now, without a StimulusJS controller, those data attributes are kind of useless, but we are planning for the time when the controllers are in place.&lt;/p&gt;
-
-&lt;p&gt;Now let us do the same for React component &lt;code class=&quot;highlighter-rouge&quot;&gt;ToDo.js&lt;/code&gt;, the HTML template code needs to be copied to &lt;strong&gt;/app/views/todos/index.html.erb&lt;/strong&gt;, here is the modified version of it.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;div class=&quot;ToDo&quot;&amp;gt;
-  &amp;lt;%= image_tag asset_pack_path(&quot;media/images/logo.png&quot;), class: &quot;Logo&quot;, alt: &quot;Rails logo&quot; %&amp;gt;
-  &amp;lt;h1 class=&quot;ToDo-Header&quot;&amp;gt;Rails To Do&amp;lt;/h1&amp;gt;
-  &amp;lt;div class=&quot;ToDo-Container&quot; data-controller=&quot;todo&quot;&amp;gt;
-    &amp;lt;div class=&quot;ToDo-Content&quot; data-target=&quot;todo.todos&quot;&amp;gt;
-      &amp;lt;%= render @todos %&amp;gt;
-    &amp;lt;/div&amp;gt;
-
-    &amp;lt;div class=&quot;ToDoInput&quot;&amp;gt;
-      &amp;lt;%= form_with model: @todo, local: false,
-        data: { action: &quot;ajax:beforeSend-&amp;gt;todo#validateSubmit ajax:error-&amp;gt;todo#errorResult ajax:success-&amp;gt;todo#successResult&quot; } do |form| %&amp;gt;
-        &amp;lt;%= form.text_field :name, data: { target: &quot;todo.field&quot; } %&amp;gt;
-        &amp;lt;%= form.submit &quot;+&quot;, class: &quot;ToDo-Add&quot; %&amp;gt;
-      &amp;lt;% end %&amp;gt;
-    &amp;lt;/div&amp;gt;
-  &amp;lt;/div&amp;gt;
-&amp;lt;/div&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Before we continue, let us make a little detour here. Remember the failing test for &lt;code class=&quot;highlighter-rouge&quot;&gt;TodosController&lt;/code&gt; due to a missing template? The template is now in place, so the test should not be failing anymore, rerun the tests and see it by yourself.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ bin/rails test
-
-# Running:
-
-........
-
-Finished in 0.355593s, 22.4976 runs/s, 36.5586 assertions/s.
-8 runs, 11 assertions, 0 failures, 0 errors, 0 skips
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;It is time to add Javascript to the project. Let us start with the controller that helps to delete a To Do item. The file is &lt;strong&gt;app/javascript/controllers/todo_delete_controller.js&lt;/strong&gt;&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import { Controller } from &quot;stimulus&quot;
-
-export default class extends Controller {
-  static targets = [&quot;item&quot;]
-
-  errorResult(event) {
-    console.log(event.detail)
-  }
-
-  successResult(event) {
-    event.preventDefault()
-    this.itemTarget.remove()
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The next controller is the one that takes care of adding new To Do item. The file is &lt;strong&gt;app/javascript/controllers/todo_controller.js&lt;/strong&gt;&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import { Controller } from &quot;stimulus&quot;
-
-export default class extends Controller {
-  static targets = [&quot;todos&quot;, &quot;field&quot;]
-
-  errorResult(event) {
-    console.log(&quot;error&quot;, event.detail)
-  }
-
-  successResult(event) {
-    const response = event.detail[0]
-    const todoHTML = document.createRange().createContextualFragment(response.html)
-
-    this.todosTarget.prepend(todoHTML)
-    this.fieldTarget.value = &quot;&quot;
-  }
-
-  validateSubmit(event) {
-    if (this.fieldTarget.value === &quot;&quot;) {
-      event.preventDefault()
-    }
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;It has two functions, &lt;code class=&quot;highlighter-rouge&quot;&gt;validatesSubmit&lt;/code&gt;, which is called on form submit, and validates the input to now allow empty To Do. The second one, &lt;code class=&quot;highlighter-rouge&quot;&gt;successResult&lt;/code&gt; is called after the Ajax request is made, and it takes care to place the To Do HTML fragment in the DOM. The HTML To Do fragment is part of the server response.&lt;/p&gt;
-
-&lt;p&gt;The project is done. If you want to try it out, add a couple of seed records into &lt;strong&gt;db/seeds.rb&lt;/strong&gt; file.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Todo.create(name: &quot;clean the house&quot;)
-Todo.create(name: &quot;buy milk&quot;)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;And seed the database with the following command.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ bin/rails db:seed
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Now point your browser to &lt;a href=&quot;http://localhost:3400/&quot; target=&quot;_blank&quot;&gt;http://localhost:3400&lt;/a&gt; and try the application.&lt;/p&gt;
-&lt;div class=&quot;blog-media&quot;&gt;
-  &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/rails-todo.png&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;Rails To Do&quot; srcset=&quot;/assets/img/rails-todo.png 1200w, /assets/img/300-rails-todo.png 300w, /assets/img/768-rails-todo.png 768w, /assets/img/1024-rails-todo.png 1024w, /assets/img/180-rails-todo.png 180w, /assets/img/940-rails-todo.png 940w, /assets/img/320-rails-todo.png 320w, /assets/img/640-rails-todo.png 640w, /assets/img/960-rails-todo.png 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
-&lt;/div&gt;
-
-&lt;p&gt;The application is similar in terms of UI interaction, but in addition, it has a Backend that is not present in the original React application. It also has automated tests for models and controllers, and we can do a little better by adding a System Test. This kind of test automates the browser to “use” the application in specific scenarios.&lt;/p&gt;
-
-&lt;p&gt;To add a System test, create the file &lt;strong&gt;test/system/todos_test.rb&lt;/strong&gt; and add the following content.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;require &quot;application_system_test_case&quot;
-
-class TodosTest &amp;lt; ApplicationSystemTestCase
-  test &quot;visit todos&quot; do
-    todos_count = Todo.count
-    visit root_url
-
-    assert_selector &quot;h1&quot;, text: &quot;Rails To Do&quot;.upcase
-    assert_selector &quot;.ToDoItem&quot;, count: todos_count
-  end
-
-  test &quot;try to add an empty todo&quot; do
-    todos_count = Todo.count
-    visit root_url
-
-    fill_in &quot;todo_name&quot;, with: &quot;&quot;
-    click_button &quot;+&quot;
-
-    assert_selector &quot;.ToDoItem&quot;, count: todos_count
-  end
-
-  test &quot;add a todo&quot; do
-    todo = &quot;Add Tests&quot;
-    todos_count = Todo.count
-    visit root_url
-
-    fill_in &quot;todo_name&quot;, with: todo
-    click_button &quot;+&quot;
-
-    assert_selector &quot;.ToDoItem&quot;, count: todos_count + 1
-    assert_selector &quot;.ToDoItem&quot;, text: todo
-  end
-
-  test &quot;delete a todo&quot; do
-    todo = todos(:todo)
-    todos_count = Todo.count
-
-    visit root_url
-    todo_element = page.find &quot;.ToDoItem&quot;, text: todo.name
-    remove_button = todo_element.find &quot;.ToDoItem-Delete&quot;
-    remove_button.click
-
-    assert_selector &quot;.ToDoItem&quot;, count: todos_count - 1
-    refute_selector &quot;.ToDoItem&quot;, text: todo.name
-  end
-end
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;To run the System test, you need to have the Chrome browser installed. Run the test using the following command.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ bin/rails test:system
-
-# Running:
-
-Capybara starting Puma...
-* Version 4.3.1 , codename: Mysterious Traveller
-* Min threads: 0, max threads: 4
-* Listening on tcp://127.0.0.1:51968
-Capybara starting Puma...
-* Version 4.3.1 , codename: Mysterious Traveller
-* Min threads: 0, max threads: 4
-* Listening on tcp://127.0.0.1:51971
-....
-
-Finished in 5.133107s, 0.7793 runs/s, 1.3637 assertions/s.
-4 runs, 7 assertions, 0 failures, 0 errors, 0 skips
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;final-words&quot;&gt;Final words&lt;/h2&gt;
-
-&lt;p&gt;What I would like you to take from replicating this example is that sometimes there is no need to go all the way in with a separated frontend like React, Vue, or Svelte.&lt;/p&gt;
-
-&lt;p&gt;By using the HTML standard, the maturity of your framework, and a tool like StimulusJS you can archive the same “snappy” functionality without the mess of Javascript code from the time before frameworks.&lt;/p&gt;
-
-&lt;p&gt;Both libraries, rails-ujs and StimulusJS were developed within the Rails community, but the truth is that they do not depend on Rails, both can be used with any other backend/HTML template system.&lt;/p&gt;
-
-&lt;p&gt;You can find the sample code at &lt;a href=&quot;https://github.com/mariochavez/rails-todo-2019&quot; target=&quot;_blank&quot;&gt;https://github.com/mariochavez/rails-todo-2019&lt;/a&gt;&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><summary type="html">I created the same app with Rails and Javascript</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/vim.png" /><media:content medium="image" url="https://mariochavez.io/vim.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;p&gt;Espero que los puntos expresados en este post les sirva de ayuda en caso que también estén decidiendo implementar un API y quizás aún no se deciden entre hacerla REST o GraphQL.&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><summary type="html">Lecciones construyendo un API REST</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/developing.jpg" /><media:content medium="image" url="https://mariochavez.io/developing.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
