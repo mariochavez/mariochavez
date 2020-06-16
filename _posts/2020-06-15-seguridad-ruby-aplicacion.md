@@ -180,7 +180,7 @@ Todas las reglas mencionadas pueden integrarse en conjunto para decidir como des
 
 Las reglas del mismo tipo se leen de arriba hacia abajo y se van aplicando en ese orden. Rack::Attack ejecuta los tipos de reglas iniciando con **Permitir Acceso**, **Bloque** y **Regularización**. La primer regla que se cumpla para un cliente es la primera que se aplica.
 
-## Notas finales ****
+## Notas finales
 
 Como se puede apreciar con Rack::Attack se pueden crear políticas simples o muy complejas que nos ayuden a proteger nuestra aplicación de clientes maliciosos o simplemente proteger ciertas áreas de nuestra aplicación más allá de simplemente un usuario y contraseña.
 
