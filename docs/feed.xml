@@ -1,4 +1,195 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" /><updated>2020-06-15T20:49:58-05:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez : Blog</title><subtitle>Blog personal de Mario Alberto Chávez. Temas de desarrollo de software y fotografia.</subtitle><entry><title type="html">Proteger tu aplicación de ataques en Internet</title><link href="https://mariochavez.io/desarrollo/2020/06/15/seguridad-ruby-aplicacion.html" rel="alternate" type="text/html" title="Proteger tu aplicación de ataques en Internet" /><published>2020-06-15T01:01:00-05:00</published><updated>2020-06-15T01:01:00-05:00</updated><id>https://mariochavez.io/desarrollo/2020/06/15/seguridad-ruby-aplicacion</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2020/06/15/seguridad-ruby-aplicacion.html">&lt;p&gt;El Internet es una gran tecnología en su conjunto que ha cambiado la dinámica de la humanidad para consumir, publicar y realizar un sin fin de actividades que antes requerían de nuestra presencia física. Con todo lo bueno también existe una parte oscura. Hay personas que buscan encontrar problemas de seguridad, errores de programación que les de acceso a información privada o restringida.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" /><updated>2020-07-02T14:53:34-05:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez : Blog</title><subtitle>Blog personal de Mario Alberto Chávez. Temas de desarrollo de software y fotografia.</subtitle><entry><title type="html">Más allá del Rails Way</title><link href="https://mariochavez.io/desarrollo/2020/07/02/mas-alla-del-rails-way.html" rel="alternate" type="text/html" title="Más allá del Rails Way" /><published>2020-07-02T02:00:00-05:00</published><updated>2020-07-02T02:00:00-05:00</updated><id>https://mariochavez.io/desarrollo/2020/07/02/mas-alla-del-rails-way</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2020/07/02/mas-alla-del-rails-way.html">&lt;h1 id=&quot;más-allá-del-rails-way&quot;&gt;Más allá del “Rails way”&lt;/h1&gt;
+
+&lt;p&gt;Hace un par de años estuve presentando una plática llamada “Más allá del ‘Rails Way’” con grupos locales de desarrollo.&lt;/p&gt;
+
+&lt;p&gt;En la plática toco algunos temas que tienen relación a qué pasa cuando una aplicación de Rails ya ha crecido a cierto tamaño y qué podemos hacer para tratar de mantenerla en control.&lt;/p&gt;
+
+&lt;p&gt;No soy el único que habla sobre estos temas, por ejemplo Ryan Bigg trata el mismo tema en su libro “&lt;a href=&quot;https://leanpub.com/explodingrails/&quot; target=&quot;_blank&quot;&gt;Exploding Rails&lt;/a&gt;” solamente que el acercamiento de él es bastante radical y a mi punto de vista funcionaría en aplicaciones nuevas o “Greenfield” pero desafortunadamente desecha todo el conocimiento que hay sobre Rails.&lt;/p&gt;
+
+&lt;p&gt;David Bryant Copeland tiene su libro “&lt;a href=&quot;https://sustainable-rails.com&quot; target=&quot;_blank&quot;&gt;Sustainable Web Development with Rails&lt;/a&gt;” donde habla de su experiencia de como mantener en forma una aplicación de Rails que ha estado creciendo desde diferentes aspectos de la misma.&lt;/p&gt;
+
+&lt;p&gt;Mi plática está más alineada con las ideas de David Bryant Copeland y el alcance es más específico a ciertas áreas que en lo personal encuentro problemáticas y que describo a continuación.&lt;/p&gt;
+
+&lt;h2 id=&quot;fat-controllers-obese-models&quot;&gt;Fat Controllers, obese Models&lt;/h2&gt;
+
+&lt;p&gt;Esta ha sido una discusión desde hace mucho tiempo en el desarrollo de Rails. Es el primer problema que de identifica en el código de una aplicación de Rails con algunos años en desarrollo y aunque nos damos cuenta casi al inicio sobre esta problemática generalmente por cuestiones prácticas se asume como deuda técnica y se continua adelante.&lt;/p&gt;
+
+&lt;p&gt;El problema es que conforme pase el tiempo, sin importar si decidimos por “Fat Controllers” o “Obese Models”, o inclusive ambos; los cambios en ellos se vuelven problemáticos ya que el código es difícil de leer, entender y todavía más complicado de modificar.&lt;/p&gt;
+
+&lt;p&gt;Algunas estrategias para lidiar con estas situaciones que se pueden ir introduciendo poco a poco son las que menciono a continuación.&lt;/p&gt;
+
+&lt;h2 id=&quot;los-modelos-a-dieta&quot;&gt;Los modelos a dieta&lt;/h2&gt;
+
+&lt;p&gt;Podemos ir trabajando con los modelos para liberarlos de la carga de trabajo poco a poco. Ninguna de las estrategias aquí mostradas son un todo a nada.&lt;/p&gt;
+
+&lt;h3 id=&quot;scopes&quot;&gt;Scopes&lt;/h3&gt;
+
+&lt;p&gt;Desde que Rails introdujo “Scopes” en la versión 3 del framework es una de las funcionalidades más utilizadas y también más abusadas en Rails.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;scope&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:active&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;where&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;status: :active&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;No es raro abrir un modelo de “ActiveRecord” y entrarse con toda una sección de definiciones de “Scopes”, algunas muy simples, otras más complejas pero que generalmente en los controladores para poder ejecutar una consulta se utilizan encadenadas.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;scope&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:active&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;where&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;status: :active&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;scope&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:with_orders&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;includes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:orders&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;scope&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:ordered&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;order&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;created_at: :desc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;vi&quot;&gt;@products&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Product&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+  &lt;span class=&quot;nf&quot;&gt;active&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+  &lt;span class=&quot;nf&quot;&gt;with_orders&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+  &lt;span class=&quot;nf&quot;&gt;ordered&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+  &lt;span class=&quot;nf&quot;&gt;where&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;color: :red&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Hay quien dice que hacer esto hace más legible el código, es posible, pero no hace que sea simple de modificar y de mantener.&lt;/p&gt;
+
+&lt;p&gt;Desde hace tiempo prefiero hacer uso de “QueryObjects” cuando los “Querys” o “Scopes” se comienzan a poner complejos y más cuando hay condicionales que dicen si se tiene que aplicar o no restricciones.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ProductQuery&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;execute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;scope: &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Product&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;scope&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;scope&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;where&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;status: :active&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; 
+    &lt;span class=&quot;err&quot;&gt;…&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# more complex logic&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;vi&quot;&gt;@products&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ProductQuery&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;execute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+  &lt;span class=&quot;no&quot;&gt;Product&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;ordered: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;with_orders: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Esta clase encapsula  consultas complejas donde ademas podemos aplicar de forma condicional restricciones, uniones, ordenado y cualquier otras operación que se requiera. El resultado sigue siendo un &lt;em&gt;ActiveRecord::Relation&lt;/em&gt; el cual podemos seguir modificando fuera del “QueyObject”.&lt;/p&gt;
+
+&lt;p&gt;El uso es bastante simple además de que ofrece la oportunidad de que podamos escribir pruebas fuera del contexto del controlador o de los modelos.&lt;/p&gt;
+
+&lt;h3 id=&quot;concerns&quot;&gt;Concerns&lt;/h3&gt;
+
+&lt;p&gt;Los “Concerns” es otra herramienta que se ha utilizado para crear modelos o controladores que son compuestos por módulos reutilizables. Es una manera de mover código hacia módulos específicos para cierta funcionalidad.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Product&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ApplicationRecord&lt;/span&gt;
+  &lt;span class=&quot;kp&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Flaggable&lt;/span&gt;
+  &lt;span class=&quot;kp&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Taggable&lt;/span&gt;
+  &lt;span class=&quot;kp&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Conflictable&lt;/span&gt;
+  &lt;span class=&quot;kp&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Measurable&lt;/span&gt;
+  &lt;span class=&quot;kp&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Sanitizable&lt;/span&gt;
+  &lt;span class=&quot;kp&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Searchable&lt;/span&gt;
+  &lt;span class=&quot;kp&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Permisionable&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;no&quot;&gt;Product&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;methods&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; 161&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Los “Concerns” son útiles hasta cierto punto. El problema viene cuando tenemos muchos módulo que agregan funcionalidad, que dependen entre sí, que dependen del orden en que se que carguen y que a final de cuentas nuestro modelo o controlador termina con una cantidad absurda de métodos. Peor aún cuando hay conflictos entre los módulos.&lt;/p&gt;
+
+&lt;p&gt;La estrategia para este problema es algo que llamo “Actions”. Consiste en tener pequeñas clases que ejecuten acciones sobre los modelos sin agregar complejidad al modelo tal cual. Por ejemplo, la acción de recibir desde el controlador un campo de texto con etiquetas o “tags” separadas por coma y que el modelo tenga que expandirlas a un “Array” de Postgresql  puede se un “Action” que se llamada desde el mismo controlador.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ProductTagging&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;tag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;product&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tags&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;…&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;product&lt;/span&gt; 
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# more methods related to tagging&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;vi&quot;&gt;@product&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ProductTagging&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;tag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+  &lt;span class=&quot;vi&quot;&gt;@product&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;“&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;landscape&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;light&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reflection&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;”&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Dentro del controlador las llamadas pueden ser compuestas, es decir, tener llamada a más un “Action” que modifique o haga alguna operación con el modelo. De esta forma un “Action” puede tener pruebas fuera del contexto del controlador o del modelo.&lt;/p&gt;
+
+&lt;h3 id=&quot;presenters&quot;&gt;Presenters&lt;/h3&gt;
+
+&lt;p&gt;Creo que esta estrategia es bastante conocida ya por muchos. Es una forma de eliminar de los modelos código que tiene que ver en como se muestra la información de un modelo en una vista de Rails o en la serialización de un objeto JSON o en el cuerpo de un correo electrónico.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ProductPresenter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;SimpleDelegator&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;formatted_price&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;…&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;vi&quot;&gt;@presenter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ProductPresenter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@product&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;%= @presenter.formatted_price %&amp;gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;controladores-delgados&quot;&gt;Controladores delgados&lt;/h2&gt;
+
+&lt;p&gt;El primer paso para lograr esto es aplicar lo que aprendimos al poner a los modelos a dieta. ¿Pero qué pasa cuando la lógica de los controladores es compleja?&lt;/p&gt;
+
+&lt;p&gt;Es común que muchos de nuestros controladores iniciaron algo parecido a el siguiente bloque de código.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ProductsController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ApplicationController&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;create&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;vi&quot;&gt;@product&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;valid?&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;redirect_to&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:products&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;render&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:new&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Pero con el tiempo el controlador se fue complicando inevitablemente. Ahora nuestro controlador tiene cientos de líneas de código que son díficil de comprender o modificar.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ProductsController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ApplicationController&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# Many before_action&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# Many helper_method&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# Many queries&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Mi estrategia en estos caso es utilizar “Use Cases”. Sí, leíste bien, “Use Cases”. Es una forma de mover lógica del controlador a clases especialidas para realizar alguna operación compleja en un controlador y que de alguna forma tiene una semenjanza con la deficinición de “Use Cases” funcionales que el Product Manager crea para describir cómo debe funcionar.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ProductRegistrator&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;register&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+   &lt;span class=&quot;c1&quot;&gt;# complex logic and calculations&lt;/span&gt;
+&lt;span class=&quot;err&quot;&gt;…&lt;/span&gt;
+    &lt;span class=&quot;vi&quot;&gt;@product&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;En este ejemplo el crear un nuevo producto tiene muchas condiciones y lógica de negocio. Puede hacer uso de “Actions” o “Query Objects” para completar la operación de registrar un producto.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ProductsController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ApplicationController&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;create&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;product_registrator&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 
+      &lt;span class=&quot;no&quot;&gt;ProductRegistrator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;product_params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;vi&quot;&gt;@product&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;product_registrator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;register&lt;/span&gt;
+&lt;span class=&quot;err&quot;&gt;…&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Al remover la lógica compleja el controlador queda nuevamente simple, pero ahora hay una o quizás varias clases especializadas que saben cómo registrar un producto y lo mejor es que es posible utilizar esas clases fuera del contexto del controlador, quizás en un “Background Job”.&lt;/p&gt;
+
+&lt;p&gt;Esta estrategia también puede ser útil para refactorizar lógica del controlador donde podamos mantener la lógica original y escribir nueva funcionalidad que podamos activar con una bandera en el sistema.&lt;/p&gt;
+
+&lt;p&gt;Hay varias “Gems” o librerías que ofrecen algo similar aquí descrito, por ejemplo estan los “&lt;a href=&quot;https://github.com/collectiveidea/interactor&quot; target=&quot;_blank&quot;&gt;Interactors&lt;/a&gt;” ya sea utilizar una de ellas o la solución simple que aquí describo ayuda a desacoplar la lógica funcional de la aplicación del framework de Rails.&lt;/p&gt;
+
+&lt;h2 id=&quot;palabras-finales&quot;&gt;Palabras finales&lt;/h2&gt;
+
+&lt;p&gt;Estos son únicamente algunos consejos simples de como ir moldenado el código de una aplicación grande y compleja. Lo que me gusta en lo personal es que no me obliga a hacer un cambios radical sobre Rails y que me permite ir ajustando poco a poco la aplicación sin tener que entrar en el espiral de reescribir todo.&lt;/p&gt;
+
+&lt;p&gt;Al introducir las ideas aquí descritas nos vamos a encontrar con algunos efectos en el código de nuestra aplicación. Primero, vamos a tener más clases pequeñas con funcionalidad específica y que pueden probarse automáticamente sin tener demasiado contexto del framework de Rails.&lt;/p&gt;
+
+&lt;p&gt;Segundo, en el caso de los modelos prácticamente eliminamos los “Callbacks” que pueden ser complejos de depurar cuando hay problemas y que son un tanto oscuros y lo mismo puede llegar a pasar con los “Before Action” en los controladores.&lt;/p&gt;
+
+&lt;p&gt;Tercero, sí es verdad que vamos a tener más clase, pero van a ser clases pequeñas y que deben de tener una intención clara. Esto nos lleva a expandir la organización de nuestro código.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;app&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;models&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;controllers&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;views&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;presenters&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;queries&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;actions&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;use_cases&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Lo aquí propuesto en el post son acciones simples que podemos comenzar a incluir en nuestro código, sin embargo, no son las únicas estrategias que podemos utilizar. Hay que tener en cuenta que cualquier estrategia que adoptemos siempre va a tener sus “Pros” y “Cons”.&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><summary type="html">Más allá del “Rails way”</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/refactor.jpg" /><media:content medium="image" url="https://mariochavez.io/refactor.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Proteger tu aplicación de ataques en Internet</title><link href="https://mariochavez.io/desarrollo/2020/06/15/seguridad-ruby-aplicacion.html" rel="alternate" type="text/html" title="Proteger tu aplicación de ataques en Internet" /><published>2020-06-15T01:01:00-05:00</published><updated>2020-06-15T01:01:00-05:00</updated><id>https://mariochavez.io/desarrollo/2020/06/15/seguridad-ruby-aplicacion</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2020/06/15/seguridad-ruby-aplicacion.html">&lt;p&gt;El Internet es una gran tecnología en su conjunto que ha cambiado la dinámica de la humanidad para consumir, publicar y realizar un sin fin de actividades que antes requerían de nuestra presencia física. Con todo lo bueno también existe una parte oscura. Hay personas que buscan encontrar problemas de seguridad, errores de programación que les de acceso a información privada o restringida.&lt;/p&gt;
 
 &lt;p&gt;En la mayoría existen quienes utilizan scripts para probar por problemas de seguridad conocidos, hay quienes utilizan diccionarios para tratar de acceder por fuerza bruta, hay quienes utilizar ingeniería social para obtener accesos entre otros tipos de ataques.&lt;/p&gt;
 
@@ -1337,36 +1528,4 @@ te agradan de esa implementación y qué las que te desagradan, trata de seguir 
     &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/f64-page3.png&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;Actividades f/64&quot; srcset=&quot;/assets/img/f64-page3.png 1200w, /assets/img/300-f64-page3.png 300w, /assets/img/768-f64-page3.png 768w, /assets/img/1024-f64-page3.png 1024w, /assets/img/180-f64-page3.png 180w, /assets/img/940-f64-page3.png 940w, /assets/img/320-f64-page3.png 320w, /assets/img/640-f64-page3.png 640w, /assets/img/960-f64-page3.png 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
   &lt;/div&gt;
 
-&lt;p&gt;La actividad está abierta del 8 de abril, 2020 al 22 de abril, 2020. Para participar sólo es necesario registrarse y comenzar a subir el material fotográfico relacionado al tema.&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><summary type="html">El día de hoy puse en operación el sition https://actividades.f64.io como una herramienta complementaria a las pláticas presenciales que se organizan cada mes con fotógrafas y fotógrafos locales en Colima.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/f64-page1.png" /><media:content medium="image" url="https://mariochavez.io/f64-page1.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Foto libro Los Chayacates de Ixtlahuacán</title><link href="https://mariochavez.io/fotograf%C3%ADa/2020/02/11/foto-libro-los-chayacates.html" rel="alternate" type="text/html" title="Foto libro Los Chayacates de Ixtlahuacán" /><published>2020-02-11T12:00:00-06:00</published><updated>2020-02-11T12:00:00-06:00</updated><id>https://mariochavez.io/fotograf%C3%ADa/2020/02/11/foto-libro-los-chayacates</id><content type="html" xml:base="https://mariochavez.io/fotograf%C3%ADa/2020/02/11/foto-libro-los-chayacates.html">&lt;p&gt;Cuando comencé en la fotografía lo hice sin mucho sentido o sin pensar a detalle, fue realmente más una necesidad de tomar “snapshots” de los lugares que visitaba sin ninguna pretensión ni verlo como trabajo fotográfico.&lt;/p&gt;
-
-&lt;p&gt;Sin embargo, con el pasar del tiempo la fotografía ha tomado un sentido diferente, se ha vuelto una actividad importante para la cual me preparo y salgo específicamente con la idea de lograr un trabajo específico.&lt;/p&gt;
-
-&lt;p&gt;A través de este tiempo he logrado coleccionar un “cuerpo de trabajo”, es algo que se ha ido generando de manera orgánica y hoy en día en ese “cuerpo de trabajo” me es posible reconocer patrones que al momento de poner ese material en conjunto puede contar una historia.&lt;/p&gt;
-
-&lt;p&gt;No soy de los que publican material en redes sociales, sé que no hago fotos para los likes. En gran medida porque no me gustaría que mis fotos se pierdan en un mar de imágenes digital y qué pasen a través de la pantalla de un celular de forma efímera directo al olvido.&lt;/p&gt;
-
-&lt;p&gt;Es por esta razón que parte de este material sólo toma vida en forma de impresión digital o química y un poco de él en forma digital a través de &lt;a href=&quot;https://heroimage.co&quot; target=&quot;_blank&quot;&gt;https://heroimage.co&lt;/a&gt;. Y es precisamente buscando formatos para poder mostrar parte de este trabajo que nace la intención de crear foto libros.&lt;/p&gt;
-
-&lt;p&gt;Todo inició con un taller en el Foto Museo Cuatro Caminos sobre maquetación de foto libros dónde se dio forma al foto libro “Los Chayacates de Ixtlahuacán”, una fiesta popular del estado de Colima. Dado que en ese momento ya contaba con material suficiente para mostrar la fiesta en imágenes decidí que fueran el primer foto libro.&lt;/p&gt;
-&lt;div class=&quot;blog-media&quot;&gt;
-  &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/IMG_6269.jpg&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;Maqueta de fotolibro&quot; srcset=&quot;/assets/img/IMG_6269.jpg 1200w, /assets/img/300-IMG_6269.jpg 300w, /assets/img/768-IMG_6269.jpg 768w, /assets/img/1024-IMG_6269.jpg 1024w, /assets/img/180-IMG_6269.jpg 180w, /assets/img/940-IMG_6269.jpg 940w, /assets/img/320-IMG_6269.jpg 320w, /assets/img/640-IMG_6269.jpg 640w, /assets/img/960-IMG_6269.jpg 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Con la ayuda de Santiago Escobar-Jaramillo, quien impartió el curso, se realizó una selección y organización de las imágenes a formar parte de la maqueta inicial, cuya intención es visualizar la historia a contar.&lt;/p&gt;
-&lt;div class=&quot;blog-media&quot;&gt;
-  &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/IMG_6268.jpg&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;Maqueta de fotolibro&quot; srcset=&quot;/assets/img/IMG_6268.jpg 1200w, /assets/img/300-IMG_6268.jpg 300w, /assets/img/768-IMG_6268.jpg 768w, /assets/img/1024-IMG_6268.jpg 1024w, /assets/img/180-IMG_6268.jpg 180w, /assets/img/940-IMG_6268.jpg 940w, /assets/img/320-IMG_6268.jpg 320w, /assets/img/640-IMG_6268.jpg 640w, /assets/img/960-IMG_6268.jpg 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Posteriormente se produjeron dos archivos digitales, el primero de visualización, dónde se siguió refinando la idea la foto libro y posteriormente el archivo de impresión. De alguna forma la elaboración de este libro es un trabajo con una idea muy personal y hasta cierto punto también artesanal.&lt;/p&gt;
-
-&lt;p&gt;Cada foto libro se arma de manera totalmente manual, las hojas impresas se organizan, se doblan se forman pliegos que después se cosen a mano con aguja e hilo para finalmente ser empastados. No hay máquinas fuera de la impresora para crear cada foto libro.&lt;/p&gt;
-&lt;div class=&quot;blog-media&quot;&gt;
-  &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/IMG_6271.jpg&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;Hojas impresas&quot; srcset=&quot;/assets/img/IMG_6271.jpg 1200w, /assets/img/300-IMG_6271.jpg 300w, /assets/img/768-IMG_6271.jpg 768w, /assets/img/1024-IMG_6271.jpg 1024w, /assets/img/180-IMG_6271.jpg 180w, /assets/img/940-IMG_6271.jpg 940w, /assets/img/320-IMG_6271.jpg 320w, /assets/img/640-IMG_6271.jpg 640w, /assets/img/960-IMG_6271.jpg 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Si lees este post y te interesa tener una copia de foto libro “Los Chayacates de Ixtlahuacán” mándame un correo a &lt;a href=&quot;mailto:mario@heroimage.co?subject=Fotolibro%20Los%20Chayacates&quot;&gt;mario@heroimage.co&lt;/a&gt;, el costo por cada foto libro es de $250 pesos más gastos de envío y solamente se ensamblaran 50 copias del foto libro.&lt;/p&gt;
-&lt;div class=&quot;blog-media&quot;&gt;
-  &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/IMG_6270.jpg&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;El libro&quot; srcset=&quot;/assets/img/IMG_6270.jpg 1200w, /assets/img/300-IMG_6270.jpg 300w, /assets/img/768-IMG_6270.jpg 768w, /assets/img/1024-IMG_6270.jpg 1024w, /assets/img/180-IMG_6270.jpg 180w, /assets/img/940-IMG_6270.jpg 940w, /assets/img/320-IMG_6270.jpg 320w, /assets/img/640-IMG_6270.jpg 640w, /assets/img/960-IMG_6270.jpg 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
-&lt;/div&gt;
-
-&lt;p&gt;El libro tiene como dimensiones 21cm de alto por 14.5 de ancho y un peso de 100grms. Cuenta con 27 imágenes de las fiestas de Los Chayacates de Ixtlahuacán Colima así como una introducción explicando la misma. El libro está impreso a color en papel couché de 130grms y la pasta es de opalina 200grms plastificada.&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><summary type="html">Cuando comencé en la fotografía lo hice sin mucho sentido o sin pensar a detalle, fue realmente más una necesidad de tomar “snapshots” de los lugares que visitaba sin ninguna pretensión ni verlo como trabajo fotográfico.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/foto-libro-chayacates-1.png" /><media:content medium="image" url="https://mariochavez.io/foto-libro-chayacates-1.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;p&gt;La actividad está abierta del 8 de abril, 2020 al 22 de abril, 2020. Para participar sólo es necesario registrarse y comenzar a subir el material fotográfico relacionado al tema.&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><summary type="html">El día de hoy puse en operación el sition https://actividades.f64.io como una herramienta complementaria a las pláticas presenciales que se organizan cada mes con fotógrafas y fotógrafos locales en Colima.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/f64-page1.png" /><media:content medium="image" url="https://mariochavez.io/f64-page1.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
