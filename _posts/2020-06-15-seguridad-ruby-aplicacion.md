@@ -19,7 +19,7 @@ El Internet no es un lugar seguro.
 
 Hay diferentes opciones para proteger nuestras aplicaciones de problemas de seguridad y de cierto tipo de ataques.
 
-Una de las más simples pero que implica un costo es poner nuestra aplicación detrás de un servicio [Cloudflare](https://www.cloudflare.com/) que se encarga de detener la mayoría de las amenazas posibles.
+Una de las más simples pero que implica un costo es poner nuestra aplicación detrás de un servicio [Cloudflare](https://www.cloudflare.com/){:target="_blank"} que se encarga de detener la mayoría de las amenazas posibles.
 
 Si nuestra aplicación está escrita en Ruby (o Ruby on Rails) - y así lo asumiré de este momento en adelante -  siempre hay que asegurarnos que las librerías estén actualizadas a la versión más reciente para asegurar que si hay algún problema de seguridad en ellas estemos utilizando una versión con la corrección. La forma simple de estar al tanto de problemas de seguridad con librerías en Ruby es a través de [Bundle Audit](https://github.com/rubysec/bundler-audit){:target="_blank"}.
 

@@ -1,0 +1,382 @@
+<!doctype html>
+
+<html class="no-js" lang="es"><head>
+  <meta charset="utf-8"></meta>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0"></meta>
+  <title>Autenticación Two-Factor (2FA)</title>
+  <meta name="description" content="La seguridad es un factor importante en toda aplicación hoy en día, es algo que como desarrolladores de aplicaciones no debemos de dejar a la ligera. Es nuestra responsabilidad asegurar la información y la confianza de nuestros usuarios."></meta>
+  <meta name="keywords" content="development, rails, rack, otp, seguridad, 2fa, protección"></meta>
+  <link rel="image_src" href="https://mariochavez.io/assets/img/640-password-security.jpg"></link>
+
+  <link rel="alternate" type="application/rss+xml" title="Autenticación Two-Factor (2FA)" href="https://mariochavez.io/feed.xml">
+
+  <meta property="og:title" content="Autenticación Two-Factor (2FA)"></meta>
+  <meta property="og:description" content="La seguridad es un factor importante en toda aplicación hoy en día, es algo que como desarrolladores de aplicaciones no debemos de dejar a la ligera. Es nuestra responsabilidad asegurar la información y la confianza de nuestros usuarios."></meta>
+  <meta property="og:type" content="article" /></meta>
+  <meta property="og:url" content="https://mariochavez.io/desarrollo/2020/07/13/autenticacion-two-factor-2fa.html"></meta>
+  <meta property="og:image" content="https://mariochavez.io/assets/img/640-password-security.jpg"></meta>
+  <meta property="og:site_name" content="Mario Alberto Chávez : Blog"></meta>
+
+  <meta name="twitter:site" content="@mario_chavez"></meta>
+  <meta name="twitter:domain" content="mariochavez.io"></meta>
+  <meta name="twitter:card" content="summary_large_image"></meta>
+  <meta name="twitter:title" content="Autenticación Two-Factor (2FA)"></meta>
+  <meta name="twitter:description" content="La seguridad es un factor importante en toda aplicación hoy en día, es algo que como desarrolladores de aplicaciones no debemos de dejar a la ligera. Es nuestra responsabilidad asegurar la información y la confianza de nuestros usuarios."></meta>
+  <meta name="twitter:image:src" content="https://mariochavez.io/assets/img/640-password-security.jpg"></meta>
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet" type="text/css"></link>
+
+  <link rel="stylesheet" type="text/css" href="/assets/style-f53587fcc403c6b6464a7aaad7fb1970a9e72c0b3c05e52765810f28da2015e1.css" integrity="sha256-9TWH/MQDxrZGSnqq1/sZcKnnLAs8BeUnZYEPKNogFeE=" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="/assets/isotope-d185bd15a4ce846d0ae2da7dcdba501a42dd340f48e7690465610391cdee1657.css" integrity="sha256-0YW9FaTOhG0K4tp9zbpQGkLdNA9I52kEZWEDkc3uFlc=" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="/assets/mqueries-05a4d0eb5cc7105f9bba8b36a0b3738cd2d052a769570bae775e46495600e0de.css" integrity="sha256-BaTQ61zHEF+buos2oLNzjNLQUqdpVwuud15GSVYA4N4=" crossorigin="anonymous">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141668117-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-141668117-1');
+  </script>
+</head>
+<body class="loader-dot">
+    <div id="page-loader">
+      <span class="loader-icon"></span>
+    </div>
+
+    <div id="page-content"><header id="header">
+  <div class="header-inner clearfix">
+
+    <div id="logo">
+      <a href="/">
+        <img id="dark-logo" src="/assets/mariochavez.png" srcset="/assets/mariochavez.png 1x, /assets/mariochavez@2x.png 2x" alt="Mario Chávez">
+      </a>
+    </div>
+
+    <div id="menu" class="clearfix transition-enabled">
+      <div class="menu-actions">
+        <div class="menu-toggle"><span class="hamburger"></span></div>
+      </div>
+
+      <div id="menu-inner">
+        <nav id="main-nav">
+          <ul>
+            <li class="current_page_item"><a href="/">Secciones</a>
+              <ul class="sub-menu">
+                <li><a href="/desarrollo.html">Desarrollo de Software</a></li>
+                <li><a href="/fotografia.html">Fotografía</a></li>
+                <li><a href="/proyectos.html">Proyectos</a></li>
+              </ul>
+            </li>
+            <li><a href="/acerca.html">Acerca</a></li>
+            <li><a href="https://heroimage.co" target="_blank">Hero Image</a></li>
+            <li><a href="https://f64.io" target="_blank">F/64</a></li>
+            <li><a href="https://michelada.io" target="_blank">michelada.io</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <div id="header-widget" class="social">
+      <ul class="socialmedia-widget">
+        <li class="facebook"><a href="#"></a></li>
+        <li class="twitter"><a href="#"></a></li>
+        <li class="instagram"><a href="#"></a></li>
+      </ul>
+    </div> <!-- END #header-awidget -->
+
+  </div>
+</header>
+<div id="hero-and-body">
+
+        <section id="hero" class="hero-auto no-bg">
+
+          <div id="page-title" class="wrapper-small">
+            <span class="post-cat"><a class="cat-link" href="#">desarrollo</a></span>
+                       <h1 class="post-name"><strong>Autenticación Two-Factor (2FA)</strong></h1>
+            <div class="post-meta">
+              <span class="post-date">Julio 13, 2020</span>
+              <div class="meta-author"><span>por</span> <a href="/">Mario Alberto Chávez</a></div>
+            </div>
+          </div>
+
+        </section>
+
+        <section id="page-body">
+          <div id="blog-single">
+
+            <div class="blog-media">
+              <img width="1200" height="800" src="/assets/img/password-security.jpg"
+                class="attachment-orio-thumb-big size-orio-thumb-big wp-post-image" alt="Main image"
+                srcset="/assets/img/password-security.jpg 1200w, /assets/img/300-password-security.jpg 300w, /assets/img/768-password-security.jpg 768w, /assets/img/1024-password-security.jpg 1024w, /assets/img/180-password-security.jpg 180w, /assets/img/940-password-security.jpg 940w, /assets/img/320-password-security.jpg 320w, /assets/img/640-password-security.jpg 640w, /assets/img/960-password-security.jpg 960w" sizes="(max-width: 1200px) 100vw, 1200px" />
+            </div>
+
+            <div class="blog-content wrapper-small">
+              <h1 id="autenticación-two-factor-2fa">Autenticación Two-Factor (2FA)</h1>
+
+<p>El publicar una aplicación en Internet automáticamente vuelve la cuestión de seguridad un tema importante como el agregar nuevas características o solucionar errores en la misma.</p>
+
+<p>Aunque Ruby on Rails  por omisión configura toda nueva aplicación con ciertos parámetros que básicos de seguridad hay detalles que nosotros como desarrolladores o administradores de una aplicación debemos de tomar.</p>
+
+<p>El el post de hace unas semanas <a href="https://mariochavez.io/desarrollo/2020/06/15/seguridad-ruby-aplicacion.html" target="_blank">Proteger tu aplicación de ataques en Internet</a> platiqué de acciones que podemos configurar para proteger una aplicación de posibles ataques, el la mayoría automatizados.</p>
+
+<p>Ahora en este post quiero hablar de el tema de cómo proteger a nuestros usuarios del robo de contraseñas o de un tipo de ataque llamado <em>phising</em> diseñado con la misma idea de robar credenciales.</p>
+
+<h2 id="two-factor-2fa-contraseñas-de-un-sólo-uso">Two-Factor (2FA) contraseñas de un sólo uso</h2>
+
+<p>En muchas de las aplicaciones modernas que se preocupan por la seguridad de sus usuarios agregan un nivel más a la protección de contraseñas. Aplicaciones de correo electrónico, de información financiera o bancos entre muchas otras cuentan como una opción más de protección las contraseñas de un sólo uso.</p>
+
+<p>Este tipo de seguridad se conoce como autenticación <em>Two-Factor</em> e implica que el usuario aparte de su contraseña para iniciar una sesión necesita generar un código temporal de un sólo uso con una aplicación de su teléfono. La aplicación registra un código secreto que utiliza para generar los códigos temporales que el usuario necesita.</p>
+
+<p>Aplicaciones como Google Authenticator o <a href="https://authy.com/" target="_blank">Authy</a> se utilizan para generar ese código temporal.</p>
+
+<p>Otra forma de implementar las contraseñas de un sólo uso es con el envío del código temporal a través de SMS al teléfono del usuario como segundo paso después de introducir su contraseña.</p>
+
+<h2 id="rails-y-otp">Rails y OTP</h2>
+
+<p>Implementar OTP en una aplicación de Ruby on Rails es relativamente sencillo gracias a la gema <a href="https://github.com/mdp/rotp" target="_blank">rtop</a> que hace todo el trabajo de implementar los <a href="http://tools.ietf.org/html/rfc4226" target="_blank">RFC 4226</a> y <a href="http://tools.ietf.org/html/rfc6238" target="_blank">RFC 6238</a> para contraseñas de un sólo uso por contador o por tiempo.</p>
+
+<p>Realmente utilizando <em>rtop</em> lo complicado es diseñar un flujo que sea amigable para el usuario no técnico dónde se le lleve por el proceso de activar su cuenta para que este protegida por 2FA. Además, hay que darle la posibilidad al usuario de poder tener acceso a la misma en caso de que su dispositivo móvil se haya dañado o extraviado; esto generalmente sucede con un grupo de códigos de recuperación que el usuario recibe al momento de activar su cuenta para 2FA.</p>
+
+<h3 id="la-aplicación">La aplicación</h3>
+
+<p>Para el contenido de este post cree una aplicación de Ruby on Rails con la implementación de OTP y sus flujos. Donde la lógica de controladores y vistas están dentro de un <em>namespace</em> llamado <strong><em>Otp</em></strong> con la finalidad de que sea sencilla su reutilización en otras aplicaciones.</p>
+
+<p>Para el sistema de autenticación vía correo electrónico y contraseña no utilicé ninguna de las librerías populares, en su lugar utilicé un generador que desarrollé hace algunos años y que genera lo básico para poder registrarse e iniciar y cerrar sesión utilizando la funcionalidad de <a href="http://api.rubyonrails.org/classes/ActiveModel/SecurePassword/ClassMethods.html#method-i-has_secure_password" target="_blank">has_secure_password</a> de Rails. El motivo de esta decisión es eliminar la complejidad de las librerías conocidas del foco de la implementación de OTP. El código del generador está disponible en su <a href="https://github.com/mariochavez/mac_generators/" target="_blank">repositorio</a>.</p>
+
+<p>El repositorio del código de esta aplicación está disponible en el <a href="https://github.com/mariochavez/rails-two-factor-otp" target="_blank">repositorio</a>. El post no va a mostrar en detalle el código por lo que va a ser necesario hacer referencia en el repositorio.</p>
+
+<p>La aplicación de Rails de creó como se muestra a continuación. Se desactivaron algunos <em>frameworks</em> de Ruby on Rails que no son útiles para los objetivos de esta aplicación. Adicionalmente se instaló Webpack y Stimulus, siendo el último utilizado en varias partes de la aplicación que veremos un poco más adelante.</p>
+
+<p>Finalmente con el generador que mencioné anteriormente generamos modelos, vistas y controladores para poder realizar registro y autenticación vía correo electrónico. Por omisión en lugar de crear el modelo <strong><em>User</em></strong>, al que estamos acostumbrados, se crea el modelo <strong><em>Identity</em></strong>.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="n">rail</span> <span class="n">new</span> <span class="n">otp_security</span> <span class="o">-</span><span class="n">d</span> <span class="n">postgresql</span> <span class="o">--</span><span class="n">skip</span><span class="o">-</span><span class="n">action</span><span class="o">-</span><span class="n">mailer</span> <span class="o">--</span><span class="n">skip</span><span class="o">-</span><span class="n">action</span><span class="o">-</span><span class="n">mailbox</span> <span class="o">--</span><span class="n">skip</span><span class="o">-</span><span class="n">action</span><span class="o">-</span><span class="n">text</span> <span class="o">--</span><span class="n">skip</span><span class="o">-</span><span class="n">active</span><span class="o">-</span><span class="n">storage</span> <span class="o">--</span><span class="n">skip</span><span class="o">-</span><span class="n">action</span><span class="o">-</span><span class="n">cable</span> <span class="o">--</span><span class="n">skip</span><span class="o">-</span><span class="n">sprockets</span>
+<span class="err">$</span> <span class="n">cd</span> <span class="n">otp_security</span>
+<span class="err">$</span> <span class="n">bin</span><span class="o">/</span><span class="n">rails</span> <span class="n">webpacker</span><span class="ss">:install</span>
+<span class="err">$</span> <span class="n">bin</span><span class="o">/</span><span class="n">rails</span> <span class="n">webpacker</span><span class="ss">:install:stimulus</span>
+<span class="err">$</span> <span class="n">yarn</span> <span class="n">add</span> <span class="n">bulma</span>
+<span class="err">$</span> <span class="n">bin</span><span class="o">/</span><span class="n">rails</span> <span class="n">g</span> <span class="n">authentication</span><span class="ss">:email</span>
+</code></pre></div></div>
+
+<h3 id="activar-2fa">Activar 2FA</h3>
+
+<p>Activar 2FA para un usuario implica el explicarle al usuario en qué consiste y cómo va a cambiar su experiencia al iniciar sesión y llevarlo de la mano en el proceso.</p>
+
+<p>El proceso tipo “<em>wizard</em>” se inicia con el controlador <code class="highlighter-rouge">Otp::ConfigureController</code> en donde inicialmente con la ayuda de <em>rtop</em> se genera un código secreto y único por cada usuario.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">new</span>
+  <span class="vi">@otp_secret</span> <span class="o">=</span> <span class="n">generate_otp_secret</span>
+  <span class="vi">@qr_code</span> <span class="o">=</span> <span class="n">generate_qr_code_url</span><span class="p">(</span><span class="vi">@otp_secret</span><span class="p">,</span> <span class="n">current_identity</span><span class="p">.</span><span class="nf">email</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>El “<em>wizard</em>” informativo es manejado por el controlador de Stimulus <code class="highlighter-rouge">wizard_controller.js</code>.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">Controller</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">stimulus</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="kd">class</span> <span class="kd">extends</span> <span class="nx">Controller</span> <span class="p">{</span>
+  <span class="kd">static</span> <span class="nx">targets</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2">slide</span><span class="dl">"</span><span class="p">];</span>
+
+  <span class="nx">connect</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">showSlide</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="nx">disconnect</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">showSlide</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="nx">next</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">event</span><span class="p">.</span><span class="nx">stopPropagation</span><span class="p">();</span>
+    <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">showSlide</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="nx">back</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">index</span> <span class="o">!==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">event</span><span class="p">.</span><span class="nx">stopPropagation</span><span class="p">();</span>
+      <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">showSlide</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">index</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="nx">showSlide</span><span class="p">(</span><span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">index</span> <span class="o">=</span> <span class="nx">index</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">slideTargets</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">element</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="kd">let</span> <span class="nx">idx</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="dl">"</span><span class="s2">data-wizard-index</span><span class="dl">"</span><span class="p">));</span>
+      <span class="nx">element</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">toggle</span><span class="p">(</span><span class="dl">"</span><span class="s2">wizard--current</span><span class="dl">"</span><span class="p">,</span> <span class="nx">index</span> <span class="o">===</span> <span class="nx">idx</span><span class="p">);</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Al final del “<em>wizard</em>” al usuario se le presenta un código QR que debe de escanear utilizando una aplicación de autenticación 2FA compatible con Google Authenticator como <a href="https://authy.com/" target="_blank">Authy</a>. Después de escanear y registrar la autenticación en la aplicación móvil el usuario tiene que introducir el código generado para verificar que todo se encuentra listo para habilitar 2FA para el usuario.</p>
+
+<p>El código del usuario se recibe en el controlador <code class="highlighter-rouge">Otp::ConfigureController</code> donde una vez que ha sido verificado se guarda el secreto único del usuario, se guarda el <em>timestamp</em> del último código que verificó el usuario y se generan 10 código de recuperación en caso de el usuario pierda o se le dañe su dispositivo y que no quede bloqueado.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">create</span>
+  <span class="n">otp_secret</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="ss">:otp_secret</span><span class="p">]</span>
+  <span class="n">otp_code</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="ss">:otp_code</span><span class="p">]</span>
+
+  <span class="n">last_otp_at</span> <span class="o">=</span> <span class="n">verify_otp_code</span><span class="p">(</span><span class="n">otp_secret</span><span class="p">,</span> <span class="n">otp_code</span><span class="p">,</span> <span class="kp">nil</span><span class="p">)</span>
+
+  <span class="k">if</span> <span class="n">last_otp_at</span><span class="p">.</span><span class="nf">present?</span>
+    <span class="vi">@recovery_codes</span> <span class="o">=</span> <span class="n">generate_recovery_codes</span>
+    <span class="n">current_identity</span><span class="p">.</span><span class="nf">tap</span> <span class="k">do</span> <span class="o">|</span><span class="n">identity</span><span class="o">|</span>
+      <span class="n">identity</span><span class="p">.</span><span class="nf">last_otp_at</span> <span class="o">=</span> <span class="no">Time</span><span class="p">.</span><span class="nf">at</span><span class="p">(</span><span class="n">last_otp_at</span><span class="p">).</span><span class="nf">utc</span><span class="p">.</span><span class="nf">to_datetime</span>
+      <span class="n">identity</span><span class="p">.</span><span class="nf">otp_secret_key</span> <span class="o">=</span> <span class="n">otp_secret</span>
+      <span class="n">identity</span><span class="p">.</span><span class="nf">recovery_codes</span> <span class="o">=</span> <span class="vi">@recovery_codes</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s2">" "</span><span class="p">)</span>
+      <span class="n">identity</span><span class="p">.</span><span class="nf">save</span>
+    <span class="k">end</span>
+
+    <span class="n">redirect_to</span> <span class="n">otp_complete_path</span><span class="p">,</span> <span class="ss">notice: </span><span class="s2">"2AF enabled succesfully"</span>
+  <span class="k">else</span>
+    <span class="n">render</span> <span class="ss">json: </span><span class="p">{</span><span class="ss">error: </span><span class="s2">"Verification code is invalid"</span><span class="p">},</span> <span class="ss">status: :unprocessable_entity</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>El código único y secreto así como los código de recuperación son secretos sensibles de los cuales tenemos que prevenir que caigan en manos no confiables. Es por este motivo que esos atributos se guardan cifrados en la base de datos con la ayuda de la gema <a href="https://github.com/attr-encrypted/attr_encrypted" target="_blank">attr_encrypted</a>. La llave de cifrado se guarda en las credenciales de Rails.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Identity</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">has_secure_password</span> <span class="ss">validations: </span><span class="kp">true</span>
+
+  <span class="n">attr_encrypted</span> <span class="ss">:otp_secret_key</span><span class="p">,</span> <span class="ss">:recovery_codes</span><span class="p">,</span> <span class="ss">key: </span><span class="no">Base64</span><span class="p">.</span><span class="nf">decode64</span><span class="p">(</span><span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">credentials</span><span class="p">.</span><span class="nf">encryption</span><span class="p">[</span><span class="ss">:otp_secret_key</span><span class="p">])</span>
+
+  <span class="n">validates</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">presence: </span><span class="kp">true</span><span class="p">,</span> <span class="ss">uniqueness: </span><span class="kp">true</span>
+  <span class="n">validates</span> <span class="ss">:password_confirmation</span><span class="p">,</span> <span class="ss">presence: </span><span class="kp">true</span><span class="p">,</span> <span class="ss">if: </span><span class="o">-&gt;</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="p">{</span> <span class="n">r</span><span class="p">.</span><span class="nf">password</span><span class="p">.</span><span class="nf">present?</span> <span class="p">}</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>La llave de cifrado se genera en una consola de Ruby con el siguiente comando <code class="highlighter-rouge">Base64.encode64(SecureRandom.random_bytes(32))</code>.</p>
+
+<p>Una vez que se validó el código y se guardó la información secreta, al usuario se le muestran sus códigos de recuperación, los cuales van a ser visibles esta única ocasión y se le muestra al usuario opciones para copiar los códigos al “<em>clipboard</em>” o imprimirlos o descargarlos en un archivo. Es responsabilidad del usuario guardarlo y mantenerlos seguros. El controlador <code class="highlighter-rouge">Otp::CompleteController</code> se encarga de esta parte.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">show</span>
+  <span class="n">current_identity</span><span class="p">.</span><span class="nf">update_column</span><span class="p">(</span><span class="ss">:otp_enabled_at</span><span class="p">,</span> <span class="no">Time</span><span class="p">.</span><span class="nf">zone</span><span class="p">.</span><span class="nf">now</span><span class="p">)</span>
+  <span class="vi">@recovery_codes</span> <span class="o">=</span> <span class="n">current_identity</span><span class="p">.</span><span class="nf">recovery_codes</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="s2">" "</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>La lógica para copiar, imprimir o descargar los códigos de recuperación está implementada en los controladores de Stimulus <code class="highlighter-rouge">clipboard_controller.js</code>, <code class="highlighter-rouge">print_controller.js</code> y <code class="highlighter-rouge">download_controller.js</code>.</p>
+
+<div class="blog-media">
+  <img width="1200" height="800" src="/assets/img/login-with-otp.gif" class="attachment-orio-thumb-big size-orio-thumb-big wp-post-image" alt="Enable OTP" srcset="/assets/img/login-with-otp.gif 1200w, /assets/img/300-login-with-otp.gif 300w, /assets/img/768-login-with-otp.gif 768w, /assets/img/1024-login-with-otp.gif 1024w, /assets/img/180-login-with-otp.gif 180w, /assets/img/940-login-with-otp.gif 940w, /assets/img/320-login-with-otp.gif 320w, /assets/img/640-login-with-otp.gif 640w, /assets/img/960-login-with-otp.gif 960w" sizes="(max-width: 1200px) 100vw, 1200px" />
+</div>
+
+<h3 id="nuevo-inicio-de-sesión">Nuevo inicio de sesión</h3>
+
+<p>Con 2FA activado para un usuario su flujo de inicio de sesión cambia. Ahora el usuario después de ingresar sus credenciales, se le pedirá que ingrese el código temporal que se genera en su aplicación de autenticación en el móvil.</p>
+
+<p>El código se valida y si es correcto entonces se guarda la última ocasión que el usuario validó un código correcto, esto con el fin de evitar que el código se pueda reutilizar en la ventana de 30 segundos que es cuando se genera un nuevo código.</p>
+
+<p>Si el código no es válido, entonces el usuario no va a poder iniciar sesión.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">create</span>
+  <span class="n">code</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="ss">:code</span><span class="p">]</span><span class="o">&amp;</span><span class="p">.</span><span class="nf">strip</span>
+  <span class="n">verified</span> <span class="o">=</span> <span class="kp">false</span>
+
+  <span class="k">if</span> <span class="n">present_code?</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+    <span class="n">last_otp_at</span> <span class="o">=</span> <span class="n">verify_otp_code</span><span class="p">(</span><span class="n">current_identity</span><span class="p">.</span><span class="nf">otp_secret_key</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">current_identity</span><span class="p">.</span><span class="nf">last_otp_at</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">last_otp_at</span><span class="p">.</span><span class="nf">present?</span>
+      <span class="n">current_identity</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="ss">last_otp_at: </span><span class="no">Time</span><span class="p">.</span><span class="nf">at</span><span class="p">(</span><span class="n">last_otp_at</span><span class="p">).</span><span class="nf">utc</span><span class="p">.</span><span class="nf">to_datetime</span><span class="p">)</span>
+      <span class="n">verified</span> <span class="o">=</span> <span class="kp">true</span>
+
+    <span class="k">else</span>
+      <span class="n">verified_code</span><span class="p">,</span> <span class="n">recovery_codes</span> <span class="o">=</span> <span class="n">verify_recovery_code</span><span class="p">(</span><span class="n">current_identity</span><span class="p">.</span><span class="nf">recovery_codes</span><span class="p">,</span> <span class="n">code</span><span class="p">)</span>
+      <span class="k">if</span> <span class="n">verified_code</span><span class="p">.</span><span class="nf">present?</span>
+        <span class="n">current_identity</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="ss">recovery_codes: </span><span class="n">recovery_codes</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s2">" "</span><span class="p">))</span>
+        <span class="n">verified</span> <span class="o">=</span> <span class="kp">true</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+
+    <span class="k">if</span> <span class="n">verified</span>
+      <span class="n">warden</span><span class="p">.</span><span class="nf">session</span><span class="p">(</span><span class="ss">:identity</span><span class="p">)[</span><span class="s2">"otp_verified"</span><span class="p">]</span> <span class="o">=</span> <span class="kp">true</span>
+      <span class="k">return</span> <span class="n">redirect_to</span> <span class="n">root_path</span><span class="p">,</span> <span class="ss">notice: </span><span class="n">t</span><span class="p">(</span><span class="s2">".logged_in"</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="n">render</span> <span class="ss">json: </span><span class="p">{</span><span class="ss">error: </span><span class="s2">"Verification code is invalid"</span><span class="p">},</span> <span class="ss">status: :unprocessable_entity</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>En caso de que el usuario haya perdido acceso a la aplicación móvil que genera los códigos temporales este puede hacer uso de uno de los 10 códigos de recuperación en lugar del código temporal. Al hacer uso del código de recuperación y que sea válido, este se elimina impidiendo que se pueda volver a utilizar y se le permite el inicio de sesión al usuario.</p>
+
+<p>Esta código se encuentra en el controlador <code class="highlighter-rouge">Otp::VerifyController</code>.</p>
+
+<div class="blog-media">
+  <img width="1200" height="800" src="/assets/img/login-with-recovery-code.gif" class="attachment-orio-thumb-big size-orio-thumb-big wp-post-image" alt="Login with Recovery" srcset="/assets/img/login-with-recovery-code.gif 1200w, /assets/img/300-login-with-recovery-code.gif 300w, /assets/img/768-login-with-recovery-code.gif 768w, /assets/img/1024-login-with-recovery-code.gif 1024w, /assets/img/180-login-with-recovery-code.gif 180w, /assets/img/940-login-with-recovery-code.gif 940w, /assets/img/320-login-with-recovery-code.gif 320w, /assets/img/640-login-with-recovery-code.gif 640w, /assets/img/960-login-with-recovery-code.gif 960w" sizes="(max-width: 1200px) 100vw, 1200px" />
+</div>
+
+<h3 id="deshabilitar-2fa">Deshabilitar 2FA</h3>
+
+<p>Aunque no es lo recomendable, el usuario que ha iniciado puede deshabilitar la necesidad de autenticación 2FA al iniciar sesión. Esto puede ser necesario en el caso de que el usuario cambie de dispositivo móvil por lo que es necesario deshabilitar 2FA y volver a habilitarlo con el nuevo dispositivo.</p>
+
+<p>En el controlador <code class="highlighter-rouge">Otp::DisableController</code> se realiza la desactivación de 2FA dónde se elimina la información como secretos, códigos de recuperación y otros datos adicionales que en conjunto deshabilitan 2FA.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">destroy</span>
+  <span class="n">current_identity</span><span class="p">.</span><span class="nf">tap</span> <span class="k">do</span> <span class="o">|</span><span class="n">identity</span><span class="o">|</span>
+    <span class="n">identity</span><span class="p">.</span><span class="nf">last_otp_at</span> <span class="o">=</span> <span class="kp">nil</span>
+    <span class="n">identity</span><span class="p">.</span><span class="nf">otp_secret_key</span> <span class="o">=</span> <span class="kp">nil</span>
+    <span class="n">identity</span><span class="p">.</span><span class="nf">recovery_codes</span> <span class="o">=</span> <span class="kp">nil</span>
+    <span class="n">identity</span><span class="p">.</span><span class="nf">otp_enabled_at</span> <span class="o">=</span> <span class="kp">nil</span>
+    <span class="n">identity</span><span class="p">.</span><span class="nf">save</span>
+  <span class="k">end</span>
+
+  <span class="n">redirect_to</span> <span class="n">root_path</span><span class="p">,</span> <span class="ss">notice: </span><span class="s2">"2FA disabled succesfully"</span>
+<span class="k">end</span>
+</code></pre></div></div>
+<div class="blog-media">
+  <img width="1200" height="800" src="/assets/img/disable-otp.gif" class="attachment-orio-thumb-big size-orio-thumb-big wp-post-image" alt="Disable OTP" srcset="/assets/img/disable-otp.gif 1200w, /assets/img/300-disable-otp.gif 300w, /assets/img/768-disable-otp.gif 768w, /assets/img/1024-disable-otp.gif 1024w, /assets/img/180-disable-otp.gif 180w, /assets/img/940-disable-otp.gif 940w, /assets/img/320-disable-otp.gif 320w, /assets/img/640-disable-otp.gif 640w, /assets/img/960-disable-otp.gif 960w" sizes="(max-width: 1200px) 100vw, 1200px" />
+</div>
+
+<h3 id="detalles-finales-de-la-aplicación">Detalles finales de la aplicación</h3>
+
+<p>El módulo <code class="highlighter-rouge">Otp::Base</code> incluye la lógica común entre los controladores relacionados en el proceso de 2FA.</p>
+
+<p>En el proyecto disponible en el repositorio mencionado al inicio del post se incluyen también algunas pruebas de sistema, es decir pruebas dónde se automatiza el navegador para simular la interacción del usuario. Las pruebas tienen comentarios que explican qué operaciones son las que se están realizando para verificar los escenarios de 2FA.</p>
+
+<h2 id="conclusiones">Conclusiones</h2>
+
+<p>La seguridad es un factor importante en toda aplicación hoy en día, es algo que como desarrolladores de aplicaciones no debemos de dejar a la ligera. Es nuestra responsabilidad asegurar la información y la confianza de nuestros usuarios.</p>
+
+<p>Estoy seguro que al revisar a detalle el código de la aplicación de ejemplo veremos que es sencillo implementar un nivel más de seguridad en nuestras aplicaciones y que el código está pensado en que pueda ser reutilizado.</p>
+
+
+              <!--
+              <div id="single-share" class="fixed">
+                <h6 class="widget-title title-alt">Share</h6>
+                <ul class="socialmedia-widget">
+                  <li class="facebook"><a href="#"></a></li>
+                  <li class="twitter"><a href="#"></a></li>
+                  <li class="googleplus"><a href="#"></a></li>
+                  <li class="pinterest"><a href="#"></a></li>
+                </ul>
+              </div>
+              -->
+
+            </div>
+          </div>
+        </section><footer id="footer" >
+  <div class="footer-inner">
+    <div class="column-section spaced-big clearfix">
+      <div class="column one-half">
+        <p>
+         <img id="dark-logo" src="/assets/mariochavez.png" srcset="/assets/mariochavez.png 1x, /assets/mariochavez@2x.png 2x" alt="Mario Chávez">
+        </p>
+        <h6><strong>Mario Alberto Chávez Cárdenas</strong></h6>
+        <small>Copyright © 2020 Mario Alberto Chávez Cárdenas.</small>
+      </div>
+    </div>
+  </div>
+</footer>
+</div><script integrity="sha256-zFEi9rPqpkNHK3rBRasJy8Wg/6p9F7OJb3y7c+pYWpg=" crossorigin="anonymous" src="/assets/jquery-1.12.4.min-cc5122f6b3eaa643472b7ac145ab09cbc5a0ffaa7d17b3896f7cbb73ea585a98.js" type="text/javascript"></script>
+<script integrity="sha256-wC1z/rhmt1HL4oHCWZBCfEnlDVRoyd/pgK0mw3szPwk=" crossorigin="anonymous" src="/assets/plugins-c02d73feb866b751cbe281c25990427c49e50d5468c9dfe980ad26c37b333f09.js" type="text/javascript"></script>
+<script integrity="sha256-Eb+0agFdSeKjMVpciJcveYAmQCgLY/1m2j8llYabW2s=" crossorigin="anonymous" src="/assets/jquery.imagesloaded.min-11bfb46a015d49e2a3315a5c88972f79802640280b63fd66da3f2595869b5b6b.js" type="text/javascript"></script>
+<script integrity="sha256-jtoBd6LGcFxlyQ6H4JYR/FT9+vgf52H0IrAh57WacZw=" crossorigin="anonymous" src="/assets/jquery.isotope.min-8eda0177a2c6705c65c90e87e09611fc54fdfaf81fe761f422b021e7b59a719c.js" type="text/javascript"></script>
+<script integrity="sha256-CEBbmkbD4MhghrH5XHoh9QLFe9kWe2phWwd6j0WsD3c=" crossorigin="anonymous" src="/assets/script-08405b9a46c3e0c86086b1f95c7a21f502c57bd9167b6a615b077a8f45ac0f77.js" type="text/javascript"></script>
+</body>
+</html>

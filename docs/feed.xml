@@ -1,4 +1,234 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" /><updated>2020-07-02T14:53:34-05:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez : Blog</title><subtitle>Blog personal de Mario Alberto Chávez. Temas de desarrollo de software y fotografia.</subtitle><entry><title type="html">Más allá del Rails Way</title><link href="https://mariochavez.io/desarrollo/2020/07/02/mas-alla-del-rails-way.html" rel="alternate" type="text/html" title="Más allá del Rails Way" /><published>2020-07-02T02:00:00-05:00</published><updated>2020-07-02T02:00:00-05:00</updated><id>https://mariochavez.io/desarrollo/2020/07/02/mas-alla-del-rails-way</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2020/07/02/mas-alla-del-rails-way.html">&lt;h1 id=&quot;más-allá-del-rails-way&quot;&gt;Más allá del “Rails way”&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" /><updated>2020-07-13T13:18:50-05:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez : Blog</title><subtitle>Blog personal de Mario Alberto Chávez. Temas de desarrollo de software y fotografia.</subtitle><entry><title type="html">Autenticación Two-Factor (2FA)</title><link href="https://mariochavez.io/desarrollo/2020/07/13/autenticacion-two-factor-2fa.html" rel="alternate" type="text/html" title="Autenticación Two-Factor (2FA)" /><published>2020-07-13T01:01:00-05:00</published><updated>2020-07-13T01:01:00-05:00</updated><id>https://mariochavez.io/desarrollo/2020/07/13/autenticacion-two-factor-2fa</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2020/07/13/autenticacion-two-factor-2fa.html">&lt;h1 id=&quot;autenticación-two-factor-2fa&quot;&gt;Autenticación Two-Factor (2FA)&lt;/h1&gt;
+
+&lt;p&gt;El publicar una aplicación en Internet automáticamente vuelve la cuestión de seguridad un tema importante como el agregar nuevas características o solucionar errores en la misma.&lt;/p&gt;
+
+&lt;p&gt;Aunque Ruby on Rails  por omisión configura toda nueva aplicación con ciertos parámetros que básicos de seguridad hay detalles que nosotros como desarrolladores o administradores de una aplicación debemos de tomar.&lt;/p&gt;
+
+&lt;p&gt;El el post de hace unas semanas &lt;a href=&quot;https://mariochavez.io/desarrollo/2020/06/15/seguridad-ruby-aplicacion.html&quot; target=&quot;_blank&quot;&gt;Proteger tu aplicación de ataques en Internet&lt;/a&gt; platiqué de acciones que podemos configurar para proteger una aplicación de posibles ataques, el la mayoría automatizados.&lt;/p&gt;
+
+&lt;p&gt;Ahora en este post quiero hablar de el tema de cómo proteger a nuestros usuarios del robo de contraseñas o de un tipo de ataque llamado &lt;em&gt;phising&lt;/em&gt; diseñado con la misma idea de robar credenciales.&lt;/p&gt;
+
+&lt;h2 id=&quot;two-factor-2fa-contraseñas-de-un-sólo-uso&quot;&gt;Two-Factor (2FA) contraseñas de un sólo uso&lt;/h2&gt;
+
+&lt;p&gt;En muchas de las aplicaciones modernas que se preocupan por la seguridad de sus usuarios agregan un nivel más a la protección de contraseñas. Aplicaciones de correo electrónico, de información financiera o bancos entre muchas otras cuentan como una opción más de protección las contraseñas de un sólo uso.&lt;/p&gt;
+
+&lt;p&gt;Este tipo de seguridad se conoce como autenticación &lt;em&gt;Two-Factor&lt;/em&gt; e implica que el usuario aparte de su contraseña para iniciar una sesión necesita generar un código temporal de un sólo uso con una aplicación de su teléfono. La aplicación registra un código secreto que utiliza para generar los códigos temporales que el usuario necesita.&lt;/p&gt;
+
+&lt;p&gt;Aplicaciones como Google Authenticator o &lt;a href=&quot;https://authy.com/&quot; target=&quot;_blank&quot;&gt;Authy&lt;/a&gt; se utilizan para generar ese código temporal.&lt;/p&gt;
+
+&lt;p&gt;Otra forma de implementar las contraseñas de un sólo uso es con el envío del código temporal a través de SMS al teléfono del usuario como segundo paso después de introducir su contraseña.&lt;/p&gt;
+
+&lt;h2 id=&quot;rails-y-otp&quot;&gt;Rails y OTP&lt;/h2&gt;
+
+&lt;p&gt;Implementar OTP en una aplicación de Ruby on Rails es relativamente sencillo gracias a la gema &lt;a href=&quot;https://github.com/mdp/rotp&quot; target=&quot;_blank&quot;&gt;rtop&lt;/a&gt; que hace todo el trabajo de implementar los &lt;a href=&quot;http://tools.ietf.org/html/rfc4226&quot; target=&quot;_blank&quot;&gt;RFC 4226&lt;/a&gt; y &lt;a href=&quot;http://tools.ietf.org/html/rfc6238&quot; target=&quot;_blank&quot;&gt;RFC 6238&lt;/a&gt; para contraseñas de un sólo uso por contador o por tiempo.&lt;/p&gt;
+
+&lt;p&gt;Realmente utilizando &lt;em&gt;rtop&lt;/em&gt; lo complicado es diseñar un flujo que sea amigable para el usuario no técnico dónde se le lleve por el proceso de activar su cuenta para que este protegida por 2FA. Además, hay que darle la posibilidad al usuario de poder tener acceso a la misma en caso de que su dispositivo móvil se haya dañado o extraviado; esto generalmente sucede con un grupo de códigos de recuperación que el usuario recibe al momento de activar su cuenta para 2FA.&lt;/p&gt;
+
+&lt;h3 id=&quot;la-aplicación&quot;&gt;La aplicación&lt;/h3&gt;
+
+&lt;p&gt;Para el contenido de este post cree una aplicación de Ruby on Rails con la implementación de OTP y sus flujos. Donde la lógica de controladores y vistas están dentro de un &lt;em&gt;namespace&lt;/em&gt; llamado &lt;strong&gt;&lt;em&gt;Otp&lt;/em&gt;&lt;/strong&gt; con la finalidad de que sea sencilla su reutilización en otras aplicaciones.&lt;/p&gt;
+
+&lt;p&gt;Para el sistema de autenticación vía correo electrónico y contraseña no utilicé ninguna de las librerías populares, en su lugar utilicé un generador que desarrollé hace algunos años y que genera lo básico para poder registrarse e iniciar y cerrar sesión utilizando la funcionalidad de &lt;a href=&quot;http://api.rubyonrails.org/classes/ActiveModel/SecurePassword/ClassMethods.html#method-i-has_secure_password&quot; target=&quot;_blank&quot;&gt;has_secure_password&lt;/a&gt; de Rails. El motivo de esta decisión es eliminar la complejidad de las librerías conocidas del foco de la implementación de OTP. El código del generador está disponible en su &lt;a href=&quot;https://github.com/mariochavez/mac_generators/&quot; target=&quot;_blank&quot;&gt;repositorio&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;El repositorio del código de esta aplicación está disponible en el &lt;a href=&quot;https://github.com/mariochavez/rails-two-factor-otp&quot; target=&quot;_blank&quot;&gt;repositorio&lt;/a&gt;. El post no va a mostrar en detalle el código por lo que va a ser necesario hacer referencia en el repositorio.&lt;/p&gt;
+
+&lt;p&gt;La aplicación de Rails de creó como se muestra a continuación. Se desactivaron algunos &lt;em&gt;frameworks&lt;/em&gt; de Ruby on Rails que no son útiles para los objetivos de esta aplicación. Adicionalmente se instaló Webpack y Stimulus, siendo el último utilizado en varias partes de la aplicación que veremos un poco más adelante.&lt;/p&gt;
+
+&lt;p&gt;Finalmente con el generador que mencioné anteriormente generamos modelos, vistas y controladores para poder realizar registro y autenticación vía correo electrónico. Por omisión en lugar de crear el modelo &lt;strong&gt;&lt;em&gt;User&lt;/em&gt;&lt;/strong&gt;, al que estamos acostumbrados, se crea el modelo &lt;strong&gt;&lt;em&gt;Identity&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rail&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;otp_security&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;d&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;postgresql&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;skip&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;action&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mailer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;skip&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;action&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mailbox&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;skip&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;action&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;skip&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;active&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;storage&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;skip&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;action&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cable&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;skip&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sprockets&lt;/span&gt;
+&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;otp_security&lt;/span&gt;
+&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rails&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;webpacker&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:install&lt;/span&gt;
+&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rails&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;webpacker&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:install:stimulus&lt;/span&gt;
+&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;yarn&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bulma&lt;/span&gt;
+&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rails&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;authentication&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:email&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;activar-2fa&quot;&gt;Activar 2FA&lt;/h3&gt;
+
+&lt;p&gt;Activar 2FA para un usuario implica el explicarle al usuario en qué consiste y cómo va a cambiar su experiencia al iniciar sesión y llevarlo de la mano en el proceso.&lt;/p&gt;
+
+&lt;p&gt;El proceso tipo “&lt;em&gt;wizard&lt;/em&gt;” se inicia con el controlador &lt;code class=&quot;highlighter-rouge&quot;&gt;Otp::ConfigureController&lt;/code&gt; en donde inicialmente con la ayuda de &lt;em&gt;rtop&lt;/em&gt; se genera un código secreto y único por cada usuario.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;
+  &lt;span class=&quot;vi&quot;&gt;@otp_secret&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;generate_otp_secret&lt;/span&gt;
+  &lt;span class=&quot;vi&quot;&gt;@qr_code&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;generate_qr_code_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@otp_secret&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;current_identity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;email&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;El “&lt;em&gt;wizard&lt;/em&gt;” informativo es manejado por el controlador de Stimulus &lt;code class=&quot;highlighter-rouge&quot;&gt;wizard_controller.js&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Controller&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;stimulus&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Controller&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;targets&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;slide&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;connect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;showSlide&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;disconnect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;showSlide&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;stopPropagation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;preventDefault&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;showSlide&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;index&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;index&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;stopPropagation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;preventDefault&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+      &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;showSlide&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;index&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;showSlide&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;index&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;slideTargets&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;forEach&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;element&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;idx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;parseInt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;element&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getAttribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;data-wizard-index&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;element&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;classList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;toggle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;wizard--current&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;index&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;idx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Al final del “&lt;em&gt;wizard&lt;/em&gt;” al usuario se le presenta un código QR que debe de escanear utilizando una aplicación de autenticación 2FA compatible con Google Authenticator como &lt;a href=&quot;https://authy.com/&quot; target=&quot;_blank&quot;&gt;Authy&lt;/a&gt;. Después de escanear y registrar la autenticación en la aplicación móvil el usuario tiene que introducir el código generado para verificar que todo se encuentra listo para habilitar 2FA para el usuario.&lt;/p&gt;
+
+&lt;p&gt;El código del usuario se recibe en el controlador &lt;code class=&quot;highlighter-rouge&quot;&gt;Otp::ConfigureController&lt;/code&gt; donde una vez que ha sido verificado se guarda el secreto único del usuario, se guarda el &lt;em&gt;timestamp&lt;/em&gt; del último código que verificó el usuario y se generan 10 código de recuperación en caso de el usuario pierda o se le dañe su dispositivo y que no quede bloqueado.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;create&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;otp_secret&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:otp_secret&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;otp_code&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:otp_code&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;last_otp_at&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;verify_otp_code&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;otp_secret&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;otp_code&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;last_otp_at&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;present?&lt;/span&gt;
+    &lt;span class=&quot;vi&quot;&gt;@recovery_codes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;generate_recovery_codes&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;current_identity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;tap&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;identity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;identity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;last_otp_at&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;at&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;last_otp_at&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;utc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_datetime&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;identity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;otp_secret_key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;otp_secret&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;identity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;recovery_codes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;vi&quot;&gt;@recovery_codes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot; &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;identity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;save&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;redirect_to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;otp_complete_path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;notice: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;2AF enabled succesfully&quot;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;render&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;json: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;error: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Verification code is invalid&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;status: :unprocessable_entity&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;El código único y secreto así como los código de recuperación son secretos sensibles de los cuales tenemos que prevenir que caigan en manos no confiables. Es por este motivo que esos atributos se guardan cifrados en la base de datos con la ayuda de la gema &lt;a href=&quot;https://github.com/attr-encrypted/attr_encrypted&quot; target=&quot;_blank&quot;&gt;attr_encrypted&lt;/a&gt;. La llave de cifrado se guarda en las credenciales de Rails.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Identity&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ActiveRecord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Base&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;has_secure_password&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;validations: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;attr_encrypted&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:otp_secret_key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:recovery_codes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;key: &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Base64&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;decode64&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Rails&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;application&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;credentials&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;encryption&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:otp_secret_key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;validates&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:email&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;presence: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;uniqueness: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;validates&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:password_confirmation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;presence: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;if: &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;present?&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;La llave de cifrado se genera en una consola de Ruby con el siguiente comando &lt;code class=&quot;highlighter-rouge&quot;&gt;Base64.encode64(SecureRandom.random_bytes(32))&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Una vez que se validó el código y se guardó la información secreta, al usuario se le muestran sus códigos de recuperación, los cuales van a ser visibles esta única ocasión y se le muestra al usuario opciones para copiar los códigos al “&lt;em&gt;clipboard&lt;/em&gt;” o imprimirlos o descargarlos en un archivo. Es responsabilidad del usuario guardarlo y mantenerlos seguros. El controlador &lt;code class=&quot;highlighter-rouge&quot;&gt;Otp::CompleteController&lt;/code&gt; se encarga de esta parte.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;show&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;current_identity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;update_column&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:otp_enabled_at&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;zone&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;vi&quot;&gt;@recovery_codes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;current_identity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;recovery_codes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot; &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;La lógica para copiar, imprimir o descargar los códigos de recuperación está implementada en los controladores de Stimulus &lt;code class=&quot;highlighter-rouge&quot;&gt;clipboard_controller.js&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;print_controller.js&lt;/code&gt; y &lt;code class=&quot;highlighter-rouge&quot;&gt;download_controller.js&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;blog-media&quot;&gt;
+  &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/login-with-otp.gif&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;Enable OTP&quot; srcset=&quot;/assets/img/login-with-otp.gif 1200w, /assets/img/300-login-with-otp.gif 300w, /assets/img/768-login-with-otp.gif 768w, /assets/img/1024-login-with-otp.gif 1024w, /assets/img/180-login-with-otp.gif 180w, /assets/img/940-login-with-otp.gif 940w, /assets/img/320-login-with-otp.gif 320w, /assets/img/640-login-with-otp.gif 640w, /assets/img/960-login-with-otp.gif 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;nuevo-inicio-de-sesión&quot;&gt;Nuevo inicio de sesión&lt;/h3&gt;
+
+&lt;p&gt;Con 2FA activado para un usuario su flujo de inicio de sesión cambia. Ahora el usuario después de ingresar sus credenciales, se le pedirá que ingrese el código temporal que se genera en su aplicación de autenticación en el móvil.&lt;/p&gt;
+
+&lt;p&gt;El código se valida y si es correcto entonces se guarda la última ocasión que el usuario validó un código correcto, esto con el fin de evitar que el código se pueda reutilizar en la ventana de 30 segundos que es cuando se genera un nuevo código.&lt;/p&gt;
+
+&lt;p&gt;Si el código no es válido, entonces el usuario no va a poder iniciar sesión.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;create&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;code&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:code&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;strip&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;verified&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;false&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;present_code?&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;code&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;last_otp_at&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;verify_otp_code&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;current_identity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;otp_secret_key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;code&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;current_identity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;last_otp_at&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;last_otp_at&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;present?&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;current_identity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;last_otp_at: &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;at&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;last_otp_at&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;utc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_datetime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;verified&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;verified_code&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;recovery_codes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;verify_recovery_code&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;current_identity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;recovery_codes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;code&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;verified_code&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;present?&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;current_identity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;recovery_codes: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;recovery_codes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot; &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;verified&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;verified&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;warden&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;session&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:identity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;otp_verified&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;redirect_to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;root_path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;notice: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;.logged_in&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;render&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;json: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;error: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Verification code is invalid&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;status: :unprocessable_entity&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;En caso de que el usuario haya perdido acceso a la aplicación móvil que genera los códigos temporales este puede hacer uso de uno de los 10 códigos de recuperación en lugar del código temporal. Al hacer uso del código de recuperación y que sea válido, este se elimina impidiendo que se pueda volver a utilizar y se le permite el inicio de sesión al usuario.&lt;/p&gt;
+
+&lt;p&gt;Esta código se encuentra en el controlador &lt;code class=&quot;highlighter-rouge&quot;&gt;Otp::VerifyController&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;blog-media&quot;&gt;
+  &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/login-with-recovery-code.gif&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;Login with Recovery&quot; srcset=&quot;/assets/img/login-with-recovery-code.gif 1200w, /assets/img/300-login-with-recovery-code.gif 300w, /assets/img/768-login-with-recovery-code.gif 768w, /assets/img/1024-login-with-recovery-code.gif 1024w, /assets/img/180-login-with-recovery-code.gif 180w, /assets/img/940-login-with-recovery-code.gif 940w, /assets/img/320-login-with-recovery-code.gif 320w, /assets/img/640-login-with-recovery-code.gif 640w, /assets/img/960-login-with-recovery-code.gif 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;deshabilitar-2fa&quot;&gt;Deshabilitar 2FA&lt;/h3&gt;
+
+&lt;p&gt;Aunque no es lo recomendable, el usuario que ha iniciado puede deshabilitar la necesidad de autenticación 2FA al iniciar sesión. Esto puede ser necesario en el caso de que el usuario cambie de dispositivo móvil por lo que es necesario deshabilitar 2FA y volver a habilitarlo con el nuevo dispositivo.&lt;/p&gt;
+
+&lt;p&gt;En el controlador &lt;code class=&quot;highlighter-rouge&quot;&gt;Otp::DisableController&lt;/code&gt; se realiza la desactivación de 2FA dónde se elimina la información como secretos, códigos de recuperación y otros datos adicionales que en conjunto deshabilitan 2FA.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;destroy&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;current_identity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;tap&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;identity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;identity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;last_otp_at&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;nil&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;identity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;otp_secret_key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;nil&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;identity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;recovery_codes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;nil&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;identity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;otp_enabled_at&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;nil&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;identity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;save&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;redirect_to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;root_path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;notice: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;2FA disabled succesfully&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;blog-media&quot;&gt;
+  &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/disable-otp.gif&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;Disable OTP&quot; srcset=&quot;/assets/img/disable-otp.gif 1200w, /assets/img/300-disable-otp.gif 300w, /assets/img/768-disable-otp.gif 768w, /assets/img/1024-disable-otp.gif 1024w, /assets/img/180-disable-otp.gif 180w, /assets/img/940-disable-otp.gif 940w, /assets/img/320-disable-otp.gif 320w, /assets/img/640-disable-otp.gif 640w, /assets/img/960-disable-otp.gif 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;detalles-finales-de-la-aplicación&quot;&gt;Detalles finales de la aplicación&lt;/h3&gt;
+
+&lt;p&gt;El módulo &lt;code class=&quot;highlighter-rouge&quot;&gt;Otp::Base&lt;/code&gt; incluye la lógica común entre los controladores relacionados en el proceso de 2FA.&lt;/p&gt;
+
+&lt;p&gt;En el proyecto disponible en el repositorio mencionado al inicio del post se incluyen también algunas pruebas de sistema, es decir pruebas dónde se automatiza el navegador para simular la interacción del usuario. Las pruebas tienen comentarios que explican qué operaciones son las que se están realizando para verificar los escenarios de 2FA.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusiones&quot;&gt;Conclusiones&lt;/h2&gt;
+
+&lt;p&gt;La seguridad es un factor importante en toda aplicación hoy en día, es algo que como desarrolladores de aplicaciones no debemos de dejar a la ligera. Es nuestra responsabilidad asegurar la información y la confianza de nuestros usuarios.&lt;/p&gt;
+
+&lt;p&gt;Estoy seguro que al revisar a detalle el código de la aplicación de ejemplo veremos que es sencillo implementar un nivel más de seguridad en nuestras aplicaciones y que el código está pensado en que pueda ser reutilizado.&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><summary type="html">Autenticación Two-Factor (2FA)</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/password-security.jpg" /><media:content medium="image" url="https://mariochavez.io/password-security.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Más allá del Rails Way</title><link href="https://mariochavez.io/desarrollo/2020/07/02/mas-alla-del-rails-way.html" rel="alternate" type="text/html" title="Más allá del Rails Way" /><published>2020-07-02T02:00:00-05:00</published><updated>2020-07-02T02:00:00-05:00</updated><id>https://mariochavez.io/desarrollo/2020/07/02/mas-alla-del-rails-way</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2020/07/02/mas-alla-del-rails-way.html">&lt;h1 id=&quot;más-allá-del-rails-way&quot;&gt;Más allá del “Rails way”&lt;/h1&gt;
 
 &lt;p&gt;Hace un par de años estuve presentando una plática llamada “Más allá del ‘Rails Way’” con grupos locales de desarrollo.&lt;/p&gt;
 
@@ -199,7 +429,7 @@
 
 &lt;p&gt;Hay diferentes opciones para proteger nuestras aplicaciones de problemas de seguridad y de cierto tipo de ataques.&lt;/p&gt;
 
-&lt;p&gt;Una de las más simples pero que implica un costo es poner nuestra aplicación detrás de un servicio &lt;a href=&quot;https://www.cloudflare.com/&quot;&gt;Cloudflare&lt;/a&gt; que se encarga de detener la mayoría de las amenazas posibles.&lt;/p&gt;
+&lt;p&gt;Una de las más simples pero que implica un costo es poner nuestra aplicación detrás de un servicio &lt;a href=&quot;https://www.cloudflare.com/&quot; target=&quot;_blank&quot;&gt;Cloudflare&lt;/a&gt; que se encarga de detener la mayoría de las amenazas posibles.&lt;/p&gt;
 
 &lt;p&gt;Si nuestra aplicación está escrita en Ruby (o Ruby on Rails) - y así lo asumiré de este momento en adelante -  siempre hay que asegurarnos que las librerías estén actualizadas a la versión más reciente para asegurar que si hay algún problema de seguridad en ellas estemos utilizando una versión con la corrección. La forma simple de estar al tanto de problemas de seguridad con librerías en Ruby es a través de &lt;a href=&quot;https://github.com/rubysec/bundler-audit&quot; target=&quot;_blank&quot;&gt;Bundle Audit&lt;/a&gt;.&lt;/p&gt;
 
@@ -1502,30 +1732,4 @@ te agradan de esa implementación y qué las que te desagradan, trata de seguir 
 &lt;p&gt;&lt;a href=&quot;https://stripe.com/docs/api&quot; target=&quot;_blank&quot;&gt;Stripe API&lt;/a&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;creditario-api&quot;&gt;Creditario API&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;https://docs.creditar.io/&quot; target=&quot;_blank&quot;&gt;Creditario API&lt;/a&gt;&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><summary type="html">APIs con Ruby</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/apis-con-ruby.jpg" /><media:content medium="image" url="https://mariochavez.io/apis-con-ruby.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Actividades de fotografía en f/64</title><link href="https://mariochavez.io/fotograf%C3%ADa/2020/04/09/actividades-f64.html" rel="alternate" type="text/html" title="Actividades de fotografía en f/64" /><published>2020-04-09T13:00:00-05:00</published><updated>2020-04-09T13:00:00-05:00</updated><id>https://mariochavez.io/fotograf%C3%ADa/2020/04/09/actividades-f64</id><content type="html" xml:base="https://mariochavez.io/fotograf%C3%ADa/2020/04/09/actividades-f64.html">&lt;p&gt;El día de hoy puse en operación el sition &lt;a href=&quot;https://actividades.f64.io&quot; target=&quot;_blank&quot;&gt;https://actividades.f64.io&lt;/a&gt; como una herramienta complementaria a las pláticas presenciales que se organizan cada mes con fotógrafas y fotógrafos locales en Colima.&lt;/p&gt;
-
-&lt;p&gt;La idea con estás actividades es continuar con la promoción y desarrollo de la creatividad fotográfica a através de actividades alrededor de temas específicos y acotados.&lt;/p&gt;
-
-&lt;p&gt;Pueden participar cualquier persona ya sea con la cámara de su celular o con una cámara profesional. Cada actividad tiene un periodo de tiempo y un límite de fotografías para recibir por participante.&lt;/p&gt;
-
-&lt;p&gt;Las fotografías de cada actividad se hacen públicas automáticamente al final del periodo de recepción de participaciones, esto con la finalidad de que cada participante pueda libremente poner en práctica su creatividad.&lt;/p&gt;
-
-&lt;div class=&quot;blog-media&quot;&gt;
-    &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/f64-page2.png&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;Actividades f/64&quot; srcset=&quot;/assets/img/f64-page2.png 1200w, /assets/img/300-f64-page2.png 300w, /assets/img/768-f64-page2.png 768w, /assets/img/1024-f64-page2.png 1024w, /assets/img/180-f64-page2.png 180w, /assets/img/940-f64-page2.png 940w, /assets/img/320-f64-page2.png 320w, /assets/img/640-f64-page2.png 640w, /assets/img/960-f64-page2.png 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
-  &lt;/div&gt;
-
-&lt;p&gt;La primera actividad ya se encuentra disponible y se llama &lt;a href=&quot;https://actividades.f64.io/actividades/nuestro-espacio-en-cuarentena&quot; target=&quot;_blank&quot;&gt;Nuestro espacio en cuarentena”&lt;/a&gt;. Es un ensayo que busca conocer cómo es que cada participante está viviendo la cuarentena desde su espacio personal.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Debido a la situación de contingencia sanitaria que estamos viviendo nos hemos apartado de las actividades diarias de nuestras vidas y nos enfrentamos a una situación un tanto desconocida para muchos de nosotros.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;El estar en aislamiento para algunos puede afectar su creatividad en la creación de imagenes para otros sin embargo puede ser una oportunidad para explorar en nuestros espacios cosas y situaciones que damos por sentado que siempre están o son así.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;div class=&quot;blog-media&quot;&gt;
-    &lt;img width=&quot;1200&quot; height=&quot;800&quot; src=&quot;/assets/img/f64-page3.png&quot; class=&quot;attachment-orio-thumb-big size-orio-thumb-big wp-post-image&quot; alt=&quot;Actividades f/64&quot; srcset=&quot;/assets/img/f64-page3.png 1200w, /assets/img/300-f64-page3.png 300w, /assets/img/768-f64-page3.png 768w, /assets/img/1024-f64-page3.png 1024w, /assets/img/180-f64-page3.png 180w, /assets/img/940-f64-page3.png 940w, /assets/img/320-f64-page3.png 320w, /assets/img/640-f64-page3.png 640w, /assets/img/960-f64-page3.png 960w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; /&gt;
-  &lt;/div&gt;
-
-&lt;p&gt;La actividad está abierta del 8 de abril, 2020 al 22 de abril, 2020. Para participar sólo es necesario registrarse y comenzar a subir el material fotográfico relacionado al tema.&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><summary type="html">El día de hoy puse en operación el sition https://actividades.f64.io como una herramienta complementaria a las pláticas presenciales que se organizan cada mes con fotógrafas y fotógrafos locales en Colima.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/f64-page1.png" /><media:content medium="image" url="https://mariochavez.io/f64-page1.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;p&gt;&lt;a href=&quot;https://docs.creditar.io/&quot; target=&quot;_blank&quot;&gt;Creditario API&lt;/a&gt;&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><summary type="html">APIs con Ruby</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/apis-con-ruby.jpg" /><media:content medium="image" url="https://mariochavez.io/apis-con-ruby.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
