@@ -1,4 +1,125 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.7">Jekyll</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" /><updated>2020-07-13T15:24:26-05:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez : Blog</title><subtitle>Blog personal de Mario Alberto Chávez. Temas de desarrollo de software y fotografia.</subtitle><entry><title type="html">Autenticación Two-Factor (2FA)</title><link href="https://mariochavez.io/desarrollo/2020/07/13/autenticacion-two-factor-2fa.html" rel="alternate" type="text/html" title="Autenticación Two-Factor (2FA)" /><published>2020-07-13T01:01:00-05:00</published><updated>2020-07-13T01:01:00-05:00</updated><id>https://mariochavez.io/desarrollo/2020/07/13/autenticacion-two-factor-2fa</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2020/07/13/autenticacion-two-factor-2fa.html">&lt;h1 id=&quot;autenticación-two-factor-2fa&quot;&gt;Autenticación Two-Factor (2FA)&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.7">Jekyll</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" /><updated>2020-08-04T12:10:07-05:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez : Blog</title><subtitle>Blog personal de Mario Alberto Chávez. Temas de desarrollo de software y fotografia.</subtitle><entry><title type="html">Actualizar Ruby on Rails con boot doble</title><link href="https://mariochavez.io/desarrollo/2020/08/04/actualizar-ruby-on-rails-con-dual-boot.html" rel="alternate" type="text/html" title="Actualizar Ruby on Rails con boot doble" /><published>2020-08-04T02:00:00-05:00</published><updated>2020-08-04T02:00:00-05:00</updated><id>https://mariochavez.io/desarrollo/2020/08/04/actualizar-ruby-on-rails-con-dual-boot</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2020/08/04/actualizar-ruby-on-rails-con-dual-boot.html">&lt;p&gt;Desde la versión 4.2 de Ruby on Rails las actualizaciones del framework son en buena medida estables. Atendiendo cuestiones de API’s que ya están fuera de uso, verificando que las gemas o dependencias de la aplicación tengan ya soporte de la versión a la que vamos actualizar y que contenemos con un set de pruebas por lo menos es la funcionalidad crítica es suficiente para tener éxito.&lt;/p&gt;
+
+&lt;p&gt;Obviamente el tiempo y esfuerzo de actualización también dependerá de que tan grande es nuestra aplicación y la cantidad de ajustes que se requieran. Este esfuerzo se puede ver afectado en buena medida cuando tratamos de realizar la actualización en un “&lt;em&gt;branch&lt;/em&gt;” de git con los nuevo cambios y que de alguna forma se empiece a quedar atrás esa rama de los cambios principales.&lt;/p&gt;
+
+&lt;p&gt;En este post voy a resumir la estrategia que desde mi punto de vista es la más efectiva.&lt;/p&gt;
+
+&lt;h2 id=&quot;dualboot&quot;&gt;Dualboot&lt;/h2&gt;
+
+&lt;p&gt;Normalmente soy de los desarrolladores que que prefieren omitir el uso de gemas o librería a menos  de que sea realmente necesario. &lt;a href=&quot;https://github.com/Shopify/bootboot&quot; target=&quot;_blank&quot;&gt;Bootboot&lt;/a&gt; de Shopify en esta caso es bastante útil ya que permite tener dos &lt;code class=&quot;highlighter-rouge&quot;&gt;Gemfile&lt;/code&gt; uno que es el base de la aplicación y otro dónde se tiene la versión de Rails a la que vamos actualizar así como versiones de dependencias necesarias.&lt;/p&gt;
+
+&lt;p&gt;Con una variable de ambiente es posible hacer que la aplicación haga el boot con la versión actual de Rails o con la versión nueva. Esto permite mandar a la rama principal los cambios de la actualización y los cambios normales de aplicación evitando conflictos a la larga o tener una rama de actualización separada por varias semanas y cuando estamos listos resolver conflictos.&lt;/p&gt;
+
+&lt;p&gt;Bootboot se instala como un plugin de Bundler en el archivo &lt;code class=&quot;highlighter-rouge&quot;&gt;Gemfile&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;plugin &lt;span class=&quot;s1&quot;&gt;'bootboot'&lt;/span&gt;, &lt;span class=&quot;s1&quot;&gt;'~&amp;gt; 0.1.1'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Después de agregar la librería ejecutamos lo siguiente.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bundle &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; bundle bootboot
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Al finalizer Bundler vamos a tener un archivo &lt;code class=&quot;highlighter-rouge&quot;&gt;Gemfile_next.lock&lt;/code&gt; y en el archivo &lt;code class=&quot;highlighter-rouge&quot;&gt;Gemfile&lt;/code&gt; vamos a encontrar un bloque que nos permite con la variable de ambiente &lt;em&gt;DEPENDENCIES_NEXT&lt;/em&gt; hacer el boot de la aplicación con una versión de Rail u otra.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if &lt;/span&gt;ENV[&lt;span class=&quot;s2&quot;&gt;&quot;DEPENDENCIES_NEXT&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+  enable_dual_booting &lt;span class=&quot;k&quot;&gt;if &lt;/span&gt;Plugin.installed?&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;bootboot&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+
+  &lt;span class=&quot;c&quot;&gt;# Add any gem you want here, they will be loaded only when running&lt;/span&gt;
+  &lt;span class=&quot;c&quot;&gt;# bundler command prefixed with `DEPENDENCIES_NEXT=1`.&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;else
+&lt;/span&gt;end
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;El &lt;code class=&quot;highlighter-rouge&quot;&gt;if&lt;/code&gt; yo lo modifiqué para quedara de la siguiente forma.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if &lt;/span&gt;ENV.fetch&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;DEPENDENCIES_NEXT&quot;&lt;/span&gt;, 0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.to_i &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; 1
+  enable_dual_booting &lt;span class=&quot;k&quot;&gt;if &lt;/span&gt;Plugin.installed?&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;bootboot&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+
+  &lt;span class=&quot;c&quot;&gt;# Add any gem you want here, they will be loaded only when running&lt;/span&gt;
+  &lt;span class=&quot;c&quot;&gt;# bundler command prefixed with `DEPENDENCIES_NEXT=1`.&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;else
+&lt;/span&gt;end
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Como primer paso es agregar en el bloque del &lt;code class=&quot;highlighter-rouge&quot;&gt;if&lt;/code&gt; las dependencias de la versión a la cuál queremos migrar. Para el proyecto que utilicé para este ejemplo estoy migrando de Rails 6.0 a master de Rails que está marcado como Rails 6.1.alpha.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if &lt;/span&gt;ENV.fetch&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;DEPENDENCIES_NEXT&quot;&lt;/span&gt;, 0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.to_i &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; 1
+  enable_dual_booting &lt;span class=&quot;k&quot;&gt;if &lt;/span&gt;Plugin.installed?&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;bootboot&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+
+  &lt;span class=&quot;c&quot;&gt;# Add any gem you want here, they will be loaded only when running&lt;/span&gt;
+  &lt;span class=&quot;c&quot;&gt;# bundler command prefixed with `DEPENDENCIES_NEXT=1`.&lt;/span&gt;
+  gem &lt;span class=&quot;s2&quot;&gt;&quot;rails&quot;&lt;/span&gt;, github: &lt;span class=&quot;s2&quot;&gt;&quot;rails/rails&quot;&lt;/span&gt;
+  gem &lt;span class=&quot;s2&quot;&gt;&quot;puma&quot;&lt;/span&gt;, &lt;span class=&quot;s2&quot;&gt;&quot;~&amp;gt; 5.0.0.beta1&quot;&lt;/span&gt;
+  gem &lt;span class=&quot;s2&quot;&gt;&quot;webpacker&quot;&lt;/span&gt;, github: &lt;span class=&quot;s2&quot;&gt;&quot;rails/webpacker&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;else
+  &lt;/span&gt;gem &lt;span class=&quot;s2&quot;&gt;&quot;puma&quot;&lt;/span&gt;, &lt;span class=&quot;s2&quot;&gt;&quot;~&amp;gt; 3.11&quot;&lt;/span&gt;
+  gem &lt;span class=&quot;s2&quot;&gt;&quot;rails&quot;&lt;/span&gt;, &lt;span class=&quot;s2&quot;&gt;&quot;~&amp;gt; 6.0.0&quot;&lt;/span&gt;
+  gem &lt;span class=&quot;s2&quot;&gt;&quot;webpacker&quot;&lt;/span&gt;, &lt;span class=&quot;s2&quot;&gt;&quot;~&amp;gt; 4.0&quot;&lt;/span&gt;
+end
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Primeramente agregué la referencia de Rails a Github y corrí Bundler con la variable de ambiente.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ DEPENDENCIES_NEXT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1 bundle &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Bundler me indicó que tenía conflictos para instalar Webpacker 4.0 con Rails 6.1.alpha entonces agregué Rails y Webpacker actual al bloque del &lt;code class=&quot;highlighter-rouge&quot;&gt;else&lt;/code&gt; y agregué Webpacker de Github al bloque del &lt;code class=&quot;highlighter-rouge&quot;&gt;if&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Este proceso lo repetí varias ocasiones hasta que en cada uno de los bloques del &lt;code class=&quot;highlighter-rouge&quot;&gt;if&lt;/code&gt; tuviera las dependencias correctas. Este es el primer paso.&lt;/p&gt;
+
+&lt;h2 id=&quot;configuración-de-la-aplicación&quot;&gt;Configuración de la aplicación&lt;/h2&gt;
+
+&lt;p&gt;El siguiente paso es hacer que la aplicación pueda finalmente hacer el boot. Ejecuté el servidor de Rails de la siguiente forma.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ DEPENDENCIES_NEXT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1  bin/rails s
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Hubo código en los inicializadores que impedían que el servidor se iniciara correctamente pero es código que en la versión actual de Rails de la aplicación funciona sin problemas.&lt;/p&gt;
+
+&lt;p&gt;En este punto necesito tener información de qué versión de Rails se está ejecutando para decidir que código cambia, se queda o se modifica pero siempre manteniendo compatibilidad entre ambas versiones.&lt;/p&gt;
+
+&lt;p&gt;Modifiqué el archivo &lt;code class=&quot;highlighter-rouge&quot;&gt;config/application.rb&lt;/code&gt; donde agregué el siguiente método.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;rails_6_0?&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Gem&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Version&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Rails&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;VERSION&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;STRING&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_f&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;6.1&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Este método está disponible vía &lt;code class=&quot;highlighter-rouge&quot;&gt;Rails.application.rails_6_0?&lt;/code&gt; y me permite conocer si estoy en la versión actual de la aplicación o en la versión nueva para de esta forma ejecutar cierto código para cada versión.&lt;/p&gt;
+
+&lt;p&gt;Es necesario hacer los ajustes que nuestra aplicación nos vaya solicitando para asegurar que al menos podemos hacer el boot de la misma.&lt;/p&gt;
+
+&lt;p&gt;Como siempre en cada actualización es necesario ejecutar el comando &lt;code class=&quot;highlighter-rouge&quot;&gt;bin/rails app:update&lt;/code&gt;. Este proceso va a actualizar los archivos de configuración de la aplicación de forma interactiva, es decir, nos va a preguntar que acción realizar. Para cada archivo mostrado normalmente en mi caso o hago que sobre escriba el archivo con &lt;strong&gt;&lt;em&gt;Y&lt;/em&gt;&lt;/strong&gt; o que me muestre las diferencias de los cambios propuestos con &lt;strong&gt;&lt;em&gt;d&lt;/em&gt;&lt;/strong&gt; o negarle el que haga cambios con &lt;strong&gt;&lt;em&gt;n&lt;/em&gt;&lt;/strong&gt;. La decisión va a depender de cada aplicación.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bin/rails app:update
+    conflict  config/boot.rb
+Overwrite /Users/marioch/Development/michelada/butaca/config/boot.rb? &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;enter &lt;span class=&quot;s2&quot;&gt;&quot;h&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;help&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Ynaqdhm]
+        Y - &lt;span class=&quot;nb&quot;&gt;yes&lt;/span&gt;, overwrite
+        n - no, &lt;span class=&quot;k&quot;&gt;do &lt;/span&gt;not overwrite
+        a - all, overwrite this and all others
+        q - quit, abort
+        d - diff, show the differences between the old and the new
+        h - &lt;span class=&quot;nb&quot;&gt;help&lt;/span&gt;, show this &lt;span class=&quot;nb&quot;&gt;help
+        &lt;/span&gt;m - merge, run merge tool
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Para el caso de actualización posiblemente en los archivos de configuración vamos a querer mantener la configuración actual y si hay cambios debido a la nueva versión de Rails entonces vamos a tener que hacer uso de nuestro método &lt;code class=&quot;highlighter-rouge&quot;&gt;Rails.application.rails_6_0?&lt;/code&gt; para mantener ambas configuraciones separadas.&lt;/p&gt;
+
+&lt;h2 id=&quot;ajustes-a-la-aplicación&quot;&gt;Ajustes a la aplicación&lt;/h2&gt;
+
+&lt;p&gt;En este punto podemos ejecutar la suite de pruebas y comenzar a corregir cualquier problema descubierto. Con la ayuda del equipo de QA también podemos descubrir ajustes necesarios. Recuerda que debido al &lt;strong&gt;&lt;em&gt;dual boot&lt;/em&gt;&lt;/strong&gt; podemos enviar de forma segura esos cambios a la rama principal de nuestro repositorio.&lt;/p&gt;
+
+&lt;p&gt;En el momento que nos sentimos satisfechos de los cambios realizados y que estamos listos para enviar nuestra aplicación con la nueva versión de Rails a producción y que confirmamos que funciona como lo esperamos, es momento de eliminar cualquier código condicional que agregamos durante el proceso de actualización.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusiones&quot;&gt;Conclusiones&lt;/h2&gt;
+
+&lt;p&gt;Realmente no hay excusa para no tratar de actualizar nuestras aplicaciones a las nuevas versiones de Ruby on Rails y de Ruby. Las versiones recientes son bastante estables y la compatibilidad se ha mantenido para muchos de los casos.&lt;/p&gt;
+
+&lt;p&gt;Empresas como Github, Shopify y Basecamp al día de hoy corren con las versiones más nuevas sin problemas. Inclusive en el caso de Basecamp indican que tienen varios meses corriendo con la rama principal de Rails.&lt;/p&gt;
+
+&lt;p&gt;Es necesario perder el miedo a actualizar y obtener los beneficios de seguridad y rendimiento de las versiones más recientes.&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><category term="desarrollo" /><summary type="html">Desde la versión 4.2 de Ruby on Rails las actualizaciones del framework son en buena medida estables. Atendiendo cuestiones de API’s que ya están fuera de uso, verificando que las gemas o dependencias de la aplicación tengan ya soporte de la versión a la que vamos actualizar y que contenemos con un set de pruebas por lo menos es la funcionalidad crítica es suficiente para tener éxito.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/upgrade-rails.jpg" /><media:content medium="image" url="https://mariochavez.io/upgrade-rails.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Autenticación Two-Factor (2FA)</title><link href="https://mariochavez.io/desarrollo/2020/07/13/autenticacion-two-factor-2fa.html" rel="alternate" type="text/html" title="Autenticación Two-Factor (2FA)" /><published>2020-07-13T01:01:00-05:00</published><updated>2020-07-13T01:01:00-05:00</updated><id>https://mariochavez.io/desarrollo/2020/07/13/autenticacion-two-factor-2fa</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2020/07/13/autenticacion-two-factor-2fa.html">&lt;h1 id=&quot;autenticación-two-factor-2fa&quot;&gt;Autenticación Two-Factor (2FA)&lt;/h1&gt;
 
 &lt;p&gt;El publicar una aplicación en Internet automáticamente vuelve la cuestión de seguridad un tema importante como el agregar nuevas características o solucionar errores en la misma.&lt;/p&gt;
 
@@ -1603,133 +1724,4 @@ require &quot;rails/test_unit/railtie&quot;
 &lt;p&gt;As the last step, remove the &lt;code class=&quot;highlighter-rouge&quot;&gt;app/assets&lt;/code&gt; folder. Now your application uses Webpack to manage your application assets.&lt;/p&gt;
 
 &lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;If you are reading this, it means that your application is running with Webpack, congratulations! Your team now has modern tools to work on your frontend.&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><category term="desarrollo" /><summary type="html">From the Asset Pipeline to Webpack</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/webpack-post.jpg" /><media:content medium="image" url="https://mariochavez.io/webpack-post.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">APIs con Ruby</title><link href="https://mariochavez.io/desarrollo/2020/05/14/apis-con-ruby.html" rel="alternate" type="text/html" title="APIs con Ruby" /><published>2020-05-14T01:00:00-05:00</published><updated>2020-05-14T01:00:00-05:00</updated><id>https://mariochavez.io/desarrollo/2020/05/14/apis-con-ruby</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2020/05/14/apis-con-ruby.html">&lt;h1 id=&quot;apis-con-ruby&quot;&gt;APIs con Ruby&lt;/h1&gt;
-
-&lt;p&gt;El pasado 13 de mayo tuve una sesión de “streaming” para platicar sobre el desarrollo de APIs REST con Ruby. La plática
-se dividió en varias secciones dónde se tocaron temas de qué herramientas hay para construir APIs con Ruby, los diferentes
-estándares para construir APIs, herramientas para documentar, recursos para entender mejor qué es un API y cómo funciona,
-entre otros temas.&lt;/p&gt;
-
-&lt;p&gt;El video ya está disponible para quienes no tuvieron la oportunidad de acompañarme.&lt;/p&gt;
-&lt;div style=&quot;text-align: center;&quot;&gt;
-  &lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/ZRvcg3MSC0Y&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Para la siguiente sesión hay que estar pendientes de mi cuenta de Twitter &lt;a href=&quot;https://twitter.com/mario_chavez&quot; target=&quot;_blank&quot;&gt;@mario_chavez&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;recursos-de-plática&quot;&gt;Recursos de plática&lt;/h2&gt;
-
-&lt;p&gt;Para construir APIs con Ruby existen diversas opciones desde Ruby muy básico hasta frameworks completos como Rails.&lt;/p&gt;
-
-&lt;h4 id=&quot;rack-api&quot;&gt;Rack API&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/fnando/rack-api&quot; target=&quot;_blank&quot;&gt;fnando/rack-api&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;grape&quot;&gt;Grape&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/ruby-grape/grape&quot; target=&quot;_blank&quot;&gt;ruby-grape/grape&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;hanami&quot;&gt;Hanami&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;https://hanamirb.org&quot; target=&quot;_blank&quot;&gt;Hanami&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;rails-api&quot;&gt;Rails API&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;https://guides.rubyonrails.org/api_app.html&quot; target=&quot;_blank&quot;&gt;Using Rails for API-only Applications - Ruby on Rails Guides&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;referencias-generales-sobre-apis&quot;&gt;Referencias generales sobre APIs&lt;/h3&gt;
-
-&lt;p&gt;Antes de aventurarnos a escribir un API realmente tenemos que entender de qué se trata un API y cuál es su relación con estándar HTTP.&lt;/p&gt;
-
-&lt;h4 id=&quot;build-apis-you-wont-hate&quot;&gt;Build APIs you won’t hate&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;https://apisyouwonthate.com/books/build-apis-you-wont-hate&quot; target=&quot;_blank&quot;&gt;Build APIs You Won’t Hate&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;el-estándar-de-open-api&quot;&gt;El estándar de Open API&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;https://www.openapis.org&quot; target=&quot;_blank&quot;&gt;Home - OpenAPI Initiative&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;json-api&quot;&gt;JSON API&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;https://jsonapi.org&quot; target=&quot;_blank&quot;&gt;JSON:API&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;the-ion-hypermedia-type&quot;&gt;The ION Hypermedia type&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;https://ionspec.org&quot; target=&quot;_blank&quot;&gt;The Ion Hypermedia Type&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;hal---hypertext-application-language&quot;&gt;HAL - Hypertext application language&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;http://stateless.co/hal_specification.html&quot; target=&quot;_blank&quot;&gt;The Hypertext Application Language&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;editores&quot;&gt;Editores&lt;/h3&gt;
-
-&lt;p&gt;Escribir las especificaciones de un API puede ser una tarea complicada sin ayuda para asegurarnos que la estamos 
-escribiendo de acuerdo al estándar que deseamos adoptar.&lt;/p&gt;
-
-&lt;h4 id=&quot;stoplight-studio&quot;&gt;Stoplight Studio&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;https://stoplight.io/studio/&quot; target=&quot;_blank&quot;&gt;Stoplight Studio | OpenAPI Design, Planning &amp;amp; Modeling Tool&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;swagger&quot;&gt;Swagger&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;https://swagger.io/&quot; target=&quot;_blank&quot;&gt;API Documentation &amp;amp; Design Tools for Teams | Swagger | Swagger&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;api-blueprint&quot;&gt;API Blueprint&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;https://apiblueprint.org/&quot; target=&quot;_blank&quot;&gt;API Blueprint | API Blueprint&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://mariochavez.io/desarrollo/2018/08/02/keep-your-api-in-shape-with-api-blueprint.html&quot; target=&quot;_blank&quot;&gt;Keep your API in shape with API Blueprint&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;lecciones-a-seguir&quot;&gt;Lecciones a seguir&lt;/h3&gt;
-
-&lt;p&gt;Todos los recursos disponibles ayudan a tener un mejor panorama al momento de crear un API pero no ayudan en lo 
-específico a decidir cómo hacer el API. El siguiente post registra algunas experiencias basadas en el desarrollo de un
-API que sea estándar y documentando.&lt;/p&gt;
-
-&lt;h4 id=&quot;lecciones-construyendo-un-api&quot;&gt;Lecciones construyendo un API&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;https://mariochavez.io/desarrollo/2019/12/30/lecciones-construyendo-un-api-rest.html&quot; target=&quot;_blank&quot;&gt;Lecciones construyendo un API REST&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;implementación-en-ruby&quot;&gt;Implementación en Ruby&lt;/h3&gt;
-
-&lt;p&gt;Ya conocimos algunas opciones sobre las cuales escribir nuestros APIs ahora toca el tema a herramientas específicas
-que nos ayudan a seguir un camino estable y documentado al implementar un API.&lt;/p&gt;
-
-&lt;h4 id=&quot;serializadores-modernos&quot;&gt;Serializadores modernos&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;https://vasilakisfil.social/blog/2020/01/20/modern-ruby-serializers/&quot; target=&quot;_blank&quot;&gt;Modern Ruby Serializers&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;jsonapi-rb&quot;&gt;JSONAPI-RB&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/jsonapi-rb/jsonapi-rb&quot; target=&quot;_blank&quot;&gt;jsonapi-rb/jsonapi-rb&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;committee&quot;&gt;Committee&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/interagent/committee&quot; target=&quot;_blank&quot;&gt;interagent/committee&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;writing-a-hypermedia-api-client-with-ruby&quot;&gt;Writing a Hypermedia API client with Ruby&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;https://thoughtbot.com/blog/writing-a-hypermedia-api-client-in-ruby&quot; target=&quot;_blank&quot;&gt;Writing a Hypermedia API client in Ruby&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;faster-json-generation-with-postgresql&quot;&gt;Faster JSON generation with PostgreSQL&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;https://hashrocket.com/blog/posts/faster-json-generation-with-postgresql&quot; target=&quot;_blank&quot;&gt;Faster JSON Generation with PostgreSQL&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;conditional-get-with-rails&quot;&gt;Conditional GET with Rails&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;https://api.rubyonrails.org/classes/ActionController/ConditionalGet.html&quot; target=&quot;_blank&quot;&gt;ActionController::ConditionalGet&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;autentificación&quot;&gt;Autentificación&lt;/h3&gt;
-
-&lt;p&gt;Toda API requiere de algún mecanismo de autentificación. Dependiendo del uso de API vamos a tener dos opciones diferentes.&lt;/p&gt;
-
-&lt;h4 id=&quot;token-authentication-with-rails&quot;&gt;Token Authentication with Rails&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;https://thoughtbot.com/blog/token-authentication-with-rails&quot; target=&quot;_blank&quot;&gt;Token Authentication with Rails&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;json-web-token&quot;&gt;JSON Web Token&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/jwt/ruby-jwt&quot; target=&quot;_blank&quot;&gt;jwt/ruby-jwt&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;el-elefante-blanco-en-el-stream&quot;&gt;El elefante blanco en el stream&lt;/h3&gt;
-
-&lt;p&gt;Todo el material mostrado hasta este punto habla específicamente desde el punto de vistas de APIs REST y de la idea de
-Phil Sturgeon de que realmente no conocemos REST aunque alguno de nostros juremos que hemos implementado APIs REST.
-Es por eso que existe GraphQL, el cuál es una serie de “hacks” para crear APIs “más flexibles” a costa de ignorar el 
-estándar HTTP.&lt;/p&gt;
-
-&lt;h3 id=&quot;graphql&quot;&gt;GraphQL&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&quot;https://graphql-ruby.org/&quot; target=&quot;_blank&quot;&gt;GraphQL - Welcome&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;conclusiones&quot;&gt;Conclusiones&lt;/h3&gt;
-&lt;p&gt;Para poder lograr un API exitosa y de la cuál no nos arrepintamos más adelante es necesario conocer qué es REST a fondo,
-basarnos en elguno de los estándares disponibles y sobre todo que sea un API totalmente documentada. Todos los recursos
-aquí mostrados ayudan a tener una idea más clara pero siempre es importante buscar inspiración en lo que otros hacen.&lt;/p&gt;
-
-&lt;p&gt;Busca en los servicios que consumes en tus aplicaciones cómo está documentada el API de los mismos, qué cosas son las que
-te agradan de esa implementación y qué las que te desagradan, trata de seguir los pasos de esas APIs que te inspiran.&lt;/p&gt;
-
-&lt;h4 id=&quot;stripe-api&quot;&gt;Stripe API&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;https://stripe.com/docs/api&quot; target=&quot;_blank&quot;&gt;Stripe API&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;creditario-api&quot;&gt;Creditario API&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;https://docs.creditar.io/&quot; target=&quot;_blank&quot;&gt;Creditario API&lt;/a&gt;&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><category term="desarrollo" /><summary type="html">APIs con Ruby</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/apis-con-ruby.jpg" /><media:content medium="image" url="https://mariochavez.io/apis-con-ruby.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;p&gt;If you are reading this, it means that your application is running with Webpack, congratulations! Your team now has modern tools to work on your frontend.&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><category term="desarrollo" /><summary type="html">From the Asset Pipeline to Webpack</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/webpack-post.jpg" /><media:content medium="image" url="https://mariochavez.io/webpack-post.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
