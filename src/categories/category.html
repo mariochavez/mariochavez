@@ -1,11 +1,10 @@
 ---
-# Feel free to add content and custom Front Matter to this file.
-
 layout: home
-pagination:
-  enabled: true
+title: Publicaciones en la categoría :prototype-term
+permalink: /:term/
+prototype:
+  term: category
 ---
-
 {% for post in paginator.documents %}
   <article class="p-16 border border-gray-100">
     <a href="{{"/" | append: post.categories[0]}}" class="pb-1 text-sm font-bold leading-normal uppercase border-b-4 border-gray-200 transition-all hover:text-red-500">{{post.categories[0]}}</a>

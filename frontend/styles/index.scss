@@ -15,6 +15,16 @@
     @apply aspect-h-3 aspect-w-4 m-0;
   }
 }
+
+.posts {
+  article:nth-child(odd) {
+    @apply border-r-0;
+  }
+
+  article:nth-child(-n+2) {
+    @apply border-t-0;
+  }
+}
 /*! purgecss end ignore */
 
 @import "tailwindcss/utilities";

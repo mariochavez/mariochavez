@@ -1,6 +1,9 @@
 ---
 layout: page
 title: Acerca de
+description: Acerca de este blog.
+keywords: about
+image: ""
 permalink: /about/
 main_image: 20210313-06B0179.jpg
 ---

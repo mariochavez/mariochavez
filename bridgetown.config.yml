@@ -16,8 +16,12 @@
 #
 
 baseurl: "" # OPTIONAL: the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. https://example.com
+url: "https://mariochavez.io" # the base hostname & protocol for your site, e.g. https://example.com
 
 permalink: pretty
 
-# timezone: America/Los_Angeles
+timezone: America/Mexico_City
+
+pagination:
+  enabled: true
+  per_page: 10
