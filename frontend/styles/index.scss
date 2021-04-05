@@ -1,17 +1,20 @@
-$body-background: #fafafa;
-$body-color: #444;
+@import "tailwindcss/base";
+@import "tailwindcss/components";
 
-body {
-  background: $body-background;
-  color: $body-color;
-  font-family: sans-serif;
-}
+/*! purgecss start ignore */
 
-h1, nav, footer {
-  text-align: center;
-}
+// You can add your own custom components/styles here
+.gallery {
+  @apply space-y-2;
 
-main {
-  margin: 4rem auto;
-  max-width: 60rem;
+  .gallery-3, .gallery-2 {
+    @apply flex flex-row space-x-2;
+  }
+
+  figure {
+    @apply aspect-h-3 aspect-w-4 m-0;
+  }
 }
+/*! purgecss end ignore */
+
+@import "tailwindcss/utilities";

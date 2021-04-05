@@ -58,7 +58,7 @@ module.exports = {
           },
         },
       },
-      
+
       {
         test: /\.(s[ac]|c)ss$/,
         use: [
@@ -69,6 +69,7 @@ module.exports = {
               url: url => !url.startsWith('/')
             }
           },
+          "postcss-loader",
           {
             loader: "sass-loader",
             options: {
@@ -81,7 +82,7 @@ module.exports = {
           },
         ],
       },
-      
+
       {
         test: /\.woff2?$|\.ttf$|\.eot$/,
         loader: "file-loader",

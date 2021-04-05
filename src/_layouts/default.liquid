@@ -3,13 +3,14 @@
   <head>
     {% render "head", metadata: site.metadata, title: page.title %}
   </head>
-  <body class="{{ page.layout }} {{ page.page_class }}">
-    {% render "navbar", metadata: site.metadata, page: page %}
+  <body class="min-h-screen antialiased {{ page.layout }} {{ page.page_class }}">
+    <section class="flex flex-nowrap">
+      {% render "sidebar". metadata: site.metadata, page: page %}
 
-    <main>
-      {{ content }}
-    </main>
+      <main class="flex-auto overflow-hidden text-gray-700">
+        {{ content }}
+      </main>
+    </section>
 
-    {% render "footer", metadata: site.metadata %}
   </body>
 </html>

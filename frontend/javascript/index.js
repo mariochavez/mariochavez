@@ -6,4 +6,5 @@ import "index.scss"
 const componentsContext = require.context("bridgetownComponents", true, /.js$/)
 componentsContext.keys().forEach(componentsContext)
 
-console.info("Bridgetown is loaded!")
+const images = require.context("../images", true);
+const imagePath = (name) => images(name, true);
