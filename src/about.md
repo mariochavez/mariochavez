@@ -18,21 +18,21 @@ La fotografía es una de las actividades que personalmente me deja una gran sati
 <div class="gallery">
   <div class="gallery-3">
     <figure>
-      <img src="{{ "/images/about/about-4.jpg" }}" />
+      <img src="{{ "/images/about/about-4.jpg" }}" loading="lazy" />
     </figure>
     <figure>
-      <img src="{{ "/images/about/about-3.jpg" }}" />
+      <img src="{{ "/images/about/about-3.jpg" }}" loading="lazy" />
     </figure>
     <figure>
-      <img src="{{ "/images/about/about-5.jpg" }}" />
+      <img src="{{ "/images/about/about-5.jpg" }}" loading="lazy" />
     </figure>
   </div>
   <div class="gallery-2">
     <figure>
-      <img src="{{ "/images/about/about-1.jpg" }}" />
+      <img src="{{ "/images/about/about-1.jpg" }}" loading="lazy" />
     </figure>
     <figure>
-      <img src="{{ "/images/about/about-2.jpg" }}" />
+      <img src="{{ "/images/about/about-2.jpg" }}" loading="lazy" />
     </figure>
   </div>
 </div>
