@@ -2,8 +2,9 @@
 layout: page
 title: Acerca de
 description: Acerca de este blog.
-keywords: about
-image: ""
+keywords: about, ruby, rails, mario
+image: /images/mariochavez.jpg
+lang: es_MX
 permalink: /about/
 main_image: 20210313-06B0179.jpg
 ---

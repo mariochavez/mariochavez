@@ -3,10 +3,10 @@ layout: post
 title:  "Your Second Post on Bridgetown"
 description: Este es el primer post del blog y sirve de ejemplo para desarrollar su UI.
 keywords: primer, post, ejemplo
-image: ""
-main_image: 20210313-06B0179.jpg
+image: /images/20210313-06B0179.jpg
 date:   2021-04-04 15:14:38 -0500
 categories: desarrollo
+lang: es_MX
 ---
 
 You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `bridgetown serve`, which launches a web server and auto-regenerates your site when a file is updated.

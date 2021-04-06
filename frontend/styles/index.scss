@@ -25,6 +25,14 @@
     @apply border-t-0;
   }
 }
+
+main .post {
+  ul {
+    list-style: disc;
+    margin-left: 1rem;
+    padding-left: 0;
+  }
+}
 /*! purgecss end ignore */
 
 @import "tailwindcss/utilities";
