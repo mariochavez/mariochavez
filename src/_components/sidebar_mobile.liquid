@@ -1,0 +1,28 @@
+<header class="flex flex-col bg-gray-100 lg:hidden" data-controller="menu">
+  <div class="flex flex-col w-full px-8 md:flex-row xl:px-10">
+    <div class="w-full pt-12 pb-6 md:py-12">
+      <a href="/">
+        <h1 class="font-sans text-lg font-medium tracking-widest text-gray-700 uppercase md:text-2xl">{{ metadata.title }}</h1>
+      </a>
+      <h2 class="mt-4 font-serif text-xs italic tracking-wide text-gray-500 md:text-lg font-extralight">{{ metadata.tagline }}</h2>
+    </div>
+
+    <div class="pb-6 md:py-12 md:pl-4 md:self-center md:justify-self-end md:pl-0">
+      <a href="#" class="inline-flex items-center px-4 py-2 border border-gray-500 md:flex hover:text-red-500 hover:border-red-500" data-action="menu#toggle">
+        <span class="font-semibold text-md md:text-lg">Menú</span>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-4 h-4 ml-4" data-menu-target="closed">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hidden w-4 h-4 ml-4" data-menu-target="opened">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <div data-menu-target="submenu" class="hidden w-full px-8">
+    {% render "navbar", metadata: site.metadata, page: page %}
+
+    {% render "footer", metadata: site.metadata %}
+  </div>
+</header>

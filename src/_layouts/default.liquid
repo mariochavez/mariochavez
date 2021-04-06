@@ -5,9 +5,10 @@
   </head>
   <body class="min-h-screen antialiased {{ page.layout }} {{ page.page_class }}">
     <section class="flex flex-nowrap">
-      {% render "sidebar". metadata: site.metadata, page: page %}
+      {% render "sidebar", metadata: site.metadata, page: page %}
 
       <main class="flex-auto overflow-hidden text-gray-700">
+        {% render "sidebar_mobile", metadata: site.metadata, page: page %}
         {{ content }}
       </main>
     </section>

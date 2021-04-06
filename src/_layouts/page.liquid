@@ -2,16 +2,16 @@
 layout: default
 ---
 
-<article class="py-24 font-serif">
-  <header class="max-w-4xl m-auto">
-    <h1 class="text-6xl font-bold tracking-wide">{{ page.title }}</h1>
+<article class="py-16 font-serif lg:py-24">
+  <header class="px-4 m-auto md:max-w-2xl lg:max-w-4xl">
+    <h1 class="text-3xl font-bold tracking-wide md:text-4xl lg:text-6xl">{{ page.title }}</h1>
   </header>
 
   <figure class="mt-16 aspect-w-16 aspect-h-9">
     <img src="{{ "/images/" | append: page.main_image }}" loading="lazy" />
   </figure>
 
-  <div class="max-w-4xl m-auto mt-16 tracking-wider prose-lg post">
+  <div class="px-4 m-auto mt-16 tracking-wider md:max-w-2xl lg:max-w-4xl prose md:prose-lg post">
     {{ content }}
   </div>
 </article>
