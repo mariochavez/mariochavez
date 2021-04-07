@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- Begin Bridgetown SEO tag v3.0.5 -->
+<title>Keep your API in shape with API Blueprint | Mario Alberto Chávez Cárdenas</title>
+<meta property="og:title" content="Keep your API in shape with API Blueprint" />
+<meta name="author" content="Mario Alberto Chávez Cárdenas" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="When you start a new API project with Rails, your first question might be, “should I do it using GraphQL or go with good old REST API?”" />
+<meta property="og:description" content="When you start a new API project with Rails, your first question might be, “should I do it using GraphQL or go with good old REST API?”" />
+<link rel="canonical" href="https://mariochavez.io/desarrollo/2018/08/02/keep-your-api-in-shape-with-api-blueprint/" />
+<meta property="og:url" content="https://mariochavez.io/desarrollo/2018/08/02/keep-your-api-in-shape-with-api-blueprint/" />
+<meta property="og:site_name" content="Mario Alberto Chávez Cárdenas" />
+<meta property="og:image" content="https://mariochavez.io/images/apis/api-documentation.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-08-02T13:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:image" content="https://mariochavez.io/images/apis/api-documentation.jpg" />
+<meta property="twitter:title" content="Keep your API in shape with API Blueprint" />
+<meta name="twitter:site" content="@mario_chavez" />
+<meta name="twitter:creator" content="@Mario Alberto Chávez Cárdenas" />
+<!-- End Bridgetown SEO tag -->
+
+
+<link type="application/atom+xml" rel="alternate" href="https://mariochavez.io/feed.xml" title="Mario Alberto Chávez Cárdenas" />
+
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+<link rel="stylesheet" href="/_bridgetown/static/css/main.b2eb3e5ccf0d7e1bcae8.css" />
+<script src="/_bridgetown/static/js/main.5262bd3580c6afd77c29.js" defer></script>
+
+  </head>
+  <body class="min-h-screen antialiased post ">
+    <section class="flex flex-nowrap">
+      <aside class="sticky top-0 flex flex-col hidden w-64 max-h-screen min-h-screen bg-gray-100 xl:w-96 lg:block">
+  <div class="px-8 xl:px-10">
+    <header class="py-14">
+      <h1 class="font-sans text-3xl font-medium tracking-widest text-gray-700 uppercase">Mario Alberto Chávez Cárdenas</h1>
+      <h2 class="mt-4 font-serif text-lg italic tracking-wide text-gray-500 font-extralight">Blog personal de fotografía y desarrollo de software</h2>
+    </header>
+
+    <nav class="lg:flex-grow lg:py-14">
+  <ul>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/">Inicio</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/desarrollo">Desarrollo</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/fotografía">Fotografía</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/proyectos">Proyectos</a></li>
+    <li class="font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/about">Acerca de</a></li>
+  </ul>
+</nav>
+
+
+    <footer class="py-8 lg:py-14">
+  <div class="flex space-x-4">
+    <a href="https://twitter.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24" class="w-4 h-4"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+    </a>
+    <a href="https://instagram.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="none" viewBox="0 0 24 24" class="w-4 h-4"><path d="M15.233 5.488c-.843-.038-1.097-.046-3.233-.046s-2.389.008-3.232.046c-2.17.099-3.181 1.127-3.279 3.279-.039.844-.048 1.097-.048 3.233s.009 2.389.047 3.233c.099 2.148 1.106 3.18 3.279 3.279.843.038 1.097.047 3.233.047 2.137 0 2.39-.008 3.233-.046 2.17-.099 3.18-1.129 3.279-3.279.038-.844.046-1.097.046-3.233s-.008-2.389-.046-3.232c-.099-2.153-1.111-3.182-3.279-3.281zm-3.233 10.62c-2.269 0-4.108-1.839-4.108-4.108 0-2.269 1.84-4.108 4.108-4.108s4.108 1.839 4.108 4.108c0 2.269-1.839 4.108-4.108 4.108zm4.271-7.418c-.53 0-.96-.43-.96-.96s.43-.96.96-.96.96.43.96.96-.43.96-.96.96zm-1.604 3.31c0 1.473-1.194 2.667-2.667 2.667s-2.667-1.194-2.667-2.667c0-1.473 1.194-2.667 2.667-2.667s2.667 1.194 2.667 2.667zm4.333-12h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm.952 15.298c-.132 2.909-1.751 4.521-4.653 4.654-.854.039-1.126.048-3.299.048s-2.444-.009-3.298-.048c-2.908-.133-4.52-1.748-4.654-4.654-.039-.853-.048-1.125-.048-3.298 0-2.172.009-2.445.048-3.298.134-2.908 1.748-4.521 4.654-4.653.854-.04 1.125-.049 3.298-.049s2.445.009 3.299.048c2.908.133 4.523 1.751 4.653 4.653.039.854.048 1.127.048 3.299 0 2.173-.009 2.445-.048 3.298z"/></svg>
+    </a>
+  </div>
+  <p class="mt-4 font-sans text-xs font-light tracking-wider text-gray-500 xl:text-sm">©2021. Mario Alberto Chávez Cárdenas</p>
+</footer>
+
+  </div>
+</aside>
+
+
+      <main class="flex-auto overflow-hidden text-gray-700">
+        <header class="flex flex-col bg-gray-100 lg:hidden" data-controller="menu">
+  <div class="flex flex-col w-full px-8 md:flex-row xl:px-10">
+    <div class="w-full pt-12 pb-6 md:py-12">
+      <a href="/">
+        <h1 class="font-sans text-lg font-medium tracking-widest text-gray-700 uppercase md:text-2xl">Mario Alberto Chávez Cárdenas</h1>
+      </a>
+      <h2 class="mt-4 font-serif text-xs italic tracking-wide text-gray-500 md:text-lg font-extralight">Blog personal de fotografía y desarrollo de software</h2>
+    </div>
+
+    <div class="pb-6 md:py-12 md:pl-4 md:self-center md:justify-self-end md:pl-0">
+      <a href="#" class="inline-flex items-center px-4 py-2 border border-gray-500 md:flex hover:text-red-500 hover:border-red-500" data-action="menu#toggle">
+        <span class="font-semibold text-md md:text-lg">Menú</span>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-4 h-4 ml-4" data-menu-target="closed">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hidden w-4 h-4 ml-4" data-menu-target="opened">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <div data-menu-target="submenu" class="hidden w-full px-8">
+    <nav class="lg:flex-grow lg:py-14">
+  <ul>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/">Inicio</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/desarrollo">Desarrollo</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/fotografía">Fotografía</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/proyectos">Proyectos</a></li>
+    <li class="font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/about">Acerca de</a></li>
+  </ul>
+</nav>
+
+
+    <footer class="py-8 lg:py-14">
+  <div class="flex space-x-4">
+    <a href="https://twitter.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24" class="w-4 h-4"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+    </a>
+    <a href="https://instagram.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="none" viewBox="0 0 24 24" class="w-4 h-4"><path d="M15.233 5.488c-.843-.038-1.097-.046-3.233-.046s-2.389.008-3.232.046c-2.17.099-3.181 1.127-3.279 3.279-.039.844-.048 1.097-.048 3.233s.009 2.389.047 3.233c.099 2.148 1.106 3.18 3.279 3.279.843.038 1.097.047 3.233.047 2.137 0 2.39-.008 3.233-.046 2.17-.099 3.18-1.129 3.279-3.279.038-.844.046-1.097.046-3.233s-.008-2.389-.046-3.232c-.099-2.153-1.111-3.182-3.279-3.281zm-3.233 10.62c-2.269 0-4.108-1.839-4.108-4.108 0-2.269 1.84-4.108 4.108-4.108s4.108 1.839 4.108 4.108c0 2.269-1.839 4.108-4.108 4.108zm4.271-7.418c-.53 0-.96-.43-.96-.96s.43-.96.96-.96.96.43.96.96-.43.96-.96.96zm-1.604 3.31c0 1.473-1.194 2.667-2.667 2.667s-2.667-1.194-2.667-2.667c0-1.473 1.194-2.667 2.667-2.667s2.667 1.194 2.667 2.667zm4.333-12h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm.952 15.298c-.132 2.909-1.751 4.521-4.653 4.654-.854.039-1.126.048-3.299.048s-2.444-.009-3.298-.048c-2.908-.133-4.52-1.748-4.654-4.654-.039-.853-.048-1.125-.048-3.298 0-2.172.009-2.445.048-3.298.134-2.908 1.748-4.521 4.654-4.653.854-.04 1.125-.049 3.298-.049s2.445.009 3.299.048c2.908.133 4.523 1.751 4.653 4.653.039.854.048 1.127.048 3.299 0 2.173-.009 2.445-.048 3.298z"/></svg>
+    </a>
+  </div>
+  <p class="mt-4 font-sans text-xs font-light tracking-wider text-gray-500 xl:text-sm">©2021. Mario Alberto Chávez Cárdenas</p>
+</footer>
+
+  </div>
+</header>
+
+        <article class="py-16 font-serif lg:py-24 post">
+  <header class="px-4 m-auto md:max-w-2xl lg:max-w-4xl">
+    <a href="/desarrollo" class="pb-1 text-sm font-bold leading-normal uppercase border-b-4 border-gray-200 transition-all hover:text-red-500">desarrollo</a>
+    <h1 class="mt-6 text-3xl font-bold tracking-wide md:text-4xl lg:text-6xl">Keep your API in shape with API Blueprint</h1>
+  </header>
+
+  <figure class="mt-16 aspect-w-16 aspect-h-9">
+    <img src="/images/apis/api-documentation.jpg" loading="lazy" />
+  </figure>
+
+  <div class="px-4 m-auto mt-16 tracking-wider md:max-w-2xl lg:max-w-4xl prose md:prose-lg">
+    <h1 id="keep-your-api-in-shape-with-api-blueprint">Keep your API in shape with API Blueprint</h1>
+
+<p>When you start a new API project with Rails, your first question might be, <em>“should I do it using GraphQL or go with good old REST API?”</em></p>
+
+<p>After much consideration, if you decide to go with a REST API, continue reading this post.</p>
+
+<p>Now, before you begin to consider how to implement your API, your primary concern should be how to keep your API documentation up to date.</p>
+
+<p>It is not an easy task for the development team to keep code in sync with documentation without going thru many hoops.</p>
+
+<p>At a recent project, I was looking for a solution that could easily integrate with Rails and, at the same time, allows the team to document the API definition without considerations about the implementation details.</p>
+
+<p>The first tool that I found was the <a href="https://github.com/zipmark/rspec_api_documentation" target="_blank">rspec_api_documentation</a> gem, but it was incompatible with our project for two reasons: We use Minitest, and it requires you to write Specs with Ruby code to describe the API.</p>
+
+<p>Then I remember that in a project for one of our clients at <a href="http://michelada.io/" target="_blank">michelada</a>, Apiary was used as a communication tool to describe the API with the team.</p>
+
+<h1 id="api-blueprint">API Blueprint</h1>
+
+<div class="gallery">
+  <figure>
+    <img src="/images/apis/api-documentation-2.png" loading="lazy" />
+  </figure>
+</div>
+
+<p>Apiary has an Open Source format called <a href="https://apiblueprint.org/" target="_blank">API Blueprint</a>. It is a specification on top of Markdown that helps to describe a web API. This format focuses on creating documentation.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FORMAT: 1A
+HOST: http://polls.apiblueprint.org/
+# Sample API
+Polls is a simple API allowing consumers to view polls and vote in them.
+## Questions Collection [/questions]
+### List All Questions [GET]
++ Response 200 (application/json)
+        [
+            {
+                "question": "Favourite programming language?",
+                "published_at": "2015-08-05T08:40:51.620Z",
+                "choices": [
+                    {
+                        "choice": "Swift",
+                        "votes": 2048
+                    }, {
+                        "choice": "Python",
+                        "votes": 1024
+                    }, {
+                        "choice": "Objective-C",
+                        "votes": 512
+                    }, {
+                        "choice": "Ruby",
+                        "votes": 256
+                    }
+                ]
+            }
+        ]
+</code></pre></div></div>
+
+<p>With this <a href="https://github.com/apiaryio/api-blueprint/blob/master/API%20Blueprint%20Specification.md" target="_blank">specification</a>, you can define how the API receives a request and what to expect as a response. The following example shows how Markdown and a special syntax <a href="https://github.com/apiaryio/mson" target="_blank">MSON</a> works together to document an API endpoint. No implementation details are present.</p>
+
+<p><strong>MSON</strong> syntax allows you to describe <strong>JSON</strong> objects easily no matter how complicated your <strong>JSON</strong> object is. An object structure with <strong>MSON</strong> like the following:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- address
+    - street
+    - city
+    - state
+</code></pre></div></div>
+
+<p>Produces a <strong>JSON</strong> object like:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+    "address" : {
+        "street": "",
+        "city": "",
+        "state": ""
+    }
+}
+</code></pre></div></div>
+
+<p>The format is relatively simple to get up to speed quickly and write a complete set of API documentation. With the API Blueprint format is also possible to generate <strong>JSON</strong> Schema draft 4 from it. The schemas are useful to validate your API using Minitest.</p>
+
+<h1 id="generate-good-looking-documentation">Generate good-looking documentation.</h1>
+
+<p>Let’s start with the low hang fruit of using API Blueprint to document our API. Here is the documentation for two API endpoints; they are our example for the rest of this post.</p>
+
+<p>The API is simple, but it shows some benefits of <strong>MSON</strong> syntax, like the ability to reuse data structures. It also shows how to document a response that can have many different statuses.</p>
+
+<p><a href="https://github.com/danielgtaylor/aglio" target="_blank">Aglio</a> is a tool that uses the API Blueprint format to render good-looking documentation from it. It has a few available themes that you can choose from, or even better; you can write your own.</p>
+
+<p>In a Rails application, to install aglio use <strong>Yarn</strong>.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ bin/yarn add aglio
+</code></pre></div></div>
+
+<p>Aglio command needs at least two parameters, the input, where is the documentation file written with API Blueprint, and the output file for the HTML documentation.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ bin/yarn run aglio -i docs/api/documentation.md -o public/documentation.html
+</code></pre></div></div>
+
+<p>It produces the HTML documentation with aglio’s default theme. You can pass a set of –theme flags to choose a theme, color scheme, layout, and a few things more, check aglio’s documentation for details.</p>
+
+<p>Start your Rails server and point your browser to <strong>http://localhost:3000/documentation.html</strong>. There you have a nicely documented API.</p>
+
+<div class="gallery">
+  <figure>
+    <img src="/images/apis/api-documentation-1.png" loading="lazy" />
+  </figure>
+</div>
+
+<p>It is handy to have a rake task to refresh the HTML documentation anytime with the command <strong>bin/rails api:documentation</strong>. Create a file <strong>lib/tasks/api.rake</strong> and add the following lines:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>namespace :api do
+  desc 'Build API documentation'
+  task :documentation do
+    input_file = 'docs/api/documentation.md'
+    output_file = 'public/documentation.html'
+    system(" bin/yarn run aglio -i #{input_file}  -o #{output_file}")
+  end
+end
+</code></pre></div></div>
+
+<h1 id="generating-json-schemas">Generating JSON Schemas</h1>
+
+<p>Now that you have nice looking documentation, it is time to generate <a href="https://spacetelescope.github.io/understanding-json-schema/" target="_blank">JSON Schemas</a> from the same documentation file. The generated files, along with Minitest, help us to automate the verification that the server requests/response work as expected.</p>
+
+<p>To generate the schema files from the API Blueprint file, we need a tool called <a href="https://github.com/o5/apib2json" target="_blank">apib2json</a>. It produces a single <strong>JSON</strong> file for all schemas present in the documentation, this is fine. Still, for our needs, a single file does not work, so we need an additional step to split this file into multiple files, each one with a single schema representation.</p>
+
+<p>Unfortunately, the way that apib2json works, it does not provide enough metadata to help us identify each generated schema to put it into a file. So you need a custom version of apib2json, which you can find at <a href="https://github.com/mariochavez/apib2json/tree/additional-metadata" target="_blank">https://github.com/mariochavez/apib2json/tree/additional-metadata</a>.</p>
+
+<p>To install it, use <strong>Yarn</strong>.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ bin/yarn add "https://github.com/mariochavez/apib2json.git#additional-metadata"
+</code></pre></div></div>
+
+<p>Then execute it to generate a single schema file. The command needs an input, which is the API Blueprint file, and an output file for the <strong>JSON</strong> schemas; the <code class="highlighter-rouge">--pretty</code> flag is for us to get a human-readable file.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ bin/yarn run apib2json --pretty -i docs/api/documentation.md  -o test/support/schemas/schemas.json
+
+{
+  "[GET]/users{?cursor}": [
+    {
+      "meta": {
+        "type": "response",
+        "title": ""
+      },
+      "schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "description": "User's email."
+...
+</code></pre></div></div>
+
+<p>With the help of a second rake task, the generated file is divided into multiple files; each file will contain one request with a single response. A file <strong>GET-Users-200.json</strong> contains a request with a GET to Users endpoint with a 200 status response.</p>
+
+<p>Create the file <strong>lib/tasks/api.rake</strong> and add the following code.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>desc "Generate JSON schemas"
+  task :schemas do
+    schemas_path = "test/support/schemas"
+    input_file = "docs/api/documentation.md"
+    output_file = "test/support/schemas/schemas.json"
+    puts "Generating api schemas from #{input_file}"
+    system("bin/yarn run apib2json --pretty -i #{input_file} -o #{output_file}")
+    if File.exist?(output_file)
+      file_path = Pathname.new(output_file)
+      JSON.parse(file_path.read).each_pair do |group, actions|
+        actions.each do |action|
+          next if action.dig("meta", "type") != "response"
+          verb = group.scan(/\[(.*)\]/).flatten.first
+          name = "#{verb}-#{I18n.transliterate(action.dig('meta', 'group'))}(#{action.dig('meta', 'statusCode')})#{action.dig('meta', 'title')&amp;.gsub(/ /, '-')}".
+            sub(/\{.*\}/, "").gsub(/\(|\)/, "-").gsub(/^-|-$/, "")
+          puts "Writing #{name}"
+          File.open("#{schemas_path}/#{name}.json", "w") { |file| file.write(action.dig("schema").to_json) }
+        end
+      end
+    end
+    puts "Schemas are ready at #{schemas_path}"
+  end
+</code></pre></div></div>
+
+<p>To execute the rake task, run the following command.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ bin/rails api:schemas
+Generating api schemas from docs/api/documentation.md
+yarn run v1.7.0
+$ node_modules/.bin/apib2json --pretty -i docs/api/documentation.md -o test/support/schemas/schemas.json
+Done in 0.31s.
+Writing GET-Users-200
+Writing POST-Users-201
+Writing POST-Users-422
+Schemas are ready at test/support/schemas
+</code></pre></div></div>
+
+<p>There you have it, one <strong>JSON</strong> schema file per request/response. The rest is quite simple, add the <a href="https://github.com/thoughtbot/json_matchers" target="_blank">json_matchers</a> gem in your <strong>Gemfile</strong> and configure the <strong>test_helper.rb</strong> to load the gem.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>require 'json_matchers/minitest/assertions'
+JsonMatchers.schema_root = 'test/support/schemas'
+Minitest::Test.send(:include, JsonMatchers::Minitest::Assertions)
+</code></pre></div></div>
+
+<p>Then create an integration test for a <code class="highlighter-rouge">UsersController</code> and add the following tests. Each test will perform a request to the API and match the response accordingly to what you documented in the API Blueprint file.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>require 'test_helper'
+class UsersApiTest &lt; ActionDispatch::IntegrationTest
+  test 'Users List' do
+    get '/users', headers: { Accept: 'application/vnd.api-test.v1+json' }
+    assert_response :success
+    assert_matches_json_schema response, 'GET-Users-200'
+  end
+  test 'Create new User successfully' do
+    post '/users', headers: { Accept: 'application/vnd.api-test.v1+json' }, params: user_payload
+    assert_response :created
+    assert_matches_json_schema response, 'POST-Users-201'
+  end
+  test 'Fails to create new User' do
+    post '/users', headers: { Accept: 'application/vnd.api-test.v1+json' },
+                   params: user_payload(email: nil, first_name: nil)
+    assert_response :unprocessable_entity
+    assert_matches_json_schema response, 'POST-Users-422'
+  end
+  def user_payload(attrs = {})
+    {
+      email: 'user@mail.com',
+      first_name: 'Jane',
+      last_name: 'Doe'
+    }.merge(attrs)
+  end
+end
+</code></pre></div></div>
+
+<p>If there is a mismatch between the request and the documented response, the test will fail with detailed information on why the response differs from the <strong>JSON</strong> schema.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#: failed schema #: "links" wasn't supplied.
+---
+expected
+{
+}
+to match schema "POST-Users-201":
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+...
+</code></pre></div></div>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<p>Keeping your API documentation and endpoints in sync can be a daunting task; writing schema files by hand are not fun at all, but hopefully, with the tools presented here, it will be easy for you and your team to keep everything up to date.</p>
+
+<p>If you want to check a sample application with everything showed in this post to go <a href="https://gitlab.com/mariochavez/testing-api-blueprint/tree/master" target="_blank">https://gitlab.com/mariochavez/testing-api-blueprint/tree/master</a>.</p>
+
+  </div>
+</article>
+
+      </main>
+    </section>
+
+  </body>
+</html>
