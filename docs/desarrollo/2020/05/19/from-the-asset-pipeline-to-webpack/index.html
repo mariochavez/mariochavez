@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- Begin Bridgetown SEO tag v3.0.5 -->
+<title>From the Asset Pipeline to Webpack | Mario Alberto Chávez Cárdenas</title>
+<meta property="og:title" content="From the Asset Pipeline to Webpack" />
+<meta name="author" content="Mario Alberto Chávez Cárdenas" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Rails 5.2 and newer adds Webpack to support modern tools to work on newer frontend technologies." />
+<meta property="og:description" content="Rails 5.2 and newer adds Webpack to support modern tools to work on newer frontend technologies." />
+<link rel="canonical" href="https://mariochavez.io/desarrollo/2020/05/19/from-the-asset-pipeline-to-webpack/" />
+<meta property="og:url" content="https://mariochavez.io/desarrollo/2020/05/19/from-the-asset-pipeline-to-webpack/" />
+<meta property="og:site_name" content="Mario Alberto Chávez Cárdenas" />
+<meta property="og:image" content="https://mariochavez.io/images/webpack/webpack-post.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-05-19T01:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:image" content="https://mariochavez.io/images/webpack/webpack-post.jpg" />
+<meta property="twitter:title" content="From the Asset Pipeline to Webpack" />
+<meta name="twitter:site" content="@mario_chavez" />
+<meta name="twitter:creator" content="@Mario Alberto Chávez Cárdenas" />
+<!-- End Bridgetown SEO tag -->
+
+
+<link type="application/atom+xml" rel="alternate" href="https://mariochavez.io/feed.xml" title="Mario Alberto Chávez Cárdenas" />
+
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+<link rel="stylesheet" href="/_bridgetown/static/css/main.b2eb3e5ccf0d7e1bcae8.css" />
+<script src="/_bridgetown/static/js/main.5262bd3580c6afd77c29.js" defer></script>
+
+  </head>
+  <body class="min-h-screen antialiased post ">
+    <section class="flex flex-nowrap">
+      <aside class="sticky top-0 flex flex-col hidden w-64 max-h-screen min-h-screen bg-gray-100 xl:w-96 lg:block">
+  <div class="px-8 xl:px-10">
+    <header class="py-14">
+      <h1 class="font-sans text-3xl font-medium tracking-widest text-gray-700 uppercase">Mario Alberto Chávez Cárdenas</h1>
+      <h2 class="mt-4 font-serif text-lg italic tracking-wide text-gray-500 font-extralight">Blog personal de fotografía y desarrollo de software</h2>
+    </header>
+
+    <nav class="lg:flex-grow lg:py-14">
+  <ul>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/">Inicio</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/desarrollo">Desarrollo</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/fotografía">Fotografía</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/proyectos">Proyectos</a></li>
+    <li class="font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/about">Acerca de</a></li>
+  </ul>
+</nav>
+
+
+    <footer class="py-8 lg:py-14">
+  <div class="flex space-x-4">
+    <a href="https://twitter.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24" class="w-4 h-4"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+    </a>
+    <a href="https://instagram.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="none" viewBox="0 0 24 24" class="w-4 h-4"><path d="M15.233 5.488c-.843-.038-1.097-.046-3.233-.046s-2.389.008-3.232.046c-2.17.099-3.181 1.127-3.279 3.279-.039.844-.048 1.097-.048 3.233s.009 2.389.047 3.233c.099 2.148 1.106 3.18 3.279 3.279.843.038 1.097.047 3.233.047 2.137 0 2.39-.008 3.233-.046 2.17-.099 3.18-1.129 3.279-3.279.038-.844.046-1.097.046-3.233s-.008-2.389-.046-3.232c-.099-2.153-1.111-3.182-3.279-3.281zm-3.233 10.62c-2.269 0-4.108-1.839-4.108-4.108 0-2.269 1.84-4.108 4.108-4.108s4.108 1.839 4.108 4.108c0 2.269-1.839 4.108-4.108 4.108zm4.271-7.418c-.53 0-.96-.43-.96-.96s.43-.96.96-.96.96.43.96.96-.43.96-.96.96zm-1.604 3.31c0 1.473-1.194 2.667-2.667 2.667s-2.667-1.194-2.667-2.667c0-1.473 1.194-2.667 2.667-2.667s2.667 1.194 2.667 2.667zm4.333-12h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm.952 15.298c-.132 2.909-1.751 4.521-4.653 4.654-.854.039-1.126.048-3.299.048s-2.444-.009-3.298-.048c-2.908-.133-4.52-1.748-4.654-4.654-.039-.853-.048-1.125-.048-3.298 0-2.172.009-2.445.048-3.298.134-2.908 1.748-4.521 4.654-4.653.854-.04 1.125-.049 3.298-.049s2.445.009 3.299.048c2.908.133 4.523 1.751 4.653 4.653.039.854.048 1.127.048 3.299 0 2.173-.009 2.445-.048 3.298z"/></svg>
+    </a>
+  </div>
+  <p class="mt-4 font-sans text-xs font-light tracking-wider text-gray-500 xl:text-sm">©2021. Mario Alberto Chávez Cárdenas</p>
+</footer>
+
+  </div>
+</aside>
+
+
+      <main class="flex-auto overflow-hidden text-gray-700">
+        <header class="flex flex-col bg-gray-100 lg:hidden" data-controller="menu">
+  <div class="flex flex-col w-full px-8 md:flex-row xl:px-10">
+    <div class="w-full pt-12 pb-6 md:py-12">
+      <a href="/">
+        <h1 class="font-sans text-lg font-medium tracking-widest text-gray-700 uppercase md:text-2xl">Mario Alberto Chávez Cárdenas</h1>
+      </a>
+      <h2 class="mt-4 font-serif text-xs italic tracking-wide text-gray-500 md:text-lg font-extralight">Blog personal de fotografía y desarrollo de software</h2>
+    </div>
+
+    <div class="pb-6 md:py-12 md:pl-4 md:self-center md:justify-self-end md:pl-0">
+      <a href="#" class="inline-flex items-center px-4 py-2 border border-gray-500 md:flex hover:text-red-500 hover:border-red-500" data-action="menu#toggle">
+        <span class="font-semibold text-md md:text-lg">Menú</span>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-4 h-4 ml-4" data-menu-target="closed">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hidden w-4 h-4 ml-4" data-menu-target="opened">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <div data-menu-target="submenu" class="hidden w-full px-8">
+    <nav class="lg:flex-grow lg:py-14">
+  <ul>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/">Inicio</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/desarrollo">Desarrollo</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/fotografía">Fotografía</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/proyectos">Proyectos</a></li>
+    <li class="font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/about">Acerca de</a></li>
+  </ul>
+</nav>
+
+
+    <footer class="py-8 lg:py-14">
+  <div class="flex space-x-4">
+    <a href="https://twitter.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24" class="w-4 h-4"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+    </a>
+    <a href="https://instagram.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="none" viewBox="0 0 24 24" class="w-4 h-4"><path d="M15.233 5.488c-.843-.038-1.097-.046-3.233-.046s-2.389.008-3.232.046c-2.17.099-3.181 1.127-3.279 3.279-.039.844-.048 1.097-.048 3.233s.009 2.389.047 3.233c.099 2.148 1.106 3.18 3.279 3.279.843.038 1.097.047 3.233.047 2.137 0 2.39-.008 3.233-.046 2.17-.099 3.18-1.129 3.279-3.279.038-.844.046-1.097.046-3.233s-.008-2.389-.046-3.232c-.099-2.153-1.111-3.182-3.279-3.281zm-3.233 10.62c-2.269 0-4.108-1.839-4.108-4.108 0-2.269 1.84-4.108 4.108-4.108s4.108 1.839 4.108 4.108c0 2.269-1.839 4.108-4.108 4.108zm4.271-7.418c-.53 0-.96-.43-.96-.96s.43-.96.96-.96.96.43.96.96-.43.96-.96.96zm-1.604 3.31c0 1.473-1.194 2.667-2.667 2.667s-2.667-1.194-2.667-2.667c0-1.473 1.194-2.667 2.667-2.667s2.667 1.194 2.667 2.667zm4.333-12h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm.952 15.298c-.132 2.909-1.751 4.521-4.653 4.654-.854.039-1.126.048-3.299.048s-2.444-.009-3.298-.048c-2.908-.133-4.52-1.748-4.654-4.654-.039-.853-.048-1.125-.048-3.298 0-2.172.009-2.445.048-3.298.134-2.908 1.748-4.521 4.654-4.653.854-.04 1.125-.049 3.298-.049s2.445.009 3.299.048c2.908.133 4.523 1.751 4.653 4.653.039.854.048 1.127.048 3.299 0 2.173-.009 2.445-.048 3.298z"/></svg>
+    </a>
+  </div>
+  <p class="mt-4 font-sans text-xs font-light tracking-wider text-gray-500 xl:text-sm">©2021. Mario Alberto Chávez Cárdenas</p>
+</footer>
+
+  </div>
+</header>
+
+        <article class="py-16 font-serif lg:py-24 post">
+  <header class="px-4 m-auto md:max-w-2xl lg:max-w-4xl">
+    <a href="/desarrollo" class="pb-1 text-sm font-bold leading-normal uppercase border-b-4 border-gray-200 transition-all hover:text-red-500">desarrollo</a>
+    <h1 class="mt-6 text-3xl font-bold tracking-wide md:text-4xl lg:text-6xl">From the Asset Pipeline to Webpack</h1>
+  </header>
+
+  <figure class="mt-16 aspect-w-16 aspect-h-9">
+    <img src="/images/webpack/webpack-post.jpg" loading="lazy" />
+  </figure>
+
+  <div class="px-4 m-auto mt-16 tracking-wider md:max-w-2xl lg:max-w-4xl prose md:prose-lg">
+    <h1 id="from-the-asset-pipeline-to-webpack">From the Asset Pipeline to Webpack</h1>
+
+<p>In May 2011, DHH announced at Railsconf a new framework for Rails, The Asset Pipeline. It was also announced that SCSS and CoffeeScript, along with jQuery, were to become a default on every Rails application.</p>
+
+<p>The recognition that Web Development changed since Rails was created, and that it was the time for Rails to promote to first-class citizen every aspect of building Web UIs.</p>
+
+<div class="gallery">
+  <figure>
+    <img src="/images/webpack/dhh-tweet.png" loading="lazy" />
+  </figure>
+</div>
+
+<p>It was a step forward, but people complained about SCSS and CoffeeScript becoming the default on every project. The plan was in place, and on August 31st, 2011 <a href="http://guides.rubyonrails.org/3_1_release_notes.html" target="_blank">version 3.1 was released</a>.</p>
+
+<p>In the Rails world, the frontend development was done with HTML/CSS and jQuery plugins, but the UI complexity and Javascript spaghetti code needed a different solution, this how frontend libraries started to arise, being one of the first <a href="http://backbonejs.org" target="_blank">Backbone.js</a></p>
+
+<p>Managing, invalidating, and serving assets was a difficult task, and <a href="http://guides.rubyonrails.org/asset_pipeline.html" target="_blank">the Asset Pipeline</a> came with the promise to make it easy. Front-end development continued moving forward; eventually, Backbone.js died, and jQuery was not enough anymore.</p>
+
+<p><a href="https://nodejs.org/en/" target="_blank">Node.js</a>, <a href="https://www.npmjs.com">NPM</a>, and ECMA 5 stepped in and rapidly influenced how to do frontend development. Single-page applications became a thing, and this had a direct effect in the Rails world where it was no longer easy just to download a Javascript file, put it in the vendor folder, and expect it to work.</p>
+
+<p><a href="https://github.com/rails/sprockets" target="_blank">Sprockets</a>, the heart of the Asset Pipeline, tried to keep up, but somehow, it fell short. I saw different solutions that included Gulp, Grunt, and Bower as a way to keep doing modern Web frontend development, and there was no joy on any of it.</p>
+
+<p>Finally, to address this situation, on April 27th, 2017 <a href="https://sipsandbits.com/2017/03/09/whats-new-in-rails-51/" target="_blank">Rails 5.1</a> was released, it included Yarn to manage Javascript dependencies and support for <a href="https://webpack.js.org">Webpack</a> with sensitive defaults and integration on Rails itself via <a href="https://github.com/rails/webpacker">Webpacker</a>.</p>
+
+<p>Rails provide a tool that is familiar to frontend developers and eases the adoption of new Javascript libraries. Still, compatibility needs to be kept for projects that use the Asset Pipeline, so it was not removed. You can use Webpacker and the Asset Pipeline seamlessly. It may take a few more versions before the Asset Pipeline becomes deprecated.</p>
+
+<h2 id="starting-with-webpack">Starting with Webpack.</h2>
+<p>If you are creating a new Rails application starting with Webpack is easy.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ rails new sample_app
+</code></pre></div></div>
+
+<p>For a new Rails project on version 6.0, Webpack is set up by default. If you need a Javascript library like React, Angular, Elm, Vuejs, or Stimulusjs, you can specify it with an option.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ rails new sample_app --webpack=react
+</code></pre></div></div>
+
+<p>If you want to disable the Asset Pipeline, add the following flag to the new command.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ rails new sample_app --skip-sprockets
+</code></pre></div></div>
+
+<p>Be aware that the <code class="highlighter-rouge">app/assets</code> folder is created even when this flag is set, so you might need to remove it manually.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>app/assets
+├── config
+├── images
+└── stylesheets
+</code></pre></div></div>
+
+<p>Rails configure Webpack to work seamlessly with the development, test, and production environment. The Webpacker gem is responsible for this integration. If you need to tweak or change Webpack’s configuration, configuration files can be found at the <code class="highlighter-rouge">/config</code> folder.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>config/webpacker.yml
+config/webpack
+├── development.js
+├── environment.js
+├── production.js
+└── test.js
+</code></pre></div></div>
+
+<p>All frontend assets are organized around packs. A pack is a bundle for all required assets, like public application assets or the administration assets. A pack is an entry point that declares all the assets for each pack; a pack can share assets between them. Pack definitions live inside <code class="highlighter-rouge">/app/javascript/packs</code> folder. The default pack is application.js.</p>
+
+<p>Now you can create a folder for images, stylesheets, or any other asset that needs to be served with Webpack.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>app/javascript
+├── controllers
+├── images
+├── packs
+└── stylesheets
+    └── modules
+</code></pre></div></div>
+<p>Just be sure to require the assets in their corresponding packs, or Webpack will not load them.</p>
+
+<p>Also, you need to ensure that all your views layouts are using Webpacker helpers to load the packs.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;%= javascript_pack_tag "application" %&gt;
+&lt;%= stylesheet_pack_tag "application" %&gt;
+</code></pre></div></div>
+
+<p>Running the Rails server, in development mode, and visiting a page start a Webpack process to compile the required packs delaying the response from the server. Compiling assets this way is simple but slow.</p>
+
+<p>A faster approach is running a separate Webpack process; just run the Webpack development server.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ bin/webpack-dev-server
+</code></pre></div></div>
+
+<p>A benefit of having a separate process for Webpack is that it makes compilation fast, and also it auto-reload the current page if changes on assets are detected. A simple solution to start the Rails and Webpack servers on their separate process is to create a <code class="highlighter-rouge">Procfile</code> and use a tool like <a href="https://github.com/DarthSim/overmind" target="_blank">Overmind</a> to start them.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>server: bin/rails server
+assets: bin/webpack-dev-server
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ overmind start
+server | Started with pid 9681...
+assets | Started with pid 9682...
+warning package.json: No license field
+assets | ℹ ｢wds｣: Project is running at http://localhost:3036/
+assets | ℹ ｢wds｣: webpack output is served from /packs/
+assets | ℹ ｢wds｣: Content not from webpack is served from /../public/packs
+assets | ℹ ｢wds｣: 404s will fallback to /index.html
+server | =&gt; Booting Puma
+server | =&gt; Rails 6.0.2.2 application starting in development
+server | =&gt; Run `rails server --help` for more startup options
+server | Puma starting in single mode...
+server | * Version 4.3.3 (ruby 2.6.5-p114), codename: Mysterious Traveller
+server | * Min threads: 5, max threads: 5
+server | * Environment: development
+server | * Listening on tcp://127.0.0.1:3036
+server | * Listening on tcp://[::1]:3036
+...
+</code></pre></div></div>
+
+<h2 id="moving-from-the-asset-pipeline-to-webpack">Moving from the Asset Pipeline to Webpack</h2>
+<p>Everything described in the previous section applies to new Rails applications, but what about an existing application? If your application is not a Rails 6.0 o better, you might need to install Webpack manually.</p>
+
+<p>Before continuing, I want to make it clear that if your Javascript does not follow the <a href="https://nodejs.org/api/modules.html" target="_blank">Node.js Modules</a> <a href="https://darrenderidder.github.io/talks/ModulePatterns/#/">pattern</a> you need to figure out how to change your code to make it Webpack friendly.</p>
+
+<p>Rails applications older than version 6.0 might not have Webpack integration installed; to install it first, add the Webpacker gem to your Gemfile and run Bundler. Now generate Webpack configuration files by running the following command.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ bin/rails g webpacker:install
+</code></pre></div></div>
+
+<p>If you need to add support for a frontend Javascript library like Rect or Stimulus, run the Webpacker generator.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ bin/rails g webpacker:install:react
+</code></pre></div></div>
+<p>OR</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ bin/rails g webpacker:install:stimulus
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">application.js</code> pack is modified to include everything you need to start working with the installed Javascript library.</p>
+
+<p>With Webpack in place, you can start moving your assets from the Asset Pipeline folders to the new <code class="highlighter-rouge">app/javascript</code> folder. Let us start with images. Move your images to <code class="highlighter-rouge">app/javascript/images</code> in there. You can organize the images into sub-folders, for example, images for the public frontend and images for the private backend or just leave all of them there.</p>
+
+<p>In the <code class="highlighter-rouge">application.js</code> file, you can import images one by one as follow.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import '../images/image1.png';
+import '../images/image2.png';
+...
+import '../images/imageN.png';
+</code></pre></div></div>
+
+<p>Or you can take advantage of Webpacker’s <code class="highlighter-rouge">require.context</code> and import all of them at once.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>require.context('../images', true);
+</code></pre></div></div>
+
+<p>The second param tells Webpacker to scan subdirectories inside <code class="highlighter-rouge">app/javascript/images</code>. You can also be more selective and pass the third parameter as a regular expression to import just the matched images. To use an image in a Rails view, you need to make use of the <code class="highlighter-rouge">asset_pack_tag</code> helper.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;%= image_pack_tag("image1.png") %&gt;
+</code></pre></div></div>
+
+<p>But if you need the image URL, then use the <code class="highlighter-rouge">asset_pack_url</code>.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;%= asset_pack_tag("image1.png") %&gt;
+</code></pre></div></div>
+
+<p>If you need to reference an image from a stylesheet file, then use the <code class="highlighter-rouge">url</code> function with the relative path to the image.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>background-image: url("../images/image1.png");
+</code></pre></div></div>
+
+<p>Moving the Stylesheets is not different than moving the images into Webpacker. Just move the files into <code class="highlighter-rouge">app/javascript/stylesheets</code>. You need to require all your stylesheet files one by one or all at once using <code class="highlighter-rouge">require.context</code> function.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>require("../stylesheets/application.css");
+require("../stylesheets/module/navbar.css");
+
+// Or all at once
+require.context('../stylesheets', true);
+</code></pre></div></div>
+<p>If you are using SASS, it is best to require the entry file and then within SASS import your stylesheets.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>require("../stylesheets/application.scss");
+</code></pre></div></div>
+
+<p>Then in your <code class="highlighter-rouge">application.scss</code> import your stylesheets as you normally do.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import 'layout.css';
+...
+import 'buttons.css';
+</code></pre></div></div>
+
+<p>From your SASS file, you can import Stylesheets from installed Javascript libraries and take advantage of SASS variables or functions they provide.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@import '~bulma/bulma';
+...
+@import "~notyf/notyf.min";
+</code></pre></div></div>
+
+<p>Just remember to use Yarn to install any dependency that is managed by Webpack. For example, to install <a href="https://bulma.io/" target="_blank">Bulma</a> CSS library, run the following command.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ yarn add bulma
+</code></pre></div></div>
+
+<p>Moving your Javascript files could be a little more complicated, it depends on their complexity, but the approach is the same. Move all files to <code class="highlighter-rouge">app/javascript/scripts</code>, and with Yarn, add all the libraries your code depends.</p>
+
+<p>Here is an example of adding Javascript dependencies to a project.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ bin/yarn add  jquery turbolinks @rails/ujs @rails/activestorage
+</code></pre></div></div>
+
+<p>Each library has different requirements on how they need to be imported and started because of this always read their README file to ensure you are using them correctly.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import Rails from 'rails-ujs';
+import Turbolinks from 'turbolinks';
+import * as ActiveStorage from 'activestorage';
+
+Rails.start()
+Turbolinks.start()
+ActiveStorage.start()
+</code></pre></div></div>
+
+<p>In most cases, jQuery needs to be available globally and accessible with <code class="highlighter-rouge">$</code> and <code class="highlighter-rouge">jQuery</code>. To accomplish this, open the <code class="highlighter-rouge">config/webpack/environment.js</code> file and add the following lines just above <code class="highlighter-rouge">module.exports = environment</code>.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>const webpack = require('webpack');
+environment.plugins.append('Provide', new webpack.ProvidePlugin({
+  $: 'jquery',
+  jQuery: 'jquery'
+}))
+</code></pre></div></div>
+
+<p>If you find that your Javascript code fails to be compiled by Webpacker due to a missing variable, you may need to add additional <code class="highlighter-rouge">import</code> on top of the file that fails to compile.</p>
+
+<p>At this point, Webpack should compile your assets successfully; if that is the case, then you are ready to remove the Asset Pipeline if not the additional debug is required.</p>
+
+<p>To disable the Asset Pipeline in your application, remove references to <code class="highlighter-rouge">config.assets</code> in <code class="highlighter-rouge">config/environments/production.rb</code> and <code class="highlighter-rouge">config/environments/development.rb</code>. Also, remove the <code class="highlighter-rouge">config/initializer/assets.rb</code> file and finally remove coffee-rails, sass-rails, and uglifier gems from your Gemfile.</p>
+
+<p>The file <code class="highlighter-rouge">config/application.rb</code> needs a change to not require all Rails frameworks, remove this line <code class="highlighter-rouge">require "rails/all"</code>, and expand the frameworks list where <code class="highlighter-rouge">"sprockets/railtie"</code> is commented.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>require "rails"
+# Pick the frameworks you want:
+require "active_model/railtie"
+require "active_job/railtie"
+require "active_record/railtie"
+require "active_storage/engine"
+require "action_controller/railtie"
+require "action_mailer/railtie"
+require "action_view/railtie"
+# require "action_cable/engine"
+# require "sprockets/railtie"
+require "rails/test_unit/railtie"
+</code></pre></div></div>
+
+<p>As the last step, remove the <code class="highlighter-rouge">app/assets</code> folder. Now your application uses Webpack to manage your application assets.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+<p>If you are reading this, it means that your application is running with Webpack, congratulations! Your team now has modern tools to work on your frontend.</p>
+
+
+  </div>
+</article>
+
+      </main>
+    </section>
+
+  </body>
+</html>

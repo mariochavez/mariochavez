@@ -1,0 +1,703 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- Begin Bridgetown SEO tag v3.0.5 -->
+<title>I created the same app with Rails and Javascript | Mario Alberto Chávez Cárdenas</title>
+<meta property="og:title" content="I created the same app with Rails and Javascript" />
+<meta name="author" content="Mario Alberto Chávez Cárdenas" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A few days ago, I came into a post on Medium “I created the exact same app in React and Svelte. Here are the differences”, this post talks about side by side code comparison on writing a simple To Do application with both Javascript Framework. So I decided to use his same approach and wrote this post about using HTML, SASS, and StimulusJs with a Rails backend." />
+<meta property="og:description" content="A few days ago, I came into a post on Medium “I created the exact same app in React and Svelte. Here are the differences”, this post talks about side by side code comparison on writing a simple To Do application with both Javascript Framework. So I decided to use his same approach and wrote this post about using HTML, SASS, and StimulusJs with a Rails backend." />
+<link rel="canonical" href="https://mariochavez.io/desarrollo/2019/12/23/i-created-the-same-app-with-rails-and-javascript/" />
+<meta property="og:url" content="https://mariochavez.io/desarrollo/2019/12/23/i-created-the-same-app-with-rails-and-javascript/" />
+<meta property="og:site_name" content="Mario Alberto Chávez Cárdenas" />
+<meta property="og:image" content="https://mariochavez.io/images/rails_todo/vim.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-12-23T12:00:00-06:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:image" content="https://mariochavez.io/images/rails_todo/vim.png" />
+<meta property="twitter:title" content="I created the same app with Rails and Javascript" />
+<meta name="twitter:site" content="@mario_chavez" />
+<meta name="twitter:creator" content="@Mario Alberto Chávez Cárdenas" />
+<!-- End Bridgetown SEO tag -->
+
+
+<link type="application/atom+xml" rel="alternate" href="https://mariochavez.io/feed.xml" title="Mario Alberto Chávez Cárdenas" />
+
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+<link rel="stylesheet" href="/_bridgetown/static/css/main.b2eb3e5ccf0d7e1bcae8.css" />
+<script src="/_bridgetown/static/js/main.5262bd3580c6afd77c29.js" defer></script>
+
+  </head>
+  <body class="min-h-screen antialiased post ">
+    <section class="flex flex-nowrap">
+      <aside class="sticky top-0 flex flex-col hidden w-64 max-h-screen min-h-screen bg-gray-100 xl:w-96 lg:block">
+  <div class="px-8 xl:px-10">
+    <header class="py-14">
+      <h1 class="font-sans text-3xl font-medium tracking-widest text-gray-700 uppercase">Mario Alberto Chávez Cárdenas</h1>
+      <h2 class="mt-4 font-serif text-lg italic tracking-wide text-gray-500 font-extralight">Blog personal de fotografía y desarrollo de software</h2>
+    </header>
+
+    <nav class="lg:flex-grow lg:py-14">
+  <ul>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/">Inicio</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/desarrollo">Desarrollo</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/fotografía">Fotografía</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/proyectos">Proyectos</a></li>
+    <li class="font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/about">Acerca de</a></li>
+  </ul>
+</nav>
+
+
+    <footer class="py-8 lg:py-14">
+  <div class="flex space-x-4">
+    <a href="https://twitter.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24" class="w-4 h-4"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+    </a>
+    <a href="https://instagram.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="none" viewBox="0 0 24 24" class="w-4 h-4"><path d="M15.233 5.488c-.843-.038-1.097-.046-3.233-.046s-2.389.008-3.232.046c-2.17.099-3.181 1.127-3.279 3.279-.039.844-.048 1.097-.048 3.233s.009 2.389.047 3.233c.099 2.148 1.106 3.18 3.279 3.279.843.038 1.097.047 3.233.047 2.137 0 2.39-.008 3.233-.046 2.17-.099 3.18-1.129 3.279-3.279.038-.844.046-1.097.046-3.233s-.008-2.389-.046-3.232c-.099-2.153-1.111-3.182-3.279-3.281zm-3.233 10.62c-2.269 0-4.108-1.839-4.108-4.108 0-2.269 1.84-4.108 4.108-4.108s4.108 1.839 4.108 4.108c0 2.269-1.839 4.108-4.108 4.108zm4.271-7.418c-.53 0-.96-.43-.96-.96s.43-.96.96-.96.96.43.96.96-.43.96-.96.96zm-1.604 3.31c0 1.473-1.194 2.667-2.667 2.667s-2.667-1.194-2.667-2.667c0-1.473 1.194-2.667 2.667-2.667s2.667 1.194 2.667 2.667zm4.333-12h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm.952 15.298c-.132 2.909-1.751 4.521-4.653 4.654-.854.039-1.126.048-3.299.048s-2.444-.009-3.298-.048c-2.908-.133-4.52-1.748-4.654-4.654-.039-.853-.048-1.125-.048-3.298 0-2.172.009-2.445.048-3.298.134-2.908 1.748-4.521 4.654-4.653.854-.04 1.125-.049 3.298-.049s2.445.009 3.299.048c2.908.133 4.523 1.751 4.653 4.653.039.854.048 1.127.048 3.299 0 2.173-.009 2.445-.048 3.298z"/></svg>
+    </a>
+  </div>
+  <p class="mt-4 font-sans text-xs font-light tracking-wider text-gray-500 xl:text-sm">©2021. Mario Alberto Chávez Cárdenas</p>
+</footer>
+
+  </div>
+</aside>
+
+
+      <main class="flex-auto overflow-hidden text-gray-700">
+        <header class="flex flex-col bg-gray-100 lg:hidden" data-controller="menu">
+  <div class="flex flex-col w-full px-8 md:flex-row xl:px-10">
+    <div class="w-full pt-12 pb-6 md:py-12">
+      <a href="/">
+        <h1 class="font-sans text-lg font-medium tracking-widest text-gray-700 uppercase md:text-2xl">Mario Alberto Chávez Cárdenas</h1>
+      </a>
+      <h2 class="mt-4 font-serif text-xs italic tracking-wide text-gray-500 md:text-lg font-extralight">Blog personal de fotografía y desarrollo de software</h2>
+    </div>
+
+    <div class="pb-6 md:py-12 md:pl-4 md:self-center md:justify-self-end md:pl-0">
+      <a href="#" class="inline-flex items-center px-4 py-2 border border-gray-500 md:flex hover:text-red-500 hover:border-red-500" data-action="menu#toggle">
+        <span class="font-semibold text-md md:text-lg">Menú</span>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-4 h-4 ml-4" data-menu-target="closed">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hidden w-4 h-4 ml-4" data-menu-target="opened">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <div data-menu-target="submenu" class="hidden w-full px-8">
+    <nav class="lg:flex-grow lg:py-14">
+  <ul>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/">Inicio</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/desarrollo">Desarrollo</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/fotografía">Fotografía</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/proyectos">Proyectos</a></li>
+    <li class="font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/about">Acerca de</a></li>
+  </ul>
+</nav>
+
+
+    <footer class="py-8 lg:py-14">
+  <div class="flex space-x-4">
+    <a href="https://twitter.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24" class="w-4 h-4"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+    </a>
+    <a href="https://instagram.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="none" viewBox="0 0 24 24" class="w-4 h-4"><path d="M15.233 5.488c-.843-.038-1.097-.046-3.233-.046s-2.389.008-3.232.046c-2.17.099-3.181 1.127-3.279 3.279-.039.844-.048 1.097-.048 3.233s.009 2.389.047 3.233c.099 2.148 1.106 3.18 3.279 3.279.843.038 1.097.047 3.233.047 2.137 0 2.39-.008 3.233-.046 2.17-.099 3.18-1.129 3.279-3.279.038-.844.046-1.097.046-3.233s-.008-2.389-.046-3.232c-.099-2.153-1.111-3.182-3.279-3.281zm-3.233 10.62c-2.269 0-4.108-1.839-4.108-4.108 0-2.269 1.84-4.108 4.108-4.108s4.108 1.839 4.108 4.108c0 2.269-1.839 4.108-4.108 4.108zm4.271-7.418c-.53 0-.96-.43-.96-.96s.43-.96.96-.96.96.43.96.96-.43.96-.96.96zm-1.604 3.31c0 1.473-1.194 2.667-2.667 2.667s-2.667-1.194-2.667-2.667c0-1.473 1.194-2.667 2.667-2.667s2.667 1.194 2.667 2.667zm4.333-12h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm.952 15.298c-.132 2.909-1.751 4.521-4.653 4.654-.854.039-1.126.048-3.299.048s-2.444-.009-3.298-.048c-2.908-.133-4.52-1.748-4.654-4.654-.039-.853-.048-1.125-.048-3.298 0-2.172.009-2.445.048-3.298.134-2.908 1.748-4.521 4.654-4.653.854-.04 1.125-.049 3.298-.049s2.445.009 3.299.048c2.908.133 4.523 1.751 4.653 4.653.039.854.048 1.127.048 3.299 0 2.173-.009 2.445-.048 3.298z"/></svg>
+    </a>
+  </div>
+  <p class="mt-4 font-sans text-xs font-light tracking-wider text-gray-500 xl:text-sm">©2021. Mario Alberto Chávez Cárdenas</p>
+</footer>
+
+  </div>
+</header>
+
+        <article class="py-16 font-serif lg:py-24 post">
+  <header class="px-4 m-auto md:max-w-2xl lg:max-w-4xl">
+    <a href="/desarrollo" class="pb-1 text-sm font-bold leading-normal uppercase border-b-4 border-gray-200 transition-all hover:text-red-500">desarrollo</a>
+    <h1 class="mt-6 text-3xl font-bold tracking-wide md:text-4xl lg:text-6xl">I created the same app with Rails and Javascript</h1>
+  </header>
+
+  <figure class="mt-16 aspect-w-16 aspect-h-9">
+    <img src="/images/rails_todo/vim.png" loading="lazy" />
+  </figure>
+
+  <div class="px-4 m-auto mt-16 tracking-wider md:max-w-2xl lg:max-w-4xl prose md:prose-lg">
+    <h1 id="i-created-the-same-app-with-rails-and-javascript">I created the same app with Rails and Javascript</h1>
+
+<p>A few days ago, I came into a post on Medium “<a href="https://medium.com/javascript-in-plain-english/i-created-the-exact-same-app-in-react-and-svelte-here-are-the-differences-c0bd2cc9b3f8" target="_blank">I created the exact same app in React and Svelte. Here are the differences</a>”, this post talks about side by side code comparison on writing a simple To Do application with both Javascript Framework.</p>
+
+<p>Sunil Sandhu, the author of the post, is familiar with React by using it at work, and he wrote the post based on his exploration of Svelte and his experience with React.</p>
+
+<p>It is an excellently written post with much useful information, so he tackled the work of creating a second post comparing Svelte and Vue “<a href="https://medium.com/javascript-in-plain-english/i-created-the-exact-same-app-in-vue-and-svelte-here-are-the-differences-c649f8d4ce0a" target="_blank">I created the exact same app in Vue and Svelte. Here are the differences</a>”.</p>
+
+<p>While both posts have great information, I have always been vocal about why not try the old good Web foundation before jumping directly into a Javascript framework that takes over the application heart.</p>
+
+<p>So I decided to use his same approach and wrote this post about using HTML, SASS, and <a href="https://stimulusjs.org" target="_blank">StimulusJs</a> with a Rails backend.</p>
+
+<h2 id="the-rails-project">The Rails project</h2>
+
+<p>For this project backend needs, there is no need for all the Rails frameworks. Fortunately, a project can be customized since creating to include what is need it. The <strong>rails</strong> command gives many options to what includes and what left out.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ rails --help
+$ Usage:
+  rails new APP_PATH [options]
+
+Options:
+      [--skip-namespace], [--no-skip-namespace]              # Skip namespace (affects only isolated applications)
+  -r, [--ruby=PATH]                                          # Path to the Ruby binary of your choice
+                                                             # Default: /Users/marioch/.rbenv/versions/2.6.3/bin/ruby
+  -m, [--template=TEMPLATE]                                  # Path to some application template (can be a filesystem path or URL)
+  -d, [--database=DATABASE]                                  # Preconfigure for selected database (options: mysql/postgresql/sqlite3/oracle/frontbase/ibm_db/sqlserver/jdbcmysql/jdbcsqlite3/jdbcpostgresql/jdbc)
+                                                             # Default: sqlite3
+      [--skip-gemfile], [--no-skip-gemfile]                  # Don't create a Gemfile
+  -G, [--skip-git], [--no-skip-git]                          # Skip .gitignore file
+      [--skip-keeps], [--no-skip-keeps]                      # Skip source control .keep files
+  -M, [--skip-action-mailer], [--no-skip-action-mailer]      # Skip Action Mailer files
+      [--skip-action-mailbox], [--no-skip-action-mailbox]    # Skip Action Mailbox gem
+      [--skip-action-text], [--no-skip-action-text]          # Skip Action Text gem
+  -O, [--skip-active-record], [--no-skip-active-record]      # Skip Active Record files
+      [--skip-active-storage], [--no-skip-active-storage]    # Skip Active Storage files
+  -P, [--skip-puma], [--no-skip-puma]                        # Skip Puma related files
+  -C, [--skip-action-cable], [--no-skip-action-cable]        # Skip Action Cable files
+  -S, [--skip-sprockets], [--no-skip-sprockets]              # Skip Sprockets files
+      [--skip-spring], [--no-skip-spring]                    # Don't install Spring application preloader
+      [--skip-listen], [--no-skip-listen]                    # Don't generate configuration that depends on the listen gem
+  -J, [--skip-javascript], [--no-skip-javascript]            # Skip JavaScript files
+      [--skip-turbolinks], [--no-skip-turbolinks]            # Skip turbolinks gem
+  -T, [--skip-test], [--no-skip-test]                        # Skip test files
+      [--skip-system-test], [--no-skip-system-test]          # Skip system test files
+      [--skip-bootsnap], [--no-skip-bootsnap]                # Skip bootsnap gem
+      [--dev], [--no-dev]                                    # Setup the application with Gemfile pointing to your Rails checkout
+      [--edge], [--no-edge]                                  # Setup the application with Gemfile pointing to Rails repository
+      [--rc=RC]                                              # Path to file containing extra configuration options for rails command
+      [--no-rc], [--no-no-rc]                                # Skip loading of extra configuration options from .railsrc file
+      [--api], [--no-api]                                    # Preconfigure smaller stack for API only apps
+  -B, [--skip-bundle], [--no-skip-bundle]                    # Don't run bundle install
+  --webpacker, [--webpack=WEBPACK]                           # Preconfigure Webpack with a particular framework (options: react, vue, angular, elm, stimulus)
+      [--skip-webpack-install], [--no-skip-webpack-install]  # Don't run Webpack install
+
+...
+</code></pre></div></div>
+
+<p>By looking at the command usage information, a decision can be made based on project needs. By running the rails command with the following flags, the bootstrap process is cutting out many dependencies.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ rails new frontend -M --skip-action-mailbox --skip-action-text --skip-active-storage --skip-action-cable --skip-sprockets --skip-javascript
+</code></pre></div></div>
+
+<p><a href="https://webpack.js.org" target="_blank">Webpack</a> will help in this project to handle assets like SASS, Javascript, and images. To install it, open the <strong>Gemfile</strong> and add the <a href="https://github.com/rails/webpacker" target="_blank">Webpacker</a> gem. It is a wrapper for Webpack that helps with Rails integration.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Gemfile
+
+...
+gem "webpacker", "~&gt; 4.0"
+...
+</code></pre></div></div>
+
+<p>Run the <strong>bundle</strong> command and then configure Webpack and install StimulusJs in the project.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ bundle
+$ bin/rails webpacker:install
+$ bin/rails webpacker:install:stimulus
+</code></pre></div></div>
+
+<p>The project bootstrap is done and ready for you to focus on the functionality of this application.</p>
+
+<h2 id="backend-side">Backend side</h2>
+
+<p>First, this application needs a <code class="highlighter-rouge">Todo</code> model with a <code class="highlighter-rouge">Name</code> attribute to stored To Dos data. The simple step to create the model is to take advantage of Rails generators for this.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ bin/rails g model todo name
+invoke  active_record
+      create    db/migrate/20191219201444_create_todos.rb
+      create    app/models/todo.rb
+      invoke    test_unit
+      create      test/models/todo_test.rb
+      create      test/fixtures/todos.yml
+</code></pre></div></div>
+
+<p>A few files were created along with our model. For now, focus on <strong>db/migrate/20191219201444_create_todos.rb</strong> file; it is a database migration. Every time a database migration is created, you need to sure that it has database constraints required for a model; in this case, the name can not be <strong>null</strong>.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class CreateTodos &lt; ActiveRecord::Migration[6.0]
+  def change
+    create_table :todos do |t|
+      t.string :name, null: false
+
+      t.timestamps
+    end
+  end
+end
+</code></pre></div></div>
+
+<p>With changes in place, it is time to migrate the database.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ bin/rails db:migrate
+</code></pre></div></div>
+
+<p>In the Ruby world, it is common to write automated tests, so why not write a few for the <code class="highlighter-rouge">Todo</code> model. Open the test file <strong>test/models/todo_test.rb</strong> and add the following tests.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>require "test_helper"
+
+class TodoTest &lt; ActiveSupport::TestCase
+  test "is valid" do
+    subject = Todo.new todo_params
+
+    assert subject.valid?
+  end
+
+  test "is invalid" do
+    subject = Todo.new todo_params(name: "")
+
+    refute subject.valid?
+    refute_empty subject.errors[:name]
+  end
+
+  def todo_params(attributes = {})
+    {name: "Test todo"}.merge(attributes)
+  end
+end
+</code></pre></div></div>
+
+<p>The tests are simple; they make sure the mode model is valid when all attributes meet requirements and invalid when not. To run the tests execute the following command.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ bin/rails test
+# Running:
+
+F
+
+Failure:
+TodoTest#test_is_invalid [/Users/marioch/Development/personal/frontend/test/models/todo_test.rb:13]:
+Expected true to not be truthy.
+
+
+rails test test/models/todo_test.rb:10
+
+.
+
+Finished in 0.194414s, 10.2873 runs/s, 10.2873 assertions/s.
+2 runs, 2 assertions, 1 failures, 0 errors, 0 skips
+</code></pre></div></div>
+
+<p>The runner reports failed tests; it is expected because the model under test is not validating any attributes requirements. The fix is straightforward, open the file <strong>app/models/todo.rb</strong> and add the following validations.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Todo &lt; ApplicationRecord
+  validates :name, presence: true
+end
+</code></pre></div></div>
+
+<p>Rerun the tests after the change, and now the runner reports that everything is ok.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ bin/rails test
+# Running:
+
+..
+
+Finished in 0.116393s, 17.1832 runs/s, 34.3663 assertions/s.
+2 runs, 4 assertions, 0 failures, 0 errors, 0 skips
+</code></pre></div></div>
+
+<p>The last part of the Backend needs a controller, the <code class="highlighter-rouge">TodosController</code>. This time the controller will be created manually and not with the help of Rails generators, it must have three actions <strong>Index</strong>, <strong>Create</strong>, and <strong>Destroy</strong>.</p>
+
+<p>Let us start with the routes of the application, open the file <strong>config/routes.rb</strong>, and add the following rules for <code class="highlighter-rouge">TodosController</code> actions.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Rails.application.routes.draw do
+  resources :todos, only: [:index, :create, :destroy]
+
+  root to: "todos#index"
+end
+</code></pre></div></div>
+
+<p>Since automated tests are being written for this project, test data is required for us to write <code class="highlighter-rouge">TodosController</code> tests. A fixture is just that, test data available in tests only. To add a To Do fixture, open the file <strong>test/fixtures/todos.yml</strong> and add the following record, simple, right?</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>todo:
+  name: "Fixture todo"
+</code></pre></div></div>
+
+<p>Now create the file <strong>test/controllers/todos_controller_test.rb</strong>, this file is used to write tests for <code class="highlighter-rouge">TodosController</code>. It is important to notice that tests for controllers only cares about the input and the response, nothing else.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>require "test_helper"
+
+class TodosControllerTest &lt; ActionDispatch::IntegrationTest
+  test "GET /todos" do
+    get todos_path
+
+    assert_response :success
+  end
+
+  test "POST /todos (success)" do
+    post todos_path, params: {todo: {name: "Test todo"}}, as: :json
+
+    assert_response :created
+
+    json_response = JSON.parse(response.body, symbolize_names: true)
+    assert json_response.dig(:id).present?
+    assert json_response.dig(:html).present?
+  end
+
+  test "POST /todos (failure)" do
+    post todos_path, params: {todo: {name: ""}}, as: :json
+
+    assert_response :unprocessable_entity
+
+    json_response = JSON.parse(response.body, symbolize_names: true)
+    assert json_response.dig(:errors, :name).present?
+  end
+
+  test "DELETE /todos/:id" do
+    todo = todos(:todo)
+    delete todo_path(todo), as: :json
+
+    assert_response :no_content
+  end
+end
+</code></pre></div></div>
+
+<p>A run on the tests report all controller tests with an error; it is because the <code class="highlighter-rouge">TodosController</code> does not exist.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ bin/rails test
+# Running:
+
+E
+
+Error:
+TodosControllerTest#test_POST_/todos_(failure):
+ActionController::RoutingError: uninitialized constant TodosController
+Did you mean?  TodosControllerTest
+    test/controllers/todos_controller_test.rb:20:in `block in &lt;class:TodosControllerTest&gt;'
+
+
+rails test test/controllers/todos_controller_test.rb:19
+
+...
+
+E
+
+Error:
+TodosControllerTest#test_GET_/todos:
+ActionController::RoutingError: uninitialized constant TodosController
+Did you mean?  TodosControllerTest
+    test/controllers/todos_controller_test.rb:5:in `block in &lt;class:TodosControllerTest&gt;'
+.
+</code></pre></div></div>
+
+<p>It is time to add the <code class="highlighter-rouge">TodosController</code>. Create a file <strong>app/controllers/todos_controller.rb</strong> and add the code for all actions. Notice that Index action responds with HTML, Create with a JSON response, and Destroy with no content.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class TodosController &lt; ApplicationController
+  def index
+    @todos = Todo.order(created_at: :desc)
+    @todo = Todo.new
+  end
+
+  def create
+    todo = Todo.new(todo_params)
+
+    if todo.save
+      todo_html = render_to_string(partial: "todos/todo", locals: {todo: todo}, formats: [:html])
+      return render(json: {id: todo.id, html: todo_html}, status: :created)
+    end
+
+    render json: {errors: todo.errors.to_h}, status: :unprocessable_entity
+  end
+
+  def destroy
+    todo = Todo.find_by(id: params[:id])
+    todo.destroy
+
+    render plain: "", status: :no_content
+  end
+
+  private
+
+  def todo_params
+    params.require(:todo).permit(:name)
+  end
+end
+</code></pre></div></div>
+
+<p>Let us try the tests again; much better, everything is green except for one test. The failing test indicates that Index action could not found an HTML template to render; it is ok for now; this template is added in the next section.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ bin/rails test
+
+# Running:
+
+E
+
+Error:
+TodosControllerTest#test_GET_/todos:
+ActionController::MissingExactTemplate: TodosController#index is missing a template for request formats: text/html
+    test/controllers/todos_controller_test.rb:5:in `block in &lt;class:TodosControllerTest&gt;'
+
+
+rails test test/controllers/todos_controller_test.rb:4
+
+......
+</code></pre></div></div>
+
+<h2 id="the-frontend-side">The Frontend side</h2>
+
+<p>The project is ready for us to work on the frontend. Since it uses Webpack, it is the right time to start the Webpack server and the Rails server; each one needs to run in its terminal session.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ bin/webpack-dev-server
+----
+$ bin/rails s -p 3400
+</code></pre></div></div>
+
+<p>From the original <a href="https://github.com/sunil-sandhu/react-todo-2019" target="_blank">React project</a>, a few assets will be reused. To start, copy the contents of <strong>App.css</strong>, <strong>components/ToDo.css</strong>, and <strong>components/ToDoItem.css</strong> into a single file in our project, this file is <strong>app/javascript/stylesheets/application.scss</strong>.</p>
+
+<p><strong>rails-ujs</strong> library is a Javascript library from Rails that helps in what Rails community calls “Unobtrusive Javascript”, it makes Ajax call made by Rails helpers transparent. To install it, use <strong>Yarn</strong>.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ bin/yarn add @rails-ujs
+</code></pre></div></div>
+
+<p>Also, a new logo for this project must be placed at <strong>app/javascript/images</strong> and imported along with the <strong>application.scss</strong> file into the <strong>app/javascript/packs/application.js</strong> for Webpack to manage those files for us. Here also <strong>rails-ujs</strong> gets initialized.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>require("@rails/ujs").start()
+
+import "../stylesheets/application.scss"
+import "../images/logo.png"
+
+import "controllers"
+</code></pre></div></div>
+
+<p>For Rails to use the bundle files from Webpack, the Rails application HTML layout needs to be updated to use Webpack’s files. Open the file <strong>app/views/layout/application.html.erb</strong> and add the Webpack helpers to it.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+  <span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Rails To Do<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;</span><span class="err">%=</span> <span class="na">csrf_meta_tags</span> <span class="err">%</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;</span><span class="err">%=</span> <span class="na">csp_meta_tag</span> <span class="err">%</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;</span><span class="err">%=</span> <span class="na">javascript_pack_tag</span> <span class="err">"</span><span class="na">application</span><span class="err">"</span> <span class="err">%</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;</span><span class="err">%=</span> <span class="na">stylesheet_pack_tag</span> <span class="err">"</span><span class="na">application</span><span class="err">"</span> <span class="err">%</span><span class="nt">&gt;</span>
+
+  <span class="nt">&lt;/head&gt;</span>
+
+  <span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;</span><span class="err">%=</span> <span class="na">yield</span> <span class="err">%</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<p>From the React components, <strong>ToDoItem.js</strong> and <strong>ToDo.js</strong> let us copy the HTML template part into two Rails template <strong>app/views/todos/_todo.html.erb</strong> and <strong>app/views/todos/index.html.erb</strong> respectively but with few modifications. First, the React specific code must be replaced with Rails code.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;div class="ToDoItem" data-controller="todo-delete" data-target="todo-delete.item"&gt;
+  &lt;p class="ToDoItem-Text"&gt;&lt;%= todo.name %&gt;&lt;/p&gt;
+  &lt;%= button_to "-", todo_path(todo.id),
+      method: :delete,
+      remote: true,
+      form: { data: { action: "ajax:success-&gt;todo-delete#successResult ajax:error-&gt;todo-delete#errorResult" } },
+      class: "ToDoItem-Delete"
+     %&gt;
+&lt;/div&gt;
+</code></pre></div></div>
+
+<p>StimulusJS will use those attributes to interact and connect with the HTML DOM.</p>
+
+<p><code class="highlighter-rouge">data-controller</code> tells StimulusJS, which Javascript component (controller) to activate when that attribute is present in the DOM. <code class="highlighter-rouge">data-target</code> is a way to reference DOM nodes inside the StimulusJS controller, and <code class="highlighter-rouge">data-action</code> is the way to dispatch DOM events to the StimulusJS controller.</p>
+
+<p>Right now, without a StimulusJS controller, those data attributes are kind of useless, but we are planning for the time when the controllers are in place.</p>
+
+<p>Now let us do the same for React component <code class="highlighter-rouge">ToDo.js</code>, the HTML template code needs to be copied to <strong>/app/views/todos/index.html.erb</strong>, here is the modified version of it.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;div class="ToDo"&gt;
+  &lt;%= image_tag asset_pack_path("media/images/logo.png"), class: "Logo", alt: "Rails logo" %&gt;
+  &lt;h1 class="ToDo-Header"&gt;Rails To Do&lt;/h1&gt;
+  &lt;div class="ToDo-Container" data-controller="todo"&gt;
+    &lt;div class="ToDo-Content" data-target="todo.todos"&gt;
+      &lt;%= render @todos %&gt;
+    &lt;/div&gt;
+
+    &lt;div class="ToDoInput"&gt;
+      &lt;%= form_with model: @todo, local: false,
+        data: { action: "ajax:beforeSend-&gt;todo#validateSubmit ajax:error-&gt;todo#errorResult ajax:success-&gt;todo#successResult" } do |form| %&gt;
+        &lt;%= form.text_field :name, data: { target: "todo.field" } %&gt;
+        &lt;%= form.submit "+", class: "ToDo-Add" %&gt;
+      &lt;% end %&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre></div></div>
+
+<p>Before we continue, let us make a little detour here. Remember the failing test for <code class="highlighter-rouge">TodosController</code> due to a missing template? The template is now in place, so the test should not be failing anymore, rerun the tests and see it by yourself.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ bin/rails test
+
+# Running:
+
+........
+
+Finished in 0.355593s, 22.4976 runs/s, 36.5586 assertions/s.
+8 runs, 11 assertions, 0 failures, 0 errors, 0 skips
+</code></pre></div></div>
+
+<p>It is time to add Javascript to the project. Let us start with the controller that helps to delete a To Do item. The file is <strong>app/javascript/controllers/todo_delete_controller.js</strong></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import { Controller } from "stimulus"
+
+export default class extends Controller {
+  static targets = ["item"]
+
+  errorResult(event) {
+    console.log(event.detail)
+  }
+
+  successResult(event) {
+    event.preventDefault()
+    this.itemTarget.remove()
+  }
+}
+</code></pre></div></div>
+
+<p>The next controller is the one that takes care of adding new To Do item. The file is <strong>app/javascript/controllers/todo_controller.js</strong></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import { Controller } from "stimulus"
+
+export default class extends Controller {
+  static targets = ["todos", "field"]
+
+  errorResult(event) {
+    console.log("error", event.detail)
+  }
+
+  successResult(event) {
+    const response = event.detail[0]
+    const todoHTML = document.createRange().createContextualFragment(response.html)
+
+    this.todosTarget.prepend(todoHTML)
+    this.fieldTarget.value = ""
+  }
+
+  validateSubmit(event) {
+    if (this.fieldTarget.value === "") {
+      event.preventDefault()
+    }
+  }
+}
+</code></pre></div></div>
+
+<p>It has two functions, <code class="highlighter-rouge">validatesSubmit</code>, which is called on form submit, and validates the input to now allow empty To Do. The second one, <code class="highlighter-rouge">successResult</code> is called after the Ajax request is made, and it takes care to place the To Do HTML fragment in the DOM. The HTML To Do fragment is part of the server response.</p>
+
+<p>The project is done. If you want to try it out, add a couple of seed records into <strong>db/seeds.rb</strong> file.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Todo.create(name: "clean the house")
+Todo.create(name: "buy milk")
+</code></pre></div></div>
+
+<p>And seed the database with the following command.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ bin/rails db:seed
+</code></pre></div></div>
+
+<p>Now point your browser to <a href="http://localhost:3400/" target="_blank">http://localhost:3400</a> and try the application.</p>
+
+<div class="gallery">
+  <figure>
+    <img src="/images/rails_todo/rails-todo.png" loading="lazy" />
+  </figure>
+</div>
+
+<p>The application is similar in terms of UI interaction, but in addition, it has a Backend that is not present in the original React application. It also has automated tests for models and controllers, and we can do a little better by adding a System Test. This kind of test automates the browser to “use” the application in specific scenarios.</p>
+
+<p>To add a System test, create the file <strong>test/system/todos_test.rb</strong> and add the following content.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>require "application_system_test_case"
+
+class TodosTest &lt; ApplicationSystemTestCase
+  test "visit todos" do
+    todos_count = Todo.count
+    visit root_url
+
+    assert_selector "h1", text: "Rails To Do".upcase
+    assert_selector ".ToDoItem", count: todos_count
+  end
+
+  test "try to add an empty todo" do
+    todos_count = Todo.count
+    visit root_url
+
+    fill_in "todo_name", with: ""
+    click_button "+"
+
+    assert_selector ".ToDoItem", count: todos_count
+  end
+
+  test "add a todo" do
+    todo = "Add Tests"
+    todos_count = Todo.count
+    visit root_url
+
+    fill_in "todo_name", with: todo
+    click_button "+"
+
+    assert_selector ".ToDoItem", count: todos_count + 1
+    assert_selector ".ToDoItem", text: todo
+  end
+
+  test "delete a todo" do
+    todo = todos(:todo)
+    todos_count = Todo.count
+
+    visit root_url
+    todo_element = page.find ".ToDoItem", text: todo.name
+    remove_button = todo_element.find ".ToDoItem-Delete"
+    remove_button.click
+
+    assert_selector ".ToDoItem", count: todos_count - 1
+    refute_selector ".ToDoItem", text: todo.name
+  end
+end
+</code></pre></div></div>
+
+<p>To run the System test, you need to have the Chrome browser installed. Run the test using the following command.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ bin/rails test:system
+
+# Running:
+
+Capybara starting Puma...
+* Version 4.3.1 , codename: Mysterious Traveller
+* Min threads: 0, max threads: 4
+* Listening on tcp://127.0.0.1:51968
+Capybara starting Puma...
+* Version 4.3.1 , codename: Mysterious Traveller
+* Min threads: 0, max threads: 4
+* Listening on tcp://127.0.0.1:51971
+....
+
+Finished in 5.133107s, 0.7793 runs/s, 1.3637 assertions/s.
+4 runs, 7 assertions, 0 failures, 0 errors, 0 skips
+</code></pre></div></div>
+
+<h2 id="final-words">Final words</h2>
+
+<p>What I would like you to take from replicating this example is that sometimes there is no need to go all the way in with a separated frontend like React, Vue, or Svelte.</p>
+
+<p>By using the HTML standard, the maturity of your framework, and a tool like StimulusJS you can archive the same “snappy” functionality without the mess of Javascript code from the time before frameworks.</p>
+
+<p>Both libraries, rails-ujs and StimulusJS were developed within the Rails community, but the truth is that they do not depend on Rails, both can be used with any other backend/HTML template system.</p>
+
+<p>You can find the sample code at <a href="https://github.com/mariochavez/rails-todo-2019" target="_blank">https://github.com/mariochavez/rails-todo-2019</a></p>
+
+  </div>
+</article>
+
+      </main>
+    </section>
+
+  </body>
+</html>
