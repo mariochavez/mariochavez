@@ -7,7 +7,7 @@ categories: proyectos
 description: Serie enfocada a explicar cómo construir un servidor Web en Ruby que se apegue lo más cercano a la especificación de HTTP/1.1.
 keywords: web, ruby, http, development, server
 image: /images/serie/construyendo-servidor-web.png
-lang: en_MX
+lang: es_MX
 ---
 La serie "Contruyendo un servidor Web con Ruby" está enfocada a explicar cómo construir un servidor Web en Ruby que se apegue lo más cercano a la especificación de HTTP/1.1 por lo que en video no únicamente se aprenderá Ruby y como construir el servidor pero también que es el HTTP y cómo ser un buen ciudadano Web.
 
