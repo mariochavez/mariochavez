@@ -11,10 +11,26 @@
     @apply flex flex-row space-x-2;
   }
 
-  figure {
+  figure:not(.free) {
     @apply aspect-h-3 aspect-w-4 m-0;
+    flex-grow: 1;
+    flex-basis: 0;
   }
 }
+ figure {
+  img {
+    @apply object-cover;
+  }
+ }
+
+ .md\:prose-lg {
+   .gallery {
+    figure {
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+    }
+   }
+ }
 
 .posts {
   article:nth-child(odd) {

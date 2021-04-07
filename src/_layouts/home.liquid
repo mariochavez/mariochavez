@@ -5,3 +5,23 @@ layout: default
 <div class="md:grid md:grid-cols-2 posts">
   {{ content }}
 </div>
+
+{% if paginator.total_pages > 1 %}
+  <nav class="flex justify-center p-8 m-auto font-bold uppercase xl:p-10 text-md">
+    <div class="pr-4">
+      {% if paginator.previous_page %}
+        <a href="{{ paginator.previous_page_path }}" class="pb-1 border-b-4 border-gray-200 hover:text-red-500 transition-colors">Previo</a>
+      {% else %}
+        <p class="text-gray-400">Previo</p>
+      {% endif %}
+    </div>
+    <div><p>...</p></div>
+    <div class="pl-4">
+      {% if paginator.next_page %}
+        <a href="{{ paginator.next_page_path }}" class="pb-1 border-b-4 border-gray-200 hover:text-red-500 transition-colors">Siguiente</a>
+      {% else %}
+        <p class="text-gray-400">Siguiente</p>
+      {% endif %}
+    </div>
+  </nav>
+{% endif %}
