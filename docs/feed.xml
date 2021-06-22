@@ -1,4 +1,103 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://bridgetownrb.com/" version="0.20.0">Bridgetown</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" /><updated>2021-04-07T13:18:37-05:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez Cárdenas</title><subtitle>Blog sobre temas de desarrollo de software Web con Ruby y Ruby on Rails, además de temas de fotografía análoga y digital.</subtitle><author><name>Mario Alberto Chávez Cárdenas</name></author><entry xml:lang="es_MX"><title type="html">Actualizar Ruby on Rails con boot doble</title><link href="https://mariochavez.io/desarrollo/2020/08/04/actualizar-ruby-on-rails-con-dual-boot/" rel="alternate" type="text/html" title="Actualizar Ruby on Rails con boot doble" /><published>2020-08-04T02:00:00-05:00</published><updated>2020-08-04T02:00:00-05:00</updated><id>https://mariochavez.io/desarrollo/2020/08/04/actualizar-ruby-on-rails-con-dual-boot</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2020/08/04/actualizar-ruby-on-rails-con-dual-boot/">&lt;p&gt;Desde la versión 4.2 de Ruby on Rails las actualizaciones del framework son en buena medida estables. Atendiendo cuestiones de API’s que ya están fuera de uso, verificando que las gemas o dependencias de la aplicación tengan ya soporte de la versión a la que vamos actualizar y que contenemos con un set de pruebas por lo menos es la funcionalidad crítica es suficiente para tener éxito.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://bridgetownrb.com/" version="0.20.0">Bridgetown</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" /><updated>2021-06-22T16:02:57-05:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez Cárdenas</title><subtitle>Blog sobre temas de desarrollo de software Web con Ruby y Ruby on Rails, además de temas de fotografía análoga y digital.</subtitle><author><name>Mario Alberto Chávez Cárdenas</name></author><entry><title type="html">HEIC support for Active Storage</title><link href="https://mariochavez.io/desarrollo/2021/06/22/heic-support-active-storage/" rel="alternate" type="text/html" title="HEIC support for Active Storage" /><published>2021-06-22T02:00:00-05:00</published><updated>2021-06-22T02:00:00-05:00</updated><id>https://mariochavez.io/desarrollo/2021/06/22/heic-support-active-storage</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2021/06/22/heic-support-active-storage/">&lt;p&gt;Active Storage is the Ruby on Rails solution to work with file attachments on an application. It is not the only solution available, but it comes by default as part of the framework, so there is a chance that it is used on new projects.&lt;/p&gt;
+
+&lt;p&gt;Working with images is as easy as possible; creating variants to display images in different sizes might be the most common use case in a Rails Application. The &lt;a href=&quot;https://github.com/janko/image_processing&quot; target=&quot;_blank&quot;&gt;image_processing&lt;/a&gt; gem is responsible for abstracting the complexity of creating an image variant, like resizing the image to be 300px on the longest side.&lt;/p&gt;
+
+&lt;p&gt;Underneath the image_processing gem, it uses &lt;a href=&quot;https://imagemagick.org/script/index.php&quot; target=&quot;_blank&quot;&gt;ImageMagick&lt;/a&gt; or &lt;a href=&quot;https://libvips.github.io/libvips/&quot; target=&quot;_blank&quot;&gt;Vips&lt;/a&gt; to handle image operations and transformations; by default, it uses the first, ImageMagick..&lt;/p&gt;
+
+&lt;h2 id=&quot;heif-and-heic-image-formats&quot;&gt;HEIF and HEIC image formats.&lt;/h2&gt;
+
+&lt;p&gt;High Efficiency Image File format or HEIF is a container for images and videos that requires half of the storage as JPEG with the same image quality. The HEIC format, which is a variation of HIEF and stands for High Efficiency Image Container, was introduced by Apple with the release of iOS 11 and macOS High Sierra The format is not widely adopted. For example, no browser can display a HEIC image, and only a few Android devices support it.to optimize the space of Apple’s devices.&lt;/p&gt;
+
+&lt;p&gt;The format is not widely adopted. For example, no browser can display a HEIC image, and only a few Android devices support it.&lt;/p&gt;
+
+&lt;p&gt;There is a &lt;a href=&quot;https://www.theverge.com/2020/5/20/21262302/ap-test-fail-iphone-photos-glitch-email-college-board-jpeg-heic&quot; target=&quot;_blank&quot;&gt;case where High School students failed a test&lt;/a&gt; because their school systems didn’t support the HEIC format.&lt;/p&gt;
+
+&lt;h2 id=&quot;add-active-storage-support-for-heic&quot;&gt;Add Active Storage support for HEIC.&lt;/h2&gt;
+
+&lt;p&gt;At &lt;a href=&quot;https://creditar.io&quot; target=&quot;_blank&quot;&gt;Creditar.io&lt;/a&gt;, we are working on a service that allows customers to upload a photo of a Mexican ID, then the service validates the ID extracts its information. Everything was fine until we received our first HEIC file; our service could not do anything with the file.&lt;/p&gt;
+
+&lt;p&gt;A quick &lt;a href=&quot;https://duckduckgo.com/&quot; target=&quot;_blank&quot;&gt;DuckDuckGo&lt;/a&gt; search about this told me what I already knew, no support out of the box for HEIC on Active Storage. Some work needs to be done to enable it. I came across this post, “&lt;a href=&quot;https://hashtagjohnt.com/how-to-generage-heic-previews-in-rails-using-activestorage.html&quot; target=&quot;_blank&quot;&gt;How to generate HEIC previews in Rails using ActiveStorage&lt;/a&gt;”.&lt;/p&gt;
+
+&lt;p&gt;The post explains how to create an Active Storage Previewer that converts a HEIC image into a PNG or any other format. It uses Vips as image processing library and describes how to enable Vips support on Heroku.&lt;/p&gt;
+
+&lt;p&gt;ImageMagick is used at &lt;a href=&quot;https://creditar.io&quot; target=&quot;_blank&quot;&gt;Creditar.io&lt;/a&gt;, and I didn’t want to switch to Vips. With the latest versions of ImageMagick, it can be compiled with HEIC support. If you are on macOS and use Homebrew to install dependencies, version 7.x comes with support for HEIC.&lt;/p&gt;
+
+&lt;p&gt;The changes in the previewer to work with ImageMagick are very simple.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# app/previewers/heic_previewer.rb&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;HeicPreviewer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ActiveStorage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Previewer&lt;/span&gt;
+  &lt;span class=&quot;no&quot;&gt;CONTENT_TYPE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;image/heic&quot;&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;accept?&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;blob&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;blob&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;content_type&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;CONTENT_TYPE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;minimagick_exists?&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;minimagick_exists?&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;vi&quot;&gt;@minimagick_exists&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;unless&lt;/span&gt; &lt;span class=&quot;vi&quot;&gt;@minimagick_exists&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;blank?&lt;/span&gt;
+
+      &lt;span class=&quot;vi&quot;&gt;@minimagick_exists&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;defined?&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ImageProcessing&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;MiniMagick&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;no&quot;&gt;Rails&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;logger&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;error&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; :: MiniMagick is not installed&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;unless&lt;/span&gt; &lt;span class=&quot;vi&quot;&gt;@minimagick_exists&lt;/span&gt;
+
+      &lt;span class=&quot;vi&quot;&gt;@minimagick_exists&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;preview&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;transformations&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;download_blob_to_tempfile&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;io&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ImageProcessing&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;MiniMagick&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;source&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;convert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;png&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;call&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;yield&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;io: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;io&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;filename: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;blob&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;filename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;.png&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;content_type: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;image/png&quot;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The previewer needs to be registered with Active Storage via an initializer.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# config/initializers/active_storage.rb&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;Rails&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;application&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;configure&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;active_storage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;previewers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;HeicPreviewer&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;active_storage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;variable_content_types&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;image/heic&quot;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;active_storage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;variable_content_types&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;image/heif&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And we must tell Active Storage that HEIC/HEIF content types are supported. The test for this previewer is as follows.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# test/previewers/heic_previewer_test.rb&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;test_helper&quot;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;HeicPreviewerTest&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ActiveSupport&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;TestCase&lt;/span&gt;
+  &lt;span class=&quot;kp&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ActiveStorageBlob&lt;/span&gt;
+
+  &lt;span class=&quot;no&quot;&gt;CONTENT_TYPE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;image/heic&quot;&lt;/span&gt;
+
+  &lt;span class=&quot;nb&quot;&gt;test&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;it previews a heic image&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;skip&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;it does not run on CI due to missing support for HEIC&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ENV&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;CI&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;true&quot;&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;blob&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;create_file_blob&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;filename: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;heic-image-file.heic&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;content_type: &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;CONTENT_TYPE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;refute_nil&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;blob&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;assert&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;HeicPreviewer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;accept?&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;blob&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;no&quot;&gt;HeicPreviewer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;blob&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;preview&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({})&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;attachable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;assert_equal&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;image/png&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;attachable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:content_type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;create_file_blog&lt;/code&gt; method is a helper that I use to create an Active Storage blob object from a file. The test is simple; it tests that previewing or downloading a file get converted to PNG.&lt;/p&gt;
+
+&lt;p&gt;Running this test on GitHub’s CI was impossible because the ImageMagick version it provides comes without HEIC support. I tried to download and compile ImageMagick in the pipeline, but it takes too much time, so I decided to skip this test there. It works on my machine(tm), so what can go wrong, right?&lt;/p&gt;
+
+&lt;p&gt;To deploy these changes, Heroku needs a buildpack with an ImageMagick binary compiled with HEIC. There are a few of those in Heroku’s marketplace, so I settle for &lt;a href=&quot;https://elements.heroku.com/buildpacks/himamainc/heroku-buildpack-imagemagick-heif&quot; target=&quot;_blank&quot;&gt;this one&lt;/a&gt;. It needs to be installed before deploying the code changes. Installation is simple.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;heroku&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;buildpacks&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:add&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;https&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:/&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;github&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;HiMamaInc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;heroku&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;buildpack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imagemagick&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;heif&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;](&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;https&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:/&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;github&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;HiMamaInc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;heroku&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;buildpack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imagemagick&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;heif&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;After these changes in the code, customers can take a picture with their iPhone and send it to our service to validate their ID, no need to worry if they had HEIC enable on their phones. The service displays the thumbnail and sends a png version to the Python ML backend to be processed.&lt;/p&gt;</content><author><name>Mario Alberto Chávez Cárdenas</name></author><summary type="html">Active Storage is the Ruby on Rails solution to work with file attachments on an application. It is not the only solution available, but it comes by default as part of the framework, so there is a chance that it is used on new projects.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/heic/iphone.jpg" /><media:content medium="image" url="https://mariochavez.io/images/heic/iphone.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry xml:lang="es_MX"><title type="html">Actualizar Ruby on Rails con boot doble</title><link href="https://mariochavez.io/desarrollo/2020/08/04/actualizar-ruby-on-rails-con-dual-boot/" rel="alternate" type="text/html" title="Actualizar Ruby on Rails con boot doble" /><published>2020-08-04T02:00:00-05:00</published><updated>2020-08-04T02:00:00-05:00</updated><id>https://mariochavez.io/desarrollo/2020/08/04/actualizar-ruby-on-rails-con-dual-boot</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2020/08/04/actualizar-ruby-on-rails-con-dual-boot/">&lt;p&gt;Desde la versión 4.2 de Ruby on Rails las actualizaciones del framework son en buena medida estables. Atendiendo cuestiones de API’s que ya están fuera de uso, verificando que las gemas o dependencias de la aplicación tengan ya soporte de la versión a la que vamos actualizar y que contenemos con un set de pruebas por lo menos es la funcionalidad crítica es suficiente para tener éxito.&lt;/p&gt;
 
 &lt;p&gt;Obviamente el tiempo y esfuerzo de actualización también dependerá de que tan grande es nuestra aplicación y la cantidad de ajustes que se requieran. Este esfuerzo se puede ver afectado en buena medida cuando tratamos de realizar la actualización en un “&lt;em&gt;branch&lt;/em&gt;” de git con los nuevo cambios y que de alguna forma se empiece a quedar atrás esa rama de los cambios principales.&lt;/p&gt;
 
@@ -1507,250 +1606,4 @@ no-cache-application:        1.3 i/s - 2.34x  &lt;span class=&quot;o&quot;&gt;(&
 
 &lt;p&gt;Finalmente sobre los comentarios que hice sobre microservicios anteriormente les dejo el siguiente tweet de un ingeniero de Uber para que ustedes mismos se creen su propio criterio.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://twitter.com/GergelyOrosz/status/1247132806041546754&quot; target=&quot;_blank&quot;&gt;https://twitter.com/GergelyOrosz/status/1247132806041546754&lt;/a&gt;&lt;/p&gt;</content><author><name>Mario Alberto Chávez Cárdenas</name></author><summary type="html">Rails, Webpack y desarrollo frontend con Javascript</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/frontend/frontend.jpg" /><media:content medium="image" url="https://mariochavez.io/images/frontend/frontend.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">From the Asset Pipeline to Webpack</title><link href="https://mariochavez.io/desarrollo/2020/05/19/from-the-asset-pipeline-to-webpack/" rel="alternate" type="text/html" title="From the Asset Pipeline to Webpack" /><published>2020-05-19T01:00:00-05:00</published><updated>2020-05-19T01:00:00-05:00</updated><id>https://mariochavez.io/desarrollo/2020/05/19/from-the-asset-pipeline-to-webpack</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2020/05/19/from-the-asset-pipeline-to-webpack/">&lt;h1 id=&quot;from-the-asset-pipeline-to-webpack&quot;&gt;From the Asset Pipeline to Webpack&lt;/h1&gt;
-
-&lt;p&gt;In May 2011, DHH announced at Railsconf a new framework for Rails, The Asset Pipeline. It was also announced that SCSS and CoffeeScript, along with jQuery, were to become a default on every Rails application.&lt;/p&gt;
-
-&lt;p&gt;The recognition that Web Development changed since Rails was created, and that it was the time for Rails to promote to first-class citizen every aspect of building Web UIs.&lt;/p&gt;
-
-&lt;div class=&quot;gallery&quot;&gt;
-  &lt;figure&gt;
-    &lt;img src=&quot;/images/webpack/dhh-tweet.png&quot; loading=&quot;lazy&quot; /&gt;
-  &lt;/figure&gt;
-&lt;/div&gt;
-
-&lt;p&gt;It was a step forward, but people complained about SCSS and CoffeeScript becoming the default on every project. The plan was in place, and on August 31st, 2011 &lt;a href=&quot;http://guides.rubyonrails.org/3_1_release_notes.html&quot; target=&quot;_blank&quot;&gt;version 3.1 was released&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;In the Rails world, the frontend development was done with HTML/CSS and jQuery plugins, but the UI complexity and Javascript spaghetti code needed a different solution, this how frontend libraries started to arise, being one of the first &lt;a href=&quot;http://backbonejs.org&quot; target=&quot;_blank&quot;&gt;Backbone.js&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Managing, invalidating, and serving assets was a difficult task, and &lt;a href=&quot;http://guides.rubyonrails.org/asset_pipeline.html&quot; target=&quot;_blank&quot;&gt;the Asset Pipeline&lt;/a&gt; came with the promise to make it easy. Front-end development continued moving forward; eventually, Backbone.js died, and jQuery was not enough anymore.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://nodejs.org/en/&quot; target=&quot;_blank&quot;&gt;Node.js&lt;/a&gt;, &lt;a href=&quot;https://www.npmjs.com&quot;&gt;NPM&lt;/a&gt;, and ECMA 5 stepped in and rapidly influenced how to do frontend development. Single-page applications became a thing, and this had a direct effect in the Rails world where it was no longer easy just to download a Javascript file, put it in the vendor folder, and expect it to work.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/rails/sprockets&quot; target=&quot;_blank&quot;&gt;Sprockets&lt;/a&gt;, the heart of the Asset Pipeline, tried to keep up, but somehow, it fell short. I saw different solutions that included Gulp, Grunt, and Bower as a way to keep doing modern Web frontend development, and there was no joy on any of it.&lt;/p&gt;
-
-&lt;p&gt;Finally, to address this situation, on April 27th, 2017 &lt;a href=&quot;https://sipsandbits.com/2017/03/09/whats-new-in-rails-51/&quot; target=&quot;_blank&quot;&gt;Rails 5.1&lt;/a&gt; was released, it included Yarn to manage Javascript dependencies and support for &lt;a href=&quot;https://webpack.js.org&quot;&gt;Webpack&lt;/a&gt; with sensitive defaults and integration on Rails itself via &lt;a href=&quot;https://github.com/rails/webpacker&quot;&gt;Webpacker&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Rails provide a tool that is familiar to frontend developers and eases the adoption of new Javascript libraries. Still, compatibility needs to be kept for projects that use the Asset Pipeline, so it was not removed. You can use Webpacker and the Asset Pipeline seamlessly. It may take a few more versions before the Asset Pipeline becomes deprecated.&lt;/p&gt;
-
-&lt;h2 id=&quot;starting-with-webpack&quot;&gt;Starting with Webpack.&lt;/h2&gt;
-&lt;p&gt;If you are creating a new Rails application starting with Webpack is easy.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ rails new sample_app
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;For a new Rails project on version 6.0, Webpack is set up by default. If you need a Javascript library like React, Angular, Elm, Vuejs, or Stimulusjs, you can specify it with an option.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ rails new sample_app --webpack=react
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;If you want to disable the Asset Pipeline, add the following flag to the new command.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ rails new sample_app --skip-sprockets
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Be aware that the &lt;code class=&quot;highlighter-rouge&quot;&gt;app/assets&lt;/code&gt; folder is created even when this flag is set, so you might need to remove it manually.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;app/assets
-├── config
-├── images
-└── stylesheets
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Rails configure Webpack to work seamlessly with the development, test, and production environment. The Webpacker gem is responsible for this integration. If you need to tweak or change Webpack’s configuration, configuration files can be found at the &lt;code class=&quot;highlighter-rouge&quot;&gt;/config&lt;/code&gt; folder.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;config/webpacker.yml
-config/webpack
-├── development.js
-├── environment.js
-├── production.js
-└── test.js
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;All frontend assets are organized around packs. A pack is a bundle for all required assets, like public application assets or the administration assets. A pack is an entry point that declares all the assets for each pack; a pack can share assets between them. Pack definitions live inside &lt;code class=&quot;highlighter-rouge&quot;&gt;/app/javascript/packs&lt;/code&gt; folder. The default pack is application.js.&lt;/p&gt;
-
-&lt;p&gt;Now you can create a folder for images, stylesheets, or any other asset that needs to be served with Webpack.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;app/javascript
-├── controllers
-├── images
-├── packs
-└── stylesheets
-    └── modules
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;Just be sure to require the assets in their corresponding packs, or Webpack will not load them.&lt;/p&gt;
-
-&lt;p&gt;Also, you need to ensure that all your views layouts are using Webpacker helpers to load the packs.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;%= javascript_pack_tag &quot;application&quot; %&amp;gt;
-&amp;lt;%= stylesheet_pack_tag &quot;application&quot; %&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Running the Rails server, in development mode, and visiting a page start a Webpack process to compile the required packs delaying the response from the server. Compiling assets this way is simple but slow.&lt;/p&gt;
-
-&lt;p&gt;A faster approach is running a separate Webpack process; just run the Webpack development server.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ bin/webpack-dev-server
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;A benefit of having a separate process for Webpack is that it makes compilation fast, and also it auto-reload the current page if changes on assets are detected. A simple solution to start the Rails and Webpack servers on their separate process is to create a &lt;code class=&quot;highlighter-rouge&quot;&gt;Procfile&lt;/code&gt; and use a tool like &lt;a href=&quot;https://github.com/DarthSim/overmind&quot; target=&quot;_blank&quot;&gt;Overmind&lt;/a&gt; to start them.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;server: bin/rails server
-assets: bin/webpack-dev-server
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ overmind start
-server | Started with pid 9681...
-assets | Started with pid 9682...
-warning package.json: No license field
-assets | ℹ ｢wds｣: Project is running at http://localhost:3036/
-assets | ℹ ｢wds｣: webpack output is served from /packs/
-assets | ℹ ｢wds｣: Content not from webpack is served from /../public/packs
-assets | ℹ ｢wds｣: 404s will fallback to /index.html
-server | =&amp;gt; Booting Puma
-server | =&amp;gt; Rails 6.0.2.2 application starting in development
-server | =&amp;gt; Run `rails server --help` for more startup options
-server | Puma starting in single mode...
-server | * Version 4.3.3 (ruby 2.6.5-p114), codename: Mysterious Traveller
-server | * Min threads: 5, max threads: 5
-server | * Environment: development
-server | * Listening on tcp://127.0.0.1:3036
-server | * Listening on tcp://[::1]:3036
-...
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;moving-from-the-asset-pipeline-to-webpack&quot;&gt;Moving from the Asset Pipeline to Webpack&lt;/h2&gt;
-&lt;p&gt;Everything described in the previous section applies to new Rails applications, but what about an existing application? If your application is not a Rails 6.0 o better, you might need to install Webpack manually.&lt;/p&gt;
-
-&lt;p&gt;Before continuing, I want to make it clear that if your Javascript does not follow the &lt;a href=&quot;https://nodejs.org/api/modules.html&quot; target=&quot;_blank&quot;&gt;Node.js Modules&lt;/a&gt; &lt;a href=&quot;https://darrenderidder.github.io/talks/ModulePatterns/#/&quot;&gt;pattern&lt;/a&gt; you need to figure out how to change your code to make it Webpack friendly.&lt;/p&gt;
-
-&lt;p&gt;Rails applications older than version 6.0 might not have Webpack integration installed; to install it first, add the Webpacker gem to your Gemfile and run Bundler. Now generate Webpack configuration files by running the following command.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ bin/rails g webpacker:install
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;If you need to add support for a frontend Javascript library like Rect or Stimulus, run the Webpacker generator.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ bin/rails g webpacker:install:react
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;OR&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ bin/rails g webpacker:install:stimulus
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;application.js&lt;/code&gt; pack is modified to include everything you need to start working with the installed Javascript library.&lt;/p&gt;
-
-&lt;p&gt;With Webpack in place, you can start moving your assets from the Asset Pipeline folders to the new &lt;code class=&quot;highlighter-rouge&quot;&gt;app/javascript&lt;/code&gt; folder. Let us start with images. Move your images to &lt;code class=&quot;highlighter-rouge&quot;&gt;app/javascript/images&lt;/code&gt; in there. You can organize the images into sub-folders, for example, images for the public frontend and images for the private backend or just leave all of them there.&lt;/p&gt;
-
-&lt;p&gt;In the &lt;code class=&quot;highlighter-rouge&quot;&gt;application.js&lt;/code&gt; file, you can import images one by one as follow.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import &apos;../images/image1.png&apos;;
-import &apos;../images/image2.png&apos;;
-...
-import &apos;../images/imageN.png&apos;;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Or you can take advantage of Webpacker’s &lt;code class=&quot;highlighter-rouge&quot;&gt;require.context&lt;/code&gt; and import all of them at once.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;require.context(&apos;../images&apos;, true);
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The second param tells Webpacker to scan subdirectories inside &lt;code class=&quot;highlighter-rouge&quot;&gt;app/javascript/images&lt;/code&gt;. You can also be more selective and pass the third parameter as a regular expression to import just the matched images. To use an image in a Rails view, you need to make use of the &lt;code class=&quot;highlighter-rouge&quot;&gt;asset_pack_tag&lt;/code&gt; helper.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;%= image_pack_tag(&quot;image1.png&quot;) %&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;But if you need the image URL, then use the &lt;code class=&quot;highlighter-rouge&quot;&gt;asset_pack_url&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;%= asset_pack_tag(&quot;image1.png&quot;) %&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;If you need to reference an image from a stylesheet file, then use the &lt;code class=&quot;highlighter-rouge&quot;&gt;url&lt;/code&gt; function with the relative path to the image.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;background-image: url(&quot;../images/image1.png&quot;);
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Moving the Stylesheets is not different than moving the images into Webpacker. Just move the files into &lt;code class=&quot;highlighter-rouge&quot;&gt;app/javascript/stylesheets&lt;/code&gt;. You need to require all your stylesheet files one by one or all at once using &lt;code class=&quot;highlighter-rouge&quot;&gt;require.context&lt;/code&gt; function.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;require(&quot;../stylesheets/application.css&quot;);
-require(&quot;../stylesheets/module/navbar.css&quot;);
-
-// Or all at once
-require.context(&apos;../stylesheets&apos;, true);
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;If you are using SASS, it is best to require the entry file and then within SASS import your stylesheets.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;require(&quot;../stylesheets/application.scss&quot;);
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Then in your &lt;code class=&quot;highlighter-rouge&quot;&gt;application.scss&lt;/code&gt; import your stylesheets as you normally do.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import &apos;layout.css&apos;;
-...
-import &apos;buttons.css&apos;;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;From your SASS file, you can import Stylesheets from installed Javascript libraries and take advantage of SASS variables or functions they provide.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@import &apos;~bulma/bulma&apos;;
-...
-@import &quot;~notyf/notyf.min&quot;;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Just remember to use Yarn to install any dependency that is managed by Webpack. For example, to install &lt;a href=&quot;https://bulma.io/&quot; target=&quot;_blank&quot;&gt;Bulma&lt;/a&gt; CSS library, run the following command.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ yarn add bulma
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Moving your Javascript files could be a little more complicated, it depends on their complexity, but the approach is the same. Move all files to &lt;code class=&quot;highlighter-rouge&quot;&gt;app/javascript/scripts&lt;/code&gt;, and with Yarn, add all the libraries your code depends.&lt;/p&gt;
-
-&lt;p&gt;Here is an example of adding Javascript dependencies to a project.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ bin/yarn add  jquery turbolinks @rails/ujs @rails/activestorage
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Each library has different requirements on how they need to be imported and started because of this always read their README file to ensure you are using them correctly.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import Rails from &apos;rails-ujs&apos;;
-import Turbolinks from &apos;turbolinks&apos;;
-import * as ActiveStorage from &apos;activestorage&apos;;
-
-Rails.start()
-Turbolinks.start()
-ActiveStorage.start()
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;In most cases, jQuery needs to be available globally and accessible with &lt;code class=&quot;highlighter-rouge&quot;&gt;$&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;jQuery&lt;/code&gt;. To accomplish this, open the &lt;code class=&quot;highlighter-rouge&quot;&gt;config/webpack/environment.js&lt;/code&gt; file and add the following lines just above &lt;code class=&quot;highlighter-rouge&quot;&gt;module.exports = environment&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;const webpack = require(&apos;webpack&apos;);
-environment.plugins.append(&apos;Provide&apos;, new webpack.ProvidePlugin({
-  $: &apos;jquery&apos;,
-  jQuery: &apos;jquery&apos;
-}))
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;If you find that your Javascript code fails to be compiled by Webpacker due to a missing variable, you may need to add additional &lt;code class=&quot;highlighter-rouge&quot;&gt;import&lt;/code&gt; on top of the file that fails to compile.&lt;/p&gt;
-
-&lt;p&gt;At this point, Webpack should compile your assets successfully; if that is the case, then you are ready to remove the Asset Pipeline if not the additional debug is required.&lt;/p&gt;
-
-&lt;p&gt;To disable the Asset Pipeline in your application, remove references to &lt;code class=&quot;highlighter-rouge&quot;&gt;config.assets&lt;/code&gt; in &lt;code class=&quot;highlighter-rouge&quot;&gt;config/environments/production.rb&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;config/environments/development.rb&lt;/code&gt;. Also, remove the &lt;code class=&quot;highlighter-rouge&quot;&gt;config/initializer/assets.rb&lt;/code&gt; file and finally remove coffee-rails, sass-rails, and uglifier gems from your Gemfile.&lt;/p&gt;
-
-&lt;p&gt;The file &lt;code class=&quot;highlighter-rouge&quot;&gt;config/application.rb&lt;/code&gt; needs a change to not require all Rails frameworks, remove this line &lt;code class=&quot;highlighter-rouge&quot;&gt;require &quot;rails/all&quot;&lt;/code&gt;, and expand the frameworks list where &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;sprockets/railtie&quot;&lt;/code&gt; is commented.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;require &quot;rails&quot;
-# Pick the frameworks you want:
-require &quot;active_model/railtie&quot;
-require &quot;active_job/railtie&quot;
-require &quot;active_record/railtie&quot;
-require &quot;active_storage/engine&quot;
-require &quot;action_controller/railtie&quot;
-require &quot;action_mailer/railtie&quot;
-require &quot;action_view/railtie&quot;
-# require &quot;action_cable/engine&quot;
-# require &quot;sprockets/railtie&quot;
-require &quot;rails/test_unit/railtie&quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;As the last step, remove the &lt;code class=&quot;highlighter-rouge&quot;&gt;app/assets&lt;/code&gt; folder. Now your application uses Webpack to manage your application assets.&lt;/p&gt;
-
-&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;If you are reading this, it means that your application is running with Webpack, congratulations! Your team now has modern tools to work on your frontend.&lt;/p&gt;</content><author><name>Mario Alberto Chávez Cárdenas</name></author><summary type="html">From the Asset Pipeline to Webpack</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/webpack/webpack-post.jpg" /><media:content medium="image" url="https://mariochavez.io/images/webpack/webpack-post.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;p&gt;&lt;a href=&quot;https://twitter.com/GergelyOrosz/status/1247132806041546754&quot; target=&quot;_blank&quot;&gt;https://twitter.com/GergelyOrosz/status/1247132806041546754&lt;/a&gt;&lt;/p&gt;</content><author><name>Mario Alberto Chávez Cárdenas</name></author><summary type="html">Rails, Webpack y desarrollo frontend con Javascript</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/frontend/frontend.jpg" /><media:content medium="image" url="https://mariochavez.io/images/frontend/frontend.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
