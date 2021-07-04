@@ -58,6 +58,14 @@ You can deploy Bridgetown sites on "Jamstack" hosts (Netlify, Vercel, Render, et
 
 > Read the [Bridgetown Deployment Documentation](https://www.bridgetownrb.com/docs/deployment) for more information.
 
+To deploy run
+```sh
+$ yarn deploy BRIDGETOWN_ENV=production
+$ mv docs/_bridgetown/static /docs
+$ find docs/ -name '*.html' -exec sed -ie 's/_bridgetown\///' {} \;
+$ find docs/ -name '*.htmle' -exec rm {} \;
+```
+
 ## Contributing
 
 If repo is on GitHub:

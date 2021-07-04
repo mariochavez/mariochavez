@@ -38,5 +38,6 @@
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.11",
     "webpack-manifest-plugin": "^2.1.0"
-  }
+  },
+  "dependencies": {}
 }

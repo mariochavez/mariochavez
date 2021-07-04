@@ -6,6 +6,9 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      height: {
+        124: "32rem"
+      },
       typography: (theme) => ({
         DEFAULT: {
           css: {

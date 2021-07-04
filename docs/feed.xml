@@ -1,4 +1,135 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://bridgetownrb.com/" version="0.20.0">Bridgetown</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" /><updated>2021-06-22T17:08:52-05:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez Cárdenas</title><subtitle>Blog sobre temas de desarrollo de software Web con Ruby y Ruby on Rails, además de temas de fotografía análoga y digital.</subtitle><author><name>Mario Alberto Chávez Cárdenas</name></author><entry><title type="html">HEIC support for Active Storage</title><link href="https://mariochavez.io/desarrollo/2021/06/22/heic-support-active-storage/" rel="alternate" type="text/html" title="HEIC support for Active Storage" /><published>2021-06-22T02:00:00-05:00</published><updated>2021-06-22T02:00:00-05:00</updated><id>https://mariochavez.io/desarrollo/2021/06/22/heic-support-active-storage</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2021/06/22/heic-support-active-storage/">&lt;p&gt;Active Storage is the Ruby on Rails solution to work with file attachments on an application. It is not the only solution available, but it comes by default as part of the framework, so there is a chance that it is used on new projects.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://bridgetownrb.com/" version="0.20.0">Bridgetown</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" /><updated>2021-07-04T18:45:46-05:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez Cárdenas</title><subtitle>Blog sobre temas de desarrollo de software Web con Ruby y Ruby on Rails, además de temas de fotografía análoga y digital.</subtitle><author><name>Mario Alberto Chávez Cárdenas</name></author><entry xml:lang="es_MX"><title type="html">Libro “Los Chayacates de Ixtlahuacán, Una historia de tradición y devoción”</title><link href="https://mariochavez.io/proyectos/2021/07/04/libro-de-los-chayacates/" rel="alternate" type="text/html" title="Libro “Los Chayacates de Ixtlahuacán, Una historia de tradición y devoción”" /><published>2021-07-04T13:00:00-05:00</published><updated>2021-07-04T13:00:00-05:00</updated><id>https://mariochavez.io/proyectos/2021/07/04/libro-de-los-chayacates</id><content type="html" xml:base="https://mariochavez.io/proyectos/2021/07/04/libro-de-los-chayacates/">&lt;p&gt;La fiesta popular de “Los Chayacates de Ixtlahuacán” sucede cada 5 y 6 de Junio en la cabecera municipal de Ixtlahuacán de los Reyes Colima.&lt;/p&gt;
+
+&lt;p&gt;El fervor de los habiatntes del pueblo, las manifestaciones de color, participación, unión y amistad celebran el evento de Epifanía con devoción y respecto, combinando las creencias religiosas con pinceladas de ritos prehispánicos.&lt;/p&gt;
+
+&lt;p&gt;Los Chayacates, son cuatro personajes indígenas ataviados con máscaras blancas de madera de colorín, trenzas de fibra de acapán y vestuario de ixtle. Estos personajes, al igual que los Reyes Magos, se enteran del nacimiento de Jesus en Belén y son guiados por el olfato de sus perros  hasta él.&lt;/p&gt;
+
+&lt;p&gt;La fiesta alcanza a todo el pueblo con la típica pastorela y el recorrido y danzas de los cuatro Chayacates quienes van preguntando en náhuatl “Campa mutla catiles, endios sipilzin” por el niño Dios.&lt;/p&gt;
+
+&lt;h3 id=&quot;libro-los-chayacates-de-ixtlahuacán-una-historia-de-tradición-y-devoción&quot;&gt;Libro “Los Chayacates de Ixtlahuacán, Una historia de tradición y devoción”&lt;/h3&gt;
+&lt;div class=&quot;book&quot; data-controller=&quot;book&quot;&gt;
+  &lt;div class=&quot;book-wrapper&quot; data-book-target=&quot;wrapper&quot;&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/chayacates_libro/00.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/chayacates_libro/01.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/chayacates_libro/02.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/chayacates_libro/03.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/chayacates_libro/04.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/chayacates_libro/05.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/chayacates_libro/06.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/chayacates_libro/07.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/chayacates_libro/08.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/chayacates_libro/09.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/chayacates_libro/10.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/chayacates_libro/11.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/chayacates_libro/12.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/chayacates_libro/13.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/chayacates_libro/14.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/chayacates_libro/15.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/chayacates_libro/16.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/chayacates_libro/17.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/chayacates_libro/18.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/chayacates_libro/19.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/chayacates_libro/20.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/chayacates_libro/21.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/chayacates_libro/22.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+  &lt;/div&gt;
+  &lt;div class=&quot;paginator&quot; data-book-target=&quot;paginator&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p class=&quot;font-sans text-xs font-semibold text-center text-gray-600&quot;&gt;Utilice las flechas del teclado para cambiar página&lt;p&gt;
+&lt;/p&gt;&lt;/p&gt;</content><author><name>Mario Alberto Chávez Cárdenas</name></author><summary type="html">La fiesta popular de “Los Chayacates de Ixtlahuacán” sucede cada 5 y 6 de Junio en la cabecera municipal de Ixtlahuacán de los Reyes Colima.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/foto_libro/IMG_6268.jpg" /><media:content medium="image" url="https://mariochavez.io/images/foto_libro/IMG_6268.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">HEIC support for Active Storage</title><link href="https://mariochavez.io/desarrollo/2021/06/22/heic-support-active-storage/" rel="alternate" type="text/html" title="HEIC support for Active Storage" /><published>2021-06-22T02:00:00-05:00</published><updated>2021-06-22T02:00:00-05:00</updated><id>https://mariochavez.io/desarrollo/2021/06/22/heic-support-active-storage</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2021/06/22/heic-support-active-storage/">&lt;p&gt;Active Storage is the Ruby on Rails solution to work with file attachments on an application. It is not the only solution available, but it comes by default as part of the framework, so there is a chance that it is used on new projects.&lt;/p&gt;
 
 &lt;p&gt;Working with images is as easy as possible; creating variants to display images in different sizes might be the most common use case in a Rails Application. The &lt;a href=&quot;https://github.com/janko/image_processing&quot; target=&quot;_blank&quot;&gt;image_processing&lt;/a&gt; gem is responsible for abstracting the complexity of creating an image variant, like resizing the image to be 300px on the longest side.&lt;/p&gt;
 
@@ -1515,95 +1646,4 @@ no-cache-application:        1.3 i/s - 2.34x  &lt;span class=&quot;o&quot;&gt;(&
 
 &lt;p&gt;Finalmente les dejo este post con la pregunta si Ruby es demasiado lento para escalar.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://www.speedshop.co/2017/07/11/is-ruby-too-slow-for-web-scale.html&quot; target=&quot;_blank&quot;&gt;Is Ruby Too Slow For Web-Scale?&lt;/a&gt;&lt;/p&gt;</content><author><name>Mario Alberto Chávez Cárdenas</name></author><summary type="html">Identificar, evaluar y solucionar problemas de performance con Ruby</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/performance/performance.jpg" /><media:content medium="image" url="https://mariochavez.io/images/performance/performance.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry xml:lang="es_MX"><title type="html">Rails, Webpack y desarrollo frontend con Javascript</title><link href="https://mariochavez.io/desarrollo/2020/05/19/rails-webpack-desarrollo-frontend/" rel="alternate" type="text/html" title="Rails, Webpack y desarrollo frontend con Javascript" /><published>2020-05-19T02:00:00-05:00</published><updated>2020-05-19T02:00:00-05:00</updated><id>https://mariochavez.io/desarrollo/2020/05/19/rails-webpack-desarrollo-frontend</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2020/05/19/rails-webpack-desarrollo-frontend/">&lt;h1 id=&quot;rails-webpack-y-desarrollo-frontend-con-javascript&quot;&gt;Rails, Webpack y desarrollo frontend con Javascript&lt;/h1&gt;
-
-&lt;p&gt;El 19 de Mayo tuve una sesión de “streaming” para platicar sobre el desarrollo de frontend con Javascript en Rails. El video y los recurso están listados en este post.&lt;/p&gt;
-
-&lt;p&gt;El video ya está disponible para quienes no tuvieron la oportunidad de acompañarme.&lt;/p&gt;
-
-&lt;div class=&quot;aspect-w-16 aspect-h-9&quot;&gt;
-  &lt;iframe src=&quot;https://www.youtube.com/embed/maFimVOh3b4&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Para la siguiente sesión hay que estar pendientes de mi cuenta de Twitter &lt;a href=&quot;https://twitter.com/mario_chavez&quot; target=&quot;_blank&quot;&gt;@mario_chavez&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;recursos-de-plática&quot;&gt;Recursos de plática&lt;/h2&gt;
-&lt;p&gt;En el 2011 DHH anuncio que Javascript y compañía serian ciudadanos de primera clase en las aplicaciones de Rails. Oficialmente le daba la bienvenida a CoffeeScript, SCSS y JQuery. En su momento fue el paso correcto ya que el desarrollo de Frontend requería de un dinamismo que todos en el mundo de Rails estaban haciendo pero no había una guía exacta de cómo hacerle.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://mariochavez.io/desarrollo/2020/05/19/from-the-asset-pipeline-to-webpack.html&quot; target=&quot;_blank&quot;&gt;From the Asset Pipeline to Webpack&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;El Asset Pipeline vino a ser esa guía hasta que ya no lo fue más. React, Angular, Vue y otros vinieron a cambiar el panorama del desarrollo de Frontend, el Frontend ya no era HTML o por lo menos no era como lo conocíamos.&lt;/p&gt;
-
-&lt;p&gt;Y aunque se hicieron ajustes al Asset Pipeline para adaptarse a los nuevos requisitos, simplemente no fue suficiente. Hacer que una aplicación de React se compilara mediante el Asset Pipeline ya no era algo trivial.&lt;/p&gt;
-
-&lt;p&gt;Seis años más tarde en mismo DHH anunciaba que Webpack tendría integración con Rails y un año más tarde que Webpack era el default para toda nueva aplicación de Rails. Este cambio hacía más sencillo la integración de nuevas tecnologías en el Frontend con Rails.&lt;/p&gt;
-
-&lt;p&gt;Sin embargo la geografía de las aplicaciones había cambiado desde antes de esos anuncios. El Frontend era una aplicación independiente, compilada y distribuida aparte del Backend. El Backend ya no era una sólo aplicación, posiblemente eran varias, eran microservicios.&lt;/p&gt;
-
-&lt;p&gt;Esto representó otro problema técnico, asegurar que los cambios de Frontend y Backend se realizaran de forma paralela. El hacer QA se complicaba ya que ahora era necesario levantar al menos dos aplicaciones, el Frontend y el Backend. Hacer pruebas automáticas de integración ni pensarlo. La complejidad del desarrollo de las aplicaciones también se lleva su parte.&lt;/p&gt;
-
-&lt;p&gt;Independientemente de cual sea nuestro sentir, al menos Rails no se interpone en el camino de querer remplazar el Frontend con alguna tecnología con Javascript. Y aunque algunos de los comentarios de separar el Frontend a su propio repositorio van en el sentido de dividir el desarrollo a final de cuentas depende de alguna manera del Backend. Otro de los comentarios es la distribución de los assets, la cuál se puede hacer sin ningún problema con un servicio como &lt;a href=&quot;https://www.cloudflare.com/&quot; target=&quot;_blank&quot;&gt;Cloudflare&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;La gente de Evil Martians tiene tres posts de cómo trabajar de forma moderna con Javascript y Rails.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://evilmartians.com/chronicles/evil-front-part-1&quot; target=&quot;_blank&quot;&gt;Evil Front Part 1: Modern Front-end in Rails - Martian Chronicles&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Si la intención es hacer una SPA o Single Page Application con el Backend de Rails, gracias a Webpacker, Rails no va a ser un obstáculo al respecto, inclusive cuenta con algunos generadores que nos van ayudar en la tarea de hacer el “boilerplate” de la aplicación.&lt;/p&gt;
-
-&lt;p&gt;En el modelo de Omakase de Rails el empuje sigue en una dirección contraria a las SPA. Es por eso que  que StimulsJS fue liberado hace un par de años.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://stimulusjs.org/&quot; target=&quot;_blank&quot;&gt;A modest JavaScript framework for the HTML you already have.&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;StimulusJS es una librería de Javascript que puede hacer data-binding a elementos en el DOM así como reaccionar a eventos. Lo importante de StimulusJS es que no se apropia del HTML y DOM si no que trabaja con él. Esto quiere decir que Rails aún tiene que servir sus vistas en HTML. Es mi librería de defacto para proyectos dónde no sea realmente necesario React o Angular. - A final de cuentas no soy ni Facebook ni Google -.&lt;/p&gt;
-
-&lt;p&gt;Funciona sin problemas con Turbolinks, el cuál ha mejorado increíblemente desde las primeras versiones y en realidad entre ambos hacen que las páginas respondan casi de forma instantánea con muy poco código.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/turbolinks/turbolinks&quot; target=&quot;_blank&quot;&gt;turbolinks/turbolinks&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Tal es el caso que la gente de The Changelog lo utiliza aún cuando su aplicación no es Rails.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://changelog.com/posts/why-we-chose-turbolinks&quot; target=&quot;_blank&quot;&gt;Why we chose Turbolinks&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;HoneyBadger tiene unos muy buenos concejos para usar Turbolink sin dispararse en el pie.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.honeybadger.io/blog/turbolinks/&quot; target=&quot;_blank&quot;&gt;How We Migrated To Turbolinks Without Breaking Javascript&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Entre Turbolinks y StimulusJS realmente vale a la pena detener un momento y preguntarnos si realmente necesitamos una SPA.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://medium.com/@jmanrubia/escaping-the-spa-rabbit-hole-with-turbolinks-903f942bf52c&quot; target=&quot;_blank&quot;&gt;Escaping the SPA rabbit hole with modern Rails&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Para quienes quieran explorar StimulusJS les comparto una lista de ejemplo de cosas básicas para ser utilizado.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://onrails.blog/stimulus-js-tutorials/&quot; target=&quot;_blank&quot;&gt;Stimulus.js Tutorials * Blogging On Rails&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;La adopción de StimulusJS ya comienza a cuestionarnos sobre patrones y mejores formas de adopción, definitivamente el crear componentes compuestos hasta este momento es lo que mejor me ha funcionado.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://dev.to/adrienpoly/introducing-stimulus-use-composable-behaviors-for-your-controllers-mlc&quot; target=&quot;_blank&quot;&gt;Introducing Stimulus-use composable behaviors for your controllers&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;La gente de Basecamp está trabajando en su propio cliente de correo electrónico llamado Hey. Es posible que el 5 de Junio lo abran en nivel beta. Esta hecho con Rails, Turbolinks y StimulusJS.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://hey.com/&quot; target=&quot;_blank&quot;&gt;HEY&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;DHH anunció que va a revisar de forma pública los cambios, mejoras y patrones que emplearon para el desarrollo del cliente, el cuál aparentemente no tiene muchas dependencias de Javascript.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://twitter.com/_swanson/status/1253037966710181892&quot; target=&quot;_blank&quot;&gt;https://twitter.com/_swanson/status/1253037966710181892&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Stimulus está en evolución. Hace unas semanas vi un video de demostración de Stimulus-Reflex y CableReady. Dos herramientas que aprovechan ActionCable para hacer aplicaciones reactivas mediante sockets sin escribir una sola línea de Javascript.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://twitter.com/mario_chavez/status/1256263180722081792&quot; target=&quot;_blank&quot;&gt;https://twitter.com/mario_chavez/status/1256263180722081792&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Fue simplemente un deleite ver como funcionaba.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://docs.stimulusreflex.com/&quot; target=&quot;_blank&quot;&gt;Stimulux Reflex&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://cableready.stimulusreflex.com/&quot; target=&quot;_blank&quot;&gt;Cable Ready&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Creo que hay mucho camino aún por recorrer en mundo de Rails para hacer aplicaciones que sean rápidas y fáciles de desarrollar, que de gusto trabajar en ellas en pocas palabras. Pero tenemos que ser consientes que Rails es aburrido, ya no es ese espejito brillante.&lt;/p&gt;
-
-&lt;p&gt;Facebook hace unos días cambió su interfase gráfica, es “diferente”. El equipo técnico de Facebook escribió un post explicando como movieron todo a React y Relay y dividieron los assets en pequeños bundles con la finalidad de que fuera más rápida. Veredicto … es más lenta.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://engineering.fb.com/web/facebook-redesign/&quot; target=&quot;_blank&quot;&gt;Rebuilding our tech stack for a new Facebook.com - Facebook Engineering&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Finalmente sobre los comentarios que hice sobre microservicios anteriormente les dejo el siguiente tweet de un ingeniero de Uber para que ustedes mismos se creen su propio criterio.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://twitter.com/GergelyOrosz/status/1247132806041546754&quot; target=&quot;_blank&quot;&gt;https://twitter.com/GergelyOrosz/status/1247132806041546754&lt;/a&gt;&lt;/p&gt;</content><author><name>Mario Alberto Chávez Cárdenas</name></author><summary type="html">Rails, Webpack y desarrollo frontend con Javascript</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/frontend/frontend.jpg" /><media:content medium="image" url="https://mariochavez.io/images/frontend/frontend.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;p&gt;&lt;a href=&quot;https://www.speedshop.co/2017/07/11/is-ruby-too-slow-for-web-scale.html&quot; target=&quot;_blank&quot;&gt;Is Ruby Too Slow For Web-Scale?&lt;/a&gt;&lt;/p&gt;</content><author><name>Mario Alberto Chávez Cárdenas</name></author><summary type="html">Identificar, evaluar y solucionar problemas de performance con Ruby</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/performance/performance.jpg" /><media:content medium="image" url="https://mariochavez.io/images/performance/performance.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>

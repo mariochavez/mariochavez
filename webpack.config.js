@@ -101,6 +101,10 @@ module.exports = {
           publicPath: "../",
         },
       },
+      {
+        test: /pdf\.worker(\.min)?\.js$/,
+        loader: "file-loader"
+      },
     ],
   },
 };
