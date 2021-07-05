@@ -1,4 +1,401 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://bridgetownrb.com/" version="0.20.0">Bridgetown</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" /><updated>2021-07-04T18:45:46-05:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez Cárdenas</title><subtitle>Blog sobre temas de desarrollo de software Web con Ruby y Ruby on Rails, además de temas de fotografía análoga y digital.</subtitle><author><name>Mario Alberto Chávez Cárdenas</name></author><entry xml:lang="es_MX"><title type="html">Libro “Los Chayacates de Ixtlahuacán, Una historia de tradición y devoción”</title><link href="https://mariochavez.io/proyectos/2021/07/04/libro-de-los-chayacates/" rel="alternate" type="text/html" title="Libro “Los Chayacates de Ixtlahuacán, Una historia de tradición y devoción”" /><published>2021-07-04T13:00:00-05:00</published><updated>2021-07-04T13:00:00-05:00</updated><id>https://mariochavez.io/proyectos/2021/07/04/libro-de-los-chayacates</id><content type="html" xml:base="https://mariochavez.io/proyectos/2021/07/04/libro-de-los-chayacates/">&lt;p&gt;La fiesta popular de “Los Chayacates de Ixtlahuacán” sucede cada 5 y 6 de Junio en la cabecera municipal de Ixtlahuacán de los Reyes Colima.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://bridgetownrb.com/" version="0.20.0">Bridgetown</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" /><updated>2021-07-05T12:38:20-05:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez Cárdenas</title><subtitle>Blog sobre temas de desarrollo de software Web con Ruby y Ruby on Rails, además de temas de fotografía análoga y digital.</subtitle><author><name>Mario Alberto Chávez Cárdenas</name></author><entry xml:lang="es_MX"><title type="html">Libro “Una mirada desde el cielo”</title><link href="https://mariochavez.io/proyectos/2021/07/05/libro-una-mirada-desde-el-cielo/" rel="alternate" type="text/html" title="Libro “Una mirada desde el cielo”" /><published>2021-07-05T12:00:00-05:00</published><updated>2021-07-05T12:00:00-05:00</updated><id>https://mariochavez.io/proyectos/2021/07/05/libro-una-mirada-desde-el-cielo</id><content type="html" xml:base="https://mariochavez.io/proyectos/2021/07/05/libro-una-mirada-desde-el-cielo/">&lt;p&gt;La fotografía de dron permite tener una perspectiva poco usual del lugar donde vivimos. Este libro trata precisamente de ofrecer esa perspectiva única de los 10 municipios de Estado de Colima.&lt;/p&gt;
+
+&lt;p&gt;Este libro representa el recorrido por cerca de tres años de visitar los municipios en diferentes épocas del año.&lt;/p&gt;
+
+&lt;h3 id=&quot;libro-una-mirada-desde-el-cielo&quot;&gt;Libro “Una mirada desde el cielo”&lt;/h3&gt;
+&lt;div class=&quot;book&quot; data-controller=&quot;book&quot;&gt;
+  &lt;div class=&quot;book-wrapper&quot; data-book-target=&quot;wrapper&quot;&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/00.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/01.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/02.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/03.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/04.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/05.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/06.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/07.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/08.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/09.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/10.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/11.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/12.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/13.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/14.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/15.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/16.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/17.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/18.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/19.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/20.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/21.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/22.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/23.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/24.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/25.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/26.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/27.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/28.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/29.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/30.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/31.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/32.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/33.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/34.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/35.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/36.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/37.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/38.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/39.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/40.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/41.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/42.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/43.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/44.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/45.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/46.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/47.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/48.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/49.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/50.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/51.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/52.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/53.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/54.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/55.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/56.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/57.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/58.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/59.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/60.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/61.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/62.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/63.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/64.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/65.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/66.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/67.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/68.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/69.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/70.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/71.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/72.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/73.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/74.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/75.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/mirada/76.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; style=&quot;height: 70%; margin: auto;&quot; /&gt;
+      &lt;/div&gt;
+    
+  &lt;/div&gt;
+  &lt;div class=&quot;paginator&quot; data-book-target=&quot;paginator&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p class=&quot;font-sans text-xs font-semibold text-center text-gray-600&quot;&gt;Utilice las flechas del teclado para cambiar página&lt;p&gt;
+&lt;/p&gt;&lt;/p&gt;</content><author><name>Mario Alberto Chávez Cárdenas</name></author><summary type="html">La fotografía de dron permite tener una perspectiva poco usual del lugar donde vivimos. Este libro trata precisamente de ofrecer esa perspectiva única de los 10 municipios de Estado de Colima.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/mirada/una-mirada.jpg" /><media:content medium="image" url="https://mariochavez.io/images/mirada/una-mirada.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry xml:lang="es_MX"><title type="html">Libro “Los Chayacates de Ixtlahuacán, Una historia de tradición y devoción”</title><link href="https://mariochavez.io/proyectos/2021/07/04/libro-de-los-chayacates/" rel="alternate" type="text/html" title="Libro “Los Chayacates de Ixtlahuacán, Una historia de tradición y devoción”" /><published>2021-07-04T13:00:00-05:00</published><updated>2021-07-04T13:00:00-05:00</updated><id>https://mariochavez.io/proyectos/2021/07/04/libro-de-los-chayacates</id><content type="html" xml:base="https://mariochavez.io/proyectos/2021/07/04/libro-de-los-chayacates/">&lt;p&gt;La fiesta popular de “Los Chayacates de Ixtlahuacán” sucede cada 5 y 6 de Junio en la cabecera municipal de Ixtlahuacán de los Reyes Colima.&lt;/p&gt;
 
 &lt;p&gt;El fervor de los habiatntes del pueblo, las manifestaciones de color, participación, unión y amistad celebran el evento de Epifanía con devoción y respecto, combinando las creencias religiosas con pinceladas de ritos prehispánicos.&lt;/p&gt;
 
@@ -1517,133 +1914,4 @@ no-cache-application:        1.3 i/s - 2.34x  &lt;span class=&quot;o&quot;&gt;(&
 
 &lt;p&gt;El desarrollar y mantener un API REST requiere de conocer el estándar de HTTP para tratar de obtener el mejor provecho y ofrecer mejores APIs para los clientes. Como parte del trabajo de mantener un API REST también incluye el asegurarse que los clientes hagan uso efectivo de las facilidades del API.&lt;/p&gt;
 
-&lt;p&gt;Aunque los ejemplos aquí mostrados están relacionados con Rails y con un cliente con Ruby, el &lt;strong&gt;GET Condicional&lt;/strong&gt; y el cache son técnicas agnósticas que pueden ser implementadas en otros lenguajes y frameworks de desarrollo.&lt;/p&gt;</content><author><name>Mario Alberto Chávez Cárdenas</name></author><summary type="html">Hace algunos meses escribí el post “Lecciones construyendo un API REST “ donde hablo sobre lo aprendido e implementado en la construcción de un API REST para Creditar.io , el producto plataforma Fintech que mi equipo construyó.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/cache/cliente-rest.jpg" /><media:content medium="image" url="https://mariochavez.io/images/cache/cliente-rest.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry xml:lang="es_MX"><title type="html">Identificar, evaluar y solucionar problemas de performance con Ruby</title><link href="https://mariochavez.io/desarrollo/2020/05/27/identificar-evaluar-y-solucionar-problemas-de-performance-con-ruby/" rel="alternate" type="text/html" title="Identificar, evaluar y solucionar problemas de performance con Ruby" /><published>2020-05-27T02:00:00-05:00</published><updated>2020-05-27T02:00:00-05:00</updated><id>https://mariochavez.io/desarrollo/2020/05/27/identificar-evaluar-y-solucionar-problemas-de-performance-con-ruby</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2020/05/27/identificar-evaluar-y-solucionar-problemas-de-performance-con-ruby/">&lt;h1 id=&quot;identificar-evaluar-y-solucionar-problemas-de-performance-con-ruby&quot;&gt;Identificar, evaluar y solucionar problemas de performance con Ruby&lt;/h1&gt;
-
-&lt;p&gt;El 27 de Mayo tuve una sesión de “streaming” para platicar sobre como identificar, evaluar y solucionar problemas de performance en Ruby. El video y los recurso están listados en este post.&lt;/p&gt;
-
-&lt;p&gt;El video ya está disponible para quienes no tuvieron la oportunidad de acompañarme.&lt;/p&gt;
-
-&lt;div class=&quot;aspect-w-16 aspect-h-9&quot;&gt;
-  &lt;iframe src=&quot;https://www.youtube.com/embed/Kh4k4RcUsyA&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Para la siguiente sesión hay que estar pendientes de mi cuenta de Twitter &lt;a href=&quot;https://twitter.com/mario_chavez&quot; target=&quot;_blank&quot;&gt;@mario_chavez&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;recursos-de-plática&quot;&gt;Recursos de plática&lt;/h2&gt;
-&lt;p&gt;Ruby no es el lenguaje más rápido del mundo en términos de ejecución por lo que siempre hay que considerar si la forma en como escribimos nuestros programas es la mejor en aspectos como legibilidad y rendimiento.&lt;/p&gt;
-
-&lt;p&gt;Escribiendo Ruby rápido (Erik Michaels-Ober )&lt;/p&gt;
-
-&lt;div class=&quot;aspect-w-16 aspect-h-9&quot;&gt;
-  &lt;iframe src=&quot;https://www.youtube.com/embed/fGFM_UrSp70&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Juanito Fatas (Core Ruby ) documentó en un repositorio de Github las diferentes formas de escribir el mismo código en Ruby para determinar cuál es más rápida, todo basado en la plática de Erik Michaels-Ober.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/JuanitoFatas/fast-ruby&quot; target=&quot;_blank&quot;&gt;JuanitoFatas/fast-ruby&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;El pragma &lt;code class=&quot;highlighter-rouge&quot;&gt;frozen_string_literal&lt;/code&gt; puede ayudar a reducir el consumo de memoria en un programa de Ruby 2.3 o mejor.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.mikeperham.com/2018/02/28/ruby-optimization-with-one-magic-comment/&quot; target=&quot;_blank&quot;&gt;Ruby Optimization with One Magic Comment&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Cómo funciona la máquina virtual de Ruby (Mario Chávez)&lt;/p&gt;
-
-&lt;div class=&quot;aspect-w-16 aspect-h-9&quot;&gt;
-  &lt;iframe src=&quot;https://www.youtube.com/embed/PT5UO23zOHc&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-&lt;/div&gt;
-
-&lt;p&gt;La herramienta Benchmark IPS es básica para poder medir y comparar como una propuesta de código es más rápida o más lenta que otra. La clave para medir el rendimiento son las métricas.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/evanphx/benchmark-ips&quot; target=&quot;_blank&quot;&gt;evanphx/benchmark-ips&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Rails agregó un generador para poder generar pruebas de performance.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://blog.saeloun.com/2020/02/11/rails-benchmark-generator.html&quot; target=&quot;_blank&quot;&gt;Rails has added a benchmark generator&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;En el Keynote de Aaron Patterson de Railsconf habla de cómo identifica problemas de performace con Benchmark IPS y Stackprof&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://railsconf.org/2020/video/aaron-patterson-aaron-patterson-s-variety-show&quot; target=&quot;_blank&quot;&gt;Railsconf2020&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Stackprof ayuda para conocer en que parte de nuestro código es que Ruby está tomando más tiempo.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://scoutapm.com/blog/profiling-rails-with-stackprof&quot; target=&quot;_blank&quot;&gt;StackProf: The Holy Grail of Rails Profiling&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Menos código es código más rápido. Es necesario revisar las dependencias de nuestros programas y eliminar todo lo que no es necesario.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.mikeperham.com/2016/02/09/kill-your-dependencies/&quot; target=&quot;_blank&quot;&gt;Kill Your Dependencies&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Rack Miniprofiler una una herramienta útil para entender el performace en aplicaciones Rack, como Sinatra o Rails.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.speedshop.co/2015/08/05/rack-mini-profiler-the-secret-weapon.html&quot; target=&quot;_blank&quot;&gt;rack-mini-profiler - the Secret Weapon of Ruby and Rails Speed&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Derailed es otra herramienta que ayuda a entender estáticamente problemas de consumo de memoria y performance para aplicaciones de Rails.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://blog.heroku.com/patching-rails-performance&quot; target=&quot;_blank&quot;&gt;Patching Rails Performance&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Derailed en Github&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/schneems/derailed_benchmarks&quot; target=&quot;_blank&quot;&gt;schneems/derailed_benchmarks&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Si en este punto tu código en Ruby está tan optimizado como es posible quizás el problema de performance tiene que ver con el acceso a la Base de Datos. Existen patrones que aunque parecen insignificantes pueden causar problemas de performance en ActiveRecord y posiblemente existan situaciones similares con otros ORM en Ruby.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.speedshop.co/2019/01/10/three-activerecord-mistakes.html&quot; target=&quot;_blank&quot;&gt;3 ActiveRecord Mistakes That Slow Down Rails Apps: Count, Where and Present&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;El infame problema de N+1 en los queries.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://evilmartians.com/chronicles/fighting-the-hydra-of-n-plus-one-queries&quot; target=&quot;_blank&quot;&gt;Fighting the Hydra of N+1 queries - Martian Chronicles&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;La falta de indices o actualización de los mismos con el paso del tiempo también pueden representar un problema de performance en una aplicación.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://semaphoreci.com/blog/2017/05/09/faster-rails-is-your-database-properly-indexed.html&quot; target=&quot;_blank&quot;&gt;Faster Rails: Is Your Database Properly Indexed? - Semaphore&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Si usas una base de datos como Postgresql hay tareas de mantenimiento regulares que debe de recibir para asegurar el mejor de los performance.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://statsbot.co/blog/postgresql-query-optimization/&quot; target=&quot;_blank&quot;&gt;Simple Tips for PostgreSQL Query Optimization&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;PgHero es una herramienta que puede ayudar con el monitoreo del performance de la base de datos.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/ankane/pghero&quot; target=&quot;_blank&quot;&gt;ankane/pghero&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Rails hace que el caching sea muy sencillo pero también es fácil cometer errores. Russian Doll Caching pueden ayudar para evitar renderizar las vistas cada vez que son requeridas.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://blog.appsignal.com/2018/04/03/russian-doll-caching-in-rails.html&quot; target=&quot;_blank&quot;&gt;Russian doll caching in Rails&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;En modo de producción también hay bastante que hacer para asegurar que las aplicaciones funcionan lo mejor posible. Por ejemplo compilar Ruby con JMalloc y obtener un beneficio en el consumo de memoria.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://medium.com/rubyinside/how-we-halved-our-memory-consumption-in-rails-with-jemalloc-86afa4e54aa3&quot; target=&quot;_blank&quot;&gt;How we halved our memory consumption in Rails with jemalloc&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Configurar Puma (o Unicorn) para un mejor rendimiento es importante.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.speedshop.co/2017/10/12/appserver.html&quot; target=&quot;_blank&quot;&gt;Configuring Puma, Unicorn and Passenger for Maximum Efficiency&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Otra guía para entender como llegar a la configuración perfecta con Puma.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://engineering.appfolio.com/appfolio-engineering/2019/4/11/a-simpler-rails-benchmark-puma-and-concurrency&quot; target=&quot;_blank&quot;&gt;A Simpler Rails Benchmark, Puma and Concurrency - Appfolio Engineering&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Si ponemos todos los links mencionados en acción llegaremos a un par de guías de cómo optimizar todo lo posible para mejorar el rendimiento de nuestras aplicaciones.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://engineering.shopify.com/blogs/engineering/how-fix-slow-code-ruby&quot; target=&quot;_blank&quot;&gt;How to Fix Slow Code in Ruby&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://blog.appsignal.com/2020/01/22/rails-is-fast-optimize-your-view-performance.html&quot; target=&quot;_blank&quot;&gt;Rails is Fast: Optimize Your View Performance&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;La siguiente guía nos lleva de la mano a sacar la mejor ventaja de Heroku.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://evilmartians.com/chronicles/big-on-heroku-scaling-fountain-without-losing-a-drop&quot; target=&quot;_blank&quot;&gt;Big on Heroku: Scaling Fountain without losing a drop - Martian Chronicles&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Finalmente algunas herramientas de las que podemos echar mano para ayudarnos a solucionar problemas de performance.&lt;/p&gt;
-
-&lt;p&gt;Una de ellas es TracePoint de Ruby que nos ayuda a encontrar los lugares en los que se ejecuta código como creación de objetos, ejecución de queries y otras cosas que pueden ser inesperadas.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://blog.appsignal.com/2020/04/01/changing-the-approach-to-debugging-in-ruby-with-tracepoint.html&quot; target=&quot;_blank&quot;&gt;Changing the Approach to Debugging in Ruby with TracePoint&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;SI queremos monitorear nuestra aplicación Skiylight es la herramienta más sencilla del mercado.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.skylight.io&quot; target=&quot;_blank&quot;&gt;Skylight&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;La guía completa de performance en aplicaciones Rails basada en problemas reales de consultoría.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.railsspeed.com&quot; target=&quot;_blank&quot;&gt;The Complete Guide to Rails Performance&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Finalmente les dejo este post con la pregunta si Ruby es demasiado lento para escalar.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.speedshop.co/2017/07/11/is-ruby-too-slow-for-web-scale.html&quot; target=&quot;_blank&quot;&gt;Is Ruby Too Slow For Web-Scale?&lt;/a&gt;&lt;/p&gt;</content><author><name>Mario Alberto Chávez Cárdenas</name></author><summary type="html">Identificar, evaluar y solucionar problemas de performance con Ruby</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/performance/performance.jpg" /><media:content medium="image" url="https://mariochavez.io/images/performance/performance.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;p&gt;Aunque los ejemplos aquí mostrados están relacionados con Rails y con un cliente con Ruby, el &lt;strong&gt;GET Condicional&lt;/strong&gt; y el cache son técnicas agnósticas que pueden ser implementadas en otros lenguajes y frameworks de desarrollo.&lt;/p&gt;</content><author><name>Mario Alberto Chávez Cárdenas</name></author><summary type="html">Hace algunos meses escribí el post “Lecciones construyendo un API REST “ donde hablo sobre lo aprendido e implementado en la construcción de un API REST para Creditar.io , el producto plataforma Fintech que mi equipo construyó.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/cache/cliente-rest.jpg" /><media:content medium="image" url="https://mariochavez.io/images/cache/cliente-rest.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
