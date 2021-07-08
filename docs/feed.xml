@@ -1,4 +1,114 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://bridgetownrb.com/" version="0.20.0">Bridgetown</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" /><updated>2021-07-05T13:19:27-05:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez Cárdenas</title><subtitle>Blog sobre temas de desarrollo de software Web con Ruby y Ruby on Rails, además de temas de fotografía análoga y digital.</subtitle><author><name>Mario Alberto Chávez Cárdenas</name></author><entry xml:lang="es_MX"><title type="html">Libro “Embeleso del vértice”</title><link href="https://mariochavez.io/proyectos/2021/07/05/libro-el-embeleso-del-vertice/" rel="alternate" type="text/html" title="Libro “Embeleso del vértice”" /><published>2021-07-05T13:00:00-05:00</published><updated>2021-07-05T13:00:00-05:00</updated><id>https://mariochavez.io/proyectos/2021/07/05/libro-el-embeleso-del-vertice</id><content type="html" xml:base="https://mariochavez.io/proyectos/2021/07/05/libro-el-embeleso-del-vertice/">&lt;p&gt;Este libro es el resultado del taller de Conceptualización Visual con el artista visual español Manuel Moranta.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://bridgetownrb.com/" version="0.20.0">Bridgetown</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" /><updated>2021-07-08T14:27:32-05:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez Cárdenas</title><subtitle>Blog sobre temas de desarrollo de software Web con Ruby y Ruby on Rails, además de temas de fotografía análoga y digital.</subtitle><author><name>Mario Alberto Chávez Cárdenas</name></author><entry xml:lang="es_MX"><title type="html">Libro “El color del olvido”</title><link href="https://mariochavez.io/proyectos/2021/07/08/libro-el-color-del-olvido/" rel="alternate" type="text/html" title="Libro “El color del olvido”" /><published>2021-07-08T13:00:00-05:00</published><updated>2021-07-08T13:00:00-05:00</updated><id>https://mariochavez.io/proyectos/2021/07/08/libro-el-color-del-olvido</id><content type="html" xml:base="https://mariochavez.io/proyectos/2021/07/08/libro-el-color-del-olvido/">&lt;p&gt;Este libro es el resultado del taller Nuevo reportaje del fotógrafo Ricardo Cases.&lt;/p&gt;
+
+&lt;h3 id=&quot;libro-el-color-del-olvido&quot;&gt;Libro “El color del olvido”&lt;/h3&gt;
+&lt;div class=&quot;book&quot; data-controller=&quot;book&quot;&gt;
+  &lt;div class=&quot;book-wrapper&quot; data-book-target=&quot;wrapper&quot;&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/color/00.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/color/01.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/color/02.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/color/03.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/color/04.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/color/05.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/color/06.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/color/07.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/color/08.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/color/09.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/color/10.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/color/11.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/color/12.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/color/13.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/color/14.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/color/15.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/color/16.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/color/17.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/color/18.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/color/19.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+  &lt;/div&gt;
+  &lt;div class=&quot;paginator&quot; data-book-target=&quot;paginator&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p class=&quot;font-sans text-xs font-semibold text-center text-gray-600&quot;&gt;Utilice las flechas del teclado para cambiar página&lt;p&gt;
+&lt;/p&gt;&lt;/p&gt;</content><author><name>Mario Alberto Chávez Cárdenas</name></author><summary type="html">Este libro es el resultado del taller Nuevo reportaje del fotógrafo Ricardo Cases.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/color/color.jpg" /><media:content medium="image" url="https://mariochavez.io/images/color/color.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry xml:lang="es_MX"><title type="html">Libro “Embeleso del vértice”</title><link href="https://mariochavez.io/proyectos/2021/07/05/libro-el-embeleso-del-vertice/" rel="alternate" type="text/html" title="Libro “Embeleso del vértice”" /><published>2021-07-05T13:00:00-05:00</published><updated>2021-07-05T13:00:00-05:00</updated><id>https://mariochavez.io/proyectos/2021/07/05/libro-el-embeleso-del-vertice</id><content type="html" xml:base="https://mariochavez.io/proyectos/2021/07/05/libro-el-embeleso-del-vertice/">&lt;p&gt;Este libro es el resultado del taller de Conceptualización Visual con el artista visual español Manuel Moranta.&lt;/p&gt;
 
 &lt;h3 id=&quot;libro-el-embeleso-del-vértice&quot;&gt;Libro “El embeleso del vértice”&lt;/h3&gt;
 &lt;div class=&quot;book&quot; data-controller=&quot;book&quot;&gt;
@@ -1628,85 +1738,4 @@ Overwrite /Users/marioch/Development/michelada/butaca/config/boot.rb? &lt;span c
 
 &lt;p&gt;First of all, it is clear that you are using Javascript but not Javascript code that you need to maintain. Under the hood, ActionCable and CableReady provide Javascript functionality to interact with the Browser.&lt;/p&gt;
 
-&lt;p&gt;Writing applications this way, opens the world a new kind of Rails applications that are reactive, connected, and that takes advantage of Server Side Rendering, Caching, and minimal frontend Javascript. I am eager to see the first Rails applications build this way.&lt;/p&gt;</content><author><name>Mario Alberto Chávez Cárdenas</name></author><summary type="html">Last year I wrote a blog post, “I created the same application with Rails and Javascript”, following a trend of posts where the author Sunil Sandhu did the same comparing a few frontend Javascript libraries.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/rails_todo/rails-todo-no-js.png" /><media:content medium="image" url="https://mariochavez.io/images/rails_todo/rails-todo-no-js.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Marcha contra la violencia en Colima</title><link href="https://mariochavez.io/fotograf%C3%ADa/2020/06/07/marcha-contra-violencia-colima/" rel="alternate" type="text/html" title="Marcha contra la violencia en Colima" /><published>2020-06-07T19:01:00-05:00</published><updated>2020-06-07T19:01:00-05:00</updated><id>https://mariochavez.io/fotograf%C3%ADa/2020/06/07/marcha-contra-violencia-colima</id><content type="html" xml:base="https://mariochavez.io/fotograf%C3%ADa/2020/06/07/marcha-contra-violencia-colima/">&lt;p&gt;El domingo 7 de junio organizaciones civiles convocaron a una marcha para protestar ante los hechos de violencia en el
-Estado de Colima, en especial por los homicidios de la diputada estatal Anel Bueno y los 7 policías del Estado de Colima
-asesinados en Jalisco; en ambos casos presumiblemente por el crimen organizado.&lt;/p&gt;
-
-&lt;div class=&quot;gallery&quot;&gt;
-  &lt;figure&gt;
-    &lt;img src=&quot;/images/marcha/marcha-colima-3.jpg&quot; loading=&quot;lazy&quot; /&gt;
-  &lt;/figure&gt;
-&lt;/div&gt;
-
-&lt;p&gt;La marcha inició en el parque de La Piedra Lisa siguiendo la ruta de Calzada Galván para posteriormente tomar la calle
-Madero y así dirigirse al Palacio de Gobierno Estatal.&lt;/p&gt;
-
-&lt;div class=&quot;gallery&quot;&gt;
-  &lt;figure&gt;
-    &lt;img src=&quot;/images/marcha/marcha-colima-6.jpg&quot; loading=&quot;lazy&quot; /&gt;
-  &lt;/figure&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Toda la marcha transcurrió de manera tranquila. Las consginas eran para la renuncia del Gobernador José Ignacio Peralta
-Sanchéz y el Secretario de Gobierno Arnoldo Ocho González.&lt;/p&gt;
-
-&lt;div class=&quot;gallery&quot;&gt;
-  &lt;figure&gt;
-    &lt;img src=&quot;/images/marcha/marcha-colima-7.jpg&quot; loading=&quot;lazy&quot; /&gt;
-  &lt;/figure&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Los contingentes, de unas 150 personas, llegaron al Palacio de Gobierno donde colgaron algunas mantas y carteles para
-después dar algunas palabras a los asistentes.&lt;/p&gt;
-
-&lt;div class=&quot;space-y-2&quot;&gt;
-  &lt;div class=&quot;gallery&quot;&gt;
-    &lt;div class=&quot;gallery-3&quot;&gt;
-      &lt;figure&gt;
-        &lt;img src=&quot;/images/marcha/marcha-colima-9.jpg&quot; loading=&quot;lazy&quot; /&gt;
-      &lt;/figure&gt;
-      &lt;figure&gt;
-        &lt;img src=&quot;/images/marcha/marcha-colima-10.jpg&quot; loading=&quot;lazy&quot; /&gt;
-      &lt;/figure&gt;
-      &lt;figure&gt;
-        &lt;img src=&quot;/images/marcha/marcha-colima-13.jpg&quot; loading=&quot;lazy&quot; /&gt;
-      &lt;/figure&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;gallery-2&quot;&gt;
-      &lt;figure&gt;
-        &lt;img src=&quot;/images/marcha/marcha-colima-14.jpg&quot; loading=&quot;lazy&quot; /&gt;
-      &lt;/figure&gt;
-      &lt;figure&gt;
-        &lt;img src=&quot;/images/marcha/marcha-colima-16.jpg&quot; loading=&quot;lazy&quot; /&gt;
-      &lt;/figure&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-
-  &lt;div class=&quot;gallery&quot;&gt;
-    &lt;div class=&quot;gallery-2&quot;&gt;
-      &lt;figure&gt;
-        &lt;img src=&quot;/images/marcha/marcha-colima-17.jpg&quot; loading=&quot;lazy&quot; /&gt;
-      &lt;/figure&gt;
-      &lt;figure&gt;
-        &lt;img src=&quot;/images/marcha/marcha-colima-23.jpg&quot; loading=&quot;lazy&quot; /&gt;
-      &lt;/figure&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;gallery-3&quot;&gt;
-      &lt;figure&gt;
-        &lt;img src=&quot;/images/marcha/marcha-colima-29.jpg&quot; loading=&quot;lazy&quot; /&gt;
-      &lt;/figure&gt;
-      &lt;figure&gt;
-        &lt;img src=&quot;/images/marcha/marcha-colima-30.jpg&quot; loading=&quot;lazy&quot; /&gt;
-      &lt;/figure&gt;
-      &lt;figure&gt;
-        &lt;img src=&quot;/images/marcha/marcha-colima-34.jpg&quot; loading=&quot;lazy&quot; /&gt;
-      &lt;/figure&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-
-  &lt;div class=&quot;gallery&quot;&gt;
-    &lt;figure class=&quot;free aspect-h-5 aspect-w-4 m-0&quot;&gt;
-      &lt;img src=&quot;/images/marcha/marcha-colima-37.jpg&quot; loading=&quot;lazy&quot; /&gt;
-    &lt;/figure&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</content><author><name>Mario Alberto Chávez Cárdenas</name></author><summary type="html">El domingo 7 de junio organizaciones civiles convocaron a una marcha para protestar ante los hechos de violencia en el Estado de Colima, en especial por los homicidios de la diputada estatal Anel Bueno y los 7 policías del Estado de Colima asesinados en Jalisco; en ambos casos presumiblemente por el crimen organizado.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/marcha/marcha-colima-31.jpg" /><media:content medium="image" url="https://mariochavez.io/images/marcha/marcha-colima-31.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;p&gt;Writing applications this way, opens the world a new kind of Rails applications that are reactive, connected, and that takes advantage of Server Side Rendering, Caching, and minimal frontend Javascript. I am eager to see the first Rails applications build this way.&lt;/p&gt;</content><author><name>Mario Alberto Chávez Cárdenas</name></author><summary type="html">Last year I wrote a blog post, “I created the same application with Rails and Javascript”, following a trend of posts where the author Sunil Sandhu did the same comparing a few frontend Javascript libraries.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/rails_todo/rails-todo-no-js.png" /><media:content medium="image" url="https://mariochavez.io/images/rails_todo/rails-todo-no-js.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
