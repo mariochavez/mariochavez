@@ -1,4 +1,71 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://bridgetownrb.com/" version="0.20.0">Bridgetown</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" /><updated>2021-07-08T14:27:32-05:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez Cárdenas</title><subtitle>Blog sobre temas de desarrollo de software Web con Ruby y Ruby on Rails, además de temas de fotografía análoga y digital.</subtitle><author><name>Mario Alberto Chávez Cárdenas</name></author><entry xml:lang="es_MX"><title type="html">Libro “El color del olvido”</title><link href="https://mariochavez.io/proyectos/2021/07/08/libro-el-color-del-olvido/" rel="alternate" type="text/html" title="Libro “El color del olvido”" /><published>2021-07-08T13:00:00-05:00</published><updated>2021-07-08T13:00:00-05:00</updated><id>https://mariochavez.io/proyectos/2021/07/08/libro-el-color-del-olvido</id><content type="html" xml:base="https://mariochavez.io/proyectos/2021/07/08/libro-el-color-del-olvido/">&lt;p&gt;Este libro es el resultado del taller Nuevo reportaje del fotógrafo Ricardo Cases.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://bridgetownrb.com/" version="0.20.0">Bridgetown</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" /><updated>2021-08-09T14:28:20-05:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez Cárdenas</title><subtitle>Blog sobre temas de desarrollo de software Web con Ruby y Ruby on Rails, además de temas de fotografía análoga y digital.</subtitle><author><name>Mario Alberto Chávez Cárdenas</name></author><entry xml:lang="en_US"><title type="html">Slow landscapes</title><link href="https://mariochavez.io/proyectos/2021/08/09/slow-landscapes/" rel="alternate" type="text/html" title="Slow landscapes" /><published>2021-08-09T13:00:00-05:00</published><updated>2021-08-09T13:00:00-05:00</updated><id>https://mariochavez.io/proyectos/2021/08/09/slow-landscapes</id><content type="html" xml:base="https://mariochavez.io/proyectos/2021/08/09/slow-landscapes/">&lt;p&gt;Slow landscape is a still going project that captures nature landscapes wiht slow shutter speed and camera motion to create these dynamic, texture, and colorful landscape images that take us into a unreal place.&lt;/p&gt;
+
+&lt;div class=&quot;gallery&quot;&gt;
+  &lt;div class=&quot;gallery-2&quot;&gt;
+    &lt;figure&gt;
+      &lt;img src=&quot;/images/slow_landscapes/slow-landscape10.jpg&quot; loading=&quot;lazy&quot; /&gt;
+      &lt;figcaption&gt;Black sand&lt;/figcaption&gt;
+    &lt;/figure&gt;
+  &lt;/div&gt;
+  
+  &lt;div class=&quot;gallery-2&quot;&gt;
+    &lt;figure&gt;
+      &lt;img src=&quot;/images/slow_landscapes/slow-landscape1.jpg&quot; loading=&quot;lazy&quot; /&gt;
+      &lt;figcaption&gt;By the beach I&lt;/figcaption&gt;
+    &lt;/figure&gt;
+    &lt;figure&gt;
+      &lt;img src=&quot;/images/slow_landscapes/slow-landscape2.jpg&quot; loading=&quot;lazy&quot; /&gt;
+      &lt;figcaption&gt;By the beach II&lt;/figcaption&gt;
+    &lt;/figure&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;gallery-2&quot;&gt;
+    &lt;figure&gt;
+      &lt;img src=&quot;/images/slow_landscapes/slow-landscape3.jpg&quot; loading=&quot;lazy&quot; /&gt;
+      &lt;figcaption&gt;By the beach III&lt;/figcaption&gt;
+    &lt;/figure&gt;
+    &lt;figure&gt;
+      &lt;img src=&quot;/images/slow_landscapes/slow-landscape4.jpg&quot; loading=&quot;lazy&quot; /&gt;
+      &lt;figcaption&gt;By the beach IV&lt;/figcaption&gt;
+    &lt;/figure&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;gallery-2&quot;&gt;
+    &lt;figure&gt;
+      &lt;img src=&quot;/images/slow_landscapes/slow-landscape5.jpg&quot; loading=&quot;lazy&quot; /&gt;
+      &lt;figcaption&gt;Pasture land&lt;/figcaption&gt;
+    &lt;/figure&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;gallery-2&quot;&gt;
+    &lt;figure&gt;
+      &lt;img src=&quot;/images/slow_landscapes/slow-landscape6.jpg&quot; loading=&quot;lazy&quot; /&gt;
+      &lt;figcaption&gt;Vegetation I&lt;/figcaption&gt;
+    &lt;/figure&gt;
+    &lt;figure&gt;
+      &lt;img src=&quot;/images/slow_landscapes/slow-landscape7.jpg&quot; loading=&quot;lazy&quot; /&gt;
+      &lt;figcaption&gt;Vegetation II&lt;/figcaption&gt;
+    &lt;/figure&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;gallery-2&quot;&gt;
+    &lt;figure&gt;
+      &lt;img src=&quot;/images/slow_landscapes/slow-landscape8.jpg&quot; loading=&quot;lazy&quot; /&gt;
+      &lt;figcaption&gt;Vegetation III&lt;/figcaption&gt;
+    &lt;/figure&gt;
+    &lt;figure&gt;
+      &lt;img src=&quot;/images/slow_landscapes/slow-landscape9.jpg&quot; loading=&quot;lazy&quot; /&gt;
+      &lt;figcaption&gt;Vegetation IV&lt;/figcaption&gt;
+    &lt;/figure&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;gallery-2&quot;&gt;
+    &lt;figure&gt;
+      &lt;img src=&quot;/images/slow_landscapes/slow-landscape11.jpg&quot; loading=&quot;lazy&quot; /&gt;
+      &lt;figcaption&gt;Sunset&lt;/figcaption&gt;
+    &lt;/figure&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</content><author><name>Mario Alberto Chávez Cárdenas</name></author><summary type="html">Slow landscape is a still going project that captures nature landscapes wiht slow shutter speed and camera motion to create these dynamic, texture, and colorful landscape images that take us into a unreal place.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/slow_landscapes/slow-landscape1.jpg" /><media:content medium="image" url="https://mariochavez.io/images/slow_landscapes/slow-landscape1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry xml:lang="es_MX"><title type="html">Libro “El color del olvido”</title><link href="https://mariochavez.io/proyectos/2021/07/08/libro-el-color-del-olvido/" rel="alternate" type="text/html" title="Libro “El color del olvido”" /><published>2021-07-08T13:00:00-05:00</published><updated>2021-07-08T13:00:00-05:00</updated><id>https://mariochavez.io/proyectos/2021/07/08/libro-el-color-del-olvido</id><content type="html" xml:base="https://mariochavez.io/proyectos/2021/07/08/libro-el-color-del-olvido/">&lt;p&gt;Este libro es el resultado del taller Nuevo reportaje del fotógrafo Ricardo Cases.&lt;/p&gt;
 
 &lt;h3 id=&quot;libro-el-color-del-olvido&quot;&gt;Libro “El color del olvido”&lt;/h3&gt;
 &lt;div class=&quot;book&quot; data-controller=&quot;book&quot;&gt;
@@ -1510,232 +1577,4 @@ Overwrite /Users/marioch/Development/michelada/butaca/config/boot.rb? &lt;span c
 
 &lt;p&gt;Como se puede apreciar con Rack::Attack se pueden crear políticas simples o muy complejas que nos ayuden a proteger nuestra aplicación de clientes maliciosos o simplemente proteger ciertas áreas de nuestra aplicación más allá de simplemente un usuario y contraseña.&lt;/p&gt;
 
-&lt;p&gt;La seguridad es un tema importante que no podemos obviar o ignorar cuando publicamos una aplicación en internet. Espero que esta guía rápida sea de ayuda proteger tu aplicación de Ruby.&lt;/p&gt;</content><author><name>Mario Alberto Chávez Cárdenas</name></author><summary type="html">El Internet es una gran tecnología en su conjunto que ha cambiado la dinámica de la humanidad para consumir, publicar y realizar un sin fin de actividades que antes requerían de nuestra presencia física. Con todo lo bueno también existe una parte oscura. Hay personas que buscan encontrar problemas de seguridad, errores de programación que les de acceso a información privada o restringida.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/seguridad/rack-attack.jpg" /><media:content medium="image" url="https://mariochavez.io/images/seguridad/rack-attack.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">I created the same app with Rails and no Javascript</title><link href="https://mariochavez.io/desarrollo/2020/06/09/i-created-the-same-application-with-rails-no-javascript/" rel="alternate" type="text/html" title="I created the same app with Rails and no Javascript" /><published>2020-06-09T01:01:00-05:00</published><updated>2020-06-09T01:01:00-05:00</updated><id>https://mariochavez.io/desarrollo/2020/06/09/i-created-the-same-application-with-rails-no-javascript</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2020/06/09/i-created-the-same-application-with-rails-no-javascript/">&lt;p&gt;Last year I wrote a blog post, “&lt;a href=&quot;https://mariochavez.io/desarrollo/2019/12/23/i-created-the-same-app-with-rails-and-javascript.html&quot; target=&quot;_blank&quot;&gt;I created the same application with Rails and Javascript&lt;/a&gt;”, following a trend of posts where the author &lt;a href=&quot;https://medium.com/@sunilsandhu&quot; target=&quot;_blank&quot;&gt;Sunil Sandhu&lt;/a&gt; did the same comparing a few frontend Javascript libraries.&lt;/p&gt;
-
-&lt;p&gt;My approach in that blog post was using Rails to render all HTML and then using a bit of Javascript with &lt;a href=&quot;https://stimulusjs.org&quot; target=&quot;_blank&quot;&gt;Stimulus&lt;/a&gt; to recreate the same application behavior.&lt;/p&gt;
-
-&lt;p&gt;A few weeks ago, I found a tweet from &lt;a href=&quot;https://twitter.com/chris_mccord/status/1252997316103081984&quot; target=&quot;_blank&quot;&gt;Chris McCord&lt;/a&gt;, the creator of Phoenix Framework for Elixir, where he was showcasing a new functionality coming with Phoenix 1.5, he wrote a small Twitter clone without Javascript, it was beautiful.&lt;/p&gt;
-
-&lt;div class=&quot;gallery&quot;&gt;
-  &lt;figure&gt;
-    &lt;img src=&quot;/images/rails_todo/chris-mccord.png&quot; loading=&quot;lazy&quot; /&gt;
-  &lt;/figure&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Later, I found a &lt;a href=&quot;https://twitter.com/mario_chavez/status/1256263180722081792&quot; target=&quot;_blank&quot;&gt;video&lt;/a&gt; from &lt;a href=&quot;https://twitter.com/hopsoft&quot; target=&quot;_blank&quot;&gt;Hopsoft&lt;/a&gt; where he did the same with Ruby on Rails using his libraries &lt;a href=&quot;https://cableready.stimulusreflex.com&quot; target=&quot;_blank&quot;&gt;CableReady&lt;/a&gt; and &lt;a href=&quot;https://docs.stimulusreflex.com&quot; target=&quot;_blank&quot;&gt;StimulusReflex&lt;/a&gt;, no Javascript, just Ruby using Rails’ ActionCable to broadcast DOM changes, it was fantastic.&lt;/p&gt;
-
-&lt;div class=&quot;gallery&quot;&gt;
-  &lt;figure&gt;
-    &lt;img src=&quot;/images/rails_todo/mario-chavez.png&quot; loading=&quot;lazy&quot; /&gt;
-  &lt;/figure&gt;
-&lt;/div&gt;
-
-&lt;p&gt;So I decided to give another try to the same application by removing the Javascript that I wrote for it. The starting code for this post is at &lt;a href=&quot;https://github.com/mariochavez/rails-todo-2019&quot; target=&quot;_blank&quot;&gt;https://github.com/mariochavez/rails-todo-2019&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2 id=&quot;setup-actioncable&quot;&gt;Setup ActionCable&lt;/h2&gt;
-
-&lt;p&gt;In the original application the Rails application was created without &lt;a href=&quot;https://guides.rubyonrails.org/action_cable_overview.html&quot; target=&quot;_blank&quot;&gt;ActionCable&lt;/a&gt; support; it is needed for CableReady to work.&lt;/p&gt;
-
-&lt;p&gt;First, make sure that &lt;code class=&quot;highlighter-rouge&quot;&gt;config/application.rb&lt;/code&gt; has the following line uncommented.&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;action_cable/engine&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Create the file &lt;code class=&quot;highlighter-rouge&quot;&gt;config/cable.yml&lt;/code&gt; and add the following content.&lt;/p&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;development&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;adapter&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;async&lt;/span&gt;
-
-&lt;span class=&quot;na&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;adapter&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;async&lt;/span&gt;
-
-&lt;span class=&quot;na&quot;&gt;production&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;adapter&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;redis&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;redis://127.0.0.1:6381&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;channel_prefix&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;todos_production&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Using &lt;code class=&quot;highlighter-rouge&quot;&gt;async&lt;/code&gt; in this case, save us from the need to have a Redis instance running on Development and Test. Still, add the Redis library to your &lt;code class=&quot;highlighter-rouge&quot;&gt;Gemfile&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;redis&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;~&amp;gt; 4.2&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;ActionCable works with a Javascript side, so we need to install the libraries with Yarn.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;yarn add @rails/actioncable
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Finally, generate an ActionCable channel with the following command and require the channels in your &lt;code class=&quot;highlighter-rouge&quot;&gt;app/javascript/pack/application.js&lt;/code&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bin/rails g channel todo
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-jsx highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;#&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;javascript&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;application&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;js&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;channels&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;At this point, ActionCable is ready for us to use.&lt;/p&gt;
-
-&lt;h2 id=&quot;remove-javascript-code&quot;&gt;Remove Javascript code&lt;/h2&gt;
-
-&lt;p&gt;This step is quite simple, remove the two Stimulus controllers from the previous version of this application.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;rm &lt;/span&gt;app/javascript/controllers/todo_controller.js app/javascript/controllers/todo_delete_controller.js
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The application does not work anymore after removing these files — Cleanup the Rails templates from all the data attributes required by the deleted Stimulus controllers.&lt;/p&gt;
-
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# app/views/todos/_todo.html.erb
-
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&amp;lt;%= dom_id(todo) %&amp;gt;&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ToDoItem&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ToDoItem-Text&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;todo.name&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;button_to&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&quot;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;todo_path&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;todo.id&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;),&lt;/span&gt;
-      &lt;span class=&quot;na&quot;&gt;method:&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;:delete&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;,&lt;/span&gt;
-      &lt;span class=&quot;na&quot;&gt;remote:&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;,&lt;/span&gt;
-      &lt;span class=&quot;na&quot;&gt;class:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;ToDoItem-Delete&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt;
-     &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;In this template, you need the &lt;code class=&quot;highlighter-rouge&quot;&gt;Todo#id&lt;/code&gt; attribute; the &lt;code class=&quot;highlighter-rouge&quot;&gt;dom_id&lt;/code&gt; method creates an id like &lt;code class=&quot;highlighter-rouge&quot;&gt;todo_1&lt;/code&gt; for you.&lt;/p&gt;
-
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# app/views/todos/index.html.erb
-
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ToDo&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;image_tag&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;asset_pack_path&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;(&quot;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;media&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;images&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;logo.png&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&quot;),&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Logo&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&quot;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;alt:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Rails&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;logo&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;h1&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ToDo-Header&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Rails To Do&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ToDo-Container&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;todo-list&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ToDo-Content&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;render&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;todos&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ToDoInput&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;form_with&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;model:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;todo&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;local:&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;false&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;form&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;form.text_field&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;:name&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;form.submit&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&quot;+&quot;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;ToDo-Add&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;end&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;This template needs the id for the Todos list container. Here how it looks after removing all data attributes.&lt;/p&gt;
-
-&lt;h2 id=&quot;reimplement-functionality-without-javascript&quot;&gt;Reimplement functionality without Javascript&lt;/h2&gt;
-
-&lt;p&gt;It is the time to install CableReady in your application.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bundle add cable_ready
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;yarn add cable_ready
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;With CableReady installed, we need to setup ActionCable’s channel for it. First, setup the Javascript channel to require the CableReady library and update the &lt;code class=&quot;highlighter-rouge&quot;&gt;received&lt;/code&gt; method to call CableReady if data transmitted via ActionCable is CableReady data.&lt;/p&gt;
-
-&lt;div class=&quot;language-jsx highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;#&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;javascript&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;channels&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;todo_channel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;js&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;consumer&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;./consumer&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;CableReady&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;cable_ready&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
-
-&lt;span class=&quot;nx&quot;&gt;consumer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;subscriptions&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;TodoChannel&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;connected&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// Called when the subscription is ready for use on the server&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
-
-  &lt;span class=&quot;nx&quot;&gt;disconnected&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// Called when the subscription has been terminated by the server&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
-
-  &lt;span class=&quot;nx&quot;&gt;received&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cableReady&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;CableReady&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;perform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;operations&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Next, open the &lt;code class=&quot;highlighter-rouge&quot;&gt;TodoChannel&lt;/code&gt; class and set the stream name to &lt;em&gt;“todos”&lt;/em&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# app/channels/todo_channel.rb&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TodoChannel&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ApplicationCable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Channel&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;subscribed&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;stream_from&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;todos&quot;&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;unsubscribed&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;# Any cleanup needed when channel is unsubscribed&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;First, reimplement the delete functionality for Todos. This one is quite simple; when the user clicks on the delete button, an ajax call is made via Rails UJS and received by &lt;code class=&quot;highlighter-rouge&quot;&gt;TodosController#destroy&lt;/code&gt; action. Here you tell CableReady what operations to perform back to the DOM and broadcast them via ActionCable.&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# app/controllers/todos_controller.rb&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;destroy&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;todo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Todo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;find_by&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;id: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;todo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;destroy&lt;/span&gt;
-
-  &lt;span class=&quot;n&quot;&gt;cable_ready&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;TODOS_CHANNEL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;selector: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;#&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ActionView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;RecordIdentifier&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;dom_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;todo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;cable_ready&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;broadcast&lt;/span&gt;
-
-  &lt;span class=&quot;n&quot;&gt;render&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;plain: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;status: :no_content&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The &lt;em&gt;remove&lt;/em&gt; operation needs the id of the Todoto remove, and then the operation is broadcast to the browser. The Todo is removed not only in your browser but if we have other browsers or tabs open with the application, the Todo is removed across all of them. Here is what CableReady send via ActionCable.&lt;/p&gt;
-
-&lt;div class=&quot;language-jsx highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;identifier&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;channel&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;TodoChannel&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:{&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;cableReady&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;operations&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:{&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:[{&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;selector&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;#todo_14&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}]}}}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;To create a new Todo, you need more than one operation to be broadcasted, CableReady allows you to batch operations very easy.&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# app/controllers/todos_controller.rb&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;create&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;todo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Todo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;todo_params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;todo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;save&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;cable_ready&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;TODOS_CHANNEL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;insert_adjacent_html&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-      &lt;span class=&quot;ss&quot;&gt;selector: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;#todo-list&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-      &lt;span class=&quot;ss&quot;&gt;position: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;afterbegin&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-      &lt;span class=&quot;ss&quot;&gt;html: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;render_to_string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;partial: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;todos/todo&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;locals: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;todo: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;todo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;formats: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:html&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;cable_ready&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;TODOS_CHANNEL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;set_value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-      &lt;span class=&quot;ss&quot;&gt;selector: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;#todo_name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-      &lt;span class=&quot;ss&quot;&gt;value: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;cable_ready&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;TODOS_CHANNEL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-      &lt;span class=&quot;ss&quot;&gt;selector: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;.error&quot;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;cable_ready&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;broadcast&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;plain: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;status: :created&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-  &lt;span class=&quot;n&quot;&gt;cable_ready&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;TODOS_CHANNEL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;insert_adjacent_html&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-    &lt;span class=&quot;ss&quot;&gt;selector: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;#todo_name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;ss&quot;&gt;position: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;afterend&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;ss&quot;&gt;html: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&amp;lt;p class=&apos;error&apos;&amp;gt;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;todo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;errors&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;first&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;lt;/p&amp;gt;&quot;&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;cable_ready&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;broadcast&lt;/span&gt;
-
-  &lt;span class=&quot;n&quot;&gt;render&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;json: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;errors: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;todo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;errors&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;status: :unprocessable_entity&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The form to create a new Todo in our UI sends a remote form call via Rails UJS; this call is dispatched to &lt;code class=&quot;highlighter-rouge&quot;&gt;TodosController#create&lt;/code&gt; action, which validates and saves the received Todo. If the Todo is saved, then it performs 3 CableReady operations.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;insert_adjacent_html&lt;/code&gt; operation renders a partial HTML for the new Todo and is inserted at the top of the todos list container identified by &lt;code class=&quot;highlighter-rouge&quot;&gt;#todo-list&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;Clears the value for Todo’s input in the form by using the &lt;code class=&quot;highlighter-rouge&quot;&gt;set_value&lt;/code&gt; method.&lt;/li&gt;
-  &lt;li&gt;If there is any error from previous actions, it clears the error with the &lt;code class=&quot;highlighter-rouge&quot;&gt;remove&lt;/code&gt; method.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;If validation fails and the Todo is not saved, an error is added via the &lt;code class=&quot;highlighter-rouge&quot;&gt;insert_adjacent_html&lt;/code&gt; method.&lt;/p&gt;
-
-&lt;p&gt;You are done; after these changes, the application should behave as before. You manage to remove all written Javascript for this application while keeping the same functionality.&lt;/p&gt;
-
-&lt;h2 id=&quot;final-words&quot;&gt;Final words&lt;/h2&gt;
-
-&lt;p&gt;First of all, it is clear that you are using Javascript but not Javascript code that you need to maintain. Under the hood, ActionCable and CableReady provide Javascript functionality to interact with the Browser.&lt;/p&gt;
-
-&lt;p&gt;Writing applications this way, opens the world a new kind of Rails applications that are reactive, connected, and that takes advantage of Server Side Rendering, Caching, and minimal frontend Javascript. I am eager to see the first Rails applications build this way.&lt;/p&gt;</content><author><name>Mario Alberto Chávez Cárdenas</name></author><summary type="html">Last year I wrote a blog post, “I created the same application with Rails and Javascript”, following a trend of posts where the author Sunil Sandhu did the same comparing a few frontend Javascript libraries.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/rails_todo/rails-todo-no-js.png" /><media:content medium="image" url="https://mariochavez.io/images/rails_todo/rails-todo-no-js.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;p&gt;La seguridad es un tema importante que no podemos obviar o ignorar cuando publicamos una aplicación en internet. Espero que esta guía rápida sea de ayuda proteger tu aplicación de Ruby.&lt;/p&gt;</content><author><name>Mario Alberto Chávez Cárdenas</name></author><summary type="html">El Internet es una gran tecnología en su conjunto que ha cambiado la dinámica de la humanidad para consumir, publicar y realizar un sin fin de actividades que antes requerían de nuestra presencia física. Con todo lo bueno también existe una parte oscura. Hay personas que buscan encontrar problemas de seguridad, errores de programación que les de acceso a información privada o restringida.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/seguridad/rack-attack.jpg" /><media:content medium="image" url="https://mariochavez.io/images/seguridad/rack-attack.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
