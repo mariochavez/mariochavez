@@ -1,4 +1,158 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://bridgetownrb.com/" version="0.20.0">Bridgetown</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" /><updated>2021-08-09T14:28:20-05:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez Cárdenas</title><subtitle>Blog sobre temas de desarrollo de software Web con Ruby y Ruby on Rails, además de temas de fotografía análoga y digital.</subtitle><author><name>Mario Alberto Chávez Cárdenas</name></author><entry xml:lang="en_US"><title type="html">Slow landscapes</title><link href="https://mariochavez.io/proyectos/2021/08/09/slow-landscapes/" rel="alternate" type="text/html" title="Slow landscapes" /><published>2021-08-09T13:00:00-05:00</published><updated>2021-08-09T13:00:00-05:00</updated><id>https://mariochavez.io/proyectos/2021/08/09/slow-landscapes</id><content type="html" xml:base="https://mariochavez.io/proyectos/2021/08/09/slow-landscapes/">&lt;p&gt;Slow landscape is a still going project that captures nature landscapes wiht slow shutter speed and camera motion to create these dynamic, texture, and colorful landscape images that take us into a unreal place.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://bridgetownrb.com/" version="0.20.0">Bridgetown</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" /><updated>2021-08-31T10:34:31-05:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez Cárdenas</title><subtitle>Blog sobre temas de desarrollo de software Web con Ruby y Ruby on Rails, además de temas de fotografía análoga y digital.</subtitle><author><name>Mario Alberto Chávez Cárdenas</name></author><entry xml:lang="en_MX"><title type="html">La Cofradía de los volcanes</title><link href="https://mariochavez.io/proyectos/2021/08/30/la-cofradia-de-los-volcanes/" rel="alternate" type="text/html" title="La Cofradía de los volcanes" /><published>2021-08-30T13:00:00-05:00</published><updated>2021-08-30T13:00:00-05:00</updated><id>https://mariochavez.io/proyectos/2021/08/30/la-cofradia-de-los-volcanes</id><content type="html" xml:base="https://mariochavez.io/proyectos/2021/08/30/la-cofradia-de-los-volcanes/">&lt;p&gt;La Cofradía de los Volcanes es un trabajo sobre la exploración del territorio que circunda los Volcanes de Fuego y Nevado de Colima.&lt;/p&gt;
+
+&lt;div class=&quot;book&quot; data-controller=&quot;book&quot;&gt;
+  &lt;div class=&quot;book-wrapper&quot; data-book-target=&quot;wrapper&quot;&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/cofradia_libro/00.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/cofradia_libro/01.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/cofradia_libro/02.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/cofradia_libro/03.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/cofradia_libro/04.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/cofradia_libro/05.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/cofradia_libro/06.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/cofradia_libro/07.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/cofradia_libro/08.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/cofradia_libro/09.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/cofradia_libro/10.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/cofradia_libro/11.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/cofradia_libro/12.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/cofradia_libro/13.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/cofradia_libro/14.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/cofradia_libro/15.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/cofradia_libro/16.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/cofradia_libro/17.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/cofradia_libro/18.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/cofradia_libro/19.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/cofradia_libro/20.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/cofradia_libro/21.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/cofradia_libro/22.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/cofradia_libro/23.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/cofradia_libro/24.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/cofradia_libro/25.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/cofradia_libro/26.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/cofradia_libro/27.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+      
+      &lt;div class=&quot;section&quot; data-book-target=&quot;page&quot;&gt;
+        &lt;img src=&quot;/images/cofradia_libro/28.jpg&quot; loading=&quot;lazy&quot; class=&quot;page&quot; /&gt;
+      &lt;/div&gt;
+    
+  &lt;/div&gt;
+  &lt;div class=&quot;paginator&quot; data-book-target=&quot;paginator&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p class=&quot;font-sans text-xs font-semibold text-center text-gray-600&quot;&gt;Utilice las flechas del teclado para cambiar página&lt;p&gt;
+&lt;/p&gt;&lt;/p&gt;</content><author><name>Mario Alberto Chávez Cárdenas</name></author><summary type="html">La Cofradía de los Volcanes es un trabajo sobre la exploración del territorio que circunda los Volcanes de Fuego y Nevado de Colima.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/cofradia_libro/04.jpg" /><media:content medium="image" url="https://mariochavez.io/images/cofradia_libro/04.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry xml:lang="en_US"><title type="html">Slow landscapes</title><link href="https://mariochavez.io/proyectos/2021/08/09/slow-landscapes/" rel="alternate" type="text/html" title="Slow landscapes" /><published>2021-08-09T13:00:00-05:00</published><updated>2021-08-09T13:00:00-05:00</updated><id>https://mariochavez.io/proyectos/2021/08/09/slow-landscapes</id><content type="html" xml:base="https://mariochavez.io/proyectos/2021/08/09/slow-landscapes/">&lt;p&gt;Slow landscape is a still going project that captures nature landscapes wiht slow shutter speed and camera motion to create these dynamic, texture, and colorful landscape images that take us into a unreal place.&lt;/p&gt;
 
 &lt;div class=&quot;gallery&quot;&gt;
   &lt;div class=&quot;gallery-2&quot;&gt;
@@ -1416,165 +1570,4 @@ Overwrite /Users/marioch/Development/michelada/butaca/config/boot.rb? &lt;span c
   &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;use_cases&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Lo aquí propuesto en el post son acciones simples que podemos comenzar a incluir en nuestro código, sin embargo, no son las únicas estrategias que podemos utilizar. Hay que tener en cuenta que cualquier estrategia que adoptemos siempre va a tener sus “Pros” y “Cons”.&lt;/p&gt;</content><author><name>Mario Alberto Chávez Cárdenas</name></author><summary type="html">Más allá del “Rails way”</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/mas_alla/refactor.jpg" /><media:content medium="image" url="https://mariochavez.io/images/mas_alla/refactor.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry xml:lang="es_MX"><title type="html">Proteger tu aplicación de ataques en Internet</title><link href="https://mariochavez.io/desarrollo/2020/06/15/seguridad-ruby-aplicacion/" rel="alternate" type="text/html" title="Proteger tu aplicación de ataques en Internet" /><published>2020-06-15T01:01:00-05:00</published><updated>2020-06-15T01:01:00-05:00</updated><id>https://mariochavez.io/desarrollo/2020/06/15/seguridad-ruby-aplicacion</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2020/06/15/seguridad-ruby-aplicacion/">&lt;p&gt;El Internet es una gran tecnología en su conjunto que ha cambiado la dinámica de la humanidad para consumir, publicar y realizar un sin fin de actividades que antes requerían de nuestra presencia física. Con todo lo bueno también existe una parte oscura. Hay personas que buscan encontrar problemas de seguridad, errores de programación que les de acceso a información privada o restringida.&lt;/p&gt;
-
-&lt;p&gt;En la mayoría existen quienes utilizan scripts para probar por problemas de seguridad conocidos, hay quienes utilizan diccionarios para tratar de acceder por fuerza bruta, hay quienes utilizar ingeniería social para obtener accesos entre otros tipos de ataques.&lt;/p&gt;
-
-&lt;p&gt;El Internet no es un lugar seguro.&lt;/p&gt;
-
-&lt;h2 id=&quot;cómo-proteger-nuestra-aplicación&quot;&gt;¿Cómo proteger nuestra aplicación?&lt;/h2&gt;
-
-&lt;p&gt;Hay diferentes opciones para proteger nuestras aplicaciones de problemas de seguridad y de cierto tipo de ataques.&lt;/p&gt;
-
-&lt;p&gt;Una de las más simples pero que implica un costo es poner nuestra aplicación detrás de un servicio &lt;a href=&quot;https://www.cloudflare.com/&quot; target=&quot;_blank&quot;&gt;Cloudflare&lt;/a&gt; que se encarga de detener la mayoría de las amenazas posibles.&lt;/p&gt;
-
-&lt;p&gt;Si nuestra aplicación está escrita en Ruby (o Ruby on Rails) - y así lo asumiré de este momento en adelante -  siempre hay que asegurarnos que las librerías estén actualizadas a la versión más reciente para asegurar que si hay algún problema de seguridad en ellas estemos utilizando una versión con la corrección. La forma simple de estar al tanto de problemas de seguridad con librerías en Ruby es a través de &lt;a href=&quot;https://github.com/rubysec/bundler-audit&quot; target=&quot;_blank&quot;&gt;Bundle Audit&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Otra herramienta básica es &lt;a href=&quot;https://brakemanscanner.org/&quot; target=&quot;_blank&quot;&gt;Brakeman&lt;/a&gt; el cuál es un escáner de código busca por problemas relacionados código inseguro, falta de “sanitización” de parámetros, posibles problemas de explotación de SQL y otros más.&lt;/p&gt;
-
-&lt;p&gt;Ambas herramientas se pueden automatizar en el proceso de desarrollo con herramientas como &lt;a href=&quot;https://github.com/Arkweid/lefthook&quot; target=&quot;_blank&quot;&gt;Lefthook&lt;/a&gt; que ayuda a configurar hooks de Git. También es posible automatizar las revisiones en los procesos de CI.&lt;/p&gt;
-
-&lt;p&gt;Dependiendo del tamaño de tu aplicación y de las regulaciones a la que esté sujeta puedes requerir de auditorías de terceros para verificar la seguridad de su aplicación.&lt;/p&gt;
-
-&lt;p&gt;Aún siguiendo al pie de la letra los pasos anteriores es necesario implementar algunas medidas adicionales que limiten que nuestra aplicación sea vulnerable.&lt;/p&gt;
-
-&lt;h1 id=&quot;rack-attack&quot;&gt;Rack Attack&lt;/h1&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/kickstarter/rack-attack&quot; target=&quot;_blank&quot;&gt;Rack::Atack&lt;/a&gt; es una librería escrita por Kickstarter y que funciona como middleware de Rack para proteger nuestra aplicaciones de clientes maliciosos o abusivos. Al funcionar como middleware en nuestras aplicaciones nos aseguramos de detener &lt;em&gt;“requests”&lt;/em&gt; antes de que lleguen al código de nuestra aplicación.&lt;/p&gt;
-
-&lt;p&gt;Comenzar con Rack::Attack es bastante simple para el valor que agrega. Obviamente hay que agregar la libreria a nuestro &lt;code class=&quot;highlighter-rouge&quot;&gt;Gemfile&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bundle add rack-attack
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Después hay que activar el middleware en el archivo &lt;code class=&quot;highlighter-rouge&quot;&gt;config/application.rb&lt;/code&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;config.middleware.use Rack::Attack
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Y creamos un inicializador donde vamos a configurar nuestra protección &lt;code class=&quot;highlighter-rouge&quot;&gt;config/initializers/rack_attack.rb&lt;/code&gt;. Lo primero que debemos de hacer es activar Rack::Attack pero únicamente lo ocupamos para ambientes de Producción y Desarrollo.&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;no&quot;&gt;Rack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Attack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;enabled&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Rails&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;test?&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;throttle-o-regulación&quot;&gt;throttle o regulación&lt;/h2&gt;
-
-&lt;p&gt;La primer capa de protección de vamos a utilizar es &lt;em&gt;“throttle”&lt;/em&gt; o regulación. Esta medida sirve para detener a aquellos clientes que estén haciendo demasiadas solicitudes en un periodo de tiempo definido por nosotros. Por ejemplo si alguien esta haciendo un “screen scraping” a nuestra aplicación lo podemos detener con el siguiente bloque de configuración.&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;no&quot;&gt;Rack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Attack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;throttle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;requests by ip&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;limit: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;period: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;ip&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Esto limita a que por dirección IP sólo se puedan hacer 5 solicitudes en un lapso de dos segundos. Si el cliente sobrepasa los límites entonces recibirá una respuesta del servidor con el estatus 429 que significa &lt;em&gt;“Too Many Requests”&lt;/em&gt;. Es importante notar que para que &lt;em&gt;“throttle”&lt;/em&gt; funcione nuestra aplicación de Rails debe tener configurado el &lt;a href=&quot;https://guides.rubyonrails.org/caching_with_rails.html#cache-stores&quot;&gt;cache&lt;/a&gt; ya que Rack::Attack utiliza el cache para llevar el conteo y determinar si bloquea o no la solicitud.&lt;/p&gt;
-
-&lt;p&gt;Otra aplicación de &lt;em&gt;“throttle”&lt;/em&gt; es la posibilidad de evitar el ataque de diccionario a la página de iniciar sesión.&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;no&quot;&gt;Rack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Attack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;throttle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;limit logins per email&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;limit: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;period: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;minute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;path&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;/login&apos;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;post?&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;email&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Por ejemplo en este caso si la ruta solicitada es la de la página de iniciar sesión y se ha intentado más de 5 ocasiones con una contraseña incorrecta para el mismo correo electrónico en 1 minuto entonces se bloquea al cliente con el estatus 429.&lt;/p&gt;
-
-&lt;p&gt;Otro ejemplo es el controlar cuantas solicitudes un cliente puede realizar por segundo.&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;no&quot;&gt;Rack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Attack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;throttle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;limit API request&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;limit: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;period: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;path&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;/api&apos;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;HTTP_AUTHORIZATION&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;En este caso de los encabezados utilizamos el valor del API_KEY como llave para llevar el conteo de solicitudes. Para este caso del API además debemos configurar una respuesta al cliente donde le indiquemos los encabezados de Límite, Cuantas solicitudes le quedan y el tiempo antes de que se reinicie el contador. Para esto declaramos el siguiente bloque.&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;no&quot;&gt;Rack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Attack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;throttled_response&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;lambda&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;match_data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;rack.attack.match_data&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;now&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;match_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:epoch_time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-
-  &lt;span class=&quot;n&quot;&gt;headers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;s2&quot;&gt;&quot;RateLimit-Limit&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;match_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:limit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;s2&quot;&gt;&quot;RateLimit-Remaining&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;s2&quot;&gt;&quot;RateLimit-Reset&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;now&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;match_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:period&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;now&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;match_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:period&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_s&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-  &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;429&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;headers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Throttled request&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;El tiempo se muestra en &lt;a href=&quot;https://www.epochconverter.com/&quot;&gt;epoch&lt;/a&gt;. El cliente siempre recibirá en los encabezados la respuesta la siguiente información.&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;no&quot;&gt;HTTP&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.1&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;429&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Too&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Many&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Requests&lt;/span&gt;
-&lt;span class=&quot;no&quot;&gt;RateLimit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Limit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;
-&lt;span class=&quot;no&quot;&gt;RateLimit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Remaining&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
-&lt;span class=&quot;no&quot;&gt;RateLimit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Reset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1592260020&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Podemos tener varios bloques que regulen a clientes que pueden estar abusando de nuestra aplicación. Rack::Attack aplicará los bloque de arriba hacia abajo y le impondrá la limitación que se cumpla primero.&lt;/p&gt;
-
-&lt;h2 id=&quot;bloqueo&quot;&gt;Bloqueo&lt;/h2&gt;
-
-&lt;p&gt;Otra opción de Rack::Atack es el bloquear a clientes ofensivos aplicando diferentes reglas. el bloqueo puede ser permanente o temporal.&lt;/p&gt;
-
-&lt;p&gt;La forma más básica es el bloqueo de direcciones IP o de segmentos de red como se muestra continuación.&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;no&quot;&gt;Rack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Attack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;blocklist_ip&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;1.2.3.4&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;no&quot;&gt;Rack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Attack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;blocklist_ip&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;1.2.0.0/16&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Otra forma de bloquear es a través de reglas estáticas, por ejemplo si nuestra aplicación es Rails a la mejor alguien está ejecutando un script para encontrar vulnerabilidades de PHP o buscando acceder al archivo de contraseñas del servidor.&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;no&quot;&gt;Rack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Attack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;blocklist&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;block script kidz&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;CGI&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;unescape&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;query_string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=~&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;%r{/etc/passwd}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;include?&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/etc/passwd&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;include?&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;wp-admin&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;include?&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;wp-login&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;El bloqueo no tiene que ser final con Rack::Attack, es posible realizar un bloqueo temporal mediante el uso de &lt;code class=&quot;highlighter-rouge&quot;&gt;Rack::Attack::Allow2Ban.filter&lt;/code&gt;. Por ejemplo, a la mejor queremos bloquear temporalmente a el cliente que este tratando de iniciar sesión pero lo ha intentado al menos 3 ocasiones en 5 minutos; en este caso lo queremos bloquear por 30 minutos.&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;no&quot;&gt;Rack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Attack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;blocklist&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;allow2ban login scrapers&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;Rack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Attack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Allow2Ban&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;filter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;ip&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;maxretry: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;findtime: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;minutes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;bantime: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;minutes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;path&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;/login&quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;post?&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Rack::Attack también tiene &lt;code class=&quot;highlighter-rouge&quot;&gt;Rack::Attack::Fail2Ban&lt;/code&gt; que nos permite bloquear temporalmente si la solicitud falla, por ejemplo, alguien que este buscado &lt;code class=&quot;highlighter-rouge&quot;&gt;/images/&lt;/code&gt; cambiando el identificador.&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;no&quot;&gt;Rack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Attack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;blocklist&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;fail2ban scrapper&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;Rack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Attack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Fail2Ban&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;filter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;scrappers-&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;ip&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;maxretry: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;findtime: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;minutes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;bantime: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;minutes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;include?&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/images&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;permitir-acceso&quot;&gt;Permitir acceso&lt;/h2&gt;
-
-&lt;p&gt;El permitir acceso o acceso seguro es una manera de definir quienes tienen acceso sin pasar por las otras reglas. Por ejemplo, es posible definir direcciones IP o segmentos de red.&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;no&quot;&gt;Rack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Attack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;safelist_ip&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;5.6.7.8&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;no&quot;&gt;Rack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Attack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;safelist_ip&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;5.6.7.0/24&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Aunque también es posible definir bloques, por ejemplo, para permitir el acceso desde el &lt;em&gt;localhost&lt;/em&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;no&quot;&gt;Rack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Attack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;safelist&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;allow from localhost&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
-  &lt;span class=&quot;s2&quot;&gt;&quot;127.0.0.1&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;ip&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;::1&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;ip&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;configurando-nuestras-políticas-de-acceso&quot;&gt;Configurando nuestras políticas de acceso&lt;/h2&gt;
-
-&lt;p&gt;Todas las reglas mencionadas pueden integrarse en conjunto para decidir como deseamos proteger nuestra aplicación. Inclusive pueden existir múltiples reglas para cada tipo. Sólo debemos tener en cuenta la precedencia de las reglas.&lt;/p&gt;
-
-&lt;p&gt;Las reglas del mismo tipo se leen de arriba hacia abajo y se van aplicando en ese orden. Rack::Attack ejecuta los tipos de reglas iniciando con &lt;strong&gt;Permitir Acceso&lt;/strong&gt;, &lt;strong&gt;Bloque&lt;/strong&gt; y &lt;strong&gt;Regularización&lt;/strong&gt;. La primer regla que se cumpla para un cliente es la primera que se aplica.&lt;/p&gt;
-
-&lt;h2 id=&quot;notas-finales&quot;&gt;Notas finales&lt;/h2&gt;
-
-&lt;p&gt;Como se puede apreciar con Rack::Attack se pueden crear políticas simples o muy complejas que nos ayuden a proteger nuestra aplicación de clientes maliciosos o simplemente proteger ciertas áreas de nuestra aplicación más allá de simplemente un usuario y contraseña.&lt;/p&gt;
-
-&lt;p&gt;La seguridad es un tema importante que no podemos obviar o ignorar cuando publicamos una aplicación en internet. Espero que esta guía rápida sea de ayuda proteger tu aplicación de Ruby.&lt;/p&gt;</content><author><name>Mario Alberto Chávez Cárdenas</name></author><summary type="html">El Internet es una gran tecnología en su conjunto que ha cambiado la dinámica de la humanidad para consumir, publicar y realizar un sin fin de actividades que antes requerían de nuestra presencia física. Con todo lo bueno también existe una parte oscura. Hay personas que buscan encontrar problemas de seguridad, errores de programación que les de acceso a información privada o restringida.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/seguridad/rack-attack.jpg" /><media:content medium="image" url="https://mariochavez.io/images/seguridad/rack-attack.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;p&gt;Lo aquí propuesto en el post son acciones simples que podemos comenzar a incluir en nuestro código, sin embargo, no son las únicas estrategias que podemos utilizar. Hay que tener en cuenta que cualquier estrategia que adoptemos siempre va a tener sus “Pros” y “Cons”.&lt;/p&gt;</content><author><name>Mario Alberto Chávez Cárdenas</name></author><summary type="html">Más allá del “Rails way”</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/mas_alla/refactor.jpg" /><media:content medium="image" url="https://mariochavez.io/images/mas_alla/refactor.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
