@@ -1,4 +1,265 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://bridgetownrb.com/" version="0.20.0">Bridgetown</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" /><updated>2021-08-31T10:34:31-05:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez Cárdenas</title><subtitle>Blog sobre temas de desarrollo de software Web con Ruby y Ruby on Rails, además de temas de fotografía análoga y digital.</subtitle><author><name>Mario Alberto Chávez Cárdenas</name></author><entry xml:lang="en_MX"><title type="html">La Cofradía de los volcanes</title><link href="https://mariochavez.io/proyectos/2021/08/30/la-cofradia-de-los-volcanes/" rel="alternate" type="text/html" title="La Cofradía de los volcanes" /><published>2021-08-30T13:00:00-05:00</published><updated>2021-08-30T13:00:00-05:00</updated><id>https://mariochavez.io/proyectos/2021/08/30/la-cofradia-de-los-volcanes</id><content type="html" xml:base="https://mariochavez.io/proyectos/2021/08/30/la-cofradia-de-los-volcanes/">&lt;p&gt;La Cofradía de los Volcanes es un trabajo sobre la exploración del territorio que circunda los Volcanes de Fuego y Nevado de Colima.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://bridgetownrb.com/" version="0.20.0">Bridgetown</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" /><updated>2021-09-28T17:41:36-05:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez Cárdenas</title><subtitle>Blog sobre temas de desarrollo de software Web con Ruby y Ruby on Rails, además de temas de fotografía análoga y digital.</subtitle><author><name>Mario Alberto Chávez Cárdenas</name></author><entry xml:lang="es_MX"><title type="html">Solitude</title><link href="https://mariochavez.io/proyectos/2021/09/28/solitude/" rel="alternate" type="text/html" title="Solitude" /><published>2021-09-28T02:00:00-05:00</published><updated>2021-09-28T02:00:00-05:00</updated><id>https://mariochavez.io/proyectos/2021/09/28/solitude</id><content type="html" xml:base="https://mariochavez.io/proyectos/2021/09/28/solitude/">&lt;div class=&quot; prose md:prose-lg&quot;&gt;
+&lt;p&gt;
+La soledad mejor asociada con una condición psicológica causada por la ausencia de otros seres humanos.
+Para algunas personas esta condición les permite dirigir su vida con autonomia e inclusive puede ser una
+herramienta para los procesos creativos del individuo.
+&lt;/p&gt;
+
+&lt;p&gt;
+En otros seres humanos esta condición detona una respuesta emocional negativa que puede llevar a
+la. depresión con consecuencias fatales.
+&lt;/p&gt;
+
+&lt;p&gt;
+Quizás esta condición es la más presente y con la que nos podemos relacionar casi al instante al
+escuchar la palabra soledad. Sin embargo, la soledad no necesariamente implica la ausencia de otros
+seres, también puede existir a partir de la inexistencia de artefactos humanos en nuestro alrededor.
+Es precisamente a esta última interpretación en la que está basada la serie fotográfica de la muestra.
+A esa soledad buscada conscientemente en done la existencia de lo humano y sus artefactos (casi)
+desaparecen de nuestro alrededor, dejándonos únicamente con la soledad de nuestra existencia con
+el entorno que nos rodea.
+&lt;/p&gt;
+
+&lt;p&gt;
+Esta soledad es una forma de escapar del ruido de los ciudades, del ruido de nuestras mentes para
+explorar estos paisajes que bajo otras condiciones pueden pasar desapercibidos, encontrar una
+conexión con el mundo natural y valorar estos elementos de los cuales no tenemos control pero sin
+embargo somos parte de ellos.
+&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;mt-6&quot;&gt;
+  &lt;h3 class=&quot;font-semibold text-lg mb-4&quot;&gt;Solitude I&lt;/h3&gt;
+
+  &lt;div class=&quot;grid grid-cols-1 gap-4 md:grid-cols-2&quot;&gt;
+    &lt;div class=&quot;md:col-span-2&quot;&gt;
+      &lt;div class=&quot;aspect-w-3 aspect-h-2&quot;&gt;
+        &lt;img src=&quot;/images/solitude/Solitude-2.jpg&quot; loading=&quot;lazy&quot; class=&quot;w-full h-full object-center object-cover lg:w-full lg:h-full&quot; /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div&gt;
+      &lt;div class=&quot;aspect-w-3 aspect-h-2&quot;&gt;
+        &lt;img src=&quot;/images/solitude/Solitude-3.jpg&quot; loading=&quot;lazy&quot; class=&quot;w-full h-full object-center object-cover lg:w-full lg:h-full&quot; /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div&gt;
+      &lt;div class=&quot;aspect-w-2 aspect-h-3&quot;&gt;
+        &lt;img src=&quot;/images/solitude/Solitude-4.jpg&quot; loading=&quot;lazy&quot; class=&quot;w-full h-full object-center object-cover lg:w-full lg:h-full&quot; /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;h3 class=&quot;font-semibold text-lg mt-4 mb-4&quot;&gt;Solitude II&lt;/h3&gt;
+  &lt;div class=&quot;grid grid-cols-1 gap-4 md:grid-cols-2&quot;&gt;
+    &lt;div class=&quot;md:col-span-2&quot;&gt;
+      &lt;div class=&quot;aspect-w-3 aspect-h-2&quot;&gt;
+        &lt;img src=&quot;/images/solitude/Solitude-5.jpg&quot; loading=&quot;lazy&quot; class=&quot;w-full h-full object-center object-cover lg:w-full lg:h-full&quot; /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;div class=&quot;aspect-w-3 aspect-h-2&quot;&gt;
+        &lt;img src=&quot;/images/solitude/Solitude-6.jpg&quot; loading=&quot;lazy&quot; class=&quot;w-full h-full object-center object-cover lg:w-full lg:h-full&quot; /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;div class=&quot;aspect-w-3 aspect-h-2&quot;&gt;
+        &lt;img src=&quot;/images/solitude/Solitude-7.jpg&quot; loading=&quot;lazy&quot; class=&quot;w-full h-full object-center object-cover lg:w-full lg:h-full&quot; /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;h3 class=&quot;font-semibold text-lg mt-4 mb-4&quot;&gt;Solitude III&lt;/h3&gt;
+  &lt;div class=&quot;grid grid-cols-1 gap-4 md:grid-cols-2&quot;&gt;
+    &lt;div class=&quot;md:col-span-2&quot;&gt;
+      &lt;div class=&quot;aspect-w-3 aspect-h-2&quot;&gt;
+        &lt;img src=&quot;/images/solitude/Solitude-8.jpg&quot; loading=&quot;lazy&quot; class=&quot;w-full h-full object-center object-cover lg:w-full lg:h-full&quot; /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;div class=&quot;aspect-w-3 aspect-h-2&quot;&gt;
+        &lt;img src=&quot;/images/solitude/Solitude-9.jpg&quot; loading=&quot;lazy&quot; class=&quot;w-full h-full object-center object-cover lg:w-full lg:h-full&quot; /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;div class=&quot;aspect-w-3 aspect-h-2&quot;&gt;
+        &lt;img src=&quot;/images/solitude/Solitude-10.jpg&quot; loading=&quot;lazy&quot; class=&quot;w-full h-full object-center object-cover lg:w-full lg:h-full&quot; /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;h3 class=&quot;font-semibold text-lg mt-4 mb-4&quot;&gt;Solitude IV&lt;/h3&gt;
+  &lt;div class=&quot;grid grid-cols-1 gap-4 md:grid-cols-2&quot;&gt;
+    &lt;div class=&quot;md:col-span-2&quot;&gt;
+      &lt;div class=&quot;aspect-w-3 aspect-h-2&quot;&gt;
+        &lt;img src=&quot;/images/solitude/Solitude-11.jpg&quot; loading=&quot;lazy&quot; class=&quot;w-full h-full object-center object-cover lg:w-full lg:h-full&quot; /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;div class=&quot;aspect-w-3 aspect-h-2&quot;&gt;
+        &lt;img src=&quot;/images/solitude/Solitude-12.jpg&quot; loading=&quot;lazy&quot; class=&quot;w-full h-full object-center object-cover lg:w-full lg:h-full&quot; /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;div class=&quot;aspect-w-3 aspect-h-2&quot;&gt;
+        &lt;img src=&quot;/images/solitude/Solitude-13.jpg&quot; loading=&quot;lazy&quot; class=&quot;w-full h-full object-center object-cover lg:w-full lg:h-full&quot; /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;h3 class=&quot;font-semibold text-lg mt-4 mb-4&quot;&gt;Solitude V&lt;/h3&gt;
+  &lt;div class=&quot;grid grid-cols-1 gap-4 md:grid-cols-2&quot;&gt;
+    &lt;div class=&quot;md:col-span-2&quot;&gt;
+      &lt;div class=&quot;aspect-w-3 aspect-h-2&quot;&gt;
+        &lt;img src=&quot;/images/solitude/Solitude-14.jpg&quot; loading=&quot;lazy&quot; class=&quot;w-full h-full object-center object-cover lg:w-full lg:h-full&quot; /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;div class=&quot;aspect-w-2 aspect-h-3&quot;&gt;
+        &lt;img src=&quot;/images/solitude/Solitude-15.jpg&quot; loading=&quot;lazy&quot; class=&quot;w-full h-full object-center object-cover lg:w-full lg:h-full&quot; /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;div class=&quot;aspect-w-3 aspect-h-2&quot;&gt;
+        &lt;img src=&quot;/images/solitude/Solitude-16.jpg&quot; loading=&quot;lazy&quot; class=&quot;w-full h-full object-center object-cover lg:w-full lg:h-full&quot; /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;h3 class=&quot;font-semibold text-lg mt-4 mb-4&quot;&gt;Solitude VI&lt;/h3&gt;
+  &lt;div class=&quot;grid grid-cols-1 gap-4 md:grid-cols-2&quot;&gt;
+    &lt;div class=&quot;md:col-span-2&quot;&gt;
+      &lt;div class=&quot;aspect-w-3 aspect-h-2&quot;&gt;
+        &lt;img src=&quot;/images/solitude/Solitude-17.jpg&quot; loading=&quot;lazy&quot; class=&quot;w-full h-full object-center object-cover lg:w-full lg:h-full&quot; /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;div class=&quot;aspect-w-3 aspect-h-2&quot;&gt;
+        &lt;img src=&quot;/images/solitude/Solitude-18.jpg&quot; loading=&quot;lazy&quot; class=&quot;w-full h-full object-center object-cover lg:w-full lg:h-full&quot; /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;div class=&quot;aspect-w-3 aspect-h-2&quot;&gt;
+        &lt;img src=&quot;/images/solitude/Solitude-19.jpg&quot; loading=&quot;lazy&quot; class=&quot;w-full h-full object-center object-cover lg:w-full lg:h-full&quot; /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;h3 class=&quot;font-semibold text-lg mt-4 mb-4&quot;&gt;Solitude VII&lt;/h3&gt;
+  &lt;div class=&quot;grid grid-cols-1 gap-4 md:grid-cols-2&quot;&gt;
+    &lt;div class=&quot;md:col-span-2&quot;&gt;
+      &lt;div class=&quot;aspect-w-3 aspect-h-2&quot;&gt;
+        &lt;img src=&quot;/images/solitude/Solitude-20.jpg&quot; loading=&quot;lazy&quot; class=&quot;w-full h-full object-center object-cover lg:w-full lg:h-full&quot; /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;div class=&quot;aspect-w-3 aspect-h-2&quot;&gt;
+        &lt;img src=&quot;/images/solitude/Solitude-21.jpg&quot; loading=&quot;lazy&quot; class=&quot;w-full h-full object-center object-cover lg:w-full lg:h-full&quot; /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;div class=&quot;aspect-w-2 aspect-h-3&quot;&gt;
+        &lt;img src=&quot;/images/solitude/Solitude-22.jpg&quot; loading=&quot;lazy&quot; class=&quot;w-full h-full object-center object-cover lg:w-full lg:h-full&quot; /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;h3 class=&quot;font-semibold text-lg mt-4 mb-4&quot;&gt;Solitude VIII&lt;/h3&gt;
+  &lt;div class=&quot;grid grid-cols-1 gap-4 md:grid-cols-2&quot;&gt;
+    &lt;div class=&quot;md:col-span-2&quot;&gt;
+      &lt;div class=&quot;aspect-w-3 aspect-h-2&quot;&gt;
+        &lt;img src=&quot;/images/solitude/Solitude-23.jpg&quot; loading=&quot;lazy&quot; class=&quot;w-full h-full object-center object-cover lg:w-full lg:h-full&quot; /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;div class=&quot;aspect-w-2 aspect-h-3&quot;&gt;
+        &lt;img src=&quot;/images/solitude/Solitude-24.jpg&quot; loading=&quot;lazy&quot; class=&quot;w-full h-full object-center object-cover lg:w-full lg:h-full&quot; /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;div class=&quot;aspect-w-3 aspect-h-2&quot;&gt;
+        &lt;img src=&quot;/images/solitude/Solitude-25.jpg&quot; loading=&quot;lazy&quot; class=&quot;w-full h-full object-center object-cover lg:w-full lg:h-full&quot; /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;h3 class=&quot;font-semibold text-lg mt-4 mb-4&quot;&gt;Solitude IX&lt;/h3&gt;
+  &lt;div class=&quot;grid grid-cols-1 gap-4 md:grid-cols-2&quot;&gt;
+    &lt;div class=&quot;md:col-span-2&quot;&gt;
+      &lt;div class=&quot;aspect-w-3 aspect-h-2&quot;&gt;
+        &lt;img src=&quot;/images/solitude/Solitude-26.jpg&quot; loading=&quot;lazy&quot; class=&quot;w-full h-full object-center object-cover lg:w-full lg:h-full&quot; /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;div class=&quot;aspect-w-3 aspect-h-2&quot;&gt;
+        &lt;img src=&quot;/images/solitude/Solitude-27.jpg&quot; loading=&quot;lazy&quot; class=&quot;w-full h-full object-center object-cover lg:w-full lg:h-full&quot; /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;div class=&quot;aspect-w-3 aspect-h-2&quot;&gt;
+        &lt;img src=&quot;/images/solitude/Solitude-28.jpg&quot; loading=&quot;lazy&quot; class=&quot;w-full h-full object-center object-cover lg:w-full lg:h-full&quot; /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;h3 class=&quot;font-semibold text-lg mt-4 mb-4&quot;&gt;Solitude X&lt;/h3&gt;
+  &lt;div class=&quot;grid grid-cols-1 gap-4 md:grid-cols-2&quot;&gt;
+    &lt;div class=&quot;md:col-span-2&quot;&gt;
+      &lt;div class=&quot;aspect-w-3 aspect-h-2&quot;&gt;
+        &lt;img src=&quot;/images/solitude/Solitude-29.jpg&quot; loading=&quot;lazy&quot; class=&quot;w-full h-full object-center object-cover lg:w-full lg:h-full&quot; /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;div class=&quot;aspect-w-3 aspect-h-2&quot;&gt;
+        &lt;img src=&quot;/images/solitude/Solitude-30.jpg&quot; loading=&quot;lazy&quot; class=&quot;w-full h-full object-center object-cover lg:w-full lg:h-full&quot; /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;div class=&quot;aspect-w-2 aspect-h-3&quot;&gt;
+        &lt;img src=&quot;/images/solitude/Solitude-31.jpg&quot; loading=&quot;lazy&quot; class=&quot;w-full h-full object-center object-cover lg:w-full lg:h-full&quot; /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;h3 class=&quot;font-semibold text-lg mt-4 mb-4&quot;&gt;Solitude XI&lt;/h3&gt;
+  &lt;div class=&quot;grid grid-cols-1 gap-4 md:grid-cols-2&quot;&gt;
+    &lt;div class=&quot;md:col-span-2&quot;&gt;
+      &lt;div class=&quot;aspect-w-3 aspect-h-2&quot;&gt;
+        &lt;img src=&quot;/images/solitude/Solitude-32.jpg&quot; loading=&quot;lazy&quot; class=&quot;w-full h-full object-center object-cover lg:w-full lg:h-full&quot; /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;div class=&quot;aspect-w-3 aspect-h-2&quot;&gt;
+        &lt;img src=&quot;/images/solitude/Solitude-33.jpg&quot; loading=&quot;lazy&quot; class=&quot;w-full h-full object-center object-cover lg:w-full lg:h-full&quot; /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;div class=&quot;aspect-w-2 aspect-h-3&quot;&gt;
+        &lt;img src=&quot;/images/solitude/Solitude-34.jpg&quot; loading=&quot;lazy&quot; class=&quot;w-full h-full object-center object-cover lg:w-full lg:h-full&quot; /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;h3 class=&quot;font-semibold text-lg mt-4 mb-4&quot;&gt;Solitude XII&lt;/h3&gt;
+  &lt;div class=&quot;grid grid-cols-1 gap-4 md:grid-cols-2&quot;&gt;
+    &lt;div class=&quot;md:col-span-2&quot;&gt;
+      &lt;div class=&quot;aspect-w-3 aspect-h-2&quot;&gt;
+        &lt;img src=&quot;/images/solitude/Solitude-35.jpg&quot; loading=&quot;lazy&quot; class=&quot;w-full h-full object-center object-cover lg:w-full lg:h-full&quot; /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;div class=&quot;aspect-w-3 aspect-h-2&quot;&gt;
+        &lt;img src=&quot;/images/solitude/Solitude-36.jpg&quot; loading=&quot;lazy&quot; class=&quot;w-full h-full object-center object-cover lg:w-full lg:h-full&quot; /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;div class=&quot;aspect-w-3 aspect-h-2&quot;&gt;
+        &lt;img src=&quot;/images/solitude/Solitude-37.jpg&quot; loading=&quot;lazy&quot; class=&quot;w-full h-full object-center object-cover lg:w-full lg:h-full&quot; /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</content><author><name>Mario Alberto Chávez Cárdenas</name></author><summary type="html">La soledad mejor asociada con una condición psicológica causada por la ausencia de otros seres humanos. Para algunas personas esta condición les permite dirigir su vida con autonomia e inclusive puede ser una herramienta para los procesos creativos del individuo.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/solitude/Solitude-1.jpg" /><media:content medium="image" url="https://mariochavez.io/images/solitude/Solitude-1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry xml:lang="en_MX"><title type="html">La Cofradía de los volcanes</title><link href="https://mariochavez.io/proyectos/2021/08/31/la-cofradia-de-los-volcanes/" rel="alternate" type="text/html" title="La Cofradía de los volcanes" /><published>2021-08-31T13:00:00-05:00</published><updated>2021-08-31T13:00:00-05:00</updated><id>https://mariochavez.io/proyectos/2021/08/31/la-cofradia-de-los-volcanes</id><content type="html" xml:base="https://mariochavez.io/proyectos/2021/08/31/la-cofradia-de-los-volcanes/">&lt;p&gt;La Cofradía de los Volcanes es un trabajo sobre la exploración del territorio que circunda los Volcanes de Fuego y Nevado de Colima.&lt;/p&gt;
 
 &lt;div class=&quot;book&quot; data-controller=&quot;book&quot;&gt;
   &lt;div class=&quot;book-wrapper&quot; data-book-target=&quot;wrapper&quot;&gt;
@@ -1379,195 +1640,4 @@ Overwrite /Users/marioch/Development/michelada/butaca/config/boot.rb? &lt;span c
 
 &lt;p&gt;La seguridad es un factor importante en toda aplicación hoy en día, es algo que como desarrolladores de aplicaciones no debemos de dejar a la ligera. Es nuestra responsabilidad asegurar la información y la confianza de nuestros usuarios.&lt;/p&gt;
 
-&lt;p&gt;Estoy seguro que al revisar a detalle el código de la aplicación de ejemplo veremos que es sencillo implementar un nivel más de seguridad en nuestras aplicaciones y que el código está pensado en que pueda ser reutilizado.&lt;/p&gt;</content><author><name>Mario Alberto Chávez Cárdenas</name></author><summary type="html">Autenticación Two-Factor (2FA)</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/autenticacion/password-security.jpg" /><media:content medium="image" url="https://mariochavez.io/images/autenticacion/password-security.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry xml:lang="es_MX"><title type="html">Más allá del Rails Way</title><link href="https://mariochavez.io/desarrollo/2020/07/02/mas-alla-del-rails-way/" rel="alternate" type="text/html" title="Más allá del Rails Way" /><published>2020-07-02T02:00:00-05:00</published><updated>2020-07-02T02:00:00-05:00</updated><id>https://mariochavez.io/desarrollo/2020/07/02/mas-alla-del-rails-way</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2020/07/02/mas-alla-del-rails-way/">&lt;h1 id=&quot;más-allá-del-rails-way&quot;&gt;Más allá del “Rails way”&lt;/h1&gt;
-
-&lt;p&gt;Hace un par de años estuve presentando una plática llamada “Más allá del ‘Rails Way’” con grupos locales de desarrollo.&lt;/p&gt;
-
-&lt;p&gt;En la plática toco algunos temas que tienen relación a qué pasa cuando una aplicación de Rails ya ha crecido a cierto tamaño y qué podemos hacer para tratar de mantenerla en control.&lt;/p&gt;
-
-&lt;p&gt;No soy el único que habla sobre estos temas, por ejemplo Ryan Bigg trata el mismo tema en su libro “&lt;a href=&quot;https://leanpub.com/explodingrails/&quot; target=&quot;_blank&quot;&gt;Exploding Rails&lt;/a&gt;” solamente que el acercamiento de él es bastante radical y a mi punto de vista funcionaría en aplicaciones nuevas o “Greenfield” pero desafortunadamente desecha todo el conocimiento que hay sobre Rails.&lt;/p&gt;
-
-&lt;p&gt;David Bryant Copeland tiene su libro “&lt;a href=&quot;https://sustainable-rails.com&quot; target=&quot;_blank&quot;&gt;Sustainable Web Development with Rails&lt;/a&gt;” donde habla de su experiencia de como mantener en forma una aplicación de Rails que ha estado creciendo desde diferentes aspectos de la misma.&lt;/p&gt;
-
-&lt;p&gt;Mi plática está más alineada con las ideas de David Bryant Copeland y el alcance es más específico a ciertas áreas que en lo personal encuentro problemáticas y que describo a continuación.&lt;/p&gt;
-
-&lt;h2 id=&quot;fat-controllers-obese-models&quot;&gt;Fat Controllers, obese Models&lt;/h2&gt;
-
-&lt;p&gt;Esta ha sido una discusión desde hace mucho tiempo en el desarrollo de Rails. Es el primer problema que de identifica en el código de una aplicación de Rails con algunos años en desarrollo y aunque nos damos cuenta casi al inicio sobre esta problemática generalmente por cuestiones prácticas se asume como deuda técnica y se continua adelante.&lt;/p&gt;
-
-&lt;p&gt;El problema es que conforme pase el tiempo, sin importar si decidimos por “Fat Controllers” o “Obese Models”, o inclusive ambos; los cambios en ellos se vuelven problemáticos ya que el código es difícil de leer, entender y todavía más complicado de modificar.&lt;/p&gt;
-
-&lt;p&gt;Algunas estrategias para lidiar con estas situaciones que se pueden ir introduciendo poco a poco son las que menciono a continuación.&lt;/p&gt;
-
-&lt;h2 id=&quot;los-modelos-a-dieta&quot;&gt;Los modelos a dieta&lt;/h2&gt;
-
-&lt;p&gt;Podemos ir trabajando con los modelos para liberarlos de la carga de trabajo poco a poco. Ninguna de las estrategias aquí mostradas son un todo a nada.&lt;/p&gt;
-
-&lt;h3 id=&quot;scopes&quot;&gt;Scopes&lt;/h3&gt;
-
-&lt;p&gt;Desde que Rails introdujo “Scopes” en la versión 3 del framework es una de las funcionalidades más utilizadas y también más abusadas en Rails.&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;scope&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:active&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;where&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;status: :active&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;No es raro abrir un modelo de “ActiveRecord” y entrarse con toda una sección de definiciones de “Scopes”, algunas muy simples, otras más complejas pero que generalmente en los controladores para poder ejecutar una consulta se utilizan encadenadas.&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;scope&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:active&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;where&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;status: :active&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;scope&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:with_orders&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;includes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:orders&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;scope&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:ordered&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;order&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;created_at: :desc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;vi&quot;&gt;@products&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Product&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
-  &lt;span class=&quot;nf&quot;&gt;active&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
-  &lt;span class=&quot;nf&quot;&gt;with_orders&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
-  &lt;span class=&quot;nf&quot;&gt;ordered&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
-  &lt;span class=&quot;nf&quot;&gt;where&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;color: :red&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Hay quien dice que hacer esto hace más legible el código, es posible, pero no hace que sea simple de modificar y de mantener.&lt;/p&gt;
-
-&lt;p&gt;Desde hace tiempo prefiero hacer uso de “QueryObjects” cuando los “Querys” o “Scopes” se comienzan a poner complejos y más cuando hay condicionales que dicen si se tiene que aplicar o no restricciones.&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ProductQuery&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;execute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;scope: &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Product&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;scope&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;scope&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;where&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;status: :active&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;err&quot;&gt;…&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;# more complex logic&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-&lt;span class=&quot;vi&quot;&gt;@products&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ProductQuery&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;execute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;Product&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;ordered: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;with_orders: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Esta clase encapsula  consultas complejas donde ademas podemos aplicar de forma condicional restricciones, uniones, ordenado y cualquier otras operación que se requiera. El resultado sigue siendo un &lt;em&gt;ActiveRecord::Relation&lt;/em&gt; el cual podemos seguir modificando fuera del “QueyObject”.&lt;/p&gt;
-
-&lt;p&gt;El uso es bastante simple además de que ofrece la oportunidad de que podamos escribir pruebas fuera del contexto del controlador o de los modelos.&lt;/p&gt;
-
-&lt;h3 id=&quot;concerns&quot;&gt;Concerns&lt;/h3&gt;
-
-&lt;p&gt;Los “Concerns” es otra herramienta que se ha utilizado para crear modelos o controladores que son compuestos por módulos reutilizables. Es una manera de mover código hacia módulos específicos para cierta funcionalidad.&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Product&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ApplicationRecord&lt;/span&gt;
-  &lt;span class=&quot;kp&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Flaggable&lt;/span&gt;
-  &lt;span class=&quot;kp&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Taggable&lt;/span&gt;
-  &lt;span class=&quot;kp&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Conflictable&lt;/span&gt;
-  &lt;span class=&quot;kp&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Measurable&lt;/span&gt;
-  &lt;span class=&quot;kp&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Sanitizable&lt;/span&gt;
-  &lt;span class=&quot;kp&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Searchable&lt;/span&gt;
-  &lt;span class=&quot;kp&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Permisionable&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-&lt;span class=&quot;no&quot;&gt;Product&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;methods&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; 161&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Los “Concerns” son útiles hasta cierto punto. El problema viene cuando tenemos muchos módulo que agregan funcionalidad, que dependen entre sí, que dependen del orden en que se que carguen y que a final de cuentas nuestro modelo o controlador termina con una cantidad absurda de métodos. Peor aún cuando hay conflictos entre los módulos.&lt;/p&gt;
-
-&lt;p&gt;La estrategia para este problema es algo que llamo “Actions”. Consiste en tener pequeñas clases que ejecuten acciones sobre los modelos sin agregar complejidad al modelo tal cual. Por ejemplo, la acción de recibir desde el controlador un campo de texto con etiquetas o “tags” separadas por coma y que el modelo tenga que expandirlas a un “Array” de Postgresql  puede se un “Action” que se llamada desde el mismo controlador.&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ProductTagging&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;tag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;product&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tags&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;err&quot;&gt;…&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;product&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;# more methods related to tagging&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-&lt;span class=&quot;vi&quot;&gt;@product&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ProductTagging&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;tag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-  &lt;span class=&quot;vi&quot;&gt;@product&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;“&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;landscape&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;light&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reflection&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;”&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Dentro del controlador las llamadas pueden ser compuestas, es decir, tener llamada a más un “Action” que modifique o haga alguna operación con el modelo. De esta forma un “Action” puede tener pruebas fuera del contexto del controlador o del modelo.&lt;/p&gt;
-
-&lt;h3 id=&quot;presenters&quot;&gt;Presenters&lt;/h3&gt;
-
-&lt;p&gt;Creo que esta estrategia es bastante conocida ya por muchos. Es una forma de eliminar de los modelos código que tiene que ver en como se muestra la información de un modelo en una vista de Rails o en la serialización de un objeto JSON o en el cuerpo de un correo electrónico.&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ProductPresenter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;SimpleDelegator&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;formatted_price&lt;/span&gt;
-    &lt;span class=&quot;err&quot;&gt;…&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-&lt;span class=&quot;vi&quot;&gt;@presenter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ProductPresenter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@product&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;%= @presenter.formatted_price %&amp;gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;controladores-delgados&quot;&gt;Controladores delgados&lt;/h2&gt;
-
-&lt;p&gt;El primer paso para lograr esto es aplicar lo que aprendimos al poner a los modelos a dieta. ¿Pero qué pasa cuando la lógica de los controladores es compleja?&lt;/p&gt;
-
-&lt;p&gt;Es común que muchos de nuestros controladores iniciaron algo parecido a el siguiente bloque de código.&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ProductsController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ApplicationController&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;create&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;vi&quot;&gt;@product&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;valid?&lt;/span&gt;
-      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;redirect_to&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:products&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;render&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:new&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Pero con el tiempo el controlador se fue complicando inevitablemente. Ahora nuestro controlador tiene cientos de líneas de código que son díficil de comprender o modificar.&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ProductsController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ApplicationController&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;# Many before_action&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;# Many helper_method&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;# Many queries&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Mi estrategia en estos caso es utilizar “Use Cases”. Sí, leíste bien, “Use Cases”. Es una forma de mover lógica del controlador a clases especialidas para realizar alguna operación compleja en un controlador y que de alguna forma tiene una semenjanza con la deficinición de “Use Cases” funcionales que el Product Manager crea para describir cómo debe funcionar.&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ProductRegistrator&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;register&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-   &lt;span class=&quot;c1&quot;&gt;# complex logic and calculations&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;…&lt;/span&gt;
-    &lt;span class=&quot;vi&quot;&gt;@product&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;En este ejemplo el crear un nuevo producto tiene muchas condiciones y lógica de negocio. Puede hacer uso de “Actions” o “Query Objects” para completar la operación de registrar un producto.&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ProductsController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ApplicationController&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;create&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;product_registrator&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;ProductRegistrator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;product_params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-    &lt;span class=&quot;vi&quot;&gt;@product&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;product_registrator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;register&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;…&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Al remover la lógica compleja el controlador queda nuevamente simple, pero ahora hay una o quizás varias clases especializadas que saben cómo registrar un producto y lo mejor es que es posible utilizar esas clases fuera del contexto del controlador, quizás en un “Background Job”.&lt;/p&gt;
-
-&lt;p&gt;Esta estrategia también puede ser útil para refactorizar lógica del controlador donde podamos mantener la lógica original y escribir nueva funcionalidad que podamos activar con una bandera en el sistema.&lt;/p&gt;
-
-&lt;p&gt;Hay varias “Gems” o librerías que ofrecen algo similar aquí descrito, por ejemplo estan los “&lt;a href=&quot;https://github.com/collectiveidea/interactor&quot; target=&quot;_blank&quot;&gt;Interactors&lt;/a&gt;” ya sea utilizar una de ellas o la solución simple que aquí describo ayuda a desacoplar la lógica funcional de la aplicación del framework de Rails.&lt;/p&gt;
-
-&lt;h2 id=&quot;palabras-finales&quot;&gt;Palabras finales&lt;/h2&gt;
-
-&lt;p&gt;Estos son únicamente algunos consejos simples de como ir moldenado el código de una aplicación grande y compleja. Lo que me gusta en lo personal es que no me obliga a hacer un cambios radical sobre Rails y que me permite ir ajustando poco a poco la aplicación sin tener que entrar en el espiral de reescribir todo.&lt;/p&gt;
-
-&lt;p&gt;Al introducir las ideas aquí descritas nos vamos a encontrar con algunos efectos en el código de nuestra aplicación. Primero, vamos a tener más clases pequeñas con funcionalidad específica y que pueden probarse automáticamente sin tener demasiado contexto del framework de Rails.&lt;/p&gt;
-
-&lt;p&gt;Segundo, en el caso de los modelos prácticamente eliminamos los “Callbacks” que pueden ser complejos de depurar cuando hay problemas y que son un tanto oscuros y lo mismo puede llegar a pasar con los “Before Action” en los controladores.&lt;/p&gt;
-
-&lt;p&gt;Tercero, sí es verdad que vamos a tener más clase, pero van a ser clases pequeñas y que deben de tener una intención clara. Esto nos lleva a expandir la organización de nuestro código.&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;app&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;models&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;controllers&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;views&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;presenters&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;queries&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;actions&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;use_cases&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Lo aquí propuesto en el post son acciones simples que podemos comenzar a incluir en nuestro código, sin embargo, no son las únicas estrategias que podemos utilizar. Hay que tener en cuenta que cualquier estrategia que adoptemos siempre va a tener sus “Pros” y “Cons”.&lt;/p&gt;</content><author><name>Mario Alberto Chávez Cárdenas</name></author><summary type="html">Más allá del “Rails way”</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/mas_alla/refactor.jpg" /><media:content medium="image" url="https://mariochavez.io/images/mas_alla/refactor.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;p&gt;Estoy seguro que al revisar a detalle el código de la aplicación de ejemplo veremos que es sencillo implementar un nivel más de seguridad en nuestras aplicaciones y que el código está pensado en que pueda ser reutilizado.&lt;/p&gt;</content><author><name>Mario Alberto Chávez Cárdenas</name></author><summary type="html">Autenticación Two-Factor (2FA)</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/autenticacion/password-security.jpg" /><media:content medium="image" url="https://mariochavez.io/images/autenticacion/password-security.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: La Cofradía de los volcanes
-date: 2021-08-30 12:00:00 -0600
+date: 2021-08-31 12:00:00 -0600
 published: Agosto 31, 2021
 categories: proyectos
 description: La Cofradía de los Volcanes es un trabajo sobre la exploración del territorio que circunda los Volcanes de Fuego y Nevado de Colima.
