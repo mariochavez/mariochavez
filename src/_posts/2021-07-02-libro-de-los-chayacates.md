@@ -9,7 +9,7 @@ keywords: colima, foto libro, fotografía, fiesta popular, chayacates, ixtlahuc�
 image: /images/foto_libro/IMG_6268.jpg
 lang: es_MX
 ---
-La fiesta popular de "Los Chayacates de Ixtlahuacán" sucede cada 5 y 6 de Junio en la cabecera municipal de Ixtlahuacán de los Reyes Colima.
+La fiesta popular de "Los Chayacates de Ixtlahuacán" sucede cada 5 y 6 de Enero en la cabecera municipal de Ixtlahuacán de los Reyes Colima.
 
 El fervor de los habiatntes del pueblo, las manifestaciones de color, participación, unión y amistad celebran el evento de Epifanía con devoción y respecto, combinando las creencias religiosas con pinceladas de ritos prehispánicos.
 
