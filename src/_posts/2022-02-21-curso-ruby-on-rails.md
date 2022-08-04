@@ -12,6 +12,19 @@ lang: es_MX
 
 # Curso de Ruby on Rails 7.0
 
+## Actualización
+
+Los 3 primeros videos ya se encuentran disponibles [Aprende a crear aplicaciones Web modernas](https://cursos.mariochavez.io){:target="_blank"} de manera gratuita, a partir del cuarto video es cuando el curso tendrá un costo. El motivo de que los 3 primeros sean gratuitos es para ofrecer la oportunidad
+de evaluar si el contenido y el formato es lo que se espera y así poder decidir si se dese adquirir o no.
+
+<div class="w-full">
+  <img src="/images/curso.jpg" class="m-auto" style="width: 640px" alt="Curso" />
+</div>
+
+Los invito a visitar el sitio y tomarse el tiempo para ver los videos y el contenido de los mismos. Y si es posible, les agradeceré lo compartan con sus conocidos o con quienes crear se pueden beneficiar.
+
+---
+
 Ayer publiqué en Twitter una pregunta sobre si existe interés en que realice un curso en video para desarrollar Web con Ruby on Rails. La respuesta fue mucho más alta de lo que me hubiera imaginado, motivo por el cual he decidido llevarlo a cabo.
 
 <div class="w-full">
