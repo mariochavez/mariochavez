@@ -1,9 +1,5 @@
 module.exports = {
-  purge: {
-    enabled: true,
-    content: ['./src/**/*.html', './src/**/*.md', './src/**/*.liquid'],
-  },
-  darkMode: false, // or 'media' or 'class'
+  content: ["./src/**/*.{liquid,md,html,yml,erb}", "./frontend/javascript/**/*.js", "./data/**/*.yml"],
   theme: {
     extend: {
       height: {
@@ -35,6 +31,9 @@ module.exports = {
   },
   variants: {
     extend: {},
+  },
+  corePlugins: {
+    aspectRatio: false,
   },
   plugins: [
     require('@tailwindcss/typography'),

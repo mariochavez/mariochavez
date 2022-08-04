@@ -1,0 +1,59 @@
+.gallery figure {
+  /* @apply aspect-h-3 aspect-w-4 m-0; */
+  flex-grow: 1;
+  flex-basis: 0;
+}
+
+.gallery .gallery-3, .gallery .gallery-2 {
+  @apply flex flex-row space-x-2;
+}
+
+figure img {
+ @apply object-cover;
+}
+
+.posts article:nth-child(odd) {
+  @apply border-r-0;
+}
+
+.posts article:nth-child(-n+2) {
+  @apply border-t-0;
+}
+
+main .post ul {
+  margin-left: 1rem;
+  padding-left: 0;
+}
+
+.book {
+  @apply bg-gray-100;
+  font-size: 0;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  position: relative;
+}
+
+.book-wrapper {
+  transition: transform 1s;
+}
+
+.book-wrapper .page {
+  @apply m-0 mx-auto h-full max-w-full max-w-7xl;
+}
+
+.book-wrapper .section {
+  @apply w-full h-48 inline-block md:h-96 lg:h-124;
+}
+
+.book .paginator {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #FFF;
+  font-size: 0.85rem;
+  z-index: 1;
+  padding: 4px 8px;
+  border-radius: 3px;
+}

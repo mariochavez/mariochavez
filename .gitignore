@@ -35,3 +35,5 @@ yarn-debug.log*
 .yarn-integrity
 
 .htmle
+
+.solagraph.yml

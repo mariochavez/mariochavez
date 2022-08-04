@@ -1,14 +1,8 @@
-import { Application } from "stimulus"
-import { definitionsFromContext } from "stimulus/webpack-helpers"
+import "index.css"
 
-import "index.scss"
+import { Turbo } from "@hotwired/turbo-rails"
 
-// Import all javascript files from src/_components
-const componentsContext = require.context("bridgetownComponents", true, /.js$/)
-componentsContext.keys().forEach(componentsContext)
+// Import all JavaScript & CSS files from src/_components
+import components from "bridgetownComponents/**/*.{js,jsx,js.rb,css}"
 
-const images = require.context("../images", true);
-const imagePath = (name) => images(name, true);
-const application = Application.start()
-const context = require.context("./controllers", true, /.js$/)
-application.load(definitionsFromContext(context))
+import "controllers"
