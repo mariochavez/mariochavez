@@ -127,7 +127,7 @@ gem install solargraph-standardrb solargraph-rails standardrb --install-dir .
 Luego en el directorio donde está el binario reemplace el contenido de Solargraph con el siguiente código para activar StandardRb.
 
 ```bash
-cd ~/.local/share/nvim/lsp_servers/bin
+cd ~/.local/share/nvim/lsp_servers/solargraph/bin
 ```
 
 Aquí existe un ejecutable Solargraph, hay que abrirlo con el editor, borrar el contenido y reemplazarlos con el siguiente código.
