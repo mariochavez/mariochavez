@@ -12,8 +12,6 @@ lang: es_MX
 
 # Neovim y LunarVim para trabajar con Rails
 
-Desde hace más de 15 años he utilizado, primero Vim, luego Neovim 
-
 Desde hace más de 15 años he utilizado, primero Vim, luego [Neovim](https://neovim.io){:target="_blank"} para desarrollar software. Mi tendencia es tratar de personalizar solamente lo suficiente para trabajar cómodamente con el código.
 
 En los últimos años, estuve haciendo uso de Vim con [Spacevim](https://spacevim.org){:target="_blank"}, pero para ser sincero nunca hice uso al 100% de todo lo que ofrecía Spacevim. El año pasado vi un tweet sobre Neovim y algo llamado [Lunarvim](https://www.lunarvim.org/#opinionated){:target="_blank"} y me pareció interesante, en particular el soporte que Neovim presentaba para los Language Servers.
