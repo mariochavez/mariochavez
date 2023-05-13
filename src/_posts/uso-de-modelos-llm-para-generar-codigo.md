@@ -34,13 +34,19 @@ Me ha generado código donde hace uso de métodos inexistentes en las librerías
 
 Otro punto importante para mí que siempre trabajo sobre las últimas versiones de las librerías y herramientas es que ChatGPT solo tiene conocimiento, la versión libre, de Ruby 3.0.0 y Rails 6.1.4, del 2020 y 2021, respectivamente.
 
-Buscando otra forma de sacarle provecho, en lugar de pedirle código, opté por pedirle que documentara a partir de la firma de métodos y de definiciones de clases. Siempre fui explícito en que el formato de la documentación tenía que ser el de RDoc de Ruby; sin embargo, el 100% de los casos la documentación la escribe con el formato de documentación de Javascript. 
+Buscando otra forma de sacarle provecho, en lugar de pedirle código, opté por pedirle que documentara a partir de la firma de métodos y de definiciones de clases. Siempre fui explícito en que el formato de la documentación tenía que ser el de RDoc de Ruby; sin embargo, el 100% de los casos la documentación la escribe con el formato de documentación de Javascript.
 
 Una tarea más que busqué comprobar si la podía hacer bien o no fue la de escribir los archivos de tipado de Ruby, RBS; sin embargo, nuevamente me di cuenta de que es algo fuera de su conocimiento.
 
-Después de varios meses sigo haciendo uso de forma esporádica de ChatGPT, en su lugar he cambiado a otra herramienta llamada [Phind](https://www.phind.com){:target="_blank"} que se parece más a un buscador que a un chat de IA. Phind usa el internet, en especial los blogs y documentación técnica en conjunto con un LLM para ofrecer respuestas. 
+Después de varios meses sigo haciendo uso de forma esporádica de ChatGPT, en su lugar he cambiado a otra herramienta llamada [Phind](https://www.phind.com){:target="_blank"} que se parece más a un buscador que a un chat de IA. Phind usa el internet, en especial los blogs y documentación técnica en conjunto con un LLM para ofrecer respuestas.
 
 Puedo configurar como quiero que sea la respuesta, larga y con varias opciones o simple y directa a lo que parece resolver mi duda. Además, agrega referencias a los blogs o sitios web de donde extrajo la respuesta para que si así lo deseo poder ir al sitio y conocer más del contexto.
+
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+  <figure><img src="/images/modelos-llm-codigo/chatgpt.png" /><figcaption class="p-2 text-center">Ejemplo con ChatGPT</figcaption></figure>
+  <figure><img src="/images/modelos-llm-codigo/phind.png" /><figcaption class="p-2 text-center">Ejemplo con Phind</figcaption></figure>
+</div>
 
 Lo mejor de todo es que parece tener información actualizada y no mezcla las respuestas de Ruby con otros lenguajes de programación.
 
