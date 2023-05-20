@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Ruby Next to keep compatibility with older Rubies
-date: 2023-05-15 12:00:00 -0600
+date: 2023-05-19 12:00:00 -0600
 published: Mayo 19, 2023
 categories: desarrollo
 description: Ruby Next is a nice tool for those that enjoy working with newer Ruby versions but needs to keep compatibility with older Rubies.
