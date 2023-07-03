@@ -12,6 +12,10 @@ lang: es_MX
 
 # Curso de Ruby on Rails 7.0
 
+## Nueva Actualización
+
+Visitar [Serie de videos de Ruby y de Ruby on Rails](/desarrollo/2023/07/03/serie-videos-ruby-on-rails) para mayor información.
+
 ## Actualización
 
 Los 3 primeros videos ya se encuentran disponibles [Aprende a crear aplicaciones Web modernas](https://cursos.mariochavez.io){:target="_blank"} de manera gratuita, a partir del cuarto video es cuando el curso tendrá un costo. El motivo de que los 3 primeros sean gratuitos es para ofrecer la oportunidad
@@ -58,12 +62,5 @@ La idea del curso tiene dos intenciones, una personal y otra más general. En lo
 En lo más general, tengo ya varios años escuchando que no hay programadoras y programadores de Ruby o de Rails. A través de michelada.io y hoy en Creditar.io he tenido la oportunidad de platicar con CEOs y CTOs de Estados Unidos, México y algunas partes de América Latina y siempre me dicen lo mismo, no hay. Esta idea los lleva a que sus proyectos se desarrollen en otras tecnologías porque no se quieren a arriesgar a no encontrar personal.
 
 La realidad es que la demanda es mayor a la oferta. Hay más empleos para desarrollar en Ruby on Rails que personas que trabajen y conozcan la tecnología.
-
-## ¿Cómo funcionaría?
-A partir de este momento comenzaría a grabar los primeros videos, debido a mis otras actividades creo poder generar ese contenido de entre dos a tres videos por semana. El tiempo que me llevará completar el curso con los puntos que mencioné anteriormente en este momento no lo conozco, pero seguramente será algunos meses.
-
-Debido al esfuerzo que se necesita el curso no será gratuito. Tendrá un costo de $ 75 USD. Para quienes les interese, pero no tengan como pagarlo puedo considerar que por cada 10 cursos comprados donar 1 a quien así lo necesite. Igualmente, a alguna persona le interesa donar 1 o más cursos es posible, cada patrocinador puede elegir las condiciones y/o a quién regalarle el curso. Si es una empresa la interesada en patrocinar cursos también es posible, pero sería la empresa la que decide como y a quién regalar el curso.
-
-El último detalle que queda por confirmar es si hay interés adquirir el curso conforme se vaya generando el contenido o si espero hasta el final para ofrecerlo.
 
 Si tienes comentarios o sugerencias sobre este tema, me puedes encontrar en Twitter como [@mario_chavez](https://twitter.com/mario_chavez){:target="_blank"}.
