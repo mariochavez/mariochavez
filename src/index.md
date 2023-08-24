@@ -18,7 +18,7 @@ pagination:
 
     <a href="{{post.relative_url}}">
       <figure class="mt-8 aspect-h-3 aspect-w-4">
-        <img src="{{ post.image }}" loading="lazy" />
+        <img src="{{ post.image }}" loading="lazy" class="object-contain" />
         <div class="absolute top-0 bottom-0 left-0 right-0 bg-white opacity-0 hover:opacity-10 transition-all ease-in-out duration-150"></div>
       </figure>
     </a>
