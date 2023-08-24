@@ -4,7 +4,7 @@ title: Working with Rails Engines, Importmap and TailwindCSS for assets.
 date: 2023-08-23 00:00:00 -0600
 published: Agosto 23, 2023
 categories: desarrollo
-description:  This is a nonexistent guide on how to work with Rails engines using Importmap and TailwindCSS for assets.
+description:  This is the nonexistent guide on how to work with Rails engines using Importmap and TailwindCSS for assets.
 keywords: ruby on rails, importmap, tailwindcss, engines
 image: /images/engines-assets/engines-assets.jpg
 lang: en
