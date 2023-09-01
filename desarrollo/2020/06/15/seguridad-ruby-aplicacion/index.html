@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- Begin Bridgetown SEO tag v5.0.0 -->
+<title>Proteger tu aplicación de ataques en Internet | Mario Alberto Chávez Cárdenas</title>
+<meta property="og:title" content="Proteger tu aplicación de ataques en Internet" />
+<meta name="author" content="Mario Alberto Chávez Cárdenas" />
+<meta property="og:locale" content="es_MX" />
+<meta name="description" content="El Internet no es un lugar seguro por lo que antes de publicar nuestras aplicaciones en Internet tenemos que revisar políticas de acceso y medidas para protegerla de ciertos ataques." />
+<meta property="og:description" content="El Internet no es un lugar seguro por lo que antes de publicar nuestras aplicaciones en Internet tenemos que revisar políticas de acceso y medidas para protegerla de ciertos ataques." />
+<link rel="canonical" href="https://mariochavez.io/desarrollo/2020/06/15/seguridad-ruby-aplicacion/" />
+<meta property="og:url" content="https://mariochavez.io/desarrollo/2020/06/15/seguridad-ruby-aplicacion/" />
+<meta property="og:site_name" content="Mario Alberto Chávez Cárdenas" />
+<meta property="og:image" content="https://mariochavez.io/images/seguridad/rack-attack.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-06-15T06:01:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://mariochavez.io/images/seguridad/rack-attack.jpg" />
+<meta property="twitter:title" content="Proteger tu aplicación de ataques en Internet" />
+<meta name="twitter:site" content="@mario_chavez" />
+<meta name="twitter:creator" content="@Mario Alberto Chávez Cárdenas" />
+<!-- End Bridgetown SEO tag -->
+
+
+<link type="application/atom+xml" rel="alternate" href="https://mariochavez.io/feed.xml" title="Mario Alberto Chávez Cárdenas" />
+
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+<link rel="stylesheet" href="/assets/index.XK2I5QP5.css" />
+<script src="/assets/index.6WSZNJGR.js" defer></script>
+
+
+  </head>
+  <body class="min-h-screen antialiased post ">
+    <section class="flex flex-nowrap">
+      <aside class="sticky top-0 flex flex-col hidden w-64 max-h-screen min-h-screen bg-gray-100 xl:w-96 lg:block">
+  <div class="px-8 xl:px-10">
+    <header class="py-14">
+      <h1 class="font-sans text-3xl font-medium tracking-widest text-gray-700 uppercase">Mario Alberto Chávez Cárdenas</h1>
+      <h2 class="mt-4 font-serif text-lg italic tracking-wide text-gray-500 font-extralight">Blog personal de fotografía y desarrollo de software</h2>
+    </header>
+
+    <nav class="lg:flex-grow lg:py-14">
+  <ul>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/">Inicio</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/desarrollo">Desarrollo</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/fotografía">Fotografía</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/proyectos">Proyectos</a></li>
+    <li class="font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/acercade">Acerca de</a></li>
+  </ul>
+</nav>
+
+
+    <footer class="py-8 lg:py-14">
+  <div class="flex space-x-4">
+    <a href="https://twitter.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24" class="w-4 h-4"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+    </a>
+    <a href="https://instagram.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="none" viewBox="0 0 24 24" class="w-4 h-4"><path d="M15.233 5.488c-.843-.038-1.097-.046-3.233-.046s-2.389.008-3.232.046c-2.17.099-3.181 1.127-3.279 3.279-.039.844-.048 1.097-.048 3.233s.009 2.389.047 3.233c.099 2.148 1.106 3.18 3.279 3.279.843.038 1.097.047 3.233.047 2.137 0 2.39-.008 3.233-.046 2.17-.099 3.18-1.129 3.279-3.279.038-.844.046-1.097.046-3.233s-.008-2.389-.046-3.232c-.099-2.153-1.111-3.182-3.279-3.281zm-3.233 10.62c-2.269 0-4.108-1.839-4.108-4.108 0-2.269 1.84-4.108 4.108-4.108s4.108 1.839 4.108 4.108c0 2.269-1.839 4.108-4.108 4.108zm4.271-7.418c-.53 0-.96-.43-.96-.96s.43-.96.96-.96.96.43.96.96-.43.96-.96.96zm-1.604 3.31c0 1.473-1.194 2.667-2.667 2.667s-2.667-1.194-2.667-2.667c0-1.473 1.194-2.667 2.667-2.667s2.667 1.194 2.667 2.667zm4.333-12h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm.952 15.298c-.132 2.909-1.751 4.521-4.653 4.654-.854.039-1.126.048-3.299.048s-2.444-.009-3.298-.048c-2.908-.133-4.52-1.748-4.654-4.654-.039-.853-.048-1.125-.048-3.298 0-2.172.009-2.445.048-3.298.134-2.908 1.748-4.521 4.654-4.653.854-.04 1.125-.049 3.298-.049s2.445.009 3.299.048c2.908.133 4.523 1.751 4.653 4.653.039.854.048 1.127.048 3.299 0 2.173-.009 2.445-.048 3.298z"/></svg>
+    </a>
+  </div>
+  <p class="mt-4 font-sans text-xs font-light tracking-wider text-gray-500 xl:text-sm">©2021. Mario Alberto Chávez Cárdenas</p>
+</footer>
+
+  </div>
+</aside>
+
+
+      <main class="flex-auto overflow-hidden text-gray-700">
+        <header class="flex flex-col bg-gray-100 lg:hidden" data-controller="menu">
+  <div class="flex flex-col w-full px-8 md:flex-row xl:px-10">
+    <div class="w-full pt-12 pb-6 md:py-12">
+      <a href="/">
+        <h1 class="font-sans text-lg font-medium tracking-widest text-gray-700 uppercase md:text-2xl">Mario Alberto Chávez Cárdenas</h1>
+      </a>
+      <h2 class="mt-4 font-serif text-xs italic tracking-wide text-gray-500 md:text-lg font-extralight">Blog personal de fotografía y desarrollo de software</h2>
+    </div>
+
+    <div class="pb-6 md:py-12 md:pl-4 md:self-center md:justify-self-end md:pl-0">
+      <a href="#" class="inline-flex items-center px-4 py-2 border border-gray-500 md:flex hover:text-red-500 hover:border-red-500" data-action="menu#toggle">
+        <span class="font-semibold text-md md:text-lg">Menú</span>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-4 h-4 ml-4" data-menu-target="closed">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hidden w-4 h-4 ml-4" data-menu-target="opened">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <div data-menu-target="submenu" class="hidden w-full px-8">
+    <nav class="lg:flex-grow lg:py-14">
+  <ul>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/">Inicio</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/desarrollo">Desarrollo</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/fotografía">Fotografía</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/proyectos">Proyectos</a></li>
+    <li class="font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/acercade">Acerca de</a></li>
+  </ul>
+</nav>
+
+
+    <footer class="py-8 lg:py-14">
+  <div class="flex space-x-4">
+    <a href="https://twitter.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24" class="w-4 h-4"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+    </a>
+    <a href="https://instagram.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="none" viewBox="0 0 24 24" class="w-4 h-4"><path d="M15.233 5.488c-.843-.038-1.097-.046-3.233-.046s-2.389.008-3.232.046c-2.17.099-3.181 1.127-3.279 3.279-.039.844-.048 1.097-.048 3.233s.009 2.389.047 3.233c.099 2.148 1.106 3.18 3.279 3.279.843.038 1.097.047 3.233.047 2.137 0 2.39-.008 3.233-.046 2.17-.099 3.18-1.129 3.279-3.279.038-.844.046-1.097.046-3.233s-.008-2.389-.046-3.232c-.099-2.153-1.111-3.182-3.279-3.281zm-3.233 10.62c-2.269 0-4.108-1.839-4.108-4.108 0-2.269 1.84-4.108 4.108-4.108s4.108 1.839 4.108 4.108c0 2.269-1.839 4.108-4.108 4.108zm4.271-7.418c-.53 0-.96-.43-.96-.96s.43-.96.96-.96.96.43.96.96-.43.96-.96.96zm-1.604 3.31c0 1.473-1.194 2.667-2.667 2.667s-2.667-1.194-2.667-2.667c0-1.473 1.194-2.667 2.667-2.667s2.667 1.194 2.667 2.667zm4.333-12h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm.952 15.298c-.132 2.909-1.751 4.521-4.653 4.654-.854.039-1.126.048-3.299.048s-2.444-.009-3.298-.048c-2.908-.133-4.52-1.748-4.654-4.654-.039-.853-.048-1.125-.048-3.298 0-2.172.009-2.445.048-3.298.134-2.908 1.748-4.521 4.654-4.653.854-.04 1.125-.049 3.298-.049s2.445.009 3.299.048c2.908.133 4.523 1.751 4.653 4.653.039.854.048 1.127.048 3.299 0 2.173-.009 2.445-.048 3.298z"/></svg>
+    </a>
+  </div>
+  <p class="mt-4 font-sans text-xs font-light tracking-wider text-gray-500 xl:text-sm">©2021. Mario Alberto Chávez Cárdenas</p>
+</footer>
+
+  </div>
+</header>
+
+        <article class="py-16 font-serif lg:py-24 post">
+  <header class="px-4 m-auto md:max-w-2xl lg:max-w-4xl">
+    <a href="/desarrollo" class="pb-1 text-sm font-bold leading-normal uppercase border-b-4 border-gray-200 transition-all hover:text-red-500">desarrollo</a>
+    <h1 class="mt-6 text-3xl font-bold tracking-wide md:text-4xl lg:text-6xl">Proteger tu aplicación de ataques en Internet</h1>
+  </header>
+
+  <div class="px-4 m-auto mt-16 tracking-wider md:max-w-2xl lg:max-w-4xl prose md:prose-lg">
+    <figure class="mt-16 aspect-w-16 aspect-h-9">
+      <img src="/images/seguridad/rack-attack.jpg" loading="lazy" />
+    </figure>
+
+    <p>El Internet es una gran tecnología en su conjunto que ha cambiado la dinámica de la humanidad para consumir, publicar y realizar un sin fin de actividades que antes requerían de nuestra presencia física. Con todo lo bueno también existe una parte oscura. Hay personas que buscan encontrar problemas de seguridad, errores de programación que les de acceso a información privada o restringida.</p>
+
+<p>En la mayoría existen quienes utilizan scripts para probar por problemas de seguridad conocidos, hay quienes utilizan diccionarios para tratar de acceder por fuerza bruta, hay quienes utilizar ingeniería social para obtener accesos entre otros tipos de ataques.</p>
+
+<p>El Internet no es un lugar seguro.</p>
+
+<h2 id="cómo-proteger-nuestra-aplicación">¿Cómo proteger nuestra aplicación?</h2>
+
+<p>Hay diferentes opciones para proteger nuestras aplicaciones de problemas de seguridad y de cierto tipo de ataques.</p>
+
+<p>Una de las más simples pero que implica un costo es poner nuestra aplicación detrás de un servicio <a href="https://www.cloudflare.com/" target="_blank">Cloudflare</a> que se encarga de detener la mayoría de las amenazas posibles.</p>
+
+<p>Si nuestra aplicación está escrita en Ruby (o Ruby on Rails) - y así lo asumiré de este momento en adelante -  siempre hay que asegurarnos que las librerías estén actualizadas a la versión más reciente para asegurar que si hay algún problema de seguridad en ellas estemos utilizando una versión con la corrección. La forma simple de estar al tanto de problemas de seguridad con librerías en Ruby es a través de <a href="https://github.com/rubysec/bundler-audit" target="_blank">Bundle Audit</a>.</p>
+
+<p>Otra herramienta básica es <a href="https://brakemanscanner.org/" target="_blank">Brakeman</a> el cuál es un escáner de código busca por problemas relacionados código inseguro, falta de “sanitización” de parámetros, posibles problemas de explotación de SQL y otros más.</p>
+
+<p>Ambas herramientas se pueden automatizar en el proceso de desarrollo con herramientas como <a href="https://github.com/Arkweid/lefthook" target="_blank">Lefthook</a> que ayuda a configurar hooks de Git. También es posible automatizar las revisiones en los procesos de CI.</p>
+
+<p>Dependiendo del tamaño de tu aplicación y de las regulaciones a la que esté sujeta puedes requerir de auditorías de terceros para verificar la seguridad de su aplicación.</p>
+
+<p>Aún siguiendo al pie de la letra los pasos anteriores es necesario implementar algunas medidas adicionales que limiten que nuestra aplicación sea vulnerable.</p>
+
+<h1 id="rack-attack">Rack Attack</h1>
+
+<p><a href="https://github.com/kickstarter/rack-attack" target="_blank">Rack::Atack</a> es una librería escrita por Kickstarter y que funciona como middleware de Rack para proteger nuestra aplicaciones de clientes maliciosos o abusivos. Al funcionar como middleware en nuestras aplicaciones nos aseguramos de detener <em>“requests”</em> antes de que lleguen al código de nuestra aplicación.</p>
+
+<p>Comenzar con Rack::Attack es bastante simple para el valor que agrega. Obviamente hay que agregar la libreria a nuestro <code class="highlighter-rouge">Gemfile</code>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bundle add rack-attack
+</code></pre></div></div>
+
+<p>Después hay que activar el middleware en el archivo <code class="highlighter-rouge">config/application.rb</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>config.middleware.use Rack::Attack
+</code></pre></div></div>
+
+<p>Y creamos un inicializador donde vamos a configurar nuestra protección <code class="highlighter-rouge">config/initializers/rack_attack.rb</code>. Lo primero que debemos de hacer es activar Rack::Attack pero únicamente lo ocupamos para ambientes de Producción y Desarrollo.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Rack</span><span class="o">::</span><span class="no">Attack</span><span class="p">.</span><span class="nf">enabled</span> <span class="o">=</span> <span class="o">!</span><span class="no">Rails</span><span class="p">.</span><span class="nf">env</span><span class="p">.</span><span class="nf">test?</span>
+</code></pre></div></div>
+
+<h2 id="throttle-o-regulación">throttle o regulación</h2>
+
+<p>La primer capa de protección de vamos a utilizar es <em>“throttle”</em> o regulación. Esta medida sirve para detener a aquellos clientes que estén haciendo demasiadas solicitudes en un periodo de tiempo definido por nosotros. Por ejemplo si alguien esta haciendo un “screen scraping” a nuestra aplicación lo podemos detener con el siguiente bloque de configuración.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Rack</span><span class="o">::</span><span class="no">Attack</span><span class="p">.</span><span class="nf">throttle</span><span class="p">(</span><span class="s2">"requests by ip"</span><span class="p">,</span> <span class="ss">limit: </span><span class="mi">5</span><span class="p">,</span> <span class="ss">period: </span><span class="mi">2</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">request</span><span class="o">|</span>
+  <span class="n">request</span><span class="p">.</span><span class="nf">ip</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Esto limita a que por dirección IP sólo se puedan hacer 5 solicitudes en un lapso de dos segundos. Si el cliente sobrepasa los límites entonces recibirá una respuesta del servidor con el estatus 429 que significa <em>“Too Many Requests”</em>. Es importante notar que para que <em>“throttle”</em> funcione nuestra aplicación de Rails debe tener configurado el <a href="https://guides.rubyonrails.org/caching_with_rails.html#cache-stores">cache</a> ya que Rack::Attack utiliza el cache para llevar el conteo y determinar si bloquea o no la solicitud.</p>
+
+<p>Otra aplicación de <em>“throttle”</em> es la posibilidad de evitar el ataque de diccionario a la página de iniciar sesión.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Rack</span><span class="o">::</span><span class="no">Attack</span><span class="p">.</span><span class="nf">throttle</span><span class="p">(</span><span class="s1">'limit logins per email'</span><span class="p">,</span> <span class="ss">limit: </span><span class="mi">5</span><span class="p">,</span> <span class="ss">period: </span><span class="mi">1</span><span class="p">.</span><span class="nf">minute</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">req</span><span class="o">|</span>
+  <span class="k">if</span> <span class="n">req</span><span class="p">.</span><span class="nf">path</span> <span class="o">==</span> <span class="s1">'/login'</span> <span class="o">&amp;&amp;</span> <span class="n">req</span><span class="p">.</span><span class="nf">post?</span>
+    <span class="n">req</span><span class="p">.</span><span class="nf">params</span><span class="p">[</span><span class="s1">'email'</span><span class="p">]</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Por ejemplo en este caso si la ruta solicitada es la de la página de iniciar sesión y se ha intentado más de 5 ocasiones con una contraseña incorrecta para el mismo correo electrónico en 1 minuto entonces se bloquea al cliente con el estatus 429.</p>
+
+<p>Otro ejemplo es el controlar cuantas solicitudes un cliente puede realizar por segundo.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Rack</span><span class="o">::</span><span class="no">Attack</span><span class="p">.</span><span class="nf">throttle</span><span class="p">(</span><span class="s1">'limit API request'</span><span class="p">,</span> <span class="ss">limit: </span><span class="mi">30</span><span class="p">,</span> <span class="ss">period: </span><span class="mi">1</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">req</span><span class="o">|</span>
+  <span class="k">if</span> <span class="n">req</span><span class="p">.</span><span class="nf">path</span> <span class="o">==</span> <span class="s1">'/api'</span>
+    <span class="n">req</span><span class="p">.</span><span class="nf">env</span><span class="p">[</span><span class="s2">"HTTP_AUTHORIZATION"</span><span class="p">]</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>En este caso de los encabezados utilizamos el valor del API_KEY como llave para llevar el conteo de solicitudes. Para este caso del API además debemos configurar una respuesta al cliente donde le indiquemos los encabezados de Límite, Cuantas solicitudes le quedan y el tiempo antes de que se reinicie el contador. Para esto declaramos el siguiente bloque.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Rack</span><span class="o">::</span><span class="no">Attack</span><span class="p">.</span><span class="nf">throttled_response</span> <span class="o">=</span> <span class="nb">lambda</span> <span class="k">do</span> <span class="o">|</span><span class="n">env</span><span class="o">|</span>
+  <span class="n">match_data</span> <span class="o">=</span> <span class="n">env</span><span class="p">[</span><span class="s2">"rack.attack.match_data"</span><span class="p">]</span>
+  <span class="n">now</span> <span class="o">=</span> <span class="n">match_data</span><span class="p">[</span><span class="ss">:epoch_time</span><span class="p">]</span>
+
+  <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"RateLimit-Limit"</span> <span class="o">=&gt;</span> <span class="n">match_data</span><span class="p">[</span><span class="ss">:limit</span><span class="p">].</span><span class="nf">to_s</span><span class="p">,</span>
+    <span class="s2">"RateLimit-Remaining"</span> <span class="o">=&gt;</span> <span class="s2">"0"</span><span class="p">,</span>
+    <span class="s2">"RateLimit-Reset"</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="n">now</span> <span class="o">+</span> <span class="p">(</span><span class="n">match_data</span><span class="p">[</span><span class="ss">:period</span><span class="p">]</span> <span class="o">-</span> <span class="n">now</span> <span class="o">%</span> <span class="n">match_data</span><span class="p">[</span><span class="ss">:period</span><span class="p">])).</span><span class="nf">to_s</span>
+  <span class="p">}</span>
+
+  <span class="p">[</span><span class="mi">429</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="p">[</span><span class="s2">"Throttled request"</span><span class="p">]]</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>El tiempo se muestra en <a href="https://www.epochconverter.com/">epoch</a>. El cliente siempre recibirá en los encabezados la respuesta la siguiente información.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">HTTP</span><span class="o">/</span><span class="mf">1.1</span> <span class="mi">429</span> <span class="no">Too</span> <span class="no">Many</span> <span class="no">Requests</span>
+<span class="no">RateLimit</span><span class="o">-</span><span class="no">Limit</span><span class="p">:</span> <span class="mi">30</span>
+<span class="no">RateLimit</span><span class="o">-</span><span class="no">Remaining</span><span class="p">:</span> <span class="mi">0</span>
+<span class="no">RateLimit</span><span class="o">-</span><span class="no">Reset</span><span class="p">:</span> <span class="mi">1592260020</span>
+</code></pre></div></div>
+
+<p>Podemos tener varios bloques que regulen a clientes que pueden estar abusando de nuestra aplicación. Rack::Attack aplicará los bloque de arriba hacia abajo y le impondrá la limitación que se cumpla primero.</p>
+
+<h2 id="bloqueo">Bloqueo</h2>
+
+<p>Otra opción de Rack::Atack es el bloquear a clientes ofensivos aplicando diferentes reglas. el bloqueo puede ser permanente o temporal.</p>
+
+<p>La forma más básica es el bloqueo de direcciones IP o de segmentos de red como se muestra continuación.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Rack</span><span class="o">::</span><span class="no">Attack</span><span class="p">.</span><span class="nf">blocklist_ip</span><span class="p">(</span><span class="s2">"1.2.3.4"</span><span class="p">)</span>
+<span class="no">Rack</span><span class="o">::</span><span class="no">Attack</span><span class="p">.</span><span class="nf">blocklist_ip</span><span class="p">(</span><span class="s2">"1.2.0.0/16"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Otra forma de bloquear es a través de reglas estáticas, por ejemplo si nuestra aplicación es Rails a la mejor alguien está ejecutando un script para encontrar vulnerabilidades de PHP o buscando acceder al archivo de contraseñas del servidor.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Rack</span><span class="o">::</span><span class="no">Attack</span><span class="p">.</span><span class="nf">blocklist</span><span class="p">(</span><span class="s2">"block script kidz"</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">req</span><span class="o">|</span>
+  <span class="no">CGI</span><span class="p">.</span><span class="nf">unescape</span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="nf">query_string</span><span class="p">)</span> <span class="o">=~</span> <span class="sr">%r{/etc/passwd}</span> <span class="o">||</span>
+  <span class="n">req</span><span class="p">.</span><span class="nf">path</span><span class="p">.</span><span class="nf">include?</span><span class="p">(</span><span class="s2">"/etc/passwd"</span><span class="p">)</span> <span class="o">||</span>
+  <span class="n">req</span><span class="p">.</span><span class="nf">path</span><span class="p">.</span><span class="nf">include?</span><span class="p">(</span><span class="s2">"wp-admin"</span><span class="p">)</span> <span class="o">||</span>
+  <span class="n">req</span><span class="p">.</span><span class="nf">path</span><span class="p">.</span><span class="nf">include?</span><span class="p">(</span><span class="s2">"wp-login"</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>El bloqueo no tiene que ser final con Rack<mark>Attack, es posible realizar un bloqueo temporal mediante el uso de `Rack</mark>Attack::Allow2Ban.filter`. Por ejemplo, a la mejor queremos bloquear temporalmente a el cliente que este tratando de iniciar sesión pero lo ha intentado al menos 3 ocasiones en 5 minutos; en este caso lo queremos bloquear por 30 minutos.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Rack</span><span class="o">::</span><span class="no">Attack</span><span class="p">.</span><span class="nf">blocklist</span><span class="p">(</span><span class="s2">"allow2ban login scrapers"</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">req</span><span class="o">|</span>
+  <span class="no">Rack</span><span class="o">::</span><span class="no">Attack</span><span class="o">::</span><span class="no">Allow2Ban</span><span class="p">.</span><span class="nf">filter</span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="nf">ip</span><span class="p">,</span> <span class="ss">maxretry: </span><span class="mi">3</span><span class="p">,</span> <span class="ss">findtime: </span><span class="mi">5</span><span class="p">.</span><span class="nf">minutes</span><span class="p">,</span> <span class="ss">bantime: </span><span class="mi">30</span><span class="p">.</span><span class="nf">minutes</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">req</span><span class="p">.</span><span class="nf">path</span> <span class="o">==</span> <span class="s2">"/login"</span> <span class="n">and</span> <span class="n">req</span><span class="p">.</span><span class="nf">post?</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Rack<mark>Attack también tiene `Rack</mark>Attack::Fail2Ban<code class="highlighter-rouge"> que nos permite bloquear temporalmente si la solicitud falla, por ejemplo, alguien que este buscado </code>/images/` cambiando el identificador.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Rack</span><span class="o">::</span><span class="no">Attack</span><span class="p">.</span><span class="nf">blocklist</span><span class="p">(</span><span class="s2">"fail2ban scrapper"</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">req</span><span class="o">|</span>
+  <span class="no">Rack</span><span class="o">::</span><span class="no">Attack</span><span class="o">::</span><span class="no">Fail2Ban</span><span class="p">.</span><span class="nf">filter</span><span class="p">(</span><span class="s2">"scrappers-</span><span class="si">#{</span><span class="n">req</span><span class="p">.</span><span class="nf">ip</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="ss">maxretry: </span><span class="mi">3</span><span class="p">,</span> <span class="ss">findtime: </span><span class="mi">10</span><span class="p">.</span><span class="nf">minutes</span><span class="p">,</span> <span class="ss">bantime: </span><span class="mi">30</span><span class="p">.</span><span class="nf">minutes</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">req</span><span class="p">.</span><span class="nf">path</span><span class="p">.</span><span class="nf">include?</span><span class="p">(</span><span class="s2">"/images"</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h2 id="permitir-acceso">Permitir acceso</h2>
+
+<p>El permitir acceso o acceso seguro es una manera de definir quienes tienen acceso sin pasar por las otras reglas. Por ejemplo, es posible definir direcciones IP o segmentos de red.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Rack</span><span class="o">::</span><span class="no">Attack</span><span class="p">.</span><span class="nf">safelist_ip</span><span class="p">(</span><span class="s2">"5.6.7.8"</span><span class="p">)</span>
+<span class="no">Rack</span><span class="o">::</span><span class="no">Attack</span><span class="p">.</span><span class="nf">safelist_ip</span><span class="p">(</span><span class="s2">"5.6.7.0/24"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Aunque también es posible definir bloques, por ejemplo, para permitir el acceso desde el <em>localhost</em>.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Rack</span><span class="o">::</span><span class="no">Attack</span><span class="p">.</span><span class="nf">safelist</span><span class="p">(</span><span class="s2">"allow from localhost"</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">req</span><span class="o">|</span>
+  <span class="s2">"127.0.0.1"</span> <span class="o">==</span> <span class="n">req</span><span class="p">.</span><span class="nf">ip</span> <span class="o">||</span> <span class="s2">"::1"</span> <span class="o">==</span> <span class="n">req</span><span class="p">.</span><span class="nf">ip</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h2 id="configurando-nuestras-políticas-de-acceso">Configurando nuestras políticas de acceso</h2>
+
+<p>Todas las reglas mencionadas pueden integrarse en conjunto para decidir como deseamos proteger nuestra aplicación. Inclusive pueden existir múltiples reglas para cada tipo. Sólo debemos tener en cuenta la precedencia de las reglas.</p>
+
+<p>Las reglas del mismo tipo se leen de arriba hacia abajo y se van aplicando en ese orden. Rack::Attack ejecuta los tipos de reglas iniciando con <strong>Permitir Acceso</strong>, <strong>Bloque</strong> y <strong>Regularización</strong>. La primer regla que se cumpla para un cliente es la primera que se aplica.</p>
+
+<h2 id="notas-finales">Notas finales</h2>
+
+<p>Como se puede apreciar con Rack::Attack se pueden crear políticas simples o muy complejas que nos ayuden a proteger nuestra aplicación de clientes maliciosos o simplemente proteger ciertas áreas de nuestra aplicación más allá de simplemente un usuario y contraseña.</p>
+
+<p>La seguridad es un tema importante que no podemos obviar o ignorar cuando publicamos una aplicación en internet. Espero que esta guía rápida sea de ayuda proteger tu aplicación de Ruby.</p>
+
+  </div>
+</article>
+
+      </main>
+    </section>
+
+  </body>
+</html>

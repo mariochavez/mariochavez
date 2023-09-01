@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- Begin Bridgetown SEO tag v5.0.0 -->
+<title>Full-text search with SQLite and Rails | Mario Alberto Chávez Cárdenas</title>
+<meta property="og:title" content="Full-text search with SQLite and Rails" />
+<meta name="author" content="Mario Alberto Chávez Cárdenas" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="Integrate SQLite fts5 extension for Full-text search in Ruby on Rails applications." />
+<meta property="og:description" content="Integrate SQLite fts5 extension for Full-text search in Ruby on Rails applications." />
+<link rel="canonical" href="https://mariochavez.io/desarrollo/2023/09/01/full-text-search-with-sqlite-and-rails/" />
+<meta property="og:url" content="https://mariochavez.io/desarrollo/2023/09/01/full-text-search-with-sqlite-and-rails/" />
+<meta property="og:site_name" content="Mario Alberto Chávez Cárdenas" />
+<meta property="og:image" content="https://mariochavez.io/images/full-text-search/full-text-search.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-09-01T06:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://mariochavez.io/images/full-text-search/full-text-search.jpg" />
+<meta property="twitter:title" content="Full-text search with SQLite and Rails" />
+<meta name="twitter:site" content="@mario_chavez" />
+<meta name="twitter:creator" content="@Mario Alberto Chávez Cárdenas" />
+<!-- End Bridgetown SEO tag -->
+
+
+<link type="application/atom+xml" rel="alternate" href="https://mariochavez.io/feed.xml" title="Mario Alberto Chávez Cárdenas" />
+
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+<link rel="stylesheet" href="/assets/index.XK2I5QP5.css" />
+<script src="/assets/index.6WSZNJGR.js" defer></script>
+
+
+  </head>
+  <body class="min-h-screen antialiased post ">
+    <section class="flex flex-nowrap">
+      <aside class="sticky top-0 flex flex-col hidden w-64 max-h-screen min-h-screen bg-gray-100 xl:w-96 lg:block">
+  <div class="px-8 xl:px-10">
+    <header class="py-14">
+      <h1 class="font-sans text-3xl font-medium tracking-widest text-gray-700 uppercase">Mario Alberto Chávez Cárdenas</h1>
+      <h2 class="mt-4 font-serif text-lg italic tracking-wide text-gray-500 font-extralight">Blog personal de fotografía y desarrollo de software</h2>
+    </header>
+
+    <nav class="lg:flex-grow lg:py-14">
+  <ul>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/">Inicio</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/desarrollo">Desarrollo</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/fotografía">Fotografía</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/proyectos">Proyectos</a></li>
+    <li class="font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/acercade">Acerca de</a></li>
+  </ul>
+</nav>
+
+
+    <footer class="py-8 lg:py-14">
+  <div class="flex space-x-4">
+    <a href="https://twitter.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24" class="w-4 h-4"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+    </a>
+    <a href="https://instagram.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="none" viewBox="0 0 24 24" class="w-4 h-4"><path d="M15.233 5.488c-.843-.038-1.097-.046-3.233-.046s-2.389.008-3.232.046c-2.17.099-3.181 1.127-3.279 3.279-.039.844-.048 1.097-.048 3.233s.009 2.389.047 3.233c.099 2.148 1.106 3.18 3.279 3.279.843.038 1.097.047 3.233.047 2.137 0 2.39-.008 3.233-.046 2.17-.099 3.18-1.129 3.279-3.279.038-.844.046-1.097.046-3.233s-.008-2.389-.046-3.232c-.099-2.153-1.111-3.182-3.279-3.281zm-3.233 10.62c-2.269 0-4.108-1.839-4.108-4.108 0-2.269 1.84-4.108 4.108-4.108s4.108 1.839 4.108 4.108c0 2.269-1.839 4.108-4.108 4.108zm4.271-7.418c-.53 0-.96-.43-.96-.96s.43-.96.96-.96.96.43.96.96-.43.96-.96.96zm-1.604 3.31c0 1.473-1.194 2.667-2.667 2.667s-2.667-1.194-2.667-2.667c0-1.473 1.194-2.667 2.667-2.667s2.667 1.194 2.667 2.667zm4.333-12h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm.952 15.298c-.132 2.909-1.751 4.521-4.653 4.654-.854.039-1.126.048-3.299.048s-2.444-.009-3.298-.048c-2.908-.133-4.52-1.748-4.654-4.654-.039-.853-.048-1.125-.048-3.298 0-2.172.009-2.445.048-3.298.134-2.908 1.748-4.521 4.654-4.653.854-.04 1.125-.049 3.298-.049s2.445.009 3.299.048c2.908.133 4.523 1.751 4.653 4.653.039.854.048 1.127.048 3.299 0 2.173-.009 2.445-.048 3.298z"/></svg>
+    </a>
+  </div>
+  <p class="mt-4 font-sans text-xs font-light tracking-wider text-gray-500 xl:text-sm">©2021. Mario Alberto Chávez Cárdenas</p>
+</footer>
+
+  </div>
+</aside>
+
+
+      <main class="flex-auto overflow-hidden text-gray-700">
+        <header class="flex flex-col bg-gray-100 lg:hidden" data-controller="menu">
+  <div class="flex flex-col w-full px-8 md:flex-row xl:px-10">
+    <div class="w-full pt-12 pb-6 md:py-12">
+      <a href="/">
+        <h1 class="font-sans text-lg font-medium tracking-widest text-gray-700 uppercase md:text-2xl">Mario Alberto Chávez Cárdenas</h1>
+      </a>
+      <h2 class="mt-4 font-serif text-xs italic tracking-wide text-gray-500 md:text-lg font-extralight">Blog personal de fotografía y desarrollo de software</h2>
+    </div>
+
+    <div class="pb-6 md:py-12 md:pl-4 md:self-center md:justify-self-end md:pl-0">
+      <a href="#" class="inline-flex items-center px-4 py-2 border border-gray-500 md:flex hover:text-red-500 hover:border-red-500" data-action="menu#toggle">
+        <span class="font-semibold text-md md:text-lg">Menú</span>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-4 h-4 ml-4" data-menu-target="closed">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hidden w-4 h-4 ml-4" data-menu-target="opened">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <div data-menu-target="submenu" class="hidden w-full px-8">
+    <nav class="lg:flex-grow lg:py-14">
+  <ul>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/">Inicio</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/desarrollo">Desarrollo</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/fotografía">Fotografía</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/proyectos">Proyectos</a></li>
+    <li class="font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/acercade">Acerca de</a></li>
+  </ul>
+</nav>
+
+
+    <footer class="py-8 lg:py-14">
+  <div class="flex space-x-4">
+    <a href="https://twitter.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24" class="w-4 h-4"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+    </a>
+    <a href="https://instagram.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="none" viewBox="0 0 24 24" class="w-4 h-4"><path d="M15.233 5.488c-.843-.038-1.097-.046-3.233-.046s-2.389.008-3.232.046c-2.17.099-3.181 1.127-3.279 3.279-.039.844-.048 1.097-.048 3.233s.009 2.389.047 3.233c.099 2.148 1.106 3.18 3.279 3.279.843.038 1.097.047 3.233.047 2.137 0 2.39-.008 3.233-.046 2.17-.099 3.18-1.129 3.279-3.279.038-.844.046-1.097.046-3.233s-.008-2.389-.046-3.232c-.099-2.153-1.111-3.182-3.279-3.281zm-3.233 10.62c-2.269 0-4.108-1.839-4.108-4.108 0-2.269 1.84-4.108 4.108-4.108s4.108 1.839 4.108 4.108c0 2.269-1.839 4.108-4.108 4.108zm4.271-7.418c-.53 0-.96-.43-.96-.96s.43-.96.96-.96.96.43.96.96-.43.96-.96.96zm-1.604 3.31c0 1.473-1.194 2.667-2.667 2.667s-2.667-1.194-2.667-2.667c0-1.473 1.194-2.667 2.667-2.667s2.667 1.194 2.667 2.667zm4.333-12h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm.952 15.298c-.132 2.909-1.751 4.521-4.653 4.654-.854.039-1.126.048-3.299.048s-2.444-.009-3.298-.048c-2.908-.133-4.52-1.748-4.654-4.654-.039-.853-.048-1.125-.048-3.298 0-2.172.009-2.445.048-3.298.134-2.908 1.748-4.521 4.654-4.653.854-.04 1.125-.049 3.298-.049s2.445.009 3.299.048c2.908.133 4.523 1.751 4.653 4.653.039.854.048 1.127.048 3.299 0 2.173-.009 2.445-.048 3.298z"/></svg>
+    </a>
+  </div>
+  <p class="mt-4 font-sans text-xs font-light tracking-wider text-gray-500 xl:text-sm">©2021. Mario Alberto Chávez Cárdenas</p>
+</footer>
+
+  </div>
+</header>
+
+        <article class="py-16 font-serif lg:py-24 post">
+  <header class="px-4 m-auto md:max-w-2xl lg:max-w-4xl">
+    <a href="/desarrollo" class="pb-1 text-sm font-bold leading-normal uppercase border-b-4 border-gray-200 transition-all hover:text-red-500">desarrollo</a>
+    <h1 class="mt-6 text-3xl font-bold tracking-wide md:text-4xl lg:text-6xl">Full-text search with SQLite and Rails</h1>
+  </header>
+
+  <div class="px-4 m-auto mt-16 tracking-wider md:max-w-2xl lg:max-w-4xl prose md:prose-lg">
+    <figure class="mt-16 aspect-w-16 aspect-h-9">
+      <img src="/images/full-text-search/full-text-search.jpg" loading="lazy" />
+    </figure>
+
+    <p>Today, I planned to move a few small Ruby on Rails applications with Heroku using <a href="https://kamal-deploy.org/">Kamal</a> onto a single server. All applications use PostgreSQL as the database because it is simple to use with Heroku and because they take advantage of Postgres’ full-text search.</p>
+
+<p>Because of the size and usage of those applications, I was not convinced that I wanted to manage my own PostgreSQL server or pay for a managed service. So, I started to consider replacing the database with <a href="https://www.sqlite.org/index.html">SQLite</a>. At least in my feed at <a href="https://x.com/mario_chavez">X</a>, I have seen so many posts in the past few months on how good and fast it is.</p>
+
+<p>I wanted something like the <a href="https://github.com/Casecommons/pg_search#pg_search_scope">pg_search</a> gem, where I could define a scope name and the fields to be indexed. On the SQLite side, I found that it has an extension called <a href="https://www.sqlite.org/fts5.html">FTS5</a>, which is defined as:</p>
+
+<blockquote>
+  <p>FTS5 is an SQLite <a href="https://www.sqlite.org/c3ref/module.html">virtual table module</a> that provides <a href="https://en.wikipedia.org/wiki/Full_text_search">full-text search</a> functionality to database applications. In their most elementary form, full-text search engines allow the user to efficiently search a large collection of documents for the subset that contains one or more instances of a search term. The search functionality provided to World Wide Web users by Google is, among other things, a full-text search engine, as it allows users to search for all documents on the web that contain, for example, the term “fts5”.</p>
+
+</blockquote>
+
+<p>This looked promising, so I started implementing a quick and dirty solution for my needs.
+Starting from a model Post with title and content attributes, I want to define a <code class="highlighter-rouge">full_search</code> scope and indicate the attributes to index for full-text search.</p>
+
+<p>Something like this:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Post</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="kp">include</span> <span class="no">SqliteSearch</span>
+
+  <span class="n">search_scope</span><span class="p">(</span><span class="ss">:title</span><span class="p">,</span> <span class="ss">:content</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Where <code class="highlighter-rouge">SqliteSearch</code> is the module that does the heavy work. Before continuing with the implementation, there are decisions to be made regarding how to store the indexed data in the database. A virtual table is required to store the indexed data; one option is to create a single table for this purpose with a <code class="highlighter-rouge">record_type</code> and <code class="highlighter-rouge">record_id</code> fields to identify the data per model type, just like the way it works for ActiveStorage or ActionText in Rails.</p>
+
+<p>The second option is to create a table per indexed model. I chose this option since not all my models require this functionality. The migration for this table is as follows:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">PostSearch</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span><span class="p">[</span><span class="mf">7.0</span><span class="p">]</span>
+  <span class="k">def</span> <span class="nf">up</span>
+    <span class="n">execute</span><span class="p">(</span><span class="s2">"CREATE VIRTUAL TABLE fts_posts USING fts5(title, content, post_id)"</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">down</span>
+    <span class="n">execute</span><span class="p">(</span><span class="s2">"DROP TABLE IF EXISTS fts_posts"</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>The table name follows the Rails convention, but it adds the prefix <code class="highlighter-rouge">fts_</code>. The table fields are the ones that need indexing with the addition of the original record id with the foreign key convention. SQLite virtual tables don’t have data types, primary keys, constraints, or indexes.</p>
+
+<p>The <code class="highlighter-rouge">SqliteSearch</code> module needs to implement a way to add or update the model data to the search index. This is done using the <strong>ActiveRecord</strong> callbacks for save and destroy commit.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="nn">SqliteSearch</span>
+  <span class="kp">extend</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">Concern</span>
+
+  <span class="kp">private</span> <span class="k">def</span> <span class="nf">update_search_index</span>
+    <span class="n">primary_key</span> <span class="o">=</span> <span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="p">.</span><span class="nf">primary_key</span>
+    <span class="n">table_name</span> <span class="o">=</span> <span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="p">.</span><span class="nf">table_name</span>
+    <span class="n">foreign_key</span> <span class="o">=</span> <span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="p">.</span><span class="nf">to_s</span><span class="p">.</span><span class="nf">foreign_key</span>
+
+    <span class="n">search_attrs</span> <span class="o">=</span> <span class="vc">@@search_scope_attrs</span><span class="p">.</span><span class="nf">each_with_object</span><span class="p">({})</span> <span class="p">{</span> <span class="o">|</span><span class="kp">attr</span><span class="p">,</span> <span class="n">acc</span><span class="o">|</span>
+      <span class="n">acc</span><span class="p">[</span><span class="kp">attr</span><span class="p">]</span> <span class="o">=</span> <span class="n">quote_string</span><span class="p">(</span><span class="nb">send</span><span class="p">(</span><span class="kp">attr</span><span class="p">)</span> <span class="o">||</span> <span class="s2">""</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="n">id_value</span> <span class="o">=</span> <span class="n">attributes</span><span class="p">[</span><span class="n">primary_key</span><span class="p">]</span>
+
+    <span class="n">sql_delete</span> <span class="o">=</span> <span class="o">&lt;&lt;~</span><span class="no">SQL</span><span class="p">.</span><span class="nf">strip</span><span class="sh">
+      DELETE FROM fts_</span><span class="si">#{</span><span class="n">table_name</span><span class="si">}</span><span class="sh"> WHERE </span><span class="si">#{</span><span class="n">foreign_key</span><span class="si">}</span><span class="sh"> = </span><span class="si">#{</span><span class="n">id_value</span><span class="si">}</span><span class="sh">;
+</span><span class="no">    SQL</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="p">.</span><span class="nf">connection</span><span class="p">.</span><span class="nf">execute</span><span class="p">(</span><span class="n">sql_delete</span><span class="p">)</span>
+
+    <span class="n">sql_insert</span> <span class="o">=</span> <span class="o">&lt;&lt;~</span><span class="no">SQL</span><span class="p">.</span><span class="nf">strip</span><span class="sh">
+      INSERT INTO fts_</span><span class="si">#{</span><span class="n">table_name</span><span class="si">}</span><span class="sh">(</span><span class="si">#{</span><span class="n">search_attrs</span><span class="p">.</span><span class="nf">keys</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s2">", "</span><span class="p">)</span><span class="si">}</span><span class="sh">, </span><span class="si">#{</span><span class="n">foreign_key</span><span class="si">}</span><span class="sh">)
+      VALUES (</span><span class="si">#{</span><span class="n">search_attrs</span><span class="p">.</span><span class="nf">values</span><span class="p">.</span><span class="nf">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">value</span><span class="o">|</span> <span class="s2">"'</span><span class="si">#{</span><span class="n">value</span><span class="si">}</span><span class="s2">'"</span> <span class="si">}</span><span class="sh">.join(", ")}, </span><span class="si">#{</span><span class="n">attributes</span><span class="p">[</span><span class="n">primary_key</span><span class="p">]</span><span class="si">}</span><span class="sh">);
+</span><span class="no">    SQL</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="p">.</span><span class="nf">connection</span><span class="p">.</span><span class="nf">execute</span><span class="p">(</span><span class="n">sql_insert</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="kp">private</span> <span class="k">def</span> <span class="nf">delete_search_index</span>
+    <span class="n">primary_key</span> <span class="o">=</span> <span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="p">.</span><span class="nf">primary_key</span>
+    <span class="n">table_name</span> <span class="o">=</span> <span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="p">.</span><span class="nf">table_name</span>
+    <span class="n">foreign_key</span> <span class="o">=</span> <span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="p">.</span><span class="nf">to_s</span><span class="p">.</span><span class="nf">foreign_key</span>
+    <span class="n">id_value</span> <span class="o">=</span> <span class="n">attributes</span><span class="p">[</span><span class="n">primary_key</span><span class="p">]</span>
+
+    <span class="n">sql_delete</span> <span class="o">=</span> <span class="o">&lt;&lt;~</span><span class="no">SQL</span><span class="p">.</span><span class="nf">strip</span><span class="sh">
+      DELETE FROM fts_</span><span class="si">#{</span><span class="n">table_name</span><span class="si">}</span><span class="sh"> WHERE </span><span class="si">#{</span><span class="n">foreign_key</span><span class="si">}</span><span class="sh"> = </span><span class="si">#{</span><span class="n">id_value</span><span class="si">}</span><span class="sh">;
+</span><span class="no">    SQL</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="p">.</span><span class="nf">connection</span><span class="p">.</span><span class="nf">execute</span><span class="p">(</span><span class="n">sql_delete</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="n">included</span> <span class="k">do</span>
+    <span class="n">after_save_commit</span> <span class="ss">:update_search_index</span>
+    <span class="n">after_destroy_commit</span> <span class="ss">:delete_search_index</span>
+
+    <span class="n">scope_foreign_key</span> <span class="o">=</span> <span class="nb">to_s</span><span class="p">.</span><span class="nf">foreign_key</span>
+    <span class="n">scope</span> <span class="ss">:full_search</span><span class="p">,</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">query</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="n">none</span> <span class="k">if</span> <span class="n">query</span><span class="p">.</span><span class="nf">blank?</span>
+
+      <span class="n">sql</span> <span class="o">=</span> <span class="o">&lt;&lt;~</span><span class="no">SQL</span><span class="p">.</span><span class="nf">strip</span><span class="sh">
+        SELECT </span><span class="si">#{</span><span class="n">scope_foreign_key</span><span class="si">}</span><span class="sh"> AS id FROM fts_</span><span class="si">#{</span><span class="n">table_name</span><span class="si">}</span><span class="sh">
+        WHERE fts_</span><span class="si">#{</span><span class="n">table_name</span><span class="si">}</span><span class="sh"> = '</span><span class="si">#{</span><span class="n">query</span><span class="si">}</span><span class="sh">' ORDER BY rank;
+</span><span class="no">      SQL</span>
+      <span class="n">ids</span> <span class="o">=</span> <span class="n">connection</span><span class="p">.</span><span class="nf">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">).</span><span class="nf">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:values</span><span class="p">).</span><span class="nf">flatten</span>
+      <span class="n">where</span><span class="p">(</span><span class="ss">id: </span><span class="n">ids</span><span class="p">)</span>
+    <span class="p">}</span>
+  <span class="k">end</span>
+
+  <span class="n">class_methods</span> <span class="k">do</span>
+    <span class="k">def</span> <span class="nf">search_scope</span><span class="p">(</span><span class="o">*</span><span class="n">attrs</span><span class="p">)</span>
+      <span class="vc">@@search_scope_attrs</span> <span class="o">=</span> <span class="n">attrs</span>
+    <span class="k">end</span>
+
+    <span class="k">def</span> <span class="nf">rebuild_search_index</span><span class="p">(</span><span class="o">*</span><span class="n">ids</span><span class="p">)</span>
+      <span class="n">target_ids</span> <span class="o">=</span> <span class="no">Array</span><span class="p">(</span><span class="n">ids</span><span class="p">)</span>
+      <span class="n">target_ids</span> <span class="o">=</span> <span class="nb">self</span><span class="p">.</span><span class="nf">ids</span> <span class="k">if</span> <span class="n">target_ids</span><span class="p">.</span><span class="nf">empty?</span>
+
+      <span class="n">scope_foreign_key</span> <span class="o">=</span> <span class="nb">to_s</span><span class="p">.</span><span class="nf">foreign_key</span>
+
+      <span class="n">delete_where</span> <span class="o">=</span> <span class="no">Array</span><span class="p">(</span><span class="n">ids</span><span class="p">).</span><span class="nf">any?</span> <span class="p">?</span> <span class="s2">"WHERE </span><span class="si">#{</span><span class="n">scope_foreign_key</span><span class="si">}</span><span class="s2"> IN (</span><span class="si">#{</span><span class="n">ids</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s2">", "</span><span class="p">)</span><span class="si">}</span><span class="s2">)"</span> <span class="p">:</span> <span class="s2">""</span>
+      <span class="n">sql_delete</span> <span class="o">=</span> <span class="o">&lt;&lt;~</span><span class="no">SQL</span><span class="p">.</span><span class="nf">strip</span><span class="sh">
+        DELETE FROM fts_</span><span class="si">#{</span><span class="n">table_name</span><span class="si">}</span><span class="sh"> </span><span class="si">#{</span><span class="n">delete_where</span><span class="si">}</span><span class="sh">;
+</span><span class="no">      SQL</span>
+      <span class="n">connection</span><span class="p">.</span><span class="nf">execute</span><span class="p">(</span><span class="n">sql_delete</span><span class="p">)</span>
+
+      <span class="n">target_ids</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="nb">id</span><span class="o">|</span>
+        <span class="n">record</span> <span class="o">=</span> <span class="n">where</span><span class="p">(</span><span class="ss">id: </span><span class="nb">id</span><span class="p">).</span><span class="nf">pluck</span><span class="p">(</span><span class="o">*</span><span class="vc">@@search_scope_attrs</span><span class="p">,</span> <span class="ss">:id</span><span class="p">).</span><span class="nf">first</span>
+        <span class="k">if</span> <span class="n">record</span><span class="p">.</span><span class="nf">present?</span>
+          <span class="nb">id</span> <span class="o">=</span> <span class="n">record</span><span class="p">.</span><span class="nf">pop</span>
+
+          <span class="n">sql_insert</span> <span class="o">=</span> <span class="o">&lt;&lt;~</span><span class="no">SQL</span><span class="p">.</span><span class="nf">strip</span><span class="sh">
+            INSERT INTO fts_</span><span class="si">#{</span><span class="n">table_name</span><span class="si">}</span><span class="sh">(</span><span class="si">#{</span><span class="vc">@@search_scope_attrs</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s2">", "</span><span class="p">)</span><span class="si">}</span><span class="sh">, </span><span class="si">#{</span><span class="n">scope_foreign_key</span><span class="si">}</span><span class="sh">)
+            VALUES (</span><span class="si">#{</span><span class="n">record</span><span class="p">.</span><span class="nf">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">value</span><span class="o">|</span> <span class="s2">"'</span><span class="si">#{</span><span class="n">quote_string</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="si">}</span><span class="s2">'"</span> <span class="si">}</span><span class="sh">.join(", ")}, </span><span class="si">#{</span><span class="nb">id</span><span class="si">}</span><span class="sh">);
+</span><span class="no">          SQL</span>
+          <span class="n">connection</span><span class="p">.</span><span class="nf">execute</span><span class="p">(</span><span class="n">sql_insert</span><span class="p">)</span>
+        <span class="k">end</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+
+    <span class="k">def</span> <span class="nf">quote_string</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+      <span class="n">s</span><span class="p">.</span><span class="nf">gsub</span><span class="p">(</span><span class="s2">"</span><span class="se">\\</span><span class="s2">"</span><span class="p">,</span> <span class="s1">'\&amp;\&amp;'</span><span class="p">).</span><span class="nf">gsub</span><span class="p">(</span><span class="s2">"'"</span><span class="p">,</span> <span class="s2">"''"</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>The class method <code class="highlighter-rouge">search_scope</code> tells the module the attributes we need to index. The <code class="highlighter-rouge">update_search_index</code> callback is called when the record is created or updated. Since SQLite, virtual tables don’t support upsert, which is a way to tell the database to insert a record if it doesn’t exist or to update it if it does. Also, the Rails SQLite adapter does not support multiple statements in a single execution call. </p>
+
+<p>These limitations forced me to make two additional database calls: the first to delete the indexed data for a specific record, and the second to insert the new indexed data. It’s not very performant, but for a small database, it might be just fine.
+The <code class="highlighter-rouge">delete_search_index</code> callback removes the indexed data when a record is deleted.</p>
+
+<p>The module also implements a class method, <code class="highlighter-rouge">rebuild_search_index</code>, which optionally receives an array of record ids to re-index. If no ids are passed, then it rebuilds the index for all records.</p>
+
+<p>Finally, a scope full_search is added to fetch records based on the full-text search index. You can use keywords like “AND”, “OR,” or “NOT” to refine your search or any other special character supported by SQLite FTS5.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Post</span><span class="p">.</span><span class="nf">full_search</span><span class="p">(</span><span class="s2">"Ruby OR Rails NOT Javascript"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Adding this module to my applications allowed me to explore the idea of moving from PostgreSQL for these small applications. Not because PostgreSQL is bad, but because it might be too much for the current application’s needs.</p>
+
+  </div>
+</article>
+
+      </main>
+    </section>
+
+  </body>
+</html>

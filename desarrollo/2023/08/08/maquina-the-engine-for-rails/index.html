@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- Begin Bridgetown SEO tag v5.0.0 -->
+<title>Maquina, the engine for Rails | Mario Alberto Chávez Cárdenas</title>
+<meta property="og:title" content="Maquina, the engine for Rails" />
+<meta name="author" content="Mario Alberto Chávez Cárdenas" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="Maquina, Ruby on Rails engine for rapid modern web development." />
+<meta property="og:description" content="Maquina, Ruby on Rails engine for rapid modern web development." />
+<link rel="canonical" href="https://mariochavez.io/desarrollo/2023/08/08/maquina-the-engine-for-rails/" />
+<meta property="og:url" content="https://mariochavez.io/desarrollo/2023/08/08/maquina-the-engine-for-rails/" />
+<meta property="og:site_name" content="Mario Alberto Chávez Cárdenas" />
+<meta property="og:image" content="https://mariochavez.io/images/maquina/maquina.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-08-08T06:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://mariochavez.io/images/maquina/maquina.jpg" />
+<meta property="twitter:title" content="Maquina, the engine for Rails" />
+<meta name="twitter:site" content="@mario_chavez" />
+<meta name="twitter:creator" content="@Mario Alberto Chávez Cárdenas" />
+<!-- End Bridgetown SEO tag -->
+
+
+<link type="application/atom+xml" rel="alternate" href="https://mariochavez.io/feed.xml" title="Mario Alberto Chávez Cárdenas" />
+
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+<link rel="stylesheet" href="/assets/index.XK2I5QP5.css" />
+<script src="/assets/index.6WSZNJGR.js" defer></script>
+
+
+  </head>
+  <body class="min-h-screen antialiased post ">
+    <section class="flex flex-nowrap">
+      <aside class="sticky top-0 flex flex-col hidden w-64 max-h-screen min-h-screen bg-gray-100 xl:w-96 lg:block">
+  <div class="px-8 xl:px-10">
+    <header class="py-14">
+      <h1 class="font-sans text-3xl font-medium tracking-widest text-gray-700 uppercase">Mario Alberto Chávez Cárdenas</h1>
+      <h2 class="mt-4 font-serif text-lg italic tracking-wide text-gray-500 font-extralight">Blog personal de fotografía y desarrollo de software</h2>
+    </header>
+
+    <nav class="lg:flex-grow lg:py-14">
+  <ul>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/">Inicio</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/desarrollo">Desarrollo</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/fotografía">Fotografía</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/proyectos">Proyectos</a></li>
+    <li class="font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/acercade">Acerca de</a></li>
+  </ul>
+</nav>
+
+
+    <footer class="py-8 lg:py-14">
+  <div class="flex space-x-4">
+    <a href="https://twitter.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24" class="w-4 h-4"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+    </a>
+    <a href="https://instagram.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="none" viewBox="0 0 24 24" class="w-4 h-4"><path d="M15.233 5.488c-.843-.038-1.097-.046-3.233-.046s-2.389.008-3.232.046c-2.17.099-3.181 1.127-3.279 3.279-.039.844-.048 1.097-.048 3.233s.009 2.389.047 3.233c.099 2.148 1.106 3.18 3.279 3.279.843.038 1.097.047 3.233.047 2.137 0 2.39-.008 3.233-.046 2.17-.099 3.18-1.129 3.279-3.279.038-.844.046-1.097.046-3.233s-.008-2.389-.046-3.232c-.099-2.153-1.111-3.182-3.279-3.281zm-3.233 10.62c-2.269 0-4.108-1.839-4.108-4.108 0-2.269 1.84-4.108 4.108-4.108s4.108 1.839 4.108 4.108c0 2.269-1.839 4.108-4.108 4.108zm4.271-7.418c-.53 0-.96-.43-.96-.96s.43-.96.96-.96.96.43.96.96-.43.96-.96.96zm-1.604 3.31c0 1.473-1.194 2.667-2.667 2.667s-2.667-1.194-2.667-2.667c0-1.473 1.194-2.667 2.667-2.667s2.667 1.194 2.667 2.667zm4.333-12h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm.952 15.298c-.132 2.909-1.751 4.521-4.653 4.654-.854.039-1.126.048-3.299.048s-2.444-.009-3.298-.048c-2.908-.133-4.52-1.748-4.654-4.654-.039-.853-.048-1.125-.048-3.298 0-2.172.009-2.445.048-3.298.134-2.908 1.748-4.521 4.654-4.653.854-.04 1.125-.049 3.298-.049s2.445.009 3.299.048c2.908.133 4.523 1.751 4.653 4.653.039.854.048 1.127.048 3.299 0 2.173-.009 2.445-.048 3.298z"/></svg>
+    </a>
+  </div>
+  <p class="mt-4 font-sans text-xs font-light tracking-wider text-gray-500 xl:text-sm">©2021. Mario Alberto Chávez Cárdenas</p>
+</footer>
+
+  </div>
+</aside>
+
+
+      <main class="flex-auto overflow-hidden text-gray-700">
+        <header class="flex flex-col bg-gray-100 lg:hidden" data-controller="menu">
+  <div class="flex flex-col w-full px-8 md:flex-row xl:px-10">
+    <div class="w-full pt-12 pb-6 md:py-12">
+      <a href="/">
+        <h1 class="font-sans text-lg font-medium tracking-widest text-gray-700 uppercase md:text-2xl">Mario Alberto Chávez Cárdenas</h1>
+      </a>
+      <h2 class="mt-4 font-serif text-xs italic tracking-wide text-gray-500 md:text-lg font-extralight">Blog personal de fotografía y desarrollo de software</h2>
+    </div>
+
+    <div class="pb-6 md:py-12 md:pl-4 md:self-center md:justify-self-end md:pl-0">
+      <a href="#" class="inline-flex items-center px-4 py-2 border border-gray-500 md:flex hover:text-red-500 hover:border-red-500" data-action="menu#toggle">
+        <span class="font-semibold text-md md:text-lg">Menú</span>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-4 h-4 ml-4" data-menu-target="closed">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hidden w-4 h-4 ml-4" data-menu-target="opened">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <div data-menu-target="submenu" class="hidden w-full px-8">
+    <nav class="lg:flex-grow lg:py-14">
+  <ul>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/">Inicio</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/desarrollo">Desarrollo</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/fotografía">Fotografía</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/proyectos">Proyectos</a></li>
+    <li class="font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/acercade">Acerca de</a></li>
+  </ul>
+</nav>
+
+
+    <footer class="py-8 lg:py-14">
+  <div class="flex space-x-4">
+    <a href="https://twitter.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24" class="w-4 h-4"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+    </a>
+    <a href="https://instagram.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="none" viewBox="0 0 24 24" class="w-4 h-4"><path d="M15.233 5.488c-.843-.038-1.097-.046-3.233-.046s-2.389.008-3.232.046c-2.17.099-3.181 1.127-3.279 3.279-.039.844-.048 1.097-.048 3.233s.009 2.389.047 3.233c.099 2.148 1.106 3.18 3.279 3.279.843.038 1.097.047 3.233.047 2.137 0 2.39-.008 3.233-.046 2.17-.099 3.18-1.129 3.279-3.279.038-.844.046-1.097.046-3.233s-.008-2.389-.046-3.232c-.099-2.153-1.111-3.182-3.279-3.281zm-3.233 10.62c-2.269 0-4.108-1.839-4.108-4.108 0-2.269 1.84-4.108 4.108-4.108s4.108 1.839 4.108 4.108c0 2.269-1.839 4.108-4.108 4.108zm4.271-7.418c-.53 0-.96-.43-.96-.96s.43-.96.96-.96.96.43.96.96-.43.96-.96.96zm-1.604 3.31c0 1.473-1.194 2.667-2.667 2.667s-2.667-1.194-2.667-2.667c0-1.473 1.194-2.667 2.667-2.667s2.667 1.194 2.667 2.667zm4.333-12h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm.952 15.298c-.132 2.909-1.751 4.521-4.653 4.654-.854.039-1.126.048-3.299.048s-2.444-.009-3.298-.048c-2.908-.133-4.52-1.748-4.654-4.654-.039-.853-.048-1.125-.048-3.298 0-2.172.009-2.445.048-3.298.134-2.908 1.748-4.521 4.654-4.653.854-.04 1.125-.049 3.298-.049s2.445.009 3.299.048c2.908.133 4.523 1.751 4.653 4.653.039.854.048 1.127.048 3.299 0 2.173-.009 2.445-.048 3.298z"/></svg>
+    </a>
+  </div>
+  <p class="mt-4 font-sans text-xs font-light tracking-wider text-gray-500 xl:text-sm">©2021. Mario Alberto Chávez Cárdenas</p>
+</footer>
+
+  </div>
+</header>
+
+        <article class="py-16 font-serif lg:py-24 post">
+  <header class="px-4 m-auto md:max-w-2xl lg:max-w-4xl">
+    <a href="/desarrollo" class="pb-1 text-sm font-bold leading-normal uppercase border-b-4 border-gray-200 transition-all hover:text-red-500">desarrollo</a>
+    <h1 class="mt-6 text-3xl font-bold tracking-wide md:text-4xl lg:text-6xl">Maquina, the engine for Rails</h1>
+  </header>
+
+  <div class="px-4 m-auto mt-16 tracking-wider md:max-w-2xl lg:max-w-4xl prose md:prose-lg">
+    <figure class="mt-16 aspect-w-16 aspect-h-9">
+      <img src="/images/maquina/maquina.jpg" loading="lazy" />
+    </figure>
+
+    <p>I have been working with Ruby on Rails since 2009, providing software development or consulting to companies with diverse needs. Some of those companies were startups with greenfield projects, and others were companies that needed help with brownfield projects. Over this time, I have also had the opportunity to train people for those companies or the consulting firms where I worked.</p>
+
+<p>Since I discovered Ruby on Rails in 2008, I have been impressed not with what it has to offer but with what prevented me from making a decision. Some people call this “magic”, but it is not magic at all. After all, you can always go to the source and learn what is going on.</p>
+
+<p>Working on as many Ruby on Rails projects as I have, I started to see almost every project repeating things that need to be implemented—authentication flow, authorization, preferences or profile sections, templates for transactional emails, etc.</p>
+
+<p>A few years ago, I started to extract this repetitive work into a reusable Rails Engine, looking for a way to drop the engine into an application and, with little effort, have all that functionality ready to use.</p>
+
+<p>Also, I noticed that many Rails controllers were pretty simple. They conform to the Restful definition and operate on one resource. Being inspired by José Valim’s inherited_resources and responders gems, the engine has a Resourceful module that you include in a controller, and it implements all the seven Restful actions with the proper format response and flash messages.</p>
+
+<div class="w-full">
+  <figure>
+    <img src="/images/maquina/maquina-1.png" class="m-auto" style="width: 640px" alt="Maquina" />
+    <figcaption class="text-center">Index page for a Rails application using Maquina. Search and pagination. Phlex component renders the table.</figcaption>
+  </figure>
+</div>
+
+<p>The engine also uses Ruby on Rails view inheritance to provide default views for index, new, and edit actions. If you need a different view, it is as easy as adding your view and avoiding the inheritance.</p>
+
+<p>Over the years, I extracted common functionality into this engine from real-life applications. I used this engine to create new applications where my only focus was to code the business functionality.</p>
+
+<div class="w-full">
+  <figure>
+    <img src="/images/maquina/maquina-2.png" class="m-auto" style="width: 640px" alt="Maquina" />
+    <figcaption class="text-center">Rails form rendered with Phlex and TailwindCSS.</figcaption>
+  </figure>
+</div>
+
+<p>Then a couple of years ago, I discovered TailwindCSS and Rails got Hotwire and Stimulus; this got me into migrating patterns to use frames and specialized Stimulus controllers to continue using the library with modern Web applications. This is the way I used to build a few applications at my latest startup.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># frozen_string_literal: true</span>
+
+<span class="k">class</span> <span class="nc">VideosController</span> <span class="o">&lt;</span> <span class="no">Maquina</span><span class="o">::</span><span class="no">ApplicationController</span>
+  <span class="n">before_action</span> <span class="ss">:authenticate!</span>
+
+  <span class="n">resourceful</span><span class="p">(</span>
+    <span class="ss">resource_class: </span><span class="no">Video</span><span class="p">,</span>
+    <span class="ss">form_attributes: </span><span class="p">[</span>
+      <span class="p">{</span><span class="ss">title: </span><span class="p">{</span>
+        <span class="ss">type: :input</span><span class="p">,</span> 
+        <span class="ss">control_html: </span><span class="p">{</span><span class="ss">class: </span><span class="s2">"col-span-1 sm:col-span-6"</span><span class="p">},</span> 
+        <span class="ss">input_html: </span><span class="p">{</span><span class="ss">class: </span><span class="s2">"w-full input"</span><span class="p">}}},</span>
+      <span class="p">{</span><span class="ss">image: </span><span class="p">{</span>
+        <span class="ss">type: :file</span><span class="p">,</span> 
+        <span class="ss">control_html: </span><span class="p">{</span><span class="ss">data: </span><span class="p">{</span><span class="ss">file_max_size_value: </span><span class="mi">5_242_880</span><span class="p">},</span> <span class="ss">class: </span><span class="s2">"col-span-1 sm:col-span-6 file"</span><span class="p">},</span> 
+        <span class="ss">input_html: </span><span class="p">{</span><span class="ss">direct_upload: </span><span class="kp">true</span><span class="p">,</span> <span class="ss">accept: </span><span class="s2">"image/png,image/jpeg,image/jpg"</span><span class="p">}}},</span>
+      <span class="p">{</span><span class="ss">permalink: </span><span class="p">{</span>
+        <span class="ss">type: :input</span><span class="p">,</span> 
+        <span class="ss">control_html: </span><span class="p">{</span><span class="ss">class: </span><span class="s2">"col-span-1 sm:col-span-6"</span><span class="p">},</span> 
+        <span class="ss">input_html: </span><span class="p">{</span><span class="ss">class: </span><span class="s2">"w-full input"</span><span class="p">}}},</span>
+      <span class="p">{</span><span class="ss">serie_id: </span><span class="p">{</span>
+        <span class="ss">type: :select</span><span class="p">,</span> 
+        <span class="ss">control_html: </span><span class="p">{</span><span class="ss">class: </span><span class="s2">"col-span-1 sm:col-span-6"</span><span class="p">},</span> 
+        <span class="ss">input_html: </span><span class="p">{</span><span class="ss">values: :load_series</span><span class="p">,</span> <span class="ss">class: </span><span class="s2">"select w-full sm:w-1/2"</span><span class="p">}}},</span>
+      <span class="p">{</span><span class="ss">public: </span><span class="p">{</span>
+        <span class="ss">type: :checkbox</span><span class="p">,</span> 
+        <span class="ss">control_html: </span><span class="p">{</span><span class="ss">class: </span><span class="s2">"relative flex gap-x-3 col-span-1 sm:col-span-6"</span><span class="p">},</span> 
+        <span class="ss">input_html: </span><span class="p">{</span><span class="ss">class: </span><span class="s2">"checkbox"</span><span class="p">}}},</span>
+      <span class="p">{</span><span class="ss">tags_text: </span><span class="p">{</span>
+        <span class="ss">type: :input</span><span class="p">,</span> 
+        <span class="ss">control_html: </span><span class="p">{</span><span class="ss">class: </span><span class="s2">"col-span-1 sm:col-span-6"</span><span class="p">},</span> 
+        <span class="ss">input_html: </span><span class="p">{</span><span class="ss">class: </span><span class="s2">"input w-full sm:w-1/2"</span><span class="p">}}},</span>
+      <span class="p">{</span><span class="ss">video_url: </span><span class="p">{</span>
+        <span class="ss">type: :input</span><span class="p">,</span> 
+        <span class="ss">control_html: </span><span class="p">{</span><span class="ss">class: </span><span class="s2">"col-span-1 sm:col-span-6"</span><span class="p">},</span> 
+        <span class="ss">input_html: </span><span class="p">{</span><span class="ss">class: </span><span class="s2">"input w-full"</span><span class="p">}}},</span>
+      <span class="p">{</span><span class="ss">content: </span><span class="p">{</span>
+        <span class="ss">type: :action_text</span><span class="p">,</span> 
+        <span class="ss">control_html: </span><span class="p">{</span><span class="ss">data: </span><span class="p">{</span><span class="ss">controller: </span><span class="s2">"trix-extensions"</span><span class="p">},</span> <span class="ss">class: </span><span class="s2">"col-span-1 sm:col-span-6"</span><span class="p">},</span> 
+        <span class="ss">input_html: </span><span class="p">{</span><span class="ss">class: </span><span class="s2">"action-text h-[80vh] lg:h-[60vh]"</span><span class="p">}}}],</span>
+    <span class="ss">list_attributes: </span><span class="p">[</span><span class="ss">:title</span><span class="p">,</span> <span class="ss">:public</span><span class="p">,</span> <span class="ss">:tags_text</span><span class="p">,</span> <span class="ss">:created_at</span><span class="p">],</span>
+    <span class="ss">policy_class: </span><span class="no">VideoPolicy</span>
+  <span class="p">)</span>
+
+  <span class="kp">private</span>
+
+  <span class="k">def</span> <span class="nf">load_series</span>
+    <span class="no">Serie</span><span class="p">.</span><span class="nf">all</span><span class="p">.</span><span class="nf">pluck</span><span class="p">(</span><span class="ss">:name</span><span class="p">,</span> <span class="ss">:id</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="c1"># Only allow list of trusted parameters through.</span>
+  <span class="k">def</span> <span class="nf">secure_params</span>
+    <span class="n">params</span><span class="p">.</span><span class="nf">require</span><span class="p">(</span><span class="ss">:video</span><span class="p">).</span><span class="nf">permit</span><span class="p">(</span><span class="n">form_attributes</span><span class="p">.</span><span class="nf">keys</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+<p class="m-0 text-gray-500 text-center">Sample Rails controller using the resourceful module</p>
+
+<p>Earlier this year, I created a new Rails Engine using the previous knowledge but with a blank slate to clean up the code, take advantage of Hotwire and Stimulus and write most of the UI code with components using Phlex. This is how Maquina was born.</p>
+
+<div class="embed-container">
+  <iframe src="https://player.vimeo.com/video/852754826" frameborder="0" allow="fullscreen; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+
+<p>The progress is still going on with the new engine, but I got to the point where I’m starting a new application using it. Once all functionality is migrated from the old engine, Maquina will have the following:</p>
+
+<ul>
+  <li>Multitenant support with a relationship of organization - membership - user. Where an organization may have a plan, think about building apps with multiple payment tiers.</li>
+  <li>Authentication system using Rails has_password with password recovery, password expiration and prevention of password reusing for a user, block and unblock accounts, and user invitation.</li>
+  <li>Default email setup and template for transactional emails.</li>
+  <li>Authorization with ActionPolicy.</li>
+  <li>Settings and profile section for users or organization configuration.</li>
+  <li>All text the application uses comes from i18n files organized by models, views, forms, and flashes.</li>
+  <li>Form building using components with Phlex. It uses Tailwind CSS for styling with color variables to set the theme.</li>
+  <li>Hotwire patterns for form validations, page fragment updates, popup modals, and in-app notifications. Many of these with complementary Stimulus controllers.</li>
+</ul>
+
+<p>Maquina will provide almost everything for a quick start on a new Rails application. It also has the flexibility that if you need to override functionality, you will be free to do it, and if you need to work outside the engine defaults, you can do it. Everything is just Ruby and Ruby on Rails code.</p>
+
+<p>In a further blog post, I’ll discuss what it means for a controller to include the Resourceful module and the code availability of Maquina.</p>
+
+  </div>
+</article>
+
+      </main>
+    </section>
+
+  </body>
+</html>

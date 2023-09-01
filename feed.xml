@@ -1,0 +1,1120 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es"><generator uri="https://bridgetownrb.com/" version="1.1.0">Bridgetown</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" hreflang="es" /><updated>2023-09-01T19:48:22+00:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez Cárdenas</title><subtitle>Blog sobre temas de desarrollo de software Web con Ruby y Ruby on Rails, además de temas de fotografía análoga y digital.</subtitle><author><name>Mario Alberto Chávez Cárdenas</name></author><entry xml:lang="en"><title type="html">Full-text search with SQLite and Rails</title><link href="https://mariochavez.io/desarrollo/2023/09/01/full-text-search-with-sqlite-and-rails/" rel="alternate" type="text/html" title="Full-text search with SQLite and Rails" /><published>2023-09-01T06:00:00+00:00</published><updated>2023-09-01T06:00:00+00:00</updated><id>repo://posts.collection/_posts/2023-09-01-full-text-search-with-sqlite-and-rails.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2023/09/01/full-text-search-with-sqlite-and-rails/">&lt;p&gt;Today, I planned to move a few small Ruby on Rails applications with Heroku using &lt;a href=&quot;https://kamal-deploy.org/&quot;&gt;Kamal&lt;/a&gt; onto a single server. All applications use PostgreSQL as the database because it is simple to use with Heroku and because they take advantage of Postgres’ full-text search.&lt;/p&gt;
+
+&lt;p&gt;Because of the size and usage of those applications, I was not convinced that I wanted to manage my own PostgreSQL server or pay for a managed service. So, I started to consider replacing the database with &lt;a href=&quot;https://www.sqlite.org/index.html&quot;&gt;SQLite&lt;/a&gt;. At least in my feed at &lt;a href=&quot;https://x.com/mario_chavez&quot;&gt;X&lt;/a&gt;, I have seen so many posts in the past few months on how good and fast it is.&lt;/p&gt;
+
+&lt;p&gt;I wanted something like the &lt;a href=&quot;https://github.com/Casecommons/pg_search#pg_search_scope&quot;&gt;pg_search&lt;/a&gt; gem, where I could define a scope name and the fields to be indexed. On the SQLite side, I found that it has an extension called &lt;a href=&quot;https://www.sqlite.org/fts5.html&quot;&gt;FTS5&lt;/a&gt;, which is defined as:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;FTS5 is an SQLite &lt;a href=&quot;https://www.sqlite.org/c3ref/module.html&quot;&gt;virtual table module&lt;/a&gt; that provides &lt;a href=&quot;https://en.wikipedia.org/wiki/Full_text_search&quot;&gt;full-text search&lt;/a&gt; functionality to database applications. In their most elementary form, full-text search engines allow the user to efficiently search a large collection of documents for the subset that contains one or more instances of a search term. The search functionality provided to World Wide Web users by Google is, among other things, a full-text search engine, as it allows users to search for all documents on the web that contain, for example, the term “fts5”.&lt;/p&gt;
+
+&lt;/blockquote&gt;
+
+&lt;p&gt;This looked promising, so I started implementing a quick and dirty solution for my needs.
+Starting from a model Post with title and content attributes, I want to define a &lt;code class=&quot;highlighter-rouge&quot;&gt;full_search&lt;/code&gt; scope and indicate the attributes to index for full-text search.&lt;/p&gt;
+
+&lt;p&gt;Something like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Post&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ApplicationRecord&lt;/span&gt;
+  &lt;span class=&quot;kp&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;SqliteSearch&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;search_scope&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Where &lt;code class=&quot;highlighter-rouge&quot;&gt;SqliteSearch&lt;/code&gt; is the module that does the heavy work. Before continuing with the implementation, there are decisions to be made regarding how to store the indexed data in the database. A virtual table is required to store the indexed data; one option is to create a single table for this purpose with a &lt;code class=&quot;highlighter-rouge&quot;&gt;record_type&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;record_id&lt;/code&gt; fields to identify the data per model type, just like the way it works for ActiveStorage or ActionText in Rails.&lt;/p&gt;
+
+&lt;p&gt;The second option is to create a table per indexed model. I chose this option since not all my models require this functionality. The migration for this table is as follows:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PostSearch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ActiveRecord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Migration&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;7.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;up&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;execute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;CREATE VIRTUAL TABLE fts_posts USING fts5(title, content, post_id)&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;down&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;execute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;DROP TABLE IF EXISTS fts_posts&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The table name follows the Rails convention, but it adds the prefix &lt;code class=&quot;highlighter-rouge&quot;&gt;fts_&lt;/code&gt;. The table fields are the ones that need indexing with the addition of the original record id with the foreign key convention. SQLite virtual tables don’t have data types, primary keys, constraints, or indexes.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;SqliteSearch&lt;/code&gt; module needs to implement a way to add or update the model data to the search index. This is done using the &lt;strong&gt;ActiveRecord&lt;/strong&gt; callbacks for save and destroy commit.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;SqliteSearch&lt;/span&gt;
+  &lt;span class=&quot;kp&quot;&gt;extend&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ActiveSupport&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Concern&lt;/span&gt;
+
+  &lt;span class=&quot;kp&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;update_search_index&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;primary_key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;primary_key&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;table_name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;table_name&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;foreign_key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;foreign_key&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;search_attrs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;vc&quot;&gt;@@search_scope_attrs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;each_with_object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({})&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;attr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;acc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;acc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;attr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;quote_string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;attr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;id_value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;attributes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;primary_key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;sql_delete&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;~&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;SQL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;strip&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;
+      DELETE FROM fts_&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;table_name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt; WHERE &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;foreign_key&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt; = &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id_value&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;;
+&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;    SQL&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;connection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;execute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sql_delete&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;sql_insert&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;~&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;SQL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;strip&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;
+      INSERT INTO fts_&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;table_name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;search_attrs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;keys&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;, &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;foreign_key&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;)
+      VALUES (&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;search_attrs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;values&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;map&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&apos;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&apos;&quot;&lt;/span&gt; &lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;.join(&quot;, &quot;)}, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;attributes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;primary_key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;);
+&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;    SQL&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;connection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;execute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sql_insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+  &lt;span class=&quot;kp&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;delete_search_index&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;primary_key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;primary_key&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;table_name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;table_name&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;foreign_key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;foreign_key&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;id_value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;attributes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;primary_key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;sql_delete&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;~&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;SQL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;strip&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;
+      DELETE FROM fts_&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;table_name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt; WHERE &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;foreign_key&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt; = &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id_value&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;;
+&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;    SQL&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;connection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;execute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sql_delete&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;included&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;after_save_commit&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:update_search_index&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;after_destroy_commit&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:delete_search_index&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;scope_foreign_key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;to_s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;foreign_key&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;scope&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:full_search&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;query&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;none&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;query&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;blank?&lt;/span&gt;
+
+      &lt;span class=&quot;n&quot;&gt;sql&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;~&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;SQL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;strip&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;
+        SELECT &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;scope_foreign_key&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt; AS id FROM fts_&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;table_name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;
+        WHERE fts_&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;table_name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt; = &apos;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;query&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos; ORDER BY rank;
+&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;      SQL&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;ids&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;connection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;execute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sql&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:values&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;flatten&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;where&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;id: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ids&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;class_methods&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;search_scope&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;attrs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;vc&quot;&gt;@@search_scope_attrs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;attrs&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;rebuild_search_index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ids&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;target_ids&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ids&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;target_ids&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;ids&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;target_ids&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;empty?&lt;/span&gt;
+
+      &lt;span class=&quot;n&quot;&gt;scope_foreign_key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;to_s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;foreign_key&lt;/span&gt;
+
+      &lt;span class=&quot;n&quot;&gt;delete_where&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ids&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;any?&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;WHERE &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;scope_foreign_key&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; IN (&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ids&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;, &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;)&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;sql_delete&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;~&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;SQL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;strip&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;
+        DELETE FROM fts_&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;table_name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt; &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;delete_where&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;;
+&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;      SQL&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;connection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;execute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sql_delete&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+      &lt;span class=&quot;n&quot;&gt;target_ids&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;record&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;where&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;id: &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;pluck&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;vc&quot;&gt;@@search_scope_attrs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;first&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;record&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;present?&lt;/span&gt;
+          &lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;record&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;pop&lt;/span&gt;
+
+          &lt;span class=&quot;n&quot;&gt;sql_insert&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;~&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;SQL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;strip&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;
+            INSERT INTO fts_&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;table_name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;vc&quot;&gt;@@search_scope_attrs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;, &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;scope_foreign_key&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;)
+            VALUES (&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;record&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;map&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&apos;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;quote_string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&apos;&quot;&lt;/span&gt; &lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;.join(&quot;, &quot;)}, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;);
+&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;          SQL&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;connection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;execute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sql_insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;quote_string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;gsub&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\\&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;\&amp;amp;\&amp;amp;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;gsub&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&apos;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&apos;&apos;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The class method &lt;code class=&quot;highlighter-rouge&quot;&gt;search_scope&lt;/code&gt; tells the module the attributes we need to index. The &lt;code class=&quot;highlighter-rouge&quot;&gt;update_search_index&lt;/code&gt; callback is called when the record is created or updated. Since SQLite, virtual tables don’t support upsert, which is a way to tell the database to insert a record if it doesn’t exist or to update it if it does. Also, the Rails SQLite adapter does not support multiple statements in a single execution call. &lt;/p&gt;
+
+&lt;p&gt;These limitations forced me to make two additional database calls: the first to delete the indexed data for a specific record, and the second to insert the new indexed data. It’s not very performant, but for a small database, it might be just fine.
+The &lt;code class=&quot;highlighter-rouge&quot;&gt;delete_search_index&lt;/code&gt; callback removes the indexed data when a record is deleted.&lt;/p&gt;
+
+&lt;p&gt;The module also implements a class method, &lt;code class=&quot;highlighter-rouge&quot;&gt;rebuild_search_index&lt;/code&gt;, which optionally receives an array of record ids to re-index. If no ids are passed, then it rebuilds the index for all records.&lt;/p&gt;
+
+&lt;p&gt;Finally, a scope full_search is added to fetch records based on the full-text search index. You can use keywords like “AND”, “OR,” or “NOT” to refine your search or any other special character supported by SQLite FTS5.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;no&quot;&gt;Post&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;full_search&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Ruby OR Rails NOT Javascript&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;Adding this module to my applications allowed me to explore the idea of moving from PostgreSQL for these small applications. Not because PostgreSQL is bad, but because it might be too much for the current application’s needs.&lt;/p&gt;</content><author><name>Mario Alberto Chávez Cárdenas</name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/full-text-search/full-text-search.jpg" /><media:content medium="image" url="https://mariochavez.io/images/full-text-search/full-text-search.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry xml:lang="en"><title type="html">Working with Rails Engines, Importmap and TailwindCSS for assets.</title><link href="https://mariochavez.io/desarrollo/2023/08/23/working-with-rails-engines-importmap-tailwindcss/" rel="alternate" type="text/html" title="Working with Rails Engines, Importmap and TailwindCSS for assets." /><published>2023-08-23T06:00:00+00:00</published><updated>2023-08-23T06:00:00+00:00</updated><id>repo://posts.collection/_posts/2023-08-23-working-with-rails-engines-importmap-tailwindcss.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2023/08/23/working-with-rails-engines-importmap-tailwindcss/">&lt;p&gt;Rails engines are one of my favorite tools when I want to isolate reusable functionality for Rails applications. An example of this is the NoPassword gem, which allows users to login into an application just with their email and the received link and code.&lt;/p&gt;
+
+&lt;p&gt;With Rails 3.1, the engines were mountable and integrated with the Asset Pipeline to manage the engine’s assets. This continued to work this way until Webpack was introduced to Rails in version 5.1. At this moment, it was not clear how to make Webpack work with the engine’s assets or any other gem that included assets.&lt;/p&gt;
+
+&lt;p&gt;Rails 7 introduced CSS and JS bundling, along with the Propshaft gem to manage and serve assets. Also, introduced Importmaps and TailwindCSS as options for not having Node as a dependency, but in both cases without any official word on how to make these work with engines.&lt;/p&gt;
+
+&lt;p&gt;NOTE: Importmap’s README explains how to composite multiple Impormap configurations. &lt;a href=&quot;https://github.com/rails/importmap-rails#composing-import-maps&quot;&gt;https://github.com/rails/importmap-rails#composing-import-maps&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Working on the NoPassword engine and a few private others, I decided for them to use Importmaps, TailwindCSS, and Propshaft. It led me to figure out a way to use the engine assets. The rest of this post describes my successful journey with assets and engines.&lt;/p&gt;
+
+&lt;h2 id=&quot;importmap-engine-configuration&quot;&gt;Importmap engine configuration&lt;/h2&gt;
+
+&lt;p&gt;First, let’s try the route described in Importmap’s README file.&lt;/p&gt;
+
+&lt;p&gt;To install Importmap in an engine project, it requires adding the gem to the dummy app and adding the dependency to the engine’s gem spec file.&lt;/p&gt;
+
+&lt;p&gt;Install Importmap and add it as a dependency to the Gemfile as follows:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bundle add importmap-rails
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And add it to the gem spec file.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;spec.add_dependency &lt;span class=&quot;s2&quot;&gt;&quot;importmap-rails&quot;&lt;/span&gt;, &lt;span class=&quot;s2&quot;&gt;&quot;~&amp;gt; 1.2&quot;&lt;/span&gt;, &lt;span class=&quot;s2&quot;&gt;&quot;&amp;gt;= 1.2.1&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Then run the bundle command and navigate to the test/dummy app to execute the installer in the dummy app.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd test&lt;/span&gt;/dummy &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; bin/rails importmap::install
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Following the README instructions for composite Importmaps, open the &lt;code class=&quot;highlighter-rouge&quot;&gt;lib/my_engine/engine.rb&lt;/code&gt; file and add the following hook - remember to replace &lt;strong&gt;**&lt;/strong&gt;&lt;strong&gt;**&lt;/strong&gt;&lt;strong&gt;**&lt;/strong&gt;my-engine&lt;strong&gt;**&lt;/strong&gt;&lt;strong&gt;**&lt;/strong&gt;&lt;strong&gt;**&lt;/strong&gt; with the name of your engine -:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;MyEngine&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Engine&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Rails&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Engine&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# ...&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;initializer&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;my-engine.importmap&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;before: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;importmap&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;importmap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;paths&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Engine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;config/importmap.rb&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;# ...&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Then create the file &lt;code class=&quot;highlighter-rouge&quot;&gt;config/importmap.rb&lt;/code&gt; and pin the engine’s javascript assets.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pin_all_from File.expand_path&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;../app/assets/javascript&quot;&lt;/span&gt;, __dir__&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;To test this setup, two Stimulus controllers were added, one in the engine’s &lt;code class=&quot;highlighter-rouge&quot;&gt;app/assets/javascript&lt;/code&gt; and another one at the dummy app &lt;code class=&quot;highlighter-rouge&quot;&gt;test/dummy/app/javascript/controllers&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-jsx highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;#&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;javascript&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;controllers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;host_controller&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;js&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Dummy&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;APP&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Controller&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;@hotwired/stimulus&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Controller&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;connect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Connected&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;element&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;textContent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Hello World! This is a Javascript from the Host&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Loaded&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;err&quot;&gt;#&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;assets&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;javascript&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;engine_controller&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;js&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Engine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Controller&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;@hotwired/stimulus&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Controller&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;connect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Connected&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;element&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;textContent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Hello World! This is a Javascript from the Engine&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Loaded&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Set up Stimulus in the dummy app by adding the gem and running the installer.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd test&lt;/span&gt;/dummy
+bundle add stimulus-rails
+./bin/rails stimulus:install
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The Dummy app has a &lt;strong&gt;HomeController&lt;/strong&gt; with an index action. The index template has two divs. One for &lt;code class=&quot;highlighter-rouge&quot;&gt;host_controller.js&lt;/code&gt; and the second one for &lt;code class=&quot;highlighter-rouge&quot;&gt;engine_controller.js&lt;/code&gt; .&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;h1&amp;gt;&lt;/span&gt;Engine&apos;s Stimulus controller (Host app)&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-controller=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;host&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-controller=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;engine&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/engines-assets/importmap-1.png&quot; alt=&quot;Importmap&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Unfortunately, this setup does not work, at least for my use case, where I expect the engine to have Stimulus controllers available in the host application, the Dummy app in this case. The engine’s controller is there in the imports manifest but is not loaded in the context of the Stimulus application.&lt;/p&gt;
+
+&lt;p&gt;The way that I make this work is to first organize the engine’s Stimulus controllers with the following directory structure: &lt;code class=&quot;highlighter-rouge&quot;&gt;app/assets/javascript/my_engine/controllers&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Next, modify the Dummy app’s &lt;code class=&quot;highlighter-rouge&quot;&gt;config/importmap.rb&lt;/code&gt; and add the following line at the end of the file.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;pin_all_from&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;MyEngine&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Engine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;app/assets/javascript/my_engine/controllers&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;under: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;controllers&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;to: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;my_engine/controllers&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;With this change, reload the page, and now it is working! The engine’s Stimulus controller is loaded by the host application.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/engines-assets/importmap-2.png&quot; alt=&quot;Importmap&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In the Importmap repository, there is an open issue about how to make the gem work with engines, and the user muriloime mentions this solution &lt;a href=&quot;https://github.com/rails/importmap-rails/issues/58&quot;&gt;https://github.com/rails/importmap-rails/issues/58&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Now, what about making Importmap work with the engine’s own views? In the case of the NoPassword gem, it provides views for the login process and uses a Stimulus controller to display errors; it does not depend on the host application in any way.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/engines-assets/no-password-demo.gif&quot; alt=&quot;No Password&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;First, add Stimulus as a gem dependency to the gem spec file and execute the bundle command.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;add_dependency&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;stimulus-rails&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;~&amp;gt; 1.2&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The installer is not available inside the engine, so this step requires adding a few files manually. Let’s start with the javascript files.&lt;/p&gt;
+
+&lt;div class=&quot;language-jsx highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;#&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;assets&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;javascript&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;my_engine&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;application&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;js&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;controllers&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
+
+&lt;span class=&quot;err&quot;&gt;#&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;assets&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;javascript&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;my_engine&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;controllers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;js&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Import and register all your controllers from the importmap under controllers/*&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;application&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;controllers/application&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Eager load all controllers defined in the import map under controllers/**/*_controller&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;eagerLoadControllersFrom&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;@hotwired/stimulus-loading&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;eagerLoadControllersFrom&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;controllers&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;application&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Lazy load controllers as they appear in the DOM (remember not to preload controllers in import map!)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// import { lazyLoadControllersFrom } from &quot;@hotwired/stimulus-loading&quot;&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// lazyLoadControllersFrom(&quot;controllers&quot;, application)&lt;/span&gt;
+
+&lt;span class=&quot;err&quot;&gt;#&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;assets&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;javascript&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;my_engine&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;controllers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;application&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;js&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Application&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;@hotwired/stimulus&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;application&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Application&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Configure Stimulus development experience&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;application&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;debug&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Stimulus&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;application&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;application&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Open the file &lt;code class=&quot;highlighter-rouge&quot;&gt;config/importmap.rb&lt;/code&gt; and replace the content with the following pins that load Stimulus and the engine’s controllers:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;pin&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;@hotwired/stimulus&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;to: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;stimulus.min.js&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;preload: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;pin&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;@hotwired/stimulus-loading&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;to: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;stimulus-loading.js&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;preload: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;pin&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;application&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;preload: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;pin_all_from&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;MyEngine&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Engine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;app/assets/javascript/my_engine/controllers&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;under: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;controllers&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;to: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;my_engine/controllers&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Instead of composing a global Importmap, we are going to set up a local configuration for the engine. Open the &lt;code class=&quot;highlighter-rouge&quot;&gt;lib/my_engine.rb&lt;/code&gt; file and add the following code:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;my_engine/version&quot;&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;my_engine/engine&quot;&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;importmap-rails&quot;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;MyEngine&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;attr_accessor&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:configuration&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Configuration&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;attr_reader&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:importmap&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;initialize&lt;/span&gt;
+      &lt;span class=&quot;vi&quot;&gt;@importmap&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Importmap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;
+      &lt;span class=&quot;vi&quot;&gt;@importmap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;draw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Engine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;config/importmap.rb&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;init_config&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;configuration&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Configuration&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;configure&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;init_config&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;yield&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;configuration&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;no&quot;&gt;MyEngine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;init_config&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Here, a configuration class was added to the engine. It has only one setting, where it initializes a new Importmap with assets belonging to the engine. Be aware that sweepers are not set up for Importmap; this means that changes made during development with the engine will not be taken until the app is restarted.
+This configuration can be extended to include more engine settings if needed.&lt;/p&gt;
+
+&lt;p&gt;Now we need to create a helper similar to &lt;code class=&quot;highlighter-rouge&quot;&gt;javascript_importmap_tag&lt;/code&gt; that is aware of the engine’s Importmap configuration. Open the &lt;code class=&quot;highlighter-rouge&quot;&gt;app/helpers/my_engine/application_helper.rb&lt;/code&gt; and add the following method.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;my_engine_importmap_tags&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;entry_point&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;application&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;shim: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;safe_join&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;javascript_inline_importmap_tag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;MyEngine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;configuration&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;importmap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_json&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;resolver: &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)),&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;javascript_importmap_module_preload_tags&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;MyEngine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;configuration&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;importmap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;javascript_importmap_shim_nonce_configuration_tag&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;shim&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;javascript_importmap_shim_tag&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;shim&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;javascript_import_module_tag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;entry_point&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;compact&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now open the engine’s layout and replace the &lt;code class=&quot;highlighter-rouge&quot;&gt;javascript_importmap_tag&lt;/code&gt; with &lt;code class=&quot;highlighter-rouge&quot;&gt;my_engine_importmap_tags&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;To test this, add a controller named &lt;code class=&quot;highlighter-rouge&quot;&gt;MyEngine::HomeController&lt;/code&gt; with an index action and a div that uses &lt;code class=&quot;highlighter-rouge&quot;&gt;engine_controller.js&lt;/code&gt; to it.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/engines-assets/importmap-3.png&quot; alt=&quot;Importmap&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;These are the two configuration options for Importmap with engines. Share the engine’s Stimulus controllers with the host app, or use the engine’s Stimulus controllers internally for the engine’s templates.&lt;/p&gt;
+
+&lt;h2 id=&quot;tailwindcss-engine-configuration&quot;&gt;TailwindCSS engine configuration&lt;/h2&gt;
+
+&lt;p&gt;The steps to install it are simple. First, let’s install it into the Dummy app.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd test&lt;/span&gt;/dummy &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; bundle add tailwindcss-rails
+./bin/rails tailwindcss:install
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;For the Dummy app that comes with the engine in development mode, there are two additional steps that are not required when the host app is not the Dummy app.&lt;/p&gt;
+
+&lt;p&gt;Ensure that the TailwindCSS task runs with Foreman or Overmind using your &lt;code class=&quot;highlighter-rouge&quot;&gt;Procfile.dev&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;web: bin/rails server &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; 3000
+css: bin/rails app:tailwindcss:watch
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Also, change the &lt;code class=&quot;highlighter-rouge&quot;&gt;test/dummy/config/tailwind.config.js&lt;/code&gt; file that was installed by TailwindCSS to have the right path to the Dummy app. Change the content section to include the &lt;code class=&quot;highlighter-rouge&quot;&gt;./test/dummy&lt;/code&gt; path.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;content: &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;&apos;./test/dummy/public/*.html&apos;&lt;/span&gt;,
+    &lt;span class=&quot;s1&quot;&gt;&apos;./test/dummy/app/helpers/**/*.rb&apos;&lt;/span&gt;,
+    &lt;span class=&quot;s1&quot;&gt;&apos;./test/dummy/app/javascript/**/*.js&apos;&lt;/span&gt;,
+    &lt;span class=&quot;s1&quot;&gt;&apos;./test/dummy/app/views/**/*.{erb,haml,html,slim}&apos;&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;,
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Restart your application, and it should work for the Dummy app.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/engines-assets/tailwind-1.png&quot; alt=&quot;TailwindCSS&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;To extend the TailwindCSS styling into the engine’s templates, there are a few steps that need to be taken first. The host app, in our case, the Dummy app, needs to override the engine’s layout to include the TailwindCSS files. Copy the file &lt;code class=&quot;highlighter-rouge&quot;&gt;app/layouts/my_engine/application.html.erb&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;test/dummy/app/layouts/my_engine/application.html.erb&lt;/code&gt; and add the following line in the &lt;strong&gt;head&lt;/strong&gt; section:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;%&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; stylesheet_link_tag &lt;span class=&quot;s2&quot;&gt;&quot;tailwind&quot;&lt;/span&gt;, &lt;span class=&quot;s2&quot;&gt;&quot;inter-font&quot;&lt;/span&gt;, &lt;span class=&quot;s2&quot;&gt;&quot;data-turbo-track&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;reload&quot;&lt;/span&gt; %&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Navigate to an engine action, and you can confirm the general CSS reset of TailwindCSS is applied, but utility classes are ignored.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/engines-assets/tailwind-2.png&quot; alt=&quot;TailwindCSS&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This happens because the file doesn’t know that it also needs to scan the engine templates for TailwindCSS classes.&lt;/p&gt;
+
+&lt;p&gt;To fix this, we need a rake task and a generator in the host or Dummy app. Create a file &lt;code class=&quot;highlighter-rouge&quot;&gt;test/dummy/lib/tasks/tailwind.rake&lt;/code&gt; and add the following content:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# frozen_string_literal: true&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:tailwindcss&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;desc&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Generates your tailwind config file&quot;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;task&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:config&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+    &lt;span class=&quot;no&quot;&gt;Rails&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Generators&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;invoke&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;tailwind_config&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;--force&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;no&quot;&gt;Rake&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;tailwindcss:build&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;enhance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;tailwindcss:config&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;Rake&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;tailwindcss:watch&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;enhance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;tailwindcss:config&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Here we are adding a &lt;strong&gt;tailwindcss:config&lt;/strong&gt; task that invokes a generator (we are going to create this one in a moment) and enhancing TailwindCSS tasks provided by the gem by injecting this new task into the build process.&lt;/p&gt;
+
+&lt;p&gt;For the generator, create the file &lt;code class=&quot;highlighter-rouge&quot;&gt;test/dummy/lib/generators/tailwind_config_generator.rb&lt;/code&gt; in the host or Dummy app and add the following code:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# frozen_string_literal: true&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TailwindConfigGenerator&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Rails&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Generators&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Base&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;source_root&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;expand_path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;../templates&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;__FILE__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;create_tailwind_config_file&lt;/span&gt;
+    &lt;span class=&quot;vi&quot;&gt;@engines_paths&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;MyEngine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;configuration&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;tailwind_content&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# The second parameter for the template method is required only if the host app is the Dummy app; &lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# for an external host app, remove that parameter.&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;template&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;config/tailwind.config.js&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;expand_path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;../../../config/tailwind.config.js&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;__FILE__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This generator, when executed, creates a new TailwindCSS config file from a template, but before doing that, in the &lt;code class=&quot;highlighter-rouge&quot;&gt;create_tailwind_config_file&lt;/code&gt; method, we can set up the engine paths to consider when scanning for TailwindCSS classes.&lt;/p&gt;
+
+&lt;p&gt;In the code, the generator assumes that our engine configuration exposes a &lt;code class=&quot;highlighter-rouge&quot;&gt;tailwind_content&lt;/code&gt; accessor with an array of paths.&lt;/p&gt;
+
+&lt;p&gt;Add an accessor to the Configuration class in file &lt;code class=&quot;highlighter-rouge&quot;&gt;lib/my_engine.rb&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;attr_accessor&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:tailwind_content&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Also add to the &lt;code class=&quot;highlighter-rouge&quot;&gt;initializer&lt;/code&gt; method of the same class the following paths:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;vi&quot;&gt;@tailwind_content&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+  &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;MyEngine&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Engine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/app/views/**/*&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;MyEngine&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Engine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/app/helpers/**/*&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;MyEngine&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Engine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/app/controllers/**/*&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;MyEngine&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Engine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/app/javascript/**/*.js&quot;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Moving back to the template file in the &lt;code class=&quot;highlighter-rouge&quot;&gt;tailwind_config_generator&lt;/code&gt;, this is the TailwindCSS config file, but it will be created dynamically by the task to be able to inject the engine paths into it.&lt;/p&gt;
+
+&lt;p&gt;Move the file &lt;code class=&quot;highlighter-rouge&quot;&gt;test/dummy/config/tailwind.config.js&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;lib/generators/templates/config/tailwind.config.js.tt&lt;/code&gt; and modify the &lt;strong&gt;content&lt;/strong&gt; section as follows:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;ss&quot;&gt;content: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;&apos;./test/dummy/public/*.html&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;&apos;./test/dummy/app/helpers/**/*.rb&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;&apos;./test/dummy/app/javascript/**/*.js&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;&apos;./test/dummy/app/views/**/*.{erb,haml,html,slim}&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;%= @engines_paths.map{ |path| &quot;&apos;#{path}&apos;&quot; }.join(&quot;,\n&quot;) %&amp;gt;
+  ],
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Add the file &lt;code class=&quot;highlighter-rouge&quot;&gt;test/dummy/config/tailwind.config.js&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;.gitignore&lt;/code&gt; file, since this file will be generated automatically.&lt;/p&gt;
+
+&lt;p&gt;Restart the application, navigate the view in the host app and a view in the engine, and confirm that TailwindCSS is working for both cases.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/engines-assets/tailwind-3.png&quot; alt=&quot;TailwindCSS&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/engines-assets/tailwind-4.png&quot; alt=&quot;TailwindCSS&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;wrapping-up&quot;&gt;Wrapping up&lt;/h2&gt;
+
+&lt;p&gt;This is how I have been working with the Rails engines Importmap and TailwindCSS. Most of the knowledge here came from reading the source code of the libraries and trial and error.&lt;/p&gt;
+
+&lt;p&gt;If you are looking to work with engines and this tool set for assets, please give it a try and let me know how it goes or if there is a better, simpler way to archive the same.&lt;/p&gt;</content><author><name>Mario Alberto Chávez Cárdenas</name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/engines-assets/engines-assets.jpg" /><media:content medium="image" url="https://mariochavez.io/images/engines-assets/engines-assets.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry xml:lang="en"><title type="html">Maquina, the engine for Rails</title><link href="https://mariochavez.io/desarrollo/2023/08/08/maquina-the-engine-for-rails/" rel="alternate" type="text/html" title="Maquina, the engine for Rails" /><published>2023-08-08T06:00:00+00:00</published><updated>2023-08-08T06:00:00+00:00</updated><id>repo://posts.collection/_posts/2023-08-08-maquina-the-engine-for-rails.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2023/08/08/maquina-the-engine-for-rails/">&lt;p&gt;I have been working with Ruby on Rails since 2009, providing software development or consulting to companies with diverse needs. Some of those companies were startups with greenfield projects, and others were companies that needed help with brownfield projects. Over this time, I have also had the opportunity to train people for those companies or the consulting firms where I worked.&lt;/p&gt;
+
+&lt;p&gt;Since I discovered Ruby on Rails in 2008, I have been impressed not with what it has to offer but with what prevented me from making a decision. Some people call this “magic”, but it is not magic at all. After all, you can always go to the source and learn what is going on.&lt;/p&gt;
+
+&lt;p&gt;Working on as many Ruby on Rails projects as I have, I started to see almost every project repeating things that need to be implemented—authentication flow, authorization, preferences or profile sections, templates for transactional emails, etc.&lt;/p&gt;
+
+&lt;p&gt;A few years ago, I started to extract this repetitive work into a reusable Rails Engine, looking for a way to drop the engine into an application and, with little effort, have all that functionality ready to use.&lt;/p&gt;
+
+&lt;p&gt;Also, I noticed that many Rails controllers were pretty simple. They conform to the Restful definition and operate on one resource. Being inspired by José Valim’s inherited_resources and responders gems, the engine has a Resourceful module that you include in a controller, and it implements all the seven Restful actions with the proper format response and flash messages.&lt;/p&gt;
+
+&lt;div class=&quot;w-full&quot;&gt;
+  &lt;figure&gt;
+    &lt;img src=&quot;/images/maquina/maquina-1.png&quot; class=&quot;m-auto&quot; style=&quot;width: 640px&quot; alt=&quot;Maquina&quot; /&gt;
+    &lt;figcaption class=&quot;text-center&quot;&gt;Index page for a Rails application using Maquina. Search and pagination. Phlex component renders the table.&lt;/figcaption&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The engine also uses Ruby on Rails view inheritance to provide default views for index, new, and edit actions. If you need a different view, it is as easy as adding your view and avoiding the inheritance.&lt;/p&gt;
+
+&lt;p&gt;Over the years, I extracted common functionality into this engine from real-life applications. I used this engine to create new applications where my only focus was to code the business functionality.&lt;/p&gt;
+
+&lt;div class=&quot;w-full&quot;&gt;
+  &lt;figure&gt;
+    &lt;img src=&quot;/images/maquina/maquina-2.png&quot; class=&quot;m-auto&quot; style=&quot;width: 640px&quot; alt=&quot;Maquina&quot; /&gt;
+    &lt;figcaption class=&quot;text-center&quot;&gt;Rails form rendered with Phlex and TailwindCSS.&lt;/figcaption&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Then a couple of years ago, I discovered TailwindCSS and Rails got Hotwire and Stimulus; this got me into migrating patterns to use frames and specialized Stimulus controllers to continue using the library with modern Web applications. This is the way I used to build a few applications at my latest startup.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# frozen_string_literal: true&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;VideosController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Maquina&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ApplicationController&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;before_action&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:authenticate!&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;resourceful&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;ss&quot;&gt;resource_class: &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Video&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;ss&quot;&gt;form_attributes: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;title: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;ss&quot;&gt;type: :input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
+        &lt;span class=&quot;ss&quot;&gt;control_html: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;class: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;col-span-1 sm:col-span-6&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; 
+        &lt;span class=&quot;ss&quot;&gt;input_html: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;class: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;w-full input&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}}},&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;image: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;ss&quot;&gt;type: :file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
+        &lt;span class=&quot;ss&quot;&gt;control_html: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;data: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;file_max_size_value: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5_242_880&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;class: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;col-span-1 sm:col-span-6 file&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; 
+        &lt;span class=&quot;ss&quot;&gt;input_html: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;direct_upload: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;accept: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;image/png,image/jpeg,image/jpg&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}}},&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;permalink: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;ss&quot;&gt;type: :input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
+        &lt;span class=&quot;ss&quot;&gt;control_html: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;class: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;col-span-1 sm:col-span-6&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; 
+        &lt;span class=&quot;ss&quot;&gt;input_html: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;class: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;w-full input&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}}},&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;serie_id: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;ss&quot;&gt;type: :select&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
+        &lt;span class=&quot;ss&quot;&gt;control_html: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;class: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;col-span-1 sm:col-span-6&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; 
+        &lt;span class=&quot;ss&quot;&gt;input_html: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;values: :load_series&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;class: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;select w-full sm:w-1/2&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}}},&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;public: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;ss&quot;&gt;type: :checkbox&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
+        &lt;span class=&quot;ss&quot;&gt;control_html: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;class: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;relative flex gap-x-3 col-span-1 sm:col-span-6&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; 
+        &lt;span class=&quot;ss&quot;&gt;input_html: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;class: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;checkbox&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}}},&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;tags_text: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;ss&quot;&gt;type: :input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
+        &lt;span class=&quot;ss&quot;&gt;control_html: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;class: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;col-span-1 sm:col-span-6&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; 
+        &lt;span class=&quot;ss&quot;&gt;input_html: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;class: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;input w-full sm:w-1/2&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}}},&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;video_url: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;ss&quot;&gt;type: :input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
+        &lt;span class=&quot;ss&quot;&gt;control_html: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;class: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;col-span-1 sm:col-span-6&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; 
+        &lt;span class=&quot;ss&quot;&gt;input_html: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;class: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;input w-full&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}}},&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;content: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;ss&quot;&gt;type: :action_text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
+        &lt;span class=&quot;ss&quot;&gt;control_html: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;data: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;controller: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;trix-extensions&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;class: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;col-span-1 sm:col-span-6&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; 
+        &lt;span class=&quot;ss&quot;&gt;input_html: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;class: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;action-text h-[80vh] lg:h-[60vh]&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}}}],&lt;/span&gt;
+    &lt;span class=&quot;ss&quot;&gt;list_attributes: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:public&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:tags_text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:created_at&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;ss&quot;&gt;policy_class: &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;VideoPolicy&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+  &lt;span class=&quot;kp&quot;&gt;private&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;load_series&lt;/span&gt;
+    &lt;span class=&quot;no&quot;&gt;Serie&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;all&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;pluck&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;# Only allow list of trusted parameters through.&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;secure_params&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:video&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;permit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;form_attributes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;keys&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p class=&quot;m-0 text-gray-500 text-center&quot;&gt;Sample Rails controller using the resourceful module&lt;/p&gt;
+
+&lt;p&gt;Earlier this year, I created a new Rails Engine using the previous knowledge but with a blank slate to clean up the code, take advantage of Hotwire and Stimulus and write most of the UI code with components using Phlex. This is how Maquina was born.&lt;/p&gt;
+
+&lt;div class=&quot;embed-container&quot;&gt;
+  &lt;iframe src=&quot;https://player.vimeo.com/video/852754826&quot; frameborder=&quot;0&quot; allow=&quot;fullscreen; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The progress is still going on with the new engine, but I got to the point where I’m starting a new application using it. Once all functionality is migrated from the old engine, Maquina will have the following:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Multitenant support with a relationship of organization - membership - user. Where an organization may have a plan, think about building apps with multiple payment tiers.&lt;/li&gt;
+  &lt;li&gt;Authentication system using Rails has_password with password recovery, password expiration and prevention of password reusing for a user, block and unblock accounts, and user invitation.&lt;/li&gt;
+  &lt;li&gt;Default email setup and template for transactional emails.&lt;/li&gt;
+  &lt;li&gt;Authorization with ActionPolicy.&lt;/li&gt;
+  &lt;li&gt;Settings and profile section for users or organization configuration.&lt;/li&gt;
+  &lt;li&gt;All text the application uses comes from i18n files organized by models, views, forms, and flashes.&lt;/li&gt;
+  &lt;li&gt;Form building using components with Phlex. It uses Tailwind CSS for styling with color variables to set the theme.&lt;/li&gt;
+  &lt;li&gt;Hotwire patterns for form validations, page fragment updates, popup modals, and in-app notifications. Many of these with complementary Stimulus controllers.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Maquina will provide almost everything for a quick start on a new Rails application. It also has the flexibility that if you need to override functionality, you will be free to do it, and if you need to work outside the engine defaults, you can do it. Everything is just Ruby and Ruby on Rails code.&lt;/p&gt;
+
+&lt;p&gt;In a further blog post, I’ll discuss what it means for a controller to include the Resourceful module and the code availability of Maquina.&lt;/p&gt;</content><author><name>Mario Alberto Chávez Cárdenas</name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/maquina/maquina.jpg" /><media:content medium="image" url="https://mariochavez.io/images/maquina/maquina.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry xml:lang="en"><title type="html">Building AI applications with Ruby</title><link href="https://mariochavez.io/desarrollo/2023/07/12/building-ai-applications-with-ruby/" rel="alternate" type="text/html" title="Building AI applications with Ruby" /><published>2023-07-12T06:00:00+00:00</published><updated>2023-07-12T06:00:00+00:00</updated><id>repo://posts.collection/_posts/2023-07-12-building-ai-applications-with-ruby.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2023/07/12/building-ai-applications-with-ruby/">&lt;p&gt;When ChatGPT came in popularity earlier this year I wasn’t that excited, actually I refrained myself from jumping in to it. Mainly because most of the day-to-day work I do is related to Fintechs and confidential data.&lt;/p&gt;
+
+&lt;p&gt;Then in April, this year, the &lt;a href=&quot;https://www.theverge.com/2023/3/8/23629362/meta-ai-language-model-llama-leak-online-misuse&quot;&gt;LLaMA&lt;/a&gt; model was leaked into the Internet and things started to move quickly into the possibility of having private models. Tools like &lt;a href=&quot;https://github.com/ggerganov/llama.cpp&quot;&gt;llama.cpp&lt;/a&gt; emerged but still, there was an impossibility to be able to use it in commercial applications.&lt;/p&gt;
+
+&lt;p&gt;Still, I started to follow the development of the Open-Source models. It was moving very fast, at times it was difficult to catch up. When the first models with commercial license appeared, it was the time for me to try to run a model locally.&lt;/p&gt;
+
+&lt;p&gt;Almost all documentation and tools were writing in and for Python. So, I had to learn a new set of tools. The first time that I successfully run a model in my Mac Mini M2 Pro was existing but disappointed at the same time, it was unbearably slow.&lt;/p&gt;
+
+&lt;p&gt;I continued learning, building tools with Ruby, and trying smaller models. Then lama.cpp released support for Apple’s Metal Performance Shaders (MPS) and a 7 billion parameters model like &lt;a href=&quot;https://lmsys.org/&quot;&gt;Vicuna&lt;/a&gt; was fast enough for my Mac Mini M2 Pro.&lt;/p&gt;
+
+&lt;p&gt;Also, I realized that for the applications that I had in mind, I didn’t need bigger models.&lt;/p&gt;
+
+&lt;p&gt;So, today I’m releasing a tool, &lt;a href=&quot;https://github.com/mariochavez/aoororachain&quot;&gt;Aoororachain&lt;/a&gt; that allows you to create AI Applications with Ruby.&lt;/p&gt;
+
+&lt;p&gt;Before explaining what is &lt;strong&gt;Aoororachain&lt;/strong&gt; let me list the tools that I created over the time and that makes &lt;strong&gt;Aoororachain&lt;/strong&gt; an opinionated tool.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/mariochavez/chroma&quot;&gt;Chroma&lt;/a&gt; gem. It is a client for Vector Database &lt;a href=&quot;https://www.trychroma.com/&quot;&gt;Chroma&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/mariochavez/llm_server&quot;&gt;LLM Server&lt;/a&gt;. It is a Rack API application that wraps llama.cpp binary for running LLM models.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/mariochavez/llm_client&quot;&gt;LLM Client&lt;/a&gt;. A Ruby client for the LLM Server API.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Aoororachain&lt;/strong&gt; as I said before, is an opinionated way to build AI applications with Open-Source tools.&lt;/p&gt;
+
+&lt;p&gt;For example, if you want to query your own documents, it helps you to create embeddings of them and store the vectors in the Chroma database. To create the embeddings, it uses a &lt;em&gt;glue&lt;/em&gt; with Python for different embedding models.&lt;/p&gt;
+
+&lt;p&gt;Instead of going with a code example here, I ask you to look at the README file and the two Jupyter Notebooks that are part of the project for more information on how to use it.&lt;/p&gt;
+
+&lt;div class=&quot;flex flex-col sm:flex-row space-x-4&quot;&gt;
+  &lt;figure&gt;
+    &lt;a href=&quot;https://github.com/mariochavez/aoororachain/tree/main/notebooks&quot;&gt;
+      &lt;img class=&quot;block object-contain&quot; src=&quot;/images/build-ai-ruby/load-data.png&quot; /&gt;
+    &lt;/a&gt;
+    &lt;figcaption class=&quot;text-center&quot;&gt;Jupyter notbook to load data.&lt;/figcaption&gt;
+  &lt;/figure&gt;
+  &lt;figure&gt;
+    &lt;a href=&quot;https://github.com/mariochavez/aoororachain/tree/main/notebooks&quot;&gt;
+      &lt;img class=&quot;block object-contain&quot; src=&quot;/images/build-ai-ruby/retrieval-data.png&quot; /&gt;
+    &lt;/a&gt;
+    &lt;figcaption class=&quot;text-center&quot;&gt;Jupyter notbook to query data.&lt;/figcaption&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;But I’ll close this post with videos of three different applications using &lt;strong&gt;Aoororachain&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;The first application is a chat, where you can query Ruby 3.2 documentation and get responses and examples. Unfortunately, Ruby’s documentation lacks of explanation details, and I’m not saying this as a critic of all the people that work on it, but for some topics the LLM was unable to make sense of it.&lt;/p&gt;
+
+&lt;div class=&quot;embed-container&quot;&gt;
+  &lt;iframe src=&quot;https://player.vimeo.com/video/844402445&quot; frameborder=&quot;0&quot; allow=&quot;fullscreen; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The second application, is a chat where you can query the Mexico’s Fintech law.&lt;/p&gt;
+
+&lt;div class=&quot;embed-container&quot;&gt;
+  &lt;iframe src=&quot;https://player.vimeo.com/video/844394368&quot; frameborder=&quot;0&quot; allow=&quot;fullscreen; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The last application is a support chat for a fictitious Fintech company, where clients can ask for information about their credits, like next payment date, payments information, summaries, and what could happen if they fall behind with their payments.&lt;/p&gt;
+
+&lt;div class=&quot;embed-container&quot;&gt;
+  &lt;iframe src=&quot;https://player.vimeo.com/video/844398254&quot; frameborder=&quot;0&quot; allow=&quot;fullscreen; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;NOTE: All videos are accelerated while waiting for a response. The wait time was about 30 seconds with a 13 billion parameters model.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;If you are looking to try AI in a private environment, I hope that these tools can be useful for you. If you try them and find a bug or find a way to improve them, please send a pull request.&lt;/p&gt;</content><author><name>Mario Alberto Chávez Cárdenas</name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/build-ai-ruby/build-ai-ruby.png" /><media:content medium="image" url="https://mariochavez.io/images/build-ai-ruby/build-ai-ruby.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry xml:lang="es_MX"><title type="html">Serie de videos de Ruby y de Ruby on Rails</title><link href="https://mariochavez.io/desarrollo/2023/07/03/serie-videos-ruby-on-rails/" rel="alternate" type="text/html" title="Serie de videos de Ruby y de Ruby on Rails" /><published>2023-07-03T06:00:00+00:00</published><updated>2023-07-03T06:00:00+00:00</updated><id>repo://posts.collection/_posts/2023-07-03-serie-videos-ruby-on-rails.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2023/07/03/serie-videos-ruby-on-rails/">&lt;h1 id=&quot;serie-de-videos-de-ruby-y-de-ruby-on-rails&quot;&gt;Serie de videos de Ruby y de Ruby on Rails&lt;/h1&gt;
+
+&lt;p&gt;El año pasado anuncié el desarrollo de un curso en video para &lt;a href=&quot;https://mariochavez.io/desarrollo/2022/02/21/curso-ruby-on-rails/&quot;&gt;aprender Ruby on Rails&lt;/a&gt;. Posterior al anuncio liberé de forma gratuita 3 videos que inician una aplicación de Ruby on Rails 7 para llevar el control de gastos personales.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/series-ruby/video-1.png&quot; alt=&quot;From Aprende a crear aplicaciones Web modernas: Recursos para desarrollar con Ruby on Rails | Video 1&quot; /&gt; 
+&lt;a href=&quot;https://cursos.mariochavez.io/recursos-para-desarrollar/&quot;&gt;https://cursos.mariochavez.io/recursos-para-desarrollar/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/series-ruby/video-2.png&quot; alt=&quot;From Aprende a crear aplicaciones Web modernas: Inicializando la aplicación | Video 2&quot; /&gt; 
+&lt;a href=&quot;https://cursos.mariochavez.io/inicializando-la-aplicacion/&quot;&gt;https://cursos.mariochavez.io/inicializando-la-aplicacion/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/series-ruby/video-3.png&quot; alt=&quot;From Aprende a crear aplicaciones Web modernas: Trabajando con ActiveRecord | Video 3&quot; /&gt; 
+&lt;a href=&quot;https://cursos.mariochavez.io/trabajando-con-activerecord/&quot;&gt;https://cursos.mariochavez.io/trabajando-con-activerecord/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Después de eso ya no publiqué nada al respecto. Aunque tenía ya trabajo desarrollado para grabar nuevos videos, algo que me detenía era parte de crear la expectativa de ser un &lt;strong&gt;CURSO&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Cuando comencé el desarrollo de la idea, la inspiración fue &lt;a href=&quot;http://railscasts.com/&quot;&gt;Railscasts&lt;/a&gt; de Ryan Bates, los cuales fueron muy importantes para la época en lo que yo comencé a aprender Ruby y a aprender Rails.&lt;/p&gt;
+
+&lt;p&gt;Más allá de hacer un curso de Rails, lo que me llama la atención es poder tener una o más series con un poco más de profundidad y cercanos a la realidad de cómo trabajo yo en proyectos y no unos videos de “Como construir el clon de X en 10 horas”.&lt;/p&gt;
+
+&lt;p&gt;Con esta idea en la mente es que he decidido hacer un &lt;strong&gt;reboot&lt;/strong&gt; y enfocarme a crear videos en series. Videos que pueda ir produciendo al menos 1 cada 15 días. Parte de este proceso de &lt;strong&gt;reboot&lt;/strong&gt; también incluyó el mejorar las herramientas, así del como grabo y edito los videos.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/series-ruby/video-4.png&quot; alt=&quot;From Aprende a crear aplicaciones Web modernas: Trabajando con ActionController Parte 1 | Video 4&quot; /&gt; 
+&lt;a href=&quot;https://cursos.mariochavez.io/trabajando-con-actioncontroller-parte1/&quot;&gt;https://cursos.mariochavez.io/trabajando-con-actioncontroller-parte1/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/series-ruby/video-5.png&quot; alt=&quot;From Aprende a crear aplicaciones Web modernas: Trabajando con ActionController Parte 2 | Video 5&quot; /&gt; 
+&lt;a href=&quot;https://cursos.mariochavez.io/trabajando-con-actioncontroller-parte2/&quot;&gt;https://cursos.mariochavez.io/trabajando-con-actioncontroller-parte2/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Si visitan los últimos dos videos gratuitos, podrán notar que la calidad del video es mucho mejor que los primeros. Primero, se mejoró la grabación y ecualización del audio. En la edición hago zoom a áreas de mi pantalla que requieren atención, por ejemplo al modificar código.&lt;/p&gt;
+
+&lt;p&gt;Aún hay cosas que se pueden mejorar en la producción y que sin duda estaré buscando la forma de que así sea.&lt;/p&gt;
+
+&lt;h2 id=&quot;qué-va-a-cambiar&quot;&gt;¿Qué va a cambiar?&lt;/h2&gt;
+&lt;p&gt;Como mencioné anteriormente, no veo esto como un curso, lo veo como una serie de videos que van a cubrir diferentes aspectos de crear aplicaciones web modernas con Ruby on Rails y poco a poco iré agregando otras series con otros temas enfocados en Ruby.&lt;/p&gt;
+
+&lt;p&gt;No hay curso que comprar. La forma de poder acceder a los videos es a través de una suscripción semestral, no auto renovable. Al tener una suscripción se tiene acceso a todos los videos creados hasta ese momento y hasta el día que la suscripción finalice. La suscripción tiene un valor de $1,500.00 pesos mexicanos.&lt;/p&gt;
+
+&lt;p&gt;Al término de los seis meses, si se desea, se puede renovar la suscripción. Al mes se estarán publicando como mínimo 2 videos, uno cada 15 días. Los videos incluyen como contenidos enlaces a recursos, el código desarrollado y comandos importantes utilizados.&lt;/p&gt;
+
+&lt;p&gt;Es importante que si estás considerando el hacerte de la suscripción veas primero los 5 videos gratuitos y decidas si es para ti o no, ya que no es reembolsable.&lt;/p&gt;
+
+&lt;p&gt;La serie va a continuar con el desarrollo para manejar los gastos personales, con el siguiente video no gratuito para el 17 de julio. En los siguientes días actualizaré el código de &lt;a href=&quot;https://cursos.mariochavez.io/&quot;&gt;https://cursos.mariochavez.io/&lt;/a&gt; con la información de cómo adquirir la suscripción semestral.&lt;/p&gt;</content><author><name>Mario Alberto Chávez Cárdenas</name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/series-ruby/aprende-ruby.jpg" /><media:content medium="image" url="https://mariochavez.io/images/series-ruby/aprende-ruby.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry xml:lang="en_US"><title type="html">Ruby Next to keep compatibility with older Rubies</title><link href="https://mariochavez.io/desarrollo/2023/05/19/ruby-next-for-older-ruby/" rel="alternate" type="text/html" title="Ruby Next to keep compatibility with older Rubies" /><published>2023-05-19T18:00:00+00:00</published><updated>2023-05-19T18:00:00+00:00</updated><id>repo://posts.collection/_posts/2023-05-19-ruby-next-for-older-ruby.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2023/05/19/ruby-next-for-older-ruby/">&lt;p&gt;Today I have released a new version of the &lt;a href=&quot;https://rubygems.org/gems/chroma-db&quot; target=&quot;_blank&quot;&gt;chroma-db&lt;/a&gt; gem, version 0.3.0.&lt;/p&gt;
+
+&lt;p&gt;It was motivated due to an issue in the repository about &lt;a href=&quot;https://github.com/mariochavez/chroma/issues/8&quot;&gt;Data not being available&lt;/a&gt; and the ask to relax the Ruby version requirement, which was 3.2.&lt;/p&gt;
+
+&lt;p&gt;When I wrote the library, I used the syntax from Ruby 3.2 so having it to work with earlier versions required a rewrite to make it compatible. I was not amused by having to rewrite parts of the gem, luckily I remembered seen &lt;a href=&quot;https://github.com/ruby-next/ruby-next&quot; target=&quot;_blank&quot;&gt;Ruby Next&lt;/a&gt; a while ago from Evil Martians. So, I went to give it a try.&lt;/p&gt;
+
+&lt;p&gt;Ruby Next is a transpiler for the Ruby language. It can take a Ruby file using newer syntax and automatically generate one or more files that are compatible with earlier versions of Ruby. Since I was looking to be compatible down to Ruby 2.6, Ruby Next generated files for 2.6 and 3.1 version. These files cover all syntax changes in between Ruby versions.&lt;/p&gt;
+
+&lt;p&gt;Having the transpiled versions, Ruby Next takes care of loading the correct file depending on your Ruby version and replacing the original code using a Ruby &lt;a href=&quot;https://rubyapi.org/3.2/o/refinement&quot; target=&quot;_blank&quot;&gt;refinement&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;This sounded promising for my case with this gem. I focused on the section called “Integrating into a gem development” section of the README file.&lt;/p&gt;
+
+&lt;p&gt;First, the dependencies were added to the gemspec file of chroma-db.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;if ENV[&quot;RELEASING_GEM&quot;].nil? &amp;amp;&amp;amp; File.directory?(File.join(__dir__, &quot;.git&quot;))
+    spec.add_runtime_dependency &quot;ruby-next&quot;, &quot;&amp;gt;= 0.15.0&quot;
+  else
+    spec.add_dependency &quot;ruby-next-core&quot;, &quot;&amp;gt;= 0.15.0&quot;
+  end
+
+  spec.add_development_dependency &quot;ruby-next&quot;, &quot;&amp;gt;= 0.15.0&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Also, I make sure that generated files are packed into the gem but ignored by git.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;files&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Dir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;chdir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;__dir__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+    &lt;span class=&quot;sb&quot;&gt;`git ls-files -z`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\x0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;reject&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;expand_path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;__FILE__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;start_with?&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;%w[bin/ test/ spec/ features/ notebook/ .git .circleci appveyor .standard.yml .rubocop.yml .solargraph.yml]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Dir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;glob&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;lib/.rbnext/**/*&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+   
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Next, I changed the entry point  &lt;code class=&quot;highlighter-rouge&quot;&gt;lib/chroma-db.rb&lt;/code&gt; of the gem to load Ruby Next and to set up the loading of transpiled files accordingly to the Ruby version at runtime.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;ruby-next&quot;&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;ruby-next/language/setup&quot;&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;RubyNext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Language&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;setup_gem_load_path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;transpile: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Note: This needs to happen before you require your gem files. Also, this gem does not work with &lt;code class=&quot;highlighter-rouge&quot;&gt;requiere_relative&lt;/code&gt;, so you need to use &lt;code class=&quot;highlighter-rouge&quot;&gt;require&lt;/code&gt; instead.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Now to every file that uses the new Ruby’s syntax, I added the line to load the refinement.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;RubyNext&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;At this point, the gem is almost ready to become compatible with earlier versions of Ruby, but first you have to generate the transpiled Ruby code. I opened the &lt;code class=&quot;highlighter-rouge&quot;&gt;Rakefile&lt;/code&gt; and added a task for this:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;desc&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Run Ruby Next nextify&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;task&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:nextify&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;sh&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;bundle exec ruby-next nextify -V&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Also, I created a &lt;em&gt;rc&lt;/em&gt; file called &lt;code class=&quot;highlighter-rouge&quot;&gt;.rbnextrc&lt;/code&gt; to configure Ruby Next.&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;nextify&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;|&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;./lib&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;--min-version=2.6&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;--edge&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;--proposed&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Running the rake task &lt;code class=&quot;highlighter-rouge&quot;&gt;rake nextify&lt;/code&gt; generates the transpiled version of our code into &lt;code class=&quot;highlighter-rouge&quot;&gt;lib/.rbnext&lt;/code&gt; folder. It contains folders for different versions of Ruby and replicated inside the folder structure of our gem files that needs transpilation to become compatible. Don’t forget to add to your &lt;code class=&quot;highlighter-rouge&quot;&gt;.gitgnore&lt;/code&gt; file, the &lt;code class=&quot;highlighter-rouge&quot;&gt;lib/.rbnext&lt;/code&gt; folder.&lt;/p&gt;
+
+&lt;p&gt;The final changes are related to being able to run your test suite with different Rubies. Open the &lt;code class=&quot;highlighter-rouge&quot;&gt;test_helper.rb&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;spec_helper.rb&lt;/code&gt; and the following code just before the helper loads your gems files.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;no&quot;&gt;ENV&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;RUBY_NEXT_TRANSPILE_MODE&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;rewrite&quot;&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;ENV&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;RUBY_NEXT_EDGE&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;1&quot;&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;ENV&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;RUBY_NEXT_PROPOSED&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;1&quot;&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;ruby-next/language/runtime&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;unless&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ENV&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;CI&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Make sure that you can run your tests locally. To be 100% sure that your gem is now compatible with other Rubies, run your CI with a matrix of Ruby versions and be sure that &lt;code class=&quot;highlighter-rouge&quot;&gt;CI=true&lt;/code&gt; environment variable is set and also that the rake task to generate the transpiled code runs before your tests.&lt;/p&gt;
+
+&lt;p&gt;In the case of chroma-db I was using Ruby’s 3.2 &lt;a href=&quot;https://rubyapi.org/3.2/o/s?q=Data&quot; target=&quot;_blank&quot;&gt;Data&lt;/a&gt; class which is not supported by Ruby Next at this time, so I had to make a manual change to use a &lt;a href=&quot;https://rubyapi.org/3.2/o/struct&quot; target=&quot;_blank&quot;&gt;Struct&lt;/a&gt; instead.&lt;/p&gt;
+
+&lt;p&gt;Overall, I’m happy that Ruby Next worked for me on this gem, this means that I can be used with earlier versions of Ruby for those that can’t use the latest version, but also I keep the joy of using newer syntax.&lt;/p&gt;
+
+&lt;p&gt;By the way, the issue was reported by the team working on &lt;a href=&quot;https://github.com/andreibondarev/langchainrb&quot; target=&quot;_blank&quot;&gt;langchainrb&lt;/a&gt;&lt;/p&gt;</content><author><name>Mario Alberto Chávez Cárdenas</name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/ruby_next/ruby_next.jpg" /><media:content medium="image" url="https://mariochavez.io/images/ruby_next/ruby_next.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry xml:lang="en_US"><title type="html">Chroma Vector Database Ruby client</title><link href="https://mariochavez.io/desarrollo/2023/05/15/chroma-vector-database-ruby-client/" rel="alternate" type="text/html" title="Chroma Vector Database Ruby client" /><published>2023-05-15T18:00:00+00:00</published><updated>2023-05-15T18:00:00+00:00</updated><id>repo://posts.collection/_posts/2023-05-15-chroma-vector-database-ruby-client.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2023/05/15/chroma-vector-database-ruby-client/">&lt;p&gt;Chroma Vector Database Ruby client.&lt;/p&gt;
+
+&lt;p&gt;Today I’m releasing a gem called &lt;a href=&quot;https://github.com/mariochavez/chroma&quot; target=&quot;_blank&quot;&gt;chroma-db&lt;/a&gt; which is a Ruby client for &lt;a href=&quot;https://www.trychroma.com&quot; target=&quot;_blank&quot;&gt;Chroma Vector Database&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Chroma defines itself as “the AI-native open-source embedding database”. The interest in Vector Databases increased with the popularity of LLMs, these types of databases became the context memory for them.&lt;/p&gt;
+
+&lt;p&gt;My desire to start playing around with LLMs, especially the ones that you can run on your own, let me to the place to start writing tools for the Ruby language.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-server&quot;&gt;The server&lt;/h2&gt;
+&lt;p&gt;To install Chroma locally, it requires a Python environment. There are many ways to install Python on your system. Choose the one that works better for you.&lt;/p&gt;
+
+&lt;p&gt;Here I’ll use &lt;a href=&quot;https://docs.conda.io/en/latest/miniconda.html&quot;&gt;miniconda&lt;/a&gt; installed via &lt;a href=&quot;https://brew.sh/&quot; target=&quot;_blank&quot;&gt;HomeBrew&lt;/a&gt; on macOS.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ brew install miniconda
+$ conda activate chroma
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Once the environment is ready, in my case, instead of installing Chroma via pip command I choose to clone the repo with a specific tag.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ git clone --depth 1 --branch 0.3.22  git@github.com:chroma-core/chroma.git
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;To start the server, go to Chroma cloned directory and use docker to create the image and start the service with Docker Compose.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ docker-compose up -d --build
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This command starts the server at http://localhost:8000 but also starts the &lt;a href=&quot;https://clickhouse.com/&quot; target=&quot;_blank&quot;&gt;Clickhouse&lt;/a&gt; which is used by Chroma to persists embeddings, metadata, and documents.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-client&quot;&gt;The client&lt;/h2&gt;
+&lt;p&gt;With the server up and running, the next step is to install the client, and then you are ready.&lt;/p&gt;
+
+&lt;p&gt;To install the client, just run&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ gem install chroma-db
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Or add it to your Gemfile with&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ bundle add chroma-db
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Here is an example of a few operations with Chroma.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;logger&quot;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Requiere Chroma Ruby client.&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;chroma-db&quot;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Configure Chroma&apos;s host. Here you can specify your own host.&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;Chroma&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;connect_host&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;http://localhost:8000&quot;&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;Chroma&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;logger&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Logger&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;vg&quot;&gt;$stdout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;Chroma&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;log_level&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Chroma&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;LEVEL_ERROR&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Check current Chrome server version&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;version&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Chroma&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Resources&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Database&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;version&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Create a new collection&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;collection&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Chroma&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Resources&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Collection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;collection_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;lang: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ruby&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;gem: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;chroma-db&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Add embeddings&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;embeddings&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+  &lt;span class=&quot;no&quot;&gt;Chroma&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Resources&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Embedding&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;id: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;embedding: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;2.6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;3.1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;metadata: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;client: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;chroma-rb&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;document: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ruby&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+  &lt;span class=&quot;no&quot;&gt;Chroma&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Resources&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Embedding&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;id: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;2&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;embedding: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;3.7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;2.8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.9&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;metadata: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;client: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;chroma-rb&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;document: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;rails&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;collection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;embeddings&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h3 id=&quot;jupyter-notebook&quot;&gt;Jupyter notebook&lt;/h3&gt;
+&lt;p&gt;To explore a more complete example, chroma-db repository includes &lt;a href=&quot;https://github.com/mariochavez/chroma/blob/main/notebook/Chroma%20Gem.ipynb&quot; target=&quot;_blank&quot;&gt;Jupyter notebook&lt;/a&gt;. To use the notebook, install the following Python dependencies and install the &lt;a href=&quot;https://github.com/SciRuby/iruby&quot; target=&quot;_blank&quot;&gt;IRuby&lt;/a&gt; kernel.&lt;/p&gt;
+
+&lt;figure&gt;&lt;img src=&quot;/images/chroma-db/notebook-1.jpg&quot; /&gt;&lt;figcaption class=&quot;p-2 text-center&quot;&gt;Jupyter notebook&lt;/figcaption&gt;&lt;/figure&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ pip install jupyterlab notebook ipywidgets
+$ gem install iruby
+$ iruby register --force
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;figure&gt;&lt;img src=&quot;/images/chroma-db/notebook-2.jpg&quot; /&gt;&lt;figcaption class=&quot;p-2 text-center&quot;&gt;Jupyter notebook&lt;/figcaption&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;final&quot;&gt;Final&lt;/h2&gt;
+&lt;p&gt;The work of LLMs is very popular now days, tooling in the Python and JavaScript world is moving very fast. Ruby has always been excluded from ML or NLP technology.&lt;/p&gt;
+
+&lt;p&gt;There is an opportunity for Ruby tools in the “chain” areas to connect and integrate services around the LLMs. If you feel the same, please contribute to improving this client and to create other tools that we can use in our Ruby world. &lt;/p&gt;</content><author><name>Mario Alberto Chávez Cárdenas</name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/chroma-db/chroma-client.jpg" /><media:content medium="image" url="https://mariochavez.io/images/chroma-db/chroma-client.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry xml:lang="es_MX"><title type="html">Uso de modelos LLM para generar código</title><link href="https://mariochavez.io/desarrollo/2023/05/13/uso-de-modelos-llm-para-generar-codigo/" rel="alternate" type="text/html" title="Uso de modelos LLM para generar código" /><published>2023-05-13T18:00:00+00:00</published><updated>2023-05-13T18:00:00+00:00</updated><id>repo://posts.collection/_posts/uso-de-modelos-llm-para-generar-codigo.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2023/05/13/uso-de-modelos-llm-para-generar-codigo/">&lt;p&gt;Desde el año pasado y en especial este 2023, el uso de herramientas de inteligencia artificial (IA) para escribir y sugerir código ha ganado una popularidad significativa. &lt;/p&gt;
+
+&lt;p&gt;Los desarrolladores y no desarrolladores recurren a estas herramientas basadas en IA para obtener ayuda con la generación de código, documentación y solución de errores.&lt;/p&gt;
+
+&lt;p&gt;Herramientas como &lt;a href=&quot;https://github.com/features/preview/copilot-x&quot; target=&quot;_blank&quot;&gt;Copilot&lt;/a&gt; y otras comerciales, además de la Open Source como &lt;a href=&quot;https://github.com/TabbyML/tabby&quot; target=&quot;_blank&quot;&gt;TabbyML&lt;/a&gt; y &lt;a href=&quot;https://github.com/ravenscroftj/turbopilot&quot; target=&quot;_blank&quot;&gt;Turbopilot&lt;/a&gt; tienen la  idea de aprovechar la IA para agilizar los procesos de creación de código de forma prometedora.&lt;/p&gt;
+
+&lt;p&gt;Entiendo el atractivo de este tipo de herramientas que se integran en el editor de código, sin embargo, a mí no me parece tan atractivo insertar un bloque de código a “ciegas” que puede que funcione o no, sin más contexto sobre el código de que la sugerencia “parece ser” lo que necesito.&lt;/p&gt;
+
+&lt;p&gt;Si la intención primordial es automatizar tareas repetitivas, ofrecer sugerencias sobre lo que parece ser que necesito y en general acelerar el proceso de desarrollo, actualmente tengo esto mismo - sin el hype - con snippets creados por mí y generadores de código que entienden mi lenguaje de programación y framework y que además generan código bajo mi estilo personal.&lt;/p&gt;
+
+&lt;p&gt;Otro tipo de herramientas que no son exclusivas para el desarrollo de software, pero que se han comenzado a utilizar para esto son los chats, en especial el ChatGPT de &lt;a href=&quot;https://openai.com/&quot; target=&quot;_blank&quot;&gt;OpenAI&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;La integración con los editores de código es opcional en este caso. La mejora sustancial con las otras herramientas, desde mi punto de vista, es que agregamos texto como contexto sobre lo que necesitamos ayuda, además de poder agregar ejemplos de código, por ejemplo la firma de un método.&lt;/p&gt;
+
+&lt;p&gt;Además de generar la sugerencia de código, esta viene acompañada de una explicación, que más allá de código, esta última puede ser lo más relevante para aprender.&lt;/p&gt;
+
+&lt;p&gt;Sin embargo, no todo es “color de rosa” con esta herramienta. En la mayoría de los casos es necesario iterar sobre la misma idea múltiples ocasiones, ya que aunque responde con un texto donde se percibe confianza y seguridad en lo que nos está describiendo, me he encontrado que está tremendamente equivocado.&lt;/p&gt;
+
+&lt;p&gt;En mi caso, que trabajo principalmente sobre Ruby y Ruby on Rails, me ha ofrecido sugerencia donde hace uso de gemas (librerías) inexistentes, algunas parecen ser librerías de Python.&lt;/p&gt;
+
+&lt;p&gt;Me ha generado código donde hace uso de métodos inexistentes en las librerías estándar de Ruby. O ha generado como respuesta a solicitudes sobre Ruby con código de Python formateado para que parezca Ruby.&lt;/p&gt;
+
+&lt;p&gt;Otro punto importante para mí que siempre trabajo sobre las últimas versiones de las librerías y herramientas es que ChatGPT solo tiene conocimiento, la versión libre, de Ruby 3.0.0 y Rails 6.1.4, del 2020 y 2021, respectivamente.&lt;/p&gt;
+
+&lt;p&gt;Buscando otra forma de sacarle provecho, en lugar de pedirle código, opté por pedirle que documentara a partir de la firma de métodos y de definiciones de clases. Siempre fui explícito en que el formato de la documentación tenía que ser el de RDoc de Ruby; sin embargo, el 100% de los casos la documentación la escribe con el formato de documentación de Javascript.&lt;/p&gt;
+
+&lt;p&gt;Una tarea más que busqué comprobar si la podía hacer bien o no fue la de escribir los archivos de tipado de Ruby, RBS; sin embargo, nuevamente me di cuenta de que es algo fuera de su conocimiento.&lt;/p&gt;
+
+&lt;p&gt;Después de varios meses sigo haciendo uso de forma esporádica de ChatGPT, en su lugar he cambiado a otra herramienta llamada &lt;a href=&quot;https://www.phind.com&quot; target=&quot;_blank&quot;&gt;Phind&lt;/a&gt; que se parece más a un buscador que a un chat de IA. Phind usa el internet, en especial los blogs y documentación técnica en conjunto con un LLM para ofrecer respuestas.&lt;/p&gt;
+
+&lt;p&gt;Puedo configurar como quiero que sea la respuesta, larga y con varias opciones o simple y directa a lo que parece resolver mi duda. Además, agrega referencias a los blogs o sitios web de donde extrajo la respuesta para que si así lo deseo poder ir al sitio y conocer más del contexto.&lt;/p&gt;
+
+&lt;div class=&quot;grid grid-cols-1 md:grid-cols-2 gap-4&quot;&gt;
+  &lt;figure&gt;&lt;img src=&quot;/images/modelos-llm-codigo/chatgpt.png&quot; /&gt;&lt;figcaption class=&quot;p-2 text-center&quot;&gt;Ejemplo con ChatGPT&lt;/figcaption&gt;&lt;/figure&gt;
+  &lt;figure&gt;&lt;img src=&quot;/images/modelos-llm-codigo/phind.png&quot; /&gt;&lt;figcaption class=&quot;p-2 text-center&quot;&gt;Ejemplo con Phind&lt;/figcaption&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Lo mejor de todo es que parece tener información actualizada y no mezcla las respuestas de Ruby con otros lenguajes de programación.&lt;/p&gt;
+
+&lt;p&gt;Por último, es innegable la ayuda que herramientas de IA pueden proporcionar como asistencia y automatización, pero es importante recordar que escribir código sigue siendo una actividad que requiere experiencia, conocimientos y creatividad humana. De momento la comprensión contextual de nuestros proyectos y las habilidades de resolución de problemas que poseemos es lo más importante que ofrecemos en nuestro trabajo. La IA solo es una herramienta más que sin lo anterior carece de valor.&lt;/p&gt;</content><author><name>Mario Alberto Chávez Cárdenas</name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/modelos-llm-codigo/modelo-llm-codigo.jpg" /><media:content medium="image" url="https://mariochavez.io/images/modelos-llm-codigo/modelo-llm-codigo.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry xml:lang="es_MX"><title type="html">Neovim y LunarVim para trabajar con Rails</title><link href="https://mariochavez.io/desarrollo/2022/08/05/neovim-lunarvim-rail/" rel="alternate" type="text/html" title="Neovim y LunarVim para trabajar con Rails" /><published>2022-08-05T06:00:00+00:00</published><updated>2022-08-05T06:00:00+00:00</updated><id>repo://posts.collection/_posts/2022-08-05-neovim-lunarvim-rail.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2022/08/05/neovim-lunarvim-rail/">&lt;h1 id=&quot;neovim-y-lunarvim-para-trabajar-con-rails&quot;&gt;Neovim y LunarVim para trabajar con Rails&lt;/h1&gt;
+
+&lt;p&gt;Desde hace más de 15 años he utilizado, primero Vim, luego &lt;a href=&quot;https://neovim.io&quot; target=&quot;_blank&quot;&gt;Neovim&lt;/a&gt; para desarrollar software. Mi tendencia es tratar de personalizar solamente lo suficiente para trabajar cómodamente con el código.&lt;/p&gt;
+
+&lt;p&gt;En los últimos años, estuve haciendo uso de Vim con &lt;a href=&quot;https://spacevim.org&quot; target=&quot;_blank&quot;&gt;Spacevim&lt;/a&gt;, pero para ser sincero nunca hice uso al 100% de todo lo que ofrecía Spacevim. El año pasado vi un tweet sobre Neovim y algo llamado &lt;a href=&quot;https://www.lunarvim.org/#opinionated&quot; target=&quot;_blank&quot;&gt;Lunarvim&lt;/a&gt; y me pareció interesante, en particular el soporte que Neovim presentaba para los Language Servers.&lt;/p&gt;
+
+&lt;p&gt;Así que tomé la decisión de borrar mi configuración de Vim de años y comenzar desde cero con Neovim.&lt;/p&gt;
+
+&lt;p&gt;Instalar Neovim es relativamente fácil, normalmente implica ejecutar un par de comando o descargar un binario. En MacOS es un comando con &lt;a href=&quot;https://brew.sh&quot; target=&quot;_blank&quot;&gt;Homebrew&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;brew install neovim&lt;/p&gt;
+
+&lt;p&gt;Una vez que está instalado Neovim, el siguiente paso es instalar Lunarvim, nuevamente un comando en la terminal y se instala en un par de minutos, recomiendo la versión estable.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bash &amp;lt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;curl &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Durante la instalación va a preguntar si deseamos instalar las dependencias de Javascript, Python y Rust, hay que responder que sí.&lt;/p&gt;
+
+&lt;p&gt;LunarVim crear un directorio en &lt;code class=&quot;highlighter-rouge&quot;&gt;~/.config/lvim&lt;/code&gt; donde se encuentra el archivo de configuración de Neovim y Lunarvim &lt;code class=&quot;highlighter-rouge&quot;&gt;config.lua&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Aquí está mi archivo de configuración &lt;a href=&quot;https://gist.github.com/mariochavez/f2547d0b51353eacf203cf1a00fce3e8&quot; target=&quot;_blank&quot;&gt;config.lua&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;En ese archivo es donde podemos configurar como deseamos que el editor se comporte y agregar plugins necesarios. Mi configuración es muy básica, solamente hice los siguientes cambios.&lt;/p&gt;
+
+&lt;p&gt;Deshabilité que autoformatee mi código al guardar.&lt;/p&gt;
+
+&lt;div class=&quot;language-lua highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;lvim&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;format_on_save&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;No mostrar los mensajes de error al lado del código&lt;/p&gt;
+
+&lt;div class=&quot;language-lua highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;lvim&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lsp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;diagnostics&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;virtual_text&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Mostrar una línea en la columna 120  y que la numeración de las líneas fuese relativa a donde se encuentra el cursor.&lt;/p&gt;
+
+&lt;div class=&quot;language-lua highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;vim&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;opt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;colorcolumn&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;120&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;vim&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;opt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;relativenumber&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Cambié el leader a que sea una coma.&lt;/p&gt;
+
+&lt;div class=&quot;language-lua highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;lvim&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;leader&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;,&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Agregué &lt;a href=&quot;https://github.com/nvim-pack/nvim-spectre&quot; target=&quot;_blank&quot;&gt;Spectre&lt;/a&gt;, un plugin para buscar y reemplazar texto en el proyecto, al menú&lt;/p&gt;
+
+&lt;div class=&quot;language-lua highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;lvim&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;builtin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;which_key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mappings&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;S&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&amp;lt;cmd&amp;gt;lua require(&apos;spectre&apos;).open()&amp;lt;CR&amp;gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Spectre&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Modifiqué la búsqueda de archivos para que solo muestre archivos que estén bajo el control de git.&lt;/p&gt;
+
+&lt;div class=&quot;language-lua highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;lvim&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;builtin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;which_key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mappings&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;f&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&amp;lt;cmd&amp;gt;Telescope git_files&amp;lt;CR&amp;gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Find File&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Modifiqué el comportamiento para que al guardar un archivo borre espacios en blanco al final de las líneas.&lt;/p&gt;
+
+&lt;div class=&quot;language-lua highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;vim&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cmd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;[[
+  au FocusLost * :wa
+  autocmd FileType ruby,javascript,css,ts autocmd BufWritePre * :%s/\s\+$//e
+  autocmd FileType ruby,javascript,css,ts autocmd BufWritePre * :%s/\t/  /e
+  match ErrorMsg &apos;\s\+$&apos;
+]]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Agregué los siguientes plugins: &lt;a href=&quot;https://github.com/tpope/vim-fugitive&quot; target=&quot;_blank&quot;&gt;tpope/vim-fugitive&lt;/a&gt;, &lt;a href=&quot;https://github.com/tpope/vim-rails&quot; target=&quot;_blank&quot;&gt;tpope/vim-rails&lt;/a&gt;, &lt;a href=&quot;https://github.com/EdenEast/nightfox.nvim&quot; target=&quot;_blank&quot;&gt;EdenEast/nightfox.nvim&lt;/a&gt;, &lt;a href=&quot;https://github.com/nvim-pack/nvim-spectre&quot; target=&quot;_blank&quot;&gt;windwp/nvim-spectre&lt;/a&gt;, principalmente.&lt;/p&gt;
+
+&lt;p&gt;Configuré la indentación para Ruby.&lt;/p&gt;
+
+&lt;div class=&quot;language-lua highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;lvim&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;autocommands&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;custom_groups&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;BufWinEnter&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;*.lua&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;setlocal ts=8 sw=8&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;BufWinEnter&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;*.rb&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;setlocal ts=2 sw=2&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Agregué los shortcuts &lt;strong&gt;,wv&lt;/strong&gt; y &lt;strong&gt;,wh&lt;/strong&gt; para dividir la pantalla verticalmente y horizontalmente.&lt;/p&gt;
+
+&lt;div class=&quot;language-lua highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;lvim&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;builtin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;which_key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mappings&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;w&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Splits&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;w&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&amp;lt;C-w&amp;gt;v&amp;lt;C-w&amp;gt;l&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Vertical&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;h&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&amp;lt;C-w&amp;gt;new&amp;lt;C-w&amp;gt;l&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Horizontal&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Finalmente, activé el soporte para Tailwind.&lt;/p&gt;
+
+&lt;div class=&quot;language-lua highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;lvim.lsp.manager&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;setup&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;tailwindcss&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Dentro de Neovim hay que instalar los Language Server para que ayuden a autocompletar y ofrecer diagnóstico ayuda en el código. En mi caso instalé los siguientes:&lt;/p&gt;
+
+&lt;div class=&quot;language-lua highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;LspInstall&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ruby&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;javascript&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tailwindcss&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;solargraph&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Para el caso de &lt;a href=&quot;https://solargraph.org&quot; target=&quot;_blank&quot;&gt;Solargraph&lt;/a&gt; que ayuda a autocompletar en Ruby, también configuré &lt;a href=&quot;https://github.com/testdouble/standardrb&quot; target=&quot;_blank&quot;&gt;StandardRb&lt;/a&gt; para diagnóstico y formateo. La configuración de StandardRb requirió de un par de pasos manuales. Hay que navegar al directorio donde se instaló el Language Server de Solargraph y ejecutar la siguiente línea:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ~/.local/share/nvim/lsp_servers/solargraph
+gem &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;solargraph-standardrb solargraph-rails standardrb &lt;span class=&quot;nt&quot;&gt;--install-dir&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Luego en el directorio donde está el binario reemplace el contenido de Solargraph con el siguiente código para activar StandardRb.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ~/.local/share/nvim/lsp_servers/solargraph/bin
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Aquí existe un ejecutable Solargraph, hay que abrirlo con el editor, borrar el contenido y reemplazarlos con el siguiente código.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;#!/usr/bin/env ruby&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# frozen_string_literal: true&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Solargraph has plugins for linting, but not for formatting. So do a bit of&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# dirty monkeypatching of the formatter[1] until/when they add plugin support&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# for formatting. There aren&apos;t great hooks, as this wasn&apos;t designed to be&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# extended, so much of #process had to be copied verbatium&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# 1: https://github.com/castwide/solargraph/blob/940b28932626e236871c10293da5e0f5eacf94c0/lib/solargraph/language_server/message/text_document/formatting.rb&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# ENV[&quot;BUNDLE_GEMFILE&quot;] ||= File.expand_path(&quot;../Gemfile&quot;, __dir__)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# require &quot;bundler/setup&quot;&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;solargraph&quot;&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;standard&quot;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Solargraph::LanguageServer::Message::TextDocument::Formatting&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;process&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;file_uri&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;textDocument&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;uri&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;config&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;config_for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;file_uri&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;original&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;host&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;read_text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;file_uri&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cli_args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;file_uri&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# require_rubocop(config[&apos;version&apos;])&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# options, paths = RuboCop::Options.new.parse(args)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Standard&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;BuildsConfig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;options&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;rubocop_options&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:stdin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;original&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;corrections&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;redirect_stdout&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+      &lt;span class=&quot;no&quot;&gt;RuboCop&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Runner&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;rubocop_config_store&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;paths&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:stdin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;log_corrections&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;corrections&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;original&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;rescue&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;RuboCop&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ValidationError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;RuboCop&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ConfigNotFoundError&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;set_error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Solargraph&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;LanguageServer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ErrorCodes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;INTERNAL_ERROR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;[&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;] &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;formatter_class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;no&quot;&gt;Standard&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Formatter&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;no&quot;&gt;Solargraph&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Shell&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ARGV&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Después de esto solo queda en cada proyecto de Ruby on Rails agregar dos archivos, uno para indicar la configuración de Solargraph y otro para la configuración de StandardRb.&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# .solargraph.yml&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;plugins&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;solargraph-standardrb&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;solargraph-rails&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;reporters&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;standardrb&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# .standard.yml&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;plugins&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;solargraph-standardrb&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;solargraph-rails&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;reporters&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;standardrb&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Mario Alberto Chávez Cárdenas</name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/neovim.jpg" /><media:content medium="image" url="https://mariochavez.io/images/neovim.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry xml:lang="es_MX"><title type="html">Curso de Ruby on Rails 7.0</title><link href="https://mariochavez.io/desarrollo/2022/02/21/curso-ruby-on-rails/" rel="alternate" type="text/html" title="Curso de Ruby on Rails 7.0" /><published>2022-02-21T06:00:00+00:00</published><updated>2022-02-21T06:00:00+00:00</updated><id>repo://posts.collection/_posts/2022-02-21-curso-ruby-on-rails.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2022/02/21/curso-ruby-on-rails/">&lt;h1 id=&quot;curso-de-ruby-on-rails-70&quot;&gt;Curso de Ruby on Rails 7.0&lt;/h1&gt;
+
+&lt;h2 id=&quot;nueva-actualización&quot;&gt;Nueva Actualización&lt;/h2&gt;
+
+&lt;p&gt;Visitar &lt;a href=&quot;/desarrollo/2023/07/03/serie-videos-ruby-on-rails&quot;&gt;Serie de videos de Ruby y de Ruby on Rails&lt;/a&gt; para mayor información.&lt;/p&gt;
+
+&lt;h2 id=&quot;actualización&quot;&gt;Actualización&lt;/h2&gt;
+
+&lt;p&gt;Los 3 primeros videos ya se encuentran disponibles &lt;a href=&quot;https://cursos.mariochavez.io&quot; target=&quot;_blank&quot;&gt;Aprende a crear aplicaciones Web modernas&lt;/a&gt; de manera gratuita, a partir del cuarto video es cuando el curso tendrá un costo. El motivo de que los 3 primeros sean gratuitos es para ofrecer la oportunidad
+de evaluar si el contenido y el formato es lo que se espera y así poder decidir si se dese adquirir o no.&lt;/p&gt;
+
+&lt;div class=&quot;w-full&quot;&gt;
+  &lt;img src=&quot;/images/curso.jpg&quot; class=&quot;m-auto&quot; style=&quot;width: 640px&quot; alt=&quot;Curso&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Los invito a visitar el sitio y tomarse el tiempo para ver los videos y el contenido de los mismos. Y si es posible, les agradeceré lo compartan con sus conocidos o con quienes crear se pueden beneficiar.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Ayer publiqué en Twitter una pregunta sobre si existe interés en que realice un curso en video para desarrollar Web con Ruby on Rails. La respuesta fue mucho más alta de lo que me hubiera imaginado, motivo por el cual he decidido llevarlo a cabo.&lt;/p&gt;
+
+&lt;div class=&quot;w-full&quot;&gt;
+  &lt;img src=&quot;/images/curso-rails.jpg&quot; class=&quot;m-auto&quot; style=&quot;width: 440px&quot; alt=&quot;Tweet&quot; /&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;el-curso&quot;&gt;El Curso&lt;/h2&gt;
+&lt;p&gt;El curso va a ser totalmente grabado en video, con información y links de apoyo que puedan ser útiles. Cada video va a tener una duración de entre 15 a 30 minutos máximo con la intención de que no sean cansados y que se puedan revistar para tener información de temas puntuales.&lt;/p&gt;
+
+&lt;p&gt;En el curso me basaré en la experiencia personal de como escribir aplicaciones con Ruby on Rails, por lo que no solamente mostraré código o como hacer alguna tarea, también recomendaré herramientas que uso de forma diaria y que me ayudan a mí y a mi equipo a tratar de hacer mejores aplicaciones.&lt;/p&gt;
+
+&lt;p&gt;Dado que la intención del curso es que sea lo más real posible, es importante que se base en escribir una aplicación real. Por tal motivo, la aplicación será enfocada en administrar las finanzas personales. Los puntos que se cubrirán, algunos pueden cambiar, serán los siguientes.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Iniciar una aplicación de Rails y configuraciones básicas de herramientas. Linters, verificaciones de seguridad y CVEs.&lt;/li&gt;
+  &lt;li&gt;Configurar acceso de seguridad desde cero, sin la ayuda de Devise o alguna otra herramienta como esas.&lt;/li&gt;
+  &lt;li&gt;Modelos para registrar ingresos y egresos, relaciones y búsquedas. Recomendaciones para migraciones y toma de ventaja de funcionalidad de la base de datos Postgresql.&lt;/li&gt;
+  &lt;li&gt;Manejo de controladores, rutas y vistas. Uso de controladores de Stimulus y aprovechamiento de Turbo y Frames (Hotwire) para tener UIs más modernas. Utilización de TailwindCSS como herramienta de CSS.&lt;/li&gt;
+  &lt;li&gt;Integración con I18n para el manejo de texto para aplicaciones multi lenguaje.&lt;/li&gt;
+  &lt;li&gt;Envío de correos, platillas y recomendaciones.&lt;/li&gt;
+  &lt;li&gt;Manejo de archivos vía ActiveStorage para comprobantes de gastos.&lt;/li&gt;
+  &lt;li&gt;Implementación de Background Jobs mediante ActiveJob.&lt;/li&gt;
+  &lt;li&gt;Recepción de correos vía ActionMailbox para enviar correos con gastos y se registren automáticamente (Aún pensando si es buena idea incluirlo).&lt;/li&gt;
+  &lt;li&gt;Desarrollo de pruebas automáticas de unidad y de sistema.&lt;/li&gt;
+  &lt;li&gt;Deployment a plataformas como Heroku, Render y Hatchbox para tener diferentes opciones de servicios. Manejo de errores en producción.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;De manera general son los temas que el curso cubriria. Todo el desarrollo será basado en la version 7 de Rails y en la versión más reciente de todas las herramientas que se necesiten. En caso de que la versión 7.1 sea liberada durante el desarrollo del curso, se incluiría información de como realizar la migración.&lt;/p&gt;
+
+&lt;h2 id=&quot;la-motivación&quot;&gt;La motivación&lt;/h2&gt;
+&lt;p&gt;La idea del curso tiene dos intenciones, una personal y otra más general. En lo personal, tengo ya desde el 2009 (aproximadamente) trabajando con Rails en proyectos pequeños y en proyectos muy grandes. Me ha tocado ejecutar migraciones desde las versiones 2.2 hasta la más reciente. Siempre he tenido un interés en que Ruby y Ruby on Rails siga siendo utilizado por tal motivo escribo en el blog, he dado charlas y cursos.&lt;/p&gt;
+
+&lt;p&gt;En lo más general, tengo ya varios años escuchando que no hay programadoras y programadores de Ruby o de Rails. A través de michelada.io y hoy en Creditar.io he tenido la oportunidad de platicar con CEOs y CTOs de Estados Unidos, México y algunas partes de América Latina y siempre me dicen lo mismo, no hay. Esta idea los lleva a que sus proyectos se desarrollen en otras tecnologías porque no se quieren a arriesgar a no encontrar personal.&lt;/p&gt;
+
+&lt;p&gt;La realidad es que la demanda es mayor a la oferta. Hay más empleos para desarrollar en Ruby on Rails que personas que trabajen y conozcan la tecnología.&lt;/p&gt;
+
+&lt;p&gt;Si tienes comentarios o sugerencias sobre este tema, me puedes encontrar en Twitter como &lt;a href=&quot;https://twitter.com/mario_chavez&quot; target=&quot;_blank&quot;&gt;@mario_chavez&lt;/a&gt;.&lt;/p&gt;</content><author><name>Mario Alberto Chávez Cárdenas</name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/rubyonrails.jpg" /><media:content medium="image" url="https://mariochavez.io/images/rubyonrails.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>

@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- Begin Bridgetown SEO tag v5.0.0 -->
+<title>Working with Rails Engines, Importmap and TailwindCSS for assets. | Mario Alberto Chávez Cárdenas</title>
+<meta property="og:title" content="Working with Rails Engines, Importmap and TailwindCSS for assets." />
+<meta name="author" content="Mario Alberto Chávez Cárdenas" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="This is the nonexistent guide on how to work with Rails engines using Importmap and TailwindCSS for assets." />
+<meta property="og:description" content="This is the nonexistent guide on how to work with Rails engines using Importmap and TailwindCSS for assets." />
+<link rel="canonical" href="https://mariochavez.io/desarrollo/2023/08/23/working-with-rails-engines-importmap-tailwindcss/" />
+<meta property="og:url" content="https://mariochavez.io/desarrollo/2023/08/23/working-with-rails-engines-importmap-tailwindcss/" />
+<meta property="og:site_name" content="Mario Alberto Chávez Cárdenas" />
+<meta property="og:image" content="https://mariochavez.io/images/engines-assets/engines-assets.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-08-23T06:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://mariochavez.io/images/engines-assets/engines-assets.jpg" />
+<meta property="twitter:title" content="Working with Rails Engines, Importmap and TailwindCSS for assets." />
+<meta name="twitter:site" content="@mario_chavez" />
+<meta name="twitter:creator" content="@Mario Alberto Chávez Cárdenas" />
+<!-- End Bridgetown SEO tag -->
+
+
+<link type="application/atom+xml" rel="alternate" href="https://mariochavez.io/feed.xml" title="Mario Alberto Chávez Cárdenas" />
+
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+<link rel="stylesheet" href="/assets/index.XK2I5QP5.css" />
+<script src="/assets/index.6WSZNJGR.js" defer></script>
+
+
+  </head>
+  <body class="min-h-screen antialiased post ">
+    <section class="flex flex-nowrap">
+      <aside class="sticky top-0 flex flex-col hidden w-64 max-h-screen min-h-screen bg-gray-100 xl:w-96 lg:block">
+  <div class="px-8 xl:px-10">
+    <header class="py-14">
+      <h1 class="font-sans text-3xl font-medium tracking-widest text-gray-700 uppercase">Mario Alberto Chávez Cárdenas</h1>
+      <h2 class="mt-4 font-serif text-lg italic tracking-wide text-gray-500 font-extralight">Blog personal de fotografía y desarrollo de software</h2>
+    </header>
+
+    <nav class="lg:flex-grow lg:py-14">
+  <ul>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/">Inicio</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/desarrollo">Desarrollo</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/fotografía">Fotografía</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/proyectos">Proyectos</a></li>
+    <li class="font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/acercade">Acerca de</a></li>
+  </ul>
+</nav>
+
+
+    <footer class="py-8 lg:py-14">
+  <div class="flex space-x-4">
+    <a href="https://twitter.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24" class="w-4 h-4"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+    </a>
+    <a href="https://instagram.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="none" viewBox="0 0 24 24" class="w-4 h-4"><path d="M15.233 5.488c-.843-.038-1.097-.046-3.233-.046s-2.389.008-3.232.046c-2.17.099-3.181 1.127-3.279 3.279-.039.844-.048 1.097-.048 3.233s.009 2.389.047 3.233c.099 2.148 1.106 3.18 3.279 3.279.843.038 1.097.047 3.233.047 2.137 0 2.39-.008 3.233-.046 2.17-.099 3.18-1.129 3.279-3.279.038-.844.046-1.097.046-3.233s-.008-2.389-.046-3.232c-.099-2.153-1.111-3.182-3.279-3.281zm-3.233 10.62c-2.269 0-4.108-1.839-4.108-4.108 0-2.269 1.84-4.108 4.108-4.108s4.108 1.839 4.108 4.108c0 2.269-1.839 4.108-4.108 4.108zm4.271-7.418c-.53 0-.96-.43-.96-.96s.43-.96.96-.96.96.43.96.96-.43.96-.96.96zm-1.604 3.31c0 1.473-1.194 2.667-2.667 2.667s-2.667-1.194-2.667-2.667c0-1.473 1.194-2.667 2.667-2.667s2.667 1.194 2.667 2.667zm4.333-12h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm.952 15.298c-.132 2.909-1.751 4.521-4.653 4.654-.854.039-1.126.048-3.299.048s-2.444-.009-3.298-.048c-2.908-.133-4.52-1.748-4.654-4.654-.039-.853-.048-1.125-.048-3.298 0-2.172.009-2.445.048-3.298.134-2.908 1.748-4.521 4.654-4.653.854-.04 1.125-.049 3.298-.049s2.445.009 3.299.048c2.908.133 4.523 1.751 4.653 4.653.039.854.048 1.127.048 3.299 0 2.173-.009 2.445-.048 3.298z"/></svg>
+    </a>
+  </div>
+  <p class="mt-4 font-sans text-xs font-light tracking-wider text-gray-500 xl:text-sm">©2021. Mario Alberto Chávez Cárdenas</p>
+</footer>
+
+  </div>
+</aside>
+
+
+      <main class="flex-auto overflow-hidden text-gray-700">
+        <header class="flex flex-col bg-gray-100 lg:hidden" data-controller="menu">
+  <div class="flex flex-col w-full px-8 md:flex-row xl:px-10">
+    <div class="w-full pt-12 pb-6 md:py-12">
+      <a href="/">
+        <h1 class="font-sans text-lg font-medium tracking-widest text-gray-700 uppercase md:text-2xl">Mario Alberto Chávez Cárdenas</h1>
+      </a>
+      <h2 class="mt-4 font-serif text-xs italic tracking-wide text-gray-500 md:text-lg font-extralight">Blog personal de fotografía y desarrollo de software</h2>
+    </div>
+
+    <div class="pb-6 md:py-12 md:pl-4 md:self-center md:justify-self-end md:pl-0">
+      <a href="#" class="inline-flex items-center px-4 py-2 border border-gray-500 md:flex hover:text-red-500 hover:border-red-500" data-action="menu#toggle">
+        <span class="font-semibold text-md md:text-lg">Menú</span>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-4 h-4 ml-4" data-menu-target="closed">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hidden w-4 h-4 ml-4" data-menu-target="opened">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <div data-menu-target="submenu" class="hidden w-full px-8">
+    <nav class="lg:flex-grow lg:py-14">
+  <ul>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/">Inicio</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/desarrollo">Desarrollo</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/fotografía">Fotografía</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/proyectos">Proyectos</a></li>
+    <li class="font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/acercade">Acerca de</a></li>
+  </ul>
+</nav>
+
+
+    <footer class="py-8 lg:py-14">
+  <div class="flex space-x-4">
+    <a href="https://twitter.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24" class="w-4 h-4"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+    </a>
+    <a href="https://instagram.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="none" viewBox="0 0 24 24" class="w-4 h-4"><path d="M15.233 5.488c-.843-.038-1.097-.046-3.233-.046s-2.389.008-3.232.046c-2.17.099-3.181 1.127-3.279 3.279-.039.844-.048 1.097-.048 3.233s.009 2.389.047 3.233c.099 2.148 1.106 3.18 3.279 3.279.843.038 1.097.047 3.233.047 2.137 0 2.39-.008 3.233-.046 2.17-.099 3.18-1.129 3.279-3.279.038-.844.046-1.097.046-3.233s-.008-2.389-.046-3.232c-.099-2.153-1.111-3.182-3.279-3.281zm-3.233 10.62c-2.269 0-4.108-1.839-4.108-4.108 0-2.269 1.84-4.108 4.108-4.108s4.108 1.839 4.108 4.108c0 2.269-1.839 4.108-4.108 4.108zm4.271-7.418c-.53 0-.96-.43-.96-.96s.43-.96.96-.96.96.43.96.96-.43.96-.96.96zm-1.604 3.31c0 1.473-1.194 2.667-2.667 2.667s-2.667-1.194-2.667-2.667c0-1.473 1.194-2.667 2.667-2.667s2.667 1.194 2.667 2.667zm4.333-12h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm.952 15.298c-.132 2.909-1.751 4.521-4.653 4.654-.854.039-1.126.048-3.299.048s-2.444-.009-3.298-.048c-2.908-.133-4.52-1.748-4.654-4.654-.039-.853-.048-1.125-.048-3.298 0-2.172.009-2.445.048-3.298.134-2.908 1.748-4.521 4.654-4.653.854-.04 1.125-.049 3.298-.049s2.445.009 3.299.048c2.908.133 4.523 1.751 4.653 4.653.039.854.048 1.127.048 3.299 0 2.173-.009 2.445-.048 3.298z"/></svg>
+    </a>
+  </div>
+  <p class="mt-4 font-sans text-xs font-light tracking-wider text-gray-500 xl:text-sm">©2021. Mario Alberto Chávez Cárdenas</p>
+</footer>
+
+  </div>
+</header>
+
+        <article class="py-16 font-serif lg:py-24 post">
+  <header class="px-4 m-auto md:max-w-2xl lg:max-w-4xl">
+    <a href="/desarrollo" class="pb-1 text-sm font-bold leading-normal uppercase border-b-4 border-gray-200 transition-all hover:text-red-500">desarrollo</a>
+    <h1 class="mt-6 text-3xl font-bold tracking-wide md:text-4xl lg:text-6xl">Working with Rails Engines, Importmap and TailwindCSS for assets.</h1>
+  </header>
+
+  <div class="px-4 m-auto mt-16 tracking-wider md:max-w-2xl lg:max-w-4xl prose md:prose-lg">
+    <figure class="mt-16 aspect-w-16 aspect-h-9">
+      <img src="/images/engines-assets/engines-assets.jpg" loading="lazy" />
+    </figure>
+
+    <p>Rails engines are one of my favorite tools when I want to isolate reusable functionality for Rails applications. An example of this is the NoPassword gem, which allows users to login into an application just with their email and the received link and code.</p>
+
+<p>With Rails 3.1, the engines were mountable and integrated with the Asset Pipeline to manage the engine’s assets. This continued to work this way until Webpack was introduced to Rails in version 5.1. At this moment, it was not clear how to make Webpack work with the engine’s assets or any other gem that included assets.</p>
+
+<p>Rails 7 introduced CSS and JS bundling, along with the Propshaft gem to manage and serve assets. Also, introduced Importmaps and TailwindCSS as options for not having Node as a dependency, but in both cases without any official word on how to make these work with engines.</p>
+
+<p>NOTE: Importmap’s README explains how to composite multiple Impormap configurations. <a href="https://github.com/rails/importmap-rails#composing-import-maps">https://github.com/rails/importmap-rails#composing-import-maps</a></p>
+
+<p>Working on the NoPassword engine and a few private others, I decided for them to use Importmaps, TailwindCSS, and Propshaft. It led me to figure out a way to use the engine assets. The rest of this post describes my successful journey with assets and engines.</p>
+
+<h2 id="importmap-engine-configuration">Importmap engine configuration</h2>
+
+<p>First, let’s try the route described in Importmap’s README file.</p>
+
+<p>To install Importmap in an engine project, it requires adding the gem to the dummy app and adding the dependency to the engine’s gem spec file.</p>
+
+<p>Install Importmap and add it as a dependency to the Gemfile as follows:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle add importmap-rails
+</code></pre></div></div>
+
+<p>And add it to the gem spec file.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>spec.add_dependency <span class="s2">"importmap-rails"</span>, <span class="s2">"~&gt; 1.2"</span>, <span class="s2">"&gt;= 1.2.1"</span>
+</code></pre></div></div>
+
+<p>Then run the bundle command and navigate to the test/dummy app to execute the installer in the dummy app.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd test</span>/dummy <span class="o">&amp;&amp;</span> bin/rails importmap::install
+</code></pre></div></div>
+
+<p>Following the README instructions for composite Importmaps, open the <code class="highlighter-rouge">lib/my_engine/engine.rb</code> file and add the following hook - remember to replace <strong>**</strong><strong>**</strong><strong>**</strong>my-engine<strong>**</strong><strong>**</strong><strong>**</strong> with the name of your engine -:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="nn">MyEngine</span>
+  <span class="k">class</span> <span class="nc">Engine</span> <span class="o">&lt;</span> <span class="o">::</span><span class="no">Rails</span><span class="o">::</span><span class="no">Engine</span>
+    <span class="c1"># ...</span>
+    <span class="n">initializer</span> <span class="s2">"my-engine.importmap"</span><span class="p">,</span> <span class="ss">before: </span><span class="s2">"importmap"</span> <span class="k">do</span> <span class="o">|</span><span class="n">app</span><span class="o">|</span>
+      <span class="n">app</span><span class="p">.</span><span class="nf">config</span><span class="p">.</span><span class="nf">importmap</span><span class="p">.</span><span class="nf">paths</span> <span class="o">&lt;&lt;</span> <span class="no">Engine</span><span class="p">.</span><span class="nf">root</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s2">"config/importmap.rb"</span><span class="p">)</span>
+      <span class="c1"># ...</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Then create the file <code class="highlighter-rouge">config/importmap.rb</code> and pin the engine’s javascript assets.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pin_all_from File.expand_path<span class="o">(</span><span class="s2">"../app/assets/javascript"</span>, __dir__<span class="o">)</span>
+</code></pre></div></div>
+
+<p>To test this setup, two Stimulus controllers were added, one in the engine’s <code class="highlighter-rouge">app/assets/javascript</code> and another one at the dummy app <code class="highlighter-rouge">test/dummy/app/javascript/controllers</code>.</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">#</span> <span class="nx">app</span><span class="o">/</span><span class="nx">javascript</span><span class="o">/</span><span class="nx">controllers</span><span class="o">/</span><span class="nx">host_controller</span><span class="p">.</span><span class="nx">js</span> <span class="p">(</span><span class="nx">Dummy</span> <span class="nx">APP</span><span class="p">)</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Controller</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@hotwired/stimulus</span><span class="dl">"</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="kd">class</span> <span class="kd">extends</span> <span class="nx">Controller</span> <span class="p">{</span>
+  <span class="nx">connect</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Connected</span><span class="dl">"</span><span class="p">)</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Hello World! This is a Javascript from the Host</span><span class="dl">"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Loaded</span><span class="dl">"</span><span class="p">)</span>
+
+<span class="err">#</span> <span class="nx">app</span><span class="o">/</span><span class="nx">assets</span><span class="o">/</span><span class="nx">javascript</span><span class="o">/</span><span class="nx">engine_controller</span><span class="p">.</span><span class="nx">js</span> <span class="p">(</span><span class="nx">Engine</span><span class="p">)</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Controller</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@hotwired/stimulus</span><span class="dl">"</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="kd">class</span> <span class="kd">extends</span> <span class="nx">Controller</span> <span class="p">{</span>
+  <span class="nx">connect</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Connected</span><span class="dl">"</span><span class="p">)</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Hello World! This is a Javascript from the Engine</span><span class="dl">"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Loaded</span><span class="dl">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Set up Stimulus in the dummy app by adding the gem and running the installer.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd test</span>/dummy
+bundle add stimulus-rails
+./bin/rails stimulus:install
+</code></pre></div></div>
+
+<p>The Dummy app has a <strong>HomeController</strong> with an index action. The index template has two divs. One for <code class="highlighter-rouge">host_controller.js</code> and the second one for <code class="highlighter-rouge">engine_controller.js</code> .</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;h1&gt;</span>Engine's Stimulus controller (Host app)<span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">data-controller=</span><span class="s">"host"</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">data-controller=</span><span class="s">"engine"</span><span class="nt">&gt;&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<p><img src="/images/engines-assets/importmap-1.png" alt="Importmap" /></p>
+
+<p>Unfortunately, this setup does not work, at least for my use case, where I expect the engine to have Stimulus controllers available in the host application, the Dummy app in this case. The engine’s controller is there in the imports manifest but is not loaded in the context of the Stimulus application.</p>
+
+<p>The way that I make this work is to first organize the engine’s Stimulus controllers with the following directory structure: <code class="highlighter-rouge">app/assets/javascript/my_engine/controllers</code></p>
+
+<p>Next, modify the Dummy app’s <code class="highlighter-rouge">config/importmap.rb</code> and add the following line at the end of the file.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pin_all_from</span> <span class="no">MyEngine</span><span class="o">::</span><span class="no">Engine</span><span class="p">.</span><span class="nf">root</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s2">"app/assets/javascript/my_engine/controllers"</span><span class="p">),</span> <span class="ss">under: </span><span class="s2">"controllers"</span><span class="p">,</span> <span class="ss">to: </span><span class="s2">"my_engine/controllers"</span>
+</code></pre></div></div>
+
+<p>With this change, reload the page, and now it is working! The engine’s Stimulus controller is loaded by the host application.</p>
+
+<p><img src="/images/engines-assets/importmap-2.png" alt="Importmap" /></p>
+
+<p>In the Importmap repository, there is an open issue about how to make the gem work with engines, and the user muriloime mentions this solution <a href="https://github.com/rails/importmap-rails/issues/58">https://github.com/rails/importmap-rails/issues/58</a></p>
+
+<p>Now, what about making Importmap work with the engine’s own views? In the case of the NoPassword gem, it provides views for the login process and uses a Stimulus controller to display errors; it does not depend on the host application in any way.</p>
+
+<p><img src="/images/engines-assets/no-password-demo.gif" alt="No Password" /></p>
+
+<p>First, add Stimulus as a gem dependency to the gem spec file and execute the bundle command.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">spec</span><span class="p">.</span><span class="nf">add_dependency</span> <span class="s2">"stimulus-rails"</span><span class="p">,</span> <span class="s2">"~&gt; 1.2"</span>
+</code></pre></div></div>
+
+<p>The installer is not available inside the engine, so this step requires adding a few files manually. Let’s start with the javascript files.</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">#</span> <span class="nx">app</span><span class="o">/</span><span class="nx">assets</span><span class="o">/</span><span class="nx">javascript</span><span class="o">/</span><span class="nx">my_engine</span><span class="o">/</span><span class="nx">application</span><span class="p">.</span><span class="nx">js</span>
+<span class="k">import</span> <span class="dl">"</span><span class="s2">controllers</span><span class="dl">"</span>
+
+<span class="err">#</span> <span class="nx">app</span><span class="o">/</span><span class="nx">assets</span><span class="o">/</span><span class="nx">javascript</span><span class="o">/</span><span class="nx">my_engine</span><span class="o">/</span><span class="nx">controllers</span><span class="o">/</span><span class="nx">index</span><span class="p">.</span><span class="nx">js</span>
+<span class="c1">// Import and register all your controllers from the importmap under controllers/*</span>
+
+<span class="k">import</span> <span class="p">{</span> <span class="nx">application</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">controllers/application</span><span class="dl">"</span>
+
+<span class="c1">// Eager load all controllers defined in the import map under controllers/**/*_controller</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">eagerLoadControllersFrom</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@hotwired/stimulus-loading</span><span class="dl">"</span>
+<span class="nx">eagerLoadControllersFrom</span><span class="p">(</span><span class="dl">"</span><span class="s2">controllers</span><span class="dl">"</span><span class="p">,</span> <span class="nx">application</span><span class="p">)</span>
+
+<span class="c1">// Lazy load controllers as they appear in the DOM (remember not to preload controllers in import map!)</span>
+<span class="c1">// import { lazyLoadControllersFrom } from "@hotwired/stimulus-loading"</span>
+<span class="c1">// lazyLoadControllersFrom("controllers", application)</span>
+
+<span class="err">#</span> <span class="nx">app</span><span class="o">/</span><span class="nx">assets</span><span class="o">/</span><span class="nx">javascript</span><span class="o">/</span><span class="nx">my_engine</span><span class="o">/</span><span class="nx">controllers</span><span class="o">/</span><span class="nx">application</span><span class="p">.</span><span class="nx">js</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Application</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@hotwired/stimulus</span><span class="dl">"</span>
+
+<span class="kd">const</span> <span class="nx">application</span> <span class="o">=</span> <span class="nx">Application</span><span class="p">.</span><span class="nx">start</span><span class="p">()</span>
+
+<span class="c1">// Configure Stimulus development experience</span>
+<span class="nx">application</span><span class="p">.</span><span class="nx">debug</span> <span class="o">=</span> <span class="kc">false</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">Stimulus</span>   <span class="o">=</span> <span class="nx">application</span>
+
+<span class="k">export</span> <span class="p">{</span> <span class="nx">application</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<p>Open the file <code class="highlighter-rouge">config/importmap.rb</code> and replace the content with the following pins that load Stimulus and the engine’s controllers:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pin</span> <span class="s2">"@hotwired/stimulus"</span><span class="p">,</span> <span class="ss">to: </span><span class="s2">"stimulus.min.js"</span><span class="p">,</span> <span class="ss">preload: </span><span class="kp">true</span>
+<span class="n">pin</span> <span class="s2">"@hotwired/stimulus-loading"</span><span class="p">,</span> <span class="ss">to: </span><span class="s2">"stimulus-loading.js"</span><span class="p">,</span> <span class="ss">preload: </span><span class="kp">true</span>
+
+<span class="n">pin</span> <span class="s2">"application"</span><span class="p">,</span> <span class="ss">preload: </span><span class="kp">true</span>
+
+<span class="n">pin_all_from</span> <span class="no">MyEngine</span><span class="o">::</span><span class="no">Engine</span><span class="p">.</span><span class="nf">root</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s2">"app/assets/javascript/my_engine/controllers"</span><span class="p">),</span> <span class="ss">under: </span><span class="s2">"controllers"</span><span class="p">,</span> <span class="ss">to: </span><span class="s2">"my_engine/controllers"</span>
+</code></pre></div></div>
+
+<p>Instead of composing a global Importmap, we are going to set up a local configuration for the engine. Open the <code class="highlighter-rouge">lib/my_engine.rb</code> file and add the following code:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s2">"my_engine/version"</span>
+<span class="nb">require</span> <span class="s2">"my_engine/engine"</span>
+
+<span class="nb">require</span> <span class="s2">"importmap-rails"</span>
+
+<span class="k">module</span> <span class="nn">MyEngine</span>
+  <span class="k">class</span> <span class="o">&lt;&lt;</span> <span class="nb">self</span>
+    <span class="nb">attr_accessor</span> <span class="ss">:configuration</span>
+  <span class="k">end</span>
+
+  <span class="k">class</span> <span class="nc">Configuration</span>
+    <span class="nb">attr_reader</span> <span class="ss">:importmap</span>
+
+    <span class="k">def</span> <span class="nf">initialize</span>
+      <span class="vi">@importmap</span> <span class="o">=</span> <span class="no">Importmap</span><span class="o">::</span><span class="no">Map</span><span class="p">.</span><span class="nf">new</span>
+      <span class="vi">@importmap</span><span class="p">.</span><span class="nf">draw</span><span class="p">(</span><span class="no">Engine</span><span class="p">.</span><span class="nf">root</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s2">"config/importmap.rb"</span><span class="p">))</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">init_config</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">configuration</span> <span class="o">||=</span> <span class="no">Configuration</span><span class="p">.</span><span class="nf">new</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">configure</span>
+    <span class="n">init_config</span>
+    <span class="k">yield</span><span class="p">(</span><span class="n">configuration</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="no">MyEngine</span><span class="p">.</span><span class="nf">init_config</span>
+</code></pre></div></div>
+
+<p>Here, a configuration class was added to the engine. It has only one setting, where it initializes a new Importmap with assets belonging to the engine. Be aware that sweepers are not set up for Importmap; this means that changes made during development with the engine will not be taken until the app is restarted.
+This configuration can be extended to include more engine settings if needed.</p>
+
+<p>Now we need to create a helper similar to <code class="highlighter-rouge">javascript_importmap_tag</code> that is aware of the engine’s Importmap configuration. Open the <code class="highlighter-rouge">app/helpers/my_engine/application_helper.rb</code> and add the following method.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">my_engine_importmap_tags</span><span class="p">(</span><span class="n">entry_point</span> <span class="o">=</span> <span class="s2">"application"</span><span class="p">,</span> <span class="ss">shim: </span><span class="kp">true</span><span class="p">)</span>
+  <span class="n">safe_join</span> <span class="p">[</span>
+    <span class="n">javascript_inline_importmap_tag</span><span class="p">(</span><span class="no">MyEngine</span><span class="p">.</span><span class="nf">configuration</span><span class="p">.</span><span class="nf">importmap</span><span class="p">.</span><span class="nf">to_json</span><span class="p">(</span><span class="ss">resolver: </span><span class="nb">self</span><span class="p">)),</span>
+    <span class="n">javascript_importmap_module_preload_tags</span><span class="p">(</span><span class="no">MyEngine</span><span class="p">.</span><span class="nf">configuration</span><span class="p">.</span><span class="nf">importmap</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">javascript_importmap_shim_nonce_configuration_tag</span> <span class="k">if</span> <span class="n">shim</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">javascript_importmap_shim_tag</span> <span class="k">if</span> <span class="n">shim</span><span class="p">),</span>
+    <span class="n">javascript_import_module_tag</span><span class="p">(</span><span class="n">entry_point</span><span class="p">)</span>
+  <span class="p">].</span><span class="nf">compact</span><span class="p">,</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Now open the engine’s layout and replace the <code class="highlighter-rouge">javascript_importmap_tag</code> with <code class="highlighter-rouge">my_engine_importmap_tags</code>.</p>
+
+<p>To test this, add a controller named <code class="highlighter-rouge">MyEngine::HomeController</code> with an index action and a div that uses <code class="highlighter-rouge">engine_controller.js</code> to it.</p>
+
+<p><img src="/images/engines-assets/importmap-3.png" alt="Importmap" /></p>
+
+<p>These are the two configuration options for Importmap with engines. Share the engine’s Stimulus controllers with the host app, or use the engine’s Stimulus controllers internally for the engine’s templates.</p>
+
+<h2 id="tailwindcss-engine-configuration">TailwindCSS engine configuration</h2>
+
+<p>The steps to install it are simple. First, let’s install it into the Dummy app.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd test</span>/dummy <span class="o">&amp;&amp;</span> bundle add tailwindcss-rails
+./bin/rails tailwindcss:install
+</code></pre></div></div>
+
+<p>For the Dummy app that comes with the engine in development mode, there are two additional steps that are not required when the host app is not the Dummy app.</p>
+
+<p>Ensure that the TailwindCSS task runs with Foreman or Overmind using your <code class="highlighter-rouge">Procfile.dev</code>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>web: bin/rails server <span class="nt">-p</span> 3000
+css: bin/rails app:tailwindcss:watch
+</code></pre></div></div>
+
+<p>Also, change the <code class="highlighter-rouge">test/dummy/config/tailwind.config.js</code> file that was installed by TailwindCSS to have the right path to the Dummy app. Change the content section to include the <code class="highlighter-rouge">./test/dummy</code> path.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>content: <span class="o">[</span>
+    <span class="s1">'./test/dummy/public/*.html'</span>,
+    <span class="s1">'./test/dummy/app/helpers/**/*.rb'</span>,
+    <span class="s1">'./test/dummy/app/javascript/**/*.js'</span>,
+    <span class="s1">'./test/dummy/app/views/**/*.{erb,haml,html,slim}'</span>
+  <span class="o">]</span>,
+</code></pre></div></div>
+
+<p>Restart your application, and it should work for the Dummy app.</p>
+
+<p><img src="/images/engines-assets/tailwind-1.png" alt="TailwindCSS" /></p>
+
+<p>To extend the TailwindCSS styling into the engine’s templates, there are a few steps that need to be taken first. The host app, in our case, the Dummy app, needs to override the engine’s layout to include the TailwindCSS files. Copy the file <code class="highlighter-rouge">app/layouts/my_engine/application.html.erb</code> to <code class="highlighter-rouge">test/dummy/app/layouts/my_engine/application.html.erb</code> and add the following line in the <strong>head</strong> section:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;%<span class="o">=</span> stylesheet_link_tag <span class="s2">"tailwind"</span>, <span class="s2">"inter-font"</span>, <span class="s2">"data-turbo-track"</span>: <span class="s2">"reload"</span> %&gt;
+</code></pre></div></div>
+
+<p>Navigate to an engine action, and you can confirm the general CSS reset of TailwindCSS is applied, but utility classes are ignored.</p>
+
+<p><img src="/images/engines-assets/tailwind-2.png" alt="TailwindCSS" /></p>
+
+<p>This happens because the file doesn’t know that it also needs to scan the engine templates for TailwindCSS classes.</p>
+
+<p>To fix this, we need a rake task and a generator in the host or Dummy app. Create a file <code class="highlighter-rouge">test/dummy/lib/tasks/tailwind.rake</code> and add the following content:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># frozen_string_literal: true</span>
+
+<span class="n">namespace</span> <span class="ss">:tailwindcss</span> <span class="k">do</span>
+  <span class="n">desc</span> <span class="s2">"Generates your tailwind config file"</span>
+  <span class="n">task</span> <span class="ss">:config</span> <span class="k">do</span>
+    <span class="no">Rails</span><span class="o">::</span><span class="no">Generators</span><span class="p">.</span><span class="nf">invoke</span><span class="p">(</span><span class="s2">"tailwind_config"</span><span class="p">,</span> <span class="p">[</span><span class="s2">"--force"</span><span class="p">])</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="no">Rake</span><span class="o">::</span><span class="no">Task</span><span class="p">[</span><span class="s2">"tailwindcss:build"</span><span class="p">].</span><span class="nf">enhance</span><span class="p">([</span><span class="s2">"tailwindcss:config"</span><span class="p">])</span>
+<span class="no">Rake</span><span class="o">::</span><span class="no">Task</span><span class="p">[</span><span class="s2">"tailwindcss:watch"</span><span class="p">].</span><span class="nf">enhance</span><span class="p">([</span><span class="s2">"tailwindcss:config"</span><span class="p">])</span>
+</code></pre></div></div>
+
+<p>Here we are adding a <strong>tailwindcss:config</strong> task that invokes a generator (we are going to create this one in a moment) and enhancing TailwindCSS tasks provided by the gem by injecting this new task into the build process.</p>
+
+<p>For the generator, create the file <code class="highlighter-rouge">test/dummy/lib/generators/tailwind_config_generator.rb</code> in the host or Dummy app and add the following code:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># frozen_string_literal: true</span>
+
+<span class="k">class</span> <span class="nc">TailwindConfigGenerator</span> <span class="o">&lt;</span> <span class="no">Rails</span><span class="o">::</span><span class="no">Generators</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">source_root</span> <span class="no">File</span><span class="p">.</span><span class="nf">expand_path</span><span class="p">(</span><span class="s2">"../templates"</span><span class="p">,</span> <span class="kp">__FILE__</span><span class="p">)</span>
+
+  <span class="k">def</span> <span class="nf">create_tailwind_config_file</span>
+    <span class="vi">@engines_paths</span> <span class="o">=</span> <span class="no">MyEngine</span><span class="p">.</span><span class="nf">configuration</span><span class="p">.</span><span class="nf">tailwind_content</span>
+
+    <span class="c1"># The second parameter for the template method is required only if the host app is the Dummy app; </span>
+    <span class="c1"># for an external host app, remove that parameter.</span>
+    <span class="n">template</span> <span class="s2">"config/tailwind.config.js"</span><span class="p">,</span> <span class="no">File</span><span class="p">.</span><span class="nf">expand_path</span><span class="p">(</span><span class="s2">"../../../config/tailwind.config.js"</span><span class="p">,</span> <span class="kp">__FILE__</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>This generator, when executed, creates a new TailwindCSS config file from a template, but before doing that, in the <code class="highlighter-rouge">create_tailwind_config_file</code> method, we can set up the engine paths to consider when scanning for TailwindCSS classes.</p>
+
+<p>In the code, the generator assumes that our engine configuration exposes a <code class="highlighter-rouge">tailwind_content</code> accessor with an array of paths.</p>
+
+<p>Add an accessor to the Configuration class in file <code class="highlighter-rouge">lib/my_engine.rb</code>.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">attr_accessor</span> <span class="ss">:tailwind_content</span>
+</code></pre></div></div>
+
+<p>Also add to the <code class="highlighter-rouge">initializer</code> method of the same class the following paths:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="vi">@tailwind_content</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="s2">"</span><span class="si">#{</span><span class="no">MyEngine</span><span class="o">::</span><span class="no">Engine</span><span class="p">.</span><span class="nf">root</span><span class="si">}</span><span class="s2">/app/views/**/*"</span><span class="p">,</span>
+  <span class="s2">"</span><span class="si">#{</span><span class="no">MyEngine</span><span class="o">::</span><span class="no">Engine</span><span class="p">.</span><span class="nf">root</span><span class="si">}</span><span class="s2">/app/helpers/**/*"</span><span class="p">,</span>
+  <span class="s2">"</span><span class="si">#{</span><span class="no">MyEngine</span><span class="o">::</span><span class="no">Engine</span><span class="p">.</span><span class="nf">root</span><span class="si">}</span><span class="s2">/app/controllers/**/*"</span><span class="p">,</span>
+  <span class="s2">"</span><span class="si">#{</span><span class="no">MyEngine</span><span class="o">::</span><span class="no">Engine</span><span class="p">.</span><span class="nf">root</span><span class="si">}</span><span class="s2">/app/javascript/**/*.js"</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<p>Moving back to the template file in the <code class="highlighter-rouge">tailwind_config_generator</code>, this is the TailwindCSS config file, but it will be created dynamically by the task to be able to inject the engine paths into it.</p>
+
+<p>Move the file <code class="highlighter-rouge">test/dummy/config/tailwind.config.js</code> to <code class="highlighter-rouge">lib/generators/templates/config/tailwind.config.js.tt</code> and modify the <strong>content</strong> section as follows:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="ss">content: </span><span class="p">[</span>
+    <span class="s1">'./test/dummy/public/*.html'</span><span class="p">,</span>
+    <span class="s1">'./test/dummy/app/helpers/**/*.rb'</span><span class="p">,</span>
+    <span class="s1">'./test/dummy/app/javascript/**/*.js'</span><span class="p">,</span>
+    <span class="s1">'./test/dummy/app/views/**/*.{erb,haml,html,slim}'</span><span class="p">,</span>
+    <span class="o">&lt;</span><span class="sx">%= @engines_paths.map{ |path| "'#{path}'" }.join(",\n") %&gt;
+  ],
+</span></code></pre></div></div>
+
+<p>Add the file <code class="highlighter-rouge">test/dummy/config/tailwind.config.js</code> to <code class="highlighter-rouge">.gitignore</code> file, since this file will be generated automatically.</p>
+
+<p>Restart the application, navigate the view in the host app and a view in the engine, and confirm that TailwindCSS is working for both cases.</p>
+
+<p><img src="/images/engines-assets/tailwind-3.png" alt="TailwindCSS" /></p>
+
+<p><img src="/images/engines-assets/tailwind-4.png" alt="TailwindCSS" /></p>
+
+<h2 id="wrapping-up">Wrapping up</h2>
+
+<p>This is how I have been working with the Rails engines Importmap and TailwindCSS. Most of the knowledge here came from reading the source code of the libraries and trial and error.</p>
+
+<p>If you are looking to work with engines and this tool set for assets, please give it a try and let me know how it goes or if there is a better, simpler way to archive the same.</p>
+
+  </div>
+</article>
+
+      </main>
+    </section>
+
+  </body>
+</html>

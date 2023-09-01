@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- Begin Bridgetown SEO tag v5.0.0 -->
+<title>Escribiendo un cliente Rest que haga cache de la solicitudes | Mario Alberto Chávez Cárdenas</title>
+<meta property="og:title" content="Escribiendo un cliente Rest que haga cache de la solicitudes" />
+<meta name="author" content="Mario Alberto Chávez Cárdenas" />
+<meta property="og:locale" content="es_MX" />
+<meta name="description" content="El desarrollar y mantener un API REST requiere de conocer el estándar de HTTP para tratar de obtener el mejor provecho y ofrecer mejores APIs para los clientes. Como parte del trabajo de mantener un API REST también incluye el asegurarse que los clientes hagan uso efectivo de las facilidades del API." />
+<meta property="og:description" content="El desarrollar y mantener un API REST requiere de conocer el estándar de HTTP para tratar de obtener el mejor provecho y ofrecer mejores APIs para los clientes. Como parte del trabajo de mantener un API REST también incluye el asegurarse que los clientes hagan uso efectivo de las facilidades del API." />
+<link rel="canonical" href="https://mariochavez.io/desarrollo/2020/06/04/cliente-api-rest-cache/" />
+<meta property="og:url" content="https://mariochavez.io/desarrollo/2020/06/04/cliente-api-rest-cache/" />
+<meta property="og:site_name" content="Mario Alberto Chávez Cárdenas" />
+<meta property="og:image" content="https://mariochavez.io/images/cache/cliente-rest.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-06-04T06:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://mariochavez.io/images/cache/cliente-rest.jpg" />
+<meta property="twitter:title" content="Escribiendo un cliente Rest que haga cache de la solicitudes" />
+<meta name="twitter:site" content="@mario_chavez" />
+<meta name="twitter:creator" content="@Mario Alberto Chávez Cárdenas" />
+<!-- End Bridgetown SEO tag -->
+
+
+<link type="application/atom+xml" rel="alternate" href="https://mariochavez.io/feed.xml" title="Mario Alberto Chávez Cárdenas" />
+
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+<link rel="stylesheet" href="/assets/index.XK2I5QP5.css" />
+<script src="/assets/index.6WSZNJGR.js" defer></script>
+
+
+  </head>
+  <body class="min-h-screen antialiased post ">
+    <section class="flex flex-nowrap">
+      <aside class="sticky top-0 flex flex-col hidden w-64 max-h-screen min-h-screen bg-gray-100 xl:w-96 lg:block">
+  <div class="px-8 xl:px-10">
+    <header class="py-14">
+      <h1 class="font-sans text-3xl font-medium tracking-widest text-gray-700 uppercase">Mario Alberto Chávez Cárdenas</h1>
+      <h2 class="mt-4 font-serif text-lg italic tracking-wide text-gray-500 font-extralight">Blog personal de fotografía y desarrollo de software</h2>
+    </header>
+
+    <nav class="lg:flex-grow lg:py-14">
+  <ul>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/">Inicio</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/desarrollo">Desarrollo</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/fotografía">Fotografía</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/proyectos">Proyectos</a></li>
+    <li class="font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/acercade">Acerca de</a></li>
+  </ul>
+</nav>
+
+
+    <footer class="py-8 lg:py-14">
+  <div class="flex space-x-4">
+    <a href="https://twitter.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24" class="w-4 h-4"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+    </a>
+    <a href="https://instagram.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="none" viewBox="0 0 24 24" class="w-4 h-4"><path d="M15.233 5.488c-.843-.038-1.097-.046-3.233-.046s-2.389.008-3.232.046c-2.17.099-3.181 1.127-3.279 3.279-.039.844-.048 1.097-.048 3.233s.009 2.389.047 3.233c.099 2.148 1.106 3.18 3.279 3.279.843.038 1.097.047 3.233.047 2.137 0 2.39-.008 3.233-.046 2.17-.099 3.18-1.129 3.279-3.279.038-.844.046-1.097.046-3.233s-.008-2.389-.046-3.232c-.099-2.153-1.111-3.182-3.279-3.281zm-3.233 10.62c-2.269 0-4.108-1.839-4.108-4.108 0-2.269 1.84-4.108 4.108-4.108s4.108 1.839 4.108 4.108c0 2.269-1.839 4.108-4.108 4.108zm4.271-7.418c-.53 0-.96-.43-.96-.96s.43-.96.96-.96.96.43.96.96-.43.96-.96.96zm-1.604 3.31c0 1.473-1.194 2.667-2.667 2.667s-2.667-1.194-2.667-2.667c0-1.473 1.194-2.667 2.667-2.667s2.667 1.194 2.667 2.667zm4.333-12h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm.952 15.298c-.132 2.909-1.751 4.521-4.653 4.654-.854.039-1.126.048-3.299.048s-2.444-.009-3.298-.048c-2.908-.133-4.52-1.748-4.654-4.654-.039-.853-.048-1.125-.048-3.298 0-2.172.009-2.445.048-3.298.134-2.908 1.748-4.521 4.654-4.653.854-.04 1.125-.049 3.298-.049s2.445.009 3.299.048c2.908.133 4.523 1.751 4.653 4.653.039.854.048 1.127.048 3.299 0 2.173-.009 2.445-.048 3.298z"/></svg>
+    </a>
+  </div>
+  <p class="mt-4 font-sans text-xs font-light tracking-wider text-gray-500 xl:text-sm">©2021. Mario Alberto Chávez Cárdenas</p>
+</footer>
+
+  </div>
+</aside>
+
+
+      <main class="flex-auto overflow-hidden text-gray-700">
+        <header class="flex flex-col bg-gray-100 lg:hidden" data-controller="menu">
+  <div class="flex flex-col w-full px-8 md:flex-row xl:px-10">
+    <div class="w-full pt-12 pb-6 md:py-12">
+      <a href="/">
+        <h1 class="font-sans text-lg font-medium tracking-widest text-gray-700 uppercase md:text-2xl">Mario Alberto Chávez Cárdenas</h1>
+      </a>
+      <h2 class="mt-4 font-serif text-xs italic tracking-wide text-gray-500 md:text-lg font-extralight">Blog personal de fotografía y desarrollo de software</h2>
+    </div>
+
+    <div class="pb-6 md:py-12 md:pl-4 md:self-center md:justify-self-end md:pl-0">
+      <a href="#" class="inline-flex items-center px-4 py-2 border border-gray-500 md:flex hover:text-red-500 hover:border-red-500" data-action="menu#toggle">
+        <span class="font-semibold text-md md:text-lg">Menú</span>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-4 h-4 ml-4" data-menu-target="closed">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hidden w-4 h-4 ml-4" data-menu-target="opened">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <div data-menu-target="submenu" class="hidden w-full px-8">
+    <nav class="lg:flex-grow lg:py-14">
+  <ul>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/">Inicio</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/desarrollo">Desarrollo</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/fotografía">Fotografía</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/proyectos">Proyectos</a></li>
+    <li class="font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/acercade">Acerca de</a></li>
+  </ul>
+</nav>
+
+
+    <footer class="py-8 lg:py-14">
+  <div class="flex space-x-4">
+    <a href="https://twitter.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24" class="w-4 h-4"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+    </a>
+    <a href="https://instagram.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="none" viewBox="0 0 24 24" class="w-4 h-4"><path d="M15.233 5.488c-.843-.038-1.097-.046-3.233-.046s-2.389.008-3.232.046c-2.17.099-3.181 1.127-3.279 3.279-.039.844-.048 1.097-.048 3.233s.009 2.389.047 3.233c.099 2.148 1.106 3.18 3.279 3.279.843.038 1.097.047 3.233.047 2.137 0 2.39-.008 3.233-.046 2.17-.099 3.18-1.129 3.279-3.279.038-.844.046-1.097.046-3.233s-.008-2.389-.046-3.232c-.099-2.153-1.111-3.182-3.279-3.281zm-3.233 10.62c-2.269 0-4.108-1.839-4.108-4.108 0-2.269 1.84-4.108 4.108-4.108s4.108 1.839 4.108 4.108c0 2.269-1.839 4.108-4.108 4.108zm4.271-7.418c-.53 0-.96-.43-.96-.96s.43-.96.96-.96.96.43.96.96-.43.96-.96.96zm-1.604 3.31c0 1.473-1.194 2.667-2.667 2.667s-2.667-1.194-2.667-2.667c0-1.473 1.194-2.667 2.667-2.667s2.667 1.194 2.667 2.667zm4.333-12h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm.952 15.298c-.132 2.909-1.751 4.521-4.653 4.654-.854.039-1.126.048-3.299.048s-2.444-.009-3.298-.048c-2.908-.133-4.52-1.748-4.654-4.654-.039-.853-.048-1.125-.048-3.298 0-2.172.009-2.445.048-3.298.134-2.908 1.748-4.521 4.654-4.653.854-.04 1.125-.049 3.298-.049s2.445.009 3.299.048c2.908.133 4.523 1.751 4.653 4.653.039.854.048 1.127.048 3.299 0 2.173-.009 2.445-.048 3.298z"/></svg>
+    </a>
+  </div>
+  <p class="mt-4 font-sans text-xs font-light tracking-wider text-gray-500 xl:text-sm">©2021. Mario Alberto Chávez Cárdenas</p>
+</footer>
+
+  </div>
+</header>
+
+        <article class="py-16 font-serif lg:py-24 post">
+  <header class="px-4 m-auto md:max-w-2xl lg:max-w-4xl">
+    <a href="/desarrollo" class="pb-1 text-sm font-bold leading-normal uppercase border-b-4 border-gray-200 transition-all hover:text-red-500">desarrollo</a>
+    <h1 class="mt-6 text-3xl font-bold tracking-wide md:text-4xl lg:text-6xl">Escribiendo un cliente Rest que haga cache de la solicitudes</h1>
+  </header>
+
+  <div class="px-4 m-auto mt-16 tracking-wider md:max-w-2xl lg:max-w-4xl prose md:prose-lg">
+    <figure class="mt-16 aspect-w-16 aspect-h-9">
+      <img src="/images/cache/cliente-rest.jpg" loading="lazy" />
+    </figure>
+
+    <p>Hace algunos meses escribí el post “<a href="https://mariochavez.io/desarrollo/2019/12/30/lecciones-construyendo-un-api-rest.html" target="_blank">Lecciones construyendo un API REST</a> “ donde hablo sobre lo aprendido e implementado en la construcción de un API REST para <a href="https://creditar.io" target="_blank">Creditar.io</a> , el producto plataforma Fintech que mi equipo construyó.</p>
+
+<p>Todas las lecciones ahí descritas aplican para cuando estamos desarrollando la parte del servidor o Backend pero deja fuera al cliente que se encarga de consumir ese API.</p>
+
+<p>En este post voy precisamente a tocar el tema del cliente pero antes vamos a enfocarnos en un par de encabezados de HTTP que van a ayudar a que el cliente sea más efectivo.</p>
+
+<h2 id="get-condicional">GET Condicional</h2>
+
+<p>En el estándar de HTTP existen dos encabezados que pueden ayudar a los servidores a decidir si envían respuesta a una petición con el estatus 200 o si no envían respuesta con el status 304. Esos dos encabezados son <code class="highlighter-rouge">ETag</code> y <code class="highlighter-rouge">Last-Modified</code>.</p>
+
+<p>En una aplicación de API de Rail cuando hacemos una petición como la siguiente</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl <span class="nt">-I</span> <span class="o">[</span>http://localhost:3000/books]<span class="o">(</span>http://localhost:3000/books<span class="o">)</span> <span class="nt">-H</span> <span class="s1">'Accept: application/json'</span>
+</code></pre></div></div>
+
+<p>El servidor responde con el contenido <em>JSON</em> de la petición pero además en los encabezados envía el valor de <code class="highlighter-rouge">ETag</code>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>HTTP/1.1 200 OK
+X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 1<span class="p">;</span> <span class="nv">mode</span><span class="o">=</span>block
+X-Content-Type-Options: nosniff
+X-Download-Options: noopen
+X-Permitted-Cross-Domain-Policies: none
+Referrer-Policy: strict-origin-when-cross-origin
+Content-Type: application/json<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>utf-8
+ETag: W/<span class="s2">"c648786499da3bb30fa94437fd64399e"</span>
+Cache-Control: max-age<span class="o">=</span>0, private, must-revalidate
+X-Request-Id: bd9aca1f-42ea-43da-a113-cbbf80fbf727
+X-Runtime: 0.185222
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">ETag</code> es una valor que Rails calcula para nuestra petición y que en teoría si la respuesta a la misma petición no cambia el valor de <code class="highlighter-rouge">Etag</code> se mantendría constante ya que se calcula sobre la respuesta.</p>
+
+<p>Usando el valor de <code class="highlighter-rouge">ETag</code> en nuestra peticiones podemos lograr algo llamado <strong>Get Condicional</strong> para agilizar la respuesta desde el servidor. Rails nos ofrece el método <code class="highlighter-rouge">#stale?</code> precisamente para tomar ventaja de este encabezado.</p>
+
+<p>Veamos un ejemplo de cómo utilizar <code class="highlighter-rouge">#stale?</code> en un controlador.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def index
+    @books = Book.all
+
+    if stale?(@books)
+      respond_to do |format|
+        format.html { render :index }
+        format.json { render json: @books }
+      end
+    end
+  end
+</code></pre></div></div>
+
+<p>Aquí vemos que nuestro controlador ejecuta el <em>query</em> para obtener los datos que requerimos pero en lugar de pasarlos directamente para que sean serializados y enviados al cliente que hizo la petición los pasamos como parámetro a <code class="highlighter-rouge">#stale?</code> y el código que serializa y envía la respuesta lo ponemos dentro de un <code class="highlighter-rouge">if</code>.</p>
+
+<p>En este punto si hacemos la misma llamada que hicimos anteriormente vemos que los encabezados cambian un poco.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl <span class="nt">-I</span> <span class="o">[</span>http://localhost:3000/books]<span class="o">(</span>http://localhost:3000/books<span class="o">)</span> <span class="nt">-H</span> <span class="s1">'Accept: application/json'</span>
+
+HTTP/1.1 200 OK
+X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 1<span class="p">;</span> <span class="nv">mode</span><span class="o">=</span>block
+X-Content-Type-Options: nosniff
+X-Download-Options: noopen
+X-Permitted-Cross-Domain-Policies: none
+Referrer-Policy: strict-origin-when-cross-origin
+ETag: W/<span class="s2">"180329663bde620b442e03d9010ce297"</span>
+Last-Modified: Wed, 29 Apr 2020 18:03:17 GMT
+Content-Type: application/json<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>utf-8
+Cache-Control: max-age<span class="o">=</span>0, private, must-revalidate
+X-Request-Id: 482a861c-c30c-49e8-bd27-ebb07023a702
+X-Runtime: 0.092157
+</code></pre></div></div>
+
+<p>Primeramente vemos que el valor de <code class="highlighter-rouge">ETag</code> cambió. Este valor está calculado en base al resultado del <em>query</em> <code class="highlighter-rouge">@books = Book.all</code> y siempre que el <em>query</em> regrese los mismos registros ese valor va a ser exactamente igual. Además, vemos que ahora el servidor nos envía el encabezado <code class="highlighter-rouge">Last-Modified</code> el cual tiene una fecha que corresponde al atributo <code class="highlighter-rouge">#modified_at</code> de los registros del query, en este caso toma el valor del registro modificado más recientemente.</p>
+
+<p>De la llamada anterior Rails nos ofrece la siguientes estadísticas.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Completed 200 OK <span class="k">in </span>26ms <span class="o">(</span>Views: 10.1ms | ActiveRecord: 1.4ms | Allocations: 10915<span class="o">)</span>
+</code></pre></div></div>
+
+<p>Si volvemos a realizar la llamada al API pero ahora incluimos los valores de los encabezados <code class="highlighter-rouge">ETag</code> y <code class="highlighter-rouge">Last-Modified</code> de la siguiente forma. <code class="highlighter-rouge">If-None-Match</code> con el valor de <code class="highlighter-rouge">ETag</code> y <code class="highlighter-rouge">If-Modified-Since</code> para <code class="highlighter-rouge">Last-Modified</code>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl <span class="nt">-I</span> <span class="o">[</span>http://localhost:3000/books]<span class="o">(</span>http://localhost:3000/books<span class="o">)</span> <span class="nt">-H</span> <span class="s1">'Accept: application/json'</span> <span class="nt">-H</span> <span class="s1">'If-None-Match: W/"180329663bde620b442e03d9010ce297"'</span> <span class="nt">-H</span> <span class="s1">'If-Modified-Since: Wed, 29 Apr 2020 18:03:17 GMT'</span>
+</code></pre></div></div>
+
+<p>Rails va ejecutar el <em>query</em>  pero el método <code class="highlighter-rouge">#stale?</code> va a calcular el <code class="highlighter-rouge">ETag</code> y <code class="highlighter-rouge">Last-Modified</code> para los registros del <em>query</em> para luego compararlos con los valores que recibimos en los encabezados de la petición. En el caso de ser los mismos Rails ya no ejecuta el resto del código - el código dentro del <code class="highlighter-rouge">if</code> - y regresa una respuesta vacía con el estatus <em>304 Not modified</em>. Esto le indica al cliente que el resultado de la petición no ha cambiado con respecto a la petición previa.</p>
+
+<p>Ahora Rails nos ofrece las siguientes estadísticas.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Completed 304 Not Modified <span class="k">in </span>4ms <span class="o">(</span>ActiveRecord: 0.4ms | Allocations: 1667<span class="o">)</span>
+</code></pre></div></div>
+
+<p>Automáticamente la respuesta del servidor fue más eficiente. Ejecutó menos código, utilizó menos memoria y envió menos datos a través de la red. A esto se le conoce como <strong>GET condicional</strong>.</p>
+
+<p>En <a href="https://creditar.io" target="_blank">Creditar.io</a>  recientemente hicimos este ajuste en el API para utilizar <code class="highlighter-rouge">#stale?</code> y dar la oportunidad de realizar <strong>GET Condicional</strong>. El cambio en el código fue bastante trivial.</p>
+
+<p>Ahora los clientes que consumen ese API tienen la oportunidad de recibir menos datos a través de la red y hacer que las peticiones sean más rápidas. Para quienes utilizan la gema de <a href="https://creditar.io" target="_blank">Creditar.io</a>  en su versión más reciente pueden tener ese beneficio simplemente habilitando el cache de Rails.</p>
+
+<h2 id="escribiendo-mi-propio-cliente">Escribiendo mi propio cliente</h2>
+
+<p>Ahora que conocemos que un <strong>GET Condicional</strong> y que vimos como implementarlo en Rails vamos a escribir un cliente de REST sencillo que nos permita tomar ventaja de los encabezados <code class="highlighter-rouge">ETag</code> y <code class="highlighter-rouge">Last-Modified</code>.</p>
+
+<p>Como librería de HTTP en Ruby vamos a hacer uso de <a href="https://gitlab.com/honeyryderchuck/httpx" target="_blank">HTTPX</a>  aunque no vamos a explotar toda la funcionalidad de la misma este post puede ser un inicio para que si están interesados experimenten con la funcionalidad de HTTP2 o el mulit-request con una sola conexión en HTTP1 entre otras cosas.</p>
+
+<p>El cliente que vamos a escribir es bastante simple y sólo cubre un par de recursos en el API de <a href="https://creditar.io" target="_blank">Creditar.io</a> ; el <em>endpoint</em> para obtener un cliente y el <em>endpoint</em> para leer una solicitud.</p>
+
+<p>El código del cliente es el siguiente.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">ApiClient</span>
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">fetch_customer</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="ss">use_cache: </span><span class="kp">true</span><span class="p">)</span>
+    <span class="n">new</span><span class="p">(</span><span class="s2">"https://</span><span class="si">#{</span><span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">credentials</span><span class="p">.</span><span class="nf">creditario</span><span class="p">[</span><span class="ss">:host</span><span class="p">]</span><span class="si">}</span><span class="s2">/customers/</span><span class="si">#{</span><span class="nb">id</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="ss">method: :get</span><span class="p">,</span> <span class="ss">use_cache: </span><span class="n">use_cache</span><span class="p">).</span><span class="nf">execute</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">fetch_application</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="ss">use_cache: </span><span class="kp">true</span><span class="p">)</span>
+    <span class="n">new</span><span class="p">(</span><span class="s2">"https://</span><span class="si">#{</span><span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">credentials</span><span class="p">.</span><span class="nf">creditario</span><span class="p">[</span><span class="ss">:host</span><span class="p">]</span><span class="si">}</span><span class="s2">/applications/</span><span class="si">#{</span><span class="nb">id</span><span class="si">}</span><span class="s2">?include=attachments"</span><span class="p">,</span> <span class="ss">method: :get</span><span class="p">,</span> <span class="ss">use_cache: </span><span class="n">use_cache</span><span class="p">).</span><span class="nf">execute</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="ss">method: :get</span><span class="p">,</span> <span class="ss">use_cache: </span><span class="kp">true</span><span class="p">)</span>
+    <span class="vi">@url</span> <span class="o">=</span> <span class="n">url</span>
+    <span class="vi">@method</span> <span class="o">=</span> <span class="nb">method</span>
+    <span class="vi">@use_cache</span> <span class="o">=</span> <span class="n">use_cache</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">execute</span>
+    <span class="n">payload</span> <span class="o">=</span> <span class="vi">@use_cache</span> <span class="p">?</span> <span class="n">cache_read_url</span><span class="p">(</span><span class="vi">@url</span><span class="p">).</span><span class="nf">dig</span><span class="p">(</span><span class="ss">:payload</span><span class="p">)</span> <span class="p">:</span> <span class="s2">""</span>
+    <span class="n">httpx</span> <span class="o">=</span> <span class="n">build_request</span><span class="p">(</span><span class="vi">@url</span><span class="p">)</span>
+
+    <span class="k">case</span> <span class="vi">@method</span>
+    <span class="k">when</span> <span class="ss">:get</span> <span class="k">then</span> <span class="n">execute_get</span><span class="p">(</span><span class="n">httpx</span><span class="p">,</span> <span class="vi">@url</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="kp">private</span>
+
+  <span class="k">def</span> <span class="nf">cache_read_url</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="vi">@cached_response</span> <span class="o">||=</span> <span class="no">Rails</span><span class="p">.</span><span class="nf">cache</span><span class="p">.</span><span class="nf">read</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="o">||</span> <span class="p">{}</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">cache_write_response</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+    <span class="no">Rails</span><span class="p">.</span><span class="nf">cache</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="p">{</span>
+      <span class="ss">payload: </span><span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">.</span><span class="nf">read</span><span class="p">,</span>
+      <span class="ss">etag: </span><span class="n">response</span><span class="p">.</span><span class="nf">headers</span><span class="p">[</span><span class="s2">"ETag"</span><span class="p">],</span>
+      <span class="ss">modified_since: </span><span class="n">response</span><span class="p">.</span><span class="nf">headers</span><span class="p">[</span><span class="s2">"Last-Modified"</span><span class="p">]</span>
+    <span class="p">})</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">execute_get</span><span class="p">(</span><span class="n">httpx</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
+    <span class="n">new_response</span> <span class="o">=</span> <span class="n">httpx</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">new_response</span><span class="p">.</span><span class="nf">status</span> <span class="o">==</span> <span class="mi">200</span>
+      <span class="n">cache_write_response</span><span class="p">(</span><span class="n">new_response</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span> <span class="k">if</span> <span class="vi">@use_cache</span>
+      <span class="no">JSON</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">new_response</span><span class="p">.</span><span class="nf">body</span><span class="p">.</span><span class="nf">read</span><span class="p">)</span>
+    <span class="k">elsif</span> <span class="n">new_response</span><span class="p">.</span><span class="nf">status</span> <span class="o">==</span> <span class="mi">304</span>
+      <span class="no">JSON</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">build_request</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="s2">"Accept"</span> <span class="o">=&gt;</span> <span class="s2">"application/vnd.creditar.v1+json"</span><span class="p">,</span>
+      <span class="s2">"Content-Type"</span> <span class="o">=&gt;</span> <span class="s2">"application/json"</span><span class="p">,</span>
+      <span class="s2">"Application-Context"</span> <span class="o">=&gt;</span> <span class="s2">"sandbox"</span><span class="p">,</span>
+      <span class="s2">"Authorization"</span> <span class="o">=&gt;</span> <span class="s2">"Token token=</span><span class="si">#{</span><span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">credentials</span><span class="p">.</span><span class="nf">creditario</span><span class="p">[</span><span class="ss">:api_key</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="vi">@use_cache</span>
+      <span class="n">etag</span> <span class="o">=</span> <span class="n">cache_read_url</span><span class="p">(</span><span class="n">url</span><span class="p">).</span><span class="nf">dig</span><span class="p">(</span><span class="ss">:etag</span><span class="p">)</span>
+      <span class="n">modified_since</span> <span class="o">=</span> <span class="n">cache_read_url</span><span class="p">(</span><span class="n">url</span><span class="p">).</span><span class="nf">dig</span><span class="p">(</span><span class="ss">:modified_since</span><span class="p">)</span>
+
+      <span class="n">headers</span><span class="p">[</span><span class="s2">"If-None-Match"</span><span class="p">]</span> <span class="o">=</span> <span class="n">etag</span> <span class="k">if</span> <span class="n">etag</span><span class="p">.</span><span class="nf">present?</span>
+      <span class="n">headers</span><span class="p">[</span><span class="s2">"If-Modified-Since"</span><span class="p">]</span> <span class="o">=</span> <span class="n">modified_since</span> <span class="k">if</span> <span class="n">modified_since</span><span class="p">.</span><span class="nf">present?</span>
+    <span class="k">end</span>
+
+    <span class="no">HTTPX</span><span class="p">.</span><span class="nf">with_headers</span><span class="p">(</span><span class="n">headers</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Los métodos <code class="highlighter-rouge">#fetch_customer</code> y <code class="highlighter-rouge">#fetch_application</code> están a nivel de clase. Estos reciben dos parámetros: id del recursos y opcionalmente si queremos utilizar el cache o no. Ambos al ejecutarse crean una instancia de la clase <code class="highlighter-rouge">ApiClient</code> para posteriormente ejecutar la llamada con la URL al recurso que construyó cada método.</p>
+
+<p>Antes de realizar la llamada configura los encabezados HTTP que van a ser enviados al servidor. Hay algunos que son base y estan <code class="highlighter-rouge">ETag</code> y <code class="highlighter-rouge">Last-Modified</code> que van a ser enviados únicamente si se cumplen dos condiciones:</p>
+
+<ul>
+  <li>La opción de utilizar cache es verdadera</li>
+  <li>Tenemos en cache para esa URL una copia de esos encabezados de alguna llamada previa</li>
+</ul>
+
+<p>Para el cache, en este caso, estamos utilizando el cache configurado con Rails. En el cache utilizamos la URL completa con parámetros como llave y como valor guardamos una estructura similar a la siguiente:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="err">etag:</span><span class="w"> </span><span class="s2">"W</span><span class="se">\4</span><span class="s2">84848484"</span><span class="p">,</span><span class="w">
+  </span><span class="err">modified-since:</span><span class="w"> </span><span class="s2">"Wed, 25 March 2020"</span><span class="p">,</span><span class="w">
+  </span><span class="err">payload:</span><span class="w"> </span><span class="s2">"{...}"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Al realizar la llamada verificamos el estatus de respuesta. Si es 200 quiere decir que el servidor nos envió una nueva copia de la información, ya sea porque no enviamos los encabezados <code class="highlighter-rouge">ETag</code> y <code class="highlighter-rouge">Last-Modified</code> o bien, los enviamos pero hubo nueva información en el servidor.</p>
+
+<p>Si estamos utilizando cache guardamos los encabezados y una copia de los datos para llamadas posteriores y retornamos el resultado de la llamada.</p>
+
+<p>En caso de que el estatus de la respuesta haya sido 304, quiere decir que enviamos los encabezados <code class="highlighter-rouge">ETag</code> y <code class="highlighter-rouge">Last-Modified</code> y que el servidor no encontró información nueva, por lo tanto solo nos regresa el estatus 304 sin datos. En este punto extraemos la copia de los datos que tenemos en el cache y eso es lo que retornamos como resultado de la llamada.</p>
+
+<p>Técnicamente para quien utilice nuestro cliente REST va a ser totalmente transparente si los datos vienen desde el servidor o desde el cache local. Sin embargo el hacer uso del cache trae resultados positivos para el servidor del API ya que como vimos en el ejemplo con Rails se consume menos memoria y el servidor responde a las solicitudes más rápidamente.</p>
+
+<p>Del lado del cliente también es posible percibir mejoras en los tiempos de respuesta, aunque estás siempre van a estar ligadas con el tiempo de internet y la latencia de la red.</p>
+
+<p>Para poder comprobar los beneficios del lado del cliente se programó un par de pruebas con la librería <a href="https://github.com/evanphx/benchmark-ips" target="_blank">Benchmark-ips</a>  para que nos ayude a evaluar si hay beneficios o no de utilizar el <strong>GET Condicional</strong> y el cache en el cliente.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s2">"benchmark/ips"</span>
+
+<span class="no">Benchmark</span><span class="p">.</span><span class="nf">ips</span> <span class="k">do</span> <span class="o">|</span><span class="n">api</span><span class="o">|</span>
+  <span class="no">Rails</span><span class="p">.</span><span class="nf">cache</span><span class="p">.</span><span class="nf">clear</span>
+  <span class="n">api</span><span class="p">.</span><span class="nf">report</span><span class="p">(</span><span class="s2">"no-cache-customer"</span><span class="p">)</span> <span class="p">{</span> <span class="no">ApiClient</span><span class="p">.</span><span class="nf">fetch_customer</span><span class="p">(</span><span class="s2">"9e2b06d3-f2d5-44b7-b48d-36ea0dfa0187"</span><span class="p">,</span> <span class="ss">use_cache: </span><span class="kp">false</span><span class="p">)</span> <span class="p">}</span>
+
+  <span class="no">Rails</span><span class="p">.</span><span class="nf">cache</span><span class="p">.</span><span class="nf">clear</span>
+  <span class="n">api</span><span class="p">.</span><span class="nf">report</span><span class="p">(</span><span class="s2">"cache-customer"</span><span class="p">)</span> <span class="p">{</span> <span class="no">ApiClient</span><span class="p">.</span><span class="nf">fetch_customer</span><span class="p">(</span><span class="s2">"9e2b06d3-f2d5-44b7-b48d-36ea0dfa0187"</span><span class="p">)</span> <span class="p">}</span>
+
+  <span class="n">api</span><span class="p">.</span><span class="nf">compare!</span>
+<span class="k">end</span>
+
+<span class="no">Benchmark</span><span class="p">.</span><span class="nf">ips</span> <span class="k">do</span> <span class="o">|</span><span class="n">api</span><span class="o">|</span>
+  <span class="no">Rails</span><span class="p">.</span><span class="nf">cache</span><span class="p">.</span><span class="nf">clear</span>
+  <span class="n">api</span><span class="p">.</span><span class="nf">report</span><span class="p">(</span><span class="s2">"no-cache-application"</span><span class="p">)</span> <span class="p">{</span> <span class="no">ApiClient</span><span class="p">.</span><span class="nf">fetch_application</span><span class="p">(</span><span class="s2">"6d3b26bf-3ab0-4716-aa91-2bb5139ef78a"</span><span class="p">,</span> <span class="ss">use_cache: </span><span class="kp">false</span><span class="p">)</span> <span class="p">}</span>
+
+  <span class="no">Rails</span><span class="p">.</span><span class="nf">cache</span><span class="p">.</span><span class="nf">clear</span>
+  <span class="n">api</span><span class="p">.</span><span class="nf">report</span><span class="p">(</span><span class="s2">"cache-application"</span><span class="p">)</span> <span class="p">{</span> <span class="no">ApiClient</span><span class="p">.</span><span class="nf">fetch_application</span><span class="p">(</span><span class="s2">"6d3b26bf-3ab0-4716-aa91-2bb5139ef78a"</span><span class="p">)</span> <span class="p">}</span>
+
+  <span class="n">api</span><span class="p">.</span><span class="nf">compare!</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Con Benchmark-ips probamos la llamada para obtener un cliente sin cache y con cache y hacemos lo mismo para obtener una solicitud. En ambos casos Benchmark-ips hace un calentamiento con 2 llamadas y posteriormente ejecuta 5 veces cada llamada.</p>
+
+<p>Los resultados son los siguientes.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Warming up <span class="nt">------------------------------------</span>—
+no-cache-customer     1.000  i/100ms
+   cache-customer     1.000  i/100ms
+Calculating <span class="nt">-------------------------------------</span>
+   no-cache-customer      3.165  <span class="o">(</span>± 0.0%<span class="o">)</span> i/s -     16.000  <span class="k">in   </span>5.063248s
+      cache-customer      3.265  <span class="o">(</span>± 0.0%<span class="o">)</span> i/s -     17.000  <span class="k">in   </span>5.228465s
+
+Comparison:
+      cache-customer:        3.3 i/s
+   no-cache-customer:        3.2 i/s - 1.03x  <span class="o">(</span>± 0.00<span class="o">)</span> slower
+
+<span class="o">=&gt;</span> <span class="c">#&lt;Benchmark::IPS::Report:0x00007f9cbf9f6c90 @entries=[#&lt;Benchmark::IPS::Report::Entry:0x00007f9cc02f0378 @label="no-cache-customer", @microseconds=5063248.0, @iterations=16, @stats=#&lt;Benchmark::IPS::Stats::SD:0x00007f9cc02f0490 @samples=[3.233452001021771, 3.306823630561664, 3.254699786491694, 3.1271401365309384, 3.2323650245174886, 2.835029626059592, 3.053323237011163, 3.2682622322884702, 3.0658294908270385, 3.0752860784874514, 3.157123733993383, 3.201413744309487, 3.342190137196905, 3.062702712635793, 3.1983419795178176, 3.224454261116306], @mean=3.1649023632854356, @error=0&gt;, @measurement_cycle=1, @show_total_time=true&gt;, #&lt;Benchmark::IPS::Report::Entry:0x00007f9cc508d2e8 @label="cache-customer", @microseconds=5228465.0, @iterations=17, @stats=#&lt;Benchmark::IPS::Stats::SD:0x00007f9cc508d360 @samples=[3.1828178759783188, 3.427897601842838, 2.948452210012354, 3.2978811113859345, 3.2421742020198745, 3.4091412714051454, 3.0942700307570443, 3.3882225384563256, 3.5391339739165826, 3.3277648734451017, 3.4406352788978958, 3.2761320674359022, 3.249696965757943, 2.672910585795084, 3.3074251695055397, 3.253471454041462, 3.4531817616752076], @mean=3.265365233666386, @error=0&gt;, @measurement_cycle=1, @show_total_time=true&gt;], @data=nil&gt;</span>
+</code></pre></div></div>
+
+<p>Para el caso de obtener la información de un cliente desde el API con el cache y sin el cache el resultado es muy similar aunque sin cache sí es más lento.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Warming up <span class="nt">------------------------------------</span>—
+no-cache-application     1.000  i/100ms
+   cache-application     1.000  i/100ms
+Calculating <span class="nt">-------------------------------------</span>
+no-cache-application      1.315  <span class="o">(</span>± 0.0%<span class="o">)</span> i/s -      7.000  <span class="k">in   </span>6.031559s
+   cache-application      3.071  <span class="o">(</span>±32.6%<span class="o">)</span> i/s -     15.000  <span class="k">in   </span>5.270988s
+
+Comparison:
+   cache-application:        3.1 i/s
+no-cache-application:        1.3 i/s - 2.34x  <span class="o">(</span>± 0.00<span class="o">)</span> slower
+
+<span class="o">=&gt;</span> <span class="c">#&lt;Benchmark::IPS::Report:0x00007f9cc491aba0 @entries=[#&lt;Benchmark::IPS::Report::Entry:0x00007f9cc2b47498 @label="no-cache-application", @microseconds=6031559.0, @iterations=7, @stats=#&lt;Benchmark::IPS::Stats::SD:0x00007f9cc2b47560 @samples=[1.1724057884018586, 0.7877849221117047, 1.9610073302454003, 1.9321692657563574, 1.2268869828518008, 1.3782932594568147, 0.7456404268344059], @mean=1.3148839965226204, @error=0&gt;, @measurement_cycle=1, @show_total_time=true&gt;, #&lt;Benchmark::IPS::Report::Entry:0x00007f9cc50453a8 @label="cache-application", @microseconds=5270988.0, @iterations=15, @stats=#&lt;Benchmark::IPS::Stats::SD:0x00007f9cc5045448 @samples=[1.2400747517060329, 1.9133043531500642, 3.295946315626411, 3.2205081961933595, 3.466168462719625, 3.265476726947367, 3.2231135921923295, 3.3409841871218426, 3.440031648291164, 3.4534202674328656, 3.2150102398076137, 3.446742655853086, 3.1980964929673856, 3.175651643717291, 3.1777102690885055], @mean=3.071482653520996, @error=1&gt;, @measurement_cycle=1, @show_total_time=true&gt;], @data=nil&gt;</span>
+</code></pre></div></div>
+
+<p>Para el caso de obtener una solicitud la diferencia con cache y sin cache es más grande. Sin cache es 2.34 veces más lento que utilizar el cache.</p>
+
+<p>Hay una gran diferencia entre los resultados de los dos recursos y de alguna forma era de esperarse. Los beneficios de realizar el <strong>GET Condicional</strong> y el cache del lado del cliente siempre van a depender de la complejidad de las acciones que realice el servidor del API para responder a las solicitudes. El utilizar esta técnica logra ejecutar menos código del lado del servidor y siempre el ejecutar no código va a ser más rápido que ejecutar código.</p>
+
+<h2 id="final">Final</h2>
+
+<p>El desarrollar y mantener un API REST requiere de conocer el estándar de HTTP para tratar de obtener el mejor provecho y ofrecer mejores APIs para los clientes. Como parte del trabajo de mantener un API REST también incluye el asegurarse que los clientes hagan uso efectivo de las facilidades del API.</p>
+
+<p>Aunque los ejemplos aquí mostrados están relacionados con Rails y con un cliente con Ruby, el <strong>GET Condicional</strong> y el cache son técnicas agnósticas que pueden ser implementadas en otros lenguajes y frameworks de desarrollo.</p>
+
+  </div>
+</article>
+
+      </main>
+    </section>
+
+  </body>
+</html>

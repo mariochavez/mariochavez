@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- Begin Bridgetown SEO tag v5.0.0 -->
+<title>Ruby Next to keep compatibility with older Rubies | Mario Alberto Chávez Cárdenas</title>
+<meta property="og:title" content="Ruby Next to keep compatibility with older Rubies" />
+<meta name="author" content="Mario Alberto Chávez Cárdenas" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Ruby Next is a nice tool for those that enjoy working with newer Ruby versions but needs to keep compatibility with older Rubies." />
+<meta property="og:description" content="Ruby Next is a nice tool for those that enjoy working with newer Ruby versions but needs to keep compatibility with older Rubies." />
+<link rel="canonical" href="https://mariochavez.io/desarrollo/2023/05/19/ruby-next-for-older-ruby/" />
+<meta property="og:url" content="https://mariochavez.io/desarrollo/2023/05/19/ruby-next-for-older-ruby/" />
+<meta property="og:site_name" content="Mario Alberto Chávez Cárdenas" />
+<meta property="og:image" content="https://mariochavez.io/images/ruby_next/ruby_next.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-05-19T18:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://mariochavez.io/images/ruby_next/ruby_next.jpg" />
+<meta property="twitter:title" content="Ruby Next to keep compatibility with older Rubies" />
+<meta name="twitter:site" content="@mario_chavez" />
+<meta name="twitter:creator" content="@Mario Alberto Chávez Cárdenas" />
+<!-- End Bridgetown SEO tag -->
+
+
+<link type="application/atom+xml" rel="alternate" href="https://mariochavez.io/feed.xml" title="Mario Alberto Chávez Cárdenas" />
+
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+<link rel="stylesheet" href="/assets/index.XK2I5QP5.css" />
+<script src="/assets/index.6WSZNJGR.js" defer></script>
+
+
+  </head>
+  <body class="min-h-screen antialiased post ">
+    <section class="flex flex-nowrap">
+      <aside class="sticky top-0 flex flex-col hidden w-64 max-h-screen min-h-screen bg-gray-100 xl:w-96 lg:block">
+  <div class="px-8 xl:px-10">
+    <header class="py-14">
+      <h1 class="font-sans text-3xl font-medium tracking-widest text-gray-700 uppercase">Mario Alberto Chávez Cárdenas</h1>
+      <h2 class="mt-4 font-serif text-lg italic tracking-wide text-gray-500 font-extralight">Blog personal de fotografía y desarrollo de software</h2>
+    </header>
+
+    <nav class="lg:flex-grow lg:py-14">
+  <ul>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/">Inicio</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/desarrollo">Desarrollo</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/fotografía">Fotografía</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/proyectos">Proyectos</a></li>
+    <li class="font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/acercade">Acerca de</a></li>
+  </ul>
+</nav>
+
+
+    <footer class="py-8 lg:py-14">
+  <div class="flex space-x-4">
+    <a href="https://twitter.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24" class="w-4 h-4"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+    </a>
+    <a href="https://instagram.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="none" viewBox="0 0 24 24" class="w-4 h-4"><path d="M15.233 5.488c-.843-.038-1.097-.046-3.233-.046s-2.389.008-3.232.046c-2.17.099-3.181 1.127-3.279 3.279-.039.844-.048 1.097-.048 3.233s.009 2.389.047 3.233c.099 2.148 1.106 3.18 3.279 3.279.843.038 1.097.047 3.233.047 2.137 0 2.39-.008 3.233-.046 2.17-.099 3.18-1.129 3.279-3.279.038-.844.046-1.097.046-3.233s-.008-2.389-.046-3.232c-.099-2.153-1.111-3.182-3.279-3.281zm-3.233 10.62c-2.269 0-4.108-1.839-4.108-4.108 0-2.269 1.84-4.108 4.108-4.108s4.108 1.839 4.108 4.108c0 2.269-1.839 4.108-4.108 4.108zm4.271-7.418c-.53 0-.96-.43-.96-.96s.43-.96.96-.96.96.43.96.96-.43.96-.96.96zm-1.604 3.31c0 1.473-1.194 2.667-2.667 2.667s-2.667-1.194-2.667-2.667c0-1.473 1.194-2.667 2.667-2.667s2.667 1.194 2.667 2.667zm4.333-12h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm.952 15.298c-.132 2.909-1.751 4.521-4.653 4.654-.854.039-1.126.048-3.299.048s-2.444-.009-3.298-.048c-2.908-.133-4.52-1.748-4.654-4.654-.039-.853-.048-1.125-.048-3.298 0-2.172.009-2.445.048-3.298.134-2.908 1.748-4.521 4.654-4.653.854-.04 1.125-.049 3.298-.049s2.445.009 3.299.048c2.908.133 4.523 1.751 4.653 4.653.039.854.048 1.127.048 3.299 0 2.173-.009 2.445-.048 3.298z"/></svg>
+    </a>
+  </div>
+  <p class="mt-4 font-sans text-xs font-light tracking-wider text-gray-500 xl:text-sm">©2021. Mario Alberto Chávez Cárdenas</p>
+</footer>
+
+  </div>
+</aside>
+
+
+      <main class="flex-auto overflow-hidden text-gray-700">
+        <header class="flex flex-col bg-gray-100 lg:hidden" data-controller="menu">
+  <div class="flex flex-col w-full px-8 md:flex-row xl:px-10">
+    <div class="w-full pt-12 pb-6 md:py-12">
+      <a href="/">
+        <h1 class="font-sans text-lg font-medium tracking-widest text-gray-700 uppercase md:text-2xl">Mario Alberto Chávez Cárdenas</h1>
+      </a>
+      <h2 class="mt-4 font-serif text-xs italic tracking-wide text-gray-500 md:text-lg font-extralight">Blog personal de fotografía y desarrollo de software</h2>
+    </div>
+
+    <div class="pb-6 md:py-12 md:pl-4 md:self-center md:justify-self-end md:pl-0">
+      <a href="#" class="inline-flex items-center px-4 py-2 border border-gray-500 md:flex hover:text-red-500 hover:border-red-500" data-action="menu#toggle">
+        <span class="font-semibold text-md md:text-lg">Menú</span>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-4 h-4 ml-4" data-menu-target="closed">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hidden w-4 h-4 ml-4" data-menu-target="opened">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <div data-menu-target="submenu" class="hidden w-full px-8">
+    <nav class="lg:flex-grow lg:py-14">
+  <ul>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/">Inicio</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/desarrollo">Desarrollo</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/fotografía">Fotografía</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/proyectos">Proyectos</a></li>
+    <li class="font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/acercade">Acerca de</a></li>
+  </ul>
+</nav>
+
+
+    <footer class="py-8 lg:py-14">
+  <div class="flex space-x-4">
+    <a href="https://twitter.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24" class="w-4 h-4"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+    </a>
+    <a href="https://instagram.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="none" viewBox="0 0 24 24" class="w-4 h-4"><path d="M15.233 5.488c-.843-.038-1.097-.046-3.233-.046s-2.389.008-3.232.046c-2.17.099-3.181 1.127-3.279 3.279-.039.844-.048 1.097-.048 3.233s.009 2.389.047 3.233c.099 2.148 1.106 3.18 3.279 3.279.843.038 1.097.047 3.233.047 2.137 0 2.39-.008 3.233-.046 2.17-.099 3.18-1.129 3.279-3.279.038-.844.046-1.097.046-3.233s-.008-2.389-.046-3.232c-.099-2.153-1.111-3.182-3.279-3.281zm-3.233 10.62c-2.269 0-4.108-1.839-4.108-4.108 0-2.269 1.84-4.108 4.108-4.108s4.108 1.839 4.108 4.108c0 2.269-1.839 4.108-4.108 4.108zm4.271-7.418c-.53 0-.96-.43-.96-.96s.43-.96.96-.96.96.43.96.96-.43.96-.96.96zm-1.604 3.31c0 1.473-1.194 2.667-2.667 2.667s-2.667-1.194-2.667-2.667c0-1.473 1.194-2.667 2.667-2.667s2.667 1.194 2.667 2.667zm4.333-12h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm.952 15.298c-.132 2.909-1.751 4.521-4.653 4.654-.854.039-1.126.048-3.299.048s-2.444-.009-3.298-.048c-2.908-.133-4.52-1.748-4.654-4.654-.039-.853-.048-1.125-.048-3.298 0-2.172.009-2.445.048-3.298.134-2.908 1.748-4.521 4.654-4.653.854-.04 1.125-.049 3.298-.049s2.445.009 3.299.048c2.908.133 4.523 1.751 4.653 4.653.039.854.048 1.127.048 3.299 0 2.173-.009 2.445-.048 3.298z"/></svg>
+    </a>
+  </div>
+  <p class="mt-4 font-sans text-xs font-light tracking-wider text-gray-500 xl:text-sm">©2021. Mario Alberto Chávez Cárdenas</p>
+</footer>
+
+  </div>
+</header>
+
+        <article class="py-16 font-serif lg:py-24 post">
+  <header class="px-4 m-auto md:max-w-2xl lg:max-w-4xl">
+    <a href="/desarrollo" class="pb-1 text-sm font-bold leading-normal uppercase border-b-4 border-gray-200 transition-all hover:text-red-500">desarrollo</a>
+    <h1 class="mt-6 text-3xl font-bold tracking-wide md:text-4xl lg:text-6xl">Ruby Next to keep compatibility with older Rubies</h1>
+  </header>
+
+  <div class="px-4 m-auto mt-16 tracking-wider md:max-w-2xl lg:max-w-4xl prose md:prose-lg">
+    <figure class="mt-16 aspect-w-16 aspect-h-9">
+      <img src="/images/ruby_next/ruby_next.jpg" loading="lazy" />
+    </figure>
+
+    <p>Today I have released a new version of the <a href="https://rubygems.org/gems/chroma-db" target="_blank">chroma-db</a> gem, version 0.3.0.</p>
+
+<p>It was motivated due to an issue in the repository about <a href="https://github.com/mariochavez/chroma/issues/8">Data not being available</a> and the ask to relax the Ruby version requirement, which was 3.2.</p>
+
+<p>When I wrote the library, I used the syntax from Ruby 3.2 so having it to work with earlier versions required a rewrite to make it compatible. I was not amused by having to rewrite parts of the gem, luckily I remembered seen <a href="https://github.com/ruby-next/ruby-next" target="_blank">Ruby Next</a> a while ago from Evil Martians. So, I went to give it a try.</p>
+
+<p>Ruby Next is a transpiler for the Ruby language. It can take a Ruby file using newer syntax and automatically generate one or more files that are compatible with earlier versions of Ruby. Since I was looking to be compatible down to Ruby 2.6, Ruby Next generated files for 2.6 and 3.1 version. These files cover all syntax changes in between Ruby versions.</p>
+
+<p>Having the transpiled versions, Ruby Next takes care of loading the correct file depending on your Ruby version and replacing the original code using a Ruby <a href="https://rubyapi.org/3.2/o/refinement" target="_blank">refinement</a>.</p>
+
+<p>This sounded promising for my case with this gem. I focused on the section called “Integrating into a gem development” section of the README file.</p>
+
+<p>First, the dependencies were added to the gemspec file of chroma-db.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if ENV["RELEASING_GEM"].nil? &amp;&amp; File.directory?(File.join(__dir__, ".git"))
+    spec.add_runtime_dependency "ruby-next", "&gt;= 0.15.0"
+  else
+    spec.add_dependency "ruby-next-core", "&gt;= 0.15.0"
+  end
+
+  spec.add_development_dependency "ruby-next", "&gt;= 0.15.0"
+</code></pre></div></div>
+<p>Also, I make sure that generated files are packed into the gem but ignored by git.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">spec</span><span class="p">.</span><span class="nf">files</span> <span class="o">=</span> <span class="no">Dir</span><span class="p">.</span><span class="nf">chdir</span><span class="p">(</span><span class="n">__dir__</span><span class="p">)</span> <span class="k">do</span>
+    <span class="sb">`git ls-files -z`</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="s2">"</span><span class="se">\x0</span><span class="s2">"</span><span class="p">).</span><span class="nf">reject</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span>
+      <span class="p">(</span><span class="no">File</span><span class="p">.</span><span class="nf">expand_path</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">==</span> <span class="kp">__FILE__</span><span class="p">)</span> <span class="o">||</span> <span class="n">f</span><span class="p">.</span><span class="nf">start_with?</span><span class="p">(</span><span class="o">*</span><span class="sx">%w[bin/ test/ spec/ features/ notebook/ .git .circleci appveyor .standard.yml .rubocop.yml .solargraph.yml]</span><span class="p">)</span>
+<span class="k">end</span> <span class="o">+</span> <span class="no">Dir</span><span class="p">.</span><span class="nf">glob</span><span class="p">(</span><span class="s2">"lib/.rbnext/**/*"</span><span class="p">)</span>
+   
+</code></pre></div></div>
+
+<p>Next, I changed the entry point  <code class="highlighter-rouge">lib/chroma-db.rb</code> of the gem to load Ruby Next and to set up the loading of transpiled files accordingly to the Ruby version at runtime.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s2">"ruby-next"</span>
+<span class="nb">require</span> <span class="s2">"ruby-next/language/setup"</span>
+<span class="no">RubyNext</span><span class="o">::</span><span class="no">Language</span><span class="p">.</span><span class="nf">setup_gem_load_path</span><span class="p">(</span><span class="ss">transpile: </span><span class="kp">true</span><span class="p">)</span>
+</code></pre></div></div>
+<p><strong>Note: This needs to happen before you require your gem files. Also, this gem does not work with <code class="highlighter-rouge">requiere_relative</code>, so you need to use <code class="highlighter-rouge">require</code> instead.</strong></p>
+
+<p>Now to every file that uses the new Ruby’s syntax, I added the line to load the refinement.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">using</span> <span class="no">RubyNext</span>
+</code></pre></div></div>
+
+<p>At this point, the gem is almost ready to become compatible with earlier versions of Ruby, but first you have to generate the transpiled Ruby code. I opened the <code class="highlighter-rouge">Rakefile</code> and added a task for this:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">desc</span> <span class="s2">"Run Ruby Next nextify"</span>
+<span class="n">task</span> <span class="ss">:nextify</span> <span class="k">do</span>
+  <span class="n">sh</span> <span class="s2">"bundle exec ruby-next nextify -V"</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Also, I created a <em>rc</em> file called <code class="highlighter-rouge">.rbnextrc</code> to configure Ruby Next.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">nextify</span><span class="pi">:</span> <span class="pi">|</span>
+  <span class="s">./lib</span>
+  <span class="s">--min-version=2.6</span>
+  <span class="s">--edge</span>
+  <span class="s">--proposed</span>
+</code></pre></div></div>
+
+<p>Running the rake task <code class="highlighter-rouge">rake nextify</code> generates the transpiled version of our code into <code class="highlighter-rouge">lib/.rbnext</code> folder. It contains folders for different versions of Ruby and replicated inside the folder structure of our gem files that needs transpilation to become compatible. Don’t forget to add to your <code class="highlighter-rouge">.gitgnore</code> file, the <code class="highlighter-rouge">lib/.rbnext</code> folder.</p>
+
+<p>The final changes are related to being able to run your test suite with different Rubies. Open the <code class="highlighter-rouge">test_helper.rb</code> or <code class="highlighter-rouge">spec_helper.rb</code> and the following code just before the helper loads your gems files.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">ENV</span><span class="p">[</span><span class="s2">"RUBY_NEXT_TRANSPILE_MODE"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"rewrite"</span>
+<span class="no">ENV</span><span class="p">[</span><span class="s2">"RUBY_NEXT_EDGE"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"1"</span>
+<span class="no">ENV</span><span class="p">[</span><span class="s2">"RUBY_NEXT_PROPOSED"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"1"</span>
+<span class="nb">require</span> <span class="s2">"ruby-next/language/runtime"</span> <span class="k">unless</span> <span class="no">ENV</span><span class="p">[</span><span class="s2">"CI"</span><span class="p">]</span>
+</code></pre></div></div>
+<p>Make sure that you can run your tests locally. To be 100% sure that your gem is now compatible with other Rubies, run your CI with a matrix of Ruby versions and be sure that <code class="highlighter-rouge">CI=true</code> environment variable is set and also that the rake task to generate the transpiled code runs before your tests.</p>
+
+<p>In the case of chroma-db I was using Ruby’s 3.2 <a href="https://rubyapi.org/3.2/o/s?q=Data" target="_blank">Data</a> class which is not supported by Ruby Next at this time, so I had to make a manual change to use a <a href="https://rubyapi.org/3.2/o/struct" target="_blank">Struct</a> instead.</p>
+
+<p>Overall, I’m happy that Ruby Next worked for me on this gem, this means that I can be used with earlier versions of Ruby for those that can’t use the latest version, but also I keep the joy of using newer syntax.</p>
+
+<p>By the way, the issue was reported by the team working on <a href="https://github.com/andreibondarev/langchainrb" target="_blank">langchainrb</a></p>
+
+
+  </div>
+</article>
+
+      </main>
+    </section>
+
+  </body>
+</html>
