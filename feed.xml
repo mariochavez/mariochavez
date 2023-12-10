@@ -1,4 +1,253 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es"><generator uri="https://bridgetownrb.com/" version="1.1.0">Bridgetown</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" hreflang="es" /><updated>2023-09-01T19:48:22+00:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez Cárdenas</title><subtitle>Blog sobre temas de desarrollo de software Web con Ruby y Ruby on Rails, además de temas de fotografía análoga y digital.</subtitle><author><name>Mario Alberto Chávez Cárdenas</name></author><entry xml:lang="en"><title type="html">Full-text search with SQLite and Rails</title><link href="https://mariochavez.io/desarrollo/2023/09/01/full-text-search-with-sqlite-and-rails/" rel="alternate" type="text/html" title="Full-text search with SQLite and Rails" /><published>2023-09-01T06:00:00+00:00</published><updated>2023-09-01T06:00:00+00:00</updated><id>repo://posts.collection/_posts/2023-09-01-full-text-search-with-sqlite-and-rails.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2023/09/01/full-text-search-with-sqlite-and-rails/">&lt;p&gt;Today, I planned to move a few small Ruby on Rails applications with Heroku using &lt;a href=&quot;https://kamal-deploy.org/&quot;&gt;Kamal&lt;/a&gt; onto a single server. All applications use PostgreSQL as the database because it is simple to use with Heroku and because they take advantage of Postgres’ full-text search.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es"><generator uri="https://bridgetownrb.com/" version="1.1.0">Bridgetown</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" hreflang="es" /><updated>2023-12-10T20:15:47+00:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez Cárdenas</title><subtitle>Blog sobre temas de desarrollo de software Web con Ruby y Ruby on Rails, además de temas de fotografía análoga y digital.</subtitle><author><name>Mario Alberto Chávez Cárdenas</name></author><entry xml:lang="en"><title type="html">Sound to Script: Using OpenAI’s Whisper Model and Whisper.cpp</title><link href="https://mariochavez.io/desarrollo/2023/12/10/sound-to-script-openia-whisper/" rel="alternate" type="text/html" title="Sound to Script: Using OpenAI&apos;s Whisper Model and Whisper.cpp" /><published>2023-12-10T06:00:00+00:00</published><updated>2023-12-10T06:00:00+00:00</updated><id>repo://posts.collection/_posts/2023-12-10-sound-to-script-openia-whisper.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2023/12/10/sound-to-script-openia-whisper/">&lt;p&gt;AI offers a different set of inputs and outputs for inferences. One of the many inference models is Automatic Speech Recognition (ASR). Using OpenAI’s Whiper model makes transcribing pre-recorded or live audio possible.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/ggerganov/whisper.cpp&quot;&gt;Whisper.cpp&lt;/a&gt; implements OpenAI’s Whisper model, which allows you to run this model on your machine. It could be done running your CPU, Apple’s Core ML from M processors, or using a dedicated GPU unit. You can run the smaller or larger Whisper model; Whisper.cpp also supports running quantized models, which require less memory and disk space using the &lt;a href=&quot;https://github.com/ggerganov/ggml&quot;&gt;GGML library&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;So, let’s see how to use Whisper.cpp to process a video to get subtitle SRT format.&lt;/p&gt;
+
+&lt;p&gt;First, you need to clone the Whisper.cpp repository.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git clone &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;https://github.com/ggerganov/whisper.cpp]&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;https://github.com/ggerganov/whisper.cpp&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;If you are running Whisper.cpp from your CPU, change to the code folder and run the make command:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;make
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Then download a Whiper model in ggml format:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bash ./models/download-ggml-model.sh base.en
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You can find available models here: &lt;a href=&quot;https://huggingface.co/ggerganov/whisper.cpp&quot;&gt;https://huggingface.co/ggerganov/whisper.cpp&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;With the model in place, run the following command to test it with a sample audio in the repository.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;./main &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; samples/jfk.wav
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You should see the model being loaded; at the end, it displays the inferred text from the audio.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;main: processing &lt;span class=&quot;s1&quot;&gt;&apos;samples/jfk.wav&apos;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;176000 samples, 11.0 sec&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, 4 threads, 1 processors, 5 beams + best of 5, lang &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; en, task &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; transcribe, timestamps &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 1 ...
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;00:00:00.000 &lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; 00:00:11.000]   And so my fellow Americans, ask not what your country can &lt;span class=&quot;k&quot;&gt;do for &lt;/span&gt;you, ask what you can &lt;span class=&quot;k&quot;&gt;do for &lt;/span&gt;your country.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now, I’ll focus on getting Whisper.cpp to work with Apple’s silicon processor to get better performance at inference.&lt;/p&gt;
+
+&lt;p&gt;You need Python installed to prepare Whisper models for running with Apple’s Core ML. The best way to set up Python is to install it via &lt;a href=&quot;https://docs.conda.io/projects/miniconda/en/latest/&quot;&gt;Miniconda&lt;/a&gt; and create an environment for Whisper.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;conda create &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; py310-whisper &lt;span class=&quot;nv&quot;&gt;python&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;3.10 &lt;span class=&quot;nt&quot;&gt;-y&lt;/span&gt;
+conda activate py310-whisper
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;With Python ready and activated, install the following dependencies for Core ML.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;ane_transformers
+pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;openai-whisper
+pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;coremltools
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Next, generate a Core ML model off the downloaded base.en Whisper model. If you downloaded a different model, update the command to reflect that change.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;./models/generate-coreml-model.sh base.en
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Finally, you need to compile Whisper.cpp with Core ML support.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;make clean
+&lt;span class=&quot;nv&quot;&gt;WHISPER_COREML&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1 make &lt;span class=&quot;nt&quot;&gt;-j&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Running the Core ML model with Whisper.cpp Core ML support produces faster inference.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;./main &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; models/ggml-base.en.bin &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; samples/jfk.wav
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;With these tools ready, you can move to a different scenario where the audio needs to be extracted from a video, passed to Whisper.cpp, and produced the subtitle file in SRT format.&lt;/p&gt;
+
+&lt;p&gt;To extract audio from a video, &lt;a href=&quot;https://ffmpeg.org&quot;&gt;ffmpeg&lt;/a&gt; is the best tool for this job. Whisper.cpp needs audio in 16-bit format.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ffmpeg &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; video.mp4  &lt;span class=&quot;nt&quot;&gt;-ar&lt;/span&gt; 16000 &lt;span class=&quot;nt&quot;&gt;-ac&lt;/span&gt; 1 &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt;:a pcm_s16le video.wav
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The output is a WAV audio file that you can use to produce a transcription into a JSON file.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;./main -m models/ggml-base.en.bin -f video.wav  -oj -ojf video
+....
+    
+	&quot;params&quot;: {
+            &quot;model&quot;: &quot;models/ggml-medium.en-q5_0.bin&quot;,
+            &quot;language&quot;: &quot;en&quot;,
+            &quot;translate&quot;: false
+    },
+    &quot;result&quot;: {
+            &quot;language&quot;: &quot;en&quot;
+    },
+    &quot;transcription&quot;: [
+            {
+                    &quot;timestamps&quot;: {
+                            &quot;from&quot;: &quot;00:00:00,720&quot;,
+                            &quot;to&quot;: &quot;00:00:08,880&quot;
+                    },
+                    &quot;offsets&quot;: {
+                            &quot;from&quot;: 720,
+                            &quot;to&quot;: 8880
+                    },
+                    &quot;text&quot;: &quot; Hi, everyone. Would you let people in why? Okay. Yes. My name is Selma. For those of you that don&apos;t&quot;,
+                    &quot;tokens&quot;: [
+                            {
+                                    &quot;text&quot;: &quot; Hi&quot;,
+                                    &quot;timestamps&quot;: {
+                                            &quot;from&quot;: &quot;00:00:00,000&quot;,
+                                            &quot;to&quot;: &quot;00:00:00,240&quot;
+                                    },
+                                    &quot;offsets&quot;: {
+                                            &quot;from&quot;: 0,
+                                            &quot;to&quot;: 240
+                                    },
+                                    &quot;id&quot;: 15902,
+                                    &quot;p&quot;: 0.882259
+                            },
+                            {
+                                    &quot;text&quot;: &quot;,&quot;,
+                                    &quot;timestamps&quot;: {
+                                            &quot;from&quot;: &quot;00:00:00,240&quot;,
+                                            &quot;to&quot;: &quot;00:00:00,470&quot;
+                                    },
+                                    &quot;offsets&quot;: {
+                                            &quot;from&quot;: 240,
+                                            &quot;to&quot;: 470
+                                    },
+....
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This JSON file can be transformed to meet our needs. In our case, we want to produce an SRT format for video player subtitles. This last part is done with a Ruby script.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;json_data &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; JSON.parse&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;File.read&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;json_file_path&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+
+transcription &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; json_data[&lt;span class=&quot;s1&quot;&gt;&apos;transcription&apos;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+srt_content &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;
+
+transcription.each_with_index &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; |entry, index|
+  from_time &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; entry[&lt;span class=&quot;s1&quot;&gt;&apos;timestamps&apos;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;from&apos;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+  to_time &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; entry[&lt;span class=&quot;s1&quot;&gt;&apos;timestamps&apos;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;to&apos;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+  text &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; entry[&lt;span class=&quot;s1&quot;&gt;&apos;text&apos;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+
+  srt_content +&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;#{index + 1}&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\\&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;n&quot;&lt;/span&gt;
+  srt_content +&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;#{from_time} --&amp;gt; #{to_time}&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\\&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;n&quot;&lt;/span&gt;
+  srt_content +&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;#{text}&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\\&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\\&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;n&quot;&lt;/span&gt;
+end
+
+File.write&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;srt_file_path, srt_content&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;It depends on the length of the extracted audio file; this process can take a few seconds or several minutes to complete.&lt;/p&gt;
+
+&lt;p&gt;The following is a Ruby script performs all three actions at once: extract audio, transcribe, and transform into SRT file format.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;require &lt;span class=&quot;s1&quot;&gt;&apos;json&apos;&lt;/span&gt;
+require &lt;span class=&quot;s1&quot;&gt;&apos;tmpdir&apos;&lt;/span&gt;
+
+def extract_audio&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;dir&lt;/span&gt;, input_video_path&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;c&quot;&gt;# Generate temporary WAV file path based on the input video&lt;/span&gt;
+  temp_wav_file_path &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;#{dir}/#{File.basename(input_video_path, &apos;.*&apos;)}.wav&quot;&lt;/span&gt;
+
+  &lt;span class=&quot;c&quot;&gt;# Construct the ffmpeg command&lt;/span&gt;
+  ffmpeg_command &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;ffmpeg -i &apos;#{input_video_path}&apos; -ar 16000 -ac 1 -c:a pcm_s16le &apos;#{temp_wav_file_path}&apos;&quot;&lt;/span&gt;
+
+  &lt;span class=&quot;c&quot;&gt;# Execute the ffmpeg command&lt;/span&gt;
+  puts ffmpeg_command
+  system&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;ffmpeg_command&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+
+  &lt;span class=&quot;c&quot;&gt;# Check if the command was successful&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$?&lt;/span&gt;.success?
+    puts &lt;span class=&quot;s2&quot;&gt;&quot;Audio extracted successfully to #{temp_wav_file_path}&quot;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return &lt;/span&gt;temp_wav_file_path
+  &lt;span class=&quot;k&quot;&gt;else
+    &lt;/span&gt;puts &lt;span class=&quot;s2&quot;&gt;&quot;Error extracting audio. Please check your ffmpeg installation and the input video file.&quot;&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;exit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;1&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  end
+end
+
+def process_wav&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;dir&lt;/span&gt;, wav_file_path&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;c&quot;&gt;# Path to the main command and binary file&lt;/span&gt;
+  path &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;~/Development/llm/whisper.cpp/&apos;&lt;/span&gt;
+  main_command &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;main&apos;&lt;/span&gt;
+  model_file &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;models/ggml-medium.en-q5_0.bin&apos;&lt;/span&gt;
+
+  &lt;span class=&quot;c&quot;&gt;# Generate temporary JSON file path based on the WAV file&lt;/span&gt;
+  temp_json_file_path &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;#{dir}/#{File.basename(wav_file_path, &apos;.*&apos;)}&quot;&lt;/span&gt;
+
+  &lt;span class=&quot;c&quot;&gt;# Construct the full command with quotes around file paths&lt;/span&gt;
+  full_command &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;#{path}#{main_command} -m #{path}#{model_file} -f &apos;#{wav_file_path}&apos; -oj -ojf &apos;#{temp_json_file_path}&apos;&quot;&lt;/span&gt;
+
+  &lt;span class=&quot;c&quot;&gt;# Execute the command&lt;/span&gt;
+  puts full_command
+  system&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;full_command&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+
+  &lt;span class=&quot;c&quot;&gt;# Check if the command was successful&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$?&lt;/span&gt;.success?
+    puts &lt;span class=&quot;s2&quot;&gt;&quot;Processing completed successfully for #{wav_file_path}&quot;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;#{temp_json_file_path}.wav.json&quot;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;else
+    &lt;/span&gt;puts &lt;span class=&quot;s2&quot;&gt;&quot;Error processing the WAV file. Please check your command and the input file.&quot;&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;exit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;1&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  end
+end
+
+def process_json_to_srt&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;json_file_path, srt_file_path&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  json_data &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; JSON.parse&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;File.read&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;json_file_path&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+
+  &lt;span class=&quot;c&quot;&gt;# Extract &apos;transcription&apos; array from JSON&lt;/span&gt;
+  transcription &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; json_data[&lt;span class=&quot;s1&quot;&gt;&apos;transcription&apos;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+  srt_content &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;
+
+  transcription.each_with_index &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; |entry, index|
+    from_time &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; entry[&lt;span class=&quot;s1&quot;&gt;&apos;timestamps&apos;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;from&apos;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+    to_time &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; entry[&lt;span class=&quot;s1&quot;&gt;&apos;timestamps&apos;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;to&apos;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+    text &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; entry[&lt;span class=&quot;s1&quot;&gt;&apos;text&apos;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+
+    srt_content +&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;#{index + 1}&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+    srt_content +&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;#{from_time} --&amp;gt; #{to_time}&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+    srt_content +&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;#{text}&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+  end
+
+  &lt;span class=&quot;c&quot;&gt;# Write SRT content to the new file&lt;/span&gt;
+  File.write&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;srt_file_path, srt_content&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+
+  puts &lt;span class=&quot;s2&quot;&gt;&quot;SRT file created at #{srt_file_path}&quot;&lt;/span&gt;
+end
+
+&lt;span class=&quot;c&quot;&gt;# Check if the video file path is provided as a command-line argument&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;if &lt;/span&gt;ARGV.empty?
+  puts &lt;span class=&quot;s2&quot;&gt;&quot;Usage: ruby combined_script.rb path/to/your/video.mp4&quot;&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;exit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;1&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;else
+  &lt;/span&gt;video_path &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ARGV[0]
+
+  Dir.mktmpdir &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; |dir|
+    &lt;span class=&quot;c&quot;&gt;# Extract audio&lt;/span&gt;
+    wav_file_path &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; extract_audio&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;dir&lt;/span&gt;, video_path&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;c&quot;&gt;# Process audio to obtain JSON transcript&lt;/span&gt;
+    json_file_path &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; process_wav&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;dir&lt;/span&gt;, wav_file_path&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;c&quot;&gt;# Convert JSON to SRT&lt;/span&gt;
+    srt_file_path &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;#{File.dirname(video_path)}/#{File.basename(video_path, &apos;.*&apos;)}.srt&quot;&lt;/span&gt;
+    process_json_to_srt&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;json_file_path, srt_file_path&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;It needs a few changes in the &lt;code class=&quot;highlighter-rouge&quot;&gt;process_wav&lt;/code&gt; method.&lt;/p&gt;
+
+&lt;p&gt;First, you need to update the path to your Whisper binaries. And second, the relative path to the binaries of your model.
+After these changes, you can create subtitles for your video with the following command.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ruby transcribe.rb video.mp4
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;After script completion, you will have a video.srt file next to your video file.&lt;/p&gt;</content><author><name>Mario Alberto Chávez Cárdenas</name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/whisper/sound.jpg" /><media:content medium="image" url="https://mariochavez.io/images/whisper/sound.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry xml:lang="en"><title type="html">Full-text search with SQLite and Rails</title><link href="https://mariochavez.io/desarrollo/2023/09/01/full-text-search-with-sqlite-and-rails/" rel="alternate" type="text/html" title="Full-text search with SQLite and Rails" /><published>2023-09-01T06:00:00+00:00</published><updated>2023-09-01T06:00:00+00:00</updated><id>repo://posts.collection/_posts/2023-09-01-full-text-search-with-sqlite-and-rails.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2023/09/01/full-text-search-with-sqlite-and-rails/">&lt;p&gt;Today, I planned to move a few small Ruby on Rails applications with Heroku using &lt;a href=&quot;https://kamal-deploy.org/&quot;&gt;Kamal&lt;/a&gt; onto a single server. All applications use PostgreSQL as the database because it is simple to use with Heroku and because they take advantage of Postgres’ full-text search.&lt;/p&gt;
 
 &lt;p&gt;Because of the size and usage of those applications, I was not convinced that I wanted to manage my own PostgreSQL server or pay for a managed service. So, I started to consider replacing the database with &lt;a href=&quot;https://www.sqlite.org/index.html&quot;&gt;SQLite&lt;/a&gt;. At least in my feed at &lt;a href=&quot;https://x.com/mario_chavez&quot;&gt;X&lt;/a&gt;, I have seen so many posts in the past few months on how good and fast it is.&lt;/p&gt;
 
@@ -1062,59 +1311,4 @@ gem &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;solargraph-standardrb 
   &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;solargraph-rails&lt;/span&gt;
 &lt;span class=&quot;na&quot;&gt;reporters&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
   &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;standardrb&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Mario Alberto Chávez Cárdenas</name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/neovim.jpg" /><media:content medium="image" url="https://mariochavez.io/images/neovim.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry xml:lang="es_MX"><title type="html">Curso de Ruby on Rails 7.0</title><link href="https://mariochavez.io/desarrollo/2022/02/21/curso-ruby-on-rails/" rel="alternate" type="text/html" title="Curso de Ruby on Rails 7.0" /><published>2022-02-21T06:00:00+00:00</published><updated>2022-02-21T06:00:00+00:00</updated><id>repo://posts.collection/_posts/2022-02-21-curso-ruby-on-rails.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2022/02/21/curso-ruby-on-rails/">&lt;h1 id=&quot;curso-de-ruby-on-rails-70&quot;&gt;Curso de Ruby on Rails 7.0&lt;/h1&gt;
-
-&lt;h2 id=&quot;nueva-actualización&quot;&gt;Nueva Actualización&lt;/h2&gt;
-
-&lt;p&gt;Visitar &lt;a href=&quot;/desarrollo/2023/07/03/serie-videos-ruby-on-rails&quot;&gt;Serie de videos de Ruby y de Ruby on Rails&lt;/a&gt; para mayor información.&lt;/p&gt;
-
-&lt;h2 id=&quot;actualización&quot;&gt;Actualización&lt;/h2&gt;
-
-&lt;p&gt;Los 3 primeros videos ya se encuentran disponibles &lt;a href=&quot;https://cursos.mariochavez.io&quot; target=&quot;_blank&quot;&gt;Aprende a crear aplicaciones Web modernas&lt;/a&gt; de manera gratuita, a partir del cuarto video es cuando el curso tendrá un costo. El motivo de que los 3 primeros sean gratuitos es para ofrecer la oportunidad
-de evaluar si el contenido y el formato es lo que se espera y así poder decidir si se dese adquirir o no.&lt;/p&gt;
-
-&lt;div class=&quot;w-full&quot;&gt;
-  &lt;img src=&quot;/images/curso.jpg&quot; class=&quot;m-auto&quot; style=&quot;width: 640px&quot; alt=&quot;Curso&quot; /&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Los invito a visitar el sitio y tomarse el tiempo para ver los videos y el contenido de los mismos. Y si es posible, les agradeceré lo compartan con sus conocidos o con quienes crear se pueden beneficiar.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Ayer publiqué en Twitter una pregunta sobre si existe interés en que realice un curso en video para desarrollar Web con Ruby on Rails. La respuesta fue mucho más alta de lo que me hubiera imaginado, motivo por el cual he decidido llevarlo a cabo.&lt;/p&gt;
-
-&lt;div class=&quot;w-full&quot;&gt;
-  &lt;img src=&quot;/images/curso-rails.jpg&quot; class=&quot;m-auto&quot; style=&quot;width: 440px&quot; alt=&quot;Tweet&quot; /&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;el-curso&quot;&gt;El Curso&lt;/h2&gt;
-&lt;p&gt;El curso va a ser totalmente grabado en video, con información y links de apoyo que puedan ser útiles. Cada video va a tener una duración de entre 15 a 30 minutos máximo con la intención de que no sean cansados y que se puedan revistar para tener información de temas puntuales.&lt;/p&gt;
-
-&lt;p&gt;En el curso me basaré en la experiencia personal de como escribir aplicaciones con Ruby on Rails, por lo que no solamente mostraré código o como hacer alguna tarea, también recomendaré herramientas que uso de forma diaria y que me ayudan a mí y a mi equipo a tratar de hacer mejores aplicaciones.&lt;/p&gt;
-
-&lt;p&gt;Dado que la intención del curso es que sea lo más real posible, es importante que se base en escribir una aplicación real. Por tal motivo, la aplicación será enfocada en administrar las finanzas personales. Los puntos que se cubrirán, algunos pueden cambiar, serán los siguientes.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Iniciar una aplicación de Rails y configuraciones básicas de herramientas. Linters, verificaciones de seguridad y CVEs.&lt;/li&gt;
-  &lt;li&gt;Configurar acceso de seguridad desde cero, sin la ayuda de Devise o alguna otra herramienta como esas.&lt;/li&gt;
-  &lt;li&gt;Modelos para registrar ingresos y egresos, relaciones y búsquedas. Recomendaciones para migraciones y toma de ventaja de funcionalidad de la base de datos Postgresql.&lt;/li&gt;
-  &lt;li&gt;Manejo de controladores, rutas y vistas. Uso de controladores de Stimulus y aprovechamiento de Turbo y Frames (Hotwire) para tener UIs más modernas. Utilización de TailwindCSS como herramienta de CSS.&lt;/li&gt;
-  &lt;li&gt;Integración con I18n para el manejo de texto para aplicaciones multi lenguaje.&lt;/li&gt;
-  &lt;li&gt;Envío de correos, platillas y recomendaciones.&lt;/li&gt;
-  &lt;li&gt;Manejo de archivos vía ActiveStorage para comprobantes de gastos.&lt;/li&gt;
-  &lt;li&gt;Implementación de Background Jobs mediante ActiveJob.&lt;/li&gt;
-  &lt;li&gt;Recepción de correos vía ActionMailbox para enviar correos con gastos y se registren automáticamente (Aún pensando si es buena idea incluirlo).&lt;/li&gt;
-  &lt;li&gt;Desarrollo de pruebas automáticas de unidad y de sistema.&lt;/li&gt;
-  &lt;li&gt;Deployment a plataformas como Heroku, Render y Hatchbox para tener diferentes opciones de servicios. Manejo de errores en producción.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;De manera general son los temas que el curso cubriria. Todo el desarrollo será basado en la version 7 de Rails y en la versión más reciente de todas las herramientas que se necesiten. En caso de que la versión 7.1 sea liberada durante el desarrollo del curso, se incluiría información de como realizar la migración.&lt;/p&gt;
-
-&lt;h2 id=&quot;la-motivación&quot;&gt;La motivación&lt;/h2&gt;
-&lt;p&gt;La idea del curso tiene dos intenciones, una personal y otra más general. En lo personal, tengo ya desde el 2009 (aproximadamente) trabajando con Rails en proyectos pequeños y en proyectos muy grandes. Me ha tocado ejecutar migraciones desde las versiones 2.2 hasta la más reciente. Siempre he tenido un interés en que Ruby y Ruby on Rails siga siendo utilizado por tal motivo escribo en el blog, he dado charlas y cursos.&lt;/p&gt;
-
-&lt;p&gt;En lo más general, tengo ya varios años escuchando que no hay programadoras y programadores de Ruby o de Rails. A través de michelada.io y hoy en Creditar.io he tenido la oportunidad de platicar con CEOs y CTOs de Estados Unidos, México y algunas partes de América Latina y siempre me dicen lo mismo, no hay. Esta idea los lleva a que sus proyectos se desarrollen en otras tecnologías porque no se quieren a arriesgar a no encontrar personal.&lt;/p&gt;
-
-&lt;p&gt;La realidad es que la demanda es mayor a la oferta. Hay más empleos para desarrollar en Ruby on Rails que personas que trabajen y conozcan la tecnología.&lt;/p&gt;
-
-&lt;p&gt;Si tienes comentarios o sugerencias sobre este tema, me puedes encontrar en Twitter como &lt;a href=&quot;https://twitter.com/mario_chavez&quot; target=&quot;_blank&quot;&gt;@mario_chavez&lt;/a&gt;.&lt;/p&gt;</content><author><name>Mario Alberto Chávez Cárdenas</name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/rubyonrails.jpg" /><media:content medium="image" url="https://mariochavez.io/images/rubyonrails.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Mario Alberto Chávez Cárdenas</name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/neovim.jpg" /><media:content medium="image" url="https://mariochavez.io/images/neovim.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>

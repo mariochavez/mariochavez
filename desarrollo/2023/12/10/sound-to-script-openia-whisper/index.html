@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- Begin Bridgetown SEO tag v5.0.0 -->
+<title>Sound to Script: Using OpenAI’s Whisper Model and Whisper.cpp | Mario Alberto Chávez Cárdenas</title>
+<meta property="og:title" content="Sound to Script: Using OpenAI’s Whisper Model and Whisper.cpp" />
+<meta name="author" content="Mario Alberto Chávez Cárdenas" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="AI offers a different set of inputs and outputs for inferences. One of the many inference models is Automatic Speech Recognition (ASR). Using OpenAI’s Whiper model makes transcribing pre-recorded or live audio possible." />
+<meta property="og:description" content="AI offers a different set of inputs and outputs for inferences. One of the many inference models is Automatic Speech Recognition (ASR). Using OpenAI’s Whiper model makes transcribing pre-recorded or live audio possible." />
+<link rel="canonical" href="https://mariochavez.io/desarrollo/2023/12/10/sound-to-script-openia-whisper/" />
+<meta property="og:url" content="https://mariochavez.io/desarrollo/2023/12/10/sound-to-script-openia-whisper/" />
+<meta property="og:site_name" content="Mario Alberto Chávez Cárdenas" />
+<meta property="og:image" content="https://mariochavez.io/images/whisper/sound.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-12-10T06:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://mariochavez.io/images/whisper/sound.jpg" />
+<meta property="twitter:title" content="Sound to Script: Using OpenAI’s Whisper Model and Whisper.cpp" />
+<meta name="twitter:site" content="@mario_chavez" />
+<meta name="twitter:creator" content="@Mario Alberto Chávez Cárdenas" />
+<!-- End Bridgetown SEO tag -->
+
+
+<link type="application/atom+xml" rel="alternate" href="https://mariochavez.io/feed.xml" title="Mario Alberto Chávez Cárdenas" />
+
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+<link rel="stylesheet" href="/assets/index.B2NXEM72.css" />
+<script src="/assets/index.OSPCD4WX.js" defer></script>
+
+
+  </head>
+  <body class="min-h-screen antialiased post ">
+    <section class="flex flex-nowrap">
+      <aside class="sticky top-0 flex flex-col hidden w-64 max-h-screen min-h-screen bg-gray-100 xl:w-96 lg:block">
+  <div class="px-8 xl:px-10">
+    <header class="py-14">
+      <h1 class="font-sans text-3xl font-medium tracking-widest text-gray-700 uppercase">Mario Alberto Chávez Cárdenas</h1>
+      <h2 class="mt-4 font-serif text-lg italic tracking-wide text-gray-500 font-extralight">Blog personal de fotografía y desarrollo de software</h2>
+    </header>
+
+    <nav class="lg:flex-grow lg:py-14">
+  <ul>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/">Inicio</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/desarrollo">Desarrollo</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/fotografía">Fotografía</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/proyectos">Proyectos</a></li>
+    <li class="font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/acercade">Acerca de</a></li>
+  </ul>
+</nav>
+
+
+    <footer class="py-8 lg:py-14">
+  <div class="flex space-x-4">
+    <a href="https://twitter.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24" class="w-4 h-4"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+    </a>
+    <a href="https://instagram.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="none" viewBox="0 0 24 24" class="w-4 h-4"><path d="M15.233 5.488c-.843-.038-1.097-.046-3.233-.046s-2.389.008-3.232.046c-2.17.099-3.181 1.127-3.279 3.279-.039.844-.048 1.097-.048 3.233s.009 2.389.047 3.233c.099 2.148 1.106 3.18 3.279 3.279.843.038 1.097.047 3.233.047 2.137 0 2.39-.008 3.233-.046 2.17-.099 3.18-1.129 3.279-3.279.038-.844.046-1.097.046-3.233s-.008-2.389-.046-3.232c-.099-2.153-1.111-3.182-3.279-3.281zm-3.233 10.62c-2.269 0-4.108-1.839-4.108-4.108 0-2.269 1.84-4.108 4.108-4.108s4.108 1.839 4.108 4.108c0 2.269-1.839 4.108-4.108 4.108zm4.271-7.418c-.53 0-.96-.43-.96-.96s.43-.96.96-.96.96.43.96.96-.43.96-.96.96zm-1.604 3.31c0 1.473-1.194 2.667-2.667 2.667s-2.667-1.194-2.667-2.667c0-1.473 1.194-2.667 2.667-2.667s2.667 1.194 2.667 2.667zm4.333-12h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm.952 15.298c-.132 2.909-1.751 4.521-4.653 4.654-.854.039-1.126.048-3.299.048s-2.444-.009-3.298-.048c-2.908-.133-4.52-1.748-4.654-4.654-.039-.853-.048-1.125-.048-3.298 0-2.172.009-2.445.048-3.298.134-2.908 1.748-4.521 4.654-4.653.854-.04 1.125-.049 3.298-.049s2.445.009 3.299.048c2.908.133 4.523 1.751 4.653 4.653.039.854.048 1.127.048 3.299 0 2.173-.009 2.445-.048 3.298z"/></svg>
+    </a>
+  </div>
+  <p class="mt-4 font-sans text-xs font-light tracking-wider text-gray-500 xl:text-sm">©2021. Mario Alberto Chávez Cárdenas</p>
+</footer>
+
+  </div>
+</aside>
+
+
+      <main class="flex-auto overflow-hidden text-gray-700">
+        <header class="flex flex-col bg-gray-100 lg:hidden" data-controller="menu">
+  <div class="flex flex-col w-full px-8 md:flex-row xl:px-10">
+    <div class="w-full pt-12 pb-6 md:py-12">
+      <a href="/">
+        <h1 class="font-sans text-lg font-medium tracking-widest text-gray-700 uppercase md:text-2xl">Mario Alberto Chávez Cárdenas</h1>
+      </a>
+      <h2 class="mt-4 font-serif text-xs italic tracking-wide text-gray-500 md:text-lg font-extralight">Blog personal de fotografía y desarrollo de software</h2>
+    </div>
+
+    <div class="pb-6 md:py-12 md:pl-4 md:self-center md:justify-self-end md:pl-0">
+      <a href="#" class="inline-flex items-center px-4 py-2 border border-gray-500 md:flex hover:text-red-500 hover:border-red-500" data-action="menu#toggle">
+        <span class="font-semibold text-md md:text-lg">Menú</span>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-4 h-4 ml-4" data-menu-target="closed">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hidden w-4 h-4 ml-4" data-menu-target="opened">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <div data-menu-target="submenu" class="hidden w-full px-8">
+    <nav class="lg:flex-grow lg:py-14">
+  <ul>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/">Inicio</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/desarrollo">Desarrollo</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/fotografía">Fotografía</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/proyectos">Proyectos</a></li>
+    <li class="font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/acercade">Acerca de</a></li>
+  </ul>
+</nav>
+
+
+    <footer class="py-8 lg:py-14">
+  <div class="flex space-x-4">
+    <a href="https://twitter.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24" class="w-4 h-4"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+    </a>
+    <a href="https://instagram.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="none" viewBox="0 0 24 24" class="w-4 h-4"><path d="M15.233 5.488c-.843-.038-1.097-.046-3.233-.046s-2.389.008-3.232.046c-2.17.099-3.181 1.127-3.279 3.279-.039.844-.048 1.097-.048 3.233s.009 2.389.047 3.233c.099 2.148 1.106 3.18 3.279 3.279.843.038 1.097.047 3.233.047 2.137 0 2.39-.008 3.233-.046 2.17-.099 3.18-1.129 3.279-3.279.038-.844.046-1.097.046-3.233s-.008-2.389-.046-3.232c-.099-2.153-1.111-3.182-3.279-3.281zm-3.233 10.62c-2.269 0-4.108-1.839-4.108-4.108 0-2.269 1.84-4.108 4.108-4.108s4.108 1.839 4.108 4.108c0 2.269-1.839 4.108-4.108 4.108zm4.271-7.418c-.53 0-.96-.43-.96-.96s.43-.96.96-.96.96.43.96.96-.43.96-.96.96zm-1.604 3.31c0 1.473-1.194 2.667-2.667 2.667s-2.667-1.194-2.667-2.667c0-1.473 1.194-2.667 2.667-2.667s2.667 1.194 2.667 2.667zm4.333-12h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm.952 15.298c-.132 2.909-1.751 4.521-4.653 4.654-.854.039-1.126.048-3.299.048s-2.444-.009-3.298-.048c-2.908-.133-4.52-1.748-4.654-4.654-.039-.853-.048-1.125-.048-3.298 0-2.172.009-2.445.048-3.298.134-2.908 1.748-4.521 4.654-4.653.854-.04 1.125-.049 3.298-.049s2.445.009 3.299.048c2.908.133 4.523 1.751 4.653 4.653.039.854.048 1.127.048 3.299 0 2.173-.009 2.445-.048 3.298z"/></svg>
+    </a>
+  </div>
+  <p class="mt-4 font-sans text-xs font-light tracking-wider text-gray-500 xl:text-sm">©2021. Mario Alberto Chávez Cárdenas</p>
+</footer>
+
+  </div>
+</header>
+
+        <article class="py-16 font-serif lg:py-24 post">
+  <header class="px-4 m-auto md:max-w-2xl lg:max-w-4xl">
+    <a href="/desarrollo" class="pb-1 text-sm font-bold leading-normal uppercase border-b-4 border-gray-200 transition-all hover:text-red-500">desarrollo</a>
+    <h1 class="mt-6 text-3xl font-bold tracking-wide md:text-4xl lg:text-6xl">Sound to Script: Using OpenAI's Whisper Model and Whisper.cpp</h1>
+  </header>
+
+  <div class="px-4 m-auto mt-16 tracking-wider md:max-w-2xl lg:max-w-4xl prose md:prose-lg">
+    <figure class="mt-16 aspect-w-16 aspect-h-9">
+      <img src="/images/whisper/sound.jpg" loading="lazy" />
+    </figure>
+
+    <p>AI offers a different set of inputs and outputs for inferences. One of the many inference models is Automatic Speech Recognition (ASR). Using OpenAI’s Whiper model makes transcribing pre-recorded or live audio possible.</p>
+
+<p><a href="https://github.com/ggerganov/whisper.cpp">Whisper.cpp</a> implements OpenAI’s Whisper model, which allows you to run this model on your machine. It could be done running your CPU, Apple’s Core ML from M processors, or using a dedicated GPU unit. You can run the smaller or larger Whisper model; Whisper.cpp also supports running quantized models, which require less memory and disk space using the <a href="https://github.com/ggerganov/ggml">GGML library</a>.</p>
+
+<p>So, let’s see how to use Whisper.cpp to process a video to get subtitle SRT format.</p>
+
+<p>First, you need to clone the Whisper.cpp repository.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone <span class="o">[</span>https://github.com/ggerganov/whisper.cpp]<span class="o">(</span>https://github.com/ggerganov/whisper.cpp<span class="o">)</span>
+</code></pre></div></div>
+
+<p>If you are running Whisper.cpp from your CPU, change to the code folder and run the make command:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>make
+</code></pre></div></div>
+
+<p>Then download a Whiper model in ggml format:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bash ./models/download-ggml-model.sh base.en
+</code></pre></div></div>
+
+<p>You can find available models here: <a href="https://huggingface.co/ggerganov/whisper.cpp">https://huggingface.co/ggerganov/whisper.cpp</a></p>
+
+<p>With the model in place, run the following command to test it with a sample audio in the repository.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./main <span class="nt">-f</span> samples/jfk.wav
+</code></pre></div></div>
+
+<p>You should see the model being loaded; at the end, it displays the inferred text from the audio.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>main: processing <span class="s1">'samples/jfk.wav'</span> <span class="o">(</span>176000 samples, 11.0 sec<span class="o">)</span>, 4 threads, 1 processors, 5 beams + best of 5, lang <span class="o">=</span> en, task <span class="o">=</span> transcribe, timestamps <span class="o">=</span> 1 ...
+<span class="o">[</span>00:00:00.000 <span class="nt">--</span><span class="o">&gt;</span> 00:00:11.000]   And so my fellow Americans, ask not what your country can <span class="k">do for </span>you, ask what you can <span class="k">do for </span>your country.
+</code></pre></div></div>
+
+<p>Now, I’ll focus on getting Whisper.cpp to work with Apple’s silicon processor to get better performance at inference.</p>
+
+<p>You need Python installed to prepare Whisper models for running with Apple’s Core ML. The best way to set up Python is to install it via <a href="https://docs.conda.io/projects/miniconda/en/latest/">Miniconda</a> and create an environment for Whisper.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>conda create <span class="nt">-n</span> py310-whisper <span class="nv">python</span><span class="o">=</span>3.10 <span class="nt">-y</span>
+conda activate py310-whisper
+</code></pre></div></div>
+
+<p>With Python ready and activated, install the following dependencies for Core ML.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>ane_transformers
+pip <span class="nb">install </span>openai-whisper
+pip <span class="nb">install </span>coremltools
+</code></pre></div></div>
+
+<p>Next, generate a Core ML model off the downloaded base.en Whisper model. If you downloaded a different model, update the command to reflect that change.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./models/generate-coreml-model.sh base.en
+</code></pre></div></div>
+
+<p>Finally, you need to compile Whisper.cpp with Core ML support.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>make clean
+<span class="nv">WHISPER_COREML</span><span class="o">=</span>1 make <span class="nt">-j</span>
+</code></pre></div></div>
+
+<p>Running the Core ML model with Whisper.cpp Core ML support produces faster inference.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./main <span class="nt">-m</span> models/ggml-base.en.bin <span class="nt">-f</span> samples/jfk.wav
+</code></pre></div></div>
+
+<p>With these tools ready, you can move to a different scenario where the audio needs to be extracted from a video, passed to Whisper.cpp, and produced the subtitle file in SRT format.</p>
+
+<p>To extract audio from a video, <a href="https://ffmpeg.org">ffmpeg</a> is the best tool for this job. Whisper.cpp needs audio in 16-bit format.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ffmpeg <span class="nt">-i</span> video.mp4  <span class="nt">-ar</span> 16000 <span class="nt">-ac</span> 1 <span class="nt">-c</span>:a pcm_s16le video.wav
+</code></pre></div></div>
+
+<p>The output is a WAV audio file that you can use to produce a transcription into a JSON file.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./main -m models/ggml-base.en.bin -f video.wav  -oj -ojf video
+....
+    
+	"params": {
+            "model": "models/ggml-medium.en-q5_0.bin",
+            "language": "en",
+            "translate": false
+    },
+    "result": {
+            "language": "en"
+    },
+    "transcription": [
+            {
+                    "timestamps": {
+                            "from": "00:00:00,720",
+                            "to": "00:00:08,880"
+                    },
+                    "offsets": {
+                            "from": 720,
+                            "to": 8880
+                    },
+                    "text": " Hi, everyone. Would you let people in why? Okay. Yes. My name is Selma. For those of you that don't",
+                    "tokens": [
+                            {
+                                    "text": " Hi",
+                                    "timestamps": {
+                                            "from": "00:00:00,000",
+                                            "to": "00:00:00,240"
+                                    },
+                                    "offsets": {
+                                            "from": 0,
+                                            "to": 240
+                                    },
+                                    "id": 15902,
+                                    "p": 0.882259
+                            },
+                            {
+                                    "text": ",",
+                                    "timestamps": {
+                                            "from": "00:00:00,240",
+                                            "to": "00:00:00,470"
+                                    },
+                                    "offsets": {
+                                            "from": 240,
+                                            "to": 470
+                                    },
+....
+</code></pre></div></div>
+
+<p>This JSON file can be transformed to meet our needs. In our case, we want to produce an SRT format for video player subtitles. This last part is done with a Ruby script.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>json_data <span class="o">=</span> JSON.parse<span class="o">(</span>File.read<span class="o">(</span>json_file_path<span class="o">))</span>
+
+transcription <span class="o">=</span> json_data[<span class="s1">'transcription'</span><span class="o">]</span>
+srt_content <span class="o">=</span> <span class="s2">""</span>
+
+transcription.each_with_index <span class="k">do</span> |entry, index|
+  from_time <span class="o">=</span> entry[<span class="s1">'timestamps'</span><span class="o">][</span><span class="s1">'from'</span><span class="o">]</span>
+  to_time <span class="o">=</span> entry[<span class="s1">'timestamps'</span><span class="o">][</span><span class="s1">'to'</span><span class="o">]</span>
+  text <span class="o">=</span> entry[<span class="s1">'text'</span><span class="o">]</span>
+
+  srt_content +<span class="o">=</span> <span class="s2">"#{index + 1}</span><span class="se">\\</span><span class="s2">n"</span>
+  srt_content +<span class="o">=</span> <span class="s2">"#{from_time} --&gt; #{to_time}</span><span class="se">\\</span><span class="s2">n"</span>
+  srt_content +<span class="o">=</span> <span class="s2">"#{text}</span><span class="se">\\</span><span class="s2">n</span><span class="se">\\</span><span class="s2">n"</span>
+end
+
+File.write<span class="o">(</span>srt_file_path, srt_content<span class="o">)</span>
+</code></pre></div></div>
+
+<p>It depends on the length of the extracted audio file; this process can take a few seconds or several minutes to complete.</p>
+
+<p>The following is a Ruby script performs all three actions at once: extract audio, transcribe, and transform into SRT file format.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>require <span class="s1">'json'</span>
+require <span class="s1">'tmpdir'</span>
+
+def extract_audio<span class="o">(</span><span class="nb">dir</span>, input_video_path<span class="o">)</span>
+  <span class="c"># Generate temporary WAV file path based on the input video</span>
+  temp_wav_file_path <span class="o">=</span> <span class="s2">"#{dir}/#{File.basename(input_video_path, '.*')}.wav"</span>
+
+  <span class="c"># Construct the ffmpeg command</span>
+  ffmpeg_command <span class="o">=</span> <span class="s2">"ffmpeg -i '#{input_video_path}' -ar 16000 -ac 1 -c:a pcm_s16le '#{temp_wav_file_path}'"</span>
+
+  <span class="c"># Execute the ffmpeg command</span>
+  puts ffmpeg_command
+  system<span class="o">(</span>ffmpeg_command<span class="o">)</span>
+
+  <span class="c"># Check if the command was successful</span>
+  <span class="k">if</span> <span class="nv">$?</span>.success?
+    puts <span class="s2">"Audio extracted successfully to #{temp_wav_file_path}"</span>
+    <span class="k">return </span>temp_wav_file_path
+  <span class="k">else
+    </span>puts <span class="s2">"Error extracting audio. Please check your ffmpeg installation and the input video file."</span>
+    <span class="nb">exit</span><span class="o">(</span>1<span class="o">)</span>
+  end
+end
+
+def process_wav<span class="o">(</span><span class="nb">dir</span>, wav_file_path<span class="o">)</span>
+  <span class="c"># Path to the main command and binary file</span>
+  path <span class="o">=</span> <span class="s1">'~/Development/llm/whisper.cpp/'</span>
+  main_command <span class="o">=</span> <span class="s1">'main'</span>
+  model_file <span class="o">=</span> <span class="s1">'models/ggml-medium.en-q5_0.bin'</span>
+
+  <span class="c"># Generate temporary JSON file path based on the WAV file</span>
+  temp_json_file_path <span class="o">=</span> <span class="s2">"#{dir}/#{File.basename(wav_file_path, '.*')}"</span>
+
+  <span class="c"># Construct the full command with quotes around file paths</span>
+  full_command <span class="o">=</span> <span class="s2">"#{path}#{main_command} -m #{path}#{model_file} -f '#{wav_file_path}' -oj -ojf '#{temp_json_file_path}'"</span>
+
+  <span class="c"># Execute the command</span>
+  puts full_command
+  system<span class="o">(</span>full_command<span class="o">)</span>
+
+  <span class="c"># Check if the command was successful</span>
+  <span class="k">if</span> <span class="nv">$?</span>.success?
+    puts <span class="s2">"Processing completed successfully for #{wav_file_path}"</span>
+    <span class="k">return</span> <span class="s2">"#{temp_json_file_path}.wav.json"</span>
+  <span class="k">else
+    </span>puts <span class="s2">"Error processing the WAV file. Please check your command and the input file."</span>
+    <span class="nb">exit</span><span class="o">(</span>1<span class="o">)</span>
+  end
+end
+
+def process_json_to_srt<span class="o">(</span>json_file_path, srt_file_path<span class="o">)</span>
+  json_data <span class="o">=</span> JSON.parse<span class="o">(</span>File.read<span class="o">(</span>json_file_path<span class="o">))</span>
+
+  <span class="c"># Extract 'transcription' array from JSON</span>
+  transcription <span class="o">=</span> json_data[<span class="s1">'transcription'</span><span class="o">]</span>
+  srt_content <span class="o">=</span> <span class="s2">""</span>
+
+  transcription.each_with_index <span class="k">do</span> |entry, index|
+    from_time <span class="o">=</span> entry[<span class="s1">'timestamps'</span><span class="o">][</span><span class="s1">'from'</span><span class="o">]</span>
+    to_time <span class="o">=</span> entry[<span class="s1">'timestamps'</span><span class="o">][</span><span class="s1">'to'</span><span class="o">]</span>
+    text <span class="o">=</span> entry[<span class="s1">'text'</span><span class="o">]</span>
+
+    srt_content +<span class="o">=</span> <span class="s2">"#{index + 1}</span><span class="se">\n</span><span class="s2">"</span>
+    srt_content +<span class="o">=</span> <span class="s2">"#{from_time} --&gt; #{to_time}</span><span class="se">\n</span><span class="s2">"</span>
+    srt_content +<span class="o">=</span> <span class="s2">"#{text}</span><span class="se">\n\n</span><span class="s2">"</span>
+  end
+
+  <span class="c"># Write SRT content to the new file</span>
+  File.write<span class="o">(</span>srt_file_path, srt_content<span class="o">)</span>
+
+  puts <span class="s2">"SRT file created at #{srt_file_path}"</span>
+end
+
+<span class="c"># Check if the video file path is provided as a command-line argument</span>
+<span class="k">if </span>ARGV.empty?
+  puts <span class="s2">"Usage: ruby combined_script.rb path/to/your/video.mp4"</span>
+  <span class="nb">exit</span><span class="o">(</span>1<span class="o">)</span>
+<span class="k">else
+  </span>video_path <span class="o">=</span> ARGV[0]
+
+  Dir.mktmpdir <span class="k">do</span> |dir|
+    <span class="c"># Extract audio</span>
+    wav_file_path <span class="o">=</span> extract_audio<span class="o">(</span><span class="nb">dir</span>, video_path<span class="o">)</span>
+
+    <span class="c"># Process audio to obtain JSON transcript</span>
+    json_file_path <span class="o">=</span> process_wav<span class="o">(</span><span class="nb">dir</span>, wav_file_path<span class="o">)</span>
+
+    <span class="c"># Convert JSON to SRT</span>
+    srt_file_path <span class="o">=</span> <span class="s2">"#{File.dirname(video_path)}/#{File.basename(video_path, '.*')}.srt"</span>
+    process_json_to_srt<span class="o">(</span>json_file_path, srt_file_path<span class="o">)</span>
+  end
+end
+</code></pre></div></div>
+
+<p>It needs a few changes in the <code class="highlighter-rouge">process_wav</code> method.</p>
+
+<p>First, you need to update the path to your Whisper binaries. And second, the relative path to the binaries of your model.
+After these changes, you can create subtitles for your video with the following command.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ruby transcribe.rb video.mp4
+</code></pre></div></div>
+
+<p>After script completion, you will have a video.srt file next to your video file.</p>
+
+  </div>
+</article>
+
+      </main>
+    </section>
+
+  </body>
+</html>
