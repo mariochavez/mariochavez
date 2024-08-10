@@ -73,3 +73,7 @@ main .post ul {
   width: 100%;
   height: 100%;
 }
+
+.highlight {
+  @apply rounded-md shadow-sm;
+}
