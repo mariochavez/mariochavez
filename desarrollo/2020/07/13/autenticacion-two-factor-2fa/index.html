@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<!-- Begin Bridgetown SEO tag v5.0.0 -->
+<!-- Begin Bridgetown SEO tag v6.0.0 -->
 <title>Autenticación Two-Factor (2FA) | Mario Alberto Chávez Cárdenas</title>
 <meta property="og:title" content="Autenticación Two-Factor (2FA)" />
 <meta name="author" content="Mario Alberto Chávez Cárdenas" />
@@ -36,9 +36,11 @@
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="theme-color" content="#ffffff">
 
-<link rel="stylesheet" href="/assets/index.B2NXEM72.css" />
-<script src="/assets/index.OSPCD4WX.js" defer></script>
+<link rel="stylesheet" href="/assets/index.Z2WI33P7.css" />
+<script src="/assets/index.KUPNVLMR.js" defer></script>
 
+
+<script defer src="https://schemakit.ai/e.js"></script>
 
   </head>
   <body class="min-h-screen antialiased post ">
@@ -200,38 +202,38 @@
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">Controller</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">stimulus</span><span class="dl">"</span><span class="p">;</span>
 
-<span class="k">export</span> <span class="k">default</span> <span class="kd">class</span> <span class="kd">extends</span> <span class="nx">Controller</span> <span class="p">{</span>
+<span class="k">export</span> <span class="k">default</span> <span class="kd">class</span> <span class="nc">extends</span> <span class="nx">Controller</span> <span class="p">{</span>
   <span class="kd">static</span> <span class="nx">targets</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2">slide</span><span class="dl">"</span><span class="p">];</span>
 
-  <span class="nx">connect</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">showSlide</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+  <span class="nf">connect</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nf">showSlide</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
   <span class="p">}</span>
 
-  <span class="nx">disconnect</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">showSlide</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+  <span class="nf">disconnect</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nf">showSlide</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
   <span class="p">}</span>
 
-  <span class="nx">next</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">event</span><span class="p">.</span><span class="nx">stopPropagation</span><span class="p">();</span>
-    <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+  <span class="nf">next</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">event</span><span class="p">.</span><span class="nf">stopPropagation</span><span class="p">();</span>
+    <span class="nx">event</span><span class="p">.</span><span class="nf">preventDefault</span><span class="p">();</span>
 
-    <span class="k">this</span><span class="p">.</span><span class="nx">showSlide</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nf">showSlide</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
   <span class="p">}</span>
 
-  <span class="nx">back</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">index</span> <span class="o">!==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">event</span><span class="p">.</span><span class="nx">stopPropagation</span><span class="p">();</span>
-      <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+  <span class="nf">back</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">index</span> <span class="o">!==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">event</span><span class="p">.</span><span class="nf">stopPropagation</span><span class="p">();</span>
+      <span class="nx">event</span><span class="p">.</span><span class="nf">preventDefault</span><span class="p">();</span>
 
-      <span class="k">this</span><span class="p">.</span><span class="nx">showSlide</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">index</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nf">showSlide</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">index</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
     <span class="p">}</span>
   <span class="p">}</span>
 
-  <span class="nx">showSlide</span><span class="p">(</span><span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nf">showSlide</span><span class="p">(</span><span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">index</span> <span class="o">=</span> <span class="nx">index</span><span class="p">;</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">slideTargets</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">element</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="kd">let</span> <span class="nx">idx</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="dl">"</span><span class="s2">data-wizard-index</span><span class="dl">"</span><span class="p">));</span>
-      <span class="nx">element</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">toggle</span><span class="p">(</span><span class="dl">"</span><span class="s2">wizard--current</span><span class="dl">"</span><span class="p">,</span> <span class="nx">index</span> <span class="o">===</span> <span class="nx">idx</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">slideTargets</span><span class="p">.</span><span class="nf">forEach</span><span class="p">((</span><span class="nx">element</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="kd">let</span> <span class="nx">idx</span> <span class="o">=</span> <span class="nf">parseInt</span><span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nf">getAttribute</span><span class="p">(</span><span class="dl">"</span><span class="s2">data-wizard-index</span><span class="dl">"</span><span class="p">));</span>
+      <span class="nx">element</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nf">toggle</span><span class="p">(</span><span class="dl">"</span><span class="s2">wizard--current</span><span class="dl">"</span><span class="p">,</span> <span class="nx">index</span> <span class="o">===</span> <span class="nx">idx</span><span class="p">);</span>
     <span class="p">});</span>
   <span class="p">}</span>
 <span class="p">}</span>

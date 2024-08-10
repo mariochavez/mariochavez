@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- Begin Bridgetown SEO tag v6.0.0 -->
+<title>No build for Javascript libraries with Rails and Importmap | Mario Alberto Chávez Cárdenas</title>
+<meta property="og:title" content="No build for Javascript libraries with Rails and Importmap" />
+<meta name="author" content="Mario Alberto Chávez Cárdenas" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Learn how to simplify JavaScript management in Ruby on Rails using Importmaps. Discover local pinning, CDN integration, and Stimulus controller implementation with Chart.js" />
+<meta property="og:description" content="Learn how to simplify JavaScript management in Ruby on Rails using Importmaps. Discover local pinning, CDN integration, and Stimulus controller implementation with Chart.js" />
+<link rel="canonical" href="https://mariochavez.io/desarrollo/2024/08/09/no-build-javascript-rails-importmap/" />
+<meta property="og:url" content="https://mariochavez.io/desarrollo/2024/08/09/no-build-javascript-rails-importmap/" />
+<meta property="og:site_name" content="Mario Alberto Chávez Cárdenas" />
+<meta property="og:image" content="https://mariochavez.io/images/no-build/no-build.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-08-09T18:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://mariochavez.io/images/no-build/no-build.jpg" />
+<meta property="twitter:title" content="No build for Javascript libraries with Rails and Importmap" />
+<meta name="twitter:site" content="@mario_chavez" />
+<meta name="twitter:creator" content="@Mario Alberto Chávez Cárdenas" />
+<!-- End Bridgetown SEO tag -->
+
+
+<link type="application/atom+xml" rel="alternate" href="https://mariochavez.io/feed.xml" title="Mario Alberto Chávez Cárdenas" />
+
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+<link rel="stylesheet" href="/assets/index.Z2WI33P7.css" />
+<script src="/assets/index.KUPNVLMR.js" defer></script>
+
+
+<script defer src="https://schemakit.ai/e.js"></script>
+
+  </head>
+  <body class="min-h-screen antialiased post ">
+    <section class="flex flex-nowrap">
+      <aside class="sticky top-0 flex flex-col hidden w-64 max-h-screen min-h-screen bg-gray-100 xl:w-96 lg:block">
+  <div class="px-8 xl:px-10">
+    <header class="py-14">
+      <h1 class="font-sans text-3xl font-medium tracking-widest text-gray-700 uppercase">Mario Alberto Chávez Cárdenas</h1>
+      <h2 class="mt-4 font-serif text-lg italic tracking-wide text-gray-500 font-extralight">Blog personal de fotografía y desarrollo de software</h2>
+    </header>
+
+    <nav class="lg:flex-grow lg:py-14">
+  <ul>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/">Inicio</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/desarrollo">Desarrollo</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/fotografía">Fotografía</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/proyectos">Proyectos</a></li>
+    <li class="font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/acercade">Acerca de</a></li>
+  </ul>
+</nav>
+
+
+    <footer class="py-8 lg:py-14">
+  <div class="flex space-x-4">
+    <a href="https://twitter.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24" class="w-4 h-4"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+    </a>
+    <a href="https://instagram.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="none" viewBox="0 0 24 24" class="w-4 h-4"><path d="M15.233 5.488c-.843-.038-1.097-.046-3.233-.046s-2.389.008-3.232.046c-2.17.099-3.181 1.127-3.279 3.279-.039.844-.048 1.097-.048 3.233s.009 2.389.047 3.233c.099 2.148 1.106 3.18 3.279 3.279.843.038 1.097.047 3.233.047 2.137 0 2.39-.008 3.233-.046 2.17-.099 3.18-1.129 3.279-3.279.038-.844.046-1.097.046-3.233s-.008-2.389-.046-3.232c-.099-2.153-1.111-3.182-3.279-3.281zm-3.233 10.62c-2.269 0-4.108-1.839-4.108-4.108 0-2.269 1.84-4.108 4.108-4.108s4.108 1.839 4.108 4.108c0 2.269-1.839 4.108-4.108 4.108zm4.271-7.418c-.53 0-.96-.43-.96-.96s.43-.96.96-.96.96.43.96.96-.43.96-.96.96zm-1.604 3.31c0 1.473-1.194 2.667-2.667 2.667s-2.667-1.194-2.667-2.667c0-1.473 1.194-2.667 2.667-2.667s2.667 1.194 2.667 2.667zm4.333-12h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm.952 15.298c-.132 2.909-1.751 4.521-4.653 4.654-.854.039-1.126.048-3.299.048s-2.444-.009-3.298-.048c-2.908-.133-4.52-1.748-4.654-4.654-.039-.853-.048-1.125-.048-3.298 0-2.172.009-2.445.048-3.298.134-2.908 1.748-4.521 4.654-4.653.854-.04 1.125-.049 3.298-.049s2.445.009 3.299.048c2.908.133 4.523 1.751 4.653 4.653.039.854.048 1.127.048 3.299 0 2.173-.009 2.445-.048 3.298z"/></svg>
+    </a>
+  </div>
+  <p class="mt-4 font-sans text-xs font-light tracking-wider text-gray-500 xl:text-sm">©2021. Mario Alberto Chávez Cárdenas</p>
+</footer>
+
+  </div>
+</aside>
+
+
+      <main class="flex-auto overflow-hidden text-gray-700">
+        <header class="flex flex-col bg-gray-100 lg:hidden" data-controller="menu">
+  <div class="flex flex-col w-full px-8 md:flex-row xl:px-10">
+    <div class="w-full pt-12 pb-6 md:py-12">
+      <a href="/">
+        <h1 class="font-sans text-lg font-medium tracking-widest text-gray-700 uppercase md:text-2xl">Mario Alberto Chávez Cárdenas</h1>
+      </a>
+      <h2 class="mt-4 font-serif text-xs italic tracking-wide text-gray-500 md:text-lg font-extralight">Blog personal de fotografía y desarrollo de software</h2>
+    </div>
+
+    <div class="pb-6 md:py-12 md:pl-4 md:self-center md:justify-self-end md:pl-0">
+      <a href="#" class="inline-flex items-center px-4 py-2 border border-gray-500 md:flex hover:text-red-500 hover:border-red-500" data-action="menu#toggle">
+        <span class="font-semibold text-md md:text-lg">Menú</span>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-4 h-4 ml-4" data-menu-target="closed">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hidden w-4 h-4 ml-4" data-menu-target="opened">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <div data-menu-target="submenu" class="hidden w-full px-8">
+    <nav class="lg:flex-grow lg:py-14">
+  <ul>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/">Inicio</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/desarrollo">Desarrollo</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/fotografía">Fotografía</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/proyectos">Proyectos</a></li>
+    <li class="font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/acercade">Acerca de</a></li>
+  </ul>
+</nav>
+
+
+    <footer class="py-8 lg:py-14">
+  <div class="flex space-x-4">
+    <a href="https://twitter.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24" class="w-4 h-4"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+    </a>
+    <a href="https://instagram.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="none" viewBox="0 0 24 24" class="w-4 h-4"><path d="M15.233 5.488c-.843-.038-1.097-.046-3.233-.046s-2.389.008-3.232.046c-2.17.099-3.181 1.127-3.279 3.279-.039.844-.048 1.097-.048 3.233s.009 2.389.047 3.233c.099 2.148 1.106 3.18 3.279 3.279.843.038 1.097.047 3.233.047 2.137 0 2.39-.008 3.233-.046 2.17-.099 3.18-1.129 3.279-3.279.038-.844.046-1.097.046-3.233s-.008-2.389-.046-3.232c-.099-2.153-1.111-3.182-3.279-3.281zm-3.233 10.62c-2.269 0-4.108-1.839-4.108-4.108 0-2.269 1.84-4.108 4.108-4.108s4.108 1.839 4.108 4.108c0 2.269-1.839 4.108-4.108 4.108zm4.271-7.418c-.53 0-.96-.43-.96-.96s.43-.96.96-.96.96.43.96.96-.43.96-.96.96zm-1.604 3.31c0 1.473-1.194 2.667-2.667 2.667s-2.667-1.194-2.667-2.667c0-1.473 1.194-2.667 2.667-2.667s2.667 1.194 2.667 2.667zm4.333-12h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm.952 15.298c-.132 2.909-1.751 4.521-4.653 4.654-.854.039-1.126.048-3.299.048s-2.444-.009-3.298-.048c-2.908-.133-4.52-1.748-4.654-4.654-.039-.853-.048-1.125-.048-3.298 0-2.172.009-2.445.048-3.298.134-2.908 1.748-4.521 4.654-4.653.854-.04 1.125-.049 3.298-.049s2.445.009 3.299.048c2.908.133 4.523 1.751 4.653 4.653.039.854.048 1.127.048 3.299 0 2.173-.009 2.445-.048 3.298z"/></svg>
+    </a>
+  </div>
+  <p class="mt-4 font-sans text-xs font-light tracking-wider text-gray-500 xl:text-sm">©2021. Mario Alberto Chávez Cárdenas</p>
+</footer>
+
+  </div>
+</header>
+
+        <article class="py-16 font-serif lg:py-24 post">
+  <header class="px-4 m-auto md:max-w-2xl lg:max-w-4xl">
+    <a href="/desarrollo" class="pb-1 text-sm font-bold leading-normal uppercase border-b-4 border-gray-200 transition-all hover:text-red-500">desarrollo</a>
+    <h1 class="mt-6 text-3xl font-bold tracking-wide md:text-4xl lg:text-6xl">No build for Javascript libraries with Rails and Importmap</h1>
+  </header>
+
+  <div class="px-4 m-auto mt-16 tracking-wider md:max-w-2xl lg:max-w-4xl prose md:prose-lg">
+    <figure class="mt-16 aspect-w-16 aspect-h-9">
+      <img src="/images/no-build/no-build.jpg" loading="lazy" />
+    </figure>
+
+    <p>As a web developer working with Ruby on Rails, you’re always looking for ways to streamline your workflow and make your applications more efficient. Enter Importmap - a powerful feature that simplifies how you manage JavaScript libraries in your Rails projects. In this post, we’ll dive into what Importmap is, how it works, and how you can use it for your projects.</p>
+
+<h2 id="what-is-importmap">What is Importmap?</h2>
+
+<p>Importmap is a way to map JavaScript module names to their actual locations. They allow you to use <code class="highlighter-rouge">import</code> statements in your JavaScript code without needing a bundler like Webpack or Rollup. This means you can use modern JavaScript modules directly in the browser, making your development process simpler and faster.</p>
+
+<h2 id="how-does-importmap-work">How does Importmap work?</h2>
+
+<ol>
+  <li><strong>Mapping</strong>: Importmaps create a mapping between a module name and its location.</li>
+  <li><strong>Browser Support</strong>: Modern browsers use this mapping to load modules when they encounter <code class="highlighter-rouge">import</code> statements.</li>
+  <li><strong>Rails Integration</strong>: Rails 7+ includes built-in support for Importmap, making it easy to use in your projects.</li>
+  <li><strong>Local Pinning</strong>: By default, Rails pins libraries locally, copying the code to your project into the <code class="highlighter-rouge">vendor/javascript</code> folder. While this might feel similar to how JavaScript libraries were vendored in older Rails projects, Importmap provides a modern tool for managing dependencies and versions.</li>
+</ol>
+
+<h2 id="practical-tips-for-using-importmap-in-rails">Practical tips for using Importmap in Rails</h2>
+
+<h3 id="1-setting-up-importmap">1. Setting up Importmap</h3>
+
+<p>For a new Rails application, Importmap is set up by default. If you want to add it to an existing application, then follow these steps.</p>
+
+<p>To get started with Importmap in your Rails project, add this to your Gemfile:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">gem</span> <span class="s2">"importmap-rails"</span>
+</code></pre></div></div>
+
+<p>Then run:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle install
+bin/rails importmap:install
+</code></pre></div></div>
+
+<p>This sets up the necessary files and configurations.</p>
+
+<h3 id="2-adding-javascript-libraries">2. Adding JavaScript libraries</h3>
+
+<p>To add a library, use the <code class="highlighter-rouge">pin</code> option with <code class="highlighter-rouge">bin/importmap</code> command. Let’s use Chart.js as an example:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> bin/importmap pin chart.js
+Pinning <span class="s2">"chart.js"</span> to vendor/javascript/chart.js.js via download from https://ga.jspm.io/npm:chart.js@4.4.3/dist/chart.js
+Pinning <span class="s2">"@kurkle/color"</span> to vendor/javascript/@kurkle/color.js via download from https://ga.jspm.io/npm:@kurkle/color@0.3.2/dist/color.esm.js
+</code></pre></div></div>
+
+<p>This command performs the following steps::</p>
+
+<ol>
+  <li>Download Chart.js and its dependencies.</li>
+  <li>Place the files in the <code class="highlighter-rouge">vendor/javascript</code> directory.</li>
+  <li>Update the <code class="highlighter-rouge">config/importmap.rb</code> file with the correct local paths.</li>
+</ol>
+
+<p>This is the contents of <code class="highlighter-rouge">vendor/javascript</code> directory.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> <span class="nb">ls </span>vendor/javascript
+8.5k  9 Aug 12:53 <span class="nt">-N</span>  @kurkle--color.js
+186k  9 Aug 12:53 <span class="nt">-N</span>  chart.js.js
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">config/importmap.rb</code> looks as follows with the pinned libraries.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pin</span> <span class="s1">'chart.js'</span> <span class="c1"># @4.4.3</span>
+<span class="n">pin</span> <span class="s1">'@kurkle/color'</span><span class="p">,</span> <span class="ss">to: </span><span class="s1">'@kurkle--color.js'</span> <span class="c1"># @0.3.2</span>
+</code></pre></div></div>
+
+<p>Now, let’s create a Stimulus controller to use Chart.js. First, make sure you have Stimulus installed in your Rails application. Then, create a new file <code class="highlighter-rouge">app/javascript/controllers/chart_controller.js</code>:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">Controller</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@hotwired/stimulus</span><span class="dl">"</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Chart</span><span class="p">,</span> <span class="nx">registerables</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">chart.js</span><span class="dl">'</span>
+
+<span class="nx">Chart</span><span class="p">.</span><span class="nf">register</span><span class="p">(...</span><span class="nx">registerables</span><span class="p">)</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="kd">class</span> <span class="nc">extends</span> <span class="nx">Controller</span> <span class="p">{</span>
+  <span class="kd">static</span> <span class="nx">targets</span> <span class="o">=</span> <span class="p">[</span><span class="dl">'</span><span class="s1">canvas</span><span class="dl">'</span><span class="p">]</span>
+
+  <span class="nf">connect</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">ctx</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">canvasTarget</span><span class="p">.</span><span class="nf">getContext</span><span class="p">(</span><span class="dl">'</span><span class="s1">2d</span><span class="dl">'</span><span class="p">)</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">chart</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Chart</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">line</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">data</span><span class="p">:</span> <span class="p">{</span>
+   <span class="na">labels</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">January</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">February</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">March</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">April</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">May</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">June</span><span class="dl">'</span><span class="p">],</span>
+   <span class="na">datasets</span><span class="p">:</span> <span class="p">[{</span>
+    <span class="na">label</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Sample Data</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">data</span><span class="p">:</span> <span class="p">[</span><span class="mi">65</span><span class="p">,</span> <span class="mi">59</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">81</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">55</span><span class="p">],</span>
+    <span class="na">borderColor</span><span class="p">:</span> <span class="dl">'</span><span class="s1">rgba(75, 192, 192, 1)</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">backgroundColor</span><span class="p">:</span> <span class="dl">'</span><span class="s1">rgba(75, 192, 192, 0.2)</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">borderWidth</span><span class="p">:</span> <span class="mi">2</span>
+   <span class="p">}]</span>
+  <span class="p">},</span>
+  <span class="na">options</span><span class="p">:</span> <span class="p">{</span>
+   <span class="na">scales</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">y</span><span class="p">:</span> <span class="p">{</span>
+     <span class="na">beginAtZero</span><span class="p">:</span> <span class="kc">true</span>
+    <span class="p">}</span>
+   <span class="p">}</span>
+  <span class="p">}</span>
+ <span class="p">})</span>
+  <span class="p">}</span>
+
+  <span class="nf">disconnect</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">chart</span><span class="p">.</span><span class="nf">destroy</span><span class="p">()</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Now you can use this Stimulus controller in your Rails view. For example, in <code class="highlighter-rouge">app/views/home/index.html.erb</code>:</p>
+
+<div class="language-erb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">data-controller=</span><span class="s">"chart"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;canvas</span> <span class="na">data-chart-target=</span><span class="s">"canvas"</span> <span class="na">width=</span><span class="s">"400"</span> <span class="na">height=</span><span class="s">"200"</span><span class="nt">&gt;&lt;/canvas&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<p>This setup allows you to easily create charts in your Rails application using Chart.js through a Stimulus controller. The chart data can be dynamically passed from your Rails backend to the frontend using Stimulus values.</p>
+
+<p>But if you try to load the page, the graph is not displayed. After looking at the developer tools in the browser, you will find the following error:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Failed to register controller: chart (controllers/chart_controller)
+  TypeError: Importing a module script failed.
+</code></pre></div></div>
+
+<p>The error is not helpful, but it gives you a clue that there is a problem with the dependencies in the Stimulus <code class="highlighter-rouge">chart_controller</code>. Looking at the network tab in the browser tools, you find out that there is a missing file.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>URL: http://localhost:3000/_/6La3kzg5.js
+Status: 404 Not Found
+Source: Network
+</code></pre></div></div>
+
+<p>Looking at the code of the file <code class="highlighter-rouge">vendor/javascript/chart.js.js</code>, almost at the beginning of the file, you find the following reference:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span><span class="p">{</span><span class="nx">r</span> <span class="nx">as</span> <span class="nx">t</span><span class="p">,</span><span class="nx">c</span> <span class="p">...</span>
+<span class="p">...</span> <span class="nx">as</span> <span class="nx">Jt</span><span class="p">}</span><span class="k">from</span><span class="dl">"</span><span class="s2">../_/6La3kzg5.js</span><span class="dl">"</span> <span class="p">...</span>
+</code></pre></div></div>
+
+<p>It seems like <a href="https://jspm.org">jspm.io</a> adds a dependency which Importmap is unable to identify and download with the rest of the files. This is a known issue documented in the Importmap repository, as <a href="https://github.com/rails/importmap-rails/pull/235">Download all the files associated with a package from a CDN</a>.</p>
+
+<h3 id="3-pinning-from-cdns">3. Pinning from CDNs</h3>
+
+<p>While Importmap pins libraries locally by default, it also allows you to pin from a CDN instead. Using this method, the library is served directly from the CDN instead of our Rails application.</p>
+
+<p>To try to find a solution, change the pins in the <code class="highlighter-rouge">config/importmap.rb</code> file to point to the CDN:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Using JSPM.io (default)</span>
+<span class="n">pin</span> <span class="s1">'chart.js'</span><span class="p">,</span> <span class="ss">to: </span><span class="s1">'https://ga.jspm.io/npm:chart.js@4.3.0/dist/chart.js'</span>
+<span class="n">pin</span> <span class="s1">'@kurkle/color'</span><span class="p">,</span> <span class="ss">to: </span><span class="s1">'https://ga.jspm.io/npm:@kurkle/color@0.3.2/dist/color.esm.js'</span>
+</code></pre></div></div>
+
+<p>After making the change, reload the page. Now the graph is there, loading the libraries from the CDN solved the issue of missing references. If you are ok with this approach, then you can stop here.</p>
+
+<p>If your goal is to serve and cache the libraries without a dependency on external CDN, then continue to the next section.</p>
+
+<h3 id="4-customizing-local-pinning">4. Customizing local pinning</h3>
+
+<p>With the option to choose a CDN from which to vendor JavaScript libraries, you should try another CDN, like <a href="www.jsdelivr.com">JSDeliver</a>. Each CDN bundles dependencies differently, so you might get lucky trying another option.</p>
+
+<p>Remove all files from <code class="highlighter-rouge">vendor/javascript</code> and remove the pins to Chart.js and @kurkle/color from <code class="highlighter-rouge">config/importmap.rb</code>. The Importmap’s pin command accepts option <code class="highlighter-rouge">-f</code> to specify a specific CDN different from JSpm.io.</p>
+
+<p>The first try to pin Chart.js fails with an error.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> bin/importmap pin chart.js <span class="nt">-f</span> jsdelivr
+Pinning <span class="s2">"chart.js"</span> to vendor/javascript/chart.js.js via download from https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.js
+/.rbenv/versions/3.3.4/lib/ruby/3.3.0/net/http.rb:1603:in <span class="sb">`</span>initialize<span class="s1">': Failed to open TCP connection to cdn.jsdelivr.net:443 (execution expired) (Net::OpenTimeout)
+</span></code></pre></div></div>
+
+<p>For the second try, add the library @kurkle/color to the pin command:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> bin/importmap pin chart.js @kurkle/color  <span class="nt">-f</span> jsdelivr
+Pinning <span class="s2">"@kurkle/color"</span> to vendor/javascript/@kurkle/color.js via download from https://cdn.jsdelivr.net/npm/@kurkle/color@0.3.2/dist/color.esm.js
+Pinning <span class="s2">"chart.js"</span> to vendor/javascript/chart.js.js via download from https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.js
+</code></pre></div></div>
+
+<p>This time it succeeded, the new files are placed in <code class="highlighter-rouge">vendor/javascript</code> and the file <code class="highlighter-rouge">config/importmap.rb</code> contains the pins. Reloading the page in your application shows that you have the same error as before, the missing file name is different but still the same result.</p>
+
+<p>It is time to try something different. Remove the files from <code class="highlighter-rouge">vendor/javascript</code> one more time. Navigate to that directory and open your browser to <a href="https://www.jsdelivr.com/">https://www.jsdelivr.com/</a>. Search for Chart.js and from the code block copy the URL and download the library using curl. Also, search for @kurkle/color and download it.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> curl <span class="nt">-o</span> chart.js.js <span class="s1">'https://cdn.jsdelivr.net/npm/chart.js@4.4.3/+esm'</span>
+<span class="o">&gt;</span> curl <span class="nt">-o</span> @kurkle--color.js <span class="s1">'https://cdn.jsdelivr.net/npm/@kurkle/color@0.3.2/+esm'</span>
+</code></pre></div></div>
+
+<p>Once again, reload your application page. One more time you will get an error in the browser developer tools, but this time the error is different. It says that @kurkle/color failed to be loaded.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Error] Failed to load resource: the server responded with a status of 404 (Not Found) http://localhost:3000/npm/@kurkle/color@0.3.2/+esm
+[Error] Failed to register controller: chart (controllers/chart_controller) – TypeError: Importing a module script failed.
+TypeError: Importing a module script failed.
+ error
+</code></pre></div></div>
+
+<p>The reference to <code class="highlighter-rouge">npm/@kurkle/color@0.3.2/+esm</code> appears at the beginning of chart.js.js file. You need to replace this reference for the @kurkle/color that you have pinned in <code class="highlighter-rouge">config/importmap.rb</code>. Use <code class="highlighter-rouge">sed</code> command to replace the value as follows:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sed</span> <span class="nt">-i</span> <span class="s1">''</span> <span class="s1">'s|/npm/@kurkle/color@0.3.2/+esm|@kurkle/color|g'</span> chart.js.js
+</code></pre></div></div>
+
+<p>After this change, reload the application page. Now the graph is rendered and there are no errors related to missing references.</p>
+
+<p>Not in all cases when pinning libraries from a CDN you will have this problem, but if there is a case, now you know how to diagnose and try to fix it. I would expect that newer versions of Importmap will have a feature to understand and resolve hidden references that libraries might have.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Importmap in Ruby on Rails offers a streamlined approach to managing JavaScript libraries like Chart.js. By simplifying your workflow, leveraging the power of modern browsers, and providing local access to your dependencies, you can focus more on creating functionality and less on configuration. Give Importmap a try in your next Rails project and experience the benefits for yourself!</p>
+
+<p>Remember, while Importmap is powerful and the default local pinning provides good version control, you still have the flexibility to use various CDNs when needed. Consider your specific needs and performance requirements when deciding on your Importmap strategy.</p>
+
+  </div>
+</article>
+
+      </main>
+    </section>
+
+  </body>
+</html>

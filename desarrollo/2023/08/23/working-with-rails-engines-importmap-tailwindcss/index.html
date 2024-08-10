@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<!-- Begin Bridgetown SEO tag v5.0.0 -->
+<!-- Begin Bridgetown SEO tag v6.0.0 -->
 <title>Working with Rails Engines, Importmap and TailwindCSS for assets. | Mario Alberto Chávez Cárdenas</title>
 <meta property="og:title" content="Working with Rails Engines, Importmap and TailwindCSS for assets." />
 <meta name="author" content="Mario Alberto Chávez Cárdenas" />
@@ -36,9 +36,11 @@
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="theme-color" content="#ffffff">
 
-<link rel="stylesheet" href="/assets/index.B2NXEM72.css" />
-<script src="/assets/index.OSPCD4WX.js" defer></script>
+<link rel="stylesheet" href="/assets/index.Z2WI33P7.css" />
+<script src="/assets/index.KUPNVLMR.js" defer></script>
 
+
+<script defer src="https://schemakit.ai/e.js"></script>
 
   </head>
   <body class="min-h-screen antialiased post ">
@@ -189,29 +191,29 @@
 
 <p>To test this setup, two Stimulus controllers were added, one in the engine’s <code class="highlighter-rouge">app/assets/javascript</code> and another one at the dummy app <code class="highlighter-rouge">test/dummy/app/javascript/controllers</code>.</p>
 
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">#</span> <span class="nx">app</span><span class="o">/</span><span class="nx">javascript</span><span class="o">/</span><span class="nx">controllers</span><span class="o">/</span><span class="nx">host_controller</span><span class="p">.</span><span class="nx">js</span> <span class="p">(</span><span class="nx">Dummy</span> <span class="nx">APP</span><span class="p">)</span>
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">#</span> <span class="nx">app</span><span class="o">/</span><span class="nx">javascript</span><span class="o">/</span><span class="nx">controllers</span><span class="o">/</span><span class="nx">host_controller</span><span class="p">.</span><span class="nf">js </span><span class="p">(</span><span class="nx">Dummy</span> <span class="nx">APP</span><span class="p">)</span>
 <span class="k">import</span> <span class="p">{</span> <span class="nx">Controller</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@hotwired/stimulus</span><span class="dl">"</span>
 
-<span class="k">export</span> <span class="k">default</span> <span class="kd">class</span> <span class="kd">extends</span> <span class="nx">Controller</span> <span class="p">{</span>
-  <span class="nx">connect</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Connected</span><span class="dl">"</span><span class="p">)</span>
+<span class="k">export</span> <span class="k">default</span> <span class="kd">class</span> <span class="nc">extends</span> <span class="nx">Controller</span> <span class="p">{</span>
+  <span class="nf">connect</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Connected</span><span class="dl">"</span><span class="p">)</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Hello World! This is a Javascript from the Host</span><span class="dl">"</span>
   <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Loaded</span><span class="dl">"</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Loaded</span><span class="dl">"</span><span class="p">)</span>
 
-<span class="err">#</span> <span class="nx">app</span><span class="o">/</span><span class="nx">assets</span><span class="o">/</span><span class="nx">javascript</span><span class="o">/</span><span class="nx">engine_controller</span><span class="p">.</span><span class="nx">js</span> <span class="p">(</span><span class="nx">Engine</span><span class="p">)</span>
+<span class="err">#</span> <span class="nx">app</span><span class="o">/</span><span class="nx">assets</span><span class="o">/</span><span class="nx">javascript</span><span class="o">/</span><span class="nx">engine_controller</span><span class="p">.</span><span class="nf">js </span><span class="p">(</span><span class="nx">Engine</span><span class="p">)</span>
 <span class="k">import</span> <span class="p">{</span> <span class="nx">Controller</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@hotwired/stimulus</span><span class="dl">"</span>
 
-<span class="k">export</span> <span class="k">default</span> <span class="kd">class</span> <span class="kd">extends</span> <span class="nx">Controller</span> <span class="p">{</span>
-  <span class="nx">connect</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Connected</span><span class="dl">"</span><span class="p">)</span>
+<span class="k">export</span> <span class="k">default</span> <span class="kd">class</span> <span class="nc">extends</span> <span class="nx">Controller</span> <span class="p">{</span>
+  <span class="nf">connect</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Connected</span><span class="dl">"</span><span class="p">)</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Hello World! This is a Javascript from the Engine</span><span class="dl">"</span>
   <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Loaded</span><span class="dl">"</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Loaded</span><span class="dl">"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>Set up Stimulus in the dummy app by adding the gem and running the installer.</p>
@@ -266,7 +268,7 @@ bundle add stimulus-rails
 
 <span class="c1">// Eager load all controllers defined in the import map under controllers/**/*_controller</span>
 <span class="k">import</span> <span class="p">{</span> <span class="nx">eagerLoadControllersFrom</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@hotwired/stimulus-loading</span><span class="dl">"</span>
-<span class="nx">eagerLoadControllersFrom</span><span class="p">(</span><span class="dl">"</span><span class="s2">controllers</span><span class="dl">"</span><span class="p">,</span> <span class="nx">application</span><span class="p">)</span>
+<span class="nf">eagerLoadControllersFrom</span><span class="p">(</span><span class="dl">"</span><span class="s2">controllers</span><span class="dl">"</span><span class="p">,</span> <span class="nx">application</span><span class="p">)</span>
 
 <span class="c1">// Lazy load controllers as they appear in the DOM (remember not to preload controllers in import map!)</span>
 <span class="c1">// import { lazyLoadControllersFrom } from "@hotwired/stimulus-loading"</span>
@@ -275,7 +277,7 @@ bundle add stimulus-rails
 <span class="err">#</span> <span class="nx">app</span><span class="o">/</span><span class="nx">assets</span><span class="o">/</span><span class="nx">javascript</span><span class="o">/</span><span class="nx">my_engine</span><span class="o">/</span><span class="nx">controllers</span><span class="o">/</span><span class="nx">application</span><span class="p">.</span><span class="nx">js</span>
 <span class="k">import</span> <span class="p">{</span> <span class="nx">Application</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@hotwired/stimulus</span><span class="dl">"</span>
 
-<span class="kd">const</span> <span class="nx">application</span> <span class="o">=</span> <span class="nx">Application</span><span class="p">.</span><span class="nx">start</span><span class="p">()</span>
+<span class="kd">const</span> <span class="nx">application</span> <span class="o">=</span> <span class="nx">Application</span><span class="p">.</span><span class="nf">start</span><span class="p">()</span>
 
 <span class="c1">// Configure Stimulus development experience</span>
 <span class="nx">application</span><span class="p">.</span><span class="nx">debug</span> <span class="o">=</span> <span class="kc">false</span>
@@ -455,7 +457,7 @@ css: bin/rails app:tailwindcss:watch
     <span class="s1">'./test/dummy/app/helpers/**/*.rb'</span><span class="p">,</span>
     <span class="s1">'./test/dummy/app/javascript/**/*.js'</span><span class="p">,</span>
     <span class="s1">'./test/dummy/app/views/**/*.{erb,haml,html,slim}'</span><span class="p">,</span>
-    <span class="o">&lt;</span><span class="sx">%= @engines_paths.map{ |path| "'#{path}'" }.join(",\n") %&gt;
+    <span class="o">&lt;</span><span class="sx">%= @engines_paths.map{ |path| "'</span><span class="si">#{</span><span class="n">path</span><span class="si">}</span><span class="sx">'" }.join(",</span><span class="se">\n</span><span class="sx">") %&gt;
   ],
 </span></code></pre></div></div>
 

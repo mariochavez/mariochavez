@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<!-- Begin Bridgetown SEO tag v5.0.0 -->
+<!-- Begin Bridgetown SEO tag v6.0.0 -->
 <title>Proteger tu aplicación de ataques en Internet | Mario Alberto Chávez Cárdenas</title>
 <meta property="og:title" content="Proteger tu aplicación de ataques en Internet" />
 <meta name="author" content="Mario Alberto Chávez Cárdenas" />
@@ -36,9 +36,11 @@
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="theme-color" content="#ffffff">
 
-<link rel="stylesheet" href="/assets/index.B2NXEM72.css" />
-<script src="/assets/index.OSPCD4WX.js" defer></script>
+<link rel="stylesheet" href="/assets/index.Z2WI33P7.css" />
+<script src="/assets/index.KUPNVLMR.js" defer></script>
 
+
+<script defer src="https://schemakit.ai/e.js"></script>
 
   </head>
   <body class="min-h-screen antialiased post ">
@@ -260,7 +262,7 @@
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Rack</span><span class="o">::</span><span class="no">Attack</span><span class="p">.</span><span class="nf">blocklist</span><span class="p">(</span><span class="s2">"allow2ban login scrapers"</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">req</span><span class="o">|</span>
   <span class="no">Rack</span><span class="o">::</span><span class="no">Attack</span><span class="o">::</span><span class="no">Allow2Ban</span><span class="p">.</span><span class="nf">filter</span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="nf">ip</span><span class="p">,</span> <span class="ss">maxretry: </span><span class="mi">3</span><span class="p">,</span> <span class="ss">findtime: </span><span class="mi">5</span><span class="p">.</span><span class="nf">minutes</span><span class="p">,</span> <span class="ss">bantime: </span><span class="mi">30</span><span class="p">.</span><span class="nf">minutes</span><span class="p">)</span> <span class="k">do</span>
-    <span class="n">req</span><span class="p">.</span><span class="nf">path</span> <span class="o">==</span> <span class="s2">"/login"</span> <span class="n">and</span> <span class="n">req</span><span class="p">.</span><span class="nf">post?</span>
+    <span class="n">req</span><span class="p">.</span><span class="nf">path</span> <span class="o">==</span> <span class="s2">"/login"</span> <span class="ow">and</span> <span class="n">req</span><span class="p">.</span><span class="nf">post?</span>
   <span class="k">end</span>
 <span class="k">end</span>
 </code></pre></div></div>

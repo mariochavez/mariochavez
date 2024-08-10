@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<!-- Begin Bridgetown SEO tag v5.0.0 -->
+<!-- Begin Bridgetown SEO tag v6.0.0 -->
 <title>I created the same app with Rails and no Javascript | Mario Alberto Chávez Cárdenas</title>
 <meta property="og:title" content="I created the same app with Rails and no Javascript" />
 <meta name="author" content="Mario Alberto Chávez Cárdenas" />
@@ -36,9 +36,11 @@
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="theme-color" content="#ffffff">
 
-<link rel="stylesheet" href="/assets/index.B2NXEM72.css" />
-<script src="/assets/index.OSPCD4WX.js" defer></script>
+<link rel="stylesheet" href="/assets/index.Z2WI33P7.css" />
+<script src="/assets/index.KUPNVLMR.js" defer></script>
 
+
+<script defer src="https://schemakit.ai/e.js"></script>
 
   </head>
   <body class="min-h-screen antialiased post ">
@@ -264,17 +266,17 @@
 <span class="k">import</span> <span class="nx">consumer</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./consumer</span><span class="dl">"</span>
 <span class="k">import</span> <span class="nx">CableReady</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">cable_ready</span><span class="dl">"</span>
 
-<span class="nx">consumer</span><span class="p">.</span><span class="nx">subscriptions</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="dl">"</span><span class="s2">TodoChannel</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
-  <span class="nx">connected</span><span class="p">()</span> <span class="p">{</span>
+<span class="nx">consumer</span><span class="p">.</span><span class="nx">subscriptions</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="dl">"</span><span class="s2">TodoChannel</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
+  <span class="nf">connected</span><span class="p">()</span> <span class="p">{</span>
     <span class="c1">// Called when the subscription is ready for use on the server</span>
   <span class="p">},</span>
 
-  <span class="nx">disconnected</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nf">disconnected</span><span class="p">()</span> <span class="p">{</span>
     <span class="c1">// Called when the subscription has been terminated by the server</span>
   <span class="p">},</span>
 
-  <span class="nx">received</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">cableReady</span><span class="p">)</span> <span class="nx">CableReady</span><span class="p">.</span><span class="nx">perform</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">operations</span><span class="p">)</span>
+  <span class="nf">received</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if </span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">cableReady</span><span class="p">)</span> <span class="nx">CableReady</span><span class="p">.</span><span class="nf">perform</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">operations</span><span class="p">)</span>
   <span class="p">}</span>
 <span class="p">});</span>
 </code></pre></div></div>
