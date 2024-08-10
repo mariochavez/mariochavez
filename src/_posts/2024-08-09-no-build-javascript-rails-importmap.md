@@ -8,6 +8,76 @@ description: Learn how to simplify JavaScript management in Ruby on Rails using 
 keywords: Ruby on Rails Importmaps, Modern Rails development, Chart.js with Rails, CDN pinning Rails
 image: /images/no-build/no-build.jpg
 lang: en_US
+ld_schema: >
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://mariochavez.io/desarrollo/2024/08/09/no-build-javascript-rails-importmap/"
+    },
+    "headline": "No build for Javascript libraries with Rails and Importmap",
+    "datePublished": "2024-08-09",
+    "dateModified": "2024-08-09",
+    "author": {
+      "@type": "Person",
+      "name": "Mario Alberto Chávez Cárdenas"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Mario Alberto Chávez Cárdenas",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://mariochavez.io/logo.png"
+      }
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://mariochavez.io/images/no-build/no-build.jpg",
+      "height": 630,
+      "width": 1200
+    },
+    "description": "Learn how to use Importmap in Ruby on Rails for managing JavaScript libraries without a build step, including troubleshooting tips for integrating third-party libraries like Chart.js.",
+    "articleBody": "As a web developer working with Ruby on Rails, you're always looking for ways to streamline your workflow and make your applications more efficient. Enter Importmap - a powerful feature that simplifies how you manage JavaScript libraries in your Rails projects. In this post, we'll dive into what Importmap is, how it works, and how you can use it for your projects.",
+    "keywords": [
+      "Ruby on Rails",
+      "Importmap",
+      "JavaScript",
+      "Chart.js",
+      "No build",
+      "Web development"
+    ],
+    "articleSection": "Desarrollo",
+    "inLanguage": "en-US",
+    "isAccessibleForFree": "True",
+    "hasPart": [
+      {
+        "@type": "WebPageElement",
+        "isAccessibleForFree": "True",
+        "cssSelector": ".prose"
+      }
+    ],
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [
+        "article h1",
+        "article h2",
+        "article p"
+      ]
+    },
+    "mentions": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "Ruby on Rails",
+        "operatingSystem": "All"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "Chart.js",
+        "operatingSystem": "All"
+      } 
+    ]
+  }
 ---
 
 As a web developer working with Ruby on Rails, you're always looking for ways to streamline your workflow and make your applications more efficient. Enter Importmap - a powerful feature that simplifies how you manage JavaScript libraries in your Rails projects. In this post, we'll dive into what Importmap is, how it works, and how you can use it for your projects.

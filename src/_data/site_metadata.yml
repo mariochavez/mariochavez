@@ -4,12 +4,75 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.metadata.myvariable }}.
 
-title: Mario Alberto Chávez Cárdenas
-tagline: Blog personal de fotografía y desarrollo de software
+title: Mario Alberto Cháve
+tagline: Blog personal desarrollo de software
 email: mario_chavez@hey.com
 description: >- # this means to ignore newlines until "baseurl:"
   Blog sobre temas de desarrollo de software Web con Ruby y Ruby on Rails, además de temas de fotografía análoga y digital.
-author: Mario Alberto Chávez Cárdenas
+author: Mario Alberto Chávez
+ld_schema: >
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://mariochavez.io/#website",
+        "url": "https://mariochavez.io/",
+        "name": "Mario Alberto Chávez",
+        "description": "Blog personal desarrollo de software",
+        "publisher": {
+          "@type": "Person",
+          "@id": "https://mariochavez.io/#person",
+          "name": "Mario Alberto Chávez"
+        },
+      },
+      {
+        "@type": "CollectionPage",
+        "@id": "https://mariochavez.io/#webpage",
+        "url": "https://mariochavez.io/",
+        "name": "Inicio | Mario Alberto Chávez",
+        "isPartOf": {
+          "@id": "https://mariochavez.io/#website"
+        },
+        "about": {
+          "@id": "https://mariochavez.io/#person"
+        },
+        "description": "Blog personal desarrollo de software por Mario Alberto Chávez",
+        "breadcrumb": {
+          "@id": "https://mariochavez.io/#breadcrumb"
+        },
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://mariochavez.io/#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Inicio"
+          }
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://mariochavez.io/#person",
+        "name": "Mario Alberto Chávez",
+        "image": {
+          "@type": "ImageObject",
+          "@id": "https://mariochavez.io/#personlogo",
+          "inLanguage": "es-MX",
+          "url": "https://mariochavez.io/images/mario_chavez.svg",
+          "contentUrl": "https://mariochavez.io/images/mario_chavez.svg",
+          "caption": "Mario Alberto Chávez"
+        },
+        "description": "Mario Alberto Chávez lives in Colima México where he works on personal photography projects about territory, popular culture, and memory.",
+        "sameAs": [
+          "https://twitter.com/mario_chavez",
+          "https://instagram.com/mario_chavez"
+        ]
+      }
+    ]
+  }
 
 twitter:
   username: mario_chavez

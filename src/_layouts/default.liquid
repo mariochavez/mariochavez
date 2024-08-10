@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="es">
   <head>
-    {% render "head", metadata: site.metadata, title: page.title %}
+    {% render "head", metadata: site.metadata, title: page.title, schema: page.ld_schema %}
   </head>
   <body class="min-h-screen antialiased {{ page.layout }} {{ page.page_class }}">
     <section class="flex flex-nowrap">
