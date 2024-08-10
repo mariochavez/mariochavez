@@ -6,7 +6,7 @@ published: Agosoto 09, 2024
 categories: desarrollo
 description: Learn how to simplify JavaScript management in Ruby on Rails using Importmaps. Discover local pinning, CDN integration, and Stimulus controller implementation with Chart.js 
 keywords: Ruby on Rails Importmaps, Modern Rails development, Chart.js with Rails, CDN pinning Rails
-image: /images/no--build/no-build.jpg
+image: /images/no-build/no-build.jpg
 lang: en_US
 ---
 
