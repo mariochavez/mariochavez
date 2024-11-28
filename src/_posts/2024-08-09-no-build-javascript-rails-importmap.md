@@ -2,9 +2,9 @@
 layout: post
 title: No build for Javascript libraries with Rails and Importmap
 date: 2024-08-09 12:00:00 -0600
-published: Agosoto 09, 2024
+published: Agosto 09, 2024
 categories: desarrollo
-description: Learn how to simplify JavaScript management in Ruby on Rails using Importmaps. Discover local pinning, CDN integration, and Stimulus controller implementation with Chart.js 
+description: Learn how to simplify JavaScript management in Ruby on Rails using Importmaps. Discover local pinning, CDN integration, and Stimulus controller implementation with Chart.js
 keywords: Ruby on Rails Importmaps, Modern Rails development, Chart.js with Rails, CDN pinning Rails
 image: /images/no-build/no-build.jpg
 lang: en_US
@@ -148,40 +148,42 @@ pin '@kurkle/color', to: '@kurkle--color.js' # @0.3.2
 Now, let's create a Stimulus controller to use Chart.js. First, make sure you have Stimulus installed in your Rails application. Then, create a new file `app/javascript/controllers/chart_controller.js`:
 
 ```javascript
-import { Controller } from "@hotwired/stimulus"
-import { Chart, registerables } from 'chart.js'
+import { Controller } from "@hotwired/stimulus";
+import { Chart, registerables } from "chart.js";
 
-Chart.register(...registerables)
+Chart.register(...registerables);
 
 export default class extends Controller {
-  static targets = ['canvas']
+  static targets = ["canvas"];
 
   connect() {
-    const ctx = this.canvasTarget.getContext('2d')
+    const ctx = this.canvasTarget.getContext("2d");
     this.chart = new Chart(ctx, {
-  type: 'line',
-  data: {
-   labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-   datasets: [{
-    label: 'Sample Data',
-    data: [65, 59, 80, 81, 56, 55],
-    borderColor: 'rgba(75, 192, 192, 1)',
-    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-    borderWidth: 2
-   }]
-  },
-  options: {
-   scales: {
-    y: {
-     beginAtZero: true
-    }
-   }
-  }
- })
+      type: "line",
+      data: {
+        labels: ["January", "February", "March", "April", "May", "June"],
+        datasets: [
+          {
+            label: "Sample Data",
+            data: [65, 59, 80, 81, 56, 55],
+            borderColor: "rgba(75, 192, 192, 1)",
+            backgroundColor: "rgba(75, 192, 192, 0.2)",
+            borderWidth: 2
+          }
+        ]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
   }
 
   disconnect() {
-    this.chart.destroy()
+    this.chart.destroy();
   }
 }
 ```

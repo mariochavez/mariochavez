@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  RUBY_VERSION: 3.3.4
+  RUBY_VERSION: 3.3.5
 
 jobs:
   pages:
