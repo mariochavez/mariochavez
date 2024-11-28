@@ -1,4 +1,229 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es"><generator uri="https://bridgetownrb.com/" version="1.3.4">Bridgetown</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" hreflang="es" /><updated>2024-08-14T22:33:14+00:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Cháve</title><subtitle>Blog sobre temas de desarrollo de software Web con Ruby y Ruby on Rails, además de temas de fotografía análoga y digital.</subtitle><author><name>Mario Alberto Chávez</name></author><entry xml:lang="en_US"><title type="html">No build for Javascript libraries with Rails and Importmap</title><link href="https://mariochavez.io/desarrollo/2024/08/09/no-build-javascript-rails-importmap/" rel="alternate" type="text/html" title="No build for Javascript libraries with Rails and Importmap" /><published>2024-08-09T18:00:00+00:00</published><updated>2024-08-09T18:00:00+00:00</updated><id>repo://posts.collection/_posts/2024-08-09-no-build-javascript-rails-importmap.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2024/08/09/no-build-javascript-rails-importmap/">&lt;p&gt;As a web developer working with Ruby on Rails, you’re always looking for ways to streamline your workflow and make your applications more efficient. Enter Importmap - a powerful feature that simplifies how you manage JavaScript libraries in your Rails projects. In this post, we’ll dive into what Importmap is, how it works, and how you can use it for your projects.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es"><generator uri="https://bridgetownrb.com/" version="1.3.4">Bridgetown</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" hreflang="es" /><updated>2024-11-28T19:41:37+00:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Cháve</title><subtitle>Blog sobre temas de desarrollo de software Web con Ruby y Ruby on Rails, además de temas de fotografía análoga y digital.</subtitle><author><name>Mario Alberto Chávez</name></author><entry xml:lang="en_US"><title type="html">Nobuild with Rails and Importmap</title><link href="https://mariochavez.io/desarrollo/2024/11/28/nobuild-with-rails-and-importmap/" rel="alternate" type="text/html" title="Nobuild with Rails and Importmap" /><published>2024-11-28T18:00:00+00:00</published><updated>2024-11-28T18:00:00+00:00</updated><id>repo://posts.collection/_posts/2024-11-28-nobuild-with-rails-and-importmap.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2024/11/28/nobuild-with-rails-and-importmap/">&lt;p&gt;The latest versions of Ruby on Rails have focused on simplicity across different aspects of the framework, accompanied by the promise to return to the “one-man framework” (where a single developer can effectively build and maintain an entire application).&lt;/p&gt;
+
+&lt;p&gt;Importmap Rails library is based on the principle that modern web browsers have caught up with the ECMAScript specification and can interpret ES Modules (ESM). As a web standard, Importmap allows you to control how JavaScript modules are resolved in the browser and manage dependencies and versions without the need to transpile or bundle the code sent to the browser.&lt;/p&gt;
+
+&lt;h2 id=&quot;how-the-importmap-web-standard-works&quot;&gt;How the Importmap Web Standard Works&lt;/h2&gt;
+
+&lt;p&gt;It all starts with a &lt;code class=&quot;highlighter-rouge&quot;&gt;script&lt;/code&gt; tag of type &lt;code class=&quot;highlighter-rouge&quot;&gt;importmap&lt;/code&gt; defined in your application’s main layout or web page. Inside this tag, a JSON object defines aliases and their corresponding paths to the source code.&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;importmap&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;imports&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;application&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/assets/application.js&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;local-time&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;https://cdn.jsdelivr.net/npm/local-time@3.0.2/app/assets/javascripts/local-time.es2017-esm.min.js&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;utils&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/assets/utils.js&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;In the same map, you can mix library paths pointing to a CDN or using local resources. To use libraries from this map, reference the alias name.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;&amp;lt;!--&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Below&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;the&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;importmap&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;--&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;application&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/script&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And in your &lt;em&gt;application.js&lt;/em&gt;, import needed dependencies:&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// application.js&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;LocalTime&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;local-time&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;LocalTime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;utils&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Importmap support is present in browsers Chrome 89+, Safari 16.4+, Firefox 108+, and Edge 89+. For older browsers, include a polyfill:&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;script
+  &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;async&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://ga.jspm.io/npm:es-module-shims@1.10.1/dist/es-module-shims.js&quot;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;how-importmap-works-in-ruby-on-rails&quot;&gt;How Importmap Works in Ruby on Rails&lt;/h2&gt;
+
+&lt;p&gt;Importmap functionality in Ruby on Rails follows the same standard described above and offers an easy way to create maps and version files. Using a web application named &lt;strong&gt;heroImage&lt;/strong&gt; as an example (source code available on &lt;a href=&quot;https://github.com/mariochavez/inspiration&quot;&gt;Github&lt;/a&gt;), let’s explore the implementation.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/no-build-importmap/heroimage-home.png&quot; alt=&quot;heroImage website&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;When you create a new Rails 8 application, the &lt;strong&gt;importmap-rails&lt;/strong&gt; gem is added and installed by default. A file &lt;em&gt;config/importmap.rb&lt;/em&gt; is created where you can &lt;em&gt;pin&lt;/em&gt; the JavaScript code needed in your application.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;pin&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;application&quot;&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;pin&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;@hotwired/turbo-rails&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;to: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;turbo.min.js&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;pin&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;@hotwired/stimulus&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;to: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;stimulus.min.js&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;pin&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;@hotwired/stimulus-loading&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;to: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;stimulus-loading.js&quot;&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;pin_all_from&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;app/javascript/controllers&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;under: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;controllers&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;preload: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;false&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;pin&lt;/code&gt; keyword takes up to three arguments. The first one is required, as it is the alias of the JavaScript code. &lt;code class=&quot;highlighter-rouge&quot;&gt;pin &quot;application&quot;&lt;/code&gt; is a shortcut for file &lt;em&gt;application.js&lt;/em&gt; with alias &lt;em&gt;application&lt;/em&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;pin&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;application&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;to: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;application.js&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;When alias and file names differ, use the keyword &lt;code class=&quot;highlighter-rouge&quot;&gt;to:&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;pin&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;@hotwired/turbo-rails&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;to: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;turbo.min.js&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;pin_all_from&lt;/code&gt; keyword helps reference multiple files at once. The first argument is the path where the JavaScript files are located, and the &lt;code class=&quot;highlighter-rouge&quot;&gt;under:&lt;/code&gt; argument prefixes the alias for each file. The generated alias uses the &lt;em&gt;under&lt;/em&gt; prefix and the file name, like &lt;code class=&quot;highlighter-rouge&quot;&gt;controllers/alert-controller&lt;/code&gt; for &lt;code class=&quot;highlighter-rouge&quot;&gt;alert_controller.js&lt;/code&gt; file.&lt;/p&gt;
+
+&lt;p&gt;To visualize the Importmap JSON file, execute:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bin/importmap json
+
+&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;s2&quot;&gt;&quot;imports&quot;&lt;/span&gt;: &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;@hotwired/turbo-rails&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;//127.0.0.1:4700/assets/turbo.min-fae85750.js&quot;&lt;/span&gt;,
+    &lt;span class=&quot;s2&quot;&gt;&quot;@hotwired/stimulus&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;//127.0.0.1:4700/assets/stimulus.min-4b1e420e.js&quot;&lt;/span&gt;,
+    &lt;span class=&quot;s2&quot;&gt;&quot;@hotwired/stimulus-loading&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;//127.0.0.1:4700/assets/stimulus-loading-1fc53fe7.js&quot;&lt;/span&gt;,
+    &lt;span class=&quot;s2&quot;&gt;&quot;application&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;//127.0.0.1:4700/assets/application-b1902c45.js&quot;&lt;/span&gt;,
+    &lt;span class=&quot;s2&quot;&gt;&quot;controllers/application&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;//127.0.0.1:4700/assets/controllers/application-fab0f35b.js&quot;&lt;/span&gt;,
+    &lt;span class=&quot;s2&quot;&gt;&quot;controllers&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;//127.0.0.1:4700/assets/controllers/index-c3f5d3c4.js&quot;&lt;/span&gt;,
+    &lt;span class=&quot;s2&quot;&gt;&quot;controllers/alert_controller&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;//127.0.0.1:4700/assets/controllers/alert_controller-caf203bf.js&quot;&lt;/span&gt;,
+    &lt;span class=&quot;s2&quot;&gt;&quot;controllers/file_controller&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;//127.0.0.1:4700/assets/controllers/file_controller-5da5fdc5.js&quot;&lt;/span&gt;,
+    &lt;span class=&quot;s2&quot;&gt;&quot;controllers/notifications_controller&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;//127.0.0.1:4700/assets/controllers/notifications_controller-88e2cc65.js&quot;&lt;/span&gt;,
+    &lt;span class=&quot;s2&quot;&gt;&quot;controllers/service_worker_controller&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;//127.0.0.1:4700/assets/controllers/service_worker_controller-ad4a24d3.js&quot;&lt;/span&gt;,
+    &lt;span class=&quot;s2&quot;&gt;&quot;controllers/share_controller&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;//127.0.0.1:4700/assets/controllers/share_controller-fe28ed00.js&quot;&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Rails resolves all JavaScript through the &lt;a href=&quot;https://github.com/rails/propshaft&quot;&gt;Propshaft&lt;/a&gt; gem, which resolves the physical path of the JavaScript code, maps to the &lt;em&gt;/assets&lt;/em&gt; web path, and adds the digest to each file for better caching and invalidations.&lt;/p&gt;
+
+&lt;p&gt;Propshaft discovers physical paths from the asset’s configuration:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;no&quot;&gt;Rails&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;application&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;assets&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;paths&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Ensure your files exist in any of the registered paths or add your own path to be discovered by Propshaft and Importmap.&lt;/p&gt;
+
+&lt;p&gt;Importmap in Rails allows you to specify how the browser should load JavaScript files. There are two options: &lt;code class=&quot;highlighter-rouge&quot;&gt;preload&lt;/code&gt; (default) and no preload. Preload tells the browser to download files as soon as possible. Importmap generates a link tag with &lt;code class=&quot;highlighter-rouge&quot;&gt;rel=&quot;modulepreload&quot;&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;modulepreload&quot;&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://heroimage.co/assets/turbo.min-fae85750.js&quot;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;modulepreload&quot;&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://heroimage.co/assets/stimulus-loading-1fc53fe7.js&quot;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;modulepreload&quot;&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://heroimage.co/assets/stimulus-loading-1fc53fe7.js&quot;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;modulepreload&quot;&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://heroimage.co/assets/application-b1902c45.js&quot;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;If you set the &lt;code class=&quot;highlighter-rouge&quot;&gt;preload&lt;/code&gt; argument to &lt;code class=&quot;highlighter-rouge&quot;&gt;false&lt;/code&gt;, the link tag is not generated and the browser downloads the file when needed.&lt;/p&gt;
+
+&lt;p&gt;With Rails’ Importmap, you can also &lt;em&gt;pin&lt;/em&gt; JavaScript code from a CDN using the &lt;code class=&quot;highlighter-rouge&quot;&gt;to:&lt;/code&gt; argument for the URL:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;pin&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;local-time&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;to: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://cdn.jsdelivr.net/npm/local-time@3.0.2/app/assets/javascripts/local-time.es2017-esm.min.js&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The Importmap includes a CLI to &lt;strong&gt;pin&lt;/strong&gt; or &lt;strong&gt;unpin&lt;/strong&gt; JavaScript code into &lt;em&gt;config/importmap.rb&lt;/em&gt; file. It also includes commands to update, audit, and inspect versions:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bin/importmap &lt;span class=&quot;nt&quot;&gt;--help&lt;/span&gt;
+Commands:
+  importmap audit              &lt;span class=&quot;c&quot;&gt;# Run a security audit&lt;/span&gt;
+  importmap &lt;span class=&quot;nb&quot;&gt;help&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;COMMAND]     &lt;span class=&quot;c&quot;&gt;# Describe available commands or one specific command&lt;/span&gt;
+  importmap json               &lt;span class=&quot;c&quot;&gt;# Show the full importmap in json&lt;/span&gt;
+  importmap outdated           &lt;span class=&quot;c&quot;&gt;# Check for outdated packages&lt;/span&gt;
+  importmap packages           &lt;span class=&quot;c&quot;&gt;# Print out packages with version numbers&lt;/span&gt;
+  importmap pin &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;PACKAGES]    &lt;span class=&quot;c&quot;&gt;# Pin new packages&lt;/span&gt;
+  importmap unpin &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;PACKAGES]  &lt;span class=&quot;c&quot;&gt;# Unpin existing packages&lt;/span&gt;
+  importmap update             &lt;span class=&quot;c&quot;&gt;# Update outdated package pins&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;When using the &lt;em&gt;pin&lt;/em&gt; command for a JavaScript package, instead of setting the &lt;code class=&quot;highlighter-rouge&quot;&gt;to:&lt;/code&gt; argument to the CDN, Importmap resolves package dependencies and downloads the package and dependencies to &lt;em&gt;vendor/javascript&lt;/em&gt;, allowing the Rails application to serve those files:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bin/importmap pin local-time
+Pinning &lt;span class=&quot;s2&quot;&gt;&quot;local-time&quot;&lt;/span&gt; to vendor/javascript/local-time.js via download from https://ga.jspm.io/npm:local-time@3.0.2/app/assets/javascripts/local-time.es2017-esm.js
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# config/importmap.rb&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;pin&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;local-time&quot;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# @3.0.2&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This approach works well when your package has simple dependencies or well-defined dependencies in the JavaScript package. If that’s not the case, it becomes challenging to use with Importmap vendoring the code at &lt;em&gt;vendor/javascript&lt;/em&gt;. It might work with the URL and manual dependency addition, or you can &lt;a href=&quot;https://mariochavez.io/desarrollo/2024/08/09/no-build-javascript-rails-importmap/&quot;&gt;tweak the vendored code&lt;/a&gt; to make it work.&lt;/p&gt;
+
+&lt;h2 id=&quot;how-to-work-with-rails-gems---engines---and-importmap&quot;&gt;How to Work with Rails Gems - Engines - and Importmap?&lt;/h2&gt;
+
+&lt;p&gt;There are two approaches to creating Ruby on Rails gems compatible with Importmap. The first approach allows your gem to provide JavaScript code, which you can choose to pin in the Importmap configuration. This is how the &lt;strong&gt;turbo-rails&lt;/strong&gt; and &lt;strong&gt;stimulus-rails&lt;/strong&gt; gems are implemented.&lt;/p&gt;
+
+&lt;p&gt;Place your JavaScript code in the &lt;em&gt;app/assets/javascripts&lt;/em&gt; folder of your gem. You may need an additional process that minifies the JavaScript files and generates JavaScript map files. Then, inside the &lt;code class=&quot;highlighter-rouge&quot;&gt;Engine&lt;/code&gt; class, define an &lt;code class=&quot;highlighter-rouge&quot;&gt;initializer&lt;/code&gt; hook to declare your JavaScript code with Propshaft:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;MyEngine&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Engine&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Rails&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Engine&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# Additional code&lt;/span&gt;
+    &lt;span class=&quot;no&quot;&gt;PRECOMPILE_ASSETS&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;sx&quot;&gt;%w( my_javascript.js my_javascript.min.js my_javascript.min.js.map )&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;freeze&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;initializer&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;my_engine.assets&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Rails&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;application&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;respond_to?&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:assets&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;no&quot;&gt;Rails&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;application&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;assets&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;precompile&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;PRECOMPILE_ASSETS&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The second option uses an Importmap configuration file. If your engine has its layout template and the views are isolated from the host application, and the engine doesn’t need to share the JavaScript code with the host application, you can create an Importmap configuration file at &lt;em&gt;config/importmap.rb&lt;/em&gt;, set your pins, place your JavaScript code at &lt;em&gt;app/javascript&lt;/em&gt;, and configure the engine with an initializer.&lt;/p&gt;
+
+&lt;p&gt;Open your &lt;code class=&quot;highlighter-rouge&quot;&gt;engine.rb&lt;/code&gt; Ruby file and add the Importmap configuration file and a sweeper:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;initializer&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;my-engine.importmap&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;after: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;importmap&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+  &lt;span class=&quot;no&quot;&gt;MyEngine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;importmap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;draw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;config/importmap.rb&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+  &lt;span class=&quot;no&quot;&gt;MyEngine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;importmap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;cache_sweeper&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;watches: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;app/javascript&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+
+  &lt;span class=&quot;no&quot;&gt;ActiveSupport&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;on_load&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:action_controller_base&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;before_action&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;MyEngine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;importmap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;cache_sweeper&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;execute_if_updated&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Specify the Importmap to use in your engine’s layout template:&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;javascript_importmap_tags&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;application&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&quot;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;importmap:&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;MyEngine.importmap&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;For sharing JavaScript code with the host application, like Stimulus controllers, create a partial Importmap configuration file and set the engine to merge it with the main one in the host application.&lt;/p&gt;
+
+&lt;p&gt;Create an Importmap configuration file at &lt;em&gt;config/importmap.rb&lt;/em&gt; and add the JavaScript pins to share with the host application. If you have dependencies for external packages, add those via a generator or installer to the host application:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;pin_all_from&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;expand_path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;../app/assets/javascripts/controllers&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__dir__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;under: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;controllers&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;preload: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;false&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Open your &lt;code class=&quot;highlighter-rouge&quot;&gt;engine.rb&lt;/code&gt; file and add an initializer:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;initializer&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;maquina.importmap&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;before: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;importmap&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;importmap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;paths&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Engine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;config/importmap.rb&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;what-are-the-advantages-of-using-importmap&quot;&gt;What are the Advantages of Using Importmap?&lt;/h2&gt;
+
+&lt;p&gt;From a Ruby on Rails developer perspective, the main advantage of using Importmap is the freedom from requiring a JavaScript runtime-like node and freedom from the &lt;em&gt;node_modules&lt;/em&gt; dependency.&lt;/p&gt;
+
+&lt;p&gt;Additionally, you don’t need an additional process in development mode to transpile and minify the JavaScript code. You rely on web standards to serve the code to the browser. Deploying your Rails application behind a reverse proxy offers several benefits. First, if you enable the HTTP/2 protocol, your browser can fetch multiple files with a single HTTP connection, and downloading many small JavaScript files won’t impact performance.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/no-build-importmap/tools.png&quot; alt=&quot;Web tools&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Enabling your proxy to use gzip or brotli compression ensures you are sending very small files while maintaining readability when using browser developer tools. If you change one file, you only need to invalidate that specific file, which the browser will download. The browser knows that a file was modified because of the fingerprint that Propshaft adds to all files.&lt;/p&gt;
+
+&lt;p&gt;Using a reverse proxy like &lt;a href=&quot;https://github.com/basecamp/thruster&quot;&gt;Thruster&lt;/a&gt; along with Puma offloads the assets serving from the Rails application. Thruster can cache assets and serve them when a client requests a file.&lt;/p&gt;
+
+&lt;h2 id=&quot;when-not-to-use-importmap&quot;&gt;When Not to Use Importmap&lt;/h2&gt;
+
+&lt;p&gt;There are cases where you should avoid using Importmap in a Rails application. If you are building a SPA application with React, Vue, or any other similar tool, there is a high likelihood you are writing your code with TypeScript. In this case, you should stick with the bundling strategy.&lt;/p&gt;
+
+&lt;p&gt;Additionally, if you need to support older browsers, bundling with code transpilation is a better option.&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/no-build-importmap/nobuild-with-rails.jpg" /><media:content medium="image" url="https://mariochavez.io/images/no-build-importmap/nobuild-with-rails.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry xml:lang="en_US"><title type="html">No build for Javascript libraries with Rails and Importmap</title><link href="https://mariochavez.io/desarrollo/2024/08/09/no-build-javascript-rails-importmap/" rel="alternate" type="text/html" title="No build for Javascript libraries with Rails and Importmap" /><published>2024-08-09T18:00:00+00:00</published><updated>2024-08-09T18:00:00+00:00</updated><id>repo://posts.collection/_posts/2024-08-09-no-build-javascript-rails-importmap.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2024/08/09/no-build-javascript-rails-importmap/">&lt;p&gt;As a web developer working with Ruby on Rails, you’re always looking for ways to streamline your workflow and make your applications more efficient. Enter Importmap - a powerful feature that simplifies how you manage JavaScript libraries in your Rails projects. In this post, we’ll dive into what Importmap is, how it works, and how you can use it for your projects.&lt;/p&gt;
 
 &lt;h2 id=&quot;what-is-importmap&quot;&gt;What is Importmap?&lt;/h2&gt;
 
@@ -64,40 +289,42 @@ Pinning &lt;span class=&quot;s2&quot;&gt;&quot;@kurkle/color&quot;&lt;/span&gt; 
 
 &lt;p&gt;Now, let’s create a Stimulus controller to use Chart.js. First, make sure you have Stimulus installed in your Rails application. Then, create a new file &lt;code class=&quot;highlighter-rouge&quot;&gt;app/javascript/controllers/chart_controller.js&lt;/code&gt;:&lt;/p&gt;
 
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Controller&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;@hotwired/stimulus&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Chart&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;registerables&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;chart.js&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Controller&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;@hotwired/stimulus&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Chart&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;registerables&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;chart.js&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
-&lt;span class=&quot;nx&quot;&gt;Chart&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;register&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(...&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;registerables&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;Chart&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;register&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(...&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;registerables&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 
 &lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Controller&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;targets&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;canvas&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;targets&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;canvas&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
 
   &lt;span class=&quot;nf&quot;&gt;connect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ctx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;canvasTarget&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;getContext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;2d&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ctx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;canvasTarget&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;getContext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;2d&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;chart&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Chart&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-   &lt;span class=&quot;na&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;January&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;February&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;March&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;April&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;May&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;June&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
-   &lt;span class=&quot;na&quot;&gt;datasets&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[{&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;Sample Data&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;65&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;59&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;80&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;81&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;56&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;55&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;borderColor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;rgba(75, 192, 192, 1)&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;backgroundColor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;rgba(75, 192, 192, 0.2)&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;borderWidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;
-   &lt;span class=&quot;p&quot;&gt;}]&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-   &lt;span class=&quot;na&quot;&gt;scales&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-     &lt;span class=&quot;na&quot;&gt;beginAtZero&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-   &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
- &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;January&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;February&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;March&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;April&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;May&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;June&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;datasets&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+          &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Sample Data&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;65&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;59&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;80&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;81&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;56&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;55&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;borderColor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;rgba(75, 192, 192, 1)&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;backgroundColor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;rgba(75, 192, 192, 0.2)&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;borderWidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;
+          &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;scales&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;beginAtZero&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;
+          &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
   &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 
   &lt;span class=&quot;nf&quot;&gt;disconnect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;chart&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;destroy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;chart&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;destroy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
   &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -1299,43 +1526,4 @@ $ iruby register --force
 &lt;h2 id=&quot;final&quot;&gt;Final&lt;/h2&gt;
 &lt;p&gt;The work of LLMs is very popular now days, tooling in the Python and JavaScript world is moving very fast. Ruby has always been excluded from ML or NLP technology.&lt;/p&gt;
 
-&lt;p&gt;There is an opportunity for Ruby tools in the “chain” areas to connect and integrate services around the LLMs. If you feel the same, please contribute to improving this client and to create other tools that we can use in our Ruby world. &lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/chroma-db/chroma-client.jpg" /><media:content medium="image" url="https://mariochavez.io/images/chroma-db/chroma-client.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry xml:lang="es_MX"><title type="html">Uso de modelos LLM para generar código</title><link href="https://mariochavez.io/desarrollo/2023/05/13/uso-de-modelos-llm-para-generar-codigo/" rel="alternate" type="text/html" title="Uso de modelos LLM para generar código" /><published>2023-05-13T18:00:00+00:00</published><updated>2023-05-13T18:00:00+00:00</updated><id>repo://posts.collection/_posts/uso-de-modelos-llm-para-generar-codigo.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2023/05/13/uso-de-modelos-llm-para-generar-codigo/">&lt;p&gt;Desde el año pasado y en especial este 2023, el uso de herramientas de inteligencia artificial (IA) para escribir y sugerir código ha ganado una popularidad significativa. &lt;/p&gt;
-
-&lt;p&gt;Los desarrolladores y no desarrolladores recurren a estas herramientas basadas en IA para obtener ayuda con la generación de código, documentación y solución de errores.&lt;/p&gt;
-
-&lt;p&gt;Herramientas como &lt;a href=&quot;https://github.com/features/preview/copilot-x&quot; target=&quot;_blank&quot;&gt;Copilot&lt;/a&gt; y otras comerciales, además de la Open Source como &lt;a href=&quot;https://github.com/TabbyML/tabby&quot; target=&quot;_blank&quot;&gt;TabbyML&lt;/a&gt; y &lt;a href=&quot;https://github.com/ravenscroftj/turbopilot&quot; target=&quot;_blank&quot;&gt;Turbopilot&lt;/a&gt; tienen la  idea de aprovechar la IA para agilizar los procesos de creación de código de forma prometedora.&lt;/p&gt;
-
-&lt;p&gt;Entiendo el atractivo de este tipo de herramientas que se integran en el editor de código, sin embargo, a mí no me parece tan atractivo insertar un bloque de código a “ciegas” que puede que funcione o no, sin más contexto sobre el código de que la sugerencia “parece ser” lo que necesito.&lt;/p&gt;
-
-&lt;p&gt;Si la intención primordial es automatizar tareas repetitivas, ofrecer sugerencias sobre lo que parece ser que necesito y en general acelerar el proceso de desarrollo, actualmente tengo esto mismo - sin el hype - con snippets creados por mí y generadores de código que entienden mi lenguaje de programación y framework y que además generan código bajo mi estilo personal.&lt;/p&gt;
-
-&lt;p&gt;Otro tipo de herramientas que no son exclusivas para el desarrollo de software, pero que se han comenzado a utilizar para esto son los chats, en especial el ChatGPT de &lt;a href=&quot;https://openai.com/&quot; target=&quot;_blank&quot;&gt;OpenAI&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;La integración con los editores de código es opcional en este caso. La mejora sustancial con las otras herramientas, desde mi punto de vista, es que agregamos texto como contexto sobre lo que necesitamos ayuda, además de poder agregar ejemplos de código, por ejemplo la firma de un método.&lt;/p&gt;
-
-&lt;p&gt;Además de generar la sugerencia de código, esta viene acompañada de una explicación, que más allá de código, esta última puede ser lo más relevante para aprender.&lt;/p&gt;
-
-&lt;p&gt;Sin embargo, no todo es “color de rosa” con esta herramienta. En la mayoría de los casos es necesario iterar sobre la misma idea múltiples ocasiones, ya que aunque responde con un texto donde se percibe confianza y seguridad en lo que nos está describiendo, me he encontrado que está tremendamente equivocado.&lt;/p&gt;
-
-&lt;p&gt;En mi caso, que trabajo principalmente sobre Ruby y Ruby on Rails, me ha ofrecido sugerencia donde hace uso de gemas (librerías) inexistentes, algunas parecen ser librerías de Python.&lt;/p&gt;
-
-&lt;p&gt;Me ha generado código donde hace uso de métodos inexistentes en las librerías estándar de Ruby. O ha generado como respuesta a solicitudes sobre Ruby con código de Python formateado para que parezca Ruby.&lt;/p&gt;
-
-&lt;p&gt;Otro punto importante para mí que siempre trabajo sobre las últimas versiones de las librerías y herramientas es que ChatGPT solo tiene conocimiento, la versión libre, de Ruby 3.0.0 y Rails 6.1.4, del 2020 y 2021, respectivamente.&lt;/p&gt;
-
-&lt;p&gt;Buscando otra forma de sacarle provecho, en lugar de pedirle código, opté por pedirle que documentara a partir de la firma de métodos y de definiciones de clases. Siempre fui explícito en que el formato de la documentación tenía que ser el de RDoc de Ruby; sin embargo, el 100% de los casos la documentación la escribe con el formato de documentación de Javascript.&lt;/p&gt;
-
-&lt;p&gt;Una tarea más que busqué comprobar si la podía hacer bien o no fue la de escribir los archivos de tipado de Ruby, RBS; sin embargo, nuevamente me di cuenta de que es algo fuera de su conocimiento.&lt;/p&gt;
-
-&lt;p&gt;Después de varios meses sigo haciendo uso de forma esporádica de ChatGPT, en su lugar he cambiado a otra herramienta llamada &lt;a href=&quot;https://www.phind.com&quot; target=&quot;_blank&quot;&gt;Phind&lt;/a&gt; que se parece más a un buscador que a un chat de IA. Phind usa el internet, en especial los blogs y documentación técnica en conjunto con un LLM para ofrecer respuestas.&lt;/p&gt;
-
-&lt;p&gt;Puedo configurar como quiero que sea la respuesta, larga y con varias opciones o simple y directa a lo que parece resolver mi duda. Además, agrega referencias a los blogs o sitios web de donde extrajo la respuesta para que si así lo deseo poder ir al sitio y conocer más del contexto.&lt;/p&gt;
-
-&lt;div class=&quot;grid grid-cols-1 md:grid-cols-2 gap-4&quot;&gt;
-  &lt;figure&gt;&lt;img src=&quot;/images/modelos-llm-codigo/chatgpt.png&quot; /&gt;&lt;figcaption class=&quot;p-2 text-center&quot;&gt;Ejemplo con ChatGPT&lt;/figcaption&gt;&lt;/figure&gt;
-  &lt;figure&gt;&lt;img src=&quot;/images/modelos-llm-codigo/phind.png&quot; /&gt;&lt;figcaption class=&quot;p-2 text-center&quot;&gt;Ejemplo con Phind&lt;/figcaption&gt;&lt;/figure&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Lo mejor de todo es que parece tener información actualizada y no mezcla las respuestas de Ruby con otros lenguajes de programación.&lt;/p&gt;
-
-&lt;p&gt;Por último, es innegable la ayuda que herramientas de IA pueden proporcionar como asistencia y automatización, pero es importante recordar que escribir código sigue siendo una actividad que requiere experiencia, conocimientos y creatividad humana. De momento la comprensión contextual de nuestros proyectos y las habilidades de resolución de problemas que poseemos es lo más importante que ofrecemos en nuestro trabajo. La IA solo es una herramienta más que sin lo anterior carece de valor.&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/modelos-llm-codigo/modelo-llm-codigo.jpg" /><media:content medium="image" url="https://mariochavez.io/images/modelos-llm-codigo/modelo-llm-codigo.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;p&gt;There is an opportunity for Ruby tools in the “chain” areas to connect and integrate services around the LLMs. If you feel the same, please contribute to improving this client and to create other tools that we can use in our Ruby world. &lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/chroma-db/chroma-client.jpg" /><media:content medium="image" url="https://mariochavez.io/images/chroma-db/chroma-client.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>

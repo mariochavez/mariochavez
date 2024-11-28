@@ -277,40 +277,42 @@ Pinning <span class="s2">"@kurkle/color"</span> to vendor/javascript/@kurkle/col
 
 <p>Now, let’s create a Stimulus controller to use Chart.js. First, make sure you have Stimulus installed in your Rails application. Then, create a new file <code class="highlighter-rouge">app/javascript/controllers/chart_controller.js</code>:</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">Controller</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@hotwired/stimulus</span><span class="dl">"</span>
-<span class="k">import</span> <span class="p">{</span> <span class="nx">Chart</span><span class="p">,</span> <span class="nx">registerables</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">chart.js</span><span class="dl">'</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">Controller</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@hotwired/stimulus</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Chart</span><span class="p">,</span> <span class="nx">registerables</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">chart.js</span><span class="dl">"</span><span class="p">;</span>
 
-<span class="nx">Chart</span><span class="p">.</span><span class="nf">register</span><span class="p">(...</span><span class="nx">registerables</span><span class="p">)</span>
+<span class="nx">Chart</span><span class="p">.</span><span class="nf">register</span><span class="p">(...</span><span class="nx">registerables</span><span class="p">);</span>
 
 <span class="k">export</span> <span class="k">default</span> <span class="kd">class</span> <span class="nc">extends</span> <span class="nx">Controller</span> <span class="p">{</span>
-  <span class="kd">static</span> <span class="nx">targets</span> <span class="o">=</span> <span class="p">[</span><span class="dl">'</span><span class="s1">canvas</span><span class="dl">'</span><span class="p">]</span>
+  <span class="kd">static</span> <span class="nx">targets</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2">canvas</span><span class="dl">"</span><span class="p">];</span>
 
   <span class="nf">connect</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">ctx</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">canvasTarget</span><span class="p">.</span><span class="nf">getContext</span><span class="p">(</span><span class="dl">'</span><span class="s1">2d</span><span class="dl">'</span><span class="p">)</span>
+    <span class="kd">const</span> <span class="nx">ctx</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">canvasTarget</span><span class="p">.</span><span class="nf">getContext</span><span class="p">(</span><span class="dl">"</span><span class="s2">2d</span><span class="dl">"</span><span class="p">);</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">chart</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Chart</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">line</span><span class="dl">'</span><span class="p">,</span>
-  <span class="na">data</span><span class="p">:</span> <span class="p">{</span>
-   <span class="na">labels</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">January</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">February</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">March</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">April</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">May</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">June</span><span class="dl">'</span><span class="p">],</span>
-   <span class="na">datasets</span><span class="p">:</span> <span class="p">[{</span>
-    <span class="na">label</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Sample Data</span><span class="dl">'</span><span class="p">,</span>
-    <span class="na">data</span><span class="p">:</span> <span class="p">[</span><span class="mi">65</span><span class="p">,</span> <span class="mi">59</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">81</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">55</span><span class="p">],</span>
-    <span class="na">borderColor</span><span class="p">:</span> <span class="dl">'</span><span class="s1">rgba(75, 192, 192, 1)</span><span class="dl">'</span><span class="p">,</span>
-    <span class="na">backgroundColor</span><span class="p">:</span> <span class="dl">'</span><span class="s1">rgba(75, 192, 192, 0.2)</span><span class="dl">'</span><span class="p">,</span>
-    <span class="na">borderWidth</span><span class="p">:</span> <span class="mi">2</span>
-   <span class="p">}]</span>
-  <span class="p">},</span>
-  <span class="na">options</span><span class="p">:</span> <span class="p">{</span>
-   <span class="na">scales</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">y</span><span class="p">:</span> <span class="p">{</span>
-     <span class="na">beginAtZero</span><span class="p">:</span> <span class="kc">true</span>
-    <span class="p">}</span>
-   <span class="p">}</span>
-  <span class="p">}</span>
- <span class="p">})</span>
+      <span class="na">type</span><span class="p">:</span> <span class="dl">"</span><span class="s2">line</span><span class="dl">"</span><span class="p">,</span>
+      <span class="na">data</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">labels</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">January</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">February</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">March</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">April</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">May</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">June</span><span class="dl">"</span><span class="p">],</span>
+        <span class="na">datasets</span><span class="p">:</span> <span class="p">[</span>
+          <span class="p">{</span>
+            <span class="na">label</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Sample Data</span><span class="dl">"</span><span class="p">,</span>
+            <span class="na">data</span><span class="p">:</span> <span class="p">[</span><span class="mi">65</span><span class="p">,</span> <span class="mi">59</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">81</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">55</span><span class="p">],</span>
+            <span class="na">borderColor</span><span class="p">:</span> <span class="dl">"</span><span class="s2">rgba(75, 192, 192, 1)</span><span class="dl">"</span><span class="p">,</span>
+            <span class="na">backgroundColor</span><span class="p">:</span> <span class="dl">"</span><span class="s2">rgba(75, 192, 192, 0.2)</span><span class="dl">"</span><span class="p">,</span>
+            <span class="na">borderWidth</span><span class="p">:</span> <span class="mi">2</span>
+          <span class="p">}</span>
+        <span class="p">]</span>
+      <span class="p">},</span>
+      <span class="na">options</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">scales</span><span class="p">:</span> <span class="p">{</span>
+          <span class="na">y</span><span class="p">:</span> <span class="p">{</span>
+            <span class="na">beginAtZero</span><span class="p">:</span> <span class="kc">true</span>
+          <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
   <span class="p">}</span>
 
   <span class="nf">disconnect</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">chart</span><span class="p">.</span><span class="nf">destroy</span><span class="p">()</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">chart</span><span class="p">.</span><span class="nf">destroy</span><span class="p">();</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>

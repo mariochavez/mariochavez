@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- Begin Bridgetown SEO tag v6.0.0 -->
+<title>Nobuild with Rails and Importmap | Mario Alberto Cháve</title>
+<meta property="og:title" content="Nobuild with Rails and Importmap" />
+<meta name="author" content="Mario Alberto Chávez" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Learn how to use Importmap in Ruby on Rails to manage JavaScript dependencies without bundling. Covers web standards, Rails integration, gems compatibility, and suggested practices." />
+<meta property="og:description" content="Learn how to use Importmap in Ruby on Rails to manage JavaScript dependencies without bundling. Covers web standards, Rails integration, gems compatibility, and suggested practices." />
+<link rel="canonical" href="https://mariochavez.io/desarrollo/2024/11/28/nobuild-with-rails-and-importmap/" />
+<meta property="og:url" content="https://mariochavez.io/desarrollo/2024/11/28/nobuild-with-rails-and-importmap/" />
+<meta property="og:site_name" content="Mario Alberto Cháve" />
+<meta property="og:image" content="https://mariochavez.io/images/no-build-importmap/nobuild-with-rails.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-11-28T18:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://mariochavez.io/images/no-build-importmap/nobuild-with-rails.jpg" />
+<meta property="twitter:title" content="Nobuild with Rails and Importmap" />
+<meta name="twitter:site" content="@mario_chavez" />
+<meta name="twitter:creator" content="@Mario Alberto Chávez" />
+<!-- End Bridgetown SEO tag -->
+
+
+<link type="application/atom+xml" rel="alternate" href="https://mariochavez.io/feed.xml" title="Mario Alberto Cháve" />
+
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+<link rel="stylesheet" href="/assets/index.R2SXEKOT.css" />
+<script src="/assets/index.KUPNVLMR.js" defer></script>
+
+
+<script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://mariochavez.io/desarrollo/2024/11/28/nobuild-with-rails-and-importmap"
+  },
+  "headline"": "Nobuild with Rails and Importmap",
+  "description": "Learn how to use Importmap in Ruby on Rails to manage JavaScript dependencies without bundling. Covers web standards, Rails integration, gems compatibility, and suggested practices.",
+  "author": {
+    "@type": "Person",
+    name: "Mario Alberto Chávez Cárdenas"
+  },
+  "datePublished": "2024-11-28",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Mario Alberto Chávez Cárdenas",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://mariochavez.io/logo.png"
+    }
+  },
+  "articleBody": "The latest versions of Ruby on Rails have focused on simplicity across different aspects of the framework, accompanied by the promise to return to the "one-man framework" (where a single developer can effectively build and maintain an entire application). .",
+  "keywords": [
+    "Ruby on Rails",
+    "Importmap",
+    "JavaScript",
+    "ES modules",
+    "NoBuild",
+    "Propshaft",
+    "Web development"
+  ],
+  "articleSection": "Desarrollo",
+  "inLanguage": "en-US",
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://mariochavez.io/images/no-build-importmap/nobuild-with-rails.jpg",
+      "width": 1200,
+      "height": 630,
+      "caption": "Importmap in Ruby on Rails"
+    },
+    {
+      "@type": "ImageObject", 
+      "url": "https://mariochavez.io/images/no-build-importmap/heroimage-home.png",
+      "width": 800,
+      "height": 450,
+      "caption": "heroImage website example"
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://mariochavez.io/images/no-build-importmap/tools.png", 
+      "width": 800,
+      "height": 450,
+      "caption": "Web developer tools showing HTTP/2 performance"
+    }
+  ],
+}
+
+</script>
+
+  </head>
+  <body class="min-h-screen antialiased post ">
+    <section class="flex flex-nowrap">
+      <aside class="sticky top-0 flex flex-col hidden w-64 max-h-screen min-h-screen bg-gray-100 xl:w-96 lg:block">
+  <div class="px-8 xl:px-10">
+    <header class="py-14">
+      <h1 class="font-sans text-3xl font-medium tracking-widest text-gray-700 uppercase">Mario Alberto Cháve</h1>
+      <h2 class="mt-4 font-serif text-lg italic tracking-wide text-gray-500 font-extralight">Blog personal desarrollo de software</h2>
+    </header>
+
+    <nav class="lg:flex-grow lg:py-14">
+  <ul>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/">Inicio</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/desarrollo">Desarrollo</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/fotografía">Fotografía</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/proyectos">Proyectos</a></li>
+    <li class="font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/acercade">Acerca de</a></li>
+  </ul>
+</nav>
+
+
+    <footer class="py-8 lg:py-14">
+  <div class="flex space-x-4">
+    <a href="https://twitter.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24" class="w-4 h-4"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+    </a>
+    <a href="https://instagram.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="none" viewBox="0 0 24 24" class="w-4 h-4"><path d="M15.233 5.488c-.843-.038-1.097-.046-3.233-.046s-2.389.008-3.232.046c-2.17.099-3.181 1.127-3.279 3.279-.039.844-.048 1.097-.048 3.233s.009 2.389.047 3.233c.099 2.148 1.106 3.18 3.279 3.279.843.038 1.097.047 3.233.047 2.137 0 2.39-.008 3.233-.046 2.17-.099 3.18-1.129 3.279-3.279.038-.844.046-1.097.046-3.233s-.008-2.389-.046-3.232c-.099-2.153-1.111-3.182-3.279-3.281zm-3.233 10.62c-2.269 0-4.108-1.839-4.108-4.108 0-2.269 1.84-4.108 4.108-4.108s4.108 1.839 4.108 4.108c0 2.269-1.839 4.108-4.108 4.108zm4.271-7.418c-.53 0-.96-.43-.96-.96s.43-.96.96-.96.96.43.96.96-.43.96-.96.96zm-1.604 3.31c0 1.473-1.194 2.667-2.667 2.667s-2.667-1.194-2.667-2.667c0-1.473 1.194-2.667 2.667-2.667s2.667 1.194 2.667 2.667zm4.333-12h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm.952 15.298c-.132 2.909-1.751 4.521-4.653 4.654-.854.039-1.126.048-3.299.048s-2.444-.009-3.298-.048c-2.908-.133-4.52-1.748-4.654-4.654-.039-.853-.048-1.125-.048-3.298 0-2.172.009-2.445.048-3.298.134-2.908 1.748-4.521 4.654-4.653.854-.04 1.125-.049 3.298-.049s2.445.009 3.299.048c2.908.133 4.523 1.751 4.653 4.653.039.854.048 1.127.048 3.299 0 2.173-.009 2.445-.048 3.298z"/></svg>
+    </a>
+  </div>
+  <p class="mt-4 font-sans text-xs font-light tracking-wider text-gray-500 xl:text-sm">©2021. Mario Alberto Chávez Cárdenas</p>
+</footer>
+
+  </div>
+</aside>
+
+
+      <main class="flex-auto overflow-hidden text-gray-700">
+        <header class="flex flex-col bg-gray-100 lg:hidden" data-controller="menu">
+  <div class="flex flex-col w-full px-8 md:flex-row xl:px-10">
+    <div class="w-full pt-12 pb-6 md:py-12">
+      <a href="/">
+        <h1 class="font-sans text-lg font-medium tracking-widest text-gray-700 uppercase md:text-2xl">Mario Alberto Cháve</h1>
+      </a>
+      <h2 class="mt-4 font-serif text-xs italic tracking-wide text-gray-500 md:text-lg font-extralight">Blog personal desarrollo de software</h2>
+    </div>
+
+    <div class="pb-6 md:py-12 md:pl-4 md:self-center md:justify-self-end md:pl-0">
+      <a href="#" class="inline-flex items-center px-4 py-2 border border-gray-500 md:flex hover:text-red-500 hover:border-red-500" data-action="menu#toggle">
+        <span class="font-semibold text-md md:text-lg">Menú</span>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-4 h-4 ml-4" data-menu-target="closed">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hidden w-4 h-4 ml-4" data-menu-target="opened">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <div data-menu-target="submenu" class="hidden w-full px-8">
+    <nav class="lg:flex-grow lg:py-14">
+  <ul>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/">Inicio</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/desarrollo">Desarrollo</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/fotografía">Fotografía</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/proyectos">Proyectos</a></li>
+    <li class="font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/acercade">Acerca de</a></li>
+  </ul>
+</nav>
+
+
+    <footer class="py-8 lg:py-14">
+  <div class="flex space-x-4">
+    <a href="https://twitter.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24" class="w-4 h-4"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+    </a>
+    <a href="https://instagram.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="none" viewBox="0 0 24 24" class="w-4 h-4"><path d="M15.233 5.488c-.843-.038-1.097-.046-3.233-.046s-2.389.008-3.232.046c-2.17.099-3.181 1.127-3.279 3.279-.039.844-.048 1.097-.048 3.233s.009 2.389.047 3.233c.099 2.148 1.106 3.18 3.279 3.279.843.038 1.097.047 3.233.047 2.137 0 2.39-.008 3.233-.046 2.17-.099 3.18-1.129 3.279-3.279.038-.844.046-1.097.046-3.233s-.008-2.389-.046-3.232c-.099-2.153-1.111-3.182-3.279-3.281zm-3.233 10.62c-2.269 0-4.108-1.839-4.108-4.108 0-2.269 1.84-4.108 4.108-4.108s4.108 1.839 4.108 4.108c0 2.269-1.839 4.108-4.108 4.108zm4.271-7.418c-.53 0-.96-.43-.96-.96s.43-.96.96-.96.96.43.96.96-.43.96-.96.96zm-1.604 3.31c0 1.473-1.194 2.667-2.667 2.667s-2.667-1.194-2.667-2.667c0-1.473 1.194-2.667 2.667-2.667s2.667 1.194 2.667 2.667zm4.333-12h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm.952 15.298c-.132 2.909-1.751 4.521-4.653 4.654-.854.039-1.126.048-3.299.048s-2.444-.009-3.298-.048c-2.908-.133-4.52-1.748-4.654-4.654-.039-.853-.048-1.125-.048-3.298 0-2.172.009-2.445.048-3.298.134-2.908 1.748-4.521 4.654-4.653.854-.04 1.125-.049 3.298-.049s2.445.009 3.299.048c2.908.133 4.523 1.751 4.653 4.653.039.854.048 1.127.048 3.299 0 2.173-.009 2.445-.048 3.298z"/></svg>
+    </a>
+  </div>
+  <p class="mt-4 font-sans text-xs font-light tracking-wider text-gray-500 xl:text-sm">©2021. Mario Alberto Chávez Cárdenas</p>
+</footer>
+
+  </div>
+</header>
+
+        <article class="py-16 font-serif lg:py-24 post">
+  <header class="px-4 m-auto md:max-w-2xl lg:max-w-4xl">
+    <a href="/desarrollo" class="pb-1 text-sm font-bold leading-normal uppercase border-b-4 border-gray-200 transition-all hover:text-red-500">desarrollo</a>
+    <h1 class="mt-6 text-3xl font-bold tracking-wide md:text-4xl lg:text-6xl">Nobuild with Rails and Importmap</h1>
+  </header>
+
+  <div class="px-4 m-auto mt-16 tracking-wider md:max-w-2xl lg:max-w-4xl prose md:prose-lg">
+    <figure class="mt-16 aspect-w-16 aspect-h-9">
+      <img src="/images/no-build-importmap/nobuild-with-rails.jpg" loading="lazy" />
+    </figure>
+
+    <p>The latest versions of Ruby on Rails have focused on simplicity across different aspects of the framework, accompanied by the promise to return to the “one-man framework” (where a single developer can effectively build and maintain an entire application).</p>
+
+<p>Importmap Rails library is based on the principle that modern web browsers have caught up with the ECMAScript specification and can interpret ES Modules (ESM). As a web standard, Importmap allows you to control how JavaScript modules are resolved in the browser and manage dependencies and versions without the need to transpile or bundle the code sent to the browser.</p>
+
+<h2 id="how-the-importmap-web-standard-works">How the Importmap Web Standard Works</h2>
+
+<p>It all starts with a <code class="highlighter-rouge">script</code> tag of type <code class="highlighter-rouge">importmap</code> defined in your application’s main layout or web page. Inside this tag, a JSON object defines aliases and their corresponding paths to the source code.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"importmap"</span><span class="nt">&gt;</span>
+  <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">imports</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="dl">"</span><span class="s2">application</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">/assets/application.js</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">local-time</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://cdn.jsdelivr.net/npm/local-time@3.0.2/app/assets/javascripts/local-time.es2017-esm.min.js</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">utils</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">/assets/utils.js</span><span class="dl">"</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<p>In the same map, you can mix library paths pointing to a CDN or using local resources. To use libraries from this map, reference the alias name.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!--</span> <span class="nx">Below</span> <span class="nx">the</span> <span class="nx">importmap</span> <span class="nx">script</span> <span class="o">--&gt;</span>
+<span class="o">&lt;</span><span class="nx">script</span> <span class="nx">type</span><span class="o">=</span><span class="dl">"</span><span class="s2">module</span><span class="dl">"</span><span class="o">&gt;</span><span class="k">import</span> <span class="dl">"</span><span class="s2">application</span><span class="dl">"</span><span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span></code></pre></div></div>
+
+<p>And in your <em>application.js</em>, import needed dependencies:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// application.js</span>
+
+<span class="k">import</span> <span class="nx">LocalTime</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">local-time</span><span class="dl">"</span><span class="p">;</span>
+<span class="nx">LocalTime</span><span class="p">.</span><span class="nf">start</span><span class="p">();</span>
+
+<span class="k">import</span> <span class="dl">"</span><span class="s2">utils</span><span class="dl">"</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Importmap support is present in browsers Chrome 89+, Safari 16.4+, Firefox 108+, and Edge 89+. For older browsers, include a polyfill:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script
+  </span><span class="na">async</span>
+  <span class="na">src=</span><span class="s">"https://ga.jspm.io/npm:es-module-shims@1.10.1/dist/es-module-shims.js"</span>
+<span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<h2 id="how-importmap-works-in-ruby-on-rails">How Importmap Works in Ruby on Rails</h2>
+
+<p>Importmap functionality in Ruby on Rails follows the same standard described above and offers an easy way to create maps and version files. Using a web application named <strong>heroImage</strong> as an example (source code available on <a href="https://github.com/mariochavez/inspiration">Github</a>), let’s explore the implementation.</p>
+
+<p><img src="/images/no-build-importmap/heroimage-home.png" alt="heroImage website" /></p>
+
+<p>When you create a new Rails 8 application, the <strong>importmap-rails</strong> gem is added and installed by default. A file <em>config/importmap.rb</em> is created where you can <em>pin</em> the JavaScript code needed in your application.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pin</span> <span class="s2">"application"</span>
+
+<span class="n">pin</span> <span class="s2">"@hotwired/turbo-rails"</span><span class="p">,</span> <span class="ss">to: </span><span class="s2">"turbo.min.js"</span>
+<span class="n">pin</span> <span class="s2">"@hotwired/stimulus"</span><span class="p">,</span> <span class="ss">to: </span><span class="s2">"stimulus.min.js"</span>
+<span class="n">pin</span> <span class="s2">"@hotwired/stimulus-loading"</span><span class="p">,</span> <span class="ss">to: </span><span class="s2">"stimulus-loading.js"</span>
+
+<span class="n">pin_all_from</span> <span class="s2">"app/javascript/controllers"</span><span class="p">,</span> <span class="ss">under: </span><span class="s2">"controllers"</span><span class="p">,</span> <span class="ss">preload: </span><span class="kp">false</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">pin</code> keyword takes up to three arguments. The first one is required, as it is the alias of the JavaScript code. <code class="highlighter-rouge">pin "application"</code> is a shortcut for file <em>application.js</em> with alias <em>application</em>:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pin</span> <span class="s2">"application"</span><span class="p">,</span> <span class="ss">to: </span><span class="s2">"application.js"</span>
+</code></pre></div></div>
+
+<p>When alias and file names differ, use the keyword <code class="highlighter-rouge">to:</code>:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pin</span> <span class="s2">"@hotwired/turbo-rails"</span><span class="p">,</span> <span class="ss">to: </span><span class="s2">"turbo.min.js"</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">pin_all_from</code> keyword helps reference multiple files at once. The first argument is the path where the JavaScript files are located, and the <code class="highlighter-rouge">under:</code> argument prefixes the alias for each file. The generated alias uses the <em>under</em> prefix and the file name, like <code class="highlighter-rouge">controllers/alert-controller</code> for <code class="highlighter-rouge">alert_controller.js</code> file.</p>
+
+<p>To visualize the Importmap JSON file, execute:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bin/importmap json
+
+<span class="o">{</span>
+  <span class="s2">"imports"</span>: <span class="o">{</span>
+    <span class="s2">"@hotwired/turbo-rails"</span>: <span class="s2">"//127.0.0.1:4700/assets/turbo.min-fae85750.js"</span>,
+    <span class="s2">"@hotwired/stimulus"</span>: <span class="s2">"//127.0.0.1:4700/assets/stimulus.min-4b1e420e.js"</span>,
+    <span class="s2">"@hotwired/stimulus-loading"</span>: <span class="s2">"//127.0.0.1:4700/assets/stimulus-loading-1fc53fe7.js"</span>,
+    <span class="s2">"application"</span>: <span class="s2">"//127.0.0.1:4700/assets/application-b1902c45.js"</span>,
+    <span class="s2">"controllers/application"</span>: <span class="s2">"//127.0.0.1:4700/assets/controllers/application-fab0f35b.js"</span>,
+    <span class="s2">"controllers"</span>: <span class="s2">"//127.0.0.1:4700/assets/controllers/index-c3f5d3c4.js"</span>,
+    <span class="s2">"controllers/alert_controller"</span>: <span class="s2">"//127.0.0.1:4700/assets/controllers/alert_controller-caf203bf.js"</span>,
+    <span class="s2">"controllers/file_controller"</span>: <span class="s2">"//127.0.0.1:4700/assets/controllers/file_controller-5da5fdc5.js"</span>,
+    <span class="s2">"controllers/notifications_controller"</span>: <span class="s2">"//127.0.0.1:4700/assets/controllers/notifications_controller-88e2cc65.js"</span>,
+    <span class="s2">"controllers/service_worker_controller"</span>: <span class="s2">"//127.0.0.1:4700/assets/controllers/service_worker_controller-ad4a24d3.js"</span>,
+    <span class="s2">"controllers/share_controller"</span>: <span class="s2">"//127.0.0.1:4700/assets/controllers/share_controller-fe28ed00.js"</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Rails resolves all JavaScript through the <a href="https://github.com/rails/propshaft">Propshaft</a> gem, which resolves the physical path of the JavaScript code, maps to the <em>/assets</em> web path, and adds the digest to each file for better caching and invalidations.</p>
+
+<p>Propshaft discovers physical paths from the asset’s configuration:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">config</span><span class="p">.</span><span class="nf">assets</span><span class="p">.</span><span class="nf">paths</span>
+</code></pre></div></div>
+
+<p>Ensure your files exist in any of the registered paths or add your own path to be discovered by Propshaft and Importmap.</p>
+
+<p>Importmap in Rails allows you to specify how the browser should load JavaScript files. There are two options: <code class="highlighter-rouge">preload</code> (default) and no preload. Preload tells the browser to download files as soon as possible. Importmap generates a link tag with <code class="highlighter-rouge">rel="modulepreload"</code>:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;link</span>
+  <span class="na">rel=</span><span class="s">"modulepreload"</span>
+  <span class="na">href=</span><span class="s">"https://heroimage.co/assets/turbo.min-fae85750.js"</span>
+<span class="nt">/&gt;</span>
+<span class="nt">&lt;link</span>
+  <span class="na">rel=</span><span class="s">"modulepreload"</span>
+  <span class="na">href=</span><span class="s">"https://heroimage.co/assets/stimulus-loading-1fc53fe7.js"</span>
+<span class="nt">/&gt;</span>
+<span class="nt">&lt;link</span>
+  <span class="na">rel=</span><span class="s">"modulepreload"</span>
+  <span class="na">href=</span><span class="s">"https://heroimage.co/assets/stimulus-loading-1fc53fe7.js"</span>
+<span class="nt">/&gt;</span>
+<span class="nt">&lt;link</span>
+  <span class="na">rel=</span><span class="s">"modulepreload"</span>
+  <span class="na">href=</span><span class="s">"https://heroimage.co/assets/application-b1902c45.js"</span>
+<span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+<p>If you set the <code class="highlighter-rouge">preload</code> argument to <code class="highlighter-rouge">false</code>, the link tag is not generated and the browser downloads the file when needed.</p>
+
+<p>With Rails’ Importmap, you can also <em>pin</em> JavaScript code from a CDN using the <code class="highlighter-rouge">to:</code> argument for the URL:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pin</span> <span class="s2">"local-time"</span><span class="p">,</span> <span class="ss">to: </span><span class="s2">"https://cdn.jsdelivr.net/npm/local-time@3.0.2/app/assets/javascripts/local-time.es2017-esm.min.js"</span>
+</code></pre></div></div>
+
+<p>The Importmap includes a CLI to <strong>pin</strong> or <strong>unpin</strong> JavaScript code into <em>config/importmap.rb</em> file. It also includes commands to update, audit, and inspect versions:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bin/importmap <span class="nt">--help</span>
+Commands:
+  importmap audit              <span class="c"># Run a security audit</span>
+  importmap <span class="nb">help</span> <span class="o">[</span>COMMAND]     <span class="c"># Describe available commands or one specific command</span>
+  importmap json               <span class="c"># Show the full importmap in json</span>
+  importmap outdated           <span class="c"># Check for outdated packages</span>
+  importmap packages           <span class="c"># Print out packages with version numbers</span>
+  importmap pin <span class="o">[</span><span class="k">*</span>PACKAGES]    <span class="c"># Pin new packages</span>
+  importmap unpin <span class="o">[</span><span class="k">*</span>PACKAGES]  <span class="c"># Unpin existing packages</span>
+  importmap update             <span class="c"># Update outdated package pins</span>
+</code></pre></div></div>
+
+<p>When using the <em>pin</em> command for a JavaScript package, instead of setting the <code class="highlighter-rouge">to:</code> argument to the CDN, Importmap resolves package dependencies and downloads the package and dependencies to <em>vendor/javascript</em>, allowing the Rails application to serve those files:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bin/importmap pin local-time
+Pinning <span class="s2">"local-time"</span> to vendor/javascript/local-time.js via download from https://ga.jspm.io/npm:local-time@3.0.2/app/assets/javascripts/local-time.es2017-esm.js
+</code></pre></div></div>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># config/importmap.rb</span>
+<span class="o">...</span>
+<span class="n">pin</span> <span class="s2">"local-time"</span> <span class="c1"># @3.0.2</span>
+</code></pre></div></div>
+
+<p>This approach works well when your package has simple dependencies or well-defined dependencies in the JavaScript package. If that’s not the case, it becomes challenging to use with Importmap vendoring the code at <em>vendor/javascript</em>. It might work with the URL and manual dependency addition, or you can <a href="https://mariochavez.io/desarrollo/2024/08/09/no-build-javascript-rails-importmap/">tweak the vendored code</a> to make it work.</p>
+
+<h2 id="how-to-work-with-rails-gems---engines---and-importmap">How to Work with Rails Gems - Engines - and Importmap?</h2>
+
+<p>There are two approaches to creating Ruby on Rails gems compatible with Importmap. The first approach allows your gem to provide JavaScript code, which you can choose to pin in the Importmap configuration. This is how the <strong>turbo-rails</strong> and <strong>stimulus-rails</strong> gems are implemented.</p>
+
+<p>Place your JavaScript code in the <em>app/assets/javascripts</em> folder of your gem. You may need an additional process that minifies the JavaScript files and generates JavaScript map files. Then, inside the <code class="highlighter-rouge">Engine</code> class, define an <code class="highlighter-rouge">initializer</code> hook to declare your JavaScript code with Propshaft:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="nn">MyEngine</span>
+  <span class="k">class</span> <span class="nc">Engine</span> <span class="o">&lt;</span> <span class="o">::</span><span class="no">Rails</span><span class="o">::</span><span class="no">Engine</span>
+    <span class="c1"># Additional code</span>
+    <span class="no">PRECOMPILE_ASSETS</span> <span class="o">=</span> <span class="sx">%w( my_javascript.js my_javascript.min.js my_javascript.min.js.map )</span><span class="p">.</span><span class="nf">freeze</span>
+
+    <span class="n">initializer</span> <span class="s2">"my_engine.assets"</span> <span class="k">do</span>
+      <span class="k">if</span> <span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">config</span><span class="p">.</span><span class="nf">respond_to?</span><span class="p">(</span><span class="ss">:assets</span><span class="p">)</span>
+        <span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">config</span><span class="p">.</span><span class="nf">assets</span><span class="p">.</span><span class="nf">precompile</span> <span class="o">+=</span> <span class="no">PRECOMPILE_ASSETS</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>The second option uses an Importmap configuration file. If your engine has its layout template and the views are isolated from the host application, and the engine doesn’t need to share the JavaScript code with the host application, you can create an Importmap configuration file at <em>config/importmap.rb</em>, set your pins, place your JavaScript code at <em>app/javascript</em>, and configure the engine with an initializer.</p>
+
+<p>Open your <code class="highlighter-rouge">engine.rb</code> Ruby file and add the Importmap configuration file and a sweeper:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">initializer</span> <span class="s2">"my-engine.importmap"</span><span class="p">,</span> <span class="ss">after: </span><span class="s2">"importmap"</span> <span class="k">do</span> <span class="o">|</span><span class="n">app</span><span class="o">|</span>
+  <span class="no">MyEngine</span><span class="p">.</span><span class="nf">importmap</span><span class="p">.</span><span class="nf">draw</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s2">"config/importmap.rb"</span><span class="p">))</span>
+  <span class="no">MyEngine</span><span class="p">.</span><span class="nf">importmap</span><span class="p">.</span><span class="nf">cache_sweeper</span><span class="p">(</span><span class="ss">watches: </span><span class="n">root</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s2">"app/javascript"</span><span class="p">))</span>
+
+  <span class="no">ActiveSupport</span><span class="p">.</span><span class="nf">on_load</span><span class="p">(</span><span class="ss">:action_controller_base</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">before_action</span> <span class="p">{</span> <span class="no">MyEngine</span><span class="p">.</span><span class="nf">importmap</span><span class="p">.</span><span class="nf">cache_sweeper</span><span class="p">.</span><span class="nf">execute_if_updated</span> <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Specify the Importmap to use in your engine’s layout template:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="err">%=</span> <span class="na">javascript_importmap_tags</span> <span class="err">"</span><span class="na">application</span><span class="err">",</span> <span class="na">importmap:</span> <span class="na">MyEngine.importmap</span> <span class="err">%</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p>For sharing JavaScript code with the host application, like Stimulus controllers, create a partial Importmap configuration file and set the engine to merge it with the main one in the host application.</p>
+
+<p>Create an Importmap configuration file at <em>config/importmap.rb</em> and add the JavaScript pins to share with the host application. If you have dependencies for external packages, add those via a generator or installer to the host application:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pin_all_from</span> <span class="no">File</span><span class="p">.</span><span class="nf">expand_path</span><span class="p">(</span><span class="s2">"../app/assets/javascripts/controllers"</span><span class="p">,</span> <span class="n">__dir__</span><span class="p">),</span> <span class="ss">under: </span><span class="s2">"controllers"</span><span class="p">,</span> <span class="ss">preload: </span><span class="kp">false</span>
+</code></pre></div></div>
+
+<p>Open your <code class="highlighter-rouge">engine.rb</code> file and add an initializer:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">initializer</span> <span class="s2">"maquina.importmap"</span><span class="p">,</span> <span class="ss">before: </span><span class="s2">"importmap"</span> <span class="k">do</span> <span class="o">|</span><span class="n">app</span><span class="o">|</span>
+  <span class="n">app</span><span class="p">.</span><span class="nf">config</span><span class="p">.</span><span class="nf">importmap</span><span class="p">.</span><span class="nf">paths</span> <span class="o">&lt;&lt;</span> <span class="no">Engine</span><span class="p">.</span><span class="nf">root</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s2">"config/importmap.rb"</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h2 id="what-are-the-advantages-of-using-importmap">What are the Advantages of Using Importmap?</h2>
+
+<p>From a Ruby on Rails developer perspective, the main advantage of using Importmap is the freedom from requiring a JavaScript runtime-like node and freedom from the <em>node_modules</em> dependency.</p>
+
+<p>Additionally, you don’t need an additional process in development mode to transpile and minify the JavaScript code. You rely on web standards to serve the code to the browser. Deploying your Rails application behind a reverse proxy offers several benefits. First, if you enable the HTTP/2 protocol, your browser can fetch multiple files with a single HTTP connection, and downloading many small JavaScript files won’t impact performance.</p>
+
+<p><img src="/images/no-build-importmap/tools.png" alt="Web tools" /></p>
+
+<p>Enabling your proxy to use gzip or brotli compression ensures you are sending very small files while maintaining readability when using browser developer tools. If you change one file, you only need to invalidate that specific file, which the browser will download. The browser knows that a file was modified because of the fingerprint that Propshaft adds to all files.</p>
+
+<p>Using a reverse proxy like <a href="https://github.com/basecamp/thruster">Thruster</a> along with Puma offloads the assets serving from the Rails application. Thruster can cache assets and serve them when a client requests a file.</p>
+
+<h2 id="when-not-to-use-importmap">When Not to Use Importmap</h2>
+
+<p>There are cases where you should avoid using Importmap in a Rails application. If you are building a SPA application with React, Vue, or any other similar tool, there is a high likelihood you are writing your code with TypeScript. In this case, you should stick with the bundling strategy.</p>
+
+<p>Additionally, if you need to support older browsers, bundling with code transpilation is a better option.</p>
+
+  </div>
+</article>
+
+      </main>
+    </section>
+
+  </body>
+</html>
