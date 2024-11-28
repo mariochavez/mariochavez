@@ -16,11 +16,11 @@ ld_schema: >
       "@type": "WebPage",
       "@id": "https://mariochavez.io/desarrollo/2024/11/28/nobuild-with-rails-and-importmap"
     },
-    "headline"": "Nobuild with Rails and Importmap",
+    "headline": "Nobuild with Rails and Importmap",
     "description": "Learn how to use Importmap in Ruby on Rails to manage JavaScript dependencies without bundling. Covers web standards, Rails integration, gems compatibility, and suggested practices.",
     "author": {
       "@type": "Person",
-      name: "Mario Alberto Chávez Cárdenas"
+      "name": "Mario Alberto Chávez Cárdenas"
     },
     "datePublished": "2024-11-28",
     "publisher": {
@@ -31,7 +31,7 @@ ld_schema: >
         "url": "https://mariochavez.io/logo.png"
       }
     },
-    "articleBody": "The latest versions of Ruby on Rails have focused on simplicity across different aspects of the framework, accompanied by the promise to return to the "one-man framework" (where a single developer can effectively build and maintain an entire application). .",
+    "articleBody": "The latest versions of Ruby on Rails have focused on simplicity across different aspects of the framework, accompanied by the promise to return to the 'one-man framework' (where a single developer can effectively build and maintain an entire application). .",
     "keywords": [
       "Ruby on Rails",
       "Importmap",
@@ -65,7 +65,7 @@ ld_schema: >
         "height": 450,
         "caption": "Web developer tools showing HTTP/2 performance"
       }
-    ],
+    ]
   }
 ---
 
