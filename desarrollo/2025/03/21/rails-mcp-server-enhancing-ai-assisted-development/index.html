@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- Begin Bridgetown SEO tag v6.0.0 -->
+<title>Rails MCP Server - Enhancing AI-Assisted Development | Mario Alberto Chávez</title>
+<meta property="og:title" content="Rails MCP Server - Enhancing AI-Assisted Development" />
+<meta name="author" content="Mario Alberto Chávez" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Discover how the Rails MCP Server creates a bridge between Claude AI and your Rails projects, improving code quality and developer workflow while maintaining control over your Neovim-based development process." />
+<meta property="og:description" content="Discover how the Rails MCP Server creates a bridge between Claude AI and your Rails projects, improving code quality and developer workflow while maintaining control over your Neovim-based development process." />
+<link rel="canonical" href="https://mariochavez.io/desarrollo/2025/03/21/rails-mcp-server-enhancing-ai-assisted-development/" />
+<meta property="og:url" content="https://mariochavez.io/desarrollo/2025/03/21/rails-mcp-server-enhancing-ai-assisted-development/" />
+<meta property="og:site_name" content="Mario Alberto Chávez" />
+<meta property="og:image" content="https://mariochavez.io/images/rails-mcp-server/rails-mcp-server.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-03-21T18:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://mariochavez.io/images/rails-mcp-server/rails-mcp-server.jpg" />
+<meta property="twitter:title" content="Rails MCP Server - Enhancing AI-Assisted Development" />
+<meta name="twitter:site" content="@mario_chavez" />
+<meta name="twitter:creator" content="@Mario Alberto Chávez" />
+<!-- End Bridgetown SEO tag -->
+
+
+<link type="application/atom+xml" rel="alternate" href="https://mariochavez.io/feed.xml" title="Mario Alberto Chávez" />
+
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+<link rel="stylesheet" href="/assets/index.R2SXEKOT.css" />
+<script src="/assets/index.KUPNVLMR.js" defer></script>
+
+
+<script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://mariochavez.io/desarrollo/2025/03/21/rails-mcp-server"
+  },
+  "headline": "Rails MCP Server - Enhancing AI-Assisted Development",
+  "description": "Discover how the Rails MCP Server creates a bridge between Claude AI and your Rails projects, improving code quality and developer workflow while maintaining control over your Neovim-based development process.",
+  "author": {
+    "@type": "Person",
+    "name": "Mario Alberto Chávez Cárdenas"
+  },
+  "datePublished": "2025-03-21",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Mario Alberto Chávez Cárdenas",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://mariochavez.io/logo.png"
+    }
+  },
+  "articleBody": "AI has changed the way we write and deploy code to production. LLMs are getting better and better at understanding and also at generating code. The Rails MCP Server represents a significant step forward in how Ruby on Rails developers can interact with AI assistants like Claude while maintaining their preferred development environment.",
+  "keywords": [
+    "Rails MCP Server",
+    "Model Context Protocol",
+    "Ruby on Rails",
+    "Claude AI",
+    "AI-assisted development",
+    "Neovim workflow",
+    "Rails tooling",
+    "MCP"
+  ],
+  "articleSection": "Desarrollo",
+  "inLanguage": "en-US",
+  "programmingLanguage": "Ruby",
+  "proficiencyLevel": "Intermediate",
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://mariochavez.io/images/rails-mcp-server/rails-mcp-server.jpg",
+      "width": 1200,
+      "height": 630,
+      "caption": "Rails MCP Server with Claude AI"
+    }
+  ],
+  "about": {
+    "@type": "SoftwareApplication",
+    "name": "Rails MCP Server",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Cross-platform",
+    "offers": {
+      "@type": "Offer",
+      "price": "0.00",
+      "priceCurrency": "USD"
+    }
+  }
+}
+
+</script>
+
+  </head>
+  <body class="min-h-screen antialiased post ">
+    <section class="flex flex-nowrap">
+      <aside class="sticky top-0 flex flex-col hidden w-64 max-h-screen min-h-screen bg-gray-100 xl:w-96 lg:block">
+  <div class="px-8 xl:px-10">
+    <header class="py-14">
+      <h1 class="font-sans text-3xl font-medium tracking-widest text-gray-700 uppercase">Mario Alberto Chávez</h1>
+      <h2 class="mt-4 font-serif text-lg italic tracking-wide text-gray-500 font-extralight">Blog personal desarrollo de software</h2>
+    </header>
+
+    <nav class="lg:flex-grow lg:py-14">
+  <ul>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/">Inicio</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/desarrollo">Desarrollo</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/fotografía">Fotografía</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/proyectos">Proyectos</a></li>
+    <li class="font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/acercade">Acerca de</a></li>
+  </ul>
+</nav>
+
+
+    <footer class="py-8 lg:py-14">
+  <div class="flex space-x-4">
+    <a href="https://twitter.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24" class="w-4 h-4"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+    </a>
+    <a href="https://instagram.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="none" viewBox="0 0 24 24" class="w-4 h-4"><path d="M15.233 5.488c-.843-.038-1.097-.046-3.233-.046s-2.389.008-3.232.046c-2.17.099-3.181 1.127-3.279 3.279-.039.844-.048 1.097-.048 3.233s.009 2.389.047 3.233c.099 2.148 1.106 3.18 3.279 3.279.843.038 1.097.047 3.233.047 2.137 0 2.39-.008 3.233-.046 2.17-.099 3.18-1.129 3.279-3.279.038-.844.046-1.097.046-3.233s-.008-2.389-.046-3.232c-.099-2.153-1.111-3.182-3.279-3.281zm-3.233 10.62c-2.269 0-4.108-1.839-4.108-4.108 0-2.269 1.84-4.108 4.108-4.108s4.108 1.839 4.108 4.108c0 2.269-1.839 4.108-4.108 4.108zm4.271-7.418c-.53 0-.96-.43-.96-.96s.43-.96.96-.96.96.43.96.96-.43.96-.96.96zm-1.604 3.31c0 1.473-1.194 2.667-2.667 2.667s-2.667-1.194-2.667-2.667c0-1.473 1.194-2.667 2.667-2.667s2.667 1.194 2.667 2.667zm4.333-12h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm.952 15.298c-.132 2.909-1.751 4.521-4.653 4.654-.854.039-1.126.048-3.299.048s-2.444-.009-3.298-.048c-2.908-.133-4.52-1.748-4.654-4.654-.039-.853-.048-1.125-.048-3.298 0-2.172.009-2.445.048-3.298.134-2.908 1.748-4.521 4.654-4.653.854-.04 1.125-.049 3.298-.049s2.445.009 3.299.048c2.908.133 4.523 1.751 4.653 4.653.039.854.048 1.127.048 3.299 0 2.173-.009 2.445-.048 3.298z"/></svg>
+    </a>
+  </div>
+  <p class="mt-4 font-sans text-xs font-light tracking-wider text-gray-500 xl:text-sm">©2021. Mario Alberto Chávez Cárdenas</p>
+</footer>
+
+  </div>
+</aside>
+
+
+      <main class="flex-auto overflow-hidden text-gray-700">
+        <header class="flex flex-col bg-gray-100 lg:hidden" data-controller="menu">
+  <div class="flex flex-col w-full px-8 md:flex-row xl:px-10">
+    <div class="w-full pt-12 pb-6 md:py-12">
+      <a href="/">
+        <h1 class="font-sans text-lg font-medium tracking-widest text-gray-700 uppercase md:text-2xl">Mario Alberto Chávez</h1>
+      </a>
+      <h2 class="mt-4 font-serif text-xs italic tracking-wide text-gray-500 md:text-lg font-extralight">Blog personal desarrollo de software</h2>
+    </div>
+
+    <div class="pb-6 md:py-12 md:pl-4 md:self-center md:justify-self-end md:pl-0">
+      <a href="#" class="inline-flex items-center px-4 py-2 border border-gray-500 md:flex hover:text-red-500 hover:border-red-500" data-action="menu#toggle">
+        <span class="font-semibold text-md md:text-lg">Menú</span>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-4 h-4 ml-4" data-menu-target="closed">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hidden w-4 h-4 ml-4" data-menu-target="opened">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <div data-menu-target="submenu" class="hidden w-full px-8">
+    <nav class="lg:flex-grow lg:py-14">
+  <ul>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/">Inicio</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/desarrollo">Desarrollo</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/fotografía">Fotografía</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/proyectos">Proyectos</a></li>
+    <li class="font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/acercade">Acerca de</a></li>
+  </ul>
+</nav>
+
+
+    <footer class="py-8 lg:py-14">
+  <div class="flex space-x-4">
+    <a href="https://twitter.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24" class="w-4 h-4"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+    </a>
+    <a href="https://instagram.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="none" viewBox="0 0 24 24" class="w-4 h-4"><path d="M15.233 5.488c-.843-.038-1.097-.046-3.233-.046s-2.389.008-3.232.046c-2.17.099-3.181 1.127-3.279 3.279-.039.844-.048 1.097-.048 3.233s.009 2.389.047 3.233c.099 2.148 1.106 3.18 3.279 3.279.843.038 1.097.047 3.233.047 2.137 0 2.39-.008 3.233-.046 2.17-.099 3.18-1.129 3.279-3.279.038-.844.046-1.097.046-3.233s-.008-2.389-.046-3.232c-.099-2.153-1.111-3.182-3.279-3.281zm-3.233 10.62c-2.269 0-4.108-1.839-4.108-4.108 0-2.269 1.84-4.108 4.108-4.108s4.108 1.839 4.108 4.108c0 2.269-1.839 4.108-4.108 4.108zm4.271-7.418c-.53 0-.96-.43-.96-.96s.43-.96.96-.96.96.43.96.96-.43.96-.96.96zm-1.604 3.31c0 1.473-1.194 2.667-2.667 2.667s-2.667-1.194-2.667-2.667c0-1.473 1.194-2.667 2.667-2.667s2.667 1.194 2.667 2.667zm4.333-12h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm.952 15.298c-.132 2.909-1.751 4.521-4.653 4.654-.854.039-1.126.048-3.299.048s-2.444-.009-3.298-.048c-2.908-.133-4.52-1.748-4.654-4.654-.039-.853-.048-1.125-.048-3.298 0-2.172.009-2.445.048-3.298.134-2.908 1.748-4.521 4.654-4.653.854-.04 1.125-.049 3.298-.049s2.445.009 3.299.048c2.908.133 4.523 1.751 4.653 4.653.039.854.048 1.127.048 3.299 0 2.173-.009 2.445-.048 3.298z"/></svg>
+    </a>
+  </div>
+  <p class="mt-4 font-sans text-xs font-light tracking-wider text-gray-500 xl:text-sm">©2021. Mario Alberto Chávez Cárdenas</p>
+</footer>
+
+  </div>
+</header>
+
+        <article class="py-16 font-serif lg:py-24 post">
+  <header class="px-4 m-auto md:max-w-2xl lg:max-w-4xl">
+    <a href="/desarrollo" class="pb-1 text-sm font-bold leading-normal uppercase border-b-4 border-gray-200 transition-all hover:text-red-500">desarrollo</a>
+    <h1 class="mt-6 text-3xl font-bold tracking-wide md:text-4xl lg:text-6xl">Rails MCP Server - Enhancing AI-Assisted Development</h1>
+  </header>
+
+  <div class="px-4 m-auto mt-16 tracking-wider md:max-w-2xl lg:max-w-4xl prose md:prose-lg">
+    <figure class="mt-16 aspect-w-16 aspect-h-9">
+      <img src="/images/rails-mcp-server/rails-mcp-server.jpg" loading="lazy" />
+    </figure>
+
+    <p>AI has changed the way we write and deploy code to production. LLMs are getting better and better at understanding and also at generating code. It started with chats, where you can make questions and share code, then evolved to suggest auto-completion inside the editor and later the inclusion of chats in the same editor.</p>
+
+<p>Nowadays we have editors that are created specifically to understand the code base and write code with just prompts, and a button to accept the changes and update the code base.</p>
+
+<p>But, there is a shortcoming when working with AI, mainly because of the bias of the LLMs that are better at generating code for the JavaScript ecosystem, and not that good with code in almost every other programming language.</p>
+
+<p>Still, AI is great for generating boilerplate code or for green field projects. Moreover, the possibility to extend LLM model knowledge with techniques and protocols that help with the time to deploy, adding significant value, even if it requires more iterations to help the LLM get the correct context.</p>
+
+<p>In my case, I can’t take advantage of the new IDEs that integrate AI into their core; I don’t use IDEs, I use Neovim. There are tools to make Neovim work like those IDEs, but still, that is something that I don’t want to do.</p>
+
+<p>With my way of work, I prefer to use Claude Desktop with the Sonnets models. My workflow is simple; I create projects with a prompt that provides general instructions for the model, something like:</p>
+
+<blockquote>
+  <p>You are an expert Ruby on Rails developer. Help me to write professional and well-crafted code; don’t explain it unless required. You are familiar with TailwindCSS, Turbo Rails, Hotwire, and Stimulus. Also, don’t write tests unless you are required. All tests should be with minitest in unit test style.</p>
+</blockquote>
+
+<p>Then, in the knowledge base of the project, I add documentation and texts that provide context in greater detail, along with code style, what to do, and what not to do.</p>
+
+<p>Once my projects are configured, then I can start doing some work. I mainly work on brownfield projects with large code bases, so sharing the whole code base is not an option. Before I start the task at hand, I collect fragments of code that can be relevant to what I need to accomplish.</p>
+
+<p>I even have a bash script that can copy the full content of a file along with the file path. The AI generates new code or changes with my instructions since the AI can’t write directly to my files, this allows me to review the code and assess if it will work as expected and if the code style is consistent with my code base.</p>
+
+<p>If I spot something that I can write better or might produce an error, I don’t ask the AI to fix it. I just copy what makes sense to Neovim, update the code, and copy it back to the AI so it can have the latest version. I work this way because I don’t Vibe code. I need to keep some quality in the code, and I also need to fully understand what is happening because that code powers companies and their customers.</p>
+
+<p>This workflow works great so far, but when I learned about the Model Context Protocol or MCP, I wondered how I might be able to use it to improve how I share code with Claude Desktop. So, I embarked on a quest to create a Rails MCP server; actually, Claude Desktop wrote about 80% of it.</p>
+
+<h2 id="what-the-rails-mcp-server-can-do">What the Rails MCP Server can do?</h2>
+
+<p>The Rails MCP Server provides a set of tools that allow Claude to interact directly with my Rails projects. This enables a more seamless workflow when I need AI assistance with my codebase. Here are the capabilities:</p>
+
+<h3 id="project-navigation">Project Navigation</h3>
+
+<p>I can easily switch between different Rails projects using the <code class="highlighter-rouge">switch_project</code> tool. This is particularly useful when I’m working on multiple applications and need Claude’s assistance with different codebases throughout my workday.</p>
+
+<p>The Rails MCP Server follows the XDG Base Directory Specification for configuration files:</p>
+
+<ul>
+  <li>On macOS: <code class="highlighter-rouge">$XDG_CONFIG_HOME/rails-mcp</code> or <code class="highlighter-rouge">~/.config/rails-mcp</code> if XDG_CONFIG_HOME is not set</li>
+  <li>On Windows: <code class="highlighter-rouge">%APPDATA%\rails-mcp</code></li>
+</ul>
+
+<p>The server automatically creates these directories and an empty <code class="highlighter-rouge">projects.yml</code> file on the first run. To configure my projects, I edit the <code class="highlighter-rouge">projects.yml</code> file to include my Rails projects:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">store</span><span class="pi">:</span> <span class="s2">"</span><span class="s">~/projects/store"</span>
+<span class="na">blog</span><span class="pi">:</span> <span class="s2">"</span><span class="s">~/projects/rails-blog"</span>
+</code></pre></div></div>
+
+<p>Each key in the YAML file is a project name (used with the <code class="highlighter-rouge">switch_project</code> tool), and each value is the path to the project directory.</p>
+
+<p>Example prompts I use:</p>
+
+<ul>
+  <li>“Can you switch to the ‘store’ project so we can explore it?”</li>
+  <li>“I’d like to analyze my ‘blog’ application. Please switch to that project first.”</li>
+</ul>
+
+<h3 id="project-overview">Project Overview</h3>
+
+<p>With the <code class="highlighter-rouge">get_project_info</code> tool, Claude can provide me with a comprehensive overview of my Rails application, including its version, directory structure, and configuration. This gives Claude the necessary context to understand my application’s architecture before diving into specific tasks.</p>
+
+<p>Example prompts I use:</p>
+
+<ul>
+  <li>“Now that we’re in the blog project, can you give me an overview of the project structure and Rails version?”</li>
+  <li>“Tell me about this Rails application. What version is it running and how is it organized?”</li>
+</ul>
+
+<h3 id="file-exploration">File Exploration</h3>
+
+<p>The <code class="highlighter-rouge">list_files</code> tool allows Claude to scan my project directories and locate specific files. I can filter by directory path or file pattern, making it easy to find what I need.</p>
+
+<p>Example prompts I use:</p>
+
+<ul>
+  <li>“Can you list all the model files in this project?”</li>
+  <li>“Show me all the controller files in the app/controllers directory.”</li>
+  <li>“List all the JavaScript files in the app/javascript directory.”</li>
+</ul>
+
+<h3 id="code-examination">Code Examination</h3>
+
+<p>Using the <code class="highlighter-rouge">get_file</code> tool, Claude can retrieve the complete content of any file in my project with syntax highlighting. This eliminates my need to manually copy and paste code snippets, streamlining my workflow.</p>
+
+<p>Example prompts I use:</p>
+
+<ul>
+  <li>“Can you show me the content of the User model file?”</li>
+  <li>“I need to see what’s in app/controllers/products_controller.rb. Can you retrieve that file?”</li>
+  <li>“Please show me the application.rb file so I can check the configuration settings.”</li>
+</ul>
+
+<h3 id="route-analysis">Route Analysis</h3>
+
+<p>The <code class="highlighter-rouge">get_routes</code> tool provides access to all HTTP routes defined in my Rails application. Claude can analyze the routing structure to help me understand API endpoints, URL patterns, and controller actions.</p>
+
+<p>Example prompts I use:</p>
+
+<ul>
+  <li>“Can you show me all the routes defined in this application?”</li>
+  <li>“I need to understand the API endpoints available in this project. Can you list the routes?”</li>
+  <li>“Show me the routing configuration for this Rails app so I can see how the URLs are structured.”</li>
+</ul>
+
+<h3 id="model-inspection">Model Inspection</h3>
+
+<p>With the <code class="highlighter-rouge">get_models</code> tool, Claude can examine my Active Record models in detail. It can list all models or provide comprehensive information about a specific model, including its schema, associations, and code implementation.</p>
+
+<p>Example prompts I use:</p>
+
+<ul>
+  <li>“Can you list all the models in this Rails project?”</li>
+  <li>“I’d like to understand the User model in detail. Can you show me its schema, associations, and code?”</li>
+  <li>“Show me the Product model’s definition, including its relationships with other models.”</li>
+</ul>
+
+<h3 id="schema-investigation">Schema Investigation</h3>
+
+<p>The <code class="highlighter-rouge">get_schema</code> tool allows Claude to access my database schema information. It can show the complete database structure or focus on a specific table, displaying columns, data types, constraints, and relationships.</p>
+
+<p>Example prompts I use:</p>
+
+<ul>
+  <li>“Can you show me the complete database schema for this Rails application?”</li>
+  <li>“I’d like to see the structure of the users table. Can you retrieve that schema information?”</li>
+  <li>“Show me the columns and their data types in the products table.”</li>
+</ul>
+
+<p>The Rails MCP Server doesn’t just save me time—it enhances Claude’s understanding of my codebase, leading to more accurate and relevant assistance. Whether I’m troubleshooting an issue, implementing a new feature, or refactoring existing code, Claude can now access the context it needs to provide helpful suggestions tailored to my specific project.</p>
+
+<h2 id="installation">Installation</h2>
+
+<p>Installing the Rails MCP Server is straightforward. I start by installing the gem:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem <span class="nb">install </span>rails-mcp-server
+</code></pre></div></div>
+
+<p>After installation, the <code class="highlighter-rouge">rails-mcp-server</code> and <code class="highlighter-rouge">rails-mcp-setup-claude</code> executables are available in my PATH.</p>
+
+<h2 id="claude-desktop-integration">Claude Desktop Integration</h2>
+
+<p>I run the setup script which automatically configures Claude Desktop and sets up the proper XDG-compliant directory structure:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails-mcp-setup-claude
+</code></pre></div></div>
+
+<p>The script:</p>
+
+<ul>
+  <li>Creates the appropriate config directory for my platform</li>
+  <li>Creates an empty <code class="highlighter-rouge">projects.yml</code> file if it doesn’t exist</li>
+  <li>Updates my Claude Desktop configuration</li>
+</ul>
+
+<p>After running the script, I restart Claude Desktop to apply the changes.</p>
+
+<h3 id="ruby-version-manager-users">Ruby Version Manager Users</h3>
+
+<p>Claude Desktop launches the MCP server using my system’s default Ruby environment, bypassing version manager initialization (e.g., rbenv, RVM). The MCP server needs to use the same Ruby version where it was installed, as MCP server startup failures can occur when using an incompatible Ruby version.</p>
+
+<p>Since I use a Ruby version manager (rbenv), I create a symbolic link to my Ruby shim to ensure the correct version is used:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo ln</span> <span class="nt">-s</span> /home/mario/.rbenv/shims/ruby /usr/local/bin/ruby
+</code></pre></div></div>
+
+<p>I replace the path with my actual path for the Ruby shim.</p>
+
+<h2 id="final-thoughts">Final Thoughts</h2>
+
+<p>If you want access to the source code, here is the link <a href="https://github.com/maquina-app/rails-mcp-server">https://github.com/maquina-app/rails-mcp-server</a></p>
+
+<p>The Rails MCP Server is a significant step forward in how I interact with AI assistants like Claude as a Ruby on Rails developer. I’ve learned that AI outputs are only as good as the context I provide—when Claude has access to the right files and project structures, the quality and accuracy of its suggestions improve dramatically. Instead of manually copying snippets or trying to explain complex relationships between models, I can simply ask Claude to examine the relevant files directly, maintaining control over my development process while enhancing my existing Neovim workflow with contextually aware AI assistance.</p>
+
+  </div>
+</article>
+
+      </main>
+    </section>
+
+  </body>
+</html>

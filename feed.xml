@@ -1,4 +1,174 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es"><generator uri="https://bridgetownrb.com/" version="1.3.4">Bridgetown</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" hreflang="es" /><updated>2024-11-28T19:45:43+00:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Cháve</title><subtitle>Blog sobre temas de desarrollo de software Web con Ruby y Ruby on Rails, además de temas de fotografía análoga y digital.</subtitle><author><name>Mario Alberto Chávez</name></author><entry xml:lang="en_US"><title type="html">Nobuild with Rails and Importmap</title><link href="https://mariochavez.io/desarrollo/2024/11/28/nobuild-with-rails-and-importmap/" rel="alternate" type="text/html" title="Nobuild with Rails and Importmap" /><published>2024-11-28T18:00:00+00:00</published><updated>2024-11-28T18:00:00+00:00</updated><id>repo://posts.collection/_posts/2024-11-28-nobuild-with-rails-and-importmap.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2024/11/28/nobuild-with-rails-and-importmap/">&lt;p&gt;The latest versions of Ruby on Rails have focused on simplicity across different aspects of the framework, accompanied by the promise to return to the “one-man framework” (where a single developer can effectively build and maintain an entire application).&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es"><generator uri="https://bridgetownrb.com/" version="1.3.4">Bridgetown</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" hreflang="es" /><updated>2025-03-22T01:05:05+00:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez</title><subtitle>Blog sobre temas de desarrollo de software Web con Ruby y Ruby on Rails, además de temas de fotografía análoga y digital.</subtitle><author><name>Mario Alberto Chávez</name></author><entry xml:lang="en_US"><title type="html">Rails MCP Server - Enhancing AI-Assisted Development</title><link href="https://mariochavez.io/desarrollo/2025/03/21/rails-mcp-server-enhancing-ai-assisted-development/" rel="alternate" type="text/html" title="Rails MCP Server - Enhancing AI-Assisted Development" /><published>2025-03-21T18:00:00+00:00</published><updated>2025-03-21T18:00:00+00:00</updated><id>repo://posts.collection/_posts/2025-03-21-rails-mcp-server-enhancing-ai-assisted-development.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2025/03/21/rails-mcp-server-enhancing-ai-assisted-development/">&lt;p&gt;AI has changed the way we write and deploy code to production. LLMs are getting better and better at understanding and also at generating code. It started with chats, where you can make questions and share code, then evolved to suggest auto-completion inside the editor and later the inclusion of chats in the same editor.&lt;/p&gt;
+
+&lt;p&gt;Nowadays we have editors that are created specifically to understand the code base and write code with just prompts, and a button to accept the changes and update the code base.&lt;/p&gt;
+
+&lt;p&gt;But, there is a shortcoming when working with AI, mainly because of the bias of the LLMs that are better at generating code for the JavaScript ecosystem, and not that good with code in almost every other programming language.&lt;/p&gt;
+
+&lt;p&gt;Still, AI is great for generating boilerplate code or for green field projects. Moreover, the possibility to extend LLM model knowledge with techniques and protocols that help with the time to deploy, adding significant value, even if it requires more iterations to help the LLM get the correct context.&lt;/p&gt;
+
+&lt;p&gt;In my case, I can’t take advantage of the new IDEs that integrate AI into their core; I don’t use IDEs, I use Neovim. There are tools to make Neovim work like those IDEs, but still, that is something that I don’t want to do.&lt;/p&gt;
+
+&lt;p&gt;With my way of work, I prefer to use Claude Desktop with the Sonnets models. My workflow is simple; I create projects with a prompt that provides general instructions for the model, something like:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;You are an expert Ruby on Rails developer. Help me to write professional and well-crafted code; don’t explain it unless required. You are familiar with TailwindCSS, Turbo Rails, Hotwire, and Stimulus. Also, don’t write tests unless you are required. All tests should be with minitest in unit test style.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Then, in the knowledge base of the project, I add documentation and texts that provide context in greater detail, along with code style, what to do, and what not to do.&lt;/p&gt;
+
+&lt;p&gt;Once my projects are configured, then I can start doing some work. I mainly work on brownfield projects with large code bases, so sharing the whole code base is not an option. Before I start the task at hand, I collect fragments of code that can be relevant to what I need to accomplish.&lt;/p&gt;
+
+&lt;p&gt;I even have a bash script that can copy the full content of a file along with the file path. The AI generates new code or changes with my instructions since the AI can’t write directly to my files, this allows me to review the code and assess if it will work as expected and if the code style is consistent with my code base.&lt;/p&gt;
+
+&lt;p&gt;If I spot something that I can write better or might produce an error, I don’t ask the AI to fix it. I just copy what makes sense to Neovim, update the code, and copy it back to the AI so it can have the latest version. I work this way because I don’t Vibe code. I need to keep some quality in the code, and I also need to fully understand what is happening because that code powers companies and their customers.&lt;/p&gt;
+
+&lt;p&gt;This workflow works great so far, but when I learned about the Model Context Protocol or MCP, I wondered how I might be able to use it to improve how I share code with Claude Desktop. So, I embarked on a quest to create a Rails MCP server; actually, Claude Desktop wrote about 80% of it.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-the-rails-mcp-server-can-do&quot;&gt;What the Rails MCP Server can do?&lt;/h2&gt;
+
+&lt;p&gt;The Rails MCP Server provides a set of tools that allow Claude to interact directly with my Rails projects. This enables a more seamless workflow when I need AI assistance with my codebase. Here are the capabilities:&lt;/p&gt;
+
+&lt;h3 id=&quot;project-navigation&quot;&gt;Project Navigation&lt;/h3&gt;
+
+&lt;p&gt;I can easily switch between different Rails projects using the &lt;code class=&quot;highlighter-rouge&quot;&gt;switch_project&lt;/code&gt; tool. This is particularly useful when I’m working on multiple applications and need Claude’s assistance with different codebases throughout my workday.&lt;/p&gt;
+
+&lt;p&gt;The Rails MCP Server follows the XDG Base Directory Specification for configuration files:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;On macOS: &lt;code class=&quot;highlighter-rouge&quot;&gt;$XDG_CONFIG_HOME/rails-mcp&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;~/.config/rails-mcp&lt;/code&gt; if XDG_CONFIG_HOME is not set&lt;/li&gt;
+  &lt;li&gt;On Windows: &lt;code class=&quot;highlighter-rouge&quot;&gt;%APPDATA%\rails-mcp&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The server automatically creates these directories and an empty &lt;code class=&quot;highlighter-rouge&quot;&gt;projects.yml&lt;/code&gt; file on the first run. To configure my projects, I edit the &lt;code class=&quot;highlighter-rouge&quot;&gt;projects.yml&lt;/code&gt; file to include my Rails projects:&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;store&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;~/projects/store&quot;&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;blog&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;~/projects/rails-blog&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Each key in the YAML file is a project name (used with the &lt;code class=&quot;highlighter-rouge&quot;&gt;switch_project&lt;/code&gt; tool), and each value is the path to the project directory.&lt;/p&gt;
+
+&lt;p&gt;Example prompts I use:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;“Can you switch to the ‘store’ project so we can explore it?”&lt;/li&gt;
+  &lt;li&gt;“I’d like to analyze my ‘blog’ application. Please switch to that project first.”&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;project-overview&quot;&gt;Project Overview&lt;/h3&gt;
+
+&lt;p&gt;With the &lt;code class=&quot;highlighter-rouge&quot;&gt;get_project_info&lt;/code&gt; tool, Claude can provide me with a comprehensive overview of my Rails application, including its version, directory structure, and configuration. This gives Claude the necessary context to understand my application’s architecture before diving into specific tasks.&lt;/p&gt;
+
+&lt;p&gt;Example prompts I use:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;“Now that we’re in the blog project, can you give me an overview of the project structure and Rails version?”&lt;/li&gt;
+  &lt;li&gt;“Tell me about this Rails application. What version is it running and how is it organized?”&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;file-exploration&quot;&gt;File Exploration&lt;/h3&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;list_files&lt;/code&gt; tool allows Claude to scan my project directories and locate specific files. I can filter by directory path or file pattern, making it easy to find what I need.&lt;/p&gt;
+
+&lt;p&gt;Example prompts I use:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;“Can you list all the model files in this project?”&lt;/li&gt;
+  &lt;li&gt;“Show me all the controller files in the app/controllers directory.”&lt;/li&gt;
+  &lt;li&gt;“List all the JavaScript files in the app/javascript directory.”&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;code-examination&quot;&gt;Code Examination&lt;/h3&gt;
+
+&lt;p&gt;Using the &lt;code class=&quot;highlighter-rouge&quot;&gt;get_file&lt;/code&gt; tool, Claude can retrieve the complete content of any file in my project with syntax highlighting. This eliminates my need to manually copy and paste code snippets, streamlining my workflow.&lt;/p&gt;
+
+&lt;p&gt;Example prompts I use:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;“Can you show me the content of the User model file?”&lt;/li&gt;
+  &lt;li&gt;“I need to see what’s in app/controllers/products_controller.rb. Can you retrieve that file?”&lt;/li&gt;
+  &lt;li&gt;“Please show me the application.rb file so I can check the configuration settings.”&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;route-analysis&quot;&gt;Route Analysis&lt;/h3&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;get_routes&lt;/code&gt; tool provides access to all HTTP routes defined in my Rails application. Claude can analyze the routing structure to help me understand API endpoints, URL patterns, and controller actions.&lt;/p&gt;
+
+&lt;p&gt;Example prompts I use:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;“Can you show me all the routes defined in this application?”&lt;/li&gt;
+  &lt;li&gt;“I need to understand the API endpoints available in this project. Can you list the routes?”&lt;/li&gt;
+  &lt;li&gt;“Show me the routing configuration for this Rails app so I can see how the URLs are structured.”&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;model-inspection&quot;&gt;Model Inspection&lt;/h3&gt;
+
+&lt;p&gt;With the &lt;code class=&quot;highlighter-rouge&quot;&gt;get_models&lt;/code&gt; tool, Claude can examine my Active Record models in detail. It can list all models or provide comprehensive information about a specific model, including its schema, associations, and code implementation.&lt;/p&gt;
+
+&lt;p&gt;Example prompts I use:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;“Can you list all the models in this Rails project?”&lt;/li&gt;
+  &lt;li&gt;“I’d like to understand the User model in detail. Can you show me its schema, associations, and code?”&lt;/li&gt;
+  &lt;li&gt;“Show me the Product model’s definition, including its relationships with other models.”&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;schema-investigation&quot;&gt;Schema Investigation&lt;/h3&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;get_schema&lt;/code&gt; tool allows Claude to access my database schema information. It can show the complete database structure or focus on a specific table, displaying columns, data types, constraints, and relationships.&lt;/p&gt;
+
+&lt;p&gt;Example prompts I use:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;“Can you show me the complete database schema for this Rails application?”&lt;/li&gt;
+  &lt;li&gt;“I’d like to see the structure of the users table. Can you retrieve that schema information?”&lt;/li&gt;
+  &lt;li&gt;“Show me the columns and their data types in the products table.”&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The Rails MCP Server doesn’t just save me time—it enhances Claude’s understanding of my codebase, leading to more accurate and relevant assistance. Whether I’m troubleshooting an issue, implementing a new feature, or refactoring existing code, Claude can now access the context it needs to provide helpful suggestions tailored to my specific project.&lt;/p&gt;
+
+&lt;h2 id=&quot;installation&quot;&gt;Installation&lt;/h2&gt;
+
+&lt;p&gt;Installing the Rails MCP Server is straightforward. I start by installing the gem:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gem &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;rails-mcp-server
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;After installation, the &lt;code class=&quot;highlighter-rouge&quot;&gt;rails-mcp-server&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;rails-mcp-setup-claude&lt;/code&gt; executables are available in my PATH.&lt;/p&gt;
+
+&lt;h2 id=&quot;claude-desktop-integration&quot;&gt;Claude Desktop Integration&lt;/h2&gt;
+
+&lt;p&gt;I run the setup script which automatically configures Claude Desktop and sets up the proper XDG-compliant directory structure:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rails-mcp-setup-claude
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The script:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Creates the appropriate config directory for my platform&lt;/li&gt;
+  &lt;li&gt;Creates an empty &lt;code class=&quot;highlighter-rouge&quot;&gt;projects.yml&lt;/code&gt; file if it doesn’t exist&lt;/li&gt;
+  &lt;li&gt;Updates my Claude Desktop configuration&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;After running the script, I restart Claude Desktop to apply the changes.&lt;/p&gt;
+
+&lt;h3 id=&quot;ruby-version-manager-users&quot;&gt;Ruby Version Manager Users&lt;/h3&gt;
+
+&lt;p&gt;Claude Desktop launches the MCP server using my system’s default Ruby environment, bypassing version manager initialization (e.g., rbenv, RVM). The MCP server needs to use the same Ruby version where it was installed, as MCP server startup failures can occur when using an incompatible Ruby version.&lt;/p&gt;
+
+&lt;p&gt;Since I use a Ruby version manager (rbenv), I create a symbolic link to my Ruby shim to ensure the correct version is used:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo ln&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; /home/mario/.rbenv/shims/ruby /usr/local/bin/ruby
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;I replace the path with my actual path for the Ruby shim.&lt;/p&gt;
+
+&lt;h2 id=&quot;final-thoughts&quot;&gt;Final Thoughts&lt;/h2&gt;
+
+&lt;p&gt;If you want access to the source code, here is the link &lt;a href=&quot;https://github.com/maquina-app/rails-mcp-server&quot;&gt;https://github.com/maquina-app/rails-mcp-server&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The Rails MCP Server is a significant step forward in how I interact with AI assistants like Claude as a Ruby on Rails developer. I’ve learned that AI outputs are only as good as the context I provide—when Claude has access to the right files and project structures, the quality and accuracy of its suggestions improve dramatically. Instead of manually copying snippets or trying to explain complex relationships between models, I can simply ask Claude to examine the relevant files directly, maintaining control over my development process while enhancing my existing Neovim workflow with contextually aware AI assistance.&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/rails-mcp-server/rails-mcp-server.jpg" /><media:content medium="image" url="https://mariochavez.io/images/rails-mcp-server/rails-mcp-server.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry xml:lang="en_US"><title type="html">Nobuild with Rails and Importmap</title><link href="https://mariochavez.io/desarrollo/2024/11/28/nobuild-with-rails-and-importmap/" rel="alternate" type="text/html" title="Nobuild with Rails and Importmap" /><published>2024-11-28T18:00:00+00:00</published><updated>2024-11-28T18:00:00+00:00</updated><id>repo://posts.collection/_posts/2024-11-28-nobuild-with-rails-and-importmap.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2024/11/28/nobuild-with-rails-and-importmap/">&lt;p&gt;The latest versions of Ruby on Rails have focused on simplicity across different aspects of the framework, accompanied by the promise to return to the “one-man framework” (where a single developer can effectively build and maintain an entire application).&lt;/p&gt;
 
 &lt;p&gt;Importmap Rails library is based on the principle that modern web browsers have caught up with the ECMAScript specification and can interpret ES Modules (ESM). As a web standard, Importmap allows you to control how JavaScript modules are resolved in the browser and manage dependencies and versions without the need to transpile or bundle the code sent to the browser.&lt;/p&gt;
 
@@ -1443,87 +1613,4 @@ css: bin/rails app:tailwindcss:watch
 
 &lt;p&gt;Overall, I’m happy that Ruby Next worked for me on this gem, this means that I can be used with earlier versions of Ruby for those that can’t use the latest version, but also I keep the joy of using newer syntax.&lt;/p&gt;
 
-&lt;p&gt;By the way, the issue was reported by the team working on &lt;a href=&quot;https://github.com/andreibondarev/langchainrb&quot; target=&quot;_blank&quot;&gt;langchainrb&lt;/a&gt;&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/ruby_next/ruby_next.jpg" /><media:content medium="image" url="https://mariochavez.io/images/ruby_next/ruby_next.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry xml:lang="en_US"><title type="html">Chroma Vector Database Ruby client</title><link href="https://mariochavez.io/desarrollo/2023/05/15/chroma-vector-database-ruby-client/" rel="alternate" type="text/html" title="Chroma Vector Database Ruby client" /><published>2023-05-15T18:00:00+00:00</published><updated>2023-05-15T18:00:00+00:00</updated><id>repo://posts.collection/_posts/2023-05-15-chroma-vector-database-ruby-client.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2023/05/15/chroma-vector-database-ruby-client/">&lt;p&gt;Chroma Vector Database Ruby client.&lt;/p&gt;
-
-&lt;p&gt;Today I’m releasing a gem called &lt;a href=&quot;https://github.com/mariochavez/chroma&quot; target=&quot;_blank&quot;&gt;chroma-db&lt;/a&gt; which is a Ruby client for &lt;a href=&quot;https://www.trychroma.com&quot; target=&quot;_blank&quot;&gt;Chroma Vector Database&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Chroma defines itself as “the AI-native open-source embedding database”. The interest in Vector Databases increased with the popularity of LLMs, these types of databases became the context memory for them.&lt;/p&gt;
-
-&lt;p&gt;My desire to start playing around with LLMs, especially the ones that you can run on your own, let me to the place to start writing tools for the Ruby language.&lt;/p&gt;
-
-&lt;h2 id=&quot;the-server&quot;&gt;The server&lt;/h2&gt;
-&lt;p&gt;To install Chroma locally, it requires a Python environment. There are many ways to install Python on your system. Choose the one that works better for you.&lt;/p&gt;
-
-&lt;p&gt;Here I’ll use &lt;a href=&quot;https://docs.conda.io/en/latest/miniconda.html&quot;&gt;miniconda&lt;/a&gt; installed via &lt;a href=&quot;https://brew.sh/&quot; target=&quot;_blank&quot;&gt;HomeBrew&lt;/a&gt; on macOS.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ brew install miniconda
-$ conda activate chroma
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Once the environment is ready, in my case, instead of installing Chroma via pip command I choose to clone the repo with a specific tag.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ git clone --depth 1 --branch 0.3.22  git@github.com:chroma-core/chroma.git
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;To start the server, go to Chroma cloned directory and use docker to create the image and start the service with Docker Compose.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ docker-compose up -d --build
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;This command starts the server at http://localhost:8000 but also starts the &lt;a href=&quot;https://clickhouse.com/&quot; target=&quot;_blank&quot;&gt;Clickhouse&lt;/a&gt; which is used by Chroma to persists embeddings, metadata, and documents.&lt;/p&gt;
-
-&lt;h2 id=&quot;the-client&quot;&gt;The client&lt;/h2&gt;
-&lt;p&gt;With the server up and running, the next step is to install the client, and then you are ready.&lt;/p&gt;
-
-&lt;p&gt;To install the client, just run&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ gem install chroma-db
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Or add it to your Gemfile with&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ bundle add chroma-db
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Here is an example of a few operations with Chroma.&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;logger&quot;&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;# Requiere Chroma Ruby client.&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;chroma-db&quot;&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;# Configure Chroma&apos;s host. Here you can specify your own host.&lt;/span&gt;
-&lt;span class=&quot;no&quot;&gt;Chroma&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;connect_host&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;http://localhost:8000&quot;&lt;/span&gt;
-&lt;span class=&quot;no&quot;&gt;Chroma&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;logger&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Logger&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;vg&quot;&gt;$stdout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;no&quot;&gt;Chroma&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;log_level&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Chroma&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;LEVEL_ERROR&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;# Check current Chrome server version&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;version&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Chroma&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Resources&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Database&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;version&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;# Create a new collection&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;collection&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Chroma&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Resources&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Collection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;collection_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;lang: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ruby&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;gem: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;chroma-db&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;# Add embeddings&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;embeddings&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;Chroma&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Resources&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Embedding&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;id: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;embedding: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;2.6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;3.1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;metadata: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;client: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;chroma-rb&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;document: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ruby&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;Chroma&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Resources&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Embedding&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;id: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;2&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;embedding: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;3.7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;2.8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.9&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;metadata: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;client: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;chroma-rb&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;document: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;rails&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;collection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;embeddings&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;h3 id=&quot;jupyter-notebook&quot;&gt;Jupyter notebook&lt;/h3&gt;
-&lt;p&gt;To explore a more complete example, chroma-db repository includes &lt;a href=&quot;https://github.com/mariochavez/chroma/blob/main/notebook/Chroma%20Gem.ipynb&quot; target=&quot;_blank&quot;&gt;Jupyter notebook&lt;/a&gt;. To use the notebook, install the following Python dependencies and install the &lt;a href=&quot;https://github.com/SciRuby/iruby&quot; target=&quot;_blank&quot;&gt;IRuby&lt;/a&gt; kernel.&lt;/p&gt;
-
-&lt;figure&gt;&lt;img src=&quot;/images/chroma-db/notebook-1.jpg&quot; /&gt;&lt;figcaption class=&quot;p-2 text-center&quot;&gt;Jupyter notebook&lt;/figcaption&gt;&lt;/figure&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ pip install jupyterlab notebook ipywidgets
-$ gem install iruby
-$ iruby register --force
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;figure&gt;&lt;img src=&quot;/images/chroma-db/notebook-2.jpg&quot; /&gt;&lt;figcaption class=&quot;p-2 text-center&quot;&gt;Jupyter notebook&lt;/figcaption&gt;&lt;/figure&gt;
-
-&lt;h2 id=&quot;final&quot;&gt;Final&lt;/h2&gt;
-&lt;p&gt;The work of LLMs is very popular now days, tooling in the Python and JavaScript world is moving very fast. Ruby has always been excluded from ML or NLP technology.&lt;/p&gt;
-
-&lt;p&gt;There is an opportunity for Ruby tools in the “chain” areas to connect and integrate services around the LLMs. If you feel the same, please contribute to improving this client and to create other tools that we can use in our Ruby world. &lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/chroma-db/chroma-client.jpg" /><media:content medium="image" url="https://mariochavez.io/images/chroma-db/chroma-client.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;p&gt;By the way, the issue was reported by the team working on &lt;a href=&quot;https://github.com/andreibondarev/langchainrb&quot; target=&quot;_blank&quot;&gt;langchainrb&lt;/a&gt;&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/ruby_next/ruby_next.jpg" /><media:content medium="image" url="https://mariochavez.io/images/ruby_next/ruby_next.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
