@@ -28,7 +28,7 @@ ld_schema: >
       "name": "Mario Alberto Chávez Cárdenas",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://mariochavez.io/logo.png"
+        "url": "https://mariochavez.io/images/mario.jpg"
       }
     },
     "articleBody": "AI has changed the way we write and deploy code to production. LLMs are getting better and better at understanding and also at generating code. The Rails MCP Server represents a significant step forward in how Ruby on Rails developers can interact with AI assistants like Claude while maintaining their preferred development environment.",
