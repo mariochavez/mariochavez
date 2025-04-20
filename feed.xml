@@ -1,4 +1,120 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es"><generator uri="https://bridgetownrb.com/" version="1.3.4">Bridgetown</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" hreflang="es" /><updated>2025-03-22T01:05:05+00:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez</title><subtitle>Blog sobre temas de desarrollo de software Web con Ruby y Ruby on Rails, además de temas de fotografía análoga y digital.</subtitle><author><name>Mario Alberto Chávez</name></author><entry xml:lang="en_US"><title type="html">Rails MCP Server - Enhancing AI-Assisted Development</title><link href="https://mariochavez.io/desarrollo/2025/03/21/rails-mcp-server-enhancing-ai-assisted-development/" rel="alternate" type="text/html" title="Rails MCP Server - Enhancing AI-Assisted Development" /><published>2025-03-21T18:00:00+00:00</published><updated>2025-03-21T18:00:00+00:00</updated><id>repo://posts.collection/_posts/2025-03-21-rails-mcp-server-enhancing-ai-assisted-development.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2025/03/21/rails-mcp-server-enhancing-ai-assisted-development/">&lt;p&gt;AI has changed the way we write and deploy code to production. LLMs are getting better and better at understanding and also at generating code. It started with chats, where you can make questions and share code, then evolved to suggest auto-completion inside the editor and later the inclusion of chats in the same editor.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es"><generator uri="https://bridgetownrb.com/" version="1.3.4">Bridgetown</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" hreflang="es" /><updated>2025-04-20T18:36:16+00:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez</title><subtitle>Blog sobre temas de desarrollo de software Web con Ruby y Ruby on Rails, además de temas de fotografía análoga y digital.</subtitle><author><name>Mario Alberto Chávez</name></author><entry xml:lang="en_US"><title type="html">Rails MCP Server with HTTP Server-Sent Events support</title><link href="https://mariochavez.io/desarrollo/2025/04/20/rails-mcp-server-with-sse/" rel="alternate" type="text/html" title="Rails MCP Server with HTTP Server-Sent Events support" /><published>2025-04-20T06:00:00+00:00</published><updated>2025-04-20T06:00:00+00:00</updated><id>repo://posts.collection/_posts/2025-04-20-rails-mcp-server-with-sse.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2025/04/20/rails-mcp-server-with-sse/">&lt;h1 id=&quot;rails-mcp-server-110-with-http-sse-support&quot;&gt;Rails MCP Server 1.1.0 with HTTP SSE support&lt;/h1&gt;
+
+&lt;p&gt;I’m excited to announce this new version of Rails MCP Server, version 1.1.0! This release introduces significant internal refactoring through the integration of the &lt;a href=&quot;https://github.com/jlowin/fastmcp&quot;&gt;FastMCP gem&lt;/a&gt;, providing better code organization and adding support for HTTP Server-Sent Events (SSE).&lt;/p&gt;
+
+&lt;h2 id=&quot;whats-new-in-v110&quot;&gt;What’s New in v1.1.0&lt;/h2&gt;
+
+&lt;h3 id=&quot;fastmcp-integration&quot;&gt;FastMCP Integration&lt;/h3&gt;
+
+&lt;p&gt;The most substantial change in this release is the internal refactoring to use the FastMCP gem. This refactoring has provided several benefits:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Improved Code Organization&lt;/strong&gt;: I’ve made the codebase more modular and easier to maintain&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Improved tools&lt;/strong&gt;: I’ve reviewed the code for each tool to fix issues with edge cases and to make the tools honor &lt;code class=&quot;highlighter-rouge&quot;&gt;.gitignore&lt;/code&gt; file when scanning the codebase for files. This is important for large codebases.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Added two new tools&lt;/strong&gt;: There are two new tools, analyze controller and views and analyze environment configuration. Analyze controllers and views finds all the relationships with the routes, views, stimulus controllers and controller actions in detail. Analyze environment configuration compares the configuration for inconsistencies between environments, missing configuration, and possible security issues, &lt;em&gt;it does not leak keys or passwords to the LLM&lt;/em&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;http-server-sent-events-sse-support&quot;&gt;HTTP Server-Sent Events (SSE) Support&lt;/h3&gt;
+
+&lt;p&gt;With this release, I’ve added HTTP Server-Sent Events (SSE) support for real-time communication:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Support for other clients:&lt;/strong&gt; Clients with support for HTTP Server-Sent Events (SSE) can now interact with the Rails MCP Server.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;using-http-mode-with-sse&quot;&gt;Using HTTP Mode with SSE&lt;/h2&gt;
+
+&lt;p&gt;The Rails MCP Server can now run in two distinct modes:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;STDIO mode (default)&lt;/strong&gt;: Communicates over standard input/output for direct integration with clients like Claude Desktop.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;HTTP mode&lt;/strong&gt;: Runs as an HTTP server with JSON-RPC and Server-Sent Events (SSE) endpoints.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;To start in HTTP mode:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Start in HTTP mode on the default port (6029)&lt;/span&gt;
+rails-mcp-server &lt;span class=&quot;nt&quot;&gt;--mode&lt;/span&gt; http
+
+&lt;span class=&quot;c&quot;&gt;# Start in HTTP mode on a custom port&lt;/span&gt;
+rails-mcp-server &lt;span class=&quot;nt&quot;&gt;--mode&lt;/span&gt; http &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; 8080
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;When running in HTTP mode, the server provides two endpoints:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;JSON-RPC endpoint: &lt;code class=&quot;highlighter-rouge&quot;&gt;http://localhost:&amp;lt;port&amp;gt;/mcp/messages&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;SSE endpoint: &lt;code class=&quot;highlighter-rouge&quot;&gt;http://localhost:&amp;lt;port&amp;gt;/mcp/sse&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This enables integration with web applications, dashboard tools, and other systems that need to communicate with the Rails MCP server.&lt;/p&gt;
+
+&lt;h2 id=&quot;upgrading-from-earlier-versions&quot;&gt;Upgrading from Earlier Versions&lt;/h2&gt;
+
+&lt;p&gt;Upgrading to v1.1.0 should be straightforward for most users. The API remains backward compatible, so existing code should continue to work without modification. To upgrade:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gem &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;rails-mcp-server&apos;&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# This installs the current version 1.1.0&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;under-the-hood&quot;&gt;Under the Hood&lt;/h2&gt;
+
+&lt;p&gt;I’ve streamlined the codebase significantly by refactoring to use FastMCP. The FastMCP gem provides a robust implementation of the MCP protocol, handling message encoding/decoding, connection management, and event dispatching.&lt;/p&gt;
+
+&lt;p&gt;I built the SSE implementation on top of Rack and integrated it seamlessly with FastMCP’s event system. This allows for efficient real-time updates and event streaming while maintaining compatibility with the Model Context Protocol standard.&lt;/p&gt;
+
+&lt;h2 id=&quot;testing-with-mcp-inspector&quot;&gt;Testing with MCP Inspector&lt;/h2&gt;
+
+&lt;p&gt;The Rails MCP Server v1.1.0 works seamlessly with MCP Inspector, making it easier than ever to test and debug your MCP server:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Install and run MCP Inspector with your Rails MCP Server&lt;/span&gt;
+npm &lt;span class=&quot;nt&quot;&gt;-g&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; @modelcontextprotocol/inspector
+
+&lt;span class=&quot;c&quot;&gt;# Run the inspector and connect to the Rails MCP Server via STDIO or HTTP SSE&lt;/span&gt;
+npx @modelcontextprotocol/inspector
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;how-i-use-the-rails-mcp-server&quot;&gt;How I use the Rails MCP Server&lt;/h2&gt;
+
+&lt;p&gt;I use the server with Claude Desktop from Anthropic. It does not yet support HTTP SSE; it can only communicate via STDIO. Adding HTTP SSE facilitates people using other clients to use the server easily, as using the server with Claude Desktop is not simple if you use a Ruby version manager.&lt;/p&gt;
+
+&lt;p&gt;Claude Desktop starts a process to run the server but with a &lt;em&gt;no login&lt;/em&gt; session, which means that your Ruby version manager is not initialized and macOS uses the bundled 2.6 Ruby version. There is no real fix for this situation, just a workaround. Please look at the &lt;a href=&quot;https://github.com/maquina-app/rails-mcp-server?tab=readme-ov-file#ruby-version-manager-users&quot;&gt;README&lt;/a&gt; to see how to make it work for &lt;strong&gt;rbenv&lt;/strong&gt;; a similar solution is required for other Ruby managers.&lt;/p&gt;
+
+&lt;p&gt;When I start a session with Claude, my first prompt is:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Switch to project my_finances, don&apos;t analyze the project or any loaded files until you are told to.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;I do this because the Sonnet model can start very creatively and begin analyzing all possible files in the project, consuming its quota.&lt;/p&gt;
+
+&lt;p&gt;I work on a feature per chat, so I load only the files that are related to the work that I want to do:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Load the following file or files, do not analyze or try to load dependencies unless you are told to.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Again, here I pass the list of files to load but I stop Sonnet from trying to analyze without knowing yet what I want to do. My next prompt is to explain what I want to do, and then I ask it to analyze the files and maybe load more if needed.&lt;/p&gt;
+
+&lt;p&gt;While working with Claude Desktop, it’s easy to reach the chat quota. I’m prepared at the end to continue with the feature if it’s not done yet. I use the following prompt:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Summarize this chat. Describe what is the goal and add any relevant information about what was done. Include the project name and the list with a brief description of any file loaded, generated or shared with you.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Then I copy the output and start a new chat with the following prompt:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Here is a summary of a previous chat. Switch to the project if a given name exists. Don&apos;t load any reference files until you are told to. Also, don&apos;t analyze the project or any loaded files until you are told to.
+Just comprehend in a general way what was done before.
+
+If you are told to generate data, always generate synthetic data unless you are told otherwise.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And continue with the cycle. Claude Desktop doesn’t write to the disk; I always review the generated code and copy it manually. I modify the code when it makes sense and share it back with Claude.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;I believe this release of Rails MCP Server v1.1.0 represents a significant step forward in terms of code quality and feature set. The integration with FastMCP provides a more maintainable foundation, while the addition of SSE support expands the communication options available to applications using the server.&lt;/p&gt;
+
+&lt;p&gt;I encourage you to upgrade to this latest version and explore the new capabilities it offers. As always, I welcome feedback and contributions from the community.&lt;/p&gt;
+
+&lt;p&gt;Source code is available at &lt;a href=&quot;https://github.com/maquina-app/rails-mcp-server&quot;&gt;https://github.com/maquina-app/rails-mcp-server&lt;/a&gt;&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/rails-mcp-server/rails-mcp-server-1-1-0.jpg" /><media:content medium="image" url="https://mariochavez.io/images/rails-mcp-server/rails-mcp-server-1-1-0.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry xml:lang="en_US"><title type="html">Rails MCP Server - Enhancing AI-Assisted Development</title><link href="https://mariochavez.io/desarrollo/2025/03/21/rails-mcp-server-enhancing-ai-assisted-development/" rel="alternate" type="text/html" title="Rails MCP Server - Enhancing AI-Assisted Development" /><published>2025-03-21T18:00:00+00:00</published><updated>2025-03-21T18:00:00+00:00</updated><id>repo://posts.collection/_posts/2025-03-21-rails-mcp-server-enhancing-ai-assisted-development.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2025/03/21/rails-mcp-server-enhancing-ai-assisted-development/">&lt;p&gt;AI has changed the way we write and deploy code to production. LLMs are getting better and better at understanding and also at generating code. It started with chats, where you can make questions and share code, then evolved to suggest auto-completion inside the editor and later the inclusion of chats in the same editor.&lt;/p&gt;
 
 &lt;p&gt;Nowadays we have editors that are created specifically to understand the code base and write code with just prompts, and a button to accept the changes and update the code base.&lt;/p&gt;
 
@@ -1537,80 +1653,4 @@ css: bin/rails app:tailwindcss:watch
 
 &lt;p&gt;Es importante que si estás considerando el hacerte de la suscripción veas primero los 5 videos gratuitos y decidas si es para ti o no, ya que no es reembolsable.&lt;/p&gt;
 
-&lt;p&gt;La serie va a continuar con el desarrollo para manejar los gastos personales, con el siguiente video no gratuito para el 17 de julio. En los siguientes días actualizaré el código de &lt;a href=&quot;https://cursos.mariochavez.io/&quot;&gt;https://cursos.mariochavez.io/&lt;/a&gt; con la información de cómo adquirir la suscripción semestral.&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/series-ruby/aprende-ruby.jpg" /><media:content medium="image" url="https://mariochavez.io/images/series-ruby/aprende-ruby.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry xml:lang="en_US"><title type="html">Ruby Next to keep compatibility with older Rubies</title><link href="https://mariochavez.io/desarrollo/2023/05/19/ruby-next-for-older-ruby/" rel="alternate" type="text/html" title="Ruby Next to keep compatibility with older Rubies" /><published>2023-05-19T18:00:00+00:00</published><updated>2023-05-19T18:00:00+00:00</updated><id>repo://posts.collection/_posts/2023-05-19-ruby-next-for-older-ruby.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2023/05/19/ruby-next-for-older-ruby/">&lt;p&gt;Today I have released a new version of the &lt;a href=&quot;https://rubygems.org/gems/chroma-db&quot; target=&quot;_blank&quot;&gt;chroma-db&lt;/a&gt; gem, version 0.3.0.&lt;/p&gt;
-
-&lt;p&gt;It was motivated due to an issue in the repository about &lt;a href=&quot;https://github.com/mariochavez/chroma/issues/8&quot;&gt;Data not being available&lt;/a&gt; and the ask to relax the Ruby version requirement, which was 3.2.&lt;/p&gt;
-
-&lt;p&gt;When I wrote the library, I used the syntax from Ruby 3.2 so having it to work with earlier versions required a rewrite to make it compatible. I was not amused by having to rewrite parts of the gem, luckily I remembered seen &lt;a href=&quot;https://github.com/ruby-next/ruby-next&quot; target=&quot;_blank&quot;&gt;Ruby Next&lt;/a&gt; a while ago from Evil Martians. So, I went to give it a try.&lt;/p&gt;
-
-&lt;p&gt;Ruby Next is a transpiler for the Ruby language. It can take a Ruby file using newer syntax and automatically generate one or more files that are compatible with earlier versions of Ruby. Since I was looking to be compatible down to Ruby 2.6, Ruby Next generated files for 2.6 and 3.1 version. These files cover all syntax changes in between Ruby versions.&lt;/p&gt;
-
-&lt;p&gt;Having the transpiled versions, Ruby Next takes care of loading the correct file depending on your Ruby version and replacing the original code using a Ruby &lt;a href=&quot;https://rubyapi.org/3.2/o/refinement&quot; target=&quot;_blank&quot;&gt;refinement&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;This sounded promising for my case with this gem. I focused on the section called “Integrating into a gem development” section of the README file.&lt;/p&gt;
-
-&lt;p&gt;First, the dependencies were added to the gemspec file of chroma-db.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;if ENV[&quot;RELEASING_GEM&quot;].nil? &amp;amp;&amp;amp; File.directory?(File.join(__dir__, &quot;.git&quot;))
-    spec.add_runtime_dependency &quot;ruby-next&quot;, &quot;&amp;gt;= 0.15.0&quot;
-  else
-    spec.add_dependency &quot;ruby-next-core&quot;, &quot;&amp;gt;= 0.15.0&quot;
-  end
-
-  spec.add_development_dependency &quot;ruby-next&quot;, &quot;&amp;gt;= 0.15.0&quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;Also, I make sure that generated files are packed into the gem but ignored by git.&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;files&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Dir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;chdir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;__dir__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-    &lt;span class=&quot;sb&quot;&gt;`git ls-files -z`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\x0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;reject&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;expand_path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;__FILE__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;start_with?&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;%w[bin/ test/ spec/ features/ notebook/ .git .circleci appveyor .standard.yml .rubocop.yml .solargraph.yml]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Dir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;glob&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;lib/.rbnext/**/*&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-   
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Next, I changed the entry point  &lt;code class=&quot;highlighter-rouge&quot;&gt;lib/chroma-db.rb&lt;/code&gt; of the gem to load Ruby Next and to set up the loading of transpiled files accordingly to the Ruby version at runtime.&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;ruby-next&quot;&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;ruby-next/language/setup&quot;&lt;/span&gt;
-&lt;span class=&quot;no&quot;&gt;RubyNext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Language&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;setup_gem_load_path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;transpile: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;Note: This needs to happen before you require your gem files. Also, this gem does not work with &lt;code class=&quot;highlighter-rouge&quot;&gt;requiere_relative&lt;/code&gt;, so you need to use &lt;code class=&quot;highlighter-rouge&quot;&gt;require&lt;/code&gt; instead.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Now to every file that uses the new Ruby’s syntax, I added the line to load the refinement.&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;RubyNext&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;At this point, the gem is almost ready to become compatible with earlier versions of Ruby, but first you have to generate the transpiled Ruby code. I opened the &lt;code class=&quot;highlighter-rouge&quot;&gt;Rakefile&lt;/code&gt; and added a task for this:&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;desc&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Run Ruby Next nextify&quot;&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;task&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:nextify&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;sh&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;bundle exec ruby-next nextify -V&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Also, I created a &lt;em&gt;rc&lt;/em&gt; file called &lt;code class=&quot;highlighter-rouge&quot;&gt;.rbnextrc&lt;/code&gt; to configure Ruby Next.&lt;/p&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;nextify&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;|&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;./lib&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;--min-version=2.6&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;--edge&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;--proposed&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Running the rake task &lt;code class=&quot;highlighter-rouge&quot;&gt;rake nextify&lt;/code&gt; generates the transpiled version of our code into &lt;code class=&quot;highlighter-rouge&quot;&gt;lib/.rbnext&lt;/code&gt; folder. It contains folders for different versions of Ruby and replicated inside the folder structure of our gem files that needs transpilation to become compatible. Don’t forget to add to your &lt;code class=&quot;highlighter-rouge&quot;&gt;.gitgnore&lt;/code&gt; file, the &lt;code class=&quot;highlighter-rouge&quot;&gt;lib/.rbnext&lt;/code&gt; folder.&lt;/p&gt;
-
-&lt;p&gt;The final changes are related to being able to run your test suite with different Rubies. Open the &lt;code class=&quot;highlighter-rouge&quot;&gt;test_helper.rb&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;spec_helper.rb&lt;/code&gt; and the following code just before the helper loads your gems files.&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;no&quot;&gt;ENV&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;RUBY_NEXT_TRANSPILE_MODE&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;rewrite&quot;&lt;/span&gt;
-&lt;span class=&quot;no&quot;&gt;ENV&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;RUBY_NEXT_EDGE&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;1&quot;&lt;/span&gt;
-&lt;span class=&quot;no&quot;&gt;ENV&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;RUBY_NEXT_PROPOSED&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;1&quot;&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;ruby-next/language/runtime&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;unless&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ENV&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;CI&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;Make sure that you can run your tests locally. To be 100% sure that your gem is now compatible with other Rubies, run your CI with a matrix of Ruby versions and be sure that &lt;code class=&quot;highlighter-rouge&quot;&gt;CI=true&lt;/code&gt; environment variable is set and also that the rake task to generate the transpiled code runs before your tests.&lt;/p&gt;
-
-&lt;p&gt;In the case of chroma-db I was using Ruby’s 3.2 &lt;a href=&quot;https://rubyapi.org/3.2/o/s?q=Data&quot; target=&quot;_blank&quot;&gt;Data&lt;/a&gt; class which is not supported by Ruby Next at this time, so I had to make a manual change to use a &lt;a href=&quot;https://rubyapi.org/3.2/o/struct&quot; target=&quot;_blank&quot;&gt;Struct&lt;/a&gt; instead.&lt;/p&gt;
-
-&lt;p&gt;Overall, I’m happy that Ruby Next worked for me on this gem, this means that I can be used with earlier versions of Ruby for those that can’t use the latest version, but also I keep the joy of using newer syntax.&lt;/p&gt;
-
-&lt;p&gt;By the way, the issue was reported by the team working on &lt;a href=&quot;https://github.com/andreibondarev/langchainrb&quot; target=&quot;_blank&quot;&gt;langchainrb&lt;/a&gt;&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/ruby_next/ruby_next.jpg" /><media:content medium="image" url="https://mariochavez.io/images/ruby_next/ruby_next.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;p&gt;La serie va a continuar con el desarrollo para manejar los gastos personales, con el siguiente video no gratuito para el 17 de julio. En los siguientes días actualizaré el código de &lt;a href=&quot;https://cursos.mariochavez.io/&quot;&gt;https://cursos.mariochavez.io/&lt;/a&gt; con la información de cómo adquirir la suscripción semestral.&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/series-ruby/aprende-ruby.jpg" /><media:content medium="image" url="https://mariochavez.io/images/series-ruby/aprende-ruby.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
