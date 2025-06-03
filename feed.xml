@@ -1,4 +1,335 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es"><generator uri="https://bridgetownrb.com/" version="1.3.4">Bridgetown</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" hreflang="es" /><updated>2025-04-20T18:36:16+00:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez</title><subtitle>Blog sobre temas de desarrollo de software Web con Ruby y Ruby on Rails, además de temas de fotografía análoga y digital.</subtitle><author><name>Mario Alberto Chávez</name></author><entry xml:lang="en_US"><title type="html">Rails MCP Server with HTTP Server-Sent Events support</title><link href="https://mariochavez.io/desarrollo/2025/04/20/rails-mcp-server-with-sse/" rel="alternate" type="text/html" title="Rails MCP Server with HTTP Server-Sent Events support" /><published>2025-04-20T06:00:00+00:00</published><updated>2025-04-20T06:00:00+00:00</updated><id>repo://posts.collection/_posts/2025-04-20-rails-mcp-server-with-sse.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2025/04/20/rails-mcp-server-with-sse/">&lt;h1 id=&quot;rails-mcp-server-110-with-http-sse-support&quot;&gt;Rails MCP Server 1.1.0 with HTTP SSE support&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es"><generator uri="https://bridgetownrb.com/" version="1.3.4">Bridgetown</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" hreflang="es" /><updated>2025-06-03T17:26:44+00:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez</title><subtitle>Blog sobre temas de desarrollo de software Web con Ruby y Ruby on Rails, además de temas de fotografía análoga y digital.</subtitle><author><name>Mario Alberto Chávez</name></author><entry><title type="html">Rails MCP Server: Enhanced Documentation Access</title><link href="https://mariochavez.io/desarrollo/rails/ai-tools/development-workflow/2025/06/03/rails-mcp-server-enhanced-documentation-access/" rel="alternate" type="text/html" title="Rails MCP Server: Enhanced Documentation Access" /><published>2025-06-03T06:00:00+00:00</published><updated>2025-06-03T06:00:00+00:00</updated><id>repo://posts.collection/_posts/2025-06-03-rails-mcp-server-enhanced-documentation-access.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/rails/ai-tools/development-workflow/2025/06/03/rails-mcp-server-enhanced-documentation-access/">&lt;h2 id=&quot;rails-mcp-server-enhanced-documentation-access-and-ai-workflow-integration&quot;&gt;Rails MCP Server: Enhanced Documentation Access and AI Workflow Integration&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;Updated Rails MCP Server now provides consistent, up-to-date Rails documentation across multiple LLM clients with enhanced proxy support and Neovim integration.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;table-of-contents&quot;&gt;Table of Contents&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;#comprehensive-documentation-resources&quot;&gt;Comprehensive Documentation Resources&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#the-documentation-challenge&quot;&gt;The Documentation Challenge&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#five-resource-categories-available&quot;&gt;Five Resource Categories Available&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#setting-up-documentation-resources&quot;&gt;Setting Up Documentation Resources&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#mcp-proxy-integration-for-better-compatibility&quot;&gt;MCP Proxy Integration for Better Compatibility&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#rails-mcp--neovim-mcp-integration-workflow&quot;&gt;Rails MCP + Neovim MCP Integration Workflow&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#documentation-as-a-shared-resource&quot;&gt;Documentation as a Shared Resource&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#resource-management-and-best-practices&quot;&gt;Resource Management and Best Practices&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#faq&quot;&gt;FAQ&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;The latest updates to &lt;strong&gt;Rails MCP Server&lt;/strong&gt; introduce significant improvements to documentation access, better integration capabilities, and enhanced workflow support that have transformed how I work with Rails projects using AI assistance.&lt;/p&gt;
+
+&lt;h2 id=&quot;comprehensive-documentation-resources&quot;&gt;Comprehensive Documentation Resources&lt;/h2&gt;
+
+&lt;p&gt;The most significant addition in this release is the comprehensive &lt;strong&gt;Resources and Documentation system&lt;/strong&gt;. This addresses a critical need in AI-assisted development: providing LLM clients with consistent, up-to-date documentation that can be shared across multiple AI sessions and different LLM providers.&lt;/p&gt;
+
+&lt;h3 id=&quot;the-documentation-challenge&quot;&gt;The Documentation Challenge&lt;/h3&gt;
+
+&lt;p&gt;When working with AI assistants on Rails projects, I frequently encountered situations where the LLM’s training data was outdated or incomplete regarding specific framework features. This led to suggestions based on deprecated APIs or missing newer functionality. The resource system solves this by:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Ensuring accuracy&lt;/strong&gt;: LLMs receive the exact same official documentation that developers reference&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Maintaining consistency&lt;/strong&gt;: Multiple AI sessions can access identical documentation, ensuring consistent guidance&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Staying current&lt;/strong&gt;: Documentation can be updated to match specific Rails versions or framework releases&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Sharing context&lt;/strong&gt;: The same documentation resources work across different LLM clients and providers&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;five-resource-categories-available&quot;&gt;Five Resource Categories Available&lt;/h3&gt;
+
+&lt;p&gt;The server now provides access to five complete documentation libraries:&lt;/p&gt;
+
+&lt;h4 id=&quot;1-rails-guides-documentation&quot;&gt;1. Rails Guides Documentation&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Content&lt;/strong&gt;: Official Ruby on Rails 8.0.2 documentation - all 50+ guides&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Coverage&lt;/strong&gt;: Getting started to advanced topics including Active Record, Action Pack, security, and deployment&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Use case&lt;/strong&gt;: Comprehensive Rails framework reference&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;2-turbo-framework-documentation&quot;&gt;2. Turbo Framework Documentation&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Content&lt;/strong&gt;: Complete Hotwire Turbo framework documentation&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Structure&lt;/strong&gt;: Handbook and reference sections covering Turbo Drive, Frames, and Streams&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Use case&lt;/strong&gt;: Modern Rails frontend development with Hotwire&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;3-stimulus-javascript-framework-documentation&quot;&gt;3. Stimulus JavaScript Framework Documentation&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Content&lt;/strong&gt;: Full Stimulus documentation for building interactive components&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Structure&lt;/strong&gt;: Handbook tutorials and API reference&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Use case&lt;/strong&gt;: JavaScript interactions in Rails applications&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;4-kamal-deployment-documentation&quot;&gt;4. Kamal Deployment Documentation&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Content&lt;/strong&gt;: Comprehensive Kamal deployment tool documentation&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Coverage&lt;/strong&gt;: Installation, configuration, commands, and deployment strategies&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Use case&lt;/strong&gt;: Modern Rails application deployment&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;5-custom-documentation-resources&quot;&gt;5. Custom Documentation Resources&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Content&lt;/strong&gt;: Import and access your own markdown documentation files&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Flexibility&lt;/strong&gt;: Project-specific guides, API documentation, team standards&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Use case&lt;/strong&gt;: Maintaining consistent project documentation across AI sessions&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;setting-up-documentation-resources&quot;&gt;Setting Up Documentation Resources&lt;/h2&gt;
+
+&lt;p&gt;Setting up documentation is straightforward with the dedicated download tool:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Download official framework documentation&lt;/span&gt;
+rails-mcp-server-download-resources rails
+rails-mcp-server-download-resources turbo
+rails-mcp-server-download-resources stimulus
+rails-mcp-server-download-resources kamal
+
+&lt;span class=&quot;c&quot;&gt;# Import your custom documentation&lt;/span&gt;
+rails-mcp-server-download-resources &lt;span class=&quot;nt&quot;&gt;--file&lt;/span&gt; /path/to/your/docs/
+
+&lt;span class=&quot;c&quot;&gt;# Force update existing resources&lt;/span&gt;
+rails-mcp-server-download-resources &lt;span class=&quot;nt&quot;&gt;--force&lt;/span&gt; rails
+
+&lt;span class=&quot;c&quot;&gt;# Verbose output for troubleshooting&lt;/span&gt;
+rails-mcp-server-download-resources &lt;span class=&quot;nt&quot;&gt;--verbose&lt;/span&gt; turbo
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Once downloaded, you can access guides naturally in conversation:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Can you load the Rails getting started guide?
+Show me the Turbo Frames documentation.
+I need help with Stimulus controllers - can you show me that guide?
+Load the Kamal deployment guide so I can understand the process.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;mcp-proxy-integration-for-better-compatibility&quot;&gt;MCP Proxy Integration for Better Compatibility&lt;/h2&gt;
+
+&lt;p&gt;Building on the &lt;a href=&quot;https://mariochavez.io/desarrollo/2025/04/20/rails-mcp-server-with-sse/&quot;&gt;previous release with HTTP SSE support&lt;/a&gt;, this update includes comprehensive documentation for using &lt;strong&gt;MCP proxies&lt;/strong&gt; to address Ruby version manager compatibility issues that many developers face with Claude Desktop.&lt;/p&gt;
+
+&lt;h3 id=&quot;setting-up-mcp-proxy-for-enhanced-compatibility&quot;&gt;Setting Up MCP Proxy for Enhanced Compatibility&lt;/h3&gt;
+
+&lt;p&gt;For users who want to leverage the HTTP/SSE capabilities or work around Ruby version manager issues:&lt;/p&gt;
+
+&lt;h4 id=&quot;step-1-start-rails-mcp-server-in-http-mode&quot;&gt;Step 1: Start Rails MCP Server in HTTP Mode&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rails-mcp-server &lt;span class=&quot;nt&quot;&gt;--mode&lt;/span&gt; http
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;step-2-install-and-configure-mcp-proxy&quot;&gt;Step 2: Install and Configure MCP Proxy&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Install the Node.js based MCP proxy&lt;/span&gt;
+npm &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-g&lt;/span&gt; mcp-remote
+
+&lt;span class=&quot;c&quot;&gt;# Run the proxy, pointing to your running Rails MCP Server&lt;/span&gt;
+npx mcp-remote http://localhost:6029/mcp/sse
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;step-3-configure-claude-desktop-for-proxy-usage&quot;&gt;Step 3: Configure Claude Desktop for Proxy Usage&lt;/h4&gt;
+
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;mcpServers&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;railsMcpServer&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;command&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;npx&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;args&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;mcp-remote&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;http://localhost:6029/mcp/sse&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This setup allows STDIO-only clients to communicate through the proxy while benefiting from HTTP/SSE capabilities and avoiding Ruby version conflicts.&lt;/p&gt;
+
+&lt;h2 id=&quot;rails-mcp--neovim-mcp-integration-workflow&quot;&gt;Rails MCP + Neovim MCP Integration Workflow&lt;/h2&gt;
+
+&lt;p&gt;I’ve significantly improved my development workflow by combining the Rails MCP Server with the &lt;a href=&quot;https://github.com/maquina-app/nvim-mcp-server&quot;&gt;&lt;strong&gt;Neovim MCP Server&lt;/strong&gt;&lt;/a&gt;. This combination creates a powerful development environment where I can seamlessly work with both my Rails codebase and my active editing context.&lt;/p&gt;
+
+&lt;h3 id=&quot;the-two-server-development-approach&quot;&gt;The Two-Server Development Approach&lt;/h3&gt;
+
+&lt;p&gt;Here’s how I use both MCP servers together for enhanced productivity:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Rails MCP Server handles:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Project structure analysis and exploration&lt;/li&gt;
+  &lt;li&gt;Database schema exploration and relationships&lt;/li&gt;
+  &lt;li&gt;Route inspection and API endpoint analysis&lt;/li&gt;
+  &lt;li&gt;Model relationship analysis and validations&lt;/li&gt;
+  &lt;li&gt;Access to comprehensive Rails ecosystem documentation&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Neovim MCP Server provides:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Real-time access to currently open buffers&lt;/li&gt;
+  &lt;li&gt;Context about active editing sessions&lt;/li&gt;
+  &lt;li&gt;Bridge between editor state and AI assistance&lt;/li&gt;
+  &lt;li&gt;Live file content without manual specification&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;optimized-development-session-workflow&quot;&gt;Optimized Development Session Workflow&lt;/h3&gt;
+
+&lt;p&gt;When I start a development session, I begin with context gathering:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Switch to project my_rails_app, don&apos;t analyze anything yet.
+Show me which files I have open in my &quot;my_rails_app&quot; Neovim instance.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This gives me both project context from Rails MCP and my current editing context from Neovim MCP. Then I can work more efficiently:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Load the User model from Rails and also get the user_controller.rb that I have open in Neovim.
+Can you also load the Rails Active Record associations guide for reference?
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;benefits-of-the-dual-server-approach&quot;&gt;Benefits of the Dual-Server Approach&lt;/h3&gt;
+
+&lt;p&gt;This approach allows me to:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Work with live context&lt;/strong&gt;: See exactly what I’m editing without manually specifying files&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Access comprehensive documentation&lt;/strong&gt;: Get official guides loaded instantly for reference&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Maintain project focus&lt;/strong&gt;: Switch between Rails projects while keeping editor context&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Avoid manual file management&lt;/strong&gt;: Let the tools handle finding and loading the right files&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;managing-token-usage-effectively&quot;&gt;Managing Token Usage Effectively&lt;/h3&gt;
+
+&lt;p&gt;I’ve refined my prompting strategy to manage Claude’s context window more effectively:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Session Start:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Switch to project my_finances, don&apos;t analyze the project or any loaded files until you are told to.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Loading Files:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Load the following files from my Neovim buffers, do not analyze or try to load dependencies unless you are told to.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Session Continuation:&lt;/strong&gt;
+When reaching conversation limits, I summarize and continue:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Summarize this chat. Describe the goal and add relevant information about what was done. Include the project name and list any files loaded, generated or shared.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;documentation-as-a-shared-resource&quot;&gt;Documentation as a Shared Resource&lt;/h2&gt;
+
+&lt;p&gt;The resource system transforms documentation from a static reference into a dynamic, shared asset. When I load Rails validation documentation in one conversation, another AI session can access the same exact information. This consistency is particularly valuable when:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Training team members&lt;/strong&gt;: Everyone gets the same documentation regardless of which AI tool they use&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Maintaining project standards&lt;/strong&gt;: Documentation stays consistent across different development sessions&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Working with multiple LLM providers&lt;/strong&gt;: The same Rails 8.0.2 guides work identically with Claude, ChatGPT, or other MCP-compatible clients&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Ensuring version alignment&lt;/strong&gt;: Projects can specify exact documentation versions to match their Rails installation&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Instead of switching to browser tabs or searching through docs, I can load exactly the guide I need:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;I&apos;m working on validations - can you load the Rails validations guide?
+Show me the Turbo Streams reference for this real-time update feature.
+Load my custom API documentation so we can follow the established patterns.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The system handles both official framework documentation and custom project documentation seamlessly, making it a true companion for Rails development.&lt;/p&gt;
+
+&lt;h2 id=&quot;resource-management-and-best-practices&quot;&gt;Resource Management and Best Practices&lt;/h2&gt;
+
+&lt;p&gt;Managing resources is straightforward with clear commands and automatic organization:&lt;/p&gt;
+
+&lt;h3 id=&quot;resource-organization-best-practices&quot;&gt;Resource Organization Best Practices&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Download once, use everywhere&lt;/strong&gt;: Resources are stored locally and available across all conversations&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Automatic updates&lt;/strong&gt;: Re-download to get the latest documentation versions&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Custom integration&lt;/strong&gt;: Import your project-specific documentation alongside official guides&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Intelligent organization&lt;/strong&gt;: Resources are categorized and easily discoverable&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;resource-storage-and-management&quot;&gt;Resource Storage and Management&lt;/h3&gt;
+
+&lt;p&gt;Resources are stored in platform-specific locations:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;macOS&lt;/strong&gt;: &lt;code class=&quot;highlighter-rouge&quot;&gt;~/.config/rails-mcp/resources/&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Windows&lt;/strong&gt;: &lt;code class=&quot;highlighter-rouge&quot;&gt;%APPDATA%\rails-mcp\resources\&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Each resource category maintains a manifest file tracking downloaded guides, versions, and update timestamps.&lt;/p&gt;
+
+&lt;h3 id=&quot;performance-optimization-tips&quot;&gt;Performance Optimization Tips&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Selective downloads&lt;/strong&gt;: Only download resources you actively use&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Regular updates&lt;/strong&gt;: Keep documentation current with framework releases&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Custom documentation&lt;/strong&gt;: Organize project-specific guides with descriptive filenames&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Version alignment&lt;/strong&gt;: Match documentation versions to your Rails installation&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;For complete details on setting up and using resources, I’ve created a comprehensive &lt;a href=&quot;docs/RESOURCES.md&quot;&gt;Resources Guide&lt;/a&gt; that covers everything from basic setup to advanced usage patterns.&lt;/p&gt;
+
+&lt;h2 id=&quot;faq&quot;&gt;FAQ&lt;/h2&gt;
+
+&lt;h3 id=&quot;how-do-i-update-rails-mcp-server-documentation-resources&quot;&gt;How do I update Rails MCP Server documentation resources?&lt;/h3&gt;
+
+&lt;p&gt;Re-run the download command for any resource category to get the latest version:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rails-mcp-server-download-resources rails
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;can-i-use-rails-mcp-server-with-other-ai-clients-besides-claude-desktop&quot;&gt;Can I use Rails MCP Server with other AI clients besides Claude Desktop?&lt;/h3&gt;
+
+&lt;p&gt;Yes! The MCP proxy setup allows compatibility with any MCP-compatible client. The HTTP/SSE endpoints work with various LLM providers.&lt;/p&gt;
+
+&lt;h3 id=&quot;whats-the-difference-between-rails-mcp-server-and-neovim-mcp-server&quot;&gt;What’s the difference between Rails MCP Server and Neovim MCP Server?&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Rails MCP Server&lt;/strong&gt;: Analyzes Rails project structure, database, routes, and provides Rails ecosystem documentation&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Neovim MCP Server&lt;/strong&gt;: Provides access to currently open files in your editor sessions&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;how-do-i-troubleshoot-ruby-version-manager-issues-with-claude-desktop&quot;&gt;How do I troubleshoot Ruby version manager issues with Claude Desktop?&lt;/h3&gt;
+
+&lt;p&gt;Use the MCP proxy setup to bypass Ruby version conflicts, or create a symbolic link as described in the &lt;a href=&quot;https://github.com/maquina-app/rails-mcp-server#ruby-version-manager-users&quot;&gt;Ruby Version Manager Users section&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;can-i-import-custom-documentation-alongside-official-rails-guides&quot;&gt;Can I import custom documentation alongside official Rails guides?&lt;/h3&gt;
+
+&lt;p&gt;Yes! Use the &lt;code class=&quot;highlighter-rouge&quot;&gt;--file&lt;/code&gt; option to import your own markdown files:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rails-mcp-server-download-resources &lt;span class=&quot;nt&quot;&gt;--file&lt;/span&gt; /path/to/your/docs/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;looking-forward&quot;&gt;Looking Forward&lt;/h2&gt;
+
+&lt;p&gt;This enhanced Rails MCP Server has become an integral part of my Rails development workflow. The combination of comprehensive documentation access, improved integration options, and seamless editor integration through the Neovim MCP Server creates a development environment where AI assistance feels natural and productive.&lt;/p&gt;
+
+&lt;p&gt;The ability to instantly access official documentation, work with live editing context, and maintain project focus has significantly improved my development velocity and the quality of my AI-assisted coding sessions.&lt;/p&gt;
+
+&lt;p&gt;I encourage you to try both servers together and explore the new resource system. The documentation access alone makes this upgrade worthwhile, and the improved integration options ensure it works well regardless of your development setup.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Source code and detailed setup instructions:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/maquina-app/rails-mcp-server&quot;&gt;Rails MCP Server&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/maquina-app/nvim-mcp-server&quot;&gt;Neovim MCP Server&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;related-posts&quot;&gt;Related Posts&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mariochavez.io/desarrollo/2025/04/20/rails-mcp-server-with-sse/&quot;&gt;Rails MCP Server with HTTP Server-Sent Events support&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mariochavez.io/desarrollo/2024/12/15/model-context-protocol-development/&quot;&gt;Model Context Protocol: Enhancing AI Development Workflows&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;em&gt;The Rails MCP Server continues to evolve based on real-world usage. If you have suggestions or encounter issues, please feel free to open an issue or contribute to the project.&lt;/em&gt;&lt;/p&gt;</content><author><name>Mario Alberto Chávez Cárdenas</name></author><category term="Rails MCP Server" /><category term="Model Context Protocol" /><category term="Rails Documentation" /><category term="AI Development" /><category term="LLM Integration" /><category term="Ruby on Rails" /><category term="MCP Proxy" /><category term="Neovim" /><category term="Claude Desktop" /><summary type="html">Discover how Rails MCP Server provides consistent Rails documentation across multiple LLM clients, with MCP proxy support and Neovim integration for enhanced AI-assisted development.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/rails-mcp-1.2.0.jpg" /><media:content medium="image" url="https://mariochavez.io/images/rails-mcp-1.2.0.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry xml:lang="en_US"><title type="html">Rails MCP Server with HTTP Server-Sent Events support</title><link href="https://mariochavez.io/desarrollo/2025/04/20/rails-mcp-server-with-sse/" rel="alternate" type="text/html" title="Rails MCP Server with HTTP Server-Sent Events support" /><published>2025-04-20T06:00:00+00:00</published><updated>2025-04-20T06:00:00+00:00</updated><id>repo://posts.collection/_posts/2025-04-20-rails-mcp-server-with-sse.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2025/04/20/rails-mcp-server-with-sse/">&lt;h1 id=&quot;rails-mcp-server-110-with-http-sse-support&quot;&gt;Rails MCP Server 1.1.0 with HTTP SSE support&lt;/h1&gt;
 
 &lt;p&gt;I’m excited to announce this new version of Rails MCP Server, version 1.1.0! This release introduces significant internal refactoring through the integration of the &lt;a href=&quot;https://github.com/jlowin/fastmcp&quot;&gt;FastMCP gem&lt;/a&gt;, providing better code organization and adding support for HTTP Server-Sent Events (SSE).&lt;/p&gt;
 
@@ -1613,44 +1944,4 @@ css: bin/rails app:tailwindcss:watch
 
 &lt;p&gt;&lt;strong&gt;NOTE: All videos are accelerated while waiting for a response. The wait time was about 30 seconds with a 13 billion parameters model.&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;If you are looking to try AI in a private environment, I hope that these tools can be useful for you. If you try them and find a bug or find a way to improve them, please send a pull request.&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/build-ai-ruby/build-ai-ruby.png" /><media:content medium="image" url="https://mariochavez.io/images/build-ai-ruby/build-ai-ruby.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry xml:lang="es_MX"><title type="html">Serie de videos de Ruby y de Ruby on Rails</title><link href="https://mariochavez.io/desarrollo/2023/07/03/serie-videos-ruby-on-rails/" rel="alternate" type="text/html" title="Serie de videos de Ruby y de Ruby on Rails" /><published>2023-07-03T06:00:00+00:00</published><updated>2023-07-03T06:00:00+00:00</updated><id>repo://posts.collection/_posts/2023-07-03-serie-videos-ruby-on-rails.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2023/07/03/serie-videos-ruby-on-rails/">&lt;h1 id=&quot;serie-de-videos-de-ruby-y-de-ruby-on-rails&quot;&gt;Serie de videos de Ruby y de Ruby on Rails&lt;/h1&gt;
-
-&lt;p&gt;El año pasado anuncié el desarrollo de un curso en video para &lt;a href=&quot;https://mariochavez.io/desarrollo/2022/02/21/curso-ruby-on-rails/&quot;&gt;aprender Ruby on Rails&lt;/a&gt;. Posterior al anuncio liberé de forma gratuita 3 videos que inician una aplicación de Ruby on Rails 7 para llevar el control de gastos personales.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/series-ruby/video-1.png&quot; alt=&quot;From Aprende a crear aplicaciones Web modernas: Recursos para desarrollar con Ruby on Rails | Video 1&quot; /&gt; 
-&lt;a href=&quot;https://cursos.mariochavez.io/recursos-para-desarrollar/&quot;&gt;https://cursos.mariochavez.io/recursos-para-desarrollar/&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/series-ruby/video-2.png&quot; alt=&quot;From Aprende a crear aplicaciones Web modernas: Inicializando la aplicación | Video 2&quot; /&gt; 
-&lt;a href=&quot;https://cursos.mariochavez.io/inicializando-la-aplicacion/&quot;&gt;https://cursos.mariochavez.io/inicializando-la-aplicacion/&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/series-ruby/video-3.png&quot; alt=&quot;From Aprende a crear aplicaciones Web modernas: Trabajando con ActiveRecord | Video 3&quot; /&gt; 
-&lt;a href=&quot;https://cursos.mariochavez.io/trabajando-con-activerecord/&quot;&gt;https://cursos.mariochavez.io/trabajando-con-activerecord/&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Después de eso ya no publiqué nada al respecto. Aunque tenía ya trabajo desarrollado para grabar nuevos videos, algo que me detenía era parte de crear la expectativa de ser un &lt;strong&gt;CURSO&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;Cuando comencé el desarrollo de la idea, la inspiración fue &lt;a href=&quot;http://railscasts.com/&quot;&gt;Railscasts&lt;/a&gt; de Ryan Bates, los cuales fueron muy importantes para la época en lo que yo comencé a aprender Ruby y a aprender Rails.&lt;/p&gt;
-
-&lt;p&gt;Más allá de hacer un curso de Rails, lo que me llama la atención es poder tener una o más series con un poco más de profundidad y cercanos a la realidad de cómo trabajo yo en proyectos y no unos videos de “Como construir el clon de X en 10 horas”.&lt;/p&gt;
-
-&lt;p&gt;Con esta idea en la mente es que he decidido hacer un &lt;strong&gt;reboot&lt;/strong&gt; y enfocarme a crear videos en series. Videos que pueda ir produciendo al menos 1 cada 15 días. Parte de este proceso de &lt;strong&gt;reboot&lt;/strong&gt; también incluyó el mejorar las herramientas, así del como grabo y edito los videos.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/series-ruby/video-4.png&quot; alt=&quot;From Aprende a crear aplicaciones Web modernas: Trabajando con ActionController Parte 1 | Video 4&quot; /&gt; 
-&lt;a href=&quot;https://cursos.mariochavez.io/trabajando-con-actioncontroller-parte1/&quot;&gt;https://cursos.mariochavez.io/trabajando-con-actioncontroller-parte1/&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/series-ruby/video-5.png&quot; alt=&quot;From Aprende a crear aplicaciones Web modernas: Trabajando con ActionController Parte 2 | Video 5&quot; /&gt; 
-&lt;a href=&quot;https://cursos.mariochavez.io/trabajando-con-actioncontroller-parte2/&quot;&gt;https://cursos.mariochavez.io/trabajando-con-actioncontroller-parte2/&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Si visitan los últimos dos videos gratuitos, podrán notar que la calidad del video es mucho mejor que los primeros. Primero, se mejoró la grabación y ecualización del audio. En la edición hago zoom a áreas de mi pantalla que requieren atención, por ejemplo al modificar código.&lt;/p&gt;
-
-&lt;p&gt;Aún hay cosas que se pueden mejorar en la producción y que sin duda estaré buscando la forma de que así sea.&lt;/p&gt;
-
-&lt;h2 id=&quot;qué-va-a-cambiar&quot;&gt;¿Qué va a cambiar?&lt;/h2&gt;
-&lt;p&gt;Como mencioné anteriormente, no veo esto como un curso, lo veo como una serie de videos que van a cubrir diferentes aspectos de crear aplicaciones web modernas con Ruby on Rails y poco a poco iré agregando otras series con otros temas enfocados en Ruby.&lt;/p&gt;
-
-&lt;p&gt;No hay curso que comprar. La forma de poder acceder a los videos es a través de una suscripción semestral, no auto renovable. Al tener una suscripción se tiene acceso a todos los videos creados hasta ese momento y hasta el día que la suscripción finalice. La suscripción tiene un valor de $1,500.00 pesos mexicanos.&lt;/p&gt;
-
-&lt;p&gt;Al término de los seis meses, si se desea, se puede renovar la suscripción. Al mes se estarán publicando como mínimo 2 videos, uno cada 15 días. Los videos incluyen como contenidos enlaces a recursos, el código desarrollado y comandos importantes utilizados.&lt;/p&gt;
-
-&lt;p&gt;Es importante que si estás considerando el hacerte de la suscripción veas primero los 5 videos gratuitos y decidas si es para ti o no, ya que no es reembolsable.&lt;/p&gt;
-
-&lt;p&gt;La serie va a continuar con el desarrollo para manejar los gastos personales, con el siguiente video no gratuito para el 17 de julio. En los siguientes días actualizaré el código de &lt;a href=&quot;https://cursos.mariochavez.io/&quot;&gt;https://cursos.mariochavez.io/&lt;/a&gt; con la información de cómo adquirir la suscripción semestral.&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/series-ruby/aprende-ruby.jpg" /><media:content medium="image" url="https://mariochavez.io/images/series-ruby/aprende-ruby.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;p&gt;If you are looking to try AI in a private environment, I hope that these tools can be useful for you. If you try them and find a bug or find a way to improve them, please send a pull request.&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/build-ai-ruby/build-ai-ruby.png" /><media:content medium="image" url="https://mariochavez.io/images/build-ai-ruby/build-ai-ruby.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>

@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- Begin Bridgetown SEO tag v6.0.0 -->
+<title>Rails MCP Server: Enhanced Documentation Access | Mario Alberto Chávez</title>
+<meta property="og:title" content="Rails MCP Server: Enhanced Documentation Access" />
+<meta name="author" content="Mario Alberto Chávez Cárdenas" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Learn how Rails MCP Server’s new documentation resources provide consistent, up-to-date Rails guides across multiple LLM clients. Includes MCP proxy setup and Neovim integration for enhanced AI-assisted Rails development workflows." />
+<meta property="og:description" content="Learn how Rails MCP Server’s new documentation resources provide consistent, up-to-date Rails guides across multiple LLM clients. Includes MCP proxy setup and Neovim integration for enhanced AI-assisted Rails development workflows." />
+<link rel="canonical" href="https://mariochavez.io/desarrollo/rails/ai-tools/development-workflow/2025/06/03/rails-mcp-server-enhanced-documentation-access/" />
+<meta property="og:url" content="https://mariochavez.io/desarrollo/rails/ai-tools/development-workflow/2025/06/03/rails-mcp-server-enhanced-documentation-access/" />
+<meta property="og:site_name" content="Mario Alberto Chávez" />
+<meta property="og:image" content="https://mariochavez.io/images/rails-mcp-1.2.0.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-06-03T06:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://mariochavez.io/images/rails-mcp-1.2.0.jpg" />
+<meta property="twitter:title" content="Rails MCP Server: Enhanced Documentation Access" />
+<meta name="twitter:site" content="@mario_chavez" />
+<meta name="twitter:creator" content="@Mario Alberto Chávez Cárdenas" />
+<!-- End Bridgetown SEO tag -->
+
+
+<link type="application/atom+xml" rel="alternate" href="https://mariochavez.io/feed.xml" title="Mario Alberto Chávez" />
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Mario Alberto Chávez - Software Development">
+<meta name="twitter:card" content="summary_large_image">
+
+<meta name="robots" content="index, follow">
+<meta name="revisit-after" content="7 days">
+
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+<link rel="stylesheet" href="/assets/index.R2SXEKOT.css" />
+<script src="/assets/index.KUPNVLMR.js" defer></script>
+
+
+<script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Rails MCP Server: Enhanced Documentation Access"
+  "description": "Learn how Rails MCP Server's new documentation resources provide consistent, up-to-date Rails guides across multiple LLM clients. Includes MCP proxy setup and Neovim integration for enhanced AI-assisted Rails development workflows.",
+  "image": "https://mariochavez.io/images/rails-mcp-1.2.0.jpg",
+  "datePublished": "2025-06-03",
+  "dateModified": "2025-06-03",
+  "author": {
+    "@type": "Person",
+    "name": "Mario Alberto Chávez Cárdenas",
+    "url": "https://mariochavez.io"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Mario Alberto Chávez Cárdenas",
+    "url": "https://mariochavez.io"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://mariochavez.io/desarrollo/rails/ai-tools/development-workflow/2025/06/03/rails-mcp-server-enhanced-documentation-access/"
+  },
+  "articleSection": "Development",
+  "keywords": ["Rails MCP Server", "Model Context Protocol", "Rails documentation", "AI development tools", "LLM integration", "Ruby on Rails"],
+  "about": [
+    {
+      "@type": "Thing",
+      "name": "Model Context Protocol"
+    },
+    {
+      "@type": "Thing",
+      "name": "Ruby on Rails"
+    },
+    {
+      "@type": "Thing",
+      "name": "AI Development Tools"
+    }
+  ]
+}
+
+</script>
+
+  </head>
+  <body class="min-h-screen antialiased post ">
+    <section class="flex flex-nowrap">
+      <aside class="sticky top-0 flex flex-col hidden w-64 max-h-screen min-h-screen bg-gray-100 xl:w-96 lg:block">
+  <div class="px-8 xl:px-10">
+    <header class="py-14">
+      <h1 class="font-sans text-3xl font-medium tracking-widest text-gray-700 uppercase">Mario Alberto Chávez</h1>
+      <h2 class="mt-4 font-serif text-lg italic tracking-wide text-gray-500 font-extralight">Blog personal desarrollo de software</h2>
+    </header>
+
+    <nav class="lg:flex-grow lg:py-14">
+  <ul>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/">Inicio</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/desarrollo">Desarrollo</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/fotografía">Fotografía</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/proyectos">Proyectos</a></li>
+    <li class="font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/acercade">Acerca de</a></li>
+  </ul>
+</nav>
+
+
+    <footer class="py-8 lg:py-14">
+  <div class="flex space-x-4">
+    <a href="https://twitter.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24" class="w-4 h-4"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+    </a>
+    <a href="https://instagram.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="none" viewBox="0 0 24 24" class="w-4 h-4"><path d="M15.233 5.488c-.843-.038-1.097-.046-3.233-.046s-2.389.008-3.232.046c-2.17.099-3.181 1.127-3.279 3.279-.039.844-.048 1.097-.048 3.233s.009 2.389.047 3.233c.099 2.148 1.106 3.18 3.279 3.279.843.038 1.097.047 3.233.047 2.137 0 2.39-.008 3.233-.046 2.17-.099 3.18-1.129 3.279-3.279.038-.844.046-1.097.046-3.233s-.008-2.389-.046-3.232c-.099-2.153-1.111-3.182-3.279-3.281zm-3.233 10.62c-2.269 0-4.108-1.839-4.108-4.108 0-2.269 1.84-4.108 4.108-4.108s4.108 1.839 4.108 4.108c0 2.269-1.839 4.108-4.108 4.108zm4.271-7.418c-.53 0-.96-.43-.96-.96s.43-.96.96-.96.96.43.96.96-.43.96-.96.96zm-1.604 3.31c0 1.473-1.194 2.667-2.667 2.667s-2.667-1.194-2.667-2.667c0-1.473 1.194-2.667 2.667-2.667s2.667 1.194 2.667 2.667zm4.333-12h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm.952 15.298c-.132 2.909-1.751 4.521-4.653 4.654-.854.039-1.126.048-3.299.048s-2.444-.009-3.298-.048c-2.908-.133-4.52-1.748-4.654-4.654-.039-.853-.048-1.125-.048-3.298 0-2.172.009-2.445.048-3.298.134-2.908 1.748-4.521 4.654-4.653.854-.04 1.125-.049 3.298-.049s2.445.009 3.299.048c2.908.133 4.523 1.751 4.653 4.653.039.854.048 1.127.048 3.299 0 2.173-.009 2.445-.048 3.298z"/></svg>
+    </a>
+  </div>
+  <p class="mt-4 font-sans text-xs font-light tracking-wider text-gray-500 xl:text-sm">©2021. Mario Alberto Chávez Cárdenas</p>
+</footer>
+
+  </div>
+</aside>
+
+
+      <main class="flex-auto overflow-hidden text-gray-700">
+        <header class="flex flex-col bg-gray-100 lg:hidden" data-controller="menu">
+  <div class="flex flex-col w-full px-8 md:flex-row xl:px-10">
+    <div class="w-full pt-12 pb-6 md:py-12">
+      <a href="/">
+        <h1 class="font-sans text-lg font-medium tracking-widest text-gray-700 uppercase md:text-2xl">Mario Alberto Chávez</h1>
+      </a>
+      <h2 class="mt-4 font-serif text-xs italic tracking-wide text-gray-500 md:text-lg font-extralight">Blog personal desarrollo de software</h2>
+    </div>
+
+    <div class="pb-6 md:py-12 md:pl-4 md:self-center md:justify-self-end md:pl-0">
+      <a href="#" class="inline-flex items-center px-4 py-2 border border-gray-500 md:flex hover:text-red-500 hover:border-red-500" data-action="menu#toggle">
+        <span class="font-semibold text-md md:text-lg">Menú</span>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-4 h-4 ml-4" data-menu-target="closed">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hidden w-4 h-4 ml-4" data-menu-target="opened">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <div data-menu-target="submenu" class="hidden w-full px-8">
+    <nav class="lg:flex-grow lg:py-14">
+  <ul>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/">Inicio</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/desarrollo">Desarrollo</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/fotografía">Fotografía</a></li>
+    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/proyectos">Proyectos</a></li>
+    <li class="font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/acercade">Acerca de</a></li>
+  </ul>
+</nav>
+
+
+    <footer class="py-8 lg:py-14">
+  <div class="flex space-x-4">
+    <a href="https://twitter.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24" class="w-4 h-4"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+    </a>
+    <a href="https://instagram.com/mario_chavez" target="_blank" class="text-gray-400 hover:text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="none" viewBox="0 0 24 24" class="w-4 h-4"><path d="M15.233 5.488c-.843-.038-1.097-.046-3.233-.046s-2.389.008-3.232.046c-2.17.099-3.181 1.127-3.279 3.279-.039.844-.048 1.097-.048 3.233s.009 2.389.047 3.233c.099 2.148 1.106 3.18 3.279 3.279.843.038 1.097.047 3.233.047 2.137 0 2.39-.008 3.233-.046 2.17-.099 3.18-1.129 3.279-3.279.038-.844.046-1.097.046-3.233s-.008-2.389-.046-3.232c-.099-2.153-1.111-3.182-3.279-3.281zm-3.233 10.62c-2.269 0-4.108-1.839-4.108-4.108 0-2.269 1.84-4.108 4.108-4.108s4.108 1.839 4.108 4.108c0 2.269-1.839 4.108-4.108 4.108zm4.271-7.418c-.53 0-.96-.43-.96-.96s.43-.96.96-.96.96.43.96.96-.43.96-.96.96zm-1.604 3.31c0 1.473-1.194 2.667-2.667 2.667s-2.667-1.194-2.667-2.667c0-1.473 1.194-2.667 2.667-2.667s2.667 1.194 2.667 2.667zm4.333-12h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm.952 15.298c-.132 2.909-1.751 4.521-4.653 4.654-.854.039-1.126.048-3.299.048s-2.444-.009-3.298-.048c-2.908-.133-4.52-1.748-4.654-4.654-.039-.853-.048-1.125-.048-3.298 0-2.172.009-2.445.048-3.298.134-2.908 1.748-4.521 4.654-4.653.854-.04 1.125-.049 3.298-.049s2.445.009 3.299.048c2.908.133 4.523 1.751 4.653 4.653.039.854.048 1.127.048 3.299 0 2.173-.009 2.445-.048 3.298z"/></svg>
+    </a>
+  </div>
+  <p class="mt-4 font-sans text-xs font-light tracking-wider text-gray-500 xl:text-sm">©2021. Mario Alberto Chávez Cárdenas</p>
+</footer>
+
+  </div>
+</header>
+
+        <article class="py-16 font-serif lg:py-24 post">
+  <header class="px-4 m-auto md:max-w-2xl lg:max-w-4xl">
+    <a href="/Desarrollo" class="pb-1 text-sm font-bold leading-normal uppercase border-b-4 border-gray-200 transition-all hover:text-red-500">Desarrollo</a>
+    <h1 class="mt-6 text-3xl font-bold tracking-wide md:text-4xl lg:text-6xl">Rails MCP Server: Enhanced Documentation Access</h1>
+  </header>
+
+  <div class="px-4 m-auto mt-16 tracking-wider md:max-w-2xl lg:max-w-4xl prose md:prose-lg">
+    <figure class="mt-16 aspect-w-16 aspect-h-9">
+      <img src="/images/rails-mcp-1.2.0.jpg" loading="lazy" />
+    </figure>
+
+    <h2 id="rails-mcp-server-enhanced-documentation-access-and-ai-workflow-integration">Rails MCP Server: Enhanced Documentation Access and AI Workflow Integration</h2>
+
+<p><em>Updated Rails MCP Server now provides consistent, up-to-date Rails documentation across multiple LLM clients with enhanced proxy support and Neovim integration.</em></p>
+
+<h2 id="table-of-contents">Table of Contents</h2>
+
+<ul>
+  <li><a href="#comprehensive-documentation-resources">Comprehensive Documentation Resources</a></li>
+  <li><a href="#the-documentation-challenge">The Documentation Challenge</a></li>
+  <li><a href="#five-resource-categories-available">Five Resource Categories Available</a></li>
+  <li><a href="#setting-up-documentation-resources">Setting Up Documentation Resources</a></li>
+  <li><a href="#mcp-proxy-integration-for-better-compatibility">MCP Proxy Integration for Better Compatibility</a></li>
+  <li><a href="#rails-mcp--neovim-mcp-integration-workflow">Rails MCP + Neovim MCP Integration Workflow</a></li>
+  <li><a href="#documentation-as-a-shared-resource">Documentation as a Shared Resource</a></li>
+  <li><a href="#resource-management-and-best-practices">Resource Management and Best Practices</a></li>
+  <li><a href="#faq">FAQ</a></li>
+</ul>
+
+<hr />
+
+<p>The latest updates to <strong>Rails MCP Server</strong> introduce significant improvements to documentation access, better integration capabilities, and enhanced workflow support that have transformed how I work with Rails projects using AI assistance.</p>
+
+<h2 id="comprehensive-documentation-resources">Comprehensive Documentation Resources</h2>
+
+<p>The most significant addition in this release is the comprehensive <strong>Resources and Documentation system</strong>. This addresses a critical need in AI-assisted development: providing LLM clients with consistent, up-to-date documentation that can be shared across multiple AI sessions and different LLM providers.</p>
+
+<h3 id="the-documentation-challenge">The Documentation Challenge</h3>
+
+<p>When working with AI assistants on Rails projects, I frequently encountered situations where the LLM’s training data was outdated or incomplete regarding specific framework features. This led to suggestions based on deprecated APIs or missing newer functionality. The resource system solves this by:</p>
+
+<ul>
+  <li><strong>Ensuring accuracy</strong>: LLMs receive the exact same official documentation that developers reference</li>
+  <li><strong>Maintaining consistency</strong>: Multiple AI sessions can access identical documentation, ensuring consistent guidance</li>
+  <li><strong>Staying current</strong>: Documentation can be updated to match specific Rails versions or framework releases</li>
+  <li><strong>Sharing context</strong>: The same documentation resources work across different LLM clients and providers</li>
+</ul>
+
+<h3 id="five-resource-categories-available">Five Resource Categories Available</h3>
+
+<p>The server now provides access to five complete documentation libraries:</p>
+
+<h4 id="1-rails-guides-documentation">1. Rails Guides Documentation</h4>
+
+<ul>
+  <li><strong>Content</strong>: Official Ruby on Rails 8.0.2 documentation - all 50+ guides</li>
+  <li><strong>Coverage</strong>: Getting started to advanced topics including Active Record, Action Pack, security, and deployment</li>
+  <li><strong>Use case</strong>: Comprehensive Rails framework reference</li>
+</ul>
+
+<h4 id="2-turbo-framework-documentation">2. Turbo Framework Documentation</h4>
+
+<ul>
+  <li><strong>Content</strong>: Complete Hotwire Turbo framework documentation</li>
+  <li><strong>Structure</strong>: Handbook and reference sections covering Turbo Drive, Frames, and Streams</li>
+  <li><strong>Use case</strong>: Modern Rails frontend development with Hotwire</li>
+</ul>
+
+<h4 id="3-stimulus-javascript-framework-documentation">3. Stimulus JavaScript Framework Documentation</h4>
+
+<ul>
+  <li><strong>Content</strong>: Full Stimulus documentation for building interactive components</li>
+  <li><strong>Structure</strong>: Handbook tutorials and API reference</li>
+  <li><strong>Use case</strong>: JavaScript interactions in Rails applications</li>
+</ul>
+
+<h4 id="4-kamal-deployment-documentation">4. Kamal Deployment Documentation</h4>
+
+<ul>
+  <li><strong>Content</strong>: Comprehensive Kamal deployment tool documentation</li>
+  <li><strong>Coverage</strong>: Installation, configuration, commands, and deployment strategies</li>
+  <li><strong>Use case</strong>: Modern Rails application deployment</li>
+</ul>
+
+<h4 id="5-custom-documentation-resources">5. Custom Documentation Resources</h4>
+
+<ul>
+  <li><strong>Content</strong>: Import and access your own markdown documentation files</li>
+  <li><strong>Flexibility</strong>: Project-specific guides, API documentation, team standards</li>
+  <li><strong>Use case</strong>: Maintaining consistent project documentation across AI sessions</li>
+</ul>
+
+<h2 id="setting-up-documentation-resources">Setting Up Documentation Resources</h2>
+
+<p>Setting up documentation is straightforward with the dedicated download tool:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Download official framework documentation</span>
+rails-mcp-server-download-resources rails
+rails-mcp-server-download-resources turbo
+rails-mcp-server-download-resources stimulus
+rails-mcp-server-download-resources kamal
+
+<span class="c"># Import your custom documentation</span>
+rails-mcp-server-download-resources <span class="nt">--file</span> /path/to/your/docs/
+
+<span class="c"># Force update existing resources</span>
+rails-mcp-server-download-resources <span class="nt">--force</span> rails
+
+<span class="c"># Verbose output for troubleshooting</span>
+rails-mcp-server-download-resources <span class="nt">--verbose</span> turbo
+</code></pre></div></div>
+
+<p>Once downloaded, you can access guides naturally in conversation:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Can you load the Rails getting started guide?
+Show me the Turbo Frames documentation.
+I need help with Stimulus controllers - can you show me that guide?
+Load the Kamal deployment guide so I can understand the process.
+</code></pre></div></div>
+
+<h2 id="mcp-proxy-integration-for-better-compatibility">MCP Proxy Integration for Better Compatibility</h2>
+
+<p>Building on the <a href="https://mariochavez.io/desarrollo/2025/04/20/rails-mcp-server-with-sse/">previous release with HTTP SSE support</a>, this update includes comprehensive documentation for using <strong>MCP proxies</strong> to address Ruby version manager compatibility issues that many developers face with Claude Desktop.</p>
+
+<h3 id="setting-up-mcp-proxy-for-enhanced-compatibility">Setting Up MCP Proxy for Enhanced Compatibility</h3>
+
+<p>For users who want to leverage the HTTP/SSE capabilities or work around Ruby version manager issues:</p>
+
+<h4 id="step-1-start-rails-mcp-server-in-http-mode">Step 1: Start Rails MCP Server in HTTP Mode</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails-mcp-server <span class="nt">--mode</span> http
+</code></pre></div></div>
+
+<h4 id="step-2-install-and-configure-mcp-proxy">Step 2: Install and Configure MCP Proxy</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Install the Node.js based MCP proxy</span>
+npm <span class="nb">install</span> <span class="nt">-g</span> mcp-remote
+
+<span class="c"># Run the proxy, pointing to your running Rails MCP Server</span>
+npx mcp-remote http://localhost:6029/mcp/sse
+</code></pre></div></div>
+
+<h4 id="step-3-configure-claude-desktop-for-proxy-usage">Step 3: Configure Claude Desktop for Proxy Usage</h4>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"mcpServers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"railsMcpServer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"npx"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"args"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"mcp-remote"</span><span class="p">,</span><span class="w"> </span><span class="s2">"http://localhost:6029/mcp/sse"</span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>This setup allows STDIO-only clients to communicate through the proxy while benefiting from HTTP/SSE capabilities and avoiding Ruby version conflicts.</p>
+
+<h2 id="rails-mcp--neovim-mcp-integration-workflow">Rails MCP + Neovim MCP Integration Workflow</h2>
+
+<p>I’ve significantly improved my development workflow by combining the Rails MCP Server with the <a href="https://github.com/maquina-app/nvim-mcp-server"><strong>Neovim MCP Server</strong></a>. This combination creates a powerful development environment where I can seamlessly work with both my Rails codebase and my active editing context.</p>
+
+<h3 id="the-two-server-development-approach">The Two-Server Development Approach</h3>
+
+<p>Here’s how I use both MCP servers together for enhanced productivity:</p>
+
+<p><strong>Rails MCP Server handles:</strong></p>
+
+<ul>
+  <li>Project structure analysis and exploration</li>
+  <li>Database schema exploration and relationships</li>
+  <li>Route inspection and API endpoint analysis</li>
+  <li>Model relationship analysis and validations</li>
+  <li>Access to comprehensive Rails ecosystem documentation</li>
+</ul>
+
+<p><strong>Neovim MCP Server provides:</strong></p>
+
+<ul>
+  <li>Real-time access to currently open buffers</li>
+  <li>Context about active editing sessions</li>
+  <li>Bridge between editor state and AI assistance</li>
+  <li>Live file content without manual specification</li>
+</ul>
+
+<h3 id="optimized-development-session-workflow">Optimized Development Session Workflow</h3>
+
+<p>When I start a development session, I begin with context gathering:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Switch to project my_rails_app, don't analyze anything yet.
+Show me which files I have open in my "my_rails_app" Neovim instance.
+</code></pre></div></div>
+
+<p>This gives me both project context from Rails MCP and my current editing context from Neovim MCP. Then I can work more efficiently:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Load the User model from Rails and also get the user_controller.rb that I have open in Neovim.
+Can you also load the Rails Active Record associations guide for reference?
+</code></pre></div></div>
+
+<h3 id="benefits-of-the-dual-server-approach">Benefits of the Dual-Server Approach</h3>
+
+<p>This approach allows me to:</p>
+
+<ul>
+  <li><strong>Work with live context</strong>: See exactly what I’m editing without manually specifying files</li>
+  <li><strong>Access comprehensive documentation</strong>: Get official guides loaded instantly for reference</li>
+  <li><strong>Maintain project focus</strong>: Switch between Rails projects while keeping editor context</li>
+  <li><strong>Avoid manual file management</strong>: Let the tools handle finding and loading the right files</li>
+</ul>
+
+<h3 id="managing-token-usage-effectively">Managing Token Usage Effectively</h3>
+
+<p>I’ve refined my prompting strategy to manage Claude’s context window more effectively:</p>
+
+<p><strong>Session Start:</strong></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Switch to project my_finances, don't analyze the project or any loaded files until you are told to.
+</code></pre></div></div>
+
+<p><strong>Loading Files:</strong></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Load the following files from my Neovim buffers, do not analyze or try to load dependencies unless you are told to.
+</code></pre></div></div>
+
+<p><strong>Session Continuation:</strong>
+When reaching conversation limits, I summarize and continue:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Summarize this chat. Describe the goal and add relevant information about what was done. Include the project name and list any files loaded, generated or shared.
+</code></pre></div></div>
+
+<h2 id="documentation-as-a-shared-resource">Documentation as a Shared Resource</h2>
+
+<p>The resource system transforms documentation from a static reference into a dynamic, shared asset. When I load Rails validation documentation in one conversation, another AI session can access the same exact information. This consistency is particularly valuable when:</p>
+
+<ul>
+  <li><strong>Training team members</strong>: Everyone gets the same documentation regardless of which AI tool they use</li>
+  <li><strong>Maintaining project standards</strong>: Documentation stays consistent across different development sessions</li>
+  <li><strong>Working with multiple LLM providers</strong>: The same Rails 8.0.2 guides work identically with Claude, ChatGPT, or other MCP-compatible clients</li>
+  <li><strong>Ensuring version alignment</strong>: Projects can specify exact documentation versions to match their Rails installation</li>
+</ul>
+
+<p>Instead of switching to browser tabs or searching through docs, I can load exactly the guide I need:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>I'm working on validations - can you load the Rails validations guide?
+Show me the Turbo Streams reference for this real-time update feature.
+Load my custom API documentation so we can follow the established patterns.
+</code></pre></div></div>
+
+<p>The system handles both official framework documentation and custom project documentation seamlessly, making it a true companion for Rails development.</p>
+
+<h2 id="resource-management-and-best-practices">Resource Management and Best Practices</h2>
+
+<p>Managing resources is straightforward with clear commands and automatic organization:</p>
+
+<h3 id="resource-organization-best-practices">Resource Organization Best Practices</h3>
+
+<ul>
+  <li><strong>Download once, use everywhere</strong>: Resources are stored locally and available across all conversations</li>
+  <li><strong>Automatic updates</strong>: Re-download to get the latest documentation versions</li>
+  <li><strong>Custom integration</strong>: Import your project-specific documentation alongside official guides</li>
+  <li><strong>Intelligent organization</strong>: Resources are categorized and easily discoverable</li>
+</ul>
+
+<h3 id="resource-storage-and-management">Resource Storage and Management</h3>
+
+<p>Resources are stored in platform-specific locations:</p>
+
+<ul>
+  <li><strong>macOS</strong>: <code class="highlighter-rouge">~/.config/rails-mcp/resources/</code></li>
+  <li><strong>Windows</strong>: <code class="highlighter-rouge">%APPDATA%\rails-mcp\resources\</code></li>
+</ul>
+
+<p>Each resource category maintains a manifest file tracking downloaded guides, versions, and update timestamps.</p>
+
+<h3 id="performance-optimization-tips">Performance Optimization Tips</h3>
+
+<ol>
+  <li><strong>Selective downloads</strong>: Only download resources you actively use</li>
+  <li><strong>Regular updates</strong>: Keep documentation current with framework releases</li>
+  <li><strong>Custom documentation</strong>: Organize project-specific guides with descriptive filenames</li>
+  <li><strong>Version alignment</strong>: Match documentation versions to your Rails installation</li>
+</ol>
+
+<p>For complete details on setting up and using resources, I’ve created a comprehensive <a href="docs/RESOURCES.md">Resources Guide</a> that covers everything from basic setup to advanced usage patterns.</p>
+
+<h2 id="faq">FAQ</h2>
+
+<h3 id="how-do-i-update-rails-mcp-server-documentation-resources">How do I update Rails MCP Server documentation resources?</h3>
+
+<p>Re-run the download command for any resource category to get the latest version:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails-mcp-server-download-resources rails
+</code></pre></div></div>
+
+<h3 id="can-i-use-rails-mcp-server-with-other-ai-clients-besides-claude-desktop">Can I use Rails MCP Server with other AI clients besides Claude Desktop?</h3>
+
+<p>Yes! The MCP proxy setup allows compatibility with any MCP-compatible client. The HTTP/SSE endpoints work with various LLM providers.</p>
+
+<h3 id="whats-the-difference-between-rails-mcp-server-and-neovim-mcp-server">What’s the difference between Rails MCP Server and Neovim MCP Server?</h3>
+
+<ul>
+  <li><strong>Rails MCP Server</strong>: Analyzes Rails project structure, database, routes, and provides Rails ecosystem documentation</li>
+  <li><strong>Neovim MCP Server</strong>: Provides access to currently open files in your editor sessions</li>
+</ul>
+
+<h3 id="how-do-i-troubleshoot-ruby-version-manager-issues-with-claude-desktop">How do I troubleshoot Ruby version manager issues with Claude Desktop?</h3>
+
+<p>Use the MCP proxy setup to bypass Ruby version conflicts, or create a symbolic link as described in the <a href="https://github.com/maquina-app/rails-mcp-server#ruby-version-manager-users">Ruby Version Manager Users section</a>.</p>
+
+<h3 id="can-i-import-custom-documentation-alongside-official-rails-guides">Can I import custom documentation alongside official Rails guides?</h3>
+
+<p>Yes! Use the <code class="highlighter-rouge">--file</code> option to import your own markdown files:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails-mcp-server-download-resources <span class="nt">--file</span> /path/to/your/docs/
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="looking-forward">Looking Forward</h2>
+
+<p>This enhanced Rails MCP Server has become an integral part of my Rails development workflow. The combination of comprehensive documentation access, improved integration options, and seamless editor integration through the Neovim MCP Server creates a development environment where AI assistance feels natural and productive.</p>
+
+<p>The ability to instantly access official documentation, work with live editing context, and maintain project focus has significantly improved my development velocity and the quality of my AI-assisted coding sessions.</p>
+
+<p>I encourage you to try both servers together and explore the new resource system. The documentation access alone makes this upgrade worthwhile, and the improved integration options ensure it works well regardless of your development setup.</p>
+
+<p><strong>Source code and detailed setup instructions:</strong></p>
+
+<ul>
+  <li><a href="https://github.com/maquina-app/rails-mcp-server">Rails MCP Server</a></li>
+  <li><a href="https://github.com/maquina-app/nvim-mcp-server">Neovim MCP Server</a></li>
+</ul>
+
+<hr />
+
+<h3 id="related-posts">Related Posts</h3>
+
+<ul>
+  <li><a href="https://mariochavez.io/desarrollo/2025/04/20/rails-mcp-server-with-sse/">Rails MCP Server with HTTP Server-Sent Events support</a></li>
+  <li><a href="https://mariochavez.io/desarrollo/2024/12/15/model-context-protocol-development/">Model Context Protocol: Enhancing AI Development Workflows</a></li>
+</ul>
+
+<hr />
+
+<p><em>The Rails MCP Server continues to evolve based on real-world usage. If you have suggestions or encounter issues, please feel free to open an issue or contribute to the project.</em></p>
+
+  </div>
+</article>
+
+      </main>
+    </section>
+
+  </body>
+</html>
