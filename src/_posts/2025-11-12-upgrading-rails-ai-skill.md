@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Upgrading Rails applications with an AI skill
-date: 2025-11-12 00:00:00 -0500
+date: 2025-11-12 00:00:00 -0600
 published: November 12, 2025
 categories: desarrollo
 image: /images/rails-upgrade-skill/upgrade-rails-ia-skill.jpg
@@ -15,8 +15,8 @@ ld_schema: >
     "headline": "Upgrading Rails applications with an AI skill",
     "description": "Learn how the custom Rails Upgrade Assistant Skill automates the tedious process of merging configurations and detecting breaking changes when upgrading Ruby on Rails applications (v7.0 to v8.1).",
     "image": "https://mariochavez.io/images/rails-upgrade-skill/upgrade-rails-ia-skill.jpg",
-    "datePublished": "2025-11-12T10:00:00Z",
-    "dateModified": "2025-11-12T10:00:00Z",
+    "datePublished": "2025-11-12T12:00:00Z",
+    "dateModified": "2025-11-12T12:00:00Z",
     "author": {
       "@type": "Person",
       "name": "Mario Alberto Chávez",
