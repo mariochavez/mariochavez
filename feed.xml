@@ -1,4 +1,165 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es"><generator uri="https://bridgetownrb.com/" version="1.3.4">Bridgetown</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" hreflang="es" /><updated>2025-06-03T17:26:44+00:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez</title><subtitle>Blog sobre temas de desarrollo de software Web con Ruby y Ruby on Rails, además de temas de fotografía análoga y digital.</subtitle><author><name>Mario Alberto Chávez</name></author><entry><title type="html">Rails MCP Server: Enhanced Documentation Access</title><link href="https://mariochavez.io/desarrollo/rails/ai-tools/development-workflow/2025/06/03/rails-mcp-server-enhanced-documentation-access/" rel="alternate" type="text/html" title="Rails MCP Server: Enhanced Documentation Access" /><published>2025-06-03T06:00:00+00:00</published><updated>2025-06-03T06:00:00+00:00</updated><id>repo://posts.collection/_posts/2025-06-03-rails-mcp-server-enhanced-documentation-access.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/rails/ai-tools/development-workflow/2025/06/03/rails-mcp-server-enhanced-documentation-access/">&lt;h2 id=&quot;rails-mcp-server-enhanced-documentation-access-and-ai-workflow-integration&quot;&gt;Rails MCP Server: Enhanced Documentation Access and AI Workflow Integration&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es"><generator uri="https://bridgetownrb.com/" version="1.3.4">Bridgetown</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" hreflang="es" /><updated>2025-11-12T20:01:02+00:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez</title><subtitle>Blog sobre temas de desarrollo de software Web con Ruby y Ruby on Rails, además de temas de fotografía análoga y digital.</subtitle><author><name>Mario Alberto Chávez</name></author><entry xml:lang="en_US"><title type="html">Upgrading Rails applications with an AI skill</title><link href="https://mariochavez.io/desarrollo/2025/11/12/upgrading-rails-ai-skill/" rel="alternate" type="text/html" title="Upgrading Rails applications with an AI skill" /><published>2025-11-12T05:00:00+00:00</published><updated>2025-11-12T05:00:00+00:00</updated><id>repo://posts.collection/_posts/2025-11-12-upgrading-rails-ai-skill.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2025/11/12/upgrading-rails-ai-skill/">&lt;p&gt;What if you could use an AI skill to handle the most tedious, error-prone parts of a Ruby on Rails upgrade? As someone who’s been in the Rails trenches since 2008, I’ve spent countless hours on this exact task.&lt;/p&gt;
+
+&lt;p&gt;In my time as a founder, contractor, and company owner, I’ve upgraded applications from nearly every era. The early days of 2.x, 3.x, and 4.x were battles against breaking API changes, specific and complex monkey patches, and gems that were abandoned over time.&lt;/p&gt;
+
+&lt;p&gt;Things got better after Rails 5.2, but one command still triggers a familiar headache: &lt;code class=&quot;highlighter-rouge&quot;&gt;rails app:update&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The real challenge isn’t the command itself. It’s the high-stakes, manual process that follows: &lt;strong&gt;meticulously merging your application’s custom configurations&lt;/strong&gt; with the framework’s new defaults. Even with great tools like &lt;a href=&quot;https://railsdiff.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;RailsDiff&lt;/a&gt;, it’s a slow, manual process where a single mistake can cause subtle, cascading bugs.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;the-spark-of-an-idea&quot;&gt;The Spark of an Idea&lt;/h3&gt;
+
+&lt;p&gt;I’ve been thinking about how to improve this process for a while. When Anthropic first announced the Model Context Protocol (MCP), I saw a post on X (formerly Twitter) asking if AI could finally solve this exact config-merging nightmare. The idea struck a chord, but I was swamped with work.&lt;/p&gt;
+
+&lt;p&gt;A few weeks ago, that idea resurfaced. A client’s application on Rails 7.1 was approaching its end-of-life (EOL) date, and I was staring down another upgrade. But this time, something was different: Anthropic had just launched &lt;strong&gt;Skills&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;As I was planning the upgrade, I was open to considering if one of these new &lt;strong&gt;Skills&lt;/strong&gt; could be the solution. I realized a “skill” wasn’t just a general-purpose AI; it was a specialized, tool-driven capability. Could this be the key to &lt;em&gt;finally&lt;/em&gt; automating the most painful part of a Rails upgrade?&lt;/p&gt;
+
+&lt;p&gt;I had to find out.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;introducing-the-rails-upgrade-skill&quot;&gt;Introducing the &lt;code class=&quot;highlighter-rouge&quot;&gt;rails-upgrade-skill&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;The result of that experiment is the &lt;strong&gt;Rails Upgrade Assistant Skill&lt;/strong&gt; (or &lt;code class=&quot;highlighter-rouge&quot;&gt;rails-upgrade-skill&lt;/code&gt; in its repository). This is a specialized &lt;strong&gt;AI skill&lt;/strong&gt; that uses Claude’s intelligence to guide the entire upgrade process.&lt;/p&gt;
+
+&lt;p&gt;It’s built using official Rails CHANGELOGs to intelligently plan your upgrade path for any version from &lt;strong&gt;Rails 7.0 through 8.1.1&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What makes this skill an &lt;em&gt;intelligent&lt;/em&gt; upgrade assistant?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Intelligent Analysis:&lt;/strong&gt; It calls the Rails MCP Server to read &lt;strong&gt;your actual project files&lt;/strong&gt;, understand &lt;strong&gt;your customizations&lt;/strong&gt;, and provide personalized guidance—not generic advice.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Custom Code Preservation:&lt;/strong&gt; It automatically detects custom configurations and provides specific warnings (e.g., about custom SSL middleware or autoload paths) with clear instructions on how to migrate them safely, ensuring your code logic isn’t lost.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Sequential Enforcement:&lt;/strong&gt; It prevents the dangerous practice of skipping versions. If you ask for a multi-hop upgrade (e.g., 7.0 to 8.1), it automatically plans the correct sequential path (7.0 → 7.1 → 7.2 → 8.0 → 8.1) and guides you through each hop separately.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;make-it-your-own&quot;&gt;Make It Your Own&lt;/h3&gt;
+
+&lt;p&gt;This skill is currently &lt;strong&gt;opinionated and tightly coupled to my personal workflow&lt;/strong&gt;. It’s built to work with two other tools I’ve made:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/maquina-app/rails-mcp-server&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Rails MCP Server&lt;/a&gt;: Used to gather deep information about your Rails application (like version, file contents, routes).
+    &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/maquina-app/nvim-mcp-server&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Neovim MCP Server&lt;/a&gt;: Used to allow Claude to apply the identified changes directly to your files in Neovim (the &lt;strong&gt;Interactive Mode&lt;/strong&gt;).
+    &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;But this is the beauty of Skills. You don’t have to use my stack. I invite you to &lt;strong&gt;fork the repo&lt;/strong&gt; and edit the &lt;code class=&quot;highlighter-rouge&quot;&gt;SKILL.md&lt;/code&gt; file. You can instruct the skill on how &lt;em&gt;you&lt;/em&gt; want it to get project information or apply changes, tailoring it to your own editor and workflow.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;how-to-use-the-skill-a-step-by-step-guide&quot;&gt;How to Use the Skill: A Step-by-Step Guide&lt;/h2&gt;
+
+&lt;p&gt;Here’s how it works in my setup.&lt;/p&gt;
+
+&lt;h3 id=&quot;1-installation&quot;&gt;1. Installation&lt;/h3&gt;
+
+&lt;p&gt;First, clone the repository and run the build script:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; git clone &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;https://github.com/maquina-app/rails-upgrade-skill.git]&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;https://github.com/maquina-app/rails-upgrade-skill.git&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;rails-upgrade-skill
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; bin/build
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This command zips the skill into a &lt;code class=&quot;highlighter-rouge&quot;&gt;/build&lt;/code&gt; folder. Next, open your Claude Desktop app, go to &lt;strong&gt;Settings &amp;gt; Capabilities&lt;/strong&gt;, and scroll down to &lt;strong&gt;Skills&lt;/strong&gt;. You can upload the &lt;code class=&quot;highlighter-rouge&quot;&gt;build/rails-upgrade-skill.zip&lt;/code&gt; file there.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/rails-upgrade-skill/claude-settings.png&quot; alt=&quot;Install the skill&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;2-set-your-project-context&quot;&gt;2. Set Your Project Context&lt;/h3&gt;
+
+&lt;p&gt;In a new chat, you need to tell Claude which project you’re working on. If you’re using my Rails MCP Server, the command is:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Switch to my_app project and show me the project information&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This activates your Rails application’s context and allows the skill to gather its details.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/rails-upgrade-skill/rails-app-information.png&quot; alt=&quot;Switch to your application context&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;3-activate-the-upgrade-skill&quot;&gt;3. Activate the Upgrade Skill&lt;/h3&gt;
+
+&lt;p&gt;Once the context is set, you can invoke the AI skill with a simple prompt:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Help me upgrade my Rails application to next available version&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The skill takes over and kicks off a three-step process, which can be done in two modes:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Mode 1 (Report-Only):&lt;/strong&gt; Claude provides the comprehensive report, and you apply changes manually. This is recommended for your first time.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Mode 2 (Interactive):&lt;/strong&gt; Claude guides you and offers to apply changes directly to your open files in Neovim.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/rails-upgrade-skill/generate-breaking-changes-script.png&quot; alt=&quot;Activate the skill&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;4-the-three-phase-process&quot;&gt;4. The Three-Phase Process&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Step 1: Detect Deprecations&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The skill generates a bash script for you. You copy and run this script in your application’s root directory. It scans your application for deprecation patterns and breaking changes, saving findings to a .txt file, which you then paste back into Claude.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/rails-upgrade-skill/run-the-script.png&quot; alt=&quot;Run the script&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Step 2: Generate a Comprehensive Report&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;This is the core value. Using the project analysis and the deprecation findings, the skill generates a detailed report. It breaks down changes by priority (HIGH, MEDIUM, LOW) and component (ActiveRecord, ActionMailer, etc.).&lt;/p&gt;
+
+&lt;p&gt;Crucially, it &lt;strong&gt;intelligently merges the new Rails defaults with your existing custom settings&lt;/strong&gt; and provides &lt;strong&gt;OLD vs. NEW code examples&lt;/strong&gt; with explanation.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/rails-upgrade-skill/the-report.png&quot; alt=&quot;The comprehensive report&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Step 3: Apply the Changes (The app:update Report)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The final report summarizes all files needing changes. If you are using the Interactive Mode with the Neovim MCP server, you can review the proposed changes and then tell Claude:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;All files are ready on nvim buffers, update them all&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Claude will then apply all the approved changes directly to your open files.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/rails-upgrade-skill/the-app-update-report.png&quot; alt=&quot;The app:update report&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;the-final-mile-after-the-skill&quot;&gt;The Final Mile: After the Skill&lt;/h2&gt;
+
+&lt;p&gt;This AI skill handles the most complex parts of the upgrade, getting you 90% of the way there. You still need to follow the standard Rails procedure:&lt;/p&gt;
+
+&lt;p&gt;First, update your gems:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; bundle update
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Next, run the &lt;code class=&quot;highlighter-rouge&quot;&gt;rails app:update&lt;/code&gt; command. Run it with &lt;strong&gt;confidence&lt;/strong&gt;. When the command flags conflicts in config files, you can usually &lt;strong&gt;skip&lt;/strong&gt; overwriting them, knowing the logic has already been intelligently merged by the skill. You then let the command proceed to create &lt;em&gt;new&lt;/em&gt; files, like initializers and migrations.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; rails app:update
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And the last, most crucial step: &lt;strong&gt;run your test suite&lt;/strong&gt; and test the application manually.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;final-thoughts&quot;&gt;Final Thoughts&lt;/h2&gt;
+
+&lt;p&gt;I’ve already used this skill to upgrade a client application and several of my own projects, turning hours of tedious work into a process that takes just a few minutes of interaction time.&lt;/p&gt;
+
+&lt;p&gt;This, for me, represents the true power of AI in development: combining deep, specialized domain knowledge (the nuances of a Rails upgrade) with new tools like Anthropic Skills.&lt;/p&gt;
+
+&lt;p&gt;Please, &lt;strong&gt;give the &lt;a href=&quot;https://github.com/maquina-app/rails-upgrade-skill&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;rails-upgrade-skill&lt;/a&gt; a try&lt;/strong&gt;. Fork it, adapt it to your own workflow, and let me know what you think.&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/rails-upgrade-skill/upgrade-rails-ia-skill.jpg" /><media:content medium="image" url="https://mariochavez.io/images/rails-upgrade-skill/upgrade-rails-ia-skill.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Rails MCP Server: Enhanced Documentation Access</title><link href="https://mariochavez.io/desarrollo/rails/ai-tools/development-workflow/2025/06/03/rails-mcp-server-enhanced-documentation-access/" rel="alternate" type="text/html" title="Rails MCP Server: Enhanced Documentation Access" /><published>2025-06-03T06:00:00+00:00</published><updated>2025-06-03T06:00:00+00:00</updated><id>repo://posts.collection/_posts/2025-06-03-rails-mcp-server-enhanced-documentation-access.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/rails/ai-tools/development-workflow/2025/06/03/rails-mcp-server-enhanced-documentation-access/">&lt;h2 id=&quot;rails-mcp-server-enhanced-documentation-access-and-ai-workflow-integration&quot;&gt;Rails MCP Server: Enhanced Documentation Access and AI Workflow Integration&lt;/h2&gt;
 
 &lt;p&gt;&lt;em&gt;Updated Rails MCP Server now provides consistent, up-to-date Rails documentation across multiple LLM clients with enhanced proxy support and Neovim integration.&lt;/em&gt;&lt;/p&gt;
 
@@ -1879,69 +2040,4 @@ css: bin/rails app:tailwindcss:watch
 
 &lt;p&gt;Maquina will provide almost everything for a quick start on a new Rails application. It also has the flexibility that if you need to override functionality, you will be free to do it, and if you need to work outside the engine defaults, you can do it. Everything is just Ruby and Ruby on Rails code.&lt;/p&gt;
 
-&lt;p&gt;In a further blog post, I’ll discuss what it means for a controller to include the Resourceful module and the code availability of Maquina.&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/maquina/maquina.jpg" /><media:content medium="image" url="https://mariochavez.io/images/maquina/maquina.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry xml:lang="en"><title type="html">Building AI applications with Ruby</title><link href="https://mariochavez.io/desarrollo/2023/07/12/building-ai-applications-with-ruby/" rel="alternate" type="text/html" title="Building AI applications with Ruby" /><published>2023-07-12T06:00:00+00:00</published><updated>2023-07-12T06:00:00+00:00</updated><id>repo://posts.collection/_posts/2023-07-12-building-ai-applications-with-ruby.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2023/07/12/building-ai-applications-with-ruby/">&lt;p&gt;When ChatGPT came in popularity earlier this year I wasn’t that excited, actually I refrained myself from jumping in to it. Mainly because most of the day-to-day work I do is related to Fintechs and confidential data.&lt;/p&gt;
-
-&lt;p&gt;Then in April, this year, the &lt;a href=&quot;https://www.theverge.com/2023/3/8/23629362/meta-ai-language-model-llama-leak-online-misuse&quot;&gt;LLaMA&lt;/a&gt; model was leaked into the Internet and things started to move quickly into the possibility of having private models. Tools like &lt;a href=&quot;https://github.com/ggerganov/llama.cpp&quot;&gt;llama.cpp&lt;/a&gt; emerged but still, there was an impossibility to be able to use it in commercial applications.&lt;/p&gt;
-
-&lt;p&gt;Still, I started to follow the development of the Open-Source models. It was moving very fast, at times it was difficult to catch up. When the first models with commercial license appeared, it was the time for me to try to run a model locally.&lt;/p&gt;
-
-&lt;p&gt;Almost all documentation and tools were writing in and for Python. So, I had to learn a new set of tools. The first time that I successfully run a model in my Mac Mini M2 Pro was existing but disappointed at the same time, it was unbearably slow.&lt;/p&gt;
-
-&lt;p&gt;I continued learning, building tools with Ruby, and trying smaller models. Then lama.cpp released support for Apple’s Metal Performance Shaders (MPS) and a 7 billion parameters model like &lt;a href=&quot;https://lmsys.org/&quot;&gt;Vicuna&lt;/a&gt; was fast enough for my Mac Mini M2 Pro.&lt;/p&gt;
-
-&lt;p&gt;Also, I realized that for the applications that I had in mind, I didn’t need bigger models.&lt;/p&gt;
-
-&lt;p&gt;So, today I’m releasing a tool, &lt;a href=&quot;https://github.com/mariochavez/aoororachain&quot;&gt;Aoororachain&lt;/a&gt; that allows you to create AI Applications with Ruby.&lt;/p&gt;
-
-&lt;p&gt;Before explaining what is &lt;strong&gt;Aoororachain&lt;/strong&gt; let me list the tools that I created over the time and that makes &lt;strong&gt;Aoororachain&lt;/strong&gt; an opinionated tool.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/mariochavez/chroma&quot;&gt;Chroma&lt;/a&gt; gem. It is a client for Vector Database &lt;a href=&quot;https://www.trychroma.com/&quot;&gt;Chroma&lt;/a&gt;.&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/mariochavez/llm_server&quot;&gt;LLM Server&lt;/a&gt;. It is a Rack API application that wraps llama.cpp binary for running LLM models.&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/mariochavez/llm_client&quot;&gt;LLM Client&lt;/a&gt;. A Ruby client for the LLM Server API.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;Aoororachain&lt;/strong&gt; as I said before, is an opinionated way to build AI applications with Open-Source tools.&lt;/p&gt;
-
-&lt;p&gt;For example, if you want to query your own documents, it helps you to create embeddings of them and store the vectors in the Chroma database. To create the embeddings, it uses a &lt;em&gt;glue&lt;/em&gt; with Python for different embedding models.&lt;/p&gt;
-
-&lt;p&gt;Instead of going with a code example here, I ask you to look at the README file and the two Jupyter Notebooks that are part of the project for more information on how to use it.&lt;/p&gt;
-
-&lt;div class=&quot;flex flex-col sm:flex-row space-x-4&quot;&gt;
-  &lt;figure&gt;
-    &lt;a href=&quot;https://github.com/mariochavez/aoororachain/tree/main/notebooks&quot;&gt;
-      &lt;img class=&quot;block object-contain&quot; src=&quot;/images/build-ai-ruby/load-data.png&quot; /&gt;
-    &lt;/a&gt;
-    &lt;figcaption class=&quot;text-center&quot;&gt;Jupyter notbook to load data.&lt;/figcaption&gt;
-  &lt;/figure&gt;
-  &lt;figure&gt;
-    &lt;a href=&quot;https://github.com/mariochavez/aoororachain/tree/main/notebooks&quot;&gt;
-      &lt;img class=&quot;block object-contain&quot; src=&quot;/images/build-ai-ruby/retrieval-data.png&quot; /&gt;
-    &lt;/a&gt;
-    &lt;figcaption class=&quot;text-center&quot;&gt;Jupyter notbook to query data.&lt;/figcaption&gt;
-  &lt;/figure&gt;
-&lt;/div&gt;
-
-&lt;p&gt;But I’ll close this post with videos of three different applications using &lt;strong&gt;Aoororachain&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;The first application is a chat, where you can query Ruby 3.2 documentation and get responses and examples. Unfortunately, Ruby’s documentation lacks of explanation details, and I’m not saying this as a critic of all the people that work on it, but for some topics the LLM was unable to make sense of it.&lt;/p&gt;
-
-&lt;div class=&quot;embed-container&quot;&gt;
-  &lt;iframe src=&quot;https://player.vimeo.com/video/844402445&quot; frameborder=&quot;0&quot; allow=&quot;fullscreen; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-&lt;/div&gt;
-
-&lt;p&gt;The second application, is a chat where you can query the Mexico’s Fintech law.&lt;/p&gt;
-
-&lt;div class=&quot;embed-container&quot;&gt;
-  &lt;iframe src=&quot;https://player.vimeo.com/video/844394368&quot; frameborder=&quot;0&quot; allow=&quot;fullscreen; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-&lt;/div&gt;
-
-&lt;p&gt;The last application is a support chat for a fictitious Fintech company, where clients can ask for information about their credits, like next payment date, payments information, summaries, and what could happen if they fall behind with their payments.&lt;/p&gt;
-
-&lt;div class=&quot;embed-container&quot;&gt;
-  &lt;iframe src=&quot;https://player.vimeo.com/video/844398254&quot; frameborder=&quot;0&quot; allow=&quot;fullscreen; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;NOTE: All videos are accelerated while waiting for a response. The wait time was about 30 seconds with a 13 billion parameters model.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;If you are looking to try AI in a private environment, I hope that these tools can be useful for you. If you try them and find a bug or find a way to improve them, please send a pull request.&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/build-ai-ruby/build-ai-ruby.png" /><media:content medium="image" url="https://mariochavez.io/images/build-ai-ruby/build-ai-ruby.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;p&gt;In a further blog post, I’ll discuss what it means for a controller to include the Resourceful module and the code availability of Maquina.&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/maquina/maquina.jpg" /><media:content medium="image" url="https://mariochavez.io/images/maquina/maquina.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
