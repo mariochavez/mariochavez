@@ -1,4 +1,64 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es"><generator uri="https://bridgetownrb.com/" version="1.3.4">Bridgetown</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" hreflang="es" /><updated>2025-11-12T20:07:39+00:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez</title><subtitle>Blog sobre temas de desarrollo de software Web con Ruby y Ruby on Rails, además de temas de fotografía análoga y digital.</subtitle><author><name>Mario Alberto Chávez</name></author><entry xml:lang="en_US"><title type="html">Upgrading Rails applications with an AI skill</title><link href="https://mariochavez.io/desarrollo/2025/11/12/upgrading-rails-ai-skill/" rel="alternate" type="text/html" title="Upgrading Rails applications with an AI skill" /><published>2025-11-12T06:00:00+00:00</published><updated>2025-11-12T06:00:00+00:00</updated><id>repo://posts.collection/_posts/2025-11-12-upgrading-rails-ai-skill.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2025/11/12/upgrading-rails-ai-skill/">&lt;p&gt;What if you could use an AI skill to handle the most tedious, error-prone parts of a Ruby on Rails upgrade? As someone who’s been in the Rails trenches since 2008, I’ve spent countless hours on this exact task.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es"><generator uri="https://bridgetownrb.com/" version="1.3.4">Bridgetown</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" hreflang="es" /><updated>2025-11-23T19:45:04+00:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez</title><subtitle>Blog sobre temas de desarrollo de software Web con Ruby y Ruby on Rails, además de temas de fotografía análoga y digital.</subtitle><author><name>Mario Alberto Chávez</name></author><entry xml:lang="en_US"><title type="html">Vibecoding the Physical: How AI Helped Me Bind My Photobook</title><link href="https://mariochavez.io/desarrollo/2025/11/22/vibecoding-the-physical-how-ai-helped-me-bind-my-photobook/" rel="alternate" type="text/html" title="Vibecoding the Physical: How AI Helped Me Bind My Photobook" /><published>2025-11-22T06:00:00+00:00</published><updated>2025-11-22T06:00:00+00:00</updated><id>repo://posts.collection/_posts/2025-11-22-vibecoding-the-physical-how-ai-helped-me-bind-my-photobook.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2025/11/22/vibecoding-the-physical-how-ai-helped-me-bind-my-photobook/">&lt;p&gt;Sometimes, I reach for Claude Desktop just to “vibecode.” I start with a spark—a very simple idea—and I iterate, building complexity layer by layer. Usually, I don’t even specify the tech stack. By default, Sonnet tends to choose React.&lt;/p&gt;
+
+&lt;p&gt;Here’s the catch: my knowledge of React is basic. I can’t strictly tell if the code is idiomatic or “correct.” I can only treat the app as a black box—testing it to see if it works as expected. I leave the architectural decisions to the model and focus purely on the outcome.&lt;/p&gt;
+
+&lt;p&gt;But this time, the outcome was personal.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-artists-need&quot;&gt;The Artist’s Need&lt;/h2&gt;
+
+&lt;p&gt;Besides being a Software Engineer, I am a Visual Artist and contemporary photographer. Since 2022, I’ve been working on a long-term project that is finally becoming my first photobook.&lt;/p&gt;
+
+&lt;p&gt;Recently, my book editor and designer sent me a draft PDF. It looked great on screen, but a photobook is a physical object. I needed to “feel” the book before giving feedback. Electronic documents don’t have weight; they don’t have page turns.&lt;/p&gt;
+
+&lt;p&gt;I have the knowledge to print at home on a consumer printer. I also know the process required to take a linear PDF and rearrange the pages into “signatures” (groups of folded sheets) for traditional binding. But doing this manually is tedious and error-prone. One calculation mistake, one wrong paper flip, and the page order is ruined.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/vibecoding-photobook/claude-1.png&quot; alt=&quot;Image: Understanding Signature Binding documentation section&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;the-ai-solution&quot;&gt;The AI Solution&lt;/h2&gt;
+
+&lt;p&gt;I needed a tool, not a math lesson. I opened Claude and pitched the idea: a &lt;strong&gt;“Photobook Signature and Printing Layout Calculator.”&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/vibecoding-photobook/claude-2.png&quot; alt=&quot;Image: Signatures visualization&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I wanted to upload my PDF and have the tool calculate:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;How many signatures do I need for binding?&lt;/li&gt;
+  &lt;li&gt;How to rearrange (impose) the pages for printing?&lt;/li&gt;
+  &lt;li&gt;How to optimize paper usage based on my printer’s specific paper size?&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;After about 10 iterations, Sonnet nailed it. It built a fully client-side React application. It visualizes the grid, handles the imposition math, and even generates a visual guide for printing.&lt;/p&gt;
+
+&lt;p&gt;Because I was “vibecoding,” I didn’t stop at the code. I asked Claude to generate a comprehensive user manual for me (the Photographer) and a technical architecture document for “Future Me” (the Developer).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/vibecoding-photobook/claude-3.png&quot; alt=&quot;Image: Printing layout&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;the-engineers-return&quot;&gt;The Engineer’s Return&lt;/h2&gt;
+
+&lt;p&gt;This is where the process gets interesting. The React app worked, but as an engineer, I felt a bit detached from the “how.” I wanted to ground the project in a stack I actually mastered.&lt;/p&gt;
+
+&lt;p&gt;So, I asked for a &lt;strong&gt;Spike&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“Can you make a spike and convert this application to Rails? Don’t worry about the full application; assume that it is there and you are only creating the needed files… Think harder about what can be pushed to the backend with ActiveStorage, and what needs to happen in the front end with ERB, Tailwind, Hotwire, and Stimulus.”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The vibe shifted. Sonnet didn’t get the Rails architecture perfect on the first try, but because I know Rails deeply, I could spot the flaws immediately. I knew where the N+1 queries would hide, how to better utilize ActiveStorage, or where a specific Gem would be more efficient than custom logic.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/vibecoding-photobook/claude-5.png&quot; alt=&quot;Image: The Ruby on Rails spike&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;the-takeaway&quot;&gt;The Takeaway&lt;/h2&gt;
+
+&lt;p&gt;I have found this to be a powerful workflow for testing ideas:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Vibecode in the unknown:&lt;/strong&gt; Let AI build the prototype in a stack it prefers (like React). Focus purely on the user experience and solving the pain point.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Spike into the known:&lt;/strong&gt; Once the logic is proven, ask AI to port it to my core stack (Rails).&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Refine with expertise:&lt;/strong&gt; Use my engineering seniority to polish the code that I now fully understand.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The result? I have a tool that solves my artistic problem, and it saved me from the manual process to get the layout right. Now, I can go back to my book editing software and rearrange pages to the suggested layout, then finally print my draft book.&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/vibecoding-photobook/vibecoding.jpg" /><media:content medium="image" url="https://mariochavez.io/images/vibecoding-photobook/vibecoding.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry xml:lang="en_US"><title type="html">Upgrading Rails applications with an AI skill</title><link href="https://mariochavez.io/desarrollo/2025/11/12/upgrading-rails-ai-skill/" rel="alternate" type="text/html" title="Upgrading Rails applications with an AI skill" /><published>2025-11-12T06:00:00+00:00</published><updated>2025-11-12T06:00:00+00:00</updated><id>repo://posts.collection/_posts/2025-11-12-upgrading-rails-ai-skill.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2025/11/12/upgrading-rails-ai-skill/">&lt;p&gt;What if you could use an AI skill to handle the most tedious, error-prone parts of a Ruby on Rails upgrade? As someone who’s been in the Rails trenches since 2008, I’ve spent countless hours on this exact task.&lt;/p&gt;
 
 &lt;p&gt;In my time as a founder, contractor, and company owner, I’ve upgraded applications from nearly every era. The early days of 2.x, 3.x, and 4.x were battles against breaking API changes, specific and complex monkey patches, and gems that were abandoned over time.&lt;/p&gt;
 
@@ -1931,113 +1991,4 @@ css: bin/rails app:tailwindcss:watch
 
 &lt;p&gt;This is how I have been working with the Rails engines Importmap and TailwindCSS. Most of the knowledge here came from reading the source code of the libraries and trial and error.&lt;/p&gt;
 
-&lt;p&gt;If you are looking to work with engines and this tool set for assets, please give it a try and let me know how it goes or if there is a better, simpler way to archive the same.&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/engines-assets/engines-assets.jpg" /><media:content medium="image" url="https://mariochavez.io/images/engines-assets/engines-assets.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry xml:lang="en"><title type="html">Maquina, the engine for Rails</title><link href="https://mariochavez.io/desarrollo/2023/08/08/maquina-the-engine-for-rails/" rel="alternate" type="text/html" title="Maquina, the engine for Rails" /><published>2023-08-08T06:00:00+00:00</published><updated>2023-08-08T06:00:00+00:00</updated><id>repo://posts.collection/_posts/2023-08-08-maquina-the-engine-for-rails.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2023/08/08/maquina-the-engine-for-rails/">&lt;p&gt;I have been working with Ruby on Rails since 2009, providing software development or consulting to companies with diverse needs. Some of those companies were startups with greenfield projects, and others were companies that needed help with brownfield projects. Over this time, I have also had the opportunity to train people for those companies or the consulting firms where I worked.&lt;/p&gt;
-
-&lt;p&gt;Since I discovered Ruby on Rails in 2008, I have been impressed not with what it has to offer but with what prevented me from making a decision. Some people call this “magic”, but it is not magic at all. After all, you can always go to the source and learn what is going on.&lt;/p&gt;
-
-&lt;p&gt;Working on as many Ruby on Rails projects as I have, I started to see almost every project repeating things that need to be implemented—authentication flow, authorization, preferences or profile sections, templates for transactional emails, etc.&lt;/p&gt;
-
-&lt;p&gt;A few years ago, I started to extract this repetitive work into a reusable Rails Engine, looking for a way to drop the engine into an application and, with little effort, have all that functionality ready to use.&lt;/p&gt;
-
-&lt;p&gt;Also, I noticed that many Rails controllers were pretty simple. They conform to the Restful definition and operate on one resource. Being inspired by José Valim’s inherited_resources and responders gems, the engine has a Resourceful module that you include in a controller, and it implements all the seven Restful actions with the proper format response and flash messages.&lt;/p&gt;
-
-&lt;div class=&quot;w-full&quot;&gt;
-  &lt;figure&gt;
-    &lt;img src=&quot;/images/maquina/maquina-1.png&quot; class=&quot;m-auto&quot; style=&quot;width: 640px&quot; alt=&quot;Maquina&quot; /&gt;
-    &lt;figcaption class=&quot;text-center&quot;&gt;Index page for a Rails application using Maquina. Search and pagination. Phlex component renders the table.&lt;/figcaption&gt;
-  &lt;/figure&gt;
-&lt;/div&gt;
-
-&lt;p&gt;The engine also uses Ruby on Rails view inheritance to provide default views for index, new, and edit actions. If you need a different view, it is as easy as adding your view and avoiding the inheritance.&lt;/p&gt;
-
-&lt;p&gt;Over the years, I extracted common functionality into this engine from real-life applications. I used this engine to create new applications where my only focus was to code the business functionality.&lt;/p&gt;
-
-&lt;div class=&quot;w-full&quot;&gt;
-  &lt;figure&gt;
-    &lt;img src=&quot;/images/maquina/maquina-2.png&quot; class=&quot;m-auto&quot; style=&quot;width: 640px&quot; alt=&quot;Maquina&quot; /&gt;
-    &lt;figcaption class=&quot;text-center&quot;&gt;Rails form rendered with Phlex and TailwindCSS.&lt;/figcaption&gt;
-  &lt;/figure&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Then a couple of years ago, I discovered TailwindCSS and Rails got Hotwire and Stimulus; this got me into migrating patterns to use frames and specialized Stimulus controllers to continue using the library with modern Web applications. This is the way I used to build a few applications at my latest startup.&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# frozen_string_literal: true&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;VideosController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Maquina&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ApplicationController&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;before_action&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:authenticate!&lt;/span&gt;
-
-  &lt;span class=&quot;n&quot;&gt;resourceful&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-    &lt;span class=&quot;ss&quot;&gt;resource_class: &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Video&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;ss&quot;&gt;form_attributes: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;title: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;ss&quot;&gt;type: :input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
-        &lt;span class=&quot;ss&quot;&gt;control_html: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;class: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;col-span-1 sm:col-span-6&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; 
-        &lt;span class=&quot;ss&quot;&gt;input_html: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;class: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;w-full input&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}}},&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;image: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;ss&quot;&gt;type: :file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
-        &lt;span class=&quot;ss&quot;&gt;control_html: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;data: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;file_max_size_value: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5_242_880&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;class: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;col-span-1 sm:col-span-6 file&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; 
-        &lt;span class=&quot;ss&quot;&gt;input_html: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;direct_upload: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;accept: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;image/png,image/jpeg,image/jpg&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}}},&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;permalink: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;ss&quot;&gt;type: :input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
-        &lt;span class=&quot;ss&quot;&gt;control_html: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;class: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;col-span-1 sm:col-span-6&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; 
-        &lt;span class=&quot;ss&quot;&gt;input_html: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;class: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;w-full input&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}}},&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;serie_id: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;ss&quot;&gt;type: :select&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
-        &lt;span class=&quot;ss&quot;&gt;control_html: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;class: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;col-span-1 sm:col-span-6&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; 
-        &lt;span class=&quot;ss&quot;&gt;input_html: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;values: :load_series&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;class: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;select w-full sm:w-1/2&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}}},&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;public: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;ss&quot;&gt;type: :checkbox&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
-        &lt;span class=&quot;ss&quot;&gt;control_html: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;class: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;relative flex gap-x-3 col-span-1 sm:col-span-6&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; 
-        &lt;span class=&quot;ss&quot;&gt;input_html: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;class: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;checkbox&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}}},&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;tags_text: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;ss&quot;&gt;type: :input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
-        &lt;span class=&quot;ss&quot;&gt;control_html: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;class: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;col-span-1 sm:col-span-6&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; 
-        &lt;span class=&quot;ss&quot;&gt;input_html: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;class: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;input w-full sm:w-1/2&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}}},&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;video_url: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;ss&quot;&gt;type: :input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
-        &lt;span class=&quot;ss&quot;&gt;control_html: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;class: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;col-span-1 sm:col-span-6&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; 
-        &lt;span class=&quot;ss&quot;&gt;input_html: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;class: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;input w-full&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}}},&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;content: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;ss&quot;&gt;type: :action_text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
-        &lt;span class=&quot;ss&quot;&gt;control_html: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;data: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;controller: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;trix-extensions&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;class: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;col-span-1 sm:col-span-6&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; 
-        &lt;span class=&quot;ss&quot;&gt;input_html: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;class: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;action-text h-[80vh] lg:h-[60vh]&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}}}],&lt;/span&gt;
-    &lt;span class=&quot;ss&quot;&gt;list_attributes: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:public&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:tags_text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:created_at&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
-    &lt;span class=&quot;ss&quot;&gt;policy_class: &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;VideoPolicy&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-  &lt;span class=&quot;kp&quot;&gt;private&lt;/span&gt;
-
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;load_series&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;Serie&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;all&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;pluck&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-  &lt;span class=&quot;c1&quot;&gt;# Only allow list of trusted parameters through.&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;secure_params&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:video&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;permit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;form_attributes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;keys&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p class=&quot;m-0 text-gray-500 text-center&quot;&gt;Sample Rails controller using the resourceful module&lt;/p&gt;
-
-&lt;p&gt;Earlier this year, I created a new Rails Engine using the previous knowledge but with a blank slate to clean up the code, take advantage of Hotwire and Stimulus and write most of the UI code with components using Phlex. This is how Maquina was born.&lt;/p&gt;
-
-&lt;div class=&quot;embed-container&quot;&gt;
-  &lt;iframe src=&quot;https://player.vimeo.com/video/852754826&quot; frameborder=&quot;0&quot; allow=&quot;fullscreen; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-&lt;/div&gt;
-
-&lt;p&gt;The progress is still going on with the new engine, but I got to the point where I’m starting a new application using it. Once all functionality is migrated from the old engine, Maquina will have the following:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Multitenant support with a relationship of organization - membership - user. Where an organization may have a plan, think about building apps with multiple payment tiers.&lt;/li&gt;
-  &lt;li&gt;Authentication system using Rails has_password with password recovery, password expiration and prevention of password reusing for a user, block and unblock accounts, and user invitation.&lt;/li&gt;
-  &lt;li&gt;Default email setup and template for transactional emails.&lt;/li&gt;
-  &lt;li&gt;Authorization with ActionPolicy.&lt;/li&gt;
-  &lt;li&gt;Settings and profile section for users or organization configuration.&lt;/li&gt;
-  &lt;li&gt;All text the application uses comes from i18n files organized by models, views, forms, and flashes.&lt;/li&gt;
-  &lt;li&gt;Form building using components with Phlex. It uses Tailwind CSS for styling with color variables to set the theme.&lt;/li&gt;
-  &lt;li&gt;Hotwire patterns for form validations, page fragment updates, popup modals, and in-app notifications. Many of these with complementary Stimulus controllers.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Maquina will provide almost everything for a quick start on a new Rails application. It also has the flexibility that if you need to override functionality, you will be free to do it, and if you need to work outside the engine defaults, you can do it. Everything is just Ruby and Ruby on Rails code.&lt;/p&gt;
-
-&lt;p&gt;In a further blog post, I’ll discuss what it means for a controller to include the Resourceful module and the code availability of Maquina.&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/maquina/maquina.jpg" /><media:content medium="image" url="https://mariochavez.io/images/maquina/maquina.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;p&gt;If you are looking to work with engines and this tool set for assets, please give it a try and let me know how it goes or if there is a better, simpler way to archive the same.&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/engines-assets/engines-assets.jpg" /><media:content medium="image" url="https://mariochavez.io/images/engines-assets/engines-assets.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
