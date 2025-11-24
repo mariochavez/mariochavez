@@ -1,8 +1,16 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import "jit-refresh.css";
+@import "../fonts/fonts.css";
+
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 @import "./custom.css";
 
 @import "./nord.css";
 /*@import "./monokay.css";*/
+
+@theme {
+  --font-sans: "Manrope", sans-serif;
+}
+
+@plugin "@tailwindcss/typography";

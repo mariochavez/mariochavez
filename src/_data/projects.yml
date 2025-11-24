@@ -1,0 +1,50 @@
+- title: Rails Upgrade Assistant Skill
+  description: A Claude skill that automates Rails upgrades from 7.0 to 8.1.1
+  url: https://github.com/maquina-app/rails-upgrade-skill
+  base_url: github.com
+  icon: >
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 18V5"/><path d="M15 13a4.17 4.17 0 0 1-3-4 4.17 4.17 0 0 1-3 4"/><path d="M17.598 6.5A3 3 0 1 0 12 5a3 3 0 1 0-5.598 1.5"/><path d="M17.997 5.125a4 4 0 0 1 2.526 5.77"/><path d="M18 18a4 4 0 0 0 2-7.464"/><path d="M19.967 17.483A4 4 0 1 1 12 18a4 4 0 1 1-7.967-.517"/><path d="M6 18a4 4 0 0 1-2-7.464"/><path d="M6.003 5.125a4 4 0 0 0-2.526 5.77"/></svg>
+
+- title: Rails MCP Server
+  description: A Model Context Protocol server for Ruby on Rails. Gives AI assistants "eyes and hands" inside your Rails apps.
+  url: https://github.com/maquina-app/rails-mcp-server
+  base_url: github.com
+  icon: >
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 11 2-2-2-2"/><path d="M11 13h4"/><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/></svg>
+
+- title: Neovim MCP Server
+  description: A Model Context Protocol server for Neovim. Gives AI assistants an hability to list and update open buffers.
+  url: https://github.com/maquina-app/nvim-mcp-server
+  base_url: github.com
+  icon: >
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 11 2-2-2-2"/><path d="M11 13h4"/><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/></svg>
+
+- title: Redis MacOS menu
+  description: A macOS menu bar application that makes managing local Redis instances simple and convenient.
+  url: https://github.com/maquina-app/redis-menu
+  base_url: github.com
+  icon: >
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 19v-3"/><path d="M10 19v-3"/><path d="M14 19v-3"/><path d="M18 19v-3"/><path d="M8 11V9"/><path d="M16 11V9"/><path d="M12 11V9"/><path d="M2 15h20"/><path d="M2 7a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v1.1a2 2 0 0 0 0 3.837V17a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-5.1a2 2 0 0 0 0-3.837Z"/></svg>
+
+- title: Mongo MacOS menu
+  description: A macOS menu bar application that makes managing local MongoDB instances simple and convenient.
+  url: https://github.com/maquina-app/mongo-menu
+  base_url: github.com
+  icon: >
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <ellipse cx="12" cy="5" rx="9" ry="3"/>
+      <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+      <path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"/>
+    </svg>
+
+- title: Rails en Español
+  description: A Spanish-language website with videos about how to learn to create Modern Web Applications with Ruby on Rails
+  url: https://railsenespanol.co/
+  base_url: railsenespanol.co
+  logo: /images/icons/rails-espanol.png
+
+- title: Photography Portfolio
+  description: My personal contemporary photography website portfolio.
+  url: https://foto.mariochavez.io/
+  base_url: foto.mariochavez.io
+  logo: /images/icons/mario-chavez.png

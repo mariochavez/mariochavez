@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 # Hello! This is where you manage which Bridgetown version is used to run.
@@ -16,15 +16,15 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 #
 # Happy Bridgetowning!
 
-gem 'bridgetown', '~> 1.3.0'
+gem "bridgetown", "~> 2.0.0"
 
 # Puma is a Rack-compatible server used by Bridgetown
 # (you can optionally limit this to the "development" group)
-gem 'puma', '~> 6.4.0'
+gem "puma", "~> 6.4.0"
 
-gem 'standard', '~> 1.39'
+gem "standard", "~> 1.39"
 
-gem 'bridgetown-feed', '~> 3.1.0'
-gem 'bridgetown-seo-tag', '~> 6.0'
+gem "bridgetown-feed", "~> 4.0"
+gem "bridgetown-seo-tag", "~> 7.0"
 
-gem "bridgetown-sitemap", "~> 2.0"
+gem "bridgetown-sitemap", "~> 3.0"

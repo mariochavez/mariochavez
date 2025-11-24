@@ -277,7 +277,7 @@ end
 
 Specify the Importmap to use in your engine's layout template:
 
-```html
+```erb
 <%= javascript_importmap_tags "application", importmap: MyEngine.importmap %>
 ```
 

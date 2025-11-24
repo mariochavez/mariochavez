@@ -4,8 +4,9 @@
 #
 # Learn more at: http://roda.jeremyevans.net
 
-class RodaApp < Bridgetown::Rack::Roda
+class RodaApp < Roda
   # Add additional Roda configuration here if needed
+  plugin :bridgetown_server
 
   # Uncomment to use Bridgetown SSR:
   # plugin :bridgetown_ssr

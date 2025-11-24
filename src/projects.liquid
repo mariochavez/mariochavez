@@ -1,0 +1,237 @@
+--- 
+layout: page 
+title: Things I've built along the way
+description: Developer tools, learning resources, and most open-source and built with or for Ruby on Rails.
+image: /images/mariochavezio.jpg
+keywords:
+  - Rails MCP Server
+  - open source Ruby on Rails
+  - Rails developer tools
+  - Aprendiendo Ruby on Rails
+  - AI development tools
+  - Rails upgrade assistant
+ld_schema: >
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": "https://mariochavez.io/projects/#webpage",
+        "url": "https://mariochavez.io/projects/",
+        "name": "Projects - Mario Alberto Chávez",
+        "description": "Developer tools, learning resources, and platforms—most open-source and built with Ruby on Rails.",
+        "isPartOf": {
+          "@id": "https://mariochavez.io/#website"
+        },
+        "breadcrumb": {
+          "@id": "https://mariochavez.io/projects/#breadcrumb"
+        }
+      },
+      {
+        "@type": "ItemList",
+        "@id": "https://mariochavez.io/projects/#projects",
+        "name": "Projects by Mario Alberto Chávez",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+              "@type": "SoftwareApplication",
+              "name": "Rails Upgrade Assistant Skill",
+              "description": "A Claude skill that automates Rails upgrades from 7.0 to 8.1.1",
+              "url": "https://github.com/maquina-app/rails-upgrade-skill",
+              "applicationCategory": "DeveloperApplication",
+              "operatingSystem": "Cross-platform",
+              "author": {
+                "@id": "https://mariochavez.io/#person"
+              }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+              "@type": "SoftwareApplication",
+              "name": "Rails MCP Server",
+              "description": "A Model Context Protocol server for Ruby on Rails. Gives AI assistants \"eyes and hands\" inside your Rails apps.",
+              "url": "https://github.com/maquina-app/rails-mcp-server",
+              "applicationCategory": "DeveloperApplication",
+              "operatingSystem": "Cross-platform",
+              "author": {
+                "@id": "https://mariochavez.io/#person"
+              }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "item": {
+              "@type": "SoftwareApplication",
+              "name": "Neovim MCP Server",
+              "description": "A Model Context Protocol server for Neovim. Gives AI assistants an hability to list and update open buffers.",
+              "url": "https://github.com/maquina-app/nvim-mcp-server",
+              "applicationCategory": "DeveloperApplication",
+              "operatingSystem": "macOS, Linux, Windows",
+              "author": {
+                "@id": "https://mariochavez.io/#person"
+              }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "item": {
+              "@type": "SoftwareApplication",
+              "name": "Redis MacOS menu",
+              "description": "A macOS menu bar application that makes managing local Redis instances simple and convenient.",
+              "url": "https://github.com/maquina-app/redis-menu",
+              "applicationCategory": "DeveloperApplication",
+              "operatingSystem": "macOS",
+              "author": {
+                "@id": "https://mariochavez.io/#person"
+              }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "item": {
+              "@type": "SoftwareApplication",
+              "name": "Mongo MacOS menu",
+              "description": "A macOS menu bar application that makes managing local MongoDB instances simple and convenient.",
+              "url": "https://github.com/maquina-app/mongo-menu",
+              "applicationCategory": "DeveloperApplication",
+              "operatingSystem": "macOS",
+              "author": {
+                "@id": "https://mariochavez.io/#person"
+              }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 6,
+            "item": {
+              "@type": "Course",
+              "name": "Rails en Español",
+              "description": "A Spanish-language website with videos about how to learn to create Modern Web Applications with Ruby on Rails",
+              "url": "https://railsenespanol.co/",
+              "inLanguage": "es",
+              "author": {
+                "@id": "https://mariochavez.io/#person"
+              }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 7,
+            "item": {
+              "@type": "CreativeWork",
+              "name": "Photography Portfolio",
+              "description": "My personal contemporary photography website portfolio.",
+              "url": "https://foto.mariochavez.io/",
+              "author": {
+                "@id": "https://mariochavez.io/#person"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://mariochavez.io/projects/#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://mariochavez.io/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Projects",
+            "item": "https://mariochavez.io/projects/"
+          }
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://mariochavez.io/#person",
+        "name": "Mario Alberto Chávez",
+        "url": "https://mariochavez.io",
+        "image": "https://mariochavez.io/images/profile.jpg"
+      }
+    ]
+  }
+---
+
+<header class="max-w-2xl">
+  <h1
+    class="
+      text-4xl font-bold tracking-tight text-emerald-700 dark:text-emerald-100
+      sm:text-5xl
+    "
+  >
+    Things I've built along the way.
+  </h1>
+
+  <p class="mt-6 text-base text-zinc-600 dark:text-zinc-400">
+    Developer tools, learning resources, and most open-source and built with or
+    for Ruby on Rails.
+  </p>
+</header>
+
+<div class="mt-16 sm:mt-20">
+  <ul
+    role="list"
+    class="grid grid-cols-1 gap-x-12 gap-y-16 sm:grid-cols-2 lg:grid-cols-3"
+  >
+    {% for project in site.data.projects %}
+      <li class="group relative flex flex-col items-start">
+        <div
+          class="z-10
+            relative flex h-12 w-12 items-center justify-center rounded-full bg-white
+            shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5  dark:border
+            dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0
+          "
+        >
+          <i class="[&_svg]:size-6 text-zinc-800 dark:text-zinc-200">
+            {% if project.icon %}
+              {{ project.icon}}
+            {% elsif project.logo %}
+              <img src="{{ project.logo }}" class="size-7 rounded-full object-cover"/>
+            {% endif %}
+          </i>
+        </div>
+
+        <h2 class="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">
+          <a href="{{ project.url }}" target="_blank">
+            <span class="absolute -inset-x-4 -inset-y-6 z-20 sm:-inset-x-6 sm:rounded-2xl"></span>
+            <span class="relative z-10">{{ project.title}}</span>
+          </a>
+        </h2>
+
+        <p class="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+          {{ project.description }}
+        </p>
+
+        <p
+          class="
+            relative z-10 mt-6 flex text-sm font-medium text-zinc-400 transition
+            group-hover:text-emerald-500 dark:text-zinc-200
+          "
+        >
+        <i class="[&_svg]:size-5 flex-none">{{ site.data.icons.external_link }}</i>
+        <span class="ml-2">{{ project.base_url }}</span>
+        </p>
+        <div
+          class="
+            absolute -inset-x-4 -inset-y-6 z-0 scale-95 bg-zinc-50 opacity-0 transition
+            group-hover:scale-100 group-hover:opacity-100 dark:bg-zinc-800/50 sm:-inset-x-6
+            sm:rounded-2xl
+          "
+        ></div>
+      </li>
+    {% endfor %}
+  </ul>
+</div>

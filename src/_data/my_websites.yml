@@ -1,0 +1,12 @@
+# - title: Maquina App
+#   description: Maquina Open Source platform
+#   url: https://maquina.app/
+#   logo: /images/icons/maquina.png
+- title: Rails en Español
+  description: Ruby on Rails resources in Spanish
+  url: https://railsenespanol.co/
+  logo: /images/icons/rails-espanol.png
+- title: Photography
+  description: My Photography portfolio
+  url: https://foto.mariochavez.io/
+  logo: /images/icons/mario-chavez.png

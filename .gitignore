@@ -37,3 +37,6 @@ yarn-debug.log*
 .htmle
 
 .solagraph.yml
+
+frontend/styles/jit-refresh.css
+/tmp/**

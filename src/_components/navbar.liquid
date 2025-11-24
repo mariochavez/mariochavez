@@ -1,9 +1,155 @@
-<nav class="lg:flex-grow lg:py-14">
-  <ul>
-    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/">Inicio</a></li>
-    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/desarrollo">Desarrollo</a></li>
-    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/fotografía">Fotografía</a></li>
-    <li class="pb-4 font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/proyectos">Proyectos</a></li>
-    <li class="font-sans font-light tracking-wider text-gray-500 uppercase text-md hover:text-red-500"><a href="/acercade">Acerca de</a></li>
-  </ul>
-</nav>
+<!-- Header / Navigation -->
+<header
+  data-controller="menu"
+  data-menu-open-value=false
+  class="pointer-events-none relative z-50 flex flex-none flex-col"
+>
+  <div class="top-0 z-10 h-16 pt-6">
+    <div class="sm:px-8 w-full max-w-7xl mx-auto lg:px-8">
+      <div class="relative px-4 sm:px-8 lg:px-12">
+        <div class="mx-auto max-w-2xl lg:max-w-5xl">
+          <div class="relative flex gap-4">
+            <!-- Logo / Avatar -->
+            <div class="flex flex-1 pointer-events-auto">
+              <a
+                href="/"
+                class="
+                  h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1
+                  ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10
+                "
+              >
+                <img
+                  src="/images/mario.jpg"
+                  alt="{{ metadata.author }}"
+                  class="
+                    h-9 w-9 rounded-full bg-zinc-100 object-cover
+                    dark:bg-zinc-800
+                  "
+                >
+              </a>
+            </div>
+
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex flex-1 justify-center pointer-events-auto">
+              <nav
+                class="
+                  flex rounded-full bg-white/90 px-3 text-sm font-medium text-zinc-800 shadow-lg
+                  shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90
+                  dark:text-zinc-200 dark:ring-white/10
+                "
+              >
+               {% for link in data.links %}
+                  <a
+                      href="{{ link.path }}"
+                    class="
+                      relative block px-3 py-2 transition hover:text-emerald-500
+                      dark:hover:text-emerald-400
+                    "
+                  >
+                  {{ link.title }}
+                  </a>
+                {% endfor %}
+              </nav>
+            </div>
+
+            <!-- Mobile Menu Button & Theme Toggle -->
+            <div class="flex flex-1 justify-end gap-4 pointer-events-auto">
+              <!-- Mobile Menu Button -->
+              <div class="pointer-events-auto md:hidden">
+                <button
+                  data-action="menu#toggle"
+                  class="
+                    group flex items-center rounded-full bg-white/90 px-4 py-2 text-sm font-medium
+                    text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur
+                    dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10
+                    dark:hover:ring-white/20
+                  "
+                >
+                  Menu
+                  <i
+                    class="
+                      ml-3 h-auto w-2 [&_svg]:size-3 stroke-zinc-500 group-hover:stroke-zinc-700
+                      dark:group-hover:stroke-zinc-400
+                    "
+                    
+                  >{{ data.icons.chevron_down }}</i>
+                </button>
+              </div>
+
+              <div 
+                data-menu-target="overlay"
+                data-action="click->menu#toggle"
+                class="
+                  data-[open=false]:hidden fixed inset-0 z-50 bg-zinc-800/40 backdrop-blur-xs duration-150 
+                  opacity-100 data-[open=false]:opacity-0 ease-in dark:bg-black/80
+                " 
+                aria-hidden="true" 
+                data-open="false">
+              </div>
+
+              <!-- Theme Toggle (Visual Only) -->
+              <button
+                  data-controller="theme"
+                  data-theme-dark-value
+                  data-action="theme#toggle"
+                  class="
+                    group rounded-full bg-white/90 px-3 py-2 shadow-lg ring-1 shadow-zinc-800/5 ring-zinc-900/5 
+                    backdrop-blur-sm transition dark:bg-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20
+                  "
+              >
+                <i
+                  data-theme-target="light"
+                  class="
+                    [&_svg]:size-5 text-zinc-500 transition group-hover:fill-zinc-200
+                    group-hover:text-zinc-700 dark:hidden
+                  "
+                  >{{ data.icons.sun }}</i>
+
+                <i
+                  data-theme-target="dark"
+                  class="
+                    hidden [&_svg]:size-5 text-emerald-700 transition dark:block
+                    dark:group-hover:text-emerald-400
+                  "
+                  >{{ data.icons.moon }}</i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu Dropdown -->
+  <div
+    data-menu-target="menu"
+    data-open="false"
+    class="
+      data-[open=false]:hidden opacity-100 data-[open=false]:opacity-0 data-[open=false]:scale-95 
+      fixed inset-x-0 top-0 z-50 origin-top rounded-b-2xl bg-zinc-50 px-6 pb-6 pt-24
+      shadow-2xl shadow-zinc-900/20 ring-1 ring-zinc-900/5 dark:bg-zinc-900 transition-all ease-out
+      dark:ring-zinc-800 pointer-events-auto md:hidden duration-150
+    "
+  >
+    <div class="flex flex-col space-y-4">
+      <div class="flex flex-row-reverse items-center justify-between">
+        <button 
+           data-action="menu#toggle"
+           aria-label="Close menu" 
+           class="-m-1 p-1 [&_svg]:size-6 text-zinc-500 dark:text-zinc-400" 
+           type="button">
+          {{ data.icons.close }} 
+        </button>
+        <h2 class="text-sm font-medium text-zinc-600 dark:text-zinc-400">Navigation</h2>
+      </div>
+      {% for link in data.links %}
+        <a
+            href="{{ link.path }}"
+          class="block text-base font-semibold text-zinc-800 dark:text-zinc-100"
+        >
+          {{ link.title }}
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</header>
