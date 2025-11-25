@@ -1,17 +1,27 @@
 <!doctype html>
-<html lang="es">
+<html lang="en" class="h-full antialiased">
   <head>
     {% render "head", metadata: site.metadata, title: page.title, schema: page.ld_schema %}
   </head>
-  <body class="min-h-screen antialiased {{ page.layout }} {{ page.page_class }}">
-    <section class="flex flex-nowrap">
-      {% render "sidebar", metadata: site.metadata, page: page %}
 
-      <main class="flex-auto overflow-hidden text-gray-700">
-        {% render "sidebar_mobile", metadata: site.metadata, page: page %}
-        {{ content }}
-      </main>
-    </section>
+  <body class="flex h-full flex-col bg-zinc-50 font-manrope dark:bg-black">
+    <!-- Outer Frame for the "Card" look on large screens -->
+    <div class="fixed inset-0 flex justify-center sm:px-8">
+      <div class="flex w-full max-w-7xl lg:px-8">
+        <div
+          class="
+            w-full bg-white ring-1 ring-zinc-100 dark:bg-zinc-900 dark:ring-zinc-300/20
+          "
+        ></div>
+      </div>
+    </div>
 
+    <div class="relative flex w-full flex-col">
+      {% render "navbar", metadata: site.metadata, data: site.data %}
+
+      {{ content }}
+
+      {% render "footer", metadata: site.metadata, data: site.data %}
+    </div>
   </body>
 </html>

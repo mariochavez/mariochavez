@@ -1,0 +1,176 @@
+--- 
+layout: page 
+title: About 
+description: Ruby on Rails architect and AI toolmaker from Colima, México. Creator of Rails MCP Server, former fintech CTO, and author of Aprendiendo Ruby on Rails. 
+image: /images/mariochavezio.jpg
+keywords: 
+  - Ruby on Rails - Rails MCP Server 
+  - AI development tools 
+  - fintech architecture 
+  - Hotwire 
+  - Turbo 
+  - StimulusJS 
+  - Software Engineer México 
+ld_json: >
+  { "@context": "https://schema.org", "@type": "ProfilePage", "mainEntity": {
+  "@type": "Person", "@id": "https://mariochavez.io/#person", "name": "Mario
+  Alberto Chávez", "givenName": "Mario Alberto", "familyName": "Chávez", "url":
+  "https://mariochavez.io", "image": "https://mariochavez.io/images/profile.jpg",
+  "description": "Ruby on Rails architect and AI toolmaker from Colima, México.
+  Creator of Rails MCP Server, former fintech CTO, and author of Aprendiendo Ruby
+  on Rails.", "jobTitle": "Software Engineer", "knowsAbout": [ "Ruby on Rails",
+  "AI Development Tools", "Fintech Architecture", "Web Development", "Hotwire",
+  "Turbo", "StimulusJS" ], "knowsLanguage": ["es", "en"], "nationality": {
+  "@type": "Country", "name": "México" }, "sameAs": [
+  "https://github.com/mariochavez", "https://twitter.com/mario_chavez",
+  "https://www.linkedin.com/in/mariochavez",
+  "https://speakerdeck.com/mario_chavez" ], "hasOccupation": [ { "@type":
+  "Occupation", "name": "Software Engineer", "occupationalCategory": "15-1252.00"
+  } ], "makesOffer": { "@type": "Offer", "itemOffered": { "@type": "Service",
+  "name": "Ruby on Rails Consulting", "description": "Specialized consulting for
+  Rails applications and AI integration" } }, "creator": [ { "@type":
+  "SoftwareApplication", "name": "Rails MCP Server", "url":
+  "https://github.com/maquina-app/rails-mcp-server", "applicationCategory":
+  "DeveloperApplication" }, { "@type": "Course", "name": "Aprendiendo Ruby on
+  Rails", "url": "https://railsenespanol.co", "inLanguage": "es" } ] } } 
+---
+
+<div
+  class="
+    grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr]
+    lg:gap-y-12
+  "
+>
+  <!--
+  Right Column (Image & Socials) - appears top on mobile usually, but in
+  this layout often side by side. We will use order-first on mobile to show
+  image first.
+-->
+  <div class="lg:pl-20">
+    <div class="max-w-xs px-2.5 lg:max-w-none">
+      <img
+        src="/images/mariochavez.jpg"
+        alt="Mario Alberto Chávez"
+        class="
+          aspect-square rotate-3 rounded-2xl bg-zinc-100 object-cover
+          dark:bg-zinc-800
+        "
+      >
+    </div>
+
+    <!-- Social Links -->
+    <div class="mt-8 border-t border-zinc-100 pt-8 dark:border-zinc-700/40">
+      <ul role="list" class="space-y-4">
+        {% for social in site.data.social %}
+          <li class="flex">
+            <a
+                href="{{ social.url }}"
+              target="_blank"
+              class="
+                group flex text-sm font-medium text-zinc-800 transition hover:text-emerald-500
+                dark:text-zinc-200 dark:hover:text-emerald-500
+              "
+            >
+              <i
+                class="
+                  h-6 w-6 flex-none text-emerald-500 transition group-hover:text-emerald-600
+                  dark:text-emerald-400
+                "
+              >
+              {{ social.icon }}
+              </i>
+
+                <span class="ml-4">Follow on {{ social.title }}</span>
+            </a>
+          </li>
+        {% endfor %}
+
+
+        <li class="flex border-t border-zinc-100 pt-8 dark:border-zinc-700/40 mt-8">
+          <a
+              href="mailto:{{ site.metadata.email }}"
+            class="
+              group flex text-sm font-medium text-zinc-800 transition hover:text-emerald-500
+              dark:text-zinc-200 dark:hover:text-emerald-500
+            "
+          >
+            <i
+              class="
+                h-6 w-6 flex-none text-emerald-500 transition group-hover:text-emerald-600
+                dark:text-emerald-400
+              "
+            >
+            {{ site.data.icons.mail }}
+            </i>
+
+              <span class="ml-4">{{ site.metadata.email }}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Left Column (Content) -->
+  <div class="lg:order-first lg:row-span-2">
+    <h1
+      class="
+        text-4xl font-bold tracking-tight text-emerald-700 dark:text-emerald-100
+        sm:text-5xl
+      "
+    >
+      Rails architect exploring AI-assisted development.
+    </h1>
+
+    <div class="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
+      <p>
+        I'm Mario Alberto Chávez, a software engineer, entrepreneur, and visual
+        artist based in Colima, México. For over 15 years, I've been working
+        with Ruby on Rails—from building enterprise-scale systems to crafting
+        developer tools that make our work more intuitive.
+      </p>
+
+      <p>
+        As CTO and co-founder of Aoorora, I architected a core banking platform
+        in Ruby on Rails that enabled lending startups to build fintech products
+        without creating infrastructure from scratch. While the startup didn't
+        survive, building a compliant banking platform taught me invaluable
+        lessons about security, regulatory requirements, and architectural
+        decisions at scale.
+      </p>
+
+      <p>
+        Before Aoorora, I co-founded michelada.io, a Rails consultancy serving
+        clients from early-stage startups to companies like Levi's and US
+        healthcare providers. Leading a 70-person engineering team taught me
+        that the best technology solutions come from understanding both the code
+        and the people who write it.
+      </p>
+
+      <p>
+        These days, I'm exploring the convergence of Rails and AI. I created the
+        Rails MCP Server to integrate AI assistants directly into Rails
+        workflows, and continue building tools like my Rails upgrade assistant
+        skill while documenting "vibecoding"—my approach to iterative
+        development with AI.
+      </p>
+
+      <p>
+        I'm also passionate about education. My Spanish-language course
+        "Aprendiendo Ruby on Rails" (railsenespanol.co) teaches developers to
+        build modern applications using Rails' no-build philosophy with Hotwire,
+        Turbo, and StimulusJS—no complex JavaScript pipelines needed.
+      </p>
+
+      <p>
+        Outside of software, I'm a contemporary photographer working on projects
+        about territory, popular culture, and memory. My first photobook is
+        currently in production.
+      </p>
+
+      <p>
+        If you're working on something at the intersection of Rails and AI, I'd
+        love to hear from you.
+      </p>
+    </div>
+  </div>
+</div>

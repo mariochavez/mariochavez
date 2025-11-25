@@ -21,9 +21,24 @@
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="theme-color" content="#ffffff">
 
-<link rel="stylesheet" href="{% webpack_path css %}" />
-<script src="{% webpack_path js %}" defer></script>
+<link rel="stylesheet" href="{% asset_path css %}" />
+<script src="{% asset_path js %}" defer></script>
 {% live_reload_dev_js %}
+
+<script type="application/javascript">
+  (function() {
+    try {
+      const theme = localStorage.getItem('theme');
+      if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    } catch (e) {
+      // Fail silently
+    }
+  })();
+</script>
 
 <script type="application/ld+json">
   {% if schema %}{{ schema }}{% else %}{{ metadata.ld_schema }}{% endif %}

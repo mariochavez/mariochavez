@@ -1,0 +1,127 @@
+---
+layout: home
+image: /images/mariochavezio.jpg
+keywords:
+  - Ruby on Rails
+  - Rails MCP Server
+  - AI development tools
+  - software engineer México
+  - Rails consultant
+  - Hotwire
+  - Turbo
+pagination:
+  collection: posts
+ld_schema: >
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://mariochavez.io/#website",
+        "url": "https://mariochavez.io/",
+        "name": "Mario Alberto Chávez",
+        "description": "Ruby on Rails architect, AI toolmaker, and former CTO.",
+        "publisher": {
+          "@id": "https://mariochavez.io/#person"
+        },
+        "inLanguage": ["es", "en"]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://mariochavez.io/#webpage",
+        "url": "https://mariochavez.io/",
+        "name": "Mario Alberto Chávez - Ruby on Rails Architect & AI Toolmaker",
+        "isPartOf": {
+          "@id": "https://mariochavez.io/#website"
+        },
+        "about": {
+          "@id": "https://mariochavez.io/#person"
+        },
+        "description": "Software engineer and entrepreneur from Colima, México. Creator of Rails MCP Server, former CTO of Aoorora, building tools at the intersection of Ruby on Rails and AI."
+      },
+      {
+        "@type": "Person",
+        "@id": "https://mariochavez.io/#person",
+        "name": "Mario Alberto Chávez",
+        "url": "https://mariochavez.io",
+        "image": "https://mariochavez.io/images/profile.jpg",
+        "description": "Ruby on Rails architect, AI toolmaker, and former CTO.",
+        "jobTitle": "Software Engineer",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Colima",
+          "addressCountry": "MX"
+        },
+        "sameAs": [
+          "https://github.com/mariochavez",
+          "https://twitter.com/mario_chavez",
+          "https://www.linkedin.com/in/mariochavez"
+        ],
+        "knowsAbout": [
+          "Ruby on Rails",
+          "AI Development Tools", 
+          "Fintech Architecture",
+          "Hotwire",
+          "Turbo"
+        ],
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Independent Consultant"
+        }
+      },
+      {
+        "@type": "Blog",
+        "@id": "https://mariochavez.io/#blog",
+        "url": "https://mariochavez.io/",
+        "name": "Mario Alberto Chávez Blog",
+        "description": "Articles about Ruby on Rails, AI tools, and web development",
+        "author": {
+          "@id": "https://mariochavez.io/#person"
+        },
+        "publisher": {
+          "@id": "https://mariochavez.io/#person"
+        },
+        "inLanguage": ["es", "en"]
+      }
+    ]
+  }
+---
+
+<h1
+  class="
+    text-4xl font-bold tracking-tight text-emerald-700 dark:text-emerald-100
+    sm:text-5xl
+  "
+>
+  Ruby on Rails architect, AI toolmaker, and former CTO.
+</h1>
+
+<p class="mt-6 text-base text-zinc-600 dark:text-zinc-400">
+  I'm Mario Alberto, a software engineer and entrepreneur based in Colima,
+  México. I'm the creator of Rails MCP Server and former CTO/co-founder of
+  Aoorora, where I architected a core banking platform in Ruby on Rails that
+  enabled lending startups to build on modern, secure infrastructure. I spend
+  my time at the intersection of Ruby on Rails and AI—building tools that help
+  developers work smarter. When I'm not writing code, I'm documenting
+  territory, popular culture, and memory through photography.
+</p>
+
+<div class="mt-6 flex gap-6">
+  {% for social in site.data.social %}
+    <a
+      href="{{ social.url }}"
+      target="_blank"
+      class="group -m-1 p-1"
+      aria-label="Follow on {{ social.title }}"
+    >
+      <i
+        class="
+          h-6 w-6 text-emerald-500 transition group-hover:text-emerald-600
+          dark:text-emerald-400 dark:group-hover:text-emerald-300
+        "
+      >
+        {{ social.icon }}
+      </i>
+    </a>
+  {% endfor %}
+</div>

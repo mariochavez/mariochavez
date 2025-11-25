@@ -1,14 +1,12 @@
-module.exports = {
+export default {
   plugins: {
-    'postcss-import': {},
+    '@tailwindcss/postcss': {},
     'postcss-flexbugs-fixes': {},
     'postcss-preset-env': {
       autoprefixer: {
         flexbox: 'no-2009'
       },
       stage: 3
-    },
-    'tailwindcss/nesting': {},
-    'tailwindcss': {}
+    }
   }
 }

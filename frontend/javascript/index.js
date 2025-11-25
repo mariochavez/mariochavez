@@ -1,8 +1,9 @@
-import "index.css"
+import "$styles/index.css"
+// import "$styles/syntax-highlighting.css"
 
-import { Turbo } from "@hotwired/turbo-rails"
+import "@hotwired/turbo"
 
 // Import all JavaScript & CSS files from src/_components
 import components from "bridgetownComponents/**/*.{js,jsx,js.rb,css}"
 
-import "controllers"
+import "./controllers"

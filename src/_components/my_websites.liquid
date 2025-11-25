@@ -1,0 +1,58 @@
+<div class="rounded-2xl border border-emerald-400 p-6 dark:border-emerald-700/40">
+  <h2 class="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+    <i
+      class="h-6 w-6 flex-none text-zinc-400"
+      >
+      {{ data.icons.globe }}
+    </i>
+
+    <span class="ml-3 text-zinc-700 dark:text-zinc-100 uppercase">My Websites</span>
+  </h2>
+
+  <ul class="mt-6 space-y-4">
+    {% for website in data.my_websites %}
+    <li class="flex gap-4">
+      <div
+        class="
+          relative mt-1 flex size-10 lfex-none items-center justify-center rounded-full
+          shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border
+          dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0
+        "
+      >
+        <img src="{{ website.logo }}" alt="{{ website.title }}" class="h-7 w-7 rounded-full object-cover">
+      </div>
+
+      <dl class="flex flex-auto flex-col gap-y-1">
+        <dt class="sr-only">{{ website.title }}</dt>
+
+        <dd class="text-sm font-medium text-zinc-900 dark:text-zinc-100">
+          {{ website.title }}
+        </dd>
+
+        <dt class="sr-only">Description</dt>
+
+        <dd class="text-xs text-zinc-500 dark:text-zinc-400">
+          {{ website.description }}
+        </dd>
+      </dl>
+
+      <a
+          href="{{ website.url }}"
+        target="_blank"
+        class="
+          group flex size-10 flex-none items-center justify-center rounded-full
+          bg-zinc-50 hover:bg-zinc-100 dark:bg-zinc-800/50 dark:hover:bg-zinc-800
+          transition p-0 m-0
+        "
+      >
+        <i
+          class="
+            text-zinc-400 transition group-hover:text-emerald-600
+            dark:group-hover:text-emerald-300
+          "
+          >{{ data.icons.arrow-up-right }}</i>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>

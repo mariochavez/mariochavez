@@ -2,24 +2,30 @@
   "name": "mariochavez_two",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "esbuild": "node esbuild.config.js --minify",
-    "esbuild-dev": "node esbuild.config.js --watch"
+    "esbuild-dev": "node esbuild.config.js --watch",
+    "herb:format": "herb-format",
+    "herb:format:check": "herb-format --check"
   },
   "devDependencies": {
-    "esbuild": "^0.14.39",
-    "glob": "^8.0.1",
-    "postcss": "^8.4.12",
+    "@herb-tools/formatter": "^0.8.2",
+    "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@tailwindcss/postcss": "^4.1.17",
+    "@tailwindcss/typography": "^0.5.9",
+    "esbuild": "^0.27.0",
+    "glob": "^13.0.0",
+    "postcss": "^8.5.6",
     "postcss-flexbugs-fixes": "^5.0.2",
-    "postcss-import": "^14.1.0",
-    "postcss-load-config": "^3.1.4",
-    "postcss-preset-env": "^7.4.3"
+    "postcss-import": "^16.1.0",
+    "postcss-load-config": "^6.0.1",
+    "postcss-preset-env": "^10.4.0",
+    "read-cache": "^1.0.0",
+    "tailwindcss": "^4.1.17"
   },
   "dependencies": {
     "@hotwired/stimulus": "^3.1.0",
-    "@hotwired/turbo-rails": "^7.1.3",
-    "@tailwindcss/aspect-ratio": "^0.4.2",
-    "@tailwindcss/typography": "^0.5.9",
-    "tailwindcss": "^3.2.7"
+    "@hotwired/turbo": "^8.0.20"
   }
 }

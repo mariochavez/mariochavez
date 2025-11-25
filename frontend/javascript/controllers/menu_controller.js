@@ -1,13 +1,20 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["submenu", "closed", "opened"];
+  static values = { open: Boolean, default: false }
+  static targets = ["menu", "overlay"]
 
-  toggle(event) {
-    event.preventDefault();
+  toggle() {
+    this.openValue = !this.openValue
 
-    this.submenuTarget.classList.toggle("hidden");
-    this.closedTarget.classList.toggle("hidden");
-    this.openedTarget.classList.toggle("hidden");
+    this.overlayTarget.dataset.open = this.openValue
+    this.menuTarget.dataset.open = this.openValue
+
+    const body = document.querySelector("body")
+    if (this.openValue) {
+      body.classList.add("overflow-hidden", "touch-none")
+    } else {
+      body.classList.remove("overflow-hidden", "touch-none")
+    }
   }
 }
