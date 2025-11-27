@@ -79,3 +79,9 @@ The skill doesn't just provide a high-level analysis; it gives **clear, actionab
 * Exactly **what files to modify** and the **rationale** behind each change.
 
 Crucially, it makes merging **configuration-specific changes** much easier—a task that is often painful when using the `rails app:update` command.
+
+---
+
+### Related posts
+
+[Upgrading Rails applications with an AI skill](https://mariochavez.io/desarrollo/2025/11/12/upgrading-rails-ai-skill/)
