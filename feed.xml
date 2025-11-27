@@ -1,4 +1,34 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://bridgetownrb.com/" version="2.0.5">Bridgetown</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" /><updated>2025-11-25T16:36:23-06:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez - Ruby on Rails, AI Tools &amp;amp; former CTO</title><subtitle>Ruby on Rails architect and AI toolmaker from Colima, México. Creator of Rails MCP Server, former fintech CTO, and author of Aprendiendo Ruby on Rails. Exploring the convergence of Rails and AI.</subtitle><author><name>Mario Alberto Chávez</name></author><entry xml:lang="en_US"><title type="html">Vibecoding the Physical: How AI Helped Me Bind My Photobook</title><link href="https://mariochavez.io/desarrollo/2025/11/22/vibecoding-the-physical-how-ai-helped-me-bind-my-photobook/" rel="alternate" type="text/html" title="Vibecoding the Physical: How AI Helped Me Bind My Photobook" /><published>2025-11-22T00:00:00-06:00</published><updated>2025-11-22T00:00:00-06:00</updated><id>repo://posts.collection/_posts/2025-11-22-vibecoding-the-physical-how-ai-helped-me-bind-my-photobook.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2025/11/22/vibecoding-the-physical-how-ai-helped-me-bind-my-photobook/">&lt;p&gt;Sometimes, I reach for Claude Desktop just to “vibecode.” I start with a spark—a very simple idea—and I iterate, building complexity layer by layer. Usually, I don’t even specify the tech stack. By default, Sonnet tends to choose React.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://bridgetownrb.com/" version="2.0.5">Bridgetown</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" /><updated>2025-11-27T14:36:40-06:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez - Ruby on Rails, AI Tools &amp;amp; former CTO</title><subtitle>Ruby on Rails architect and AI toolmaker from Colima, México. Creator of Rails MCP Server, former fintech CTO, and author of Aprendiendo Ruby on Rails. Exploring the convergence of Rails and AI.</subtitle><author><name>Mario Alberto Chávez</name></author><entry xml:lang="en_US"><title type="html">Rails Upgrades with AI: A Real-World Success Story</title><link href="https://mariochavez.io/desarrollo/2025/11/27/rails-upgrades-with-ai/" rel="alternate" type="text/html" title="Rails Upgrades with AI: A Real-World Success Story" /><published>2025-11-27T00:00:00-06:00</published><updated>2025-11-27T00:00:00-06:00</updated><id>repo://posts.collection/_posts/2025-11-27-rails-upgrades-with-ai.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2025/11/27/rails-upgrades-with-ai/">&lt;p&gt;A few weeks ago, I introduced the &lt;strong&gt;Rails Upgrade Skill&lt;/strong&gt; for Anthropic’s Claude. You can check out the repository here: &lt;a href=&quot;https://github.com/maquina-app/rails-upgrade-skill&quot;&gt;https://github.com/maquina-app/rails-upgrade-skill&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Yesterday, a client’s Ruby on Rails application—focused on EMR (Electronic Medical Records)—was successfully &lt;strong&gt;deployed to Rails 8&lt;/strong&gt; with only a minor, quickly resolved issue! Just a week prior, this same application was running on the End-of-Life (EOL) version, &lt;strong&gt;Rails 7.1&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/rails-upgrades-ai/summary-report.png&quot; alt=&quot;Image: Upgrade to 7.2 summary report&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Using the &lt;strong&gt;Rails Upgrade Skill&lt;/strong&gt;, I was able to manage this rapid transition. The process involved first upgrading the application to &lt;strong&gt;Rails 7.2&lt;/strong&gt; and deploying it to production, and then, days later, performing the jump to &lt;strong&gt;Rails 8&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;To be honest, the changes to the existing codebase were minor:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;A few broken &lt;strong&gt;specs&lt;/strong&gt;.&lt;/li&gt;
+  &lt;li&gt;One &lt;strong&gt;gem&lt;/strong&gt; that hadn’t been updated for recent Rails versions.&lt;/li&gt;
+  &lt;li&gt;Two small issues that were not caught by the test suite but were easily fixed &lt;em&gt;before&lt;/em&gt; they became real-world problems.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Currently, I even have a Work-In-Progress (WIP) Pull Request for the &lt;strong&gt;Rails 8.1&lt;/strong&gt; version of this application. It’s blocked only because the &lt;strong&gt;Mongoid&lt;/strong&gt; gem doesn’t yet support the latest released gems in Rails 8.1, but the core upgrade code is ready in the repository. Once again, the skill performed most of the work; we’re just waiting for the gem to be released to continue the upgrade.&lt;/p&gt;
+
+&lt;h3 id=&quot;the-real-power-of-the-skill-&quot;&gt;The Real Power of the Skill 💡&lt;/h3&gt;
+
+&lt;p&gt;The skill doesn’t just provide a high-level analysis; it gives &lt;strong&gt;clear, actionable guidance&lt;/strong&gt; on the changes between versions. This includes:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/rails-upgrades-ai/files-update-report.png&quot; alt=&quot;Image: Files changes report&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Step-by-step actions&lt;/strong&gt; with a tailored script to check for breaking changes.&lt;/li&gt;
+  &lt;li&gt;Precise instructions for &lt;strong&gt;creating a branch&lt;/strong&gt; and &lt;strong&gt;running necessary commands&lt;/strong&gt;.&lt;/li&gt;
+  &lt;li&gt;Exactly &lt;strong&gt;what files to modify&lt;/strong&gt; and the &lt;strong&gt;rationale&lt;/strong&gt; behind each change.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Crucially, it makes merging &lt;strong&gt;configuration-specific changes&lt;/strong&gt; much easier—a task that is often painful when using the &lt;code class=&quot;highlighter-rouge&quot;&gt;rails app:update&lt;/code&gt; command.&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/rails-upgrades-ai/rails-upgrade.jpg" /><media:content medium="image" url="https://mariochavez.io/images/rails-upgrades-ai/rails-upgrade.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry xml:lang="en_US"><title type="html">Vibecoding the Physical: How AI Helped Me Bind My Photobook</title><link href="https://mariochavez.io/desarrollo/2025/11/22/vibecoding-the-physical-how-ai-helped-me-bind-my-photobook/" rel="alternate" type="text/html" title="Vibecoding the Physical: How AI Helped Me Bind My Photobook" /><published>2025-11-22T00:00:00-06:00</published><updated>2025-11-22T00:00:00-06:00</updated><id>repo://posts.collection/_posts/2025-11-22-vibecoding-the-physical-how-ai-helped-me-bind-my-photobook.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2025/11/22/vibecoding-the-physical-how-ai-helped-me-bind-my-photobook/">&lt;p&gt;Sometimes, I reach for Claude Desktop just to “vibecode.” I start with a spark—a very simple idea—and I iterate, building complexity layer by layer. Usually, I don’t even specify the tech stack. By default, Sonnet tends to choose React.&lt;/p&gt;
 
 &lt;p&gt;Here’s the catch: my knowledge of React is basic. I can’t strictly tell if the code is idiomatic or “correct.” I can only treat the app as a black box—testing it to see if it works as expected. I leave the architectural decisions to the model and focus purely on the outcome.&lt;/p&gt;
 
@@ -1658,337 +1688,4 @@ The &lt;code class=&quot;highlighter-rouge&quot;&gt;delete_search_index&lt;/code
 
 &lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
 
-&lt;p&gt;Adding this module to my applications allowed me to explore the idea of moving from PostgreSQL for these small applications. Not because PostgreSQL is bad, but because it might be too much for the current application’s needs.&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/full-text-search/full-text-search.jpg" /><media:content medium="image" url="https://mariochavez.io/images/full-text-search/full-text-search.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry xml:lang="en"><title type="html">Working with Rails Engines, Importmap and TailwindCSS for assets.</title><link href="https://mariochavez.io/desarrollo/2023/08/23/working-with-rails-engines-importmap-tailwindcss/" rel="alternate" type="text/html" title="Working with Rails Engines, Importmap and TailwindCSS for assets." /><published>2023-08-23T00:00:00-06:00</published><updated>2023-08-23T00:00:00-06:00</updated><id>repo://posts.collection/_posts/2023-08-23-working-with-rails-engines-importmap-tailwindcss.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2023/08/23/working-with-rails-engines-importmap-tailwindcss/">&lt;p&gt;Rails engines are one of my favorite tools when I want to isolate reusable functionality for Rails applications. An example of this is the NoPassword gem, which allows users to login into an application just with their email and the received link and code.&lt;/p&gt;
-
-&lt;p&gt;With Rails 3.1, the engines were mountable and integrated with the Asset Pipeline to manage the engine’s assets. This continued to work this way until Webpack was introduced to Rails in version 5.1. At this moment, it was not clear how to make Webpack work with the engine’s assets or any other gem that included assets.&lt;/p&gt;
-
-&lt;p&gt;Rails 7 introduced CSS and JS bundling, along with the Propshaft gem to manage and serve assets. Also, introduced Importmaps and TailwindCSS as options for not having Node as a dependency, but in both cases without any official word on how to make these work with engines.&lt;/p&gt;
-
-&lt;p&gt;NOTE: Importmap’s README explains how to composite multiple Impormap configurations. &lt;a href=&quot;https://github.com/rails/importmap-rails#composing-import-maps&quot;&gt;https://github.com/rails/importmap-rails#composing-import-maps&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Working on the NoPassword engine and a few private others, I decided for them to use Importmaps, TailwindCSS, and Propshaft. It led me to figure out a way to use the engine assets. The rest of this post describes my successful journey with assets and engines.&lt;/p&gt;
-
-&lt;h2 id=&quot;importmap-engine-configuration&quot;&gt;Importmap engine configuration&lt;/h2&gt;
-
-&lt;p&gt;First, let’s try the route described in Importmap’s README file.&lt;/p&gt;
-
-&lt;p&gt;To install Importmap in an engine project, it requires adding the gem to the dummy app and adding the dependency to the engine’s gem spec file.&lt;/p&gt;
-
-&lt;p&gt;Install Importmap and add it as a dependency to the Gemfile as follows:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bundle add importmap-rails
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;And add it to the gem spec file.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;spec.add_dependency &lt;span class=&quot;s2&quot;&gt;&quot;importmap-rails&quot;&lt;/span&gt;, &lt;span class=&quot;s2&quot;&gt;&quot;~&amp;gt; 1.2&quot;&lt;/span&gt;, &lt;span class=&quot;s2&quot;&gt;&quot;&amp;gt;= 1.2.1&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Then run the bundle command and navigate to the test/dummy app to execute the installer in the dummy app.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd test&lt;/span&gt;/dummy &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; bin/rails importmap::install
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Following the README instructions for composite Importmaps, open the &lt;code class=&quot;highlighter-rouge&quot;&gt;lib/my_engine/engine.rb&lt;/code&gt; file and add the following hook - remember to replace &lt;strong&gt;**&lt;/strong&gt;&lt;strong&gt;**&lt;/strong&gt;&lt;strong&gt;**&lt;/strong&gt;my-engine&lt;strong&gt;**&lt;/strong&gt;&lt;strong&gt;**&lt;/strong&gt;&lt;strong&gt;**&lt;/strong&gt; with the name of your engine -:&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;MyEngine&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Engine&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Rails&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Engine&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;# ...&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;initializer&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;my-engine.importmap&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;before: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;importmap&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;importmap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;paths&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Engine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;config/importmap.rb&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;c1&quot;&gt;# ...&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Then create the file &lt;code class=&quot;highlighter-rouge&quot;&gt;config/importmap.rb&lt;/code&gt; and pin the engine’s javascript assets.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pin_all_from File.expand_path&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;../app/assets/javascript&quot;&lt;/span&gt;, __dir__&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;To test this setup, two Stimulus controllers were added, one in the engine’s &lt;code class=&quot;highlighter-rouge&quot;&gt;app/assets/javascript&lt;/code&gt; and another one at the dummy app &lt;code class=&quot;highlighter-rouge&quot;&gt;test/dummy/app/javascript/controllers&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-jsx highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;#&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;javascript&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;controllers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;host_controller&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;js &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Dummy&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;APP&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Controller&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;@hotwired/stimulus&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Controller&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nf&quot;&gt;connect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Connected&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;element&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;textContent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Hello World! This is a Javascript from the Host&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Loaded&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-&lt;span class=&quot;err&quot;&gt;#&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;assets&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;javascript&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;engine_controller&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;js &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Engine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Controller&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;@hotwired/stimulus&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Controller&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nf&quot;&gt;connect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Connected&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;element&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;textContent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Hello World! This is a Javascript from the Engine&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Loaded&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Set up Stimulus in the dummy app by adding the gem and running the installer.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd test&lt;/span&gt;/dummy
-bundle add stimulus-rails
-./bin/rails stimulus:install
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The Dummy app has a &lt;strong&gt;HomeController&lt;/strong&gt; with an index action. The index template has two divs. One for &lt;code class=&quot;highlighter-rouge&quot;&gt;host_controller.js&lt;/code&gt; and the second one for &lt;code class=&quot;highlighter-rouge&quot;&gt;engine_controller.js&lt;/code&gt; .&lt;/p&gt;
-
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;h1&amp;gt;&lt;/span&gt;Engine&apos;s Stimulus controller (Host app)&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-controller=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;host&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-controller=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;engine&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/engines-assets/importmap-1.png&quot; alt=&quot;Importmap&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Unfortunately, this setup does not work, at least for my use case, where I expect the engine to have Stimulus controllers available in the host application, the Dummy app in this case. The engine’s controller is there in the imports manifest but is not loaded in the context of the Stimulus application.&lt;/p&gt;
-
-&lt;p&gt;The way that I make this work is to first organize the engine’s Stimulus controllers with the following directory structure: &lt;code class=&quot;highlighter-rouge&quot;&gt;app/assets/javascript/my_engine/controllers&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Next, modify the Dummy app’s &lt;code class=&quot;highlighter-rouge&quot;&gt;config/importmap.rb&lt;/code&gt; and add the following line at the end of the file.&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;pin_all_from&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;MyEngine&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Engine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;app/assets/javascript/my_engine/controllers&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;under: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;controllers&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;to: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;my_engine/controllers&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;With this change, reload the page, and now it is working! The engine’s Stimulus controller is loaded by the host application.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/engines-assets/importmap-2.png&quot; alt=&quot;Importmap&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;In the Importmap repository, there is an open issue about how to make the gem work with engines, and the user muriloime mentions this solution &lt;a href=&quot;https://github.com/rails/importmap-rails/issues/58&quot;&gt;https://github.com/rails/importmap-rails/issues/58&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Now, what about making Importmap work with the engine’s own views? In the case of the NoPassword gem, it provides views for the login process and uses a Stimulus controller to display errors; it does not depend on the host application in any way.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/engines-assets/no-password-demo.gif&quot; alt=&quot;No Password&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;First, add Stimulus as a gem dependency to the gem spec file and execute the bundle command.&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;add_dependency&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;stimulus-rails&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;~&amp;gt; 1.2&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The installer is not available inside the engine, so this step requires adding a few files manually. Let’s start with the javascript files.&lt;/p&gt;
-
-&lt;div class=&quot;language-jsx highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;#&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;assets&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;javascript&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;my_engine&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;application&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;js&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;controllers&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
-
-&lt;span class=&quot;err&quot;&gt;#&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;assets&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;javascript&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;my_engine&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;controllers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;js&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// Import and register all your controllers from the importmap under controllers/*&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;application&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;controllers/application&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// Eager load all controllers defined in the import map under controllers/**/*_controller&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;eagerLoadControllersFrom&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;@hotwired/stimulus-loading&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
-&lt;span class=&quot;nf&quot;&gt;eagerLoadControllersFrom&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;controllers&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;application&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// Lazy load controllers as they appear in the DOM (remember not to preload controllers in import map!)&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// import { lazyLoadControllersFrom } from &quot;@hotwired/stimulus-loading&quot;&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// lazyLoadControllersFrom(&quot;controllers&quot;, application)&lt;/span&gt;
-
-&lt;span class=&quot;err&quot;&gt;#&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;assets&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;javascript&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;my_engine&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;controllers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;application&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;js&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Application&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;@hotwired/stimulus&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
-
-&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;application&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Application&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// Configure Stimulus development experience&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;application&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;debug&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Stimulus&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;application&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;application&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Open the file &lt;code class=&quot;highlighter-rouge&quot;&gt;config/importmap.rb&lt;/code&gt; and replace the content with the following pins that load Stimulus and the engine’s controllers:&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;pin&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;@hotwired/stimulus&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;to: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;stimulus.min.js&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;preload: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;pin&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;@hotwired/stimulus-loading&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;to: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;stimulus-loading.js&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;preload: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;pin&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;application&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;preload: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;pin_all_from&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;MyEngine&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Engine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;app/assets/javascript/my_engine/controllers&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;under: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;controllers&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;to: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;my_engine/controllers&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Instead of composing a global Importmap, we are going to set up a local configuration for the engine. Open the &lt;code class=&quot;highlighter-rouge&quot;&gt;lib/my_engine.rb&lt;/code&gt; file and add the following code:&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;my_engine/version&quot;&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;my_engine/engine&quot;&lt;/span&gt;
-
-&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;importmap-rails&quot;&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;MyEngine&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;
-    &lt;span class=&quot;nb&quot;&gt;attr_accessor&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:configuration&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-  &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Configuration&lt;/span&gt;
-    &lt;span class=&quot;nb&quot;&gt;attr_reader&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:importmap&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;initialize&lt;/span&gt;
-      &lt;span class=&quot;vi&quot;&gt;@importmap&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Importmap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;
-      &lt;span class=&quot;vi&quot;&gt;@importmap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;draw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Engine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;config/importmap.rb&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;init_config&lt;/span&gt;
-    &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;configuration&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Configuration&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;configure&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;init_config&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;yield&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;configuration&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-&lt;span class=&quot;no&quot;&gt;MyEngine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;init_config&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Here, a configuration class was added to the engine. It has only one setting, where it initializes a new Importmap with assets belonging to the engine. Be aware that sweepers are not set up for Importmap; this means that changes made during development with the engine will not be taken until the app is restarted.
-This configuration can be extended to include more engine settings if needed.&lt;/p&gt;
-
-&lt;p&gt;Now we need to create a helper similar to &lt;code class=&quot;highlighter-rouge&quot;&gt;javascript_importmap_tag&lt;/code&gt; that is aware of the engine’s Importmap configuration. Open the &lt;code class=&quot;highlighter-rouge&quot;&gt;app/helpers/my_engine/application_helper.rb&lt;/code&gt; and add the following method.&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;my_engine_importmap_tags&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;entry_point&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;application&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;shim: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;safe_join&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;javascript_inline_importmap_tag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;MyEngine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;configuration&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;importmap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_json&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;resolver: &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)),&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;javascript_importmap_module_preload_tags&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;MyEngine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;configuration&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;importmap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;javascript_importmap_shim_nonce_configuration_tag&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;shim&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;javascript_importmap_shim_tag&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;shim&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;javascript_import_module_tag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;entry_point&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;compact&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Now open the engine’s layout and replace the &lt;code class=&quot;highlighter-rouge&quot;&gt;javascript_importmap_tag&lt;/code&gt; with &lt;code class=&quot;highlighter-rouge&quot;&gt;my_engine_importmap_tags&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;To test this, add a controller named &lt;code class=&quot;highlighter-rouge&quot;&gt;MyEngine::HomeController&lt;/code&gt; with an index action and a div that uses &lt;code class=&quot;highlighter-rouge&quot;&gt;engine_controller.js&lt;/code&gt; to it.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/engines-assets/importmap-3.png&quot; alt=&quot;Importmap&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;These are the two configuration options for Importmap with engines. Share the engine’s Stimulus controllers with the host app, or use the engine’s Stimulus controllers internally for the engine’s templates.&lt;/p&gt;
-
-&lt;h2 id=&quot;tailwindcss-engine-configuration&quot;&gt;TailwindCSS engine configuration&lt;/h2&gt;
-
-&lt;p&gt;The steps to install it are simple. First, let’s install it into the Dummy app.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd test&lt;/span&gt;/dummy &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; bundle add tailwindcss-rails
-./bin/rails tailwindcss:install
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;For the Dummy app that comes with the engine in development mode, there are two additional steps that are not required when the host app is not the Dummy app.&lt;/p&gt;
-
-&lt;p&gt;Ensure that the TailwindCSS task runs with Foreman or Overmind using your &lt;code class=&quot;highlighter-rouge&quot;&gt;Procfile.dev&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;web: bin/rails server &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; 3000
-css: bin/rails app:tailwindcss:watch
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Also, change the &lt;code class=&quot;highlighter-rouge&quot;&gt;test/dummy/config/tailwind.config.js&lt;/code&gt; file that was installed by TailwindCSS to have the right path to the Dummy app. Change the content section to include the &lt;code class=&quot;highlighter-rouge&quot;&gt;./test/dummy&lt;/code&gt; path.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;content: &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;
-    &lt;span class=&quot;s1&quot;&gt;&apos;./test/dummy/public/*.html&apos;&lt;/span&gt;,
-    &lt;span class=&quot;s1&quot;&gt;&apos;./test/dummy/app/helpers/**/*.rb&apos;&lt;/span&gt;,
-    &lt;span class=&quot;s1&quot;&gt;&apos;./test/dummy/app/javascript/**/*.js&apos;&lt;/span&gt;,
-    &lt;span class=&quot;s1&quot;&gt;&apos;./test/dummy/app/views/**/*.{erb,haml,html,slim}&apos;&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;,
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Restart your application, and it should work for the Dummy app.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/engines-assets/tailwind-1.png&quot; alt=&quot;TailwindCSS&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;To extend the TailwindCSS styling into the engine’s templates, there are a few steps that need to be taken first. The host app, in our case, the Dummy app, needs to override the engine’s layout to include the TailwindCSS files. Copy the file &lt;code class=&quot;highlighter-rouge&quot;&gt;app/layouts/my_engine/application.html.erb&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;test/dummy/app/layouts/my_engine/application.html.erb&lt;/code&gt; and add the following line in the &lt;strong&gt;head&lt;/strong&gt; section:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;%&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; stylesheet_link_tag &lt;span class=&quot;s2&quot;&gt;&quot;tailwind&quot;&lt;/span&gt;, &lt;span class=&quot;s2&quot;&gt;&quot;inter-font&quot;&lt;/span&gt;, &lt;span class=&quot;s2&quot;&gt;&quot;data-turbo-track&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;reload&quot;&lt;/span&gt; %&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Navigate to an engine action, and you can confirm the general CSS reset of TailwindCSS is applied, but utility classes are ignored.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/engines-assets/tailwind-2.png&quot; alt=&quot;TailwindCSS&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;This happens because the file doesn’t know that it also needs to scan the engine templates for TailwindCSS classes.&lt;/p&gt;
-
-&lt;p&gt;To fix this, we need a rake task and a generator in the host or Dummy app. Create a file &lt;code class=&quot;highlighter-rouge&quot;&gt;test/dummy/lib/tasks/tailwind.rake&lt;/code&gt; and add the following content:&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# frozen_string_literal: true&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:tailwindcss&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;desc&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Generates your tailwind config file&quot;&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;task&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:config&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;Rails&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Generators&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;invoke&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;tailwind_config&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;--force&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-&lt;span class=&quot;no&quot;&gt;Rake&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;tailwindcss:build&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;enhance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;tailwindcss:config&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
-&lt;span class=&quot;no&quot;&gt;Rake&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;tailwindcss:watch&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;enhance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;tailwindcss:config&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Here we are adding a &lt;strong&gt;tailwindcss:config&lt;/strong&gt; task that invokes a generator (we are going to create this one in a moment) and enhancing TailwindCSS tasks provided by the gem by injecting this new task into the build process.&lt;/p&gt;
-
-&lt;p&gt;For the generator, create the file &lt;code class=&quot;highlighter-rouge&quot;&gt;test/dummy/lib/generators/tailwind_config_generator.rb&lt;/code&gt; in the host or Dummy app and add the following code:&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# frozen_string_literal: true&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TailwindConfigGenerator&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Rails&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Generators&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Base&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;source_root&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;expand_path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;../templates&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;__FILE__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;create_tailwind_config_file&lt;/span&gt;
-    &lt;span class=&quot;vi&quot;&gt;@engines_paths&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;MyEngine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;configuration&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;tailwind_content&lt;/span&gt;
-
-    &lt;span class=&quot;c1&quot;&gt;# The second parameter for the template method is required only if the host app is the Dummy app; &lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;# for an external host app, remove that parameter.&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;template&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;config/tailwind.config.js&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;expand_path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;../../../config/tailwind.config.js&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;__FILE__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;This generator, when executed, creates a new TailwindCSS config file from a template, but before doing that, in the &lt;code class=&quot;highlighter-rouge&quot;&gt;create_tailwind_config_file&lt;/code&gt; method, we can set up the engine paths to consider when scanning for TailwindCSS classes.&lt;/p&gt;
-
-&lt;p&gt;In the code, the generator assumes that our engine configuration exposes a &lt;code class=&quot;highlighter-rouge&quot;&gt;tailwind_content&lt;/code&gt; accessor with an array of paths.&lt;/p&gt;
-
-&lt;p&gt;Add an accessor to the Configuration class in file &lt;code class=&quot;highlighter-rouge&quot;&gt;lib/my_engine.rb&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;attr_accessor&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:tailwind_content&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Also add to the &lt;code class=&quot;highlighter-rouge&quot;&gt;initializer&lt;/code&gt; method of the same class the following paths:&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;vi&quot;&gt;@tailwind_content&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
-  &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;MyEngine&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Engine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/app/views/**/*&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-  &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;MyEngine&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Engine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/app/helpers/**/*&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-  &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;MyEngine&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Engine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/app/controllers/**/*&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-  &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;MyEngine&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Engine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/app/javascript/**/*.js&quot;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Moving back to the template file in the &lt;code class=&quot;highlighter-rouge&quot;&gt;tailwind_config_generator&lt;/code&gt;, this is the TailwindCSS config file, but it will be created dynamically by the task to be able to inject the engine paths into it.&lt;/p&gt;
-
-&lt;p&gt;Move the file &lt;code class=&quot;highlighter-rouge&quot;&gt;test/dummy/config/tailwind.config.js&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;lib/generators/templates/config/tailwind.config.js.tt&lt;/code&gt; and modify the &lt;strong&gt;content&lt;/strong&gt; section as follows:&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;ss&quot;&gt;content: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
-    &lt;span class=&quot;s1&quot;&gt;&apos;./test/dummy/public/*.html&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;s1&quot;&gt;&apos;./test/dummy/app/helpers/**/*.rb&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;s1&quot;&gt;&apos;./test/dummy/app/javascript/**/*.js&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;s1&quot;&gt;&apos;./test/dummy/app/views/**/*.{erb,haml,html,slim}&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;%= @engines_paths.map{ |path| &quot;&apos;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;&apos;&quot; }.join(&quot;,&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;&quot;) %&amp;gt;
-  ],
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Add the file &lt;code class=&quot;highlighter-rouge&quot;&gt;test/dummy/config/tailwind.config.js&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;.gitignore&lt;/code&gt; file, since this file will be generated automatically.&lt;/p&gt;
-
-&lt;p&gt;Restart the application, navigate the view in the host app and a view in the engine, and confirm that TailwindCSS is working for both cases.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/engines-assets/tailwind-3.png&quot; alt=&quot;TailwindCSS&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/engines-assets/tailwind-4.png&quot; alt=&quot;TailwindCSS&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;wrapping-up&quot;&gt;Wrapping up&lt;/h2&gt;
-
-&lt;p&gt;This is how I have been working with the Rails engines Importmap and TailwindCSS. Most of the knowledge here came from reading the source code of the libraries and trial and error.&lt;/p&gt;
-
-&lt;p&gt;If you are looking to work with engines and this tool set for assets, please give it a try and let me know how it goes or if there is a better, simpler way to archive the same.&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/engines-assets/engines-assets.jpg" /><media:content medium="image" url="https://mariochavez.io/images/engines-assets/engines-assets.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;p&gt;Adding this module to my applications allowed me to explore the idea of moving from PostgreSQL for these small applications. Not because PostgreSQL is bad, but because it might be too much for the current application’s needs.&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/full-text-search/full-text-search.jpg" /><media:content medium="image" url="https://mariochavez.io/images/full-text-search/full-text-search.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
