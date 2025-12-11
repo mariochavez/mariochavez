@@ -70,15 +70,15 @@ Learn how Rails MCP Server's new architecture reduces context consumption throug
 
 ## The Context Budget Problem
 
-Last week I came across an [Anthropic blog post](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) that fundamentally changed how I think about MCP server design. The insight was simple but profound: every tool you register with an MCP server gets sent to Claude at the start of each session.
+A few weeks ago, I came across an [Anthropic blog post](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) that fundamentally changed how I think about MCP server design. The insight was simple but profound: every tool you register with an MCP server gets sent to Claude at the start of each session.
 
 With the Rails MCP Server's previous 12 tools, that meant roughly 2,400 tokens consumed before asking a single question. On large Rails codebases where I'm already sharing multiple files and documentation, this context overhead matters. I've hit conversation limits mid-feature more times than I'd like to admit.
 
-The Anthropic post suggested a different approach: progressive disclosure. Instead of loading all tool definitions upfront, let the AI discover them when relevant. This resonated with how I already work—I don't need Claude to know about route analysis when I'm focused on model validations.
+The Anthropic post suggested a different approach: progressive disclosure. Instead of loading all tool definitions upfront, let the AI discover them when relevant.
 
 ## Progressive Tool Discovery
 
-The most significant change in this release is the reduction from 12 registered tools to just 4. The other tools didn't disappear—they became internal analyzers that Claude discovers on-demand.
+The most significant change in this release is the reduction from 12 registered tools to just 4. The other tools didn't disappear—they became internal analyzers that Claude discovers on demand.
 
 **The four registered tools:**
 
@@ -89,7 +89,7 @@ The most significant change in this release is the reduction from 12 registered 
 | `execute_tool` | Run any analyzer by name |
 | `execute_ruby` | Sandboxed Ruby execution for complex queries |
 
-The previous tools like `analyze_models`, `get_routes`, and `get_schema` are now internal analyzers. Claude finds them through `search_tools` and invokes them through `execute_tool`. This pattern reduces the initial context footprint by roughly 67%.
+The previous tools, like `analyze_models`, `get_routes`, and `get_schema`, are now internal analyzers. Claude finds them through `search_tools` and invokes them through `execute_tool`. This pattern reduces the initial context footprint by roughly 67%.
 
 When I start a session now, Claude only knows about these four capabilities. If I ask about database structure, Claude can search for relevant tools:
 
@@ -99,7 +99,7 @@ search\_tools(query: "database schema")
 
 ```
 
-This returns information about `get_schema` without having loaded all nine analyzers upfront. Claude then invokes it:
+This returns information about `get_schema` without loading all nine analyzers upfront. Claude then invokes it:
 
 ```
 
@@ -136,15 +136,15 @@ Rails.application.routes.routes.map do |route|
 end
 ```
 
-For controllers, I now use `action_methods` instead of scanning for `def` statements, and `_process_action_callbacks` to find before/after actions accurately.
+For controllers, I now use `action_methods` instead of scanning for `def` statements, and `_process_action_callbacks` to accurately find before/after actions.
 
 The difference in accuracy is significant. Associations with `through:`, `class_name:`, or `foreign_key:` options are now captured correctly. Validations show their conditions. Callbacks include their `only:` and `except:` filters.
 
 ## Prism Static Analysis
 
-Rails introspection tells you what exists at runtime, but sometimes you need to understand the code structure itself. For this, I added Prism static analysis.
+Rails introspection tells you what exists at runtime, but sometimes you need to understand the code structure itself. To this end, I added Prism static analysis.
 
-Prism is Ruby's new parser that ships with Ruby 3.3+. It provides a clean AST that I can traverse to extract:
+Prism is Ruby's new parser, available in Ruby 3.3+. It provides a clean AST that I can traverse to extract:
 
   - Callbacks and their method references
   - Scope definitions
@@ -164,11 +164,11 @@ execute_tool(
 )
 ```
 
-With `analysis_type: "full"`, Claude gets both the runtime reflection data and the static code analysis. With `analysis_type: "static"`, it gets just the AST-derived information—useful when you want to understand code structure without loading the Rails environment.
+With `analysis_type: "full"`, Claude receives both runtime reflection data and static code analysis. With `analysis_type: "static"`, it returns only AST-derived information—useful when you want to understand code structure without loading the Rails environment.
 
 ## Detail Levels and Filtering
 
-Another insight from the Anthropic post: intermediate results consume tokens too. When you ask about routes, do you really need the complete output of all 200 routes with constraints and defaults?
+Another insight from the Anthropic post: intermediate results consume tokens too. When you ask about routes, do you really need the full output for all 200 routes, including constraints and defaults?
 
 Every analyzer now supports a `detail_level` parameter:
 
@@ -244,7 +244,7 @@ After testing the new architecture with real conversations, I noticed AI agents 
 
 ### Quick Start Guide
 
-Now when you switch projects, you get an immediate orientation:
+Now, when you switch projects, you get an immediate orientation:
 
 ```
 Switched to project: my_finances at path: /Users/mario/projects/my_finances
@@ -262,7 +262,7 @@ Helpers in execute_ruby: read_file(path), file_exists?(path), list_files(pattern
 Note: Always use `puts` in execute_ruby to see output.
 ```
 
-This eliminates the cold-start problem. Claude immediately knows the most common patterns without searching for them.
+This eliminates the cold-start problem. Claude immediately recognizes the most common patterns without having to search for them.
 
 ### The `puts` Problem
 
@@ -277,7 +277,7 @@ Hint: Use `puts` to see results, e.g.:
   puts Dir.glob('app/models/*.rb')
 ```
 
-Small friction points like this matter more than I initially realized. Every confused moment is context wasted on troubleshooting instead of actual work.
+Small friction points like this matter more than I initially realized. Every confused moment is context wasted on troubleshooting rather than on actual work.
 
 ### AI Agent Guide
 
@@ -292,7 +292,7 @@ The guide is written for AI consumption—structured, explicit, with clear examp
 
 ## Interactive Configuration Tool
 
-Managing MCP server configuration used to involve editing YAML files and JSON configs manually. With multiple Rails projects, documentation guides, and Claude Desktop integration, this became tedious. So I built `rails-mcp-config`—an interactive terminal UI for all configuration tasks.
+Managing the MCP server configuration used to involve manually editing YAML and JSON configuration files. With multiple Rails projects, documentation guides, and Claude Desktop integration, this became tedious. So I built `rails-mcp-config`—an interactive terminal UI for all configuration tasks.
 
 ### Getting Started
 
@@ -360,7 +360,7 @@ You can also import your own markdown documentation and manage custom guides thr
 
 ### Claude Desktop Integration
 
-The most useful feature for new users is automatic Claude Desktop configuration. The tool:
+The most useful feature for new users is the automatic configuration of Claude Desktop. The tool:
 
 1.  Detects your existing Claude Desktop config
 2.  Shows current MCP server settings if configured
@@ -368,8 +368,6 @@ The most useful feature for new users is automatic Claude Desktop configuration.
 4.  Automatically finds the correct Ruby and server executable paths
 5.  Creates timestamped backups before any changes
 6.  Supports both STDIO (recommended) and HTTP modes
-
-<!-- end list -->
 
 ```
 ✓ Claude Desktop config file found
@@ -477,13 +475,13 @@ For Prism static analysis to work, your Rails projects need Ruby 3.3+ or the Pri
 
 ## Looking Forward
 
-While version 1.4.0 focused on context optimization, my current exploration for 1.4.1 is focused on **agent portability**.
+While version 1.4.0 focused on context optimization, my current exploration for 1.5.0 is focused on **agent portability**.
 
-I am working on a `--single-project` flag to support ephemeral environments like the **GitHub Copilot Agent**. These agents run in temporary GitHub Actions environments where no `projects.yml` exists and no global configuration can be persisted. The new flag will allow the server to skip loading `projects.yml`, treat the current directory as the sole project, and auto-switch to it immediately on startup.
+I am working on a `--single-project` flag to support ephemeral environments like the **GitHub Copilot Agent**. These agents run in temporary GitHub Actions environments where no `projects.yml` exists, and no global configuration can be persisted. The new flag will allow the server to skip loading `projects.yml`, treat the current directory as the sole project, and automatically switch to it on startup.
 
-This same feature unlocks support for **Claude Code**. Because Claude Code uses worktrees where each session is a separate working directory. By leveraging STDIO mode with the `--single-project` flag, each worktree can spawn its own isolated MCP server instance without port conflicts. This also allows the `.mcp.json` configuration to be committed directly to version control, making the setup reproducible for the entire team.
+This same feature unlocks support for **Claude Code**. Because Claude Code uses worktrees, where each session is a separate working directory. By leveraging STDIO mode with the `--single-project` flag, each worktree can spawn its own isolated MCP server instance without port conflicts. This also allows the `.mcp.json` configuration to be committed directly to version control, making the setup reproducible for the entire team.
 
-The combination of reduced tool registration, Rails introspection, Prism analysis, and these upcoming compatibility features makes the Rails MCP Server not just smarter, but more adaptable to the rapidly evolving ecosystem of AI agents.
+The combination of reduced tool registration, Rails introspection, Prism analysis, and upcoming compatibility features makes the Rails MCP Server not just more intelligent but also more adaptable to the rapidly evolving ecosystem of AI agents.
 
 Source code is available at [https://github.com/maquina-app/rails-mcp-server](https://github.com/maquina-app/rails-mcp-server)
 
