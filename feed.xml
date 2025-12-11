@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://bridgetownrb.com/" version="2.0.5">Bridgetown</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" /><updated>2025-12-10T18:45:49-06:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez - Ruby on Rails, AI Tools &amp;amp; former CTO</title><subtitle>Ruby on Rails architect and AI toolmaker from Colima, México. Creator of Rails MCP Server, former fintech CTO, and author of Aprendiendo Ruby on Rails. Exploring the convergence of Rails and AI.</subtitle><author><name>Mario Alberto Chávez</name></author><entry xml:lang="en_US"><title type="html">Rails MCP Server: Context-Efficient Tool Architecture</title><link href="https://mariochavez.io/desarrollo/2025/12/10/rails-mcp-server-context-efficient-refactoring/" rel="alternate" type="text/html" title="Rails MCP Server: Context-Efficient Tool Architecture" /><published>2025-12-10T00:00:00-06:00</published><updated>2025-12-10T00:00:00-06:00</updated><id>repo://posts.collection/_posts/2025-12-10-rails-mcp-server-context-efficient-refactoring.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2025/12/10/rails-mcp-server-context-efficient-refactoring/">&lt;p&gt;Learn how Rails MCP Server’s new architecture reduces context consumption through progressive tool discovery, Rails introspection, and Prism static analysis.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://bridgetownrb.com/" version="2.0.5">Bridgetown</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" /><updated>2025-12-11T10:57:44-06:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez - Ruby on Rails, AI Tools &amp;amp; former CTO</title><subtitle>Ruby on Rails architect and AI toolmaker from Colima, México. Creator of Rails MCP Server, former fintech CTO, and author of Aprendiendo Ruby on Rails. Exploring the convergence of Rails and AI.</subtitle><author><name>Mario Alberto Chávez</name></author><entry xml:lang="en_US"><title type="html">Rails MCP Server: Context-Efficient Tool Architecture</title><link href="https://mariochavez.io/desarrollo/2025/12/10/rails-mcp-server-context-efficient-refactoring/" rel="alternate" type="text/html" title="Rails MCP Server: Context-Efficient Tool Architecture" /><published>2025-12-10T00:00:00-06:00</published><updated>2025-12-10T00:00:00-06:00</updated><id>repo://posts.collection/_posts/2025-12-10-rails-mcp-server-context-efficient-refactoring.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2025/12/10/rails-mcp-server-context-efficient-refactoring/">&lt;p&gt;Learn how Rails MCP Server’s new architecture reduces context consumption through progressive tool discovery, Rails introspection, and Prism static analysis.&lt;/p&gt;
 
 &lt;h2 id=&quot;table-of-contents&quot;&gt;Table of Contents&lt;/h2&gt;
 
@@ -18,15 +18,15 @@
 
 &lt;h2 id=&quot;the-context-budget-problem&quot;&gt;The Context Budget Problem&lt;/h2&gt;
 
-&lt;p&gt;Last week I came across an &lt;a href=&quot;https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents&quot;&gt;Anthropic blog post&lt;/a&gt; that fundamentally changed how I think about MCP server design. The insight was simple but profound: every tool you register with an MCP server gets sent to Claude at the start of each session.&lt;/p&gt;
+&lt;p&gt;A few weeks ago, I came across an &lt;a href=&quot;https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents&quot;&gt;Anthropic blog post&lt;/a&gt; that fundamentally changed how I think about MCP server design. The insight was simple but profound: every tool you register with an MCP server gets sent to Claude at the start of each session.&lt;/p&gt;
 
 &lt;p&gt;With the Rails MCP Server’s previous 12 tools, that meant roughly 2,400 tokens consumed before asking a single question. On large Rails codebases where I’m already sharing multiple files and documentation, this context overhead matters. I’ve hit conversation limits mid-feature more times than I’d like to admit.&lt;/p&gt;
 
-&lt;p&gt;The Anthropic post suggested a different approach: progressive disclosure. Instead of loading all tool definitions upfront, let the AI discover them when relevant. This resonated with how I already work—I don’t need Claude to know about route analysis when I’m focused on model validations.&lt;/p&gt;
+&lt;p&gt;The Anthropic post suggested a different approach: progressive disclosure. Instead of loading all tool definitions upfront, let the AI discover them when relevant.&lt;/p&gt;
 
 &lt;h2 id=&quot;progressive-tool-discovery&quot;&gt;Progressive Tool Discovery&lt;/h2&gt;
 
-&lt;p&gt;The most significant change in this release is the reduction from 12 registered tools to just 4. The other tools didn’t disappear—they became internal analyzers that Claude discovers on-demand.&lt;/p&gt;
+&lt;p&gt;The most significant change in this release is the reduction from 12 registered tools to just 4. The other tools didn’t disappear—they became internal analyzers that Claude discovers on demand.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;The four registered tools:&lt;/strong&gt;&lt;/p&gt;
 
@@ -57,7 +57,7 @@
   &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;p&gt;The previous tools like &lt;code class=&quot;highlighter-rouge&quot;&gt;analyze_models&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;get_routes&lt;/code&gt;, and &lt;code class=&quot;highlighter-rouge&quot;&gt;get_schema&lt;/code&gt; are now internal analyzers. Claude finds them through &lt;code class=&quot;highlighter-rouge&quot;&gt;search_tools&lt;/code&gt; and invokes them through &lt;code class=&quot;highlighter-rouge&quot;&gt;execute_tool&lt;/code&gt;. This pattern reduces the initial context footprint by roughly 67%.&lt;/p&gt;
+&lt;p&gt;The previous tools, like &lt;code class=&quot;highlighter-rouge&quot;&gt;analyze_models&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;get_routes&lt;/code&gt;, and &lt;code class=&quot;highlighter-rouge&quot;&gt;get_schema&lt;/code&gt;, are now internal analyzers. Claude finds them through &lt;code class=&quot;highlighter-rouge&quot;&gt;search_tools&lt;/code&gt; and invokes them through &lt;code class=&quot;highlighter-rouge&quot;&gt;execute_tool&lt;/code&gt;. This pattern reduces the initial context footprint by roughly 67%.&lt;/p&gt;
 
 &lt;p&gt;When I start a session now, Claude only knows about these four capabilities. If I ask about database structure, Claude can search for relevant tools:&lt;/p&gt;
 
@@ -66,7 +66,7 @@ search\_tools(query: &quot;database schema&quot;)
 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;This returns information about &lt;code class=&quot;highlighter-rouge&quot;&gt;get_schema&lt;/code&gt; without having loaded all nine analyzers upfront. Claude then invokes it:&lt;/p&gt;
+&lt;p&gt;This returns information about &lt;code class=&quot;highlighter-rouge&quot;&gt;get_schema&lt;/code&gt; without loading all nine analyzers upfront. Claude then invokes it:&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
 execute\_tool(tool\_name: &quot;get\_schema&quot;, params: { table\_name: &quot;users&quot; })
@@ -100,15 +100,15 @@ execute\_tool(tool\_name: &quot;get\_schema&quot;, params: { table\_name: &quot;
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;For controllers, I now use &lt;code class=&quot;highlighter-rouge&quot;&gt;action_methods&lt;/code&gt; instead of scanning for &lt;code class=&quot;highlighter-rouge&quot;&gt;def&lt;/code&gt; statements, and &lt;code class=&quot;highlighter-rouge&quot;&gt;_process_action_callbacks&lt;/code&gt; to find before/after actions accurately.&lt;/p&gt;
+&lt;p&gt;For controllers, I now use &lt;code class=&quot;highlighter-rouge&quot;&gt;action_methods&lt;/code&gt; instead of scanning for &lt;code class=&quot;highlighter-rouge&quot;&gt;def&lt;/code&gt; statements, and &lt;code class=&quot;highlighter-rouge&quot;&gt;_process_action_callbacks&lt;/code&gt; to accurately find before/after actions.&lt;/p&gt;
 
 &lt;p&gt;The difference in accuracy is significant. Associations with &lt;code class=&quot;highlighter-rouge&quot;&gt;through:&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;class_name:&lt;/code&gt;, or &lt;code class=&quot;highlighter-rouge&quot;&gt;foreign_key:&lt;/code&gt; options are now captured correctly. Validations show their conditions. Callbacks include their &lt;code class=&quot;highlighter-rouge&quot;&gt;only:&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;except:&lt;/code&gt; filters.&lt;/p&gt;
 
 &lt;h2 id=&quot;prism-static-analysis&quot;&gt;Prism Static Analysis&lt;/h2&gt;
 
-&lt;p&gt;Rails introspection tells you what exists at runtime, but sometimes you need to understand the code structure itself. For this, I added Prism static analysis.&lt;/p&gt;
+&lt;p&gt;Rails introspection tells you what exists at runtime, but sometimes you need to understand the code structure itself. To this end, I added Prism static analysis.&lt;/p&gt;
 
-&lt;p&gt;Prism is Ruby’s new parser that ships with Ruby 3.3+. It provides a clean AST that I can traverse to extract:&lt;/p&gt;
+&lt;p&gt;Prism is Ruby’s new parser, available in Ruby 3.3+. It provides a clean AST that I can traverse to extract:&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Callbacks and their method references&lt;/li&gt;
@@ -129,11 +129,11 @@ execute\_tool(tool\_name: &quot;get\_schema&quot;, params: { table\_name: &quot;
 )
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;With &lt;code class=&quot;highlighter-rouge&quot;&gt;analysis_type: &quot;full&quot;&lt;/code&gt;, Claude gets both the runtime reflection data and the static code analysis. With &lt;code class=&quot;highlighter-rouge&quot;&gt;analysis_type: &quot;static&quot;&lt;/code&gt;, it gets just the AST-derived information—useful when you want to understand code structure without loading the Rails environment.&lt;/p&gt;
+&lt;p&gt;With &lt;code class=&quot;highlighter-rouge&quot;&gt;analysis_type: &quot;full&quot;&lt;/code&gt;, Claude receives both runtime reflection data and static code analysis. With &lt;code class=&quot;highlighter-rouge&quot;&gt;analysis_type: &quot;static&quot;&lt;/code&gt;, it returns only AST-derived information—useful when you want to understand code structure without loading the Rails environment.&lt;/p&gt;
 
 &lt;h2 id=&quot;detail-levels-and-filtering&quot;&gt;Detail Levels and Filtering&lt;/h2&gt;
 
-&lt;p&gt;Another insight from the Anthropic post: intermediate results consume tokens too. When you ask about routes, do you really need the complete output of all 200 routes with constraints and defaults?&lt;/p&gt;
+&lt;p&gt;Another insight from the Anthropic post: intermediate results consume tokens too. When you ask about routes, do you really need the full output for all 200 routes, including constraints and defaults?&lt;/p&gt;
 
 &lt;p&gt;Every analyzer now supports a &lt;code class=&quot;highlighter-rouge&quot;&gt;detail_level&lt;/code&gt; parameter:&lt;/p&gt;
 
@@ -209,7 +209,7 @@ RUBY
 
 &lt;h3 id=&quot;quick-start-guide&quot;&gt;Quick Start Guide&lt;/h3&gt;
 
-&lt;p&gt;Now when you switch projects, you get an immediate orientation:&lt;/p&gt;
+&lt;p&gt;Now, when you switch projects, you get an immediate orientation:&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Switched to project: my_finances at path: /Users/mario/projects/my_finances
 
@@ -226,7 +226,7 @@ Helpers in execute_ruby: read_file(path), file_exists?(path), list_files(pattern
 Note: Always use `puts` in execute_ruby to see output.
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;This eliminates the cold-start problem. Claude immediately knows the most common patterns without searching for them.&lt;/p&gt;
+&lt;p&gt;This eliminates the cold-start problem. Claude immediately recognizes the most common patterns without having to search for them.&lt;/p&gt;
 
 &lt;h3 id=&quot;the-puts-problem&quot;&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;puts&lt;/code&gt; Problem&lt;/h3&gt;
 
@@ -240,7 +240,7 @@ Hint: Use `puts` to see results, e.g.:
   puts Dir.glob(&apos;app/models/*.rb&apos;)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Small friction points like this matter more than I initially realized. Every confused moment is context wasted on troubleshooting instead of actual work.&lt;/p&gt;
+&lt;p&gt;Small friction points like this matter more than I initially realized. Every confused moment is context wasted on troubleshooting rather than on actual work.&lt;/p&gt;
 
 &lt;h3 id=&quot;ai-agent-guide&quot;&gt;AI Agent Guide&lt;/h3&gt;
 
@@ -257,7 +257,7 @@ Hint: Use `puts` to see results, e.g.:
 
 &lt;h2 id=&quot;interactive-configuration-tool&quot;&gt;Interactive Configuration Tool&lt;/h2&gt;
 
-&lt;p&gt;Managing MCP server configuration used to involve editing YAML files and JSON configs manually. With multiple Rails projects, documentation guides, and Claude Desktop integration, this became tedious. So I built &lt;code class=&quot;highlighter-rouge&quot;&gt;rails-mcp-config&lt;/code&gt;—an interactive terminal UI for all configuration tasks.&lt;/p&gt;
+&lt;p&gt;Managing the MCP server configuration used to involve manually editing YAML and JSON configuration files. With multiple Rails projects, documentation guides, and Claude Desktop integration, this became tedious. So I built &lt;code class=&quot;highlighter-rouge&quot;&gt;rails-mcp-config&lt;/code&gt;—an interactive terminal UI for all configuration tasks.&lt;/p&gt;
 
 &lt;h3 id=&quot;getting-started&quot;&gt;Getting Started&lt;/h3&gt;
 
@@ -321,7 +321,7 @@ Project name: [my-rails-app]
 
 &lt;h3 id=&quot;claude-desktop-integration&quot;&gt;Claude Desktop Integration&lt;/h3&gt;
 
-&lt;p&gt;The most useful feature for new users is automatic Claude Desktop configuration. The tool:&lt;/p&gt;
+&lt;p&gt;The most useful feature for new users is the automatic configuration of Claude Desktop. The tool:&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;Detects your existing Claude Desktop config&lt;/li&gt;
@@ -331,8 +331,6 @@ Project name: [my-rails-app]
   &lt;li&gt;Creates timestamped backups before any changes&lt;/li&gt;
   &lt;li&gt;Supports both STDIO (recommended) and HTTP modes&lt;/li&gt;
 &lt;/ol&gt;
-
-&lt;!-- end list --&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;✓ Claude Desktop config file found
 ✓ Rails MCP Server is configured
@@ -432,13 +430,13 @@ rails-mcp-server-download-resources rails   &lt;span class=&quot;c&quot;&gt;# Do
 
 &lt;h2 id=&quot;looking-forward&quot;&gt;Looking Forward&lt;/h2&gt;
 
-&lt;p&gt;While version 1.4.0 focused on context optimization, my current exploration for 1.4.1 is focused on &lt;strong&gt;agent portability&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;While version 1.4.0 focused on context optimization, my current exploration for 1.5.0 is focused on &lt;strong&gt;agent portability&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;p&gt;I am working on a &lt;code class=&quot;highlighter-rouge&quot;&gt;--single-project&lt;/code&gt; flag to support ephemeral environments like the &lt;strong&gt;GitHub Copilot Agent&lt;/strong&gt;. These agents run in temporary GitHub Actions environments where no &lt;code class=&quot;highlighter-rouge&quot;&gt;projects.yml&lt;/code&gt; exists and no global configuration can be persisted. The new flag will allow the server to skip loading &lt;code class=&quot;highlighter-rouge&quot;&gt;projects.yml&lt;/code&gt;, treat the current directory as the sole project, and auto-switch to it immediately on startup.&lt;/p&gt;
+&lt;p&gt;I am working on a &lt;code class=&quot;highlighter-rouge&quot;&gt;--single-project&lt;/code&gt; flag to support ephemeral environments like the &lt;strong&gt;GitHub Copilot Agent&lt;/strong&gt;. These agents run in temporary GitHub Actions environments where no &lt;code class=&quot;highlighter-rouge&quot;&gt;projects.yml&lt;/code&gt; exists, and no global configuration can be persisted. The new flag will allow the server to skip loading &lt;code class=&quot;highlighter-rouge&quot;&gt;projects.yml&lt;/code&gt;, treat the current directory as the sole project, and automatically switch to it on startup.&lt;/p&gt;
 
-&lt;p&gt;This same feature unlocks support for &lt;strong&gt;Claude Code&lt;/strong&gt;. Because Claude Code uses worktrees where each session is a separate working directory. By leveraging STDIO mode with the &lt;code class=&quot;highlighter-rouge&quot;&gt;--single-project&lt;/code&gt; flag, each worktree can spawn its own isolated MCP server instance without port conflicts. This also allows the &lt;code class=&quot;highlighter-rouge&quot;&gt;.mcp.json&lt;/code&gt; configuration to be committed directly to version control, making the setup reproducible for the entire team.&lt;/p&gt;
+&lt;p&gt;This same feature unlocks support for &lt;strong&gt;Claude Code&lt;/strong&gt;. Because Claude Code uses worktrees, where each session is a separate working directory. By leveraging STDIO mode with the &lt;code class=&quot;highlighter-rouge&quot;&gt;--single-project&lt;/code&gt; flag, each worktree can spawn its own isolated MCP server instance without port conflicts. This also allows the &lt;code class=&quot;highlighter-rouge&quot;&gt;.mcp.json&lt;/code&gt; configuration to be committed directly to version control, making the setup reproducible for the entire team.&lt;/p&gt;
 
-&lt;p&gt;The combination of reduced tool registration, Rails introspection, Prism analysis, and these upcoming compatibility features makes the Rails MCP Server not just smarter, but more adaptable to the rapidly evolving ecosystem of AI agents.&lt;/p&gt;
+&lt;p&gt;The combination of reduced tool registration, Rails introspection, Prism analysis, and upcoming compatibility features makes the Rails MCP Server not just more intelligent but also more adaptable to the rapidly evolving ecosystem of AI agents.&lt;/p&gt;
 
 &lt;p&gt;Source code is available at &lt;a href=&quot;https://github.com/maquina-app/rails-mcp-server&quot;&gt;https://github.com/maquina-app/rails-mcp-server&lt;/a&gt;&lt;/p&gt;
 
