@@ -1,4 +1,454 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://bridgetownrb.com/" version="2.0.5">Bridgetown</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" /><updated>2025-12-01T16:27:54-06:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez - Ruby on Rails, AI Tools &amp;amp; former CTO</title><subtitle>Ruby on Rails architect and AI toolmaker from Colima, México. Creator of Rails MCP Server, former fintech CTO, and author of Aprendiendo Ruby on Rails. Exploring the convergence of Rails and AI.</subtitle><author><name>Mario Alberto Chávez</name></author><entry xml:lang="en_US"><title type="html">Rails Upgrades with AI: A Real-World Success Story</title><link href="https://mariochavez.io/desarrollo/2025/11/27/rails-upgrades-with-ai/" rel="alternate" type="text/html" title="Rails Upgrades with AI: A Real-World Success Story" /><published>2025-11-27T00:00:00-06:00</published><updated>2025-11-27T00:00:00-06:00</updated><id>repo://posts.collection/_posts/2025-11-27-rails-upgrades-with-ai.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2025/11/27/rails-upgrades-with-ai/">&lt;p&gt;A few weeks ago, I introduced the &lt;strong&gt;Rails Upgrade Skill&lt;/strong&gt; for Anthropic’s Claude. You can check out the repository here: &lt;a href=&quot;https://github.com/maquina-app/rails-upgrade-skill&quot;&gt;https://github.com/maquina-app/rails-upgrade-skill&lt;/a&gt;.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://bridgetownrb.com/" version="2.0.5">Bridgetown</generator><link href="https://mariochavez.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mariochavez.io/" rel="alternate" type="text/html" /><updated>2025-12-10T18:45:49-06:00</updated><id>https://mariochavez.io/feed.xml</id><title type="html">Mario Alberto Chávez - Ruby on Rails, AI Tools &amp;amp; former CTO</title><subtitle>Ruby on Rails architect and AI toolmaker from Colima, México. Creator of Rails MCP Server, former fintech CTO, and author of Aprendiendo Ruby on Rails. Exploring the convergence of Rails and AI.</subtitle><author><name>Mario Alberto Chávez</name></author><entry xml:lang="en_US"><title type="html">Rails MCP Server: Context-Efficient Tool Architecture</title><link href="https://mariochavez.io/desarrollo/2025/12/10/rails-mcp-server-context-efficient-refactoring/" rel="alternate" type="text/html" title="Rails MCP Server: Context-Efficient Tool Architecture" /><published>2025-12-10T00:00:00-06:00</published><updated>2025-12-10T00:00:00-06:00</updated><id>repo://posts.collection/_posts/2025-12-10-rails-mcp-server-context-efficient-refactoring.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2025/12/10/rails-mcp-server-context-efficient-refactoring/">&lt;p&gt;Learn how Rails MCP Server’s new architecture reduces context consumption through progressive tool discovery, Rails introspection, and Prism static analysis.&lt;/p&gt;
+
+&lt;h2 id=&quot;table-of-contents&quot;&gt;Table of Contents&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;#the-context-budget-problem&quot;&gt;The Context Budget Problem&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#progressive-tool-discovery&quot;&gt;Progressive Tool Discovery&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#rails-introspection-beyond-regex-parsing&quot;&gt;Rails Introspection: Beyond Regex Parsing&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#prism-static-analysis&quot;&gt;Prism Static Analysis&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#detail-levels-and-filtering&quot;&gt;Detail Levels and Filtering&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#sandboxed-ruby-execution&quot;&gt;Sandboxed Ruby Execution&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#improved-discovery-ux&quot;&gt;Improved Discovery UX&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#interactive-configuration-tool&quot;&gt;Interactive Configuration Tool&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#how-i-use-the-new-architecture&quot;&gt;How I Use the New Architecture&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#upgrading-to-the-new-version&quot;&gt;Upgrading to the New Version&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#looking-forward&quot;&gt;Looking Forward&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;the-context-budget-problem&quot;&gt;The Context Budget Problem&lt;/h2&gt;
+
+&lt;p&gt;Last week I came across an &lt;a href=&quot;https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents&quot;&gt;Anthropic blog post&lt;/a&gt; that fundamentally changed how I think about MCP server design. The insight was simple but profound: every tool you register with an MCP server gets sent to Claude at the start of each session.&lt;/p&gt;
+
+&lt;p&gt;With the Rails MCP Server’s previous 12 tools, that meant roughly 2,400 tokens consumed before asking a single question. On large Rails codebases where I’m already sharing multiple files and documentation, this context overhead matters. I’ve hit conversation limits mid-feature more times than I’d like to admit.&lt;/p&gt;
+
+&lt;p&gt;The Anthropic post suggested a different approach: progressive disclosure. Instead of loading all tool definitions upfront, let the AI discover them when relevant. This resonated with how I already work—I don’t need Claude to know about route analysis when I’m focused on model validations.&lt;/p&gt;
+
+&lt;h2 id=&quot;progressive-tool-discovery&quot;&gt;Progressive Tool Discovery&lt;/h2&gt;
+
+&lt;p&gt;The most significant change in this release is the reduction from 12 registered tools to just 4. The other tools didn’t disappear—they became internal analyzers that Claude discovers on-demand.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;The four registered tools:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Tool&lt;/th&gt;
+      &lt;th&gt;Purpose&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;switch_project&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Select which Rails project to analyze&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;search_tools&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Discover available analyzers by keyword or category&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;execute_tool&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Run any analyzer by name&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;execute_ruby&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Sandboxed Ruby execution for complex queries&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;The previous tools like &lt;code class=&quot;highlighter-rouge&quot;&gt;analyze_models&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;get_routes&lt;/code&gt;, and &lt;code class=&quot;highlighter-rouge&quot;&gt;get_schema&lt;/code&gt; are now internal analyzers. Claude finds them through &lt;code class=&quot;highlighter-rouge&quot;&gt;search_tools&lt;/code&gt; and invokes them through &lt;code class=&quot;highlighter-rouge&quot;&gt;execute_tool&lt;/code&gt;. This pattern reduces the initial context footprint by roughly 67%.&lt;/p&gt;
+
+&lt;p&gt;When I start a session now, Claude only knows about these four capabilities. If I ask about database structure, Claude can search for relevant tools:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+search\_tools(query: &quot;database schema&quot;)
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This returns information about &lt;code class=&quot;highlighter-rouge&quot;&gt;get_schema&lt;/code&gt; without having loaded all nine analyzers upfront. Claude then invokes it:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+execute\_tool(tool\_name: &quot;get\_schema&quot;, params: { table\_name: &quot;users&quot; })
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The workflow feels natural—Claude discovers what it needs when it needs it.&lt;/p&gt;
+
+&lt;h2 id=&quot;rails-introspection-beyond-regex-parsing&quot;&gt;Rails Introspection: Beyond Regex Parsing&lt;/h2&gt;
+
+&lt;p&gt;While refactoring the tool architecture, I realized something uncomfortable: the previous implementation relied heavily on regex parsing. Patterns like &lt;code class=&quot;highlighter-rouge&quot;&gt;has_many\s+:(\w+)&lt;/code&gt; worked most of the time, but missed edge cases—associations with options, multi-line declarations, dynamic associations.&lt;/p&gt;
+
+&lt;p&gt;This release replaces regex parsing with proper Rails introspection. When you analyze a model now, the server actually asks Rails about it:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;no&quot;&gt;Model&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;reflect_on_all_associations&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# All associations with options&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;Model&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;validators&lt;/span&gt;                    &lt;span class=&quot;c1&quot;&gt;# All validations with conditions&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;Model&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;defined_enums&lt;/span&gt;                 &lt;span class=&quot;c1&quot;&gt;# Enum definitions and values&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;Model&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;columns_hash&lt;/span&gt;                  &lt;span class=&quot;c1&quot;&gt;# Column details from the database&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;For routes, instead of parsing the text output of &lt;code class=&quot;highlighter-rouge&quot;&gt;rails routes&lt;/code&gt;, the server accesses route objects directly:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;no&quot;&gt;Rails&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;application&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;routes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;routes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;map&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;route&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;ss&quot;&gt;verb: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;route&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;verb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;ss&quot;&gt;path: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;route&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;ss&quot;&gt;controller: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;route&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;defaults&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:controller&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;ss&quot;&gt;action: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;route&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;defaults&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:action&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;ss&quot;&gt;constraints: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;route&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;constraints&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;For controllers, I now use &lt;code class=&quot;highlighter-rouge&quot;&gt;action_methods&lt;/code&gt; instead of scanning for &lt;code class=&quot;highlighter-rouge&quot;&gt;def&lt;/code&gt; statements, and &lt;code class=&quot;highlighter-rouge&quot;&gt;_process_action_callbacks&lt;/code&gt; to find before/after actions accurately.&lt;/p&gt;
+
+&lt;p&gt;The difference in accuracy is significant. Associations with &lt;code class=&quot;highlighter-rouge&quot;&gt;through:&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;class_name:&lt;/code&gt;, or &lt;code class=&quot;highlighter-rouge&quot;&gt;foreign_key:&lt;/code&gt; options are now captured correctly. Validations show their conditions. Callbacks include their &lt;code class=&quot;highlighter-rouge&quot;&gt;only:&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;except:&lt;/code&gt; filters.&lt;/p&gt;
+
+&lt;h2 id=&quot;prism-static-analysis&quot;&gt;Prism Static Analysis&lt;/h2&gt;
+
+&lt;p&gt;Rails introspection tells you what exists at runtime, but sometimes you need to understand the code structure itself. For this, I added Prism static analysis.&lt;/p&gt;
+
+&lt;p&gt;Prism is Ruby’s new parser that ships with Ruby 3.3+. It provides a clean AST that I can traverse to extract:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Callbacks and their method references&lt;/li&gt;
+  &lt;li&gt;Scope definitions&lt;/li&gt;
+  &lt;li&gt;Included concerns and modules&lt;/li&gt;
+  &lt;li&gt;Method definitions with line numbers&lt;/li&gt;
+  &lt;li&gt;Instance variables assigned per action&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;analysis_type&lt;/code&gt; parameter lets you choose what you need:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;execute_tool(
+  tool_name: &quot;analyze_models&quot;,
+  params: {
+    model_name: &quot;User&quot;,
+    analysis_type: &quot;full&quot;  # &quot;introspection&quot;, &quot;static&quot;, or &quot;full&quot;
+  }
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;With &lt;code class=&quot;highlighter-rouge&quot;&gt;analysis_type: &quot;full&quot;&lt;/code&gt;, Claude gets both the runtime reflection data and the static code analysis. With &lt;code class=&quot;highlighter-rouge&quot;&gt;analysis_type: &quot;static&quot;&lt;/code&gt;, it gets just the AST-derived information—useful when you want to understand code structure without loading the Rails environment.&lt;/p&gt;
+
+&lt;h2 id=&quot;detail-levels-and-filtering&quot;&gt;Detail Levels and Filtering&lt;/h2&gt;
+
+&lt;p&gt;Another insight from the Anthropic post: intermediate results consume tokens too. When you ask about routes, do you really need the complete output of all 200 routes with constraints and defaults?&lt;/p&gt;
+
+&lt;p&gt;Every analyzer now supports a &lt;code class=&quot;highlighter-rouge&quot;&gt;detail_level&lt;/code&gt; parameter:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;names&lt;/code&gt; — Minimal output, just identifiers&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;summary&lt;/code&gt; — Names plus brief descriptions&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;full&lt;/code&gt; — Complete information (the previous default)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For routes specifically, I added filtering:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;execute_tool(
+  tool_name: &quot;get_routes&quot;,
+  params: {
+    controller: &quot;api/v1/users&quot;,
+    verb: &quot;GET&quot;,
+    detail_level: &quot;summary&quot;
+  }
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Instead of 200 routes, Claude might get 5. The token savings compound across a conversation.&lt;/p&gt;
+
+&lt;p&gt;For models and schemas, batch operations reduce round-trips:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;execute_tool(
+  tool_name: &quot;analyze_models&quot;,
+  params: {
+    model_names: [&quot;User&quot;, &quot;Post&quot;, &quot;Comment&quot;],
+    detail_level: &quot;associations&quot;
+  }
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;One call, three models, associations only. No source code, no validations, no columns—just the relationships Claude needs for the current task.&lt;/p&gt;
+
+&lt;h2 id=&quot;sandboxed-ruby-execution&quot;&gt;Sandboxed Ruby Execution&lt;/h2&gt;
+
+&lt;p&gt;The most powerful addition is &lt;code class=&quot;highlighter-rouge&quot;&gt;execute_ruby&lt;/code&gt;. Sometimes the predefined analyzers aren’t enough—you need a custom query that doesn’t fit the standard patterns.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;execute_ruby(code: &amp;lt;&amp;lt;~RUBY)
+  User.joins(:posts)
+      .group(&quot;users.id&quot;)
+      .having(&quot;COUNT(posts.id) &amp;gt; 10&quot;)
+      .pluck(:email)
+RUBY
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This runs in a sandboxed environment with strict security controls:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;No file writes&lt;/strong&gt; — Cannot create, modify, or delete files&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;No system calls&lt;/strong&gt; — &lt;code class=&quot;highlighter-rouge&quot;&gt;system()&lt;/code&gt;, backticks, and &lt;code class=&quot;highlighter-rouge&quot;&gt;exec&lt;/code&gt; are blocked&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;No network access&lt;/strong&gt; — Cannot make HTTP requests or open sockets&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;No sensitive file reads&lt;/strong&gt; — &lt;code class=&quot;highlighter-rouge&quot;&gt;.env&lt;/code&gt;, credentials, and &lt;code class=&quot;highlighter-rouge&quot;&gt;.gitignore&lt;/code&gt;‘d files are protected&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Project-scoped&lt;/strong&gt; — Cannot access files outside the project directory&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Timeout protected&lt;/strong&gt; — Maximum 60 seconds execution&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The sandbox provides helper methods for common operations:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;read_file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;app/models/user.rb&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;# Safe file reading&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;file_exists?&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;config/database.yml&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# Existence check (false for sensitive files)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;list_files&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;app/models/**/*.rb&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;# Glob with filtering&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;project_root&lt;/span&gt;                        &lt;span class=&quot;c1&quot;&gt;# Project path constant&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;I use this for complex queries that would otherwise require multiple tool calls or for analysis patterns specific to my projects.&lt;/p&gt;
+
+&lt;h2 id=&quot;improved-discovery-ux&quot;&gt;Improved Discovery UX&lt;/h2&gt;
+
+&lt;p&gt;After testing the new architecture with real conversations, I noticed AI agents sometimes struggled with the initial learning curve. Which tool reads files? What helpers are available in &lt;code class=&quot;highlighter-rouge&quot;&gt;execute_ruby&lt;/code&gt;? The progressive discovery approach works well once you know the patterns, but getting started needed to be smoother.&lt;/p&gt;
+
+&lt;h3 id=&quot;quick-start-guide&quot;&gt;Quick Start Guide&lt;/h3&gt;
+
+&lt;p&gt;Now when you switch projects, you get an immediate orientation:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Switched to project: my_finances at path: /Users/mario/projects/my_finances
+
+Quick Start:
+• Get project overview:  execute_tool(&quot;project_info&quot;)
+• Read a file:           execute_ruby(&quot;puts read_file(&apos;config/routes.rb&apos;)&quot;)
+• Find files:            execute_ruby(&quot;puts Dir.glob(&apos;app/models/*.rb&apos;).join(&apos;\n&apos;)&quot;)
+• Analyze models:        execute_tool(&quot;analyze_models&quot;, { model_name: &quot;User&quot; })
+• Get routes:            execute_tool(&quot;get_routes&quot;)
+• Get schema:            execute_tool(&quot;get_schema&quot;, { table_name: &quot;users&quot; })
+• Search available tools: search_tools()
+
+Helpers in execute_ruby: read_file(path), file_exists?(path), list_files(pattern), project_root
+Note: Always use `puts` in execute_ruby to see output.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This eliminates the cold-start problem. Claude immediately knows the most common patterns without searching for them.&lt;/p&gt;
+
+&lt;h3 id=&quot;the-puts-problem&quot;&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;puts&lt;/code&gt; Problem&lt;/h3&gt;
+
+&lt;p&gt;One subtle issue kept appearing: &lt;code class=&quot;highlighter-rouge&quot;&gt;execute_ruby&lt;/code&gt; would return “Code executed successfully (no output)” when users forgot to wrap expressions in &lt;code class=&quot;highlighter-rouge&quot;&gt;puts&lt;/code&gt;. Now the no-output message includes helpful hints:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Code executed successfully (no output).
+
+Hint: Use `puts` to see results, e.g.:
+  puts read_file(&apos;config/routes.rb&apos;)
+  puts User.count
+  puts Dir.glob(&apos;app/models/*.rb&apos;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Small friction points like this matter more than I initially realized. Every confused moment is context wasted on troubleshooting instead of actual work.&lt;/p&gt;
+
+&lt;h3 id=&quot;ai-agent-guide&quot;&gt;AI Agent Guide&lt;/h3&gt;
+
+&lt;p&gt;For teams using this with custom AI setups, I created a comprehensive guide at &lt;code class=&quot;highlighter-rouge&quot;&gt;docs/AGENT.md&lt;/code&gt; covering:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Tool selection decision trees&lt;/li&gt;
+  &lt;li&gt;Common pitfalls and how to avoid them&lt;/li&gt;
+  &lt;li&gt;Error handling and fallback strategies&lt;/li&gt;
+  &lt;li&gt;Integration patterns with other MCP servers (like &lt;a href=&quot;https://github.com/maquina-app/nvim-mcp-server&quot;&gt;Neovim MCP&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The guide is written for AI consumption—structured, explicit, with clear examples for each scenario.&lt;/p&gt;
+
+&lt;h2 id=&quot;interactive-configuration-tool&quot;&gt;Interactive Configuration Tool&lt;/h2&gt;
+
+&lt;p&gt;Managing MCP server configuration used to involve editing YAML files and JSON configs manually. With multiple Rails projects, documentation guides, and Claude Desktop integration, this became tedious. So I built &lt;code class=&quot;highlighter-rouge&quot;&gt;rails-mcp-config&lt;/code&gt;—an interactive terminal UI for all configuration tasks.&lt;/p&gt;
+
+&lt;h3 id=&quot;getting-started&quot;&gt;Getting Started&lt;/h3&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rails-mcp-config
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The tool presents a clean menu organized by frequency of use:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;┌──────────────────────────────────────────────────┐
+│  Rails MCP Server - Configuration                │
+╰──────────────────────────────────────────────────╯
+
+Projects
+  List projects
+  Add project
+  Add current directory (my-rails-app)
+  Edit project
+  Remove project
+  Validate all projects
+────────────────────
+Guides
+  Download guides
+  Import custom guides
+  Manage custom guides
+────────────────────
+Setup
+  Claude Desktop integration
+  Open config file
+────────────────────
+Exit
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;project-management&quot;&gt;Project Management&lt;/h3&gt;
+
+&lt;p&gt;Adding a project is now a guided process. If you run the tool from within a Rails project directory, it offers to add that directory with one confirmation:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Directory: ~/projects/my-rails-app
+
+Project name: [my-rails-app]
+✓ Added project &apos;my-rails-app&apos; -&amp;gt; ~/projects/my-rails-app
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The tool validates paths, checks for Gemfiles, and uses home-relative paths (&lt;code class=&quot;highlighter-rouge&quot;&gt;~/projects/...&lt;/code&gt;) for portability.&lt;/p&gt;
+
+&lt;h3 id=&quot;documentation-guides&quot;&gt;Documentation Guides&lt;/h3&gt;
+
+&lt;p&gt;Downloading Rails, Turbo, Stimulus, and Kamal guides is now visual:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Select guides to download:
+  [x] rails (✓ downloaded)
+  [x] turbo (not downloaded)
+  [ ] stimulus (not downloaded)
+  [ ] kamal (not downloaded)
+
+⠸ Fetching files...
+✓ rails: 2 downloaded, 45 skipped
+✓ turbo: 12 downloaded, 0 skipped
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You can also import your own markdown documentation and manage custom guides through the same interface.&lt;/p&gt;
+
+&lt;h3 id=&quot;claude-desktop-integration&quot;&gt;Claude Desktop Integration&lt;/h3&gt;
+
+&lt;p&gt;The most useful feature for new users is automatic Claude Desktop configuration. The tool:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Detects your existing Claude Desktop config&lt;/li&gt;
+  &lt;li&gt;Shows current MCP server settings if configured&lt;/li&gt;
+  &lt;li&gt;Offers to add or update the Rails MCP Server configuration&lt;/li&gt;
+  &lt;li&gt;Automatically finds the correct Ruby and server executable paths&lt;/li&gt;
+  &lt;li&gt;Creates timestamped backups before any changes&lt;/li&gt;
+  &lt;li&gt;Supports both STDIO (recommended) and HTTP modes&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;!-- end list --&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;✓ Claude Desktop config file found
+✓ Rails MCP Server is configured
+
+Current configuration:
+  command: /Users/mario/.rubies/ruby-3.3.0/bin/ruby
+  args: /Users/mario/.gem/ruby/3.3.0/bin/rails-mcp-server
+
+What would you like to do?
+  View full config
+  Update Rails MCP Server config
+  Back to menu
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;For HTTP mode with &lt;code class=&quot;highlighter-rouge&quot;&gt;mcp-remote&lt;/code&gt;, the tool detects &lt;code class=&quot;highlighter-rouge&quot;&gt;npx&lt;/code&gt; and guides you through the URL configuration.&lt;/p&gt;
+
+&lt;h3 id=&quot;enhanced-terminal-ui&quot;&gt;Enhanced Terminal UI&lt;/h3&gt;
+
+&lt;p&gt;The tool uses &lt;a href=&quot;https://github.com/charmbracelet/gum&quot;&gt;Gum&lt;/a&gt; when available for a polished experience with styled prompts, spinners, and tables. Without Gum, it falls back to a functional basic terminal interface—no dependencies required.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Optional: Install Gum for enhanced UI&lt;/span&gt;
+brew &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;gum        &lt;span class=&quot;c&quot;&gt;# macOS&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;gum    &lt;span class=&quot;c&quot;&gt;# Debian/Ubuntu&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The legacy command-line tools (&lt;code class=&quot;highlighter-rouge&quot;&gt;rails-mcp-setup-claude&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;rails-mcp-server-download-resources&lt;/code&gt;) still work for scripting and backward compatibility, but for interactive use, &lt;code class=&quot;highlighter-rouge&quot;&gt;rails-mcp-config&lt;/code&gt; is now the recommended approach.&lt;/p&gt;
+
+&lt;h2 id=&quot;how-i-use-the-new-architecture&quot;&gt;How I Use the New Architecture&lt;/h2&gt;
+
+&lt;p&gt;My workflow has evolved with these changes. When I start a session:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Switch to project my_finances.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;I immediately see the Quick Start guide, so Claude knows the patterns without any additional discovery.&lt;/p&gt;
+
+&lt;p&gt;When I need to explore unfamiliar territory:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Search for tools related to controllers and views.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Claude finds &lt;code class=&quot;highlighter-rouge&quot;&gt;analyze_controller_views&lt;/code&gt; and explains what it can do. Then:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Analyze the UsersController with full introspection and static analysis.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;For focused work where I know what I need:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Get the schema for the transactions table, just the columns and indexes.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;detail_level: &quot;summary&quot;&lt;/code&gt; is implicit in “just the columns”—Claude understands the intent and uses minimal output.&lt;/p&gt;
+
+&lt;p&gt;For complex questions that span multiple concerns:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;execute_ruby(code: &amp;lt;&amp;lt;~RUBY)
+  # Find models with callbacks that touch the database
+  Dir.glob(&quot;app/models/**/*.rb&quot;).select do |file|
+    content = File.read(file)
+    content.match?(/after_save|after_create|after_update/) &amp;amp;&amp;amp;
+    content.match?(/\.save|\.update|\.create/)
+  end
+RUBY
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This kind of query would be tedious with the standard tools but trivial with direct Ruby execution.&lt;/p&gt;
+
+&lt;h2 id=&quot;upgrading-to-the-new-version&quot;&gt;Upgrading to the New Version&lt;/h2&gt;
+
+&lt;p&gt;The upgrade is straightforward:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gem &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;rails-mcp-server
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;After installation, run the interactive configuration tool to set up or verify your configuration:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rails-mcp-config
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This will help you:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Add your Rails projects&lt;/li&gt;
+  &lt;li&gt;Download documentation guides&lt;/li&gt;
+  &lt;li&gt;Configure Claude Desktop integration (with automatic path detection)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The new architecture is backward compatible in terms of functionality—everything the previous version could do, this version can do. The interface changed from direct tool calls to discovery and execution, but Claude adapts naturally.&lt;/p&gt;
+
+&lt;p&gt;If you prefer manual configuration or scripting, the legacy commands still work:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rails-mcp-setup-claude              &lt;span class=&quot;c&quot;&gt;# Configure Claude Desktop&lt;/span&gt;
+rails-mcp-server-download-resources rails   &lt;span class=&quot;c&quot;&gt;# Download guides&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;For Prism static analysis to work, your Rails projects need Ruby 3.3+ or the Prism gem installed. If Prism isn’t available, the server gracefully falls back to introspection-only analysis.&lt;/p&gt;
+
+&lt;h2 id=&quot;looking-forward&quot;&gt;Looking Forward&lt;/h2&gt;
+
+&lt;p&gt;While version 1.4.0 focused on context optimization, my current exploration for 1.4.1 is focused on &lt;strong&gt;agent portability&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;I am working on a &lt;code class=&quot;highlighter-rouge&quot;&gt;--single-project&lt;/code&gt; flag to support ephemeral environments like the &lt;strong&gt;GitHub Copilot Agent&lt;/strong&gt;. These agents run in temporary GitHub Actions environments where no &lt;code class=&quot;highlighter-rouge&quot;&gt;projects.yml&lt;/code&gt; exists and no global configuration can be persisted. The new flag will allow the server to skip loading &lt;code class=&quot;highlighter-rouge&quot;&gt;projects.yml&lt;/code&gt;, treat the current directory as the sole project, and auto-switch to it immediately on startup.&lt;/p&gt;
+
+&lt;p&gt;This same feature unlocks support for &lt;strong&gt;Claude Code&lt;/strong&gt;. Because Claude Code uses worktrees where each session is a separate working directory. By leveraging STDIO mode with the &lt;code class=&quot;highlighter-rouge&quot;&gt;--single-project&lt;/code&gt; flag, each worktree can spawn its own isolated MCP server instance without port conflicts. This also allows the &lt;code class=&quot;highlighter-rouge&quot;&gt;.mcp.json&lt;/code&gt; configuration to be committed directly to version control, making the setup reproducible for the entire team.&lt;/p&gt;
+
+&lt;p&gt;The combination of reduced tool registration, Rails introspection, Prism analysis, and these upcoming compatibility features makes the Rails MCP Server not just smarter, but more adaptable to the rapidly evolving ecosystem of AI agents.&lt;/p&gt;
+
+&lt;p&gt;Source code is available at &lt;a href=&quot;https://github.com/maquina-app/rails-mcp-server&quot;&gt;https://github.com/maquina-app/rails-mcp-server&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;related-posts&quot;&gt;Related Posts&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mariochavez.io/desarrollo/rails/ai-tools/development-workflow/2025/06/03/rails-mcp-server-enhanced-documentation-access/&quot;&gt;Rails MCP Server: Enhanced Documentation Access&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mariochavez.io/desarrollo/2025/04/20/rails-mcp-server-with-sse/&quot;&gt;Rails MCP Server with HTTP Server-Sent Events support&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mariochavez.io/desarrollo/2025/03/21/rails-mcp-server-enhancing-ai-assisted-development/&quot;&gt;Rails MCP Server - Enhancing AI-Assisted Development&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Mario Alberto Chávez</name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/rails-mcp-context-efficient/rails-mcp-context-efficient.png" /><media:content medium="image" url="https://mariochavez.io/images/rails-mcp-context-efficient/rails-mcp-context-efficient.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry xml:lang="en_US"><title type="html">Rails Upgrades with AI: A Real-World Success Story</title><link href="https://mariochavez.io/desarrollo/2025/11/27/rails-upgrades-with-ai/" rel="alternate" type="text/html" title="Rails Upgrades with AI: A Real-World Success Story" /><published>2025-11-27T00:00:00-06:00</published><updated>2025-11-27T00:00:00-06:00</updated><id>repo://posts.collection/_posts/2025-11-27-rails-upgrades-with-ai.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2025/11/27/rails-upgrades-with-ai/">&lt;p&gt;A few weeks ago, I introduced the &lt;strong&gt;Rails Upgrade Skill&lt;/strong&gt; for Anthropic’s Claude. You can check out the repository here: &lt;a href=&quot;https://github.com/maquina-app/rails-upgrade-skill&quot;&gt;https://github.com/maquina-app/rails-upgrade-skill&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Yesterday, a client’s Ruby on Rails application—focused on EMR (Electronic Medical Records)—was successfully &lt;strong&gt;deployed to Rails 8&lt;/strong&gt; with only a minor, quickly resolved issue! Just a week prior, this same application was running on the End-of-Life (EOL) version, &lt;strong&gt;Rails 7.1&lt;/strong&gt;.&lt;/p&gt;
 
@@ -1546,152 +1996,4 @@ After these changes, you can create subtitles for your video with the following 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ruby transcribe.rb video.mp4
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;After script completion, you will have a video.srt file next to your video file.&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/whisper/sound.jpg" /><media:content medium="image" url="https://mariochavez.io/images/whisper/sound.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry xml:lang="en"><title type="html">Full-text search with SQLite and Rails</title><link href="https://mariochavez.io/desarrollo/2023/09/01/full-text-search-with-sqlite-and-rails/" rel="alternate" type="text/html" title="Full-text search with SQLite and Rails" /><published>2023-09-01T00:00:00-06:00</published><updated>2023-09-01T00:00:00-06:00</updated><id>repo://posts.collection/_posts/2023-09-01-full-text-search-with-sqlite-and-rails.md</id><content type="html" xml:base="https://mariochavez.io/desarrollo/2023/09/01/full-text-search-with-sqlite-and-rails/">&lt;p&gt;Today, I planned to move a few small Ruby on Rails applications with Heroku using &lt;a href=&quot;https://kamal-deploy.org/&quot;&gt;Kamal&lt;/a&gt; onto a single server. All applications use PostgreSQL as the database because it is simple to use with Heroku and because they take advantage of Postgres’ full-text search.&lt;/p&gt;
-
-&lt;p&gt;Because of the size and usage of those applications, I was not convinced that I wanted to manage my own PostgreSQL server or pay for a managed service. So, I started to consider replacing the database with &lt;a href=&quot;https://www.sqlite.org/index.html&quot;&gt;SQLite&lt;/a&gt;. At least in my feed at &lt;a href=&quot;https://x.com/mario_chavez&quot;&gt;X&lt;/a&gt;, I have seen so many posts in the past few months on how good and fast it is.&lt;/p&gt;
-
-&lt;p&gt;I wanted something like the &lt;a href=&quot;https://github.com/Casecommons/pg_search#pg_search_scope&quot;&gt;pg_search&lt;/a&gt; gem, where I could define a scope name and the fields to be indexed. On the SQLite side, I found that it has an extension called &lt;a href=&quot;https://www.sqlite.org/fts5.html&quot;&gt;FTS5&lt;/a&gt;, which is defined as:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;FTS5 is an SQLite &lt;a href=&quot;https://www.sqlite.org/c3ref/module.html&quot;&gt;virtual table module&lt;/a&gt; that provides &lt;a href=&quot;https://en.wikipedia.org/wiki/Full_text_search&quot;&gt;full-text search&lt;/a&gt; functionality to database applications. In their most elementary form, full-text search engines allow the user to efficiently search a large collection of documents for the subset that contains one or more instances of a search term. The search functionality provided to World Wide Web users by Google is, among other things, a full-text search engine, as it allows users to search for all documents on the web that contain, for example, the term “fts5”.&lt;/p&gt;
-
-&lt;/blockquote&gt;
-
-&lt;p&gt;This looked promising, so I started implementing a quick and dirty solution for my needs.
-Starting from a model Post with title and content attributes, I want to define a &lt;code class=&quot;highlighter-rouge&quot;&gt;full_search&lt;/code&gt; scope and indicate the attributes to index for full-text search.&lt;/p&gt;
-
-&lt;p&gt;Something like this:&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Post&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ApplicationRecord&lt;/span&gt;
-  &lt;span class=&quot;kp&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;SqliteSearch&lt;/span&gt;
-
-  &lt;span class=&quot;n&quot;&gt;search_scope&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Where &lt;code class=&quot;highlighter-rouge&quot;&gt;SqliteSearch&lt;/code&gt; is the module that does the heavy work. Before continuing with the implementation, there are decisions to be made regarding how to store the indexed data in the database. A virtual table is required to store the indexed data; one option is to create a single table for this purpose with a &lt;code class=&quot;highlighter-rouge&quot;&gt;record_type&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;record_id&lt;/code&gt; fields to identify the data per model type, just like the way it works for ActiveStorage or ActionText in Rails.&lt;/p&gt;
-
-&lt;p&gt;The second option is to create a table per indexed model. I chose this option since not all my models require this functionality. The migration for this table is as follows:&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PostSearch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ActiveRecord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Migration&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;7.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;up&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;execute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;CREATE VIRTUAL TABLE fts_posts USING fts5(title, content, post_id)&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;down&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;execute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;DROP TABLE IF EXISTS fts_posts&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The table name follows the Rails convention, but it adds the prefix &lt;code class=&quot;highlighter-rouge&quot;&gt;fts_&lt;/code&gt;. The table fields are the ones that need indexing with the addition of the original record id with the foreign key convention. SQLite virtual tables don’t have data types, primary keys, constraints, or indexes.&lt;/p&gt;
-
-&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;SqliteSearch&lt;/code&gt; module needs to implement a way to add or update the model data to the search index. This is done using the &lt;strong&gt;ActiveRecord&lt;/strong&gt; callbacks for save and destroy commit.&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;SqliteSearch&lt;/span&gt;
-  &lt;span class=&quot;kp&quot;&gt;extend&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ActiveSupport&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Concern&lt;/span&gt;
-
-  &lt;span class=&quot;kp&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;update_search_index&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;primary_key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;primary_key&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;table_name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;table_name&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;foreign_key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;foreign_key&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;search_attrs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;vc&quot;&gt;@@search_scope_attrs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;each_with_object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({})&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;attr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;acc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;acc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;attr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;quote_string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;attr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;id_value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;attributes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;primary_key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;sql_delete&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;~&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;SQL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;strip&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;
-      DELETE FROM fts_&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;table_name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt; WHERE &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;foreign_key&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt; = &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id_value&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;;
-&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;    SQL&lt;/span&gt;
-    &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;connection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;execute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sql_delete&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;sql_insert&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;~&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;SQL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;strip&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;
-      INSERT INTO fts_&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;table_name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;search_attrs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;keys&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;, &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;foreign_key&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;)
-      VALUES (&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;search_attrs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;values&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;map&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&apos;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&apos;&quot;&lt;/span&gt; &lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;.join(&quot;, &quot;)}, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;attributes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;primary_key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;);
-&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;    SQL&lt;/span&gt;
-    &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;connection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;execute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sql_insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-  &lt;span class=&quot;kp&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;delete_search_index&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;primary_key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;primary_key&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;table_name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;table_name&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;foreign_key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;foreign_key&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;id_value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;attributes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;primary_key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;sql_delete&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;~&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;SQL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;strip&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;
-      DELETE FROM fts_&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;table_name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt; WHERE &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;foreign_key&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt; = &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id_value&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;;
-&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;    SQL&lt;/span&gt;
-    &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;connection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;execute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sql_delete&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-  &lt;span class=&quot;n&quot;&gt;included&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;after_save_commit&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:update_search_index&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;after_destroy_commit&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:delete_search_index&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;scope_foreign_key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;to_s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;foreign_key&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;scope&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:full_search&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;query&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;none&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;query&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;blank?&lt;/span&gt;
-
-      &lt;span class=&quot;n&quot;&gt;sql&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;~&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;SQL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;strip&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;
-        SELECT &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;scope_foreign_key&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt; AS id FROM fts_&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;table_name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;
-        WHERE fts_&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;table_name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt; = &apos;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;query&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos; ORDER BY rank;
-&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;      SQL&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;ids&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;connection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;execute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sql&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:values&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;flatten&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;where&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;id: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ids&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-  &lt;span class=&quot;n&quot;&gt;class_methods&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;search_scope&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;attrs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;vc&quot;&gt;@@search_scope_attrs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;attrs&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;rebuild_search_index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ids&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;target_ids&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ids&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;target_ids&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;ids&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;target_ids&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;empty?&lt;/span&gt;
-
-      &lt;span class=&quot;n&quot;&gt;scope_foreign_key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;to_s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;foreign_key&lt;/span&gt;
-
-      &lt;span class=&quot;n&quot;&gt;delete_where&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ids&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;any?&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;WHERE &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;scope_foreign_key&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; IN (&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ids&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;, &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;)&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;sql_delete&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;~&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;SQL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;strip&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;
-        DELETE FROM fts_&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;table_name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt; &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;delete_where&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;;
-&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;      SQL&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;connection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;execute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sql_delete&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-      &lt;span class=&quot;n&quot;&gt;target_ids&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;record&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;where&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;id: &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;pluck&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;vc&quot;&gt;@@search_scope_attrs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;first&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;record&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;present?&lt;/span&gt;
-          &lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;record&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;pop&lt;/span&gt;
-
-          &lt;span class=&quot;n&quot;&gt;sql_insert&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;~&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;SQL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;strip&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;
-            INSERT INTO fts_&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;table_name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;vc&quot;&gt;@@search_scope_attrs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;, &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;scope_foreign_key&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;)
-            VALUES (&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;record&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;map&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&apos;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;quote_string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&apos;&quot;&lt;/span&gt; &lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;.join(&quot;, &quot;)}, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;);
-&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;          SQL&lt;/span&gt;
-          &lt;span class=&quot;n&quot;&gt;connection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;execute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sql_insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-      &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;quote_string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;gsub&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\\&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;\&amp;amp;\&amp;amp;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;gsub&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&apos;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&apos;&apos;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The class method &lt;code class=&quot;highlighter-rouge&quot;&gt;search_scope&lt;/code&gt; tells the module the attributes we need to index. The &lt;code class=&quot;highlighter-rouge&quot;&gt;update_search_index&lt;/code&gt; callback is called when the record is created or updated. Since SQLite, virtual tables don’t support upsert, which is a way to tell the database to insert a record if it doesn’t exist or to update it if it does. Also, the Rails SQLite adapter does not support multiple statements in a single execution call. &lt;/p&gt;
-
-&lt;p&gt;These limitations forced me to make two additional database calls: the first to delete the indexed data for a specific record, and the second to insert the new indexed data. It’s not very performant, but for a small database, it might be just fine.
-The &lt;code class=&quot;highlighter-rouge&quot;&gt;delete_search_index&lt;/code&gt; callback removes the indexed data when a record is deleted.&lt;/p&gt;
-
-&lt;p&gt;The module also implements a class method, &lt;code class=&quot;highlighter-rouge&quot;&gt;rebuild_search_index&lt;/code&gt;, which optionally receives an array of record ids to re-index. If no ids are passed, then it rebuilds the index for all records.&lt;/p&gt;
-
-&lt;p&gt;Finally, a scope full_search is added to fetch records based on the full-text search index. You can use keywords like “AND”, “OR,” or “NOT” to refine your search or any other special character supported by SQLite FTS5.&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;no&quot;&gt;Post&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;full_search&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Ruby OR Rails NOT Javascript&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
-
-&lt;p&gt;Adding this module to my applications allowed me to explore the idea of moving from PostgreSQL for these small applications. Not because PostgreSQL is bad, but because it might be too much for the current application’s needs.&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/full-text-search/full-text-search.jpg" /><media:content medium="image" url="https://mariochavez.io/images/full-text-search/full-text-search.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;p&gt;After script completion, you will have a video.srt file next to your video file.&lt;/p&gt;</content><author><name>Mario Alberto Chávez</name></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mariochavez.io/images/whisper/sound.jpg" /><media:content medium="image" url="https://mariochavez.io/images/whisper/sound.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>

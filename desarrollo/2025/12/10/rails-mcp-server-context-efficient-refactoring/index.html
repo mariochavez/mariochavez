@@ -1,0 +1,898 @@
+<!doctype html>
+<html lang="en" class="h-full antialiased">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- Begin Bridgetown SEO tag v7.0.1 -->
+<title>Rails MCP Server: Context-Efficient Tool Architecture | Mario Alberto Chávez - Ruby on Rails, AI Tools &amp; former CTO</title>
+<meta property="og:title" content="Rails MCP Server: Context-Efficient Tool Architecture" />
+<meta name="author" content="Mario Alberto Chávez" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Learn how Rails MCP Server’s new architecture reduces context consumption by 67% through progressive tool discovery, Rails introspection, and Prism static analysis." />
+<meta property="og:description" content="Learn how Rails MCP Server’s new architecture reduces context consumption by 67% through progressive tool discovery, Rails introspection, and Prism static analysis." />
+<link rel="canonical" href="https://mariochavez.io/desarrollo/2025/12/10/rails-mcp-server-context-efficient-refactoring/" />
+<meta property="og:url" content="https://mariochavez.io/desarrollo/2025/12/10/rails-mcp-server-context-efficient-refactoring/" />
+<meta property="og:site_name" content="Mario Alberto Chávez - Ruby on Rails, AI Tools &amp; former CTO" />
+<meta property="og:image" content="https://mariochavez.io/images/rails-mcp-context-efficient/rails-mcp-context-efficient.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-12-10T00:00:00-06:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://mariochavez.io/images/rails-mcp-context-efficient/rails-mcp-context-efficient.png" />
+<meta property="twitter:title" content="Rails MCP Server: Context-Efficient Tool Architecture" />
+<meta name="twitter:site" content="@mario_chavez" />
+<meta name="twitter:creator" content="@Mario Alberto Chávez" />
+<!-- End Bridgetown SEO tag -->
+
+
+<link type="application/atom+xml" rel="alternate" href="https://mariochavez.io/feed.xml" title="Mario Alberto Chávez - Ruby on Rails, AI Tools & former CTO" />
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Mario Alberto Chávez - Software Development">
+<meta name="twitter:card" content="summary_large_image">
+
+<meta name="robots" content="index, follow">
+<meta name="revisit-after" content="7 days">
+
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+<link rel="stylesheet" href="/assets/index.C2JFVGXA.css" />
+<script src="/assets/index.OQDTOKYE.js" defer></script>
+
+
+<script type="application/javascript">
+  (function() {
+    try {
+      const theme = localStorage.getItem('theme');
+      if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    } catch (e) {
+      // Fail silently
+    }
+  })();
+</script>
+
+<script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Rails MCP Server: Context-Efficient Tool Architecture",
+  "description": "Learn how Rails MCP Server's new architecture reduces context consumption by 67% through progressive tool discovery, Rails introspection, and Prism static analysis.",
+  "image": [
+    "https://mariochavez.io/images/rails-mcp-context-efficient/rails-mcp-context-efficient.png"
+  ],
+  "datePublished": "2025-12-10T12:00:00Z",
+  "dateModified": "2025-12-10T12:00:00Z",
+  "author": {
+    "@type": "Person",
+    "name": "Mario Alberto Chávez",
+    "url": "https://mariochavez.io"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Mario Alberto Chávez",
+    "url": "https://mariochavez.io",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://mariochavez.io/images/mario.jpg"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://mariochavez.io/desarrollo/2025/11/26/rails-mcp-context-efficient-tool-architecture/"
+  },
+  "keywords": "Ruby on Rails, MCP, AI, Static Analysis, Context Efficiency, GitHub Copilot",
+  "articleSection": "Software Development",
+  "programmingLanguage": ["Ruby"],
+  "about": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "Rails MCP Server",
+      "applicationCategory": "DeveloperTool",
+      "operatingSystem": "macOS, Linux"
+    }
+  ],
+  "isAccessibleForFree": "True"
+}
+
+</script>
+
+  </head>
+
+  <body class="flex h-full flex-col bg-zinc-50 font-manrope dark:bg-black">
+    <!-- Outer Frame for the "Card" look on large screens -->
+    <div class="fixed inset-0 flex justify-center sm:px-8">
+      <div class="flex w-full max-w-7xl lg:px-8">
+        <div
+          class="
+            w-full bg-white ring-1 ring-zinc-100 dark:bg-zinc-900 dark:ring-zinc-300/20
+          "
+        ></div>
+      </div>
+    </div>
+
+    <div class="relative flex w-full flex-col">
+      <!-- Header / Navigation -->
+<header
+  data-controller="menu"
+  data-menu-open-value=false
+  class="pointer-events-none relative z-50 flex flex-none flex-col"
+>
+  <div class="top-0 z-10 h-16 pt-6">
+    <div class="sm:px-8 w-full max-w-7xl mx-auto lg:px-8">
+      <div class="relative px-4 sm:px-8 lg:px-12">
+        <div class="mx-auto max-w-2xl lg:max-w-5xl">
+          <div class="relative flex gap-4">
+            <!-- Logo / Avatar -->
+            <div class="flex flex-1 pointer-events-auto">
+              <a
+                href="/"
+                class="
+                  h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1
+                  ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10
+                "
+              >
+                <img
+                  src="/images/mario.jpg"
+                  alt="Mario Alberto Chávez"
+                  class="
+                    h-9 w-9 rounded-full bg-zinc-100 object-cover
+                    dark:bg-zinc-800
+                  "
+                >
+              </a>
+            </div>
+
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex flex-1 justify-center pointer-events-auto">
+              <nav
+                class="
+                  flex rounded-full bg-white/90 px-3 text-sm font-medium text-zinc-800 shadow-lg
+                  shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90
+                  dark:text-zinc-200 dark:ring-white/10
+                "
+              >
+               
+                  <a
+                      href="/about"
+                    class="
+                      relative block px-3 py-2 transition hover:text-emerald-500
+                      dark:hover:text-emerald-400
+                    "
+                  >
+                  About
+                  </a>
+                
+                  <a
+                      href="/articles"
+                    class="
+                      relative block px-3 py-2 transition hover:text-emerald-500
+                      dark:hover:text-emerald-400
+                    "
+                  >
+                  Articles
+                  </a>
+                
+                  <a
+                      href="/projects"
+                    class="
+                      relative block px-3 py-2 transition hover:text-emerald-500
+                      dark:hover:text-emerald-400
+                    "
+                  >
+                  Projects
+                  </a>
+                
+              </nav>
+            </div>
+
+            <!-- Mobile Menu Button & Theme Toggle -->
+            <div class="flex flex-1 justify-end gap-4 pointer-events-auto">
+              <!-- Mobile Menu Button -->
+              <div class="pointer-events-auto md:hidden">
+                <button
+                  data-action="menu#toggle"
+                  class="
+                    group flex items-center rounded-full bg-white/90 px-4 py-2 text-sm font-medium
+                    text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur
+                    dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10
+                    dark:hover:ring-white/20
+                  "
+                >
+                  Menu
+                  <i
+                    class="
+                      ml-3 h-auto w-2 [&_svg]:size-3 stroke-zinc-500 group-hover:stroke-zinc-700
+                      dark:group-hover:stroke-zinc-400
+                    "
+                    
+                  ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+</i>
+                </button>
+              </div>
+
+              <div 
+                data-menu-target="overlay"
+                data-action="click->menu#toggle"
+                class="
+                  data-[open=false]:hidden fixed inset-0 z-50 bg-zinc-800/40 backdrop-blur-xs duration-150 
+                  opacity-100 data-[open=false]:opacity-0 ease-in dark:bg-black/80
+                " 
+                aria-hidden="true" 
+                data-open="false">
+              </div>
+
+              <!-- Theme Toggle (Visual Only) -->
+              <button
+                  data-controller="theme"
+                  data-theme-dark-value
+                  data-action="theme#toggle"
+                  class="
+                    group rounded-full bg-white/90 px-3 py-2 shadow-lg ring-1 shadow-zinc-800/5 ring-zinc-900/5 
+                    backdrop-blur-sm transition dark:bg-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20
+                  "
+              >
+                <i
+                  data-theme-target="light"
+                  class="
+                    [&_svg]:size-5 text-zinc-500 transition group-hover:fill-zinc-200
+                    group-hover:text-zinc-700 dark:hidden
+                  "
+                  ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+</i>
+
+                <i
+                  data-theme-target="dark"
+                  class="
+                    hidden [&_svg]:size-5 text-emerald-700 transition dark:block
+                    dark:group-hover:text-emerald-400
+                  "
+                  ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+</i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu Dropdown -->
+  <div
+    data-menu-target="menu"
+    data-open="false"
+    class="
+      data-[open=false]:hidden opacity-100 data-[open=false]:opacity-0 data-[open=false]:scale-95 
+      fixed inset-x-0 top-0 z-50 origin-top rounded-b-2xl bg-zinc-50 px-6 pb-6 pt-24
+      shadow-2xl shadow-zinc-900/20 ring-1 ring-zinc-900/5 dark:bg-zinc-900 transition-all ease-out
+      dark:ring-zinc-800 pointer-events-auto md:hidden duration-150
+    "
+  >
+    <div class="flex flex-col space-y-4">
+      <div class="flex flex-row-reverse items-center justify-between">
+        <button 
+           data-action="menu#toggle"
+           aria-label="Close menu" 
+           class="-m-1 p-1 [&_svg]:size-6 text-zinc-500 dark:text-zinc-400" 
+           type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m17.25 6.75-10.5 10.5M6.75 6.75l10.5 10.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+ 
+        </button>
+        <h2 class="text-sm font-medium text-zinc-600 dark:text-zinc-400">Navigation</h2>
+      </div>
+      
+        <a
+            href="/about"
+          class="block text-base font-semibold text-zinc-800 dark:text-zinc-100"
+        >
+          About
+        </a>
+      
+        <a
+            href="/articles"
+          class="block text-base font-semibold text-zinc-800 dark:text-zinc-100"
+        >
+          Articles
+        </a>
+      
+        <a
+            href="/projects"
+          class="block text-base font-semibold text-zinc-800 dark:text-zinc-100"
+        >
+          Projects
+        </a>
+      
+    </div>
+  </div>
+</header>
+
+
+      <main class="flex-auto pointer-events-auto">
+  <div class="mt-16 sm:px-8 sm:mt-32">
+    <div class="mx-auto w-full max-w-7xl lg:px-8">
+      <div class="relative px-4 sm:px-8 lg:px-12">
+        <div class="mx-auto max-w-2xl lg:max-w-5xl">
+          <div class="xl:relative">
+            <div class="mx-auto max-w-2xl">
+              <!-- Back Button -->
+              <a
+                href="/articles"
+                aria-label="Go back to articles"
+                class="
+                  group mb-8 flex h-10 w-10 items-center justify-center rounded-full bg-white
+                  shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 transition dark:border
+                  dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0 dark:ring-white/10
+                  dark:hover:border-zinc-700 dark:hover:ring-white/20 lg:absolute lg:-left-5
+                  lg:-mt-2 lg:mb-0 xl:-top-1.5 xl:left-0 xl:mt-0
+                "
+              >
+                <i
+                  class="
+                    [&_svg]:size-4 text-zinc-500 transition group-hover:text-zinc-700
+                    dark:text-zinc-400 dark:group-hover:text-zinc-300
+                  "
+                  ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+</i>
+              </a>
+
+              <article>
+                <header class="flex flex-col">
+                  <time
+                      datetime="2025-12-10 00:00:00 -0600"
+                    class="
+                      order-first flex items-center text-base text-zinc-400
+                      dark:text-zinc-500
+                    "
+                  >
+                    <span class="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500"></span>
+                    <span class="ml-3">December 10, 2025</span>
+                  </time>
+
+                  <h1
+                    class="
+                      mt-6 text-4xl font-bold tracking-tight text-emerald-700 dark:text-emerald-100
+                      sm:text-5xl
+                    "
+                  >
+                  Rails MCP Server: Context-Efficient Tool Architecture
+                  </h1>
+
+                  <h3 class="text-2xl text-zinc-600 font-light tracking-tight mt-6 dark:text-zinc-100 sm:text-3xl">Learn how Rails MCP Server's new architecture reduces context consumption by 67% through progressive tool discovery, Rails introspection, and Prism static analysis.</h3>
+                </header>
+
+                <!-- Article Content -->
+                <div class="mt-8 prose prose-zinc dark:prose-invert">
+                  <p>Learn how Rails MCP Server’s new architecture reduces context consumption through progressive tool discovery, Rails introspection, and Prism static analysis.</p>
+
+<h2 id="table-of-contents">Table of Contents</h2>
+
+<ul>
+  <li><a href="#the-context-budget-problem">The Context Budget Problem</a></li>
+  <li><a href="#progressive-tool-discovery">Progressive Tool Discovery</a></li>
+  <li><a href="#rails-introspection-beyond-regex-parsing">Rails Introspection: Beyond Regex Parsing</a></li>
+  <li><a href="#prism-static-analysis">Prism Static Analysis</a></li>
+  <li><a href="#detail-levels-and-filtering">Detail Levels and Filtering</a></li>
+  <li><a href="#sandboxed-ruby-execution">Sandboxed Ruby Execution</a></li>
+  <li><a href="#improved-discovery-ux">Improved Discovery UX</a></li>
+  <li><a href="#interactive-configuration-tool">Interactive Configuration Tool</a></li>
+  <li><a href="#how-i-use-the-new-architecture">How I Use the New Architecture</a></li>
+  <li><a href="#upgrading-to-the-new-version">Upgrading to the New Version</a></li>
+  <li><a href="#looking-forward">Looking Forward</a></li>
+</ul>
+
+<h2 id="the-context-budget-problem">The Context Budget Problem</h2>
+
+<p>Last week I came across an <a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents">Anthropic blog post</a> that fundamentally changed how I think about MCP server design. The insight was simple but profound: every tool you register with an MCP server gets sent to Claude at the start of each session.</p>
+
+<p>With the Rails MCP Server’s previous 12 tools, that meant roughly 2,400 tokens consumed before asking a single question. On large Rails codebases where I’m already sharing multiple files and documentation, this context overhead matters. I’ve hit conversation limits mid-feature more times than I’d like to admit.</p>
+
+<p>The Anthropic post suggested a different approach: progressive disclosure. Instead of loading all tool definitions upfront, let the AI discover them when relevant. This resonated with how I already work—I don’t need Claude to know about route analysis when I’m focused on model validations.</p>
+
+<h2 id="progressive-tool-discovery">Progressive Tool Discovery</h2>
+
+<p>The most significant change in this release is the reduction from 12 registered tools to just 4. The other tools didn’t disappear—they became internal analyzers that Claude discovers on-demand.</p>
+
+<p><strong>The four registered tools:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tool</th>
+      <th>Purpose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">switch_project</code></td>
+      <td>Select which Rails project to analyze</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">search_tools</code></td>
+      <td>Discover available analyzers by keyword or category</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">execute_tool</code></td>
+      <td>Run any analyzer by name</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">execute_ruby</code></td>
+      <td>Sandboxed Ruby execution for complex queries</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The previous tools like <code class="highlighter-rouge">analyze_models</code>, <code class="highlighter-rouge">get_routes</code>, and <code class="highlighter-rouge">get_schema</code> are now internal analyzers. Claude finds them through <code class="highlighter-rouge">search_tools</code> and invokes them through <code class="highlighter-rouge">execute_tool</code>. This pattern reduces the initial context footprint by roughly 67%.</p>
+
+<p>When I start a session now, Claude only knows about these four capabilities. If I ask about database structure, Claude can search for relevant tools:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+search\_tools(query: "database schema")
+
+</code></pre></div></div>
+
+<p>This returns information about <code class="highlighter-rouge">get_schema</code> without having loaded all nine analyzers upfront. Claude then invokes it:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+execute\_tool(tool\_name: "get\_schema", params: { table\_name: "users" })
+
+</code></pre></div></div>
+
+<p>The workflow feels natural—Claude discovers what it needs when it needs it.</p>
+
+<h2 id="rails-introspection-beyond-regex-parsing">Rails Introspection: Beyond Regex Parsing</h2>
+
+<p>While refactoring the tool architecture, I realized something uncomfortable: the previous implementation relied heavily on regex parsing. Patterns like <code class="highlighter-rouge">has_many\s+:(\w+)</code> worked most of the time, but missed edge cases—associations with options, multi-line declarations, dynamic associations.</p>
+
+<p>This release replaces regex parsing with proper Rails introspection. When you analyze a model now, the server actually asks Rails about it:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Model</span><span class="p">.</span><span class="nf">reflect_on_all_associations</span>  <span class="c1"># All associations with options</span>
+<span class="no">Model</span><span class="p">.</span><span class="nf">validators</span>                    <span class="c1"># All validations with conditions</span>
+<span class="no">Model</span><span class="p">.</span><span class="nf">defined_enums</span>                 <span class="c1"># Enum definitions and values</span>
+<span class="no">Model</span><span class="p">.</span><span class="nf">columns_hash</span>                  <span class="c1"># Column details from the database</span>
+</code></pre></div></div>
+
+<p>For routes, instead of parsing the text output of <code class="highlighter-rouge">rails routes</code>, the server accesses route objects directly:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">routes</span><span class="p">.</span><span class="nf">routes</span><span class="p">.</span><span class="nf">map</span> <span class="k">do</span> <span class="o">|</span><span class="n">route</span><span class="o">|</span>
+  <span class="p">{</span>
+    <span class="ss">verb: </span><span class="n">route</span><span class="p">.</span><span class="nf">verb</span><span class="p">,</span>
+    <span class="ss">path: </span><span class="n">route</span><span class="p">.</span><span class="nf">path</span><span class="p">.</span><span class="nf">spec</span><span class="p">.</span><span class="nf">to_s</span><span class="p">,</span>
+    <span class="ss">controller: </span><span class="n">route</span><span class="p">.</span><span class="nf">defaults</span><span class="p">[</span><span class="ss">:controller</span><span class="p">],</span>
+    <span class="ss">action: </span><span class="n">route</span><span class="p">.</span><span class="nf">defaults</span><span class="p">[</span><span class="ss">:action</span><span class="p">],</span>
+    <span class="ss">constraints: </span><span class="n">route</span><span class="p">.</span><span class="nf">constraints</span>
+  <span class="p">}</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>For controllers, I now use <code class="highlighter-rouge">action_methods</code> instead of scanning for <code class="highlighter-rouge">def</code> statements, and <code class="highlighter-rouge">_process_action_callbacks</code> to find before/after actions accurately.</p>
+
+<p>The difference in accuracy is significant. Associations with <code class="highlighter-rouge">through:</code>, <code class="highlighter-rouge">class_name:</code>, or <code class="highlighter-rouge">foreign_key:</code> options are now captured correctly. Validations show their conditions. Callbacks include their <code class="highlighter-rouge">only:</code> and <code class="highlighter-rouge">except:</code> filters.</p>
+
+<h2 id="prism-static-analysis">Prism Static Analysis</h2>
+
+<p>Rails introspection tells you what exists at runtime, but sometimes you need to understand the code structure itself. For this, I added Prism static analysis.</p>
+
+<p>Prism is Ruby’s new parser that ships with Ruby 3.3+. It provides a clean AST that I can traverse to extract:</p>
+
+<ul>
+  <li>Callbacks and their method references</li>
+  <li>Scope definitions</li>
+  <li>Included concerns and modules</li>
+  <li>Method definitions with line numbers</li>
+  <li>Instance variables assigned per action</li>
+</ul>
+
+<p>The <code class="highlighter-rouge">analysis_type</code> parameter lets you choose what you need:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>execute_tool(
+  tool_name: "analyze_models",
+  params: {
+    model_name: "User",
+    analysis_type: "full"  # "introspection", "static", or "full"
+  }
+)
+</code></pre></div></div>
+
+<p>With <code class="highlighter-rouge">analysis_type: "full"</code>, Claude gets both the runtime reflection data and the static code analysis. With <code class="highlighter-rouge">analysis_type: "static"</code>, it gets just the AST-derived information—useful when you want to understand code structure without loading the Rails environment.</p>
+
+<h2 id="detail-levels-and-filtering">Detail Levels and Filtering</h2>
+
+<p>Another insight from the Anthropic post: intermediate results consume tokens too. When you ask about routes, do you really need the complete output of all 200 routes with constraints and defaults?</p>
+
+<p>Every analyzer now supports a <code class="highlighter-rouge">detail_level</code> parameter:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">names</code> — Minimal output, just identifiers</li>
+  <li><code class="highlighter-rouge">summary</code> — Names plus brief descriptions</li>
+  <li><code class="highlighter-rouge">full</code> — Complete information (the previous default)</li>
+</ul>
+
+<p>For routes specifically, I added filtering:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>execute_tool(
+  tool_name: "get_routes",
+  params: {
+    controller: "api/v1/users",
+    verb: "GET",
+    detail_level: "summary"
+  }
+)
+</code></pre></div></div>
+
+<p>Instead of 200 routes, Claude might get 5. The token savings compound across a conversation.</p>
+
+<p>For models and schemas, batch operations reduce round-trips:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>execute_tool(
+  tool_name: "analyze_models",
+  params: {
+    model_names: ["User", "Post", "Comment"],
+    detail_level: "associations"
+  }
+)
+</code></pre></div></div>
+
+<p>One call, three models, associations only. No source code, no validations, no columns—just the relationships Claude needs for the current task.</p>
+
+<h2 id="sandboxed-ruby-execution">Sandboxed Ruby Execution</h2>
+
+<p>The most powerful addition is <code class="highlighter-rouge">execute_ruby</code>. Sometimes the predefined analyzers aren’t enough—you need a custom query that doesn’t fit the standard patterns.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>execute_ruby(code: &lt;&lt;~RUBY)
+  User.joins(:posts)
+      .group("users.id")
+      .having("COUNT(posts.id) &gt; 10")
+      .pluck(:email)
+RUBY
+</code></pre></div></div>
+
+<p>This runs in a sandboxed environment with strict security controls:</p>
+
+<ul>
+  <li><strong>No file writes</strong> — Cannot create, modify, or delete files</li>
+  <li><strong>No system calls</strong> — <code class="highlighter-rouge">system()</code>, backticks, and <code class="highlighter-rouge">exec</code> are blocked</li>
+  <li><strong>No network access</strong> — Cannot make HTTP requests or open sockets</li>
+  <li><strong>No sensitive file reads</strong> — <code class="highlighter-rouge">.env</code>, credentials, and <code class="highlighter-rouge">.gitignore</code>‘d files are protected</li>
+  <li><strong>Project-scoped</strong> — Cannot access files outside the project directory</li>
+  <li><strong>Timeout protected</strong> — Maximum 60 seconds execution</li>
+</ul>
+
+<p>The sandbox provides helper methods for common operations:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">read_file</span><span class="p">(</span><span class="s2">"app/models/user.rb"</span><span class="p">)</span>     <span class="c1"># Safe file reading</span>
+<span class="n">file_exists?</span><span class="p">(</span><span class="s2">"config/database.yml"</span><span class="p">)</span> <span class="c1"># Existence check (false for sensitive files)</span>
+<span class="n">list_files</span><span class="p">(</span><span class="s2">"app/models/**/*.rb"</span><span class="p">)</span>    <span class="c1"># Glob with filtering</span>
+<span class="n">project_root</span>                        <span class="c1"># Project path constant</span>
+</code></pre></div></div>
+
+<p>I use this for complex queries that would otherwise require multiple tool calls or for analysis patterns specific to my projects.</p>
+
+<h2 id="improved-discovery-ux">Improved Discovery UX</h2>
+
+<p>After testing the new architecture with real conversations, I noticed AI agents sometimes struggled with the initial learning curve. Which tool reads files? What helpers are available in <code class="highlighter-rouge">execute_ruby</code>? The progressive discovery approach works well once you know the patterns, but getting started needed to be smoother.</p>
+
+<h3 id="quick-start-guide">Quick Start Guide</h3>
+
+<p>Now when you switch projects, you get an immediate orientation:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Switched to project: my_finances at path: /Users/mario/projects/my_finances
+
+Quick Start:
+• Get project overview:  execute_tool("project_info")
+• Read a file:           execute_ruby("puts read_file('config/routes.rb')")
+• Find files:            execute_ruby("puts Dir.glob('app/models/*.rb').join('\n')")
+• Analyze models:        execute_tool("analyze_models", { model_name: "User" })
+• Get routes:            execute_tool("get_routes")
+• Get schema:            execute_tool("get_schema", { table_name: "users" })
+• Search available tools: search_tools()
+
+Helpers in execute_ruby: read_file(path), file_exists?(path), list_files(pattern), project_root
+Note: Always use `puts` in execute_ruby to see output.
+</code></pre></div></div>
+
+<p>This eliminates the cold-start problem. Claude immediately knows the most common patterns without searching for them.</p>
+
+<h3 id="the-puts-problem">The <code class="highlighter-rouge">puts</code> Problem</h3>
+
+<p>One subtle issue kept appearing: <code class="highlighter-rouge">execute_ruby</code> would return “Code executed successfully (no output)” when users forgot to wrap expressions in <code class="highlighter-rouge">puts</code>. Now the no-output message includes helpful hints:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Code executed successfully (no output).
+
+Hint: Use `puts` to see results, e.g.:
+  puts read_file('config/routes.rb')
+  puts User.count
+  puts Dir.glob('app/models/*.rb')
+</code></pre></div></div>
+
+<p>Small friction points like this matter more than I initially realized. Every confused moment is context wasted on troubleshooting instead of actual work.</p>
+
+<h3 id="ai-agent-guide">AI Agent Guide</h3>
+
+<p>For teams using this with custom AI setups, I created a comprehensive guide at <code class="highlighter-rouge">docs/AGENT.md</code> covering:</p>
+
+<ul>
+  <li>Tool selection decision trees</li>
+  <li>Common pitfalls and how to avoid them</li>
+  <li>Error handling and fallback strategies</li>
+  <li>Integration patterns with other MCP servers (like <a href="https://github.com/maquina-app/nvim-mcp-server">Neovim MCP</a>)</li>
+</ul>
+
+<p>The guide is written for AI consumption—structured, explicit, with clear examples for each scenario.</p>
+
+<h2 id="interactive-configuration-tool">Interactive Configuration Tool</h2>
+
+<p>Managing MCP server configuration used to involve editing YAML files and JSON configs manually. With multiple Rails projects, documentation guides, and Claude Desktop integration, this became tedious. So I built <code class="highlighter-rouge">rails-mcp-config</code>—an interactive terminal UI for all configuration tasks.</p>
+
+<h3 id="getting-started">Getting Started</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails-mcp-config
+</code></pre></div></div>
+
+<p>The tool presents a clean menu organized by frequency of use:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──────────────────────────────────────────────────┐
+│  Rails MCP Server - Configuration                │
+╰──────────────────────────────────────────────────╯
+
+Projects
+  List projects
+  Add project
+  Add current directory (my-rails-app)
+  Edit project
+  Remove project
+  Validate all projects
+────────────────────
+Guides
+  Download guides
+  Import custom guides
+  Manage custom guides
+────────────────────
+Setup
+  Claude Desktop integration
+  Open config file
+────────────────────
+Exit
+</code></pre></div></div>
+
+<h3 id="project-management">Project Management</h3>
+
+<p>Adding a project is now a guided process. If you run the tool from within a Rails project directory, it offers to add that directory with one confirmation:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Directory: ~/projects/my-rails-app
+
+Project name: [my-rails-app]
+✓ Added project 'my-rails-app' -&gt; ~/projects/my-rails-app
+</code></pre></div></div>
+
+<p>The tool validates paths, checks for Gemfiles, and uses home-relative paths (<code class="highlighter-rouge">~/projects/...</code>) for portability.</p>
+
+<h3 id="documentation-guides">Documentation Guides</h3>
+
+<p>Downloading Rails, Turbo, Stimulus, and Kamal guides is now visual:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Select guides to download:
+  [x] rails (✓ downloaded)
+  [x] turbo (not downloaded)
+  [ ] stimulus (not downloaded)
+  [ ] kamal (not downloaded)
+
+⠸ Fetching files...
+✓ rails: 2 downloaded, 45 skipped
+✓ turbo: 12 downloaded, 0 skipped
+</code></pre></div></div>
+
+<p>You can also import your own markdown documentation and manage custom guides through the same interface.</p>
+
+<h3 id="claude-desktop-integration">Claude Desktop Integration</h3>
+
+<p>The most useful feature for new users is automatic Claude Desktop configuration. The tool:</p>
+
+<ol>
+  <li>Detects your existing Claude Desktop config</li>
+  <li>Shows current MCP server settings if configured</li>
+  <li>Offers to add or update the Rails MCP Server configuration</li>
+  <li>Automatically finds the correct Ruby and server executable paths</li>
+  <li>Creates timestamped backups before any changes</li>
+  <li>Supports both STDIO (recommended) and HTTP modes</li>
+</ol>
+
+<!-- end list -->
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>✓ Claude Desktop config file found
+✓ Rails MCP Server is configured
+
+Current configuration:
+  command: /Users/mario/.rubies/ruby-3.3.0/bin/ruby
+  args: /Users/mario/.gem/ruby/3.3.0/bin/rails-mcp-server
+
+What would you like to do?
+  View full config
+  Update Rails MCP Server config
+  Back to menu
+</code></pre></div></div>
+
+<p>For HTTP mode with <code class="highlighter-rouge">mcp-remote</code>, the tool detects <code class="highlighter-rouge">npx</code> and guides you through the URL configuration.</p>
+
+<h3 id="enhanced-terminal-ui">Enhanced Terminal UI</h3>
+
+<p>The tool uses <a href="https://github.com/charmbracelet/gum">Gum</a> when available for a polished experience with styled prompts, spinners, and tables. Without Gum, it falls back to a functional basic terminal interface—no dependencies required.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Optional: Install Gum for enhanced UI</span>
+brew <span class="nb">install </span>gum        <span class="c"># macOS</span>
+<span class="nb">sudo </span>apt <span class="nb">install </span>gum    <span class="c"># Debian/Ubuntu</span>
+</code></pre></div></div>
+
+<p>The legacy command-line tools (<code class="highlighter-rouge">rails-mcp-setup-claude</code>, <code class="highlighter-rouge">rails-mcp-server-download-resources</code>) still work for scripting and backward compatibility, but for interactive use, <code class="highlighter-rouge">rails-mcp-config</code> is now the recommended approach.</p>
+
+<h2 id="how-i-use-the-new-architecture">How I Use the New Architecture</h2>
+
+<p>My workflow has evolved with these changes. When I start a session:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Switch to project my_finances.
+</code></pre></div></div>
+
+<p>I immediately see the Quick Start guide, so Claude knows the patterns without any additional discovery.</p>
+
+<p>When I need to explore unfamiliar territory:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Search for tools related to controllers and views.
+</code></pre></div></div>
+
+<p>Claude finds <code class="highlighter-rouge">analyze_controller_views</code> and explains what it can do. Then:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Analyze the UsersController with full introspection and static analysis.
+</code></pre></div></div>
+
+<p>For focused work where I know what I need:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Get the schema for the transactions table, just the columns and indexes.
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">detail_level: "summary"</code> is implicit in “just the columns”—Claude understands the intent and uses minimal output.</p>
+
+<p>For complex questions that span multiple concerns:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>execute_ruby(code: &lt;&lt;~RUBY)
+  # Find models with callbacks that touch the database
+  Dir.glob("app/models/**/*.rb").select do |file|
+    content = File.read(file)
+    content.match?(/after_save|after_create|after_update/) &amp;&amp;
+    content.match?(/\.save|\.update|\.create/)
+  end
+RUBY
+</code></pre></div></div>
+
+<p>This kind of query would be tedious with the standard tools but trivial with direct Ruby execution.</p>
+
+<h2 id="upgrading-to-the-new-version">Upgrading to the New Version</h2>
+
+<p>The upgrade is straightforward:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem <span class="nb">install </span>rails-mcp-server
+</code></pre></div></div>
+
+<p>After installation, run the interactive configuration tool to set up or verify your configuration:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails-mcp-config
+</code></pre></div></div>
+
+<p>This will help you:</p>
+
+<ul>
+  <li>Add your Rails projects</li>
+  <li>Download documentation guides</li>
+  <li>Configure Claude Desktop integration (with automatic path detection)</li>
+</ul>
+
+<p>The new architecture is backward compatible in terms of functionality—everything the previous version could do, this version can do. The interface changed from direct tool calls to discovery and execution, but Claude adapts naturally.</p>
+
+<p>If you prefer manual configuration or scripting, the legacy commands still work:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails-mcp-setup-claude              <span class="c"># Configure Claude Desktop</span>
+rails-mcp-server-download-resources rails   <span class="c"># Download guides</span>
+</code></pre></div></div>
+
+<p>For Prism static analysis to work, your Rails projects need Ruby 3.3+ or the Prism gem installed. If Prism isn’t available, the server gracefully falls back to introspection-only analysis.</p>
+
+<h2 id="looking-forward">Looking Forward</h2>
+
+<p>While version 1.4.0 focused on context optimization, my current exploration for 1.4.1 is focused on <strong>agent portability</strong>.</p>
+
+<p>I am working on a <code class="highlighter-rouge">--single-project</code> flag to support ephemeral environments like the <strong>GitHub Copilot Agent</strong>. These agents run in temporary GitHub Actions environments where no <code class="highlighter-rouge">projects.yml</code> exists and no global configuration can be persisted. The new flag will allow the server to skip loading <code class="highlighter-rouge">projects.yml</code>, treat the current directory as the sole project, and auto-switch to it immediately on startup.</p>
+
+<p>This same feature unlocks support for <strong>Claude Code</strong>. Because Claude Code uses worktrees where each session is a separate working directory. By leveraging STDIO mode with the <code class="highlighter-rouge">--single-project</code> flag, each worktree can spawn its own isolated MCP server instance without port conflicts. This also allows the <code class="highlighter-rouge">.mcp.json</code> configuration to be committed directly to version control, making the setup reproducible for the entire team.</p>
+
+<p>The combination of reduced tool registration, Rails introspection, Prism analysis, and these upcoming compatibility features makes the Rails MCP Server not just smarter, but more adaptable to the rapidly evolving ecosystem of AI agents.</p>
+
+<p>Source code is available at <a href="https://github.com/maquina-app/rails-mcp-server">https://github.com/maquina-app/rails-mcp-server</a></p>
+
+<h2 id="related-posts">Related Posts</h2>
+
+<ul>
+  <li><a href="https://mariochavez.io/desarrollo/rails/ai-tools/development-workflow/2025/06/03/rails-mcp-server-enhanced-documentation-access/">Rails MCP Server: Enhanced Documentation Access</a></li>
+  <li><a href="https://mariochavez.io/desarrollo/2025/04/20/rails-mcp-server-with-sse/">Rails MCP Server with HTTP Server-Sent Events support</a></li>
+  <li><a href="https://mariochavez.io/desarrollo/2025/03/21/rails-mcp-server-enhancing-ai-assisted-development/">Rails MCP Server - Enhancing AI-Assisted Development</a></li>
+</ul>
+
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+
+      <!-- Footer -->
+<footer class="mt-32 flex-none">
+  <div class="sm:px-8">
+    <div class="mx-auto w-full max-w-7xl lg:px-8">
+      <div class="border-t border-zinc-100 pb-16 pt-10 dark:border-zinc-700/40">
+        <div class="relative px-4 sm:px-8 lg:px-12">
+          <div class="mx-auto max-w-2xl lg:max-w-5xl">
+            <div class="flex flex-col items-center justify-between gap-6 sm:flex-row">
+              <div
+                class="
+                  flex flex-wrap justify-center gap-x-6 gap-y-1 text-sm font-medium text-zinc-800
+                  dark:text-zinc-200
+                "
+              >
+              
+                <a
+                    href="/about"
+                  class="
+                    transition hover:text-emerald-500
+                    dark:hover:text-emerald-400
+                  "
+                >
+                About
+                </a>
+              
+                <a
+                    href="/articles"
+                  class="
+                    transition hover:text-emerald-500
+                    dark:hover:text-emerald-400
+                  "
+                >
+                Articles
+                </a>
+              
+                <a
+                    href="/projects"
+                  class="
+                    transition hover:text-emerald-500
+                    dark:hover:text-emerald-400
+                  "
+                >
+                Projects
+                </a>
+              
+              </div>
+
+              <p class="text-sm text-zinc-400 dark:text-zinc-500">
+              &copy; 2025 Mario Alberto Chávez. All rights reserved.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+  </body>
+</html>
